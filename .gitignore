@@ -17,7 +17,6 @@ qt/
 sql/
 TypeScript/
 VB/
-VB.NET/
 workspace/
 .vs/
 cryptest/
@@ -26,6 +25,8 @@ x64
 Debug
 Release
 ipch
+bin
+obj
 _ReSharper*
 *.sdf
 *.suo
