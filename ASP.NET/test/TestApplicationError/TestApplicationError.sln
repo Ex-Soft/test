@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplicationError", "http://localhost/TestApplicationError/TestApplicationError.csproj", "{C414BF1D-72AA-4210-99D4-FAB83095AEF7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C414BF1D-72AA-4210-99D4-FAB83095AEF7}.Debug.ActiveCfg = Debug|.NET
+		{C414BF1D-72AA-4210-99D4-FAB83095AEF7}.Debug.Build.0 = Debug|.NET
+		{C414BF1D-72AA-4210-99D4-FAB83095AEF7}.Release.ActiveCfg = Release|.NET
+		{C414BF1D-72AA-4210-99D4-FAB83095AEF7}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

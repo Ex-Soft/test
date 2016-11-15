@@ -1,0 +1,8 @@
+﻿@using TestPivotReportWithPaging.Models
+@Html.DevExpress().GetStyleSheets(new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid })
+@Html.DevExpress().GetScripts(new Script { ExtensionSuite = ExtensionSuite.PivotGrid })
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("PivotGridPartialView", new TestPivotReportDbContext())
+}

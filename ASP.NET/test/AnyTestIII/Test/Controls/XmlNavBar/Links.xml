@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Items>
+  <Item>
+    <Text>News</Text>
+    <Link>News.aspx</Link>
+  </Item>
+  <Item>
+    <Text>Sports</Text>
+    <Link>Sports.aspx</Link>
+  </Item>
+  <Item>
+    <Text>Stocks</Text>
+    <Link>Stocks.aspx</Link>
+  </Item>
+  <Item>
+    <Text>Weather</Text>
+    <Link>Weather.aspx</Link>
+  </Item>
+</Items>

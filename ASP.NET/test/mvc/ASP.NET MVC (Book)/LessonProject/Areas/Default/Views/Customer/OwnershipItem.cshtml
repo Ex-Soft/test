@@ -1,0 +1,24 @@
+﻿@model KeyValuePair<string, LessonProject.Models.Info.Ownership>
+
+<div class="OwnershipWrapper">
+    <div class="btn remove-line">Удалить</div>
+
+    <div class="control-group">
+        <label class="control-label">
+            Имя
+        </label>
+        <div class="controls">
+            @Html.TextBox("Ownerships[" + Model.Key + "].Name", Model.Value.Name, new { @class = "input-xlarge" })
+            @Html.ValidationMessage("Ownerships[" + Model.Key +  "].Name")
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">
+            Цена
+        </label>
+        <div class="controls">
+            @Html.TextBox("Ownerships[" + Model.Key +  "].Price", Model.Value.Price, new { @class = "input-xlarge" })
+            @Html.ValidationMessage("Ownerships[" + Model.Key +  "].Price")
+        </div>
+    </div>
+</div>

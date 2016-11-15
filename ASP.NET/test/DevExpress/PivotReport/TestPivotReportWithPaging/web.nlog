@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- https://github.com/nlog/nlog/wiki/Layout-Renderers -->
+<nlog autoReload="true" xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <variable name="logDirectory" value="${basedir}/logs/${shortdate}" />
+  
+  <targets>
+    <target name="fileLogTrace" xsi:type="File" fileName="${logDirectory}/trace.txt" layout="${longdate}|${level:uppercase=true}|${logger}|${message}|${gc:property=TotalMemory}|${identity}|${windows-identity}|${aspnet-user-identity}|${aspnet-user-authtype}|${aspnet-request:serverVariable=REQUEST_METHOD}|${aspnet-request:serverVariable=URL}|${aspnet-request:queryString=reportSpName}" />
+    <target name="fileLogDebug" xsi:type="File" fileName="${logDirectory}/debug.txt" layout="${longdate}|${level:uppercase=true}|${logger}|${message}|${gc:property=TotalMemory}|${identity}|${windows-identity}|${aspnet-user-identity}|${aspnet-user-authtype}|${aspnet-request:serverVariable=REQUEST_METHOD}|${aspnet-request:serverVariable=URL}|${aspnet-request:queryString=reportSpName}" />
+    <target name="fileLogInfo" xsi:type="File" fileName="${logDirectory}/info.txt" layout="${longdate}|${level:uppercase=true}|${logger}|${message}|${gc:property=TotalMemory}|${identity}|${windows-identity}|${aspnet-user-identity}|${aspnet-user-authtype}|${aspnet-request:serverVariable=REQUEST_METHOD}|${aspnet-request:serverVariable=URL}|${aspnet-request:queryString=reportSpName}" />
+    <target name="fileLogErrors" xsi:type="File" fileName="${logDirectory}/errors.txt" layout="${longdate}|${level:uppercase=true}|${logger}|${message}|${gc:property=TotalMemory}|${identity}|${windows-identity}|${aspnet-user-identity}|${aspnet-user-authtype}|${aspnet-request:serverVariable=REQUEST_METHOD}|${aspnet-request:serverVariable=URL}|${aspnet-request:queryString=reportSpName}" />
+  </targets>
+
+  <rules>
+    <logger name="*" level="Trace" writeTo="fileLogTrace" />
+    <logger name="*" level="Debug" writeTo="fileLogDebug" />
+    <logger name="*" level="Info" writeTo="fileLogInfo" />
+    <logger name="*" minlevel="Warn" writeTo="fileLogErrors" />
+  </rules>
+</nlog>

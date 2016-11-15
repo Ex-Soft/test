@@ -1,0 +1,22 @@
+﻿@model TestSubmit.Controllers.ModelTestView
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (@Html.BeginForm())
+    {
+        @Html.TextBoxFor(m=>m.Name)
+        @Html.TextBoxFor(m=>m.SecondName)
+        <button type="button">Button (with type=&quot;button&quot;)</button> <button>Button</button> <button type="submit">Button (with type=&quot;submit&quot;)</button> <input type="button" value="Input (with type=&quot;button&quot;)"/> <input type="submit" value="Input (with type=&quot;submit&quot;)"/>
+    }
+</body>
+</html>

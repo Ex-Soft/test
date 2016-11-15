@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Staff>
+  <total>5</total>
+  <success>true</success>
+  <row>
+    <Id>1</Id>
+    <Name>Ленин Владимир Ильич</Name>
+    <Salary>1000</Salary>
+    <BirthDate>1870-04-22</BirthDate>
+  </row>
+  <row>
+    <Id>2</Id>
+    <Name>Сталин Иосиф Виссарионович</Name>
+    <Salary>300</Salary>
+    <BirthDate>1878-12-18</BirthDate>
+  </row>
+  <row>
+    <Id>3</Id>
+    <Name>Хрущев Никита Сергеевич</Name>
+    <Salary>5000</Salary>
+    <BirthDate>1894-04-17</BirthDate>
+  </row>
+  <row>
+    <Id>4</Id>
+    <Name>Брежнев Леонид Ильич</Name>
+    <Salary>1500</Salary>
+    <BirthDate>1906-12-19</BirthDate>
+  </row>
+  <row>
+    <Id>5</Id>
+    <Name>Андропов Юрий Владимирович</Name>
+    <Salary>10000</Salary>
+    <BirthDate>1914-06-15</BirthDate>
+  </row>
+</Staff>

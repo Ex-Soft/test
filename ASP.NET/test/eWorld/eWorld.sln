@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eWorld", "http://localhost/eWorld/eWorld.csproj", "{DC730A5E-C82E-4511-B687-CDAA4F076B3F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{DC730A5E-C82E-4511-B687-CDAA4F076B3F}.Debug.ActiveCfg = Debug|.NET
+		{DC730A5E-C82E-4511-B687-CDAA4F076B3F}.Debug.Build.0 = Debug|.NET
+		{DC730A5E-C82E-4511-B687-CDAA4F076B3F}.Release.ActiveCfg = Release|.NET
+		{DC730A5E-C82E-4511-B687-CDAA4F076B3F}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

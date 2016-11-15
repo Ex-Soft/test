@@ -1,0 +1,12 @@
+﻿@model LessonProject.Models.User
+
+@if (Model != null)
+{
+    <li><a href="#">@Model.Email</a></li>
+    <li>@Html.ActionLink("Выход", "Logout", "Login")</li>
+}
+else
+{
+    <li><span class="btn btn-link" id="LoginPopup">@GlobalRes.Enter</span></li>
+    <li>@Html.ActionLink(GlobalRes.Register, "Register", "User")</li>
+}

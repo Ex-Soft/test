@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<nlog autoReload="true" throwExceptions="true" internalLogFile="internalLogFile.txt" internalLogLevel="Trace" internalLogToConsole="true" internalLogToConsoleError="true" xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <variable name="logDirectory" value="${basedir}/logs/${shortdate}" />
+  <targets>
+    <target name="fileLogTrace" xsi:type="File" fileName="${logDirectory}/trace.txt" layout="${longdate}|${level:uppercase=true}|${logger}|${message}|${gc:property=TotalMemory}|${iis-site-name}|${aspnet-user-identity}|${aspnet-user-authtype}|${appsetting:name=ApplicationSetting}|${aspnet-application:variable=ApplicationVariable}|${aspnet-sessionid}|${aspnet-session:Variable=SessionVariable}|${aspnet-request:cookie=RequestCookie}|${aspnet-request:queryString=queryString1}|${aspnet-request:serverVariable=REQUEST_METHOD}|${aspnet-request:form=TextBox1}|${aspnet-request:item=HTTP_USER_AGENT}"/>
+    <target name="fileLogDebug" xsi:type="File" fileName="${logDirectory}/debug.txt" />
+    <target name="fileLogInfo" xsi:type="File" fileName="${logDirectory}/info.txt" layout="${longdate}|${level:uppercase=true}|${logger}|${message}|${identity}|${windows-identity}"/>
+    <target name="fileLogErrors" xsi:type="File" fileName="${logDirectory}/errors.txt" />
+  </targets>
+  <rules>
+    <logger name="*" level="Trace" writeTo="fileLogTrace" />
+    <logger name="*" level="Debug" writeTo="fileLogDebug" />
+    <logger name="*" level="Info" writeTo="fileLogInfo" />
+    <logger name="*" minlevel="Warn" writeTo="fileLogErrors" />
+  </rules>
+</nlog>

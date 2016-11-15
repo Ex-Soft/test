@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestJQueryAJAX", "TestJQueryAJAX.csproj", "{B487A418-E816-4D02-B5E4-E5F419C26CCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B487A418-E816-4D02-B5E4-E5F419C26CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B487A418-E816-4D02-B5E4-E5F419C26CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B487A418-E816-4D02-B5E4-E5F419C26CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B487A418-E816-4D02-B5E4-E5F419C26CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

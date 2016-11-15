@@ -1,0 +1,25 @@
+﻿@model LessonProject.Models.Info.SimpleFileView
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "SimpleFile", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="Email">
+                Загрузите файл:</label>
+            <div class="controls">
+                @Html.TextBox("UploadedFile", Model.UploadedFile, new { type = "file", @class = "input-xlarge" })
+                @Html.ValidationMessage("UploadedFile")
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Upload</button>
+        </div>
+    </fieldset>
+}

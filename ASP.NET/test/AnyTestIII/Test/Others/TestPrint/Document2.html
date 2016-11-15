@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>Document #2</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script src="form.js" type="text/javascript"></script>
+		<script src="PrnComm2HTML.js" type="text/javascript"></script>
+	</head>
+	<body onload="FillDocument()">
+		<form method="post" action="TestPrintMainForm.aspx?DocumentId=2&Id=2">
+			<table style="width: 100%; " cellSpacing="0" cellPadding="0" border="0">
+				<tr>
+					<td>Line #1:</td>
+					<td><span id="SpanLine1"></span></td>
+				</tr>
+				<tr>
+					<td>Line #2:</td>
+					<td><span id="SpanLine2"></span></td>
+				</tr>
+				<tr>
+					<td>Line #3:</td>
+					<td><span id="SpanLine3"></span></td>
+				</tr>
+				<tr>
+					<td>Line #4:</td>
+					<td><input type="text" id="InputLine4" name="InputLine4"></td>
+				</tr>
+				<tr>
+					<td>Line #5:</td>
+					<td><input type="text" id="InputLine5" name="InputLine5"></td>
+				</tr>
+				<tr>
+					<td>Line #6:</td>
+					<td><input type="text" id="InputLine6" name="InputLine6"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" id="btnSubmit" value="submit"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

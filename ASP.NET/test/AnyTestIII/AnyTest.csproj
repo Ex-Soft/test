@@ -1,0 +1,1356 @@
+<VisualStudioProject>
+    <CSHARP
+        ProjectType = "Web"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{E00F1288-8A82-4F3E-8D92-0F19B465D857}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "AnyTest"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "Library"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
+                RootNamespace = "AnyTest"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "true"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "System.Web"
+                    AssemblyName = "System.Web"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.Web.dll"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+                <Reference
+                    Name = "GroupRadioButton"
+                    Project = "{A25C53BE-642D-42CE-B104-595C43707C91}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "Microsoft.JScript"
+                    AssemblyName = "Microsoft.JScript"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\Microsoft.JScript.dll"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Global.asax"
+                    SubType = "Component"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Global.asax.cs"
+                    DependentUpon = "Global.asax"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Global.asax.resx"
+                    DependentUpon = "Global.asax.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "log.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "MainForm.aspx.cs"
+                    DependentUpon = "MainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MainForm.aspx.resx"
+                    DependentUpon = "MainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Web.config"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Calendar\Std\CalendarCSS.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Calendar\Std\CalendarCSS.aspx.cs"
+                    DependentUpon = "CalendarCSS.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Calendar\Std\CalendarCSS.aspx.resx"
+                    DependentUpon = "CalendarCSS.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\AccessToApplication.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\Beatles.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\ConfirmServerForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\ConfirmServerForm.aspx.cs"
+                    DependentUpon = "ConfirmServerForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\ConfirmServerForm.aspx.resx"
+                    DependentUpon = "ConfirmServerForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\Controls.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\Controls.aspx.cs"
+                    DependentUpon = "Controls.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\Controls.aspx.resx"
+                    DependentUpon = "Controls.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\DropDownListForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\DropDownListForm.aspx.cs"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\DropDownListForm.aspx.resx"
+                    DependentUpon = "DropDownListForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls.aspx.cs"
+                    DependentUpon = "DynamicControls.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls.aspx.resx"
+                    DependentUpon = "DynamicControls.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\PageEvents.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\PageEvents.aspx.cs"
+                    DependentUpon = "PageEvents.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\PageEvents.aspx.resx"
+                    DependentUpon = "PageEvents.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\PageEventsSimple.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\PageEventsSimple.aspx.cs"
+                    DependentUpon = "PageEventsSimple.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\PageEventsSimple.aspx.resx"
+                    DependentUpon = "PageEventsSimple.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\SubmitTestForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\SubmitTestForm.aspx.cs"
+                    DependentUpon = "SubmitTestForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\SubmitTestForm.aspx.resx"
+                    DependentUpon = "SubmitTestForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\SubmitTestFormIII.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\SubmitTestFormIII.aspx.cs"
+                    DependentUpon = "SubmitTestFormIII.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\SubmitTestFormIII.aspx.resx"
+                    DependentUpon = "SubmitTestFormIII.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestControlsForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestControlsForm.aspx.cs"
+                    DependentUpon = "TestControlsForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestControlsForm.aspx.resx"
+                    DependentUpon = "TestControlsForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestLinkForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestLinkForm.aspx.cs"
+                    DependentUpon = "TestLinkForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestLinkForm.aspx.resx"
+                    DependentUpon = "TestLinkForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestRadioDivForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestRadioDivForm.aspx.cs"
+                    DependentUpon = "TestRadioDivForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestRadioDivForm.aspx.resx"
+                    DependentUpon = "TestRadioDivForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestSubmitWDisabledForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestSubmitWDisabledForm.aspx.cs"
+                    DependentUpon = "TestSubmitWDisabledForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestSubmitWDisabledForm.aspx.resx"
+                    DependentUpon = "TestSubmitWDisabledForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestTables.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestTables.aspx.cs"
+                    DependentUpon = "TestTables.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestTables.aspx.resx"
+                    DependentUpon = "TestTables.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicCheckBox\DynamicCheckBox.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicCheckBox\DynamicCheckBox.aspx.cs"
+                    DependentUpon = "DynamicCheckBox.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicCheckBox\DynamicCheckBox.aspx.resx"
+                    DependentUpon = "DynamicCheckBox.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\DynamicControlsDS.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\TestDynamicCheckBox.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\TestDynamicCheckBox.aspx.cs"
+                    DependentUpon = "TestDynamicCheckBox.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\TestDynamicCheckBox.aspx.resx"
+                    DependentUpon = "TestDynamicCheckBox.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\TestDynamicComboBox.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\TestDynamicComboBox.aspx.cs"
+                    DependentUpon = "TestDynamicComboBox.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\DynamicControls\TestDynamicComboBox.aspx.resx"
+                    DependentUpon = "TestDynamicComboBox.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\FrameForm1.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\FrameForm1.aspx.cs"
+                    DependentUpon = "FrameForm1.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\FrameForm1.aspx.resx"
+                    DependentUpon = "FrameForm1.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\FrameForm2.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\FrameForm2.aspx.cs"
+                    DependentUpon = "FrameForm2.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\FrameForm2.aspx.resx"
+                    DependentUpon = "FrameForm2.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\MainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\MainForm.aspx.cs"
+                    DependentUpon = "MainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\MainForm.aspx.resx"
+                    DependentUpon = "MainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\IFrame\TestDS.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\SplashSave\TestSplashSaveForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\SplashSave\TestSplashSaveForm.aspx.cs"
+                    DependentUpon = "TestSplashSaveForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\SplashSave\TestSplashSaveForm.aspx.resx"
+                    DependentUpon = "TestSplashSaveForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestEnableEventValidation\TestEnableEventValidationForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestEnableEventValidation\TestEnableEventValidationForm.aspx.cs"
+                    DependentUpon = "TestEnableEventValidationForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestEnableEventValidation\TestEnableEventValidationForm.aspx.resx"
+                    DependentUpon = "TestEnableEventValidationForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestHtc\TestHtcForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestHtc\TestHtcForm.aspx.cs"
+                    DependentUpon = "TestHtcForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestHtc\TestHtcForm.aspx.resx"
+                    DependentUpon = "TestHtcForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestHtc\TestHtcWValidatorForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestHtc\TestHtcWValidatorForm.aspx.cs"
+                    DependentUpon = "TestHtcWValidatorForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestHtc\TestHtcWValidatorForm.aspx.resx"
+                    DependentUpon = "TestHtcWValidatorForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\TestSubmit\TestSubmit.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\TestSubmit\TestSubmit.aspx.cs"
+                    DependentUpon = "TestSubmit.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\TestSubmit\TestSubmit.aspx.resx"
+                    DependentUpon = "TestSubmit.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Controls\UploadFile\UploadFileForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Controls\UploadFile\UploadFileForm.aspx.cs"
+                    DependentUpon = "UploadFileForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Controls\UploadFile\UploadFileForm.aspx.resx"
+                    DependentUpon = "UploadFileForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\ADO_Net.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\ADO_Net.aspx.cs"
+                    DependentUpon = "ADO_Net.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\ADO_Net.aspx.resx"
+                    DependentUpon = "ADO_Net.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\AnyTestSmlForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\AnyTestSmlForm.aspx.cs"
+                    DependentUpon = "AnyTestSmlForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\AnyTestSmlForm.aspx.resx"
+                    DependentUpon = "AnyTestSmlForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridEventsForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridEventsForm.aspx.cs"
+                    DependentUpon = "DataGridEventsForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridEventsForm.aspx.resx"
+                    DependentUpon = "DataGridEventsForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridFullForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridFullForm.aspx.cs"
+                    DependentUpon = "DataGridFullForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridFullForm.aspx.resx"
+                    DependentUpon = "DataGridFullForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWControlsForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWControlsForm.aspx.cs"
+                    DependentUpon = "DataGridWControlsForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWControlsForm.aspx.resx"
+                    DependentUpon = "DataGridWControlsForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWPages.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWPages.aspx.cs"
+                    DependentUpon = "DataGridWPages.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWPages.aspx.resx"
+                    DependentUpon = "DataGridWPages.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWSortII.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWSortII.aspx.cs"
+                    DependentUpon = "DataGridWSortII.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DataGridWSortII.aspx.resx"
+                    DependentUpon = "DataGridWSortII.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DynamicGridForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DynamicGridForm.aspx.cs"
+                    DependentUpon = "DynamicGridForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DynamicGridForm.aspx.resx"
+                    DependentUpon = "DynamicGridForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\DynamicGridFormII.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\DynamicGridFormII.aspx.cs"
+                    DependentUpon = "DynamicGridFormII.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\DynamicGridFormII.aspx.resx"
+                    DependentUpon = "DynamicGridFormII.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\TableForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\TableForm.aspx.cs"
+                    DependentUpon = "TableForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\TableForm.aspx.resx"
+                    DependentUpon = "TableForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\TestCustomPagingForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\TestCustomPagingForm.aspx.cs"
+                    DependentUpon = "TestCustomPagingForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\TestCustomPagingForm.aspx.resx"
+                    DependentUpon = "TestCustomPagingForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\TestSession.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\TestSession.aspx.cs"
+                    DependentUpon = "TestSession.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\TestSession.aspx.resx"
+                    DependentUpon = "TestSession.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Data\TestReportXSLT\ReportXSLT.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Data\TestReportXSLT\ReportXSLT.aspx.cs"
+                    DependentUpon = "ReportXSLT.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Data\TestReportXSLT\ReportXSLT.aspx.resx"
+                    DependentUpon = "ReportXSLT.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\AnyTest\OthersAnyTestSmlForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\AnyTest\OthersAnyTestSmlForm.aspx.cs"
+                    DependentUpon = "OthersAnyTestSmlForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\AnyTest\OthersAnyTestSmlForm.aspx.resx"
+                    DependentUpon = "OthersAnyTestSmlForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\CalcLoan\CalcLoan.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\CalcLoan\CalcLoan.aspx.cs"
+                    DependentUpon = "CalcLoan.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\CalcLoan\CalcLoan.aspx.resx"
+                    DependentUpon = "CalcLoan.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\CheckAllLoad\CheckAllLoad.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\CheckAllLoad\CheckAllLoad.aspx.cs"
+                    DependentUpon = "CheckAllLoad.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\CheckAllLoad\CheckAllLoad.aspx.resx"
+                    DependentUpon = "CheckAllLoad.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\IFrameThermo\IFrameThermoForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\IFrameThermo\IFrameThermoForm.aspx.cs"
+                    DependentUpon = "IFrameThermoForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\IFrameThermo\IFrameThermoForm.aspx.resx"
+                    DependentUpon = "IFrameThermoForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\PageLoadInfo\PageLoadInfoForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\PageLoadInfo\PageLoadInfoForm.aspx.cs"
+                    DependentUpon = "PageLoadInfoForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\PageLoadInfo\PageLoadInfoForm.aspx.resx"
+                    DependentUpon = "PageLoadInfoForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\ParamForm\ParamForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\ParamForm\ParamForm.aspx.cs"
+                    DependentUpon = "ParamForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\ParamForm\ParamForm.aspx.resx"
+                    DependentUpon = "ParamForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\SelfRedirectForm\SelfRedirectForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\SelfRedirectForm\SelfRedirectForm.aspx.cs"
+                    DependentUpon = "SelfRedirectForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\SelfRedirectForm\SelfRedirectForm.aspx.resx"
+                    DependentUpon = "SelfRedirectForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\SelfRedirectForm\SelfRedirectFormDS.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestAction\TestActionDestForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestAction\TestActionDestForm.aspx.cs"
+                    DependentUpon = "TestActionDestForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestAction\TestActionDestForm.aspx.resx"
+                    DependentUpon = "TestActionDestForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestAction\TestActionMainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestAction\TestActionMainForm.aspx.cs"
+                    DependentUpon = "TestActionMainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestAction\TestActionMainForm.aspx.resx"
+                    DependentUpon = "TestActionMainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackI.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackI.aspx.cs"
+                    DependentUpon = "TestAutoPostBackI.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackI.aspx.resx"
+                    DependentUpon = "TestAutoPostBackI.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackII.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackII.aspx.cs"
+                    DependentUpon = "TestAutoPostBackII.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackII.aspx.resx"
+                    DependentUpon = "TestAutoPostBackII.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackIII.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackIII.aspx.cs"
+                    DependentUpon = "TestAutoPostBackIII.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestAutoPostBack\TestAutoPostBackIII.aspx.resx"
+                    DependentUpon = "TestAutoPostBackIII.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestCache\TestCacheForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestCache\TestCacheForm.aspx.cs"
+                    DependentUpon = "TestCacheForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestCache\TestCacheForm.aspx.resx"
+                    DependentUpon = "TestCacheForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestImage\CreateImageForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestImage\CreateImageForm.aspx.cs"
+                    DependentUpon = "CreateImageForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestImage\CreateImageForm.aspx.resx"
+                    DependentUpon = "CreateImageForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestImage\TestImageForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestImage\TestImageForm.aspx.cs"
+                    DependentUpon = "TestImageForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestImage\TestImageForm.aspx.resx"
+                    DependentUpon = "TestImageForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestPostBackUrlEmulation\TestPostBackUrlEmulationChildForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestPostBackUrlEmulation\TestPostBackUrlEmulationChildForm.aspx.cs"
+                    DependentUpon = "TestPostBackUrlEmulationChildForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestPostBackUrlEmulation\TestPostBackUrlEmulationChildForm.aspx.resx"
+                    DependentUpon = "TestPostBackUrlEmulationChildForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestPostBackUrlEmulation\TestPostBackUrlEmulationMainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestPostBackUrlEmulation\TestPostBackUrlEmulationMainForm.aspx.cs"
+                    DependentUpon = "TestPostBackUrlEmulationMainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestPostBackUrlEmulation\TestPostBackUrlEmulationMainForm.aspx.resx"
+                    DependentUpon = "TestPostBackUrlEmulationMainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestPrint\TestPrintMainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestPrint\TestPrintMainForm.aspx.cs"
+                    DependentUpon = "TestPrintMainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestPrint\TestPrintMainForm.aspx.resx"
+                    DependentUpon = "TestPrintMainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestRedirect\TestRedirectForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestRedirect\TestRedirectForm.aspx.cs"
+                    DependentUpon = "TestRedirectForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestRedirect\TestRedirectForm.aspx.resx"
+                    DependentUpon = "TestRedirectForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrame1Form.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrame1Form.aspx.cs"
+                    DependentUpon = "TestRelatedIFrame1Form.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrame1Form.aspx.resx"
+                    DependentUpon = "TestRelatedIFrame1Form.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrame2Form.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrame2Form.aspx.cs"
+                    DependentUpon = "TestRelatedIFrame2Form.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrame2Form.aspx.resx"
+                    DependentUpon = "TestRelatedIFrame2Form.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrameMainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrameMainForm.aspx.cs"
+                    DependentUpon = "TestRelatedIFrameMainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestRelatedIFrame\TestRelatedIFrameMainForm.aspx.resx"
+                    DependentUpon = "TestRelatedIFrameMainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestSendDataByAJAX\TestSendDataByAJAXMainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestSendDataByAJAX\TestSendDataByAJAXMainForm.aspx.cs"
+                    DependentUpon = "TestSendDataByAJAXMainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestSendDataByAJAX\TestSendDataByAJAXMainForm.aspx.resx"
+                    DependentUpon = "TestSendDataByAJAXMainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestSendDataByAJAX\TestSendDataByAJAXSaveForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestSendDataByAJAX\TestSendDataByAJAXSaveForm.aspx.cs"
+                    DependentUpon = "TestSendDataByAJAXSaveForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestSendDataByAJAX\TestSendDataByAJAXSaveForm.aspx.resx"
+                    DependentUpon = "TestSendDataByAJAXSaveForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIForm\TestSessionIIForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIForm\TestSessionIIForm.aspx.cs"
+                    DependentUpon = "TestSessionIIForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIForm\TestSessionIIForm.aspx.resx"
+                    DependentUpon = "TestSessionIIForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIIForms\TestSessionIIIIFrameForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIIForms\TestSessionIIIIFrameForm.aspx.cs"
+                    DependentUpon = "TestSessionIIIIFrameForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIIForms\TestSessionIIIIFrameForm.aspx.resx"
+                    DependentUpon = "TestSessionIIIIFrameForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIIForms\TestSessionIIIMainForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIIForms\TestSessionIIIMainForm.aspx.cs"
+                    DependentUpon = "TestSessionIIIMainForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestSessionIIIForms\TestSessionIIIMainForm.aspx.resx"
+                    DependentUpon = "TestSessionIIIMainForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestTesting\TestingForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestTesting\TestingForm.aspx.cs"
+                    DependentUpon = "TestingForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestTesting\TestingForm.aspx.resx"
+                    DependentUpon = "TestingForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestToolTipByAJAX\CreateNSIForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestToolTipByAJAX\CreateNSIForm.aspx.cs"
+                    DependentUpon = "CreateNSIForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestToolTipByAJAX\CreateNSIForm.aspx.resx"
+                    DependentUpon = "CreateNSIForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestToolTipByAJAX\TestToolTipByAJAX.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestToolTipByAJAX\TestToolTipByAJAX.aspx.cs"
+                    DependentUpon = "TestToolTipByAJAX.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestToolTipByAJAX\TestToolTipByAJAX.aspx.resx"
+                    DependentUpon = "TestToolTipByAJAX.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestTwoPage\ChildPage.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestTwoPage\ChildPage.aspx.cs"
+                    DependentUpon = "ChildPage.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestTwoPage\ChildPage.aspx.resx"
+                    DependentUpon = "ChildPage.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Others\TestTwoPage\MainPage.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Others\TestTwoPage\MainPage.aspx.cs"
+                    DependentUpon = "MainPage.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Others\TestTwoPage\MainPage.aspx.resx"
+                    DependentUpon = "MainPage.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Validators\SimpleValidatorForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Validators\SimpleValidatorForm.aspx.cs"
+                    DependentUpon = "SimpleValidatorForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Validators\SimpleValidatorForm.aspx.resx"
+                    DependentUpon = "SimpleValidatorForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Validators\TestValidatorWOSummaryForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Validators\TestValidatorWOSummaryForm.aspx.cs"
+                    DependentUpon = "TestValidatorWOSummaryForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Validators\TestValidatorWOSummaryForm.aspx.resx"
+                    DependentUpon = "TestValidatorWOSummaryForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Test\Validators\TestValidatorWSummaryForm.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Test\Validators\TestValidatorWSummaryForm.aspx.cs"
+                    DependentUpon = "TestValidatorWSummaryForm.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Test\Validators\TestValidatorWSummaryForm.aspx.resx"
+                    DependentUpon = "TestValidatorWSummaryForm.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+

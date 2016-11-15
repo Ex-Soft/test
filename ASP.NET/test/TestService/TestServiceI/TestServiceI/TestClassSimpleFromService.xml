@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestClassSimple xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<FInt xmlns="http://tempuri.org/">100</FInt>
+	<FDecimal xmlns="http://tempuri.org/">110.0</FDecimal>
+	<FDateTime xmlns="http://tempuri.org/">2111-04-16T09:09:14.3643434+03:00</FDateTime>
+	<FString>TestТест TestТест</FString>
+</TestClassSimple>

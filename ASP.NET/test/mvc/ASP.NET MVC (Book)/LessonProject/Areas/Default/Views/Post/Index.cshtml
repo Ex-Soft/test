@@ -1,0 +1,21 @@
+﻿@model LessonProject.Models.Info.PageableData<LessonProject.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="item">
+@foreach (var post in Model.List)
+{
+    <h3>@post.Header</h3>
+    <p>
+        @post.Content.NlToBr()
+    </p>
+    <span>@post.AddedDate.ToString("d")</span>
+}
+</div>
+<div class="pagination">
+    @Html.PageLinks(Model.PageNo, Model.CountPage, x => Url.Action("Index", new {page = x}))
+</div>

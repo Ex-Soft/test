@@ -1,0 +1,184 @@
+<!-- ---------------------------------------------------------------------
+// MASK.hts - маски SHORTDATE, CURRENCY
+//-------------------------------------------------------------------- -->
+<PROPERTY NAME="preset"  />
+<PROPERTY NAME="realValue" />
+<EVENT    NAME="onerror"  ID="error"  />
+<ATTACH   EVENT="ondocumentready"  HANDLER="DoInit"       />
+<ATTACH   EVENT="onpropertychange" HANDLER="DoPropChange" />
+<ATTACH   EVENT="onerror" HANDLER="DoShowMessage" />
+<script language="jscript">
+realValue = "";   
+function DoInit()
+{
+    var sTag = tagName.toLowerCase();
+    if (sTag == "span" || sTag == "div" || sTag == "a" || sTag == "p"
+        || sTag == "td" || sTag == "th" || sTag == "button"
+        || sTag.charAt(0) == "h") 
+    {   FormatValue();    }
+    else if (sTag == "input") 
+    {
+        attachEvent("onreadystatechange", InputBlur);
+        attachEvent("onfocus", InputFocus);
+        attachEvent("onblur", InputBlur);
+    }                      
+    //else ReturnError("Не можливо застосувати маску :-(");
+}
+function DoPropChange()
+{
+    propertyName = window.event.propertyName;
+    if (propertyName == "preset")
+    {
+        if (tagName.toLowerCase() == "input") InputBlur();
+        else FormatValue();
+    }
+}
+function DoShowMessage()
+{
+    window.alert(window.event.error);
+}
+function FormatValue()
+{
+    switch(preset)
+    {
+        case "shortdate"            :
+            innerText = MaskDate(innerText);
+            break;
+        case "currency"             :
+            innerText = MaskMoney(innerText);
+            break;
+    }
+}
+function InputFocus() { /*value = realValue;*/ }
+function InputBlur() 
+{
+    realValue = value;
+    switch(preset)
+    {
+        case "shortdate":
+            value = MaskDate(value);
+            break;
+        case "currency":
+            value = MaskMoney(value);
+            break;
+    }
+}
+function MaskDate(sValue)
+{
+    var sOk = "true";
+    if (sValue.length == 0) 
+        return "";
+    if (sValue.length == 10)
+    {
+        tmp_sValue = sValue;
+        
+        tmp_sValue = replaceChars(tmp_sValue, '.', '/');
+        tmp_sValue = replaceChars(tmp_sValue, '-', '/');
+        tmp_sValue = replaceChars(tmp_sValue, ',', '/');
+      
+        var sDay   = tmp_sValue.substring(0,2);
+        var sMonth = tmp_sValue.substring(3,5);
+        var sYear  = tmp_sValue.substring(6,10);
+        var sDate  = sDay+"/"+sMonth+"/"+sYear;
+
+        var iDay   = parseInt(sDay,10);
+        var iMonth = parseInt(sMonth,10);
+        var iYear  = parseInt(sYear,10);
+        var iDate  = Date.parse(sDate);
+        
+        if( isNaN(Date.parse(tmp_sValue)) || isNaN(iDate) || isNaN(iDay) || isNaN(iMonth) || isNaN(iYear) || (iDay>31) || (iMonth>12) || (iYear>3000) || (iYear<1901) || !checkDate(iDay, iMonth, iYear)) 
+            sOk = "false";          
+    }
+    else
+       sOk = "false";
+             
+    if(sOk == "false")
+    {
+      if("AllOk" in window)
+        AllOk=false;
+
+      ReturnError("[ERROR]\n\n'"+ sValue +"' - НЕВІРНА ДАТА!\n\nФормат дати має бути таким: дд.мм.рррр");
+      return "";
+    }
+    else
+    {
+      if("AllOk" in window)
+        AllOk=true;
+
+      return replaceChars(tmp_sValue, '/', '.');
+    }
+}
+function replaceChars(entry, out, add) 
+{
+    temp = "" + entry; // temporary holder
+    while ( temp.indexOf(out) >- 1 ) 
+    {
+        pos= temp.indexOf(out);
+        temp = "" + (temp.substring(0, pos) + add + 
+        temp.substring((pos + out.length), temp.length));
+    }
+    return temp;
+}
+function MaskMoney(sValue) 
+{
+    if (sValue.length == 0) return "";
+    var tmp_sValue = replaceChars(replaceChars(sValue, ',', '.'), ' ', '' );
+    var iValue = parseFloat(tmp_sValue);
+    iValue = (Math.round(iValue * 100)) / 100;
+    if (isNaN(iValue))
+    {
+        if("AllOk" in window)
+          AllOk=false;
+
+        ReturnError("[ERROR]\n\n'"+ sValue +"' - Помилка вводу числового значення");
+        return "";
+    }
+    else
+    {
+        if("AllOk" in window)
+          AllOk=true;
+    }
+    tmp_sValue = iValue.toString();
+    if (tmp_sValue.indexOf(".") == -1)
+    {
+        tmp_sValue = tmp_sValue + ",00";
+    }
+    else
+    {
+        if (tmp_sValue.indexOf(".") == tmp_sValue.length - 1)
+        {
+            tmp_sValue = tmp_sValue + "00";
+        }
+        else if (tmp_sValue.indexOf(".") == tmp_sValue.length - 2)
+        {
+            tmp_sValue = tmp_sValue + "0";
+        }
+    }
+    if (tmp_sValue.indexOf(".") > 3)
+    {
+       // tmp_sValue = tmp_sValue.substring(0,tmp_sValue.indexOf(".") - 3) + " " + tmp_sValue.substring(tmp_sValue.indexOf(".") - 3,tmp_sValue.length);
+    }
+    return replaceChars(tmp_sValue, '.', ',');
+}
+function ReturnError(sMsg)
+{
+    var oEvent = createEventObject();
+    oEvent.setAttribute("error", sMsg);
+    error.fire(oEvent);
+}
+function checkDate(nDay, xMonth, nYear)
+                  {
+                     nMonth = xMonth - 1;
+                     dateToCompare = new Date(nYear, nMonth, nDay);
+                     //window.alert(dateToCompare) ;                    
+                     if ((dateToCompare.getDate() == nDay) && (dateToCompare.getMonth() == nMonth) && (dateToCompare.getFullYear() == nYear))
+                     {
+                        return true;
+                     }
+                     else  
+                     {
+                                return false;
+                     }
+                     
+                  }
+</script>

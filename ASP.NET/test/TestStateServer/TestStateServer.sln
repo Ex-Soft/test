@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStateServer", "http://localhost/TestStateServer/TestStateServer.csproj", "{9FFD9650-8B68-4A14-BA08-0CA75BA3C23D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{9FFD9650-8B68-4A14-BA08-0CA75BA3C23D}.Debug.ActiveCfg = Debug|.NET
+		{9FFD9650-8B68-4A14-BA08-0CA75BA3C23D}.Debug.Build.0 = Debug|.NET
+		{9FFD9650-8B68-4A14-BA08-0CA75BA3C23D}.Release.ActiveCfg = Release|.NET
+		{9FFD9650-8B68-4A14-BA08-0CA75BA3C23D}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

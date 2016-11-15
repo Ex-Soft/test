@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Sum">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="list" type="tns:ArrayOfTestClassI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTestClassI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TestClassI" nillable="true" type="tns:TestClassI" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TestClassI">
+        <s:attribute name="FInt" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="SumResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SumResult" type="tns:TestClassI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SumContainer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="list" type="tns:TestClassIContainer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TestClassIContainer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TestClassIContainer" type="tns:TestClassI" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SumContainerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SumContainerResult" type="tns:TestClassI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SumSoapIn">
+    <wsdl:part name="parameters" element="tns:Sum" />
+  </wsdl:message>
+  <wsdl:message name="SumSoapOut">
+    <wsdl:part name="parameters" element="tns:SumResponse" />
+  </wsdl:message>
+  <wsdl:message name="SumContainerSoapIn">
+    <wsdl:part name="parameters" element="tns:SumContainer" />
+  </wsdl:message>
+  <wsdl:message name="SumContainerSoapOut">
+    <wsdl:part name="parameters" element="tns:SumContainerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceISoap">
+    <wsdl:operation name="Sum">
+      <wsdl:input message="tns:SumSoapIn" />
+      <wsdl:output message="tns:SumSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SumContainer">
+      <wsdl:input message="tns:SumContainerSoapIn" />
+      <wsdl:output message="tns:SumContainerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceISoap" type="tns:ServiceISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Sum">
+      <soap:operation soapAction="http://tempuri.org/Sum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SumContainer">
+      <soap:operation soapAction="http://tempuri.org/SumContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceISoap12" type="tns:ServiceISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Sum">
+      <soap12:operation soapAction="http://tempuri.org/Sum" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SumContainer">
+      <soap12:operation soapAction="http://tempuri.org/SumContainer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceI">
+    <wsdl:port name="ServiceISoap" binding="tns:ServiceISoap">
+      <soap:address location="http://localhost:2767/ServiceI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceISoap12" binding="tns:ServiceISoap12">
+      <soap12:address location="http://localhost:2767/ServiceI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

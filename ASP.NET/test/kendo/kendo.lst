@@ -1,0 +1,11 @@
+App_Data
+asm
+bin
+obj
+resources*
+images
+kendo
+_ReSharper*
+*.suo
+*.user
+*.DotSettings

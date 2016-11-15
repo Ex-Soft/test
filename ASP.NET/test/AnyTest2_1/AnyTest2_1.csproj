@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EB7C21D4-8008-4112-BFD8-F3C4941ADF49}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnyTest2_1</RootNamespace>
+    <AssemblyName>AnyTest2_1</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="contents.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="MainForm.aspx" />
+    <Content Include="MainTitle.aspx" />
+    <Content Include="Test\Controls\ControlsContents.aspx" />
+    <Content Include="Test\Controls\TestCtrls\TestCtrlsForm.aspx" />
+    <Content Include="Test\Controls\TestDynamicCtrls\TestDynamicCtrlsForm.aspx" />
+    <Content Include="Test\Controls\TestDynamicCtrls\TestDynamicCtrlsFormII.aspx" />
+    <Content Include="Test\Controls\TestEnableEventValidation\TestEnableEventValidationForm.aspx" />
+    <Content Include="Test\Controls\TestPostBackUrl\FirstForm.aspx" />
+    <Content Include="Test\Controls\TestPostBackUrl\SecondForm.aspx" />
+    <Content Include="Test\Controls\TestRODCtrls\TestRODCtrlsForm.aspx" />
+    <Content Include="Test\Data\DataContents.aspx" />
+    <Content Include="Test\Data\DataGridAdv.aspx" />
+    <Content Include="Test\Data\DataGridSimple.aspx" />
+    <Content Include="Test\Data\DataGridWPages.aspx" />
+    <Content Include="Test\Data\DataGridWSort.aspx" />
+    <Content Include="Test\Data\DataListAdv.aspx" />
+    <Content Include="Test\Data\DataListSimple.aspx" />
+    <Content Include="Test\Data\GridViewABCForm.aspx" />
+    <Content Include="Test\Data\GridViewFullForm.aspx" />
+    <Content Include="Test\Data\GridViewSimple.aspx" />
+    <Content Include="Test\Data\RepeaterAdv.aspx" />
+    <Content Include="Test\Data\RepeaterSimple.aspx" />
+    <Content Include="Test\Data\TestDataBindForm.aspx" />
+    <Content Include="Test\Data\TestDetailsViewForm.aspx" />
+    <Content Include="Test\Data\TestSqlDataSourceForm.aspx" />
+    <Content Include="Test\Others\AnyTest\OthersAnyTestSmlForm.aspx" />
+    <Content Include="Test\Others\TestAction\TestActionDestForm.aspx" />
+    <Content Include="Test\Others\TestAction\TestActionMainForm.aspx" />
+    <Content Include="Test\Others\TestAutoPostBack\TestAutoPostBack.aspx" />
+    <Content Include="Test\Others\TestCache\TestCacheForm.aspx" />
+    <Content Include="Test\Others\TestCheckBoxInIFrame\TestCheckBoxInIFrameIFrameForm.aspx" />
+    <Content Include="Test\Others\TestCheckBoxInIFrame\TestCheckBoxInIFrameMainForm.aspx" />
+    <Content Include="Test\Others\TestImage\TestImageForm.aspx" />
+    <Content Include="Test\Others\TestPageEvents\TestPageEventsForm.aspx" />
+    <Content Include="Test\Others\TestRelatedIFrame\TestRelatedIFrame1Form.aspx" />
+    <Content Include="Test\Others\TestRelatedIFrame\TestRelatedIFrame2Form.aspx" />
+    <Content Include="Test\Others\TestRelatedIFrame\TestRelatedIFrameMainForm.aspx" />
+    <Content Include="Test\Others\TestTwoPage\ChildPage.aspx" />
+    <Content Include="Test\Others\TestTwoPage\MainPage.aspx" />
+    <Content Include="Test\Validators\TestValidatorWSummaryForm.aspx" />
+    <Content Include="Test\Validators\Validators.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="log.cs" />
+    <Compile Include="MainForm.aspx.cs">
+      <DependentUpon>MainForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainForm.aspx.designer.cs">
+      <DependentUpon>MainForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSendDataByAJAXSaveHttpHandler.cs" />
+    <Compile Include="Test\Controls\TestCtrls\TestCtrlsForm.aspx.cs">
+      <DependentUpon>TestCtrlsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestCtrls\TestCtrlsForm.aspx.designer.cs">
+      <DependentUpon>TestCtrlsForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestDataBind\TestDataBindForm.aspx.cs">
+      <DependentUpon>TestDataBindForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestDataBind\TestDataBindForm.aspx.designer.cs">
+      <DependentUpon>TestDataBindForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestDynamicCtrls\TestDynamicCtrlsForm.aspx.cs">
+      <DependentUpon>TestDynamicCtrlsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestDynamicCtrls\TestDynamicCtrlsForm.aspx.designer.cs">
+      <DependentUpon>TestDynamicCtrlsForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestDynamicCtrls\TestDynamicCtrlsFormII.aspx.cs">
+      <DependentUpon>TestDynamicCtrlsFormII.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestDynamicCtrls\TestDynamicCtrlsFormII.aspx.designer.cs">
+      <DependentUpon>TestDynamicCtrlsFormII.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestEnableEventValidation\TestEnableEventValidationForm.aspx.cs">
+      <DependentUpon>TestEnableEventValidationForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestEnableEventValidation\TestEnableEventValidationForm.aspx.designer.cs">
+      <DependentUpon>TestEnableEventValidationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrlII\TestPostBackUrlIIFirstForm.aspx.cs">
+      <DependentUpon>TestPostBackUrlIIFirstForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrlII\TestPostBackUrlIIFirstForm.aspx.designer.cs">
+      <DependentUpon>TestPostBackUrlIIFirstForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrlII\TestPostBackUrlIISecondForm.aspx.cs">
+      <DependentUpon>TestPostBackUrlIISecondForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrlII\TestPostBackUrlIISecondForm.aspx.designer.cs">
+      <DependentUpon>TestPostBackUrlIISecondForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrl\FirstForm.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>FirstForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrl\FirstForm.aspx.designer.cs">
+      <DependentUpon>FirstForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrl\SecondForm.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SecondForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestPostBackUrl\SecondForm.aspx.designer.cs">
+      <DependentUpon>SecondForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Controls\TestRODCtrls\TestRODCtrlsForm.aspx.cs">
+      <DependentUpon>TestRODCtrlsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Controls\TestRODCtrls\TestRODCtrlsForm.aspx.designer.cs">
+      <DependentUpon>TestRODCtrlsForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Data\Data.cs" />
+    <Compile Include="Test\Data\DataGridWPages.aspx.cs">
+      <DependentUpon>DataGridWPages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Data\GridViewABCForm.aspx.cs">
+      <DependentUpon>GridViewABCForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Data\GridViewABCForm.aspx.designer.cs">
+      <DependentUpon>GridViewABCForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Data\GridViewFullForm.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>GridViewFullForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Data\GridViewFullForm.aspx.designer.cs">
+      <DependentUpon>GridViewFullForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Data\TestDataBindForm.aspx.cs">
+      <DependentUpon>TestDataBindForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Data\TestDataBindForm.aspx.designer.cs">
+      <DependentUpon>TestDataBindForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Data\TestDetailsViewForm.aspx.cs">
+      <DependentUpon>TestDetailsViewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Data\TestDetailsViewForm.aspx.designer.cs">
+      <DependentUpon>TestDetailsViewForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Data\TestSqlDataSourceForm.aspx.cs">
+      <DependentUpon>TestSqlDataSourceForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Data\TestSqlDataSourceForm.aspx.designer.cs">
+      <DependentUpon>TestSqlDataSourceForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\AnyTest\OthersAnyTestSmlForm.aspx.cs">
+      <DependentUpon>OthersAnyTestSmlForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\AnyTest\OthersAnyTestSmlForm.aspx.designer.cs">
+      <DependentUpon>OthersAnyTestSmlForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestAction\TestActionDestForm.aspx.cs">
+      <DependentUpon>TestActionDestForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestAction\TestActionDestForm.aspx.designer.cs">
+      <DependentUpon>TestActionDestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestAction\TestActionMainForm.aspx.cs">
+      <DependentUpon>TestActionMainForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestAction\TestActionMainForm.aspx.designer.cs">
+      <DependentUpon>TestActionMainForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestAutoPostBack\TestAutoPostBack.aspx.cs">
+      <DependentUpon>TestAutoPostBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestAutoPostBack\TestAutoPostBack.aspx.designer.cs">
+      <DependentUpon>TestAutoPostBack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestCache\TestCacheForm.aspx.cs">
+      <DependentUpon>TestCacheForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestCache\TestCacheForm.aspx.designer.cs">
+      <DependentUpon>TestCacheForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestCheckBoxInIFrame\TestCheckBoxInIFrameIFrameForm.aspx.cs">
+      <DependentUpon>TestCheckBoxInIFrameIFrameForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestCheckBoxInIFrame\TestCheckBoxInIFrameIFrameForm.aspx.designer.cs">
+      <DependentUpon>TestCheckBoxInIFrameIFrameForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestCheckBoxInIFrame\TestCheckBoxInIFrameMainForm.aspx.cs">
+      <DependentUpon>TestCheckBoxInIFrameMainForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestCheckBoxInIFrame\TestCheckBoxInIFrameMainForm.aspx.designer.cs">
+      <DependentUpon>TestCheckBoxInIFrameMainForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestDoPostBack\TestDoPostBackForm.aspx.cs">
+      <DependentUpon>TestDoPostBackForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestDoPostBack\TestDoPostBackForm.aspx.designer.cs">
+      <DependentUpon>TestDoPostBackForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestDynamicFrame\TestDynamicFrameForm.aspx.cs">
+      <DependentUpon>TestDynamicFrameForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestDynamicFrame\TestDynamicFrameForm.aspx.designer.cs">
+      <DependentUpon>TestDynamicFrameForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestDynamicFrame\TestDynamicFrameHandler.ashx.cs" />
+    <Compile Include="Test\Others\TestHttpHandler\TestHttpHandlerClass.cs" />
+    <Compile Include="Test\Others\TestHttpHandler\TestHttpHandlerForm.aspx.cs">
+      <DependentUpon>TestHttpHandlerForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestHttpHandler\TestHttpHandlerForm.aspx.designer.cs">
+      <DependentUpon>TestHttpHandlerForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestImage\TestImageForm.aspx.cs">
+      <DependentUpon>TestImageForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestImage\TestImageForm.aspx.designer.cs">
+      <DependentUpon>TestImageForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestImage\TestResizeImageHandler.ashx.cs" />
+    <Compile Include="Test\Others\TestJSON\GenerateDataJSONHandler.ashx.cs" />
+    <Compile Include="Test\Others\TestJSON\TestJSONForm.aspx.cs">
+      <DependentUpon>TestJSONForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestJSON\TestJSONForm.aspx.designer.cs">
+      <DependentUpon>TestJSONForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestPageEvents\TestPageEventsForm.aspx.cs">
+      <DependentUpon>TestPageEventsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestPageEvents\TestPageEventsForm.aspx.designer.cs">
+      <DependentUpon>TestPageEventsForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestRelatedIFrame\TestRelatedIFrame1Form.aspx.cs">
+      <DependentUpon>TestRelatedIFrame1Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestRelatedIFrame\TestRelatedIFrame1Form.aspx.designer.cs">
+      <DependentUpon>TestRelatedIFrame1Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestRelatedIFrame\TestRelatedIFrame2Form.aspx.cs">
+      <DependentUpon>TestRelatedIFrame2Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestRelatedIFrame\TestRelatedIFrame2Form.aspx.designer.cs">
+      <DependentUpon>TestRelatedIFrame2Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestRelatedIFrame\TestRelatedIFrameMainForm.aspx.cs">
+      <DependentUpon>TestRelatedIFrameMainForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestRelatedIFrame\TestRelatedIFrameMainForm.aspx.designer.cs">
+      <DependentUpon>TestRelatedIFrameMainForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestTwoPage\ChildPage.aspx.cs">
+      <DependentUpon>ChildPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestTwoPage\ChildPage.aspx.designer.cs">
+      <DependentUpon>ChildPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Others\TestTwoPage\MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Others\TestTwoPage\MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Validators\TestValidatorWSummaryForm.aspx.cs">
+      <DependentUpon>TestValidatorWSummaryForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Validators\TestValidatorWSummaryForm.aspx.designer.cs">
+      <DependentUpon>TestValidatorWSummaryForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\Validators\Validators.aspx.cs">
+      <DependentUpon>Validators.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\Validators\Validators.aspx.designer.cs">
+      <DependentUpon>Validators.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Test\Data\DataGridWPages.aspx.resx">
+      <DependentUpon>DataGridWPages.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Test\Controls\TestPostBackUrlII\TestPostBackUrlIIFirstForm.aspx" />
+    <Content Include="Test\Controls\TestPostBackUrlII\TestPostBackUrlIISecondForm.aspx" />
+    <Content Include="Test\Others\TestDoPostBack\TestDoPostBackForm.aspx" />
+    <Content Include="Test\Others\TestDynamicFrame\TestDynamicFrameForm.aspx" />
+    <Content Include="Test\Others\TestDynamicFrame\TestDynamicFrameHandler.ashx" />
+    <Content Include="Test\Others\TestHttpHandler\TestHttpHandlerForm.aspx" />
+    <Content Include="Test\Others\TestJSON\TestJSONForm.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Test\Controls\TestDataBind\TestDataBindForm.aspx" />
+    <Content Include="Test\Others\TestJSON\GenerateDataJSONHandler.ashx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1695</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

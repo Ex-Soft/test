@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="data.xsl"?>
+<StaffReport>
+  <ReportName>Report</ReportName>
+  <ReportNo>13</ReportNo>
+  <ReportDate>2009.12.10</ReportDate>
+  <Staff>
+    <Dep DepNo="1">
+      <Name Salary="10000" BirthDate="1914.06.15">Андропов Юрий Владимирович</Name>
+      <Name Salary="5000">Хрущев Никита Сергеевич</Name>
+      <Name Salary="1500">Брежнев Леонид Ильич</Name>
+      <Name Salary="1000" BirthDate="1870.04.22">Ленин Владимир Ильич</Name>
+      <Name Salary="300">Сталин Иосиф Виссарионович</Name>
+      <Name Salary="100,01" BirthDate="1911.09.24">Черненко Константин Устинович</Name>
+    </Dep>
+    <Dep DepNo="2">
+      <Name Salary="5000">Петров Петр Петрович</Name>
+      <Name Salary="3000">Иванов Иван Иванович</Name>
+      <Name Salary="1500">Сидоров Сидор Сидорович</Name>
+    </Dep>
+    <Dep DepNo="3">
+      <Name Salary="3000">Васильев Василий Василиевич</Name>
+      <Name Salary="800" BirthDate="1883.04.01">Дем'ян Бэдний</Name>
+    </Dep>
+  </Staff>
+</StaffReport>

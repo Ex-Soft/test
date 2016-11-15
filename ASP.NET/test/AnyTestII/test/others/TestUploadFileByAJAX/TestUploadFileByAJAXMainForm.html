@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- http://www.ajaxf1.com/tutorial/ajax-file-upload-tutorial.html -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Test Upload File by AJAX (Main Form)</title>
+    <style type="text/css">
+#f1_upload_process
+{
+    z-index:100;
+    position:absolute;
+    visibility:hidden;
+    text-align:center;
+    width:400px;
+    margin:0px;
+    padding:0px;
+    background-color:#fff;
+    border:1px solid #ccc;
+}
+
+form
+{
+    text-align:center;
+    width:390px;
+    margin:0px;
+    padding:5px;
+    background-color:#fff;
+    border:1px solid #ccc;
+}
+    </style>
+    <script type="text/javascript">
+<!--
+function startUpload()
+{
+    document.getElementById("f1_upload_process").style.visibility = "visible";
+    return true;
+}
+
+function stopUpload(success)
+{
+    var
+        result = "";
+
+    if (success == 1)
+    {
+        document.getElementById("result").innerHTML = "<span class=\"msg\">The file was uploaded successfully!<\/span><br/><br/>";
+    }
+    else
+    {
+        document.getElementById("result").innerHTML = "<span class=\"emsg\">There was an error during file upload!<\/span><br/><br/>";
+    }
+
+    document.getElementById("f1_upload_process").style.visibility = "hidden";
+    
+    return true;
+}
+// -->
+    </script>
+</head>
+    <body>
+        <p id="f1_upload_process">Loading...<br/><img src="loader.gif" style="border-width: 0; " /></p>
+        <p id="result"></p>
+        <form action="TestUploadFileByAJAXUploadForm.aspx" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="startUpload();" >
+            File# 1: <input type="file" name="myFile1" /><br />
+            File# 2: <input type="file" name="myFile2" /><br />
+            File# 3: <input type="file" name="myFile3" /><br />
+            <input type="submit" name="submitBtn" value="Upload" />
+        </form>
+        <iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
+    </body>
+</html>

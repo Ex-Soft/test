@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TelerikMvcApp.Models.Staff>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @(Html.Kendo().Grid<TelerikMvcApp.Models.Staff>()
+          .Name("grid")
+          .Columns(columns =>
+          {
+              columns.Bound(c => c.ID).Width(100);
+              columns.Bound(c => c.Name).Width(200);
+              columns.Command(command =>
+              {
+                  command.Edit();
+                  command.Destroy();
+              });
+          })
+          .ToolBar(toolbar =>
+          {
+              toolbar.Create();
+          })
+          .Editable(editable => editable.Mode(GridEditMode.InLine))
+          .Scrollable()
+          .Groupable()
+          .Sortable()
+          .Pageable(pageable => pageable
+              .Refresh(true)
+              .PageSizes(true)
+              .ButtonCount(5))
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .Model(model => model.Id(p => p.ID))
+              .Create(create => create.Action("Create", "Staffs"))
+              .Read(read => read.Action("Read", "Staffs"))
+              .Update(update => update.Action("Update", "Staffs"))
+              .Destroy(destroy => destroy.Action("Destroy", "Staffs"))
+          )
+    )
+</div>
+
+<div>
+    @Html.ActionLink("Back", "Index", "Home")
+</div>

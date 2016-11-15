@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta name=vs_targetSchema content="http://schemas.microsoft.com/intellisense/ie5">
+    <style>tr{background-color : 'white'}</style>
+  </head>
+  <body bgcolor=silver>
+    <table id=TableCol width='100%' border=1>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>1&nbsp;1</td><td>1&nbsp;2</td><td>1&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>2&nbsp;1</td><td>2&nbsp;2</td><td>2&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>3&nbsp;1</td><td>3&nbsp;2</td><td>3&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>4&nbsp;1</td><td>4&nbsp;2</td><td>4&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>5&nbsp;1</td><td>5&nbsp;2</td><td>5&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>6&nbsp;1</td><td>6&nbsp;2</td><td>6&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>7&nbsp;1</td><td>7&nbsp;2</td><td>7&nbsp;3</td></tr>
+      <tr style="color: white; background-color: blue; font-weight: bold" onclick="darkthis(this.style,'click')"><td>8&nbsp;1</td><td>8&nbsp;2</td><td>8&nbsp;3</td></tr>
+    </table>
+  </body>
+</html>
+
+<script language=javascript>
+function darkthis(objstyle,flag)
+{
+   var
+     Table,TableName="TableCol",Rows;
+
+   Table=document.getElementById(TableName);
+   if(Table==null || Table==undefined)
+     return;
+
+   Rows=Table.getElementsByTagName("tr");
+
+   for(var i=0; i<Rows.length; ++i)
+      Rows[i].style.color='white';
+
+   switch(flag)
+     {
+        case "click" :
+          {
+             objstyle.color='lime';
+             break;
+          }
+     }
+}
+</script>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Rates>
+  <Rate>
+    <Currency>British Pound</Currency>
+    <Exchange>0.698544</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>Canadian Dollars</Currency>
+    <Exchange>1.57315</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>Franch Franc</Currency>
+    <Exchange>7.32593</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>German Mark</Currency>
+    <Exchange>2.18433</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>Italian Lira</Currency>
+    <Exchange>3162.67</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>Japanese Yen</Currency>
+    <Exchange>122.742</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>Mexican Peso</Currency>
+    <Exchange>9.22841</Exchange>
+  </Rate>
+  <Rate>
+    <Currency>Swiss Franc</Currency>
+    <Exchange>1.64716</Exchange>
+  </Rate>
+</Rates>

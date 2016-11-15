@@ -1,0 +1,56 @@
+﻿@{
+    var currentUser = ((LessonProject.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    @Styles.Render("~/Content/css/jqueryui")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="btn-group pull-right">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user">
+                    </i>
+                        @currentUser.Email<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">На сайт</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Logout", "Login", new { area = "Default" })">Выход</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="brand" href="@Url.Action("Index", "Home")">LessonProject</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        @Html.Action("LangMenu", "Home")
+                        @Html.Action("AdminMenu", "Home")
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("/Scripts/admin/common.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

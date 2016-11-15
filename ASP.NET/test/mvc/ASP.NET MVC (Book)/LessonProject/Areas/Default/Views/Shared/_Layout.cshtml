@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css/jqueryui")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @Html.Hidden("CurrentLang", GlobalRes.CurrentLang)
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav nav-pills pull-right">
+                    @Html.Partial("LangMenu")
+                </ul>
+
+                <ul class="nav nav-pills pull-right">
+                    @Html.Action("UserLogin", "Home")
+                </ul>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+    <div id="PopupWrapper"></div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/common")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

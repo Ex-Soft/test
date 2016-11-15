@@ -1,0 +1,47 @@
+﻿@model LessonProject.Models.Info.PageableData<LessonProject.Models.Post>
+
+@{
+    ViewBag.Title = "Посты";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+    Посты
+</h2>
+@Html.ActionLink("Добавить", "Create", "Post", null, new { @class = "btn" })
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+            перевод
+            </th>
+            <th>
+                Наименование
+            </th>
+            
+            <th>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+            @(item.IsCorrectLang ? "" : "нужен перевод")
+            </td>
+            <td>
+                @item.Header
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", "Post", new { id = item.ID }, new { @class = "btn  btn-mini" })
+                @Html.ActionLink("Удалить", "Delete", "Post", new { id = item.ID }, new { @class = "btn  btn-mini btn-danger" })
+            </td>
+        </tr>
+    }
+</table>

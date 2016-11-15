@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<TestGridDataXml>
+  <movie>
+    <id>0</id>
+    <title>title0</title>
+    <year>1980</year>
+    <rating>33</rating>
+  </movie>
+  <movie>
+    <id>1</id>
+    <title>title1</title>
+    <year>1981</year>
+    <rating>34</rating>
+  </movie>
+  <movie>
+    <id>2</id>
+    <title>title2</title>
+    <year>1982</year>
+    <rating>35</rating>
+  </movie>
+  <movie>
+    <id>3</id>
+    <title>title3</title>
+    <year>1983</year>
+    <rating>36</rating>
+  </movie>
+  <movie>
+    <id>4</id>
+    <title>title4</title>
+    <year>1984</year>
+    <rating>37</rating>
+  </movie>
+</TestGridDataXml>

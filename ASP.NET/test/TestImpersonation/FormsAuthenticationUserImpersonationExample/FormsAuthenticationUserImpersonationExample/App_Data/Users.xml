@@ -1,0 +1,12 @@
+<Users>
+  <User>
+    <UserName>Bob</UserName>
+    <Password>test</Password>
+    <EMail>bob@test.com</EMail>
+  </User>
+  <User>
+    <UserName>Alice</UserName>
+    <Password>test</Password>
+    <EMail>alice@test.com</EMail>
+  </User>
+</Users>

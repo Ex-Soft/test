@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid1Options>
+  <total>5</total>
+  <success>true</success>
+  <row>
+    <Id>1</Id>
+    <Value>Option# 1</Value>
+  </row>
+  <row>
+    <Id>2</Id>
+    <Value>Option# 2</Value>
+  </row>
+  <row>
+    <Id>3</Id>
+    <Value>Option# 3</Value>
+  </row>
+  <row>
+    <Id>4</Id>
+    <Value>Option# 4</Value>
+  </row>
+  <row>
+    <Id>5</Id>
+    <Value>Option# 5</Value>
+  </row>
+</Grid1Options>

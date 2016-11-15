@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckValid", "http://localhost/CheckValid/CheckValid.csproj", "{E021633B-0C96-44A3-81CD-26B8CA95BB16}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E021633B-0C96-44A3-81CD-26B8CA95BB16}.Debug.ActiveCfg = Debug|.NET
+		{E021633B-0C96-44A3-81CD-26B8CA95BB16}.Debug.Build.0 = Debug|.NET
+		{E021633B-0C96-44A3-81CD-26B8CA95BB16}.Release.ActiveCfg = Release|.NET
+		{E021633B-0C96-44A3-81CD-26B8CA95BB16}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

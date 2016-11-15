@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/css/fineuploader")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/fineuploader")
+    @Scripts.Render("~/Scripts/default/file-index.js")
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <div class="control-group">
+        <label class="control-label" for="Text">
+            Image
+        </label>
+        <div class="controls">
+            <div id="UploadImage">
+                Upload 
+            </div>
+        </div>
+    </div>
+    <div>
+        <img src="" alt="" id="ImagePreview" />
+    </div>
+</fieldset>

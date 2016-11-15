@@ -1,0 +1,9 @@
+App_Data
+asm
+bin
+obj
+yui
+_ReSharper*
+*.suo
+*.user
+*.DotSettings

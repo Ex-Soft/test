@@ -1,0 +1,58 @@
+﻿@model LessonProject.Models.ViewModels.PostView
+
+@{
+    ViewBag.Title = Model.ID == 0 ? "Добавить пост" : "Изменить пост";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.ID == 0 ? "Добавить пост" : "Изменить пост")</h2>
+<p>
+</p>
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post))
+{
+    @Html.Hidden("ID", Model.ID)
+    <fieldset>
+           <div class="control-group">
+            <label class="control-label">
+             @(!Model.IsCorrectLang && Model.ID != 0 ? "нужен перевод" : "")
+            </label>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Заголовок</label>
+            <div class="controls">
+                @Html.TextBox("Header", Model.Header, new { @class = "input-xlarge" })
+                @Html.ValidationMessage("Header")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Цена</label>
+            <div class="controls">
+                @Html.TextBox("Price", Model.Price, new { @class = "input-xlarge" })
+                @Html.ValidationMessage("Price")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Url</label>
+            <div class="controls">
+                @Html.TextBox("Url", Model.Url, new { @class = "input-xlarge" })
+                @Html.ValidationMessage("Url")
+            </div>
+        </div>
+         <div class="control-group">
+            <label class="control-label">
+                Содержимое</label>
+            <div class="controls">
+                @Html.TextArea("Content", Model.Content, new { @class = "input-xlarge" })
+                @Html.ValidationMessage("Content")
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Сохранить</button>
+            @Html.ActionLink("Отменить", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

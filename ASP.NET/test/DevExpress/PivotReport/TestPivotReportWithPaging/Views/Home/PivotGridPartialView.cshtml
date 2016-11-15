@@ -1,0 +1,66 @@
+﻿@model TestPivotReportDbContext
+@using System.Web.UI.WebControls
+@using DevExpress.Web
+@using DevExpress.Web.Mvc.UI
+@using TestPivotReportWithPaging.Models
+
+@Html.DevExpress().PivotGrid(settings =>
+{
+    settings.Name = "pivotGrid";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "DataBindingToLargeDatabasePartial" };
+    
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "id";
+        f.DisplayFolder = "id";
+        f.Visible = false;
+    });
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "year";
+        f.DisplayFolder = "year";
+        f.Visible = true;
+    });
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "quarter";
+        f.DisplayFolder = "quarter";
+        f.Visible = true;
+    });
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "month";
+        f.DisplayFolder = "month";
+        f.Visible = true;
+    });
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "day";
+        f.DisplayFolder = "day";
+        f.Visible = true;
+    });
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "name";
+        f.DisplayFolder = "name";
+        f.Visible = true;
+    });
+    settings.Fields.Add(f =>
+    {
+        f.FieldName = "value";
+        f.DisplayFolder = "value";
+        f.Visible = true;
+        //f.Area = PivotArea.DataArea;
+    });
+
+    settings.OptionsView.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    /*
+    settings.Height = Unit.Pixel(500);
+    settings.OptionsView.VerticalScrollingMode = PivotScrollingMode.Virtual;
+    settings.OptionsView.HorizontalScrollingMode = PivotScrollingMode.Virtual;
+    settings.OptionsView.VerticalScrollBarMode = ScrollBarMode.Visible;
+    settings.OptionsView.HorizontalScrollBarMode = ScrollBarMode.Visible;
+    settings.OptionsPager.Visible = false;
+    */
+    settings.OptionsPager.RowsPerPage = 5;
+}).BindToLINQ(string.Empty, String.Empty, (s, e) => { e.QueryableSource = Model.Data4TestDEPivotGrids; }).GetHtml()

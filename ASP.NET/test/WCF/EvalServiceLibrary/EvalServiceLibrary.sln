@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalServiceLibrary", "EvalServiceLibrary\EvalServiceLibrary.csproj", "{330E17AA-AB24-4F20-8A18-48E1B9697E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalServiceLibraryClient", "EvalServiceLibraryClient\EvalServiceLibraryClient.csproj", "{001C2B5F-8E3F-4F9C-94E9-940A31BB02B4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29} = {330E17AA-AB24-4F20-8A18-48E1B9697E29}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalServiceLibraryHost", "EvalServiceLibraryHost\EvalServiceLibraryHost.csproj", "{6871BADD-3F29-4B85-A5E6-A1AF3C02AA3E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29} = {330E17AA-AB24-4F20-8A18-48E1B9697E29}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalServiceLibraryClientII", "EvalServiceLibraryClientII\EvalServiceLibraryClientII.csproj", "{2A474F41-E0EE-4FC1-BFB9-4A0E754035C5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29} = {330E17AA-AB24-4F20-8A18-48E1B9697E29}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330E17AA-AB24-4F20-8A18-48E1B9697E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001C2B5F-8E3F-4F9C-94E9-940A31BB02B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001C2B5F-8E3F-4F9C-94E9-940A31BB02B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001C2B5F-8E3F-4F9C-94E9-940A31BB02B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001C2B5F-8E3F-4F9C-94E9-940A31BB02B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6871BADD-3F29-4B85-A5E6-A1AF3C02AA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6871BADD-3F29-4B85-A5E6-A1AF3C02AA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6871BADD-3F29-4B85-A5E6-A1AF3C02AA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6871BADD-3F29-4B85-A5E6-A1AF3C02AA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A474F41-E0EE-4FC1-BFB9-4A0E754035C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A474F41-E0EE-4FC1-BFB9-4A0E754035C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A474F41-E0EE-4FC1-BFB9-4A0E754035C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A474F41-E0EE-4FC1-BFB9-4A0E754035C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

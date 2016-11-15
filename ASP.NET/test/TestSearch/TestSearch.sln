@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSearch", "http://localhost/TestSearch/TestSearch.csproj", "{613A1241-0C01-43DF-AD1B-BB230B7FF374}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{613A1241-0C01-43DF-AD1B-BB230B7FF374}.Debug.ActiveCfg = Debug|.NET
+		{613A1241-0C01-43DF-AD1B-BB230B7FF374}.Debug.Build.0 = Debug|.NET
+		{613A1241-0C01-43DF-AD1B-BB230B7FF374}.Release.ActiveCfg = Release|.NET
+		{613A1241-0C01-43DF-AD1B-BB230B7FF374}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

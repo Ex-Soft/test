@@ -1,0 +1,8 @@
+﻿@model LessonProject.Models.ViewModels.LangAdminView
+
+<li>
+    @using (Html.BeginForm("ChangeLanguage", "Home", FormMethod.Post, new { id = "SelectLangForm" }))
+    {
+        @Html.DropDownList("SelectedLang", Model.Langs)
+    }
+</li>

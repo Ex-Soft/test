@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLanguage", "http://localhost/MultiLanguage/MultiLanguage.csproj", "{FD08944B-3CC3-45DF-9772-0463096ED18D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{FD08944B-3CC3-45DF-9772-0463096ED18D}.Debug.ActiveCfg = Debug|.NET
+		{FD08944B-3CC3-45DF-9772-0463096ED18D}.Debug.Build.0 = Debug|.NET
+		{FD08944B-3CC3-45DF-9772-0463096ED18D}.Release.ActiveCfg = Release|.NET
+		{FD08944B-3CC3-45DF-9772-0463096ED18D}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

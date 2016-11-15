@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebApp.Demo.ViewModel.CustomerViewModel>
+
+<table>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>@customer.Customer.Id</td>
+            <td>@customer.Customer.FullName</td>
+            <td>@customer.GreetingMessage</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioButtonSamples", "http://localhost/rbtests/RadioButtonSamples.csproj", "{13B2707A-FA84-45A2-B42A-F46D5293250B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupRadioButton", "..\GroupRadioButton\GroupRadioButton.csproj", "{A25C53BE-642D-42CE-B104-595C43707C91}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{13B2707A-FA84-45A2-B42A-F46D5293250B}.Debug.ActiveCfg = Debug|.NET
+		{13B2707A-FA84-45A2-B42A-F46D5293250B}.Debug.Build.0 = Debug|.NET
+		{13B2707A-FA84-45A2-B42A-F46D5293250B}.Release.ActiveCfg = Release|.NET
+		{13B2707A-FA84-45A2-B42A-F46D5293250B}.Release.Build.0 = Release|.NET
+		{A25C53BE-642D-42CE-B104-595C43707C91}.Debug.ActiveCfg = Debug|.NET
+		{A25C53BE-642D-42CE-B104-595C43707C91}.Debug.Build.0 = Debug|.NET
+		{A25C53BE-642D-42CE-B104-595C43707C91}.Release.ActiveCfg = Release|.NET
+		{A25C53BE-642D-42CE-B104-595C43707C91}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

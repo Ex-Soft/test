@@ -1,0 +1,26 @@
+.RemainingTimeTitle
+{
+ font-size: xx-large;
+ font-weight: bold;
+ color: blue;
+ text-align: center;
+ text-decoration: blink
+}
+
+.RemainingTimeHelicopter
+{
+ font-family: monospace;
+ font-size: xx-large;
+ font-weight: bold;
+ color: blue;
+ text-align: center
+}
+
+.RemainingTimeTimer
+{
+ font-family: digiface;
+ font-size: xx-large;
+ font-weight: bold;
+ color: blue;
+ text-align: center
+}

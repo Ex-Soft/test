@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Country>
+  <total>3</total>
+  <success>true</success>
+  <row>
+    <Id>1</Id>
+    <Value>USSR</Value>
+  </row>
+  <row>
+    <Id>2</Id>
+    <Value>UA</Value>
+  </row>
+  <row>
+    <Id>3</Id>
+    <Value>USA</Value>
+  </row>
+</Country>

@@ -1,0 +1,142 @@
+BODY 
+{
+ BACKGROUND:        white;  
+ COLOR:             #083C23; 
+ scrollbar-arrow-color:     #083C23;   
+ scrollbar-base-color:      #DEEBE7;   
+ scrollbar-highlight-color: #083C23; 
+}
+table.razdel 
+{
+ BACKGROUND:        #DEEBE7; 
+}
+
+.but 
+{
+ BORDER-RIGHT: threeddarkshadow 1px solid; 
+ BORDER-TOP: buttonhighlight 1px solid; 
+ BORDER-LEFT: buttonhighlight 1px solid; 
+ BORDER-BOTTOM: threeddarkshadow 1px solid ;	  
+ font-size:         12px; 
+ font-family:       Tahoma; 
+ background:		#deebe7;  
+ color:				#083C23;  
+}
+
+td.header
+{
+	background:		#deebe7;
+}
+
+.textfield
+{
+ BORDER-RIGHT: buttonhighlight 1px solid; 
+ BORDER-TOP:  threeddarkshadow 1px solid ;	  
+ BORDER-LEFT: threeddarkshadow 1px solid; 
+ BORDER-BOTTOM: buttonhighlight 1px solid;
+ border-style:solid;
+ font-size:         12px; 
+ font-family:       Tahoma; 
+ background:		#deebe7;  
+ color:				#083C23; 
+ BEHAVIOR: url("htc/mask.htc");
+ }
+.activetextfield
+{
+ BORDER-RIGHT: buttonhighlight 1px solid; 
+ BORDER-TOP:  threeddarkshadow 1px solid ;	  
+ BORDER-LEFT: threeddarkshadow 1px solid; 
+ BORDER-BOTTOM: buttonhighlight 1px solid;
+ border-style:solid;
+ font-size:         12px; 
+ font-family:       Tahoma; 
+ background:	#effafa;  
+ color:				#083C23; 
+ BEHAVIOR: url("htc/mask.htc");
+ }
+
+ .whiteddl
+{
+ BORDER-RIGHT: buttonhighlight 1px solid; 
+ BORDER-TOP:  threeddarkshadow 1px solid ;	  
+ BORDER-LEFT: threeddarkshadow 1px solid; 
+ BORDER-BOTTOM: buttonhighlight 1px solid;
+ border-style:solid;
+ font-size:         12px; 
+ font-family:       Tahoma; 
+ background:		white;  
+ color:				#083C23; 
+ }
+a , a:visited
+{		
+ color:		    #083C23;	
+ text-decoration:   none;	
+ cursor:            hand;
+ font-size:         12px; 
+ font-family:              Tahoma;
+}
+a:hover
+{
+color:#2C905D;
+}
+TABLE 
+{  
+ COLOR:             #083C23;
+}
+TD 
+{  
+ COLOR:             #083C23;
+ font-size:         12px; 
+ font-family:              Tahoma;
+}
+.CursorHand
+{cursor:hand;}
+
+.expndtd
+   {
+        text-align: center;
+        vertical-align: middle;
+        border-top: 0.5pt solid #26965D;
+        border-right: 0.5pt solid #26965D;
+        border-left: 0.5pt solid #26965D;
+        font-family : Arial, Helvetica, sans-serif;
+        font-size : xx-small;
+        background-color: #26965D;
+        color:white;
+        width: 20px;
+   }
+   .data
+   {
+        text-align: justify;
+        border-top: 0.5pt solid #26965D;
+        border-right: 0.5pt solid #26965D;
+        border-left: 0.5pt solid #26965D;
+        border-bottom: 0.5pt solid #26965D;
+        padding-left : 5pt;
+        padding-right : 5pt;
+        font-family : Arial, Helvetica, sans-serif;
+        font-size : xx-small;
+        background-color: #26965D;
+        color:white;
+   }
+   .txt
+   {
+        text-align: justify;
+        background-color: #deebe7;
+        filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#deebe7', EndColorStr='white');
+        border: 0.5pt solid #26965D;
+        padding-left : 5pt;
+        padding-right : 5pt;
+        font-family : Arial, Helvetica, sans-serif;
+        font-size : x-small;
+        color: #083C23;
+}
+   p
+   {
+        text-align: justify;
+        padding-left : 5pt;
+        padding-right : 5pt;
+        font-family : Arial, Helvetica, sans-serif;
+        font-size : x-small;
+        color: #083C23;
+}

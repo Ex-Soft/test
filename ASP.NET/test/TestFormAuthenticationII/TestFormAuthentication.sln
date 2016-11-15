@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestFormAuthentication", "http://localhost/TestFormAuthentication/TestFormAuthentication.csproj", "{613C9CDD-6803-48B6-B09A-7938E8CE7F78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{613C9CDD-6803-48B6-B09A-7938E8CE7F78}.Debug|Default.ActiveCfg = Debug|.NET
+		{613C9CDD-6803-48B6-B09A-7938E8CE7F78}.Debug|Default.Build.0 = Debug|.NET
+		{613C9CDD-6803-48B6-B09A-7938E8CE7F78}.Release|Default.ActiveCfg = Release|.NET
+		{613C9CDD-6803-48B6-B09A-7938E8CE7F78}.Release|Default.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

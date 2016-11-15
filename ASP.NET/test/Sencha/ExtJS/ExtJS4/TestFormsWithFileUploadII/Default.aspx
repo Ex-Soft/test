@@ -1,0 +1,14 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Form with file upload (II)</title>
+
+		<link rel="stylesheet" href="ext4.1.1/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="ext4.1.1/ext-all-debug.js"></script>
+
+		<script charset="utf-8" src="app.js"></script>
+	</head>
+	<body>
+	</body>
+</html>

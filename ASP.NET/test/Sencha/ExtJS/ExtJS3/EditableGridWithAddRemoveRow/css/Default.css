@@ -1,0 +1,19 @@
+.btn-add
+{
+	background-image: url(../images/add.png) !important;
+}
+
+.btn-delete
+{
+	background-image: url(../images/delete.png) !important;
+}
+
+.btn-save
+{
+	background-image: url(../images/save.gif) !important;
+}
+
+.btn-filter
+{
+	background-image: url(../images/filter.gif) !important;
+}

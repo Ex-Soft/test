@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "LessonProject";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+<h2>LessonProject </h2>
+<p>
+    @DateTime.Now.ToString("D")
+    <div class="menu">
+    <a href="@Url.Action("Index", "Role", new { id = "1" })">@GlobalRes.Roles</a>
+    @Html.ActionLink(GlobalRes.Users,  "Index", "User")
+    </div>
+    
+</p>

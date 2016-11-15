@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<h3>Telerik UI for ASP.NET MVC TabStrip</h3>
+<br />
+
+    @(Html.Kendo().TabStrip()
+        .Name("ContactsTabStrip")
+        .Items(items =>
+        {
+            items.Add()
+                .Text("Phone")
+                .Selected(true)
+                .Content(@<text>
+                    <p>
+                        <span style="font-weight:bold">Main:</span>
+                        <span>425.555.0100</span>
+                    </p>
+                </text>)
+                .ContentHtmlAttributes(new { style = "min-height: 200px" });
+            items.Add()
+                .Text("Email")
+                .Content(@<text>
+                    <p>
+                        <span style="font-weight:bold">Support:</span>
+                        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
+                    </p>
+                    <p>
+                        <span style="font-weight:bold">Marketing:</span>
+                        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
+                    </p>
+                </text>)
+                .ContentHtmlAttributes(new { style = "min-height: 200px" });
+            items.Add()
+                .Text("Address")
+                .Content(@<text>
+                    <p>
+                        One Microsoft Way<br />
+                        Redmond, WA 98052-6399
+                    </p>
+                </text>)
+                .ContentHtmlAttributes(new { style = "min-height: 200px" });
+        })
+    )

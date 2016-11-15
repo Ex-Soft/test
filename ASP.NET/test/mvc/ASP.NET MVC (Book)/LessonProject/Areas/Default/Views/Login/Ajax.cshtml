@@ -1,0 +1,38 @@
+﻿@model LessonProject.Models.ViewModels.LoginView
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Login</h3>
+    </div>
+    <div class="modal-body">
+        @using (Html.BeginForm("Ajax", "Login", FormMethod.Post, new { @class = "form-horizontal", id = "LoginForm" }))
+        {
+            <fieldset>
+                <legend>Вход</legend>
+                <div class="control-group">
+                    <label class="control-label" for="Email">
+                        Email</label>
+                    <div class="controls">
+                        @Html.TextBox("Email", Model.Email, new { @class = "input-xlarge" })
+                        <p class="help-block">Введите Email</p>
+                        @Html.ValidationMessage("Email")
+                    </div>
+
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Password">
+                        Пароль</label>
+                    <div class="controls">
+                        @Html.Password("Password", Model.Password, new { @class = "input-xlarge" })
+                        @Html.ValidationMessage("Password")
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="LoginButton">Login</button>
+    </div>
+</div>

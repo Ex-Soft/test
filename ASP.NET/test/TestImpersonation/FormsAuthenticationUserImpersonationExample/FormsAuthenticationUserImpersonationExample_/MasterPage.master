@@ -1,0 +1,29 @@
+<%@ Master Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <h1>ASP.Net FormsAuthentication user impersonation example</h1>
+        <p>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx" Text="Home" /> |
+            <asp:HyperLink ID="login" runat="server" NavigateUrl="~/Login.aspx" Text="Login" /> | 
+            <asp:LoginName ID="LoginName1" runat="server" FormatString="Logged in as: {0}" /> | 
+            <asp:LoginUserImpersonation ID="LoginUserImpersonation1" runat="server" />
+        </p>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+            
+        </asp:contentplaceholder>
+    </div>
+    </form>
+</body>
+</html>

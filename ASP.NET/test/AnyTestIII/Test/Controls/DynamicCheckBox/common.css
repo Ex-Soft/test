@@ -1,0 +1,13 @@
+BODY 
+{
+    PADDING-RIGHT: 0px; PADDING-LEFT: 0px; 
+    PADDING-BOTTOM: 0px; MARGIN: 4px 4px 10px; PADDING-TOP: 0px;            
+    COLOR: #083C23; BACKGROUND: white; font-size: 12px; 
+    font-family: Tahoma;
+    scrollbar-arrow-color:     #083C23;   
+    scrollbar-base-color:      #DEEBE7;   
+    scrollbar-highlight-color: #083C23;     
+} 
+
+.GroupBox { COLOR: #083C23 }
+TABLE { BACKGROUND: white; COLOR: #083C23 }

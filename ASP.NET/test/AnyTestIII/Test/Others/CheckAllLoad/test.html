@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Test HTML</title>
+<script type="text/javascript">
+<!--
+var
+  IsLoad=false;
+
+function Complete()
+{
+   var
+     p=parent.document.getElementById("Info"),
+     d=new Date(),
+     Str=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds()+" : Frame have been loaded<br>";
+
+   if(p!=null && p!=undefined)
+     p.innerHTML+=Str;
+
+   IsLoad=true;
+}
+// -->
+</script>
+  </head>
+<!-- <body onload="IsLoad=true"> -->
+  <body onload="Complete()">
+    <img src="monster.gif" alt="Can't load &quot;monster.gif&quot;" border="0" hspace="0" vspace="0">
+  </body>
+</html>

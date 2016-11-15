@@ -1,0 +1,82 @@
+﻿/* Главные определения стилей для сайта 
+    - основной шрифт
+    - междустрочное расстояние
+    - размер шрифта
+    - основные цвета ссылок и текста
+    - h1, h2, h3 ...
+    - a 
+    - p
+*/
+body
+{
+    padding-top : 40px !important;
+    padding-left: 20px;
+}
+
+
+/* Вспомогательные классы:
+    - .error
+    - .field-validation-error и др.
+    - .show-me { border : 1px solid red; }
+    - .hidden {display : none; }
+    - .relative { position : relative; }
+    */
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.select-day
+{
+    width : 50px;
+}
+.select-month
+{
+    width : 90px;
+}
+.select-year
+{
+    width : 70px;
+}
+/* Основные вспомогательные окна и стили
+    - .popup-window 
+    - .popup-window .close 
+    - .popup-window .wrapper
+    - .popup-window .header 
+    - .error-message
+    - .info-message
+    */
+
+/* Основные стили сайта
+    - header
+    - .logo
+    - .user-login
+    - nav.main-menu
+    - .main-content
+    - footer
+*/
+
+/*Главная страница */
+
+/* Страница входа */
+
+/* Страница ошибки */
+
+/* Остальные страницы */
