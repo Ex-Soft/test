@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{288A6C15-40C7-4FA6-9D7A-E9B4E6DB21FB}</ProjectGuid>
+    <ProjectGuid>{F1C17298-E79F-4DFB-A7B4-9EF3D775C104}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestDatabaseFirst</RootNamespace>
@@ -42,26 +42,34 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="main.cs" />
     <Compile Include="Models\Address.cs">
       <DependentUpon>EFDatabaseFirstModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EFDatabaseFirstModel.Context.cs" />
-    <Compile Include="Models\EFDatabaseFirstModel.cs" />
-    <Compile Include="Models\EFDatabaseFirstModel.Designer.cs">
-      <DependentUpon>EFDatabaseFirstModel.cs</DependentUpon>
+    <Compile Include="Models\EFDatabaseFirstModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFDatabaseFirstModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EFDatabaseFirstModel1.cs">
+    <Compile Include="Models\EFDatabaseFirstModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EFDatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EFDatabaseFirstModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFDatabaseFirstModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="main.cs" />
     <Compile Include="Models\List.cs">
       <DependentUpon>EFDatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -92,6 +100,7 @@
     <None Include="App.config" />
     <EntityDeploy Include="Models\EFDatabaseFirstModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EFDatabaseFirstModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Models\EFDatabaseFirstModel.edmx.diagram">
       <DependentUpon>EFDatabaseFirstModel.edmx</DependentUpon>
@@ -104,10 +113,13 @@
     <Content Include="Database\Peoples.sql" />
     <Content Include="Models\EFDatabaseFirstModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EFDatabaseFirstModel.edmx</DependentUpon>
+      <LastGenOutput>EFDatabaseFirstModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\EFDatabaseFirstModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EFDatabaseFirstModel1.cs</LastGenOutput>
+      <DependentUpon>EFDatabaseFirstModel.edmx</DependentUpon>
+      <LastGenOutput>EFDatabaseFirstModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
