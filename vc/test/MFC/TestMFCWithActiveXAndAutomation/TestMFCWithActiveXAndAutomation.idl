@@ -1,0 +1,29 @@
+// TestMFCWithActiveXAndAutomation.idl : type library source for TestMFCWithActiveXAndAutomation.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (TestMFCWithActiveXAndAutomation.tlb).
+
+[ uuid(F0DB8BB5-A4FF-461F-87DC-28ABBC57888B), version(1.0) ]
+library TestMFCWithActiveXAndAutomation
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CTestMFCWithActiveXAndAutomationDoc
+	
+	[ uuid(D2303C8A-E76A-473B-A69D-595EC1382663) ]
+	dispinterface ITestMFCWithActiveXAndAutomation
+	{
+		properties:
+			
+		methods:
+	};
+
+	//  Class information for CTestMFCWithActiveXAndAutomationDoc
+	
+	[ uuid(BB224350-E6E2-4DD1-92F5-8B6818E0EDB7) ]
+	coclass TestMFCWithActiveXAndAutomation
+	{
+		[default] dispinterface ITestMFCWithActiveXAndAutomation;
+	};
+};

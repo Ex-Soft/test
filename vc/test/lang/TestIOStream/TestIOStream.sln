@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestIOStream", "TestIOStream.vcxproj", "{22D02669-201D-4604-9F10-54D3DB5E1FB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22D02669-201D-4604-9F10-54D3DB5E1FB2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{22D02669-201D-4604-9F10-54D3DB5E1FB2}.Debug|Win32.Build.0 = Debug|Win32
+		{22D02669-201D-4604-9F10-54D3DB5E1FB2}.Release|Win32.ActiveCfg = Release|Win32
+		{22D02669-201D-4604-9F10-54D3DB5E1FB2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

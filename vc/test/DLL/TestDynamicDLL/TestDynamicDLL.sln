@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestDLL", "TestDLL\TestDLL.vcxproj", "{A5A25CDB-7695-4703-9BCE-584912323735}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoaderDLL", "LoaderDLL\LoaderDLL.vcxproj", "{F5B6C020-FDA1-4928-B9FB-F5805B543828}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5A25CDB-7695-4703-9BCE-584912323735} = {A5A25CDB-7695-4703-9BCE-584912323735}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5A25CDB-7695-4703-9BCE-584912323735}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A5A25CDB-7695-4703-9BCE-584912323735}.Debug|Win32.Build.0 = Debug|Win32
+		{A5A25CDB-7695-4703-9BCE-584912323735}.Release|Win32.ActiveCfg = Release|Win32
+		{A5A25CDB-7695-4703-9BCE-584912323735}.Release|Win32.Build.0 = Release|Win32
+		{F5B6C020-FDA1-4928-B9FB-F5805B543828}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F5B6C020-FDA1-4928-B9FB-F5805B543828}.Debug|Win32.Build.0 = Debug|Win32
+		{F5B6C020-FDA1-4928-B9FB-F5805B543828}.Release|Win32.ActiveCfg = Release|Win32
+		{F5B6C020-FDA1-4928-B9FB-F5805B543828}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,4 @@
+LIBRARY	HookII
+
+EXPORTS
+	SetHook

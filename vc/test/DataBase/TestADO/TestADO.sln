@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestADO", "TestADO.vcproj", "{E74D2839-2819-4289-BFF7-25DB65E243BC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E74D2839-2819-4289-BFF7-25DB65E243BC}.Debug.ActiveCfg = Debug|Win32
+		{E74D2839-2819-4289-BFF7-25DB65E243BC}.Debug.Build.0 = Debug|Win32
+		{E74D2839-2819-4289-BFF7-25DB65E243BC}.Release.ActiveCfg = Release|Win32
+		{E74D2839-2819-4289-BFF7-25DB65E243BC}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
