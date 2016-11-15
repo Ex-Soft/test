@@ -37,6 +37,8 @@ TestReadExcel/
 TestSTDrive/
 TestTWS/
 iTextSharpTutorial/
+lib/
+download/
 .vs/
 x64
 Debug
@@ -58,6 +60,9 @@ _ReSharper*
 *.dll
 *.bak
 *.log
+*.InstallLog
 *.out
+*.exe
+*.pdb
+*.netmodule
 ReadMe.*
-
