@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyTest", "AnyTest.csproj", "{75015874-E4B8-42F2-9BA2-D70D632A626A}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Typhoon Web UI.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

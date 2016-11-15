@@ -1,0 +1,946 @@
+<XtraSerializer version="1.0" application="View">
+  <property name="#LayoutVersion" />
+  <property name="FooterPanelHeight">-1</property>
+  <property name="HorzScrollVisibility">Auto</property>
+  <property name="ColumnPanelRowHeight">-1</property>
+  <property name="RowSeparatorHeight">0</property>
+  <property name="VertScrollVisibility">Auto</property>
+  <property name="ViewCaption" />
+  <property name="GroupFormat">{0}: [#image]{1} {2}</property>
+  <property name="RowHeight">-1</property>
+  <property name="GroupRowHeight">-1</property>
+  <property name="OptionsSelection" isnull="true" iskey="true">
+    <property name="EnableAppearanceFocusedCell">false</property>
+    <property name="MultiSelect">true</property>
+  </property>
+  <property name="OptionsView" isnull="true" iskey="true">
+    <property name="ShowGroupPanel">false</property>
+    <property name="ShowFooter">true</property>
+  </property>
+  <property name="FixedLineWidth">2</property>
+  <property name="IndicatorWidth">-1</property>
+  <property name="BorderStyle">Default</property>
+  <property name="FocusRectStyle">CellFocus</property>
+  <property name="HorzScrollStep">3</property>
+  <property name="ScrollStyle">LiveVertScroll, LiveHorzScroll</property>
+  <property name="OptionsFilter" isnull="true" iskey="true">
+    <property name="ColumnFilterPopupMaxRecordsCount">0</property>
+    <property name="UseNewCustomFilterDialog">true</property>
+  </property>
+  <property name="ViewCaptionHeight">-1</property>
+  <property name="ActiveFilterEnabled">false</property>
+  <property name="PreviewFieldName" />
+  <property name="GroupPanelText" />
+  <property name="Columns" iskey="true" value="79">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIdDisplay</property>
+      <property name="FieldName">IdDisplay</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colOutercode</property>
+      <property name="FieldName">Outercode</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="VisibleIndex">0</property>
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="Visible">true</property>
+      <property name="CanHide">true</property>
+      <property name="Name">colCodeBP</property>
+      <property name="FieldName">CodeBP</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="SummaryType">Min</property>
+          <property name="FieldName">CodeBP</property>
+          <property name="DisplayFormat">MIN={0}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colCodeDistr</property>
+      <property name="FieldName">CodeDistr</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="VisibleIndex">1</property>
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="Visible">true</property>
+      <property name="CanHide">true</property>
+      <property name="Name">colName</property>
+      <property name="FieldName">Name</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="SummaryType">Count</property>
+          <property name="FieldName">Name</property>
+          <property name="DisplayFormat">{0}</property>
+        </property>
+      </property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colUrName</property>
+      <property name="FieldName">UrName</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="VisibleIndex">2</property>
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="Visible">true</property>
+      <property name="CanHide">true</property>
+      <property name="Name">colBuypointType!</property>
+      <property name="FieldName">BuypointType!</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colStore!</property>
+      <property name="FieldName">Store!</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="TextOptions" isnull="true" iskey="true">
+          <property name="HAlignment">Near</property>
+        </property>
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseTextOptions">true</property>
+        </property>
+      </property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colDistributor!</property>
+      <property name="FieldName">Distributor!</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIsParent</property>
+      <property name="FieldName">IsParent</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIsMatched</property>
+      <property name="FieldName">IsMatched</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colParent!</property>
+      <property name="FieldName">Parent!</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colParentCode</property>
+      <property name="FieldName">ParentCode</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colParentUrName</property>
+      <property name="FieldName">ParentUrName</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colParentFullAddress</property>
+      <property name="FieldName">ParentFullAddress</property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowSort">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colDistributors</property>
+      <property name="FieldName">Distributors</property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowSort">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colPositions</property>
+      <property name="FieldName">Positions</property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="VisibleIndex">3</property>
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="Visible">true</property>
+      <property name="CanHide">true</property>
+      <property name="Name">colFullAddress</property>
+      <property name="FieldName">FullAddress</property>
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colStrata</property>
+      <property name="FieldName">Strata</property>
+    </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="VisibleIndex">4</property>
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="Visible">true</property>
+      <property name="CanHide">true</property>
+      <property name="Name">colBuyer!</property>
+      <property name="FieldName">Buyer!</property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colCreditLimit</property>
+      <property name="FieldName">CreditLimit</property>
+    </property>
+    <property name="Item22" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colCreditDeadline</property>
+      <property name="FieldName">CreditDeadline</property>
+    </property>
+    <property name="Item23" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colPostIndex</property>
+      <property name="FieldName">PostIndex</property>
+    </property>
+    <property name="Item24" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colTelNumber</property>
+      <property name="FieldName">TelNumber</property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colContactFace</property>
+      <property name="FieldName">ContactFace</property>
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colDistributionChannel!</property>
+      <property name="FieldName">DistributionChannel!</property>
+    </property>
+    <property name="Item27" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colComments</property>
+      <property name="FieldName">Comments</property>
+    </property>
+    <property name="Item28" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colPOScount</property>
+      <property name="FieldName">POScount</property>
+    </property>
+    <property name="Item29" isnull="true" iskey="true">
+      <property name="VisibleIndex">5</property>
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="Visible">true</property>
+      <property name="CanHide">true</property>
+      <property name="Name">colPeriodicStatus!</property>
+      <property name="FieldName">PeriodicStatus!</property>
+    </property>
+    <property name="Item30" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="FilterPopupMode">List</property>
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colPeriodicActivityFrom</property>
+      <property name="FieldName">PeriodicActivityFrom</property>
+    </property>
+    <property name="Item31" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colPriceType!</property>
+      <property name="FieldName">PriceType!</property>
+    </property>
+    <property name="Item32" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIsWorkLoad</property>
+      <property name="FieldName">IsWorkLoad</property>
+    </property>
+    <property name="Item33" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colCanExceedLimit</property>
+      <property name="FieldName">CanExceedLimit</property>
+    </property>
+    <property name="Item34" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colLatitudeGGgggg</property>
+      <property name="FieldName">LatitudeGGgggg</property>
+    </property>
+    <property name="Item35" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colLongitudeGGgggg</property>
+      <property name="FieldName">LongitudeGGgggg</property>
+    </property>
+    <property name="Item36" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colEmail</property>
+      <property name="FieldName">Email</property>
+    </property>
+    <property name="Item37" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colSendMailAfterOrder</property>
+      <property name="FieldName">SendMailAfterOrder</property>
+    </property>
+    <property name="Item38" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIsInStopList</property>
+      <property name="FieldName">IsInStopList</property>
+    </property>
+    <property name="Item39" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAddressRecognitionQC_Display</property>
+      <property name="FieldName">AddressRecognitionQC_Display</property>
+    </property>
+    <property name="Item40" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAccountingSystemAddress_Display</property>
+      <property name="FieldName">AccountingSystemAddress_Display</property>
+    </property>
+    <property name="Item41" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colNationalNetworkInGrid</property>
+      <property name="FieldName">NationalNetworkInGrid</property>
+    </property>
+    <property name="Item42" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colRegionalNetworkInGrid</property>
+      <property name="FieldName">RegionalNetworkInGrid</property>
+    </property>
+    <property name="Item43" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colMinOrderAmount</property>
+      <property name="FieldName">MinOrderAmount</property>
+    </property>
+    <property name="Item44" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colMaxOrderAmount</property>
+      <property name="FieldName">MaxOrderAmount</property>
+    </property>
+    <property name="Item45" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAddress!</property>
+      <property name="FieldName">Address!</property>
+    </property>
+    <property name="Item46" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colUnrecognizedAddress</property>
+      <property name="FieldName">UnrecognizedAddress</property>
+    </property>
+    <property name="Item47" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier1!</property>
+      <property name="FieldName">Classifier1!</property>
+    </property>
+    <property name="Item48" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier2!</property>
+      <property name="FieldName">Classifier2!</property>
+    </property>
+    <property name="Item49" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier3!</property>
+      <property name="FieldName">Classifier3!</property>
+    </property>
+    <property name="Item50" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier4!</property>
+      <property name="FieldName">Classifier4!</property>
+    </property>
+    <property name="Item51" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier5!</property>
+      <property name="FieldName">Classifier5!</property>
+    </property>
+    <property name="Item52" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier6!</property>
+      <property name="FieldName">Classifier6!</property>
+    </property>
+    <property name="Item53" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier7!</property>
+      <property name="FieldName">Classifier7!</property>
+    </property>
+    <property name="Item54" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier8!</property>
+      <property name="FieldName">Classifier8!</property>
+    </property>
+    <property name="Item55" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier9!</property>
+      <property name="FieldName">Classifier9!</property>
+    </property>
+    <property name="Item56" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colClassifier10!</property>
+      <property name="FieldName">Classifier10!</property>
+    </property>
+    <property name="Item57" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIsAutoCheckPeriodicStatus</property>
+      <property name="FieldName">IsAutoCheckPeriodicStatus</property>
+    </property>
+    <property name="Item58" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIsSeazonedPeriodicStatus</property>
+      <property name="FieldName">IsSeazonedPeriodicStatus</property>
+    </property>
+    <property name="Item59" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="AppearanceCell" isnull="true" iskey="true">
+        <property name="TextOptions" isnull="true" iskey="true">
+          <property name="HAlignment">Near</property>
+        </property>
+        <property name="Options" isnull="true" iskey="true">
+          <property name="UseTextOptions">true</property>
+        </property>
+      </property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colIdMain</property>
+      <property name="FieldName">IdMain</property>
+    </property>
+    <property name="Item60" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">String</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue01</property>
+      <property name="FieldName">AttrValue01</property>
+      <property name="Caption">addAttr (multi)</property>
+    </property>
+    <property name="Item61" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">String</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue02</property>
+      <property name="FieldName">AttrValue02</property>
+      <property name="Caption">addAttr (single)</property>
+    </property>
+    <property name="Item62" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">String</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue03</property>
+      <property name="FieldName">AttrValue03</property>
+      <property name="Caption">AdditionalAttribute (uint)</property>
+    </property>
+    <property name="Item63" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">DateTime</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue04</property>
+      <property name="FieldName">AttrValue04</property>
+      <property name="Caption">AdditionalAttribute DateOnly</property>
+    </property>
+    <property name="Item64" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">DateTime</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue05</property>
+      <property name="FieldName">AttrValue05</property>
+      <property name="Caption">AdditionalAttribute DateTime</property>
+    </property>
+    <property name="Item65" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">String</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue06</property>
+      <property name="FieldName">AttrValue06</property>
+      <property name="Caption">AdditionalAttribute String</property>
+    </property>
+    <property name="Item66" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">Boolean</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue07</property>
+      <property name="FieldName">AttrValue07</property>
+      <property name="Caption">additionalAttribute1 (bool)</property>
+    </property>
+    <property name="Item67" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">Boolean</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue08</property>
+      <property name="FieldName">AttrValue08</property>
+      <property name="Caption">additionalAttribute2 (bool)</property>
+    </property>
+    <property name="Item68" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">Decimal</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue09</property>
+      <property name="FieldName">AttrValue09</property>
+      <property name="Caption">РўРѕСЂРіРѕРІР°СЏ РїР»РѕС‰Р°РґСЊ, Рј.РєРІ.</property>
+    </property>
+    <property name="Item69" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="UnboundType">Integer</property>
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue10</property>
+      <property name="FieldName">AttrValue10</property>
+      <property name="Caption">РџСЂРѕС…РѕРґРёРјРѕСЃС‚СЊ С‚РѕСЂРіРѕРІРѕР№ С‚РѕС‡РєРё</property>
+    </property>
+    <property name="Item70" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue11</property>
+      <property name="FieldName">AttrValue11</property>
+    </property>
+    <property name="Item71" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue12</property>
+      <property name="FieldName">AttrValue12</property>
+    </property>
+    <property name="Item72" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue13</property>
+      <property name="FieldName">AttrValue13</property>
+    </property>
+    <property name="Item73" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue14</property>
+      <property name="FieldName">AttrValue14</property>
+    </property>
+    <property name="Item74" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue15</property>
+      <property name="FieldName">AttrValue15</property>
+    </property>
+    <property name="Item75" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue16</property>
+      <property name="FieldName">AttrValue16</property>
+    </property>
+    <property name="Item76" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue17</property>
+      <property name="FieldName">AttrValue17</property>
+    </property>
+    <property name="Item77" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue18</property>
+      <property name="FieldName">AttrValue18</property>
+    </property>
+    <property name="Item78" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue19</property>
+      <property name="FieldName">AttrValue19</property>
+    </property>
+    <property name="Item79" isnull="true" iskey="true">
+      <property name="ColumnEditName" />
+      <property name="OptionsFilter" isnull="true" iskey="true">
+        <property name="AllowFilterModeChanging">False</property>
+      </property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ShowInCustomizationForm">false</property>
+        <property name="AllowEdit">false</property>
+      </property>
+      <property name="CanHide">true</property>
+      <property name="Name">colAttrValue20</property>
+      <property name="FieldName">AttrValue20</property>
+    </property>
+  </property>
+  <property name="VertScrollTipFieldName" />
+  <property name="NewItemRowText" />
+  <property name="PreviewLineCount">-1</property>
+  <property name="LevelIndent">-1</property>
+  <property name="PreviewIndent">-1</property>
+  <property name="DetailTabHeaderLocation">Top</property>
+  <property name="Name">mainView</property>
+  <property name="Appearance" isnull="true" iskey="true">
+    <property name="SelectedRow" iskey="true" value="SelectedRow">
+      <property name="BackColor2">Transparent</property>
+      <property name="BackColor">192, 192, 255</property>
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+      </property>
+    </property>
+    <property name="FocusedRow" iskey="true" value="FocusedRow">
+      <property name="BackColor2">Transparent</property>
+      <property name="BackColor">192, 192, 255</property>
+      <property name="Options" isnull="true" iskey="true">
+        <property name="UseBackColor">true</property>
+      </property>
+    </property>
+  </property>
+  <property name="CollectionFieldName" isnull="true" />
+  <property name="ChildFieldName" isnull="true" />
+  <property name="DetailHeight">350</property>
+  <property name="ChildGridLevelName" />
+  <property name="OptionsBehavior" isnull="true" iskey="true">
+    <property name="FocusLeaveOnTab">true</property>
+    <property name="EditorShowMode">Click</property>
+    <property name="Editable">false</property>
+    <property name="AllowIncrementalSearch">true</property>
+  </property>
+  <property name="OptionsDetail" isnull="true" iskey="true">
+    <property name="EnableMasterViewMode">false</property>
+    <property name="ShowDetailTabs">false</property>
+  </property>
+  <property name="OptionsNavigation" isnull="true" iskey="true">
+    <property name="AutoFocusNewRow">true</property>
+  </property>
+  <property name="SynchronizeClones">true</property>
+  <property name="FormatRules" iskey="true" value="0" />
+  <property name="FormatConditions" iskey="true" value="0" />
+  <property name="SortInfo">~Xtra#Base64AAEAAAD/////AQAAAAAAAAAMAgAAAF1EZXZFeHByZXNzLlh0cmFHcmlkLnYxNC4yLCBWZXJzaW9uPTE0LjIuNy4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAADhEZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvQ29sbGVjdGlvbgQAAAAKZ3JvdXBDb3VudAVjbG9uZQ9jbG9uZUdyb3VwQ291bnQTQ29sbGVjdGlvbkJhc2UrbGlzdAADAAMIsgFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW0RldkV4cHJlc3MuWHRyYUdyaWQuQ29sdW1ucy5HcmlkQ29sdW1uU29ydEluZm8sIERldkV4cHJlc3MuWHRyYUdyaWQudjE0LjIsIFZlcnNpb249MTQuMi43LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dCBxTeXN0ZW0uQ29sbGVjdGlvbnMuQXJyYXlMaXN0AgAAAAAAAAAJAwAAAAAAAAAJBAAAAAQDAAAAsgFTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYy5MaXN0YDFbW0RldkV4cHJlc3MuWHRyYUdyaWQuQ29sdW1ucy5HcmlkQ29sdW1uU29ydEluZm8sIERldkV4cHJlc3MuWHRyYUdyaWQudjE0LjIsIFZlcnNpb249MTQuMi43LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YV1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAwRGV2RXhwcmVzcy5YdHJhR3JpZC5Db2x1bW5zLkdyaWRDb2x1bW5Tb3J0SW5mb1tdAgAAAAgICQUAAAABAAAAAQAAAAQEAAAAHFN5c3RlbS5Db2xsZWN0aW9ucy5BcnJheUxpc3QDAAAABl9pdGVtcwVfc2l6ZQhfdmVyc2lvbgUAAAgICQYAAAABAAAABgAAAAcFAAAAAAEAAAAEAAAABC5EZXZFeHByZXNzLlh0cmFHcmlkLkNvbHVtbnMuR3JpZENvbHVtblNvcnRJbmZvAgAAAAkHAAAADQMQBgAAAAQAAAAJCAAAAA0DDAkAAAAZRGV2RXhwcmVzcy5YdHJhR3JpZC52MTQuMgUHAAAALkRldkV4cHJlc3MuWHRyYUdyaWQuQ29sdW1ucy5HcmlkQ29sdW1uU29ydEluZm8CAAAACVNvcnRPcmRlcgpDb2x1bW5OYW1lAAEICQAAAAEAAAAGCgAAAAljb2xDb2RlQlABCAAAAAcAAAABAAAACQoAAAAL</property>
+  <property name="GroupSummary" iskey="true" value="0" />
+  <property name="ActiveFilterString" />
+  <property name="GroupSummarySortInfoState" />
+  <property name="FindFilterText" />
+  <property name="FindPanelVisible">false</property>
+</XtraSerializer>

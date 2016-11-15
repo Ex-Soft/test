@@ -1,0 +1,93 @@
+<?xml version="1.0" standalone="yes"?>
+<TestDataSet>
+  <TestDataTable_x0020__x0023_1>
+    <id>-1</id>
+    <FString>Иванов Иван Иванович ("TestDataTable #1")</FString>
+    <FInt>100</FInt>
+    <FDateTime>2013-01-01T00:00:00+02:00</FDateTime>
+    <FBool>true</FBool>
+    <FCombo>1st</FCombo>
+  </TestDataTable_x0020__x0023_1>
+  <TestDataTable_x0020__x0023_1>
+    <id>-2</id>
+    <FString>Петров Петр Петрович ("TestDataTable #1")</FString>
+    <FInt>200</FInt>
+    <FDateTime>2013-02-01T00:00:00+02:00</FDateTime>
+    <FBool>false</FBool>
+    <FCombo>2nd</FCombo>
+  </TestDataTable_x0020__x0023_1>
+  <TestDataTable_x0020__x0023_1>
+    <id>-3</id>
+    <FString>Line# 1
+Line# 2
+Line# 3 ("TestDataTable #1")</FString>
+    <FInt>300</FInt>
+    <FDateTime>2013-03-01T00:00:00+02:00</FDateTime>
+    <FBool>false</FBool>
+    <FCombo>3rd</FCombo>
+  </TestDataTable_x0020__x0023_1>
+  <TestDataTable_x0020__x0023_2>
+    <id>-1</id>
+    <FString>Иванов Иван Иванович ("TestDataTable #2")</FString>
+    <FInt>100</FInt>
+    <FDateTime>2013-01-01T00:00:00+02:00</FDateTime>
+    <FBool>true</FBool>
+    <FCombo>1st</FCombo>
+  </TestDataTable_x0020__x0023_2>
+  <TestDataTable_x0020__x0023_2>
+    <id>-2</id>
+    <FString>Петров Петр Петрович ("TestDataTable #2")</FString>
+    <FInt>200</FInt>
+    <FDateTime>2013-02-01T00:00:00+02:00</FDateTime>
+    <FBool>false</FBool>
+    <FCombo>2nd</FCombo>
+  </TestDataTable_x0020__x0023_2>
+  <TestDataTable_x0020__x0023_2>
+    <id>-3</id>
+    <FString>Line# 1
+Line# 2
+Line# 3 ("TestDataTable #2")</FString>
+    <FInt>300</FInt>
+    <FDateTime>2013-03-01T00:00:00+02:00</FDateTime>
+    <FBool>false</FBool>
+    <FCombo>3rd</FCombo>
+  </TestDataTable_x0020__x0023_2>
+  <TestDataTable_x0020__x0023_3>
+    <id>-1</id>
+    <FString>Иванов Иван Иванович ("TestDataTable #3")</FString>
+    <FInt>100</FInt>
+    <FDateTime>2013-01-01T00:00:00+02:00</FDateTime>
+    <FBool>true</FBool>
+    <FCombo>1st</FCombo>
+  </TestDataTable_x0020__x0023_3>
+  <TestDataTable_x0020__x0023_3>
+    <id>-2</id>
+    <FString>Петров Петр Петрович ("TestDataTable #3")</FString>
+    <FInt>200</FInt>
+    <FDateTime>2013-02-01T00:00:00+02:00</FDateTime>
+    <FBool>false</FBool>
+    <FCombo>2nd</FCombo>
+  </TestDataTable_x0020__x0023_3>
+  <TestDataTable_x0020__x0023_3>
+    <id>-3</id>
+    <FString>Line# 1
+Line# 2
+Line# 3 ("TestDataTable #3")</FString>
+    <FInt>300</FInt>
+    <FDateTime>2013-03-01T00:00:00+02:00</FDateTime>
+    <FBool>false</FBool>
+    <FCombo>3rd</FCombo>
+  </TestDataTable_x0020__x0023_3>
+  <Дата>
+    <id>-1</id>
+    <Value>1st</Value>
+  </Дата>
+  <Дата>
+    <id>-2</id>
+    <Value>2nd</Value>
+  </Дата>
+  <Дата>
+    <id>-3</id>
+    <Value>3rd</Value>
+  </Дата>
+</TestDataSet>

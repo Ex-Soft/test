@@ -1,0 +1,1874 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<?fr-application created="FastReport"?>
+<?fr-application homesite="http://www.fast-report.com"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+<Title></Title>
+<Author></Author>
+<Created>02.06.2015T15:06:41Z</Created>
+<Version>...</Version>
+</DocumentProperties>
+<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+<ProtectStructure>False</ProtectStructure>
+<ProtectWindows>False</ProtectWindows>
+</ExcelWorkbook>
+<Styles>
+<Style ss:ID="s0">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+</Borders>
+</Style>
+<Style ss:ID="s1">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000" ss:Bold="1"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+</Borders>
+</Style>
+<Style ss:ID="s2">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+</Borders>
+</Style>
+<Style ss:ID="s3">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000" ss:Bold="1"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+</Borders>
+</Style>
+<Style ss:ID="s4">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000" ss:Bold="1"/>
+<Interior ss:Color="#F4F7FC" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1" />
+<Borders>
+<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+</Borders>
+</Style>
+<Style ss:ID="s5">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+</Borders>
+</Style>
+<Style ss:ID="s6">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#000000" />
+</Borders>
+<NumberFormat ss:Format="0.00"/>
+</Style>
+<Style ss:ID="s7">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Right" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+</Borders>
+<NumberFormat ss:Format="0.00"/>
+</Style>
+<Style ss:ID="s8">
+<Font ss:FontName="Tahoma" ss:Size="10" ss:Color="#000000"/>
+<Interior ss:Color="#FFFFFF" ss:Pattern="Solid"/>
+<Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1" />
+<Borders>
+</Borders>
+<NumberFormat ss:Format="0.00"/>
+</Style>
+</Styles>
+<Worksheet ss:Name="Page1">
+<Table ss:ExpandedColumnCount="28" ss:ExpandedRowCount="78" x:FullColumns="1" x:FullRows="1">
+<Column ss:AutoFitWidth="0" ss:Width="11.63"/>
+<Column ss:AutoFitWidth="0" ss:Width="0.65"/>
+<Column ss:AutoFitWidth="0" ss:Width="13.88"/>
+<Column ss:AutoFitWidth="0" ss:Width="29.07"/>
+<Column ss:AutoFitWidth="0" ss:Width="40.70"/>
+<Column ss:AutoFitWidth="0" ss:Width="3.59"/>
+<Column ss:AutoFitWidth="0" ss:Width="3.67"/>
+<Column ss:AutoFitWidth="0" ss:Width="13.08"/>
+<Column ss:AutoFitWidth="0" ss:Width="59.59"/>
+<Column ss:AutoFitWidth="0" ss:Width="13.77"/>
+<Column ss:AutoFitWidth="0" ss:Width="2.91"/>
+<Column ss:AutoFitWidth="0" ss:Width="34.16"/>
+<Column ss:AutoFitWidth="0" ss:Width="2.18"/>
+<Column ss:AutoFitWidth="0" ss:Width="53.09"/>
+<Column ss:AutoFitWidth="0" ss:Width="37.94"/>
+<Column ss:AutoFitWidth="0" ss:Width="1.26"/>
+<Column ss:AutoFitWidth="0" ss:Width="46.55"/>
+<Column ss:AutoFitWidth="0" ss:Width="45.02"/>
+<Column ss:AutoFitWidth="0" ss:Width="0.56"/>
+<Column ss:AutoFitWidth="0" ss:Width="0.93"/>
+<Column ss:AutoFitWidth="0" ss:Width="28.35"/>
+<Column ss:AutoFitWidth="0" ss:Width="25.44"/>
+<Column ss:AutoFitWidth="0" ss:Width="2.91"/>
+<Column ss:AutoFitWidth="0" ss:Width="33.95"/>
+<Column ss:AutoFitWidth="0" ss:Width="1.66"/>
+<Column ss:AutoFitWidth="0" ss:Width="0.73"/>
+<Column ss:AutoFitWidth="0" ss:Width="13.08"/>
+<Row ss:Height="17.44">
+<Cell ss:Index="1" ss:MergeAcross="26" ss:MergeDown="3" ss:StyleID="s3" >
+<Data ss:Type="String">Накладная № 49797 от 02.06.2015</Data>
+</Cell>
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="26.16">
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="20.35">
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="20.35">
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="13.08">
+<Cell ss:Index="1" ss:MergeAcross="2" ss:StyleID="s3" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="4" ss:MergeAcross="1" ss:StyleID="s1" >
+<Data ss:Type="String">Основание</Data>
+</Cell>
+<Cell ss:Index="6" ss:MergeAcross="1" ss:StyleID="s3" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="8" ss:MergeAcross="18" ss:StyleID="s2" >
+<Data ss:Type="String">Счет-фактура No  от 30.12.1899</Data>
+</Cell>
+<Cell ss:Index="27" ss:StyleID="s3" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="20.10">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" />
+<Cell ss:Index="4" />
+<Cell ss:Index="5" />
+<Cell ss:Index="6" />
+<Cell ss:Index="7" />
+<Cell ss:Index="8" />
+<Cell ss:Index="9" />
+<Cell ss:Index="10" />
+<Cell ss:Index="11" />
+<Cell ss:Index="12" />
+<Cell ss:Index="13" />
+<Cell ss:Index="14" />
+<Cell ss:Index="15" />
+<Cell ss:Index="16" />
+<Cell ss:Index="17" />
+<Cell ss:Index="18" />
+<Cell ss:Index="19" />
+<Cell ss:Index="20" />
+<Cell ss:Index="21" />
+<Cell ss:Index="22" />
+<Cell ss:Index="23" />
+<Cell ss:Index="24" />
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="27.86">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s4" >
+<Data ss:Type="String">№ п/п</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s4" >
+<Data ss:Type="String">Открытый номер карты</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s4" >
+<Data ss:Type="String">ESN</Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s4" >
+<Data ss:Type="String">Тарифный план</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s4" >
+<Data ss:Type="String">Телефон</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s4" >
+<Data ss:Type="String">Стоимость</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">1</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222267</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556596</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">2</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222275</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556570</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">3</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222283</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556526</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">4</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222291</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556525</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">5</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222309</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556513</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">6</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222317</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556506</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">7</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222325</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556497</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">8</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222333</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556495</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">9</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222341</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556473</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">10</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222358</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556441</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">11</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222366</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556432</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">12</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222374</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556415</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">13</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222382</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556413</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">14</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222390</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556404</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">15</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222408</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556402</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">16</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222416</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556384</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">17</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222424</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556354</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">18</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201821100222432</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520556345</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">19</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000009</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005639480</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">20</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000017</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005648204</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">21</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000025</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79521155626</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">22</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000033</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506709960</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">23</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000041</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506748281</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">24</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000058</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79527976718</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">25</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000066</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506792210</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">26</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000074</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79521131478</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="0.36">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" />
+<Cell ss:Index="4" />
+<Cell ss:Index="5" />
+<Cell ss:Index="6" />
+<Cell ss:Index="7" />
+<Cell ss:Index="8" />
+<Cell ss:Index="9" />
+<Cell ss:Index="10" />
+<Cell ss:Index="11" />
+<Cell ss:Index="12" />
+<Cell ss:Index="13" />
+<Cell ss:Index="14" />
+<Cell ss:Index="15" />
+<Cell ss:Index="16" />
+<Cell ss:Index="17" />
+<Cell ss:Index="18" />
+<Cell ss:Index="19" />
+<Cell ss:Index="20" />
+<Cell ss:Index="21" />
+<Cell ss:Index="22" />
+<Cell ss:Index="23" />
+<Cell ss:Index="24" />
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">27</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000082</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003543899</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">28</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000090</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79527966225</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">29</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000108</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003537144</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">30</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000116</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506758656</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">31</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000124</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506707881</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">32</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000132</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003500482</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">33</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000140</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005695705</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">34</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000157</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520525302</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">35</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000165</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79520517286</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">36</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000173</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003498432</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">37</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000181</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506743052</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">38</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000199</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79022520473</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">39</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000207</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79521167512</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">40</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000215</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003515537</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">41</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000223</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003466258</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">42</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000231</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79527922902</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">43</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000249</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79022529347</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">44</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000256</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79527917393</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">45</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000264</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005639380</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">46</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000272</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005705030</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">47</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000280</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005660646</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">48</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000298</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79527923580</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">49</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000306</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003546401</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">50</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000314</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005644215</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">51</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000322</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003536521</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">52</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000330</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005671220</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">53</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000348</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79521138882</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">54</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000355</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79521153979</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">55</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000363</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506726219</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">56</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000371</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506734610</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">57</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000389</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79003524071</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">58</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000397</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79005632519</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="0.36">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" />
+<Cell ss:Index="4" />
+<Cell ss:Index="5" />
+<Cell ss:Index="6" />
+<Cell ss:Index="7" />
+<Cell ss:Index="8" />
+<Cell ss:Index="9" />
+<Cell ss:Index="10" />
+<Cell ss:Index="11" />
+<Cell ss:Index="12" />
+<Cell ss:Index="13" />
+<Cell ss:Index="14" />
+<Cell ss:Index="15" />
+<Cell ss:Index="16" />
+<Cell ss:Index="17" />
+<Cell ss:Index="18" />
+<Cell ss:Index="19" />
+<Cell ss:Index="20" />
+<Cell ss:Index="21" />
+<Cell ss:Index="22" />
+<Cell ss:Index="23" />
+<Cell ss:Index="24" />
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">59</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000405</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79527990233</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.98">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">60</Data>
+</Cell>
+<Cell ss:Index="5" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String">89701201832100000413</Data>
+</Cell>
+<Cell ss:Index="10" ss:MergeAcross="4" ss:StyleID="s5" >
+<Data ss:Type="String"></Data>
+</Cell>
+<Cell ss:Index="15" ss:MergeAcross="2" ss:StyleID="s5" >
+<Data ss:Type="String">Оранжевый (Калининград)</Data>
+</Cell>
+<Cell ss:Index="18" ss:MergeAcross="3" ss:StyleID="s5" >
+<Data ss:Type="String">79506794494</Data>
+</Cell>
+<Cell ss:Index="22" ss:MergeAcross="3" ss:StyleID="s6" >
+<Data ss:Type="Number">50.00</Data>
+</Cell>
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="6.62">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" />
+<Cell ss:Index="4" />
+<Cell ss:Index="5" />
+<Cell ss:Index="6" />
+<Cell ss:Index="7" />
+<Cell ss:Index="8" />
+<Cell ss:Index="9" />
+<Cell ss:Index="10" />
+<Cell ss:Index="11" />
+<Cell ss:Index="12" />
+<Cell ss:Index="13" />
+<Cell ss:Index="14" />
+<Cell ss:Index="15" />
+<Cell ss:Index="16" />
+<Cell ss:Index="17" />
+<Cell ss:Index="18" />
+<Cell ss:Index="19" />
+<Cell ss:Index="20" />
+<Cell ss:Index="21" />
+<Cell ss:Index="22" />
+<Cell ss:Index="23" />
+<Cell ss:Index="24" />
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="25.84">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" />
+<Cell ss:Index="4" />
+<Cell ss:Index="5" />
+<Cell ss:Index="6" />
+<Cell ss:Index="7" ss:MergeAcross="3" ss:MergeDown="1" ss:StyleID="s0" >
+<Data ss:Type="String">Отпущено SIM-карт:</Data>
+</Cell>
+<Cell ss:Index="11" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s0" >
+<Data ss:Type="String">60</Data>
+</Cell>
+<Cell ss:Index="13" />
+<Cell ss:Index="14" ss:MergeAcross="1" ss:StyleID="s0" >
+<Data ss:Type="String">общей стоимостью: </Data>
+</Cell>
+<Cell ss:Index="16" />
+<Cell ss:Index="17" ss:MergeAcross="1" ss:StyleID="s7" >
+<Data ss:Type="Number">3000.00</Data>
+</Cell>
+<Cell ss:Index="19" />
+<Cell ss:Index="20" ss:MergeAcross="4" ss:StyleID="s8" >
+<Data ss:Type="String">руб.</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="25.44">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" />
+<Cell ss:Index="4" />
+<Cell ss:Index="5" />
+<Cell ss:Index="6" />
+<Cell ss:Index="13" />
+<Cell ss:Index="14" ss:MergeAcross="1" ss:StyleID="s2" >
+<Data ss:Type="String">В том числе НДС:</Data>
+</Cell>
+<Cell ss:Index="16" />
+<Cell ss:Index="17" ss:MergeAcross="1" ss:StyleID="s7" >
+<Data ss:Type="Number">457.63</Data>
+</Cell>
+<Cell ss:Index="19" />
+<Cell ss:Index="20" ss:MergeAcross="4" ss:StyleID="s8" >
+<Data ss:Type="String">руб.</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="33.92">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" />
+<Cell ss:Index="3" ss:MergeAcross="12" ss:MergeDown="4" ss:StyleID="s8" >
+<Data ss:Type="String">ПРИМЕЧАНИЕ: &#10;Сумма погрешности округления по деталям накладной составляет</Data>
+</Cell>
+<Cell ss:Index="16" ss:MergeAcross="3" ss:MergeDown="4" ss:StyleID="s7" >
+<Data ss:Type="Number">0.00</Data>
+</Cell>
+<Cell ss:Index="20" ss:MergeAcross="4" ss:MergeDown="4" ss:StyleID="s8" >
+<Data ss:Type="String">руб.</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="23.26">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:StyleID="s2" >
+<Data ss:Type="String">Отпуск произвел:                       ___________________________________________________</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="37.79">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:StyleID="s2" >
+<Data ss:Type="String">Товар получен заказчиком&#10;по доверенности №:                  ______________________ от  &quot;____&quot;_______________         г.</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="20.35">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:StyleID="s2" >
+<Data ss:Type="String">выданной на имя:                      ___________________________________________________</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+<Row ss:Height="13.08">
+<Cell ss:Index="1" />
+<Cell ss:Index="2" ss:StyleID="s2" >
+<Data ss:Type="String">Товар получил:                          ___________________________________________________</Data>
+</Cell>
+<Cell ss:Index="25" />
+<Cell ss:Index="26" />
+<Cell ss:Index="27" />
+<Cell ss:Index="28" />
+</Row>
+</Table>
+<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+<PageSetup>
+<PageMargins x:Bottom="0.19" x:Left="0.19" x:Right="0.19" x:Top="0.19"/>
+</PageSetup>
+</WorksheetOptions>
+<PageBreaks xmlns="urn:schemas-microsoft-com:office:excel">
+<RowBreaks>
+<RowBreak>
+<Row>34</Row>
+</RowBreak>
+<RowBreak>
+<Row>67</Row>
+</RowBreak>
+</RowBreaks>
+</PageBreaks>
+</Worksheet>
+</Workbook>

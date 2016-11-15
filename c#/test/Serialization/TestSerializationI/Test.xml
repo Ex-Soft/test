@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Container>
+	<Item>
+		<SmthObject Attribute1="a">blah-blah-blah</SmthObject>
+	</Item>
+	<Item>
+		<SmthObject Attribute1="b">blah-blah-blah</SmthObject>
+	</Item>
+	<Item>
+		<SmthObject Attribute1="c">blah-blah-blah</SmthObject>
+	</Item>
+</Container>

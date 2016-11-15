@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLockDictionaryNodeII", "TestLockDictionaryNodeII.csproj", "{073E3470-057C-465D-8CE5-22DB16464FBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{073E3470-057C-465D-8CE5-22DB16464FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{073E3470-057C-465D-8CE5-22DB16464FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{073E3470-057C-465D-8CE5-22DB16464FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{073E3470-057C-465D-8CE5-22DB16464FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

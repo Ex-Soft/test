@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-access="property">
+	<class name="UniDirectional.UDog, NHibernateOneToMany" table="dog">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="Name"/>
+		<set name="Legs" cascade="all">
+			<key column="DogId"/>
+			<one-to-many class="UniDirectional.ULeg, NHibernateOneToMany"/>
+		</set>
+	</class>
+</hibernate-mapping>
+

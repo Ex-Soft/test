@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB2XML", "DB2XML.csproj", "{D1C5B325-FA7E-40DA-8794-0EABB56D17B5}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D1C5B325-FA7E-40DA-8794-0EABB56D17B5}.Debug.ActiveCfg = Debug|.NET
+		{D1C5B325-FA7E-40DA-8794-0EABB56D17B5}.Debug.Build.0 = Debug|.NET
+		{D1C5B325-FA7E-40DA-8794-0EABB56D17B5}.Release.ActiveCfg = Release|.NET
+		{D1C5B325-FA7E-40DA-8794-0EABB56D17B5}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1 @@
+pdftohtml.exe -f 4 -l 4 -zoom 1 -stdout -xml -enc UTF-8 wdpt.pdf

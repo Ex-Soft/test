@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true">
+  <class name="AnyTestOracleCastle.TestTableTypes, AnyTestOracleCastle" lazy="true">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+    <property name="FVarchar2" />
+    <property name="FNVarchar2" />
+    <property name="FClob" length="8000" />
+    <property name="FNClob" column="FNClob" length="8000" />
+  </class>
+</hibernate-mapping>

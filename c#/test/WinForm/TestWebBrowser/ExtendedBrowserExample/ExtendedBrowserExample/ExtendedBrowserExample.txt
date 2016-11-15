@@ -1,0 +1,10 @@
+<html>
+<body>
+
+<H1> This is sample page to test opening a pop up in a new form </H1>
+
+<input type="button" onclick="window.open('test0.htm')"/>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D15167FE-3D88-4E78-A495-A1BD76702EE3}</ProjectGuid>
+    <RootNamespace>NHibernateOneToMany</RootNamespace>
+    <AssemblyName>NHibernateOneToMany</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <RunPostBuildEvent>OnSuccessfulBuild</RunPostBuildEvent>
+    <NoConfig>false</NoConfig>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoStdLib>false</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugType>Full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <NoStdLib>false</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Release\</OutputPath>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="LinFu.DynamicProxy">
+      <HintPath>..\..\lib\LinFu.DynamicProxy.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="HashCodeProvider">
+      <HintPath>..\..\lib\HashCodeProvider.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\lib\Iesi.Collections.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\lib\NHibernate.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="MainClass.cs" />
+    <EmbeddedResource Include="UniDirectional.Customer.hbm.xml" />
+    <EmbeddedResource Include="UniDirectional.Order.hbm.xml" />
+    <Compile Include="UniDirectional\Customer.cs" />
+    <Compile Include="UniDirectional\Order.cs" />
+    <Compile Include="BiDirectional\Customer.cs" />
+    <Compile Include="BiDirectional\Order.cs" />
+    <EmbeddedResource Include="BiDirectional.Customer.hbm.xml" />
+    <EmbeddedResource Include="BiDirectional.Order.hbm.xml" />
+    <Compile Include="UniDirectional\Dog.cs" />
+    <Compile Include="UniDirectional\Leg.cs" />
+    <EmbeddedResource Include="UniDirectional.Dog.hbm.xml" />
+    <EmbeddedResource Include="UniDirectional.Leg.hbm.xml" />
+    <Compile Include="BiDirectional\Dog.cs" />
+    <Compile Include="BiDirectional\Leg.cs" />
+    <EmbeddedResource Include="BiDirectional.Dog.hbm.xml" />
+    <EmbeddedResource Include="BiDirectional.Leg.hbm.xml" />
+    <Compile Include="UniDirectional\Conversation.cs" />
+    <Compile Include="UniDirectional\Message.cs" />
+    <EmbeddedResource Include="UniDirectional.Conversation.hbm.xml" />
+    <EmbeddedResource Include="UniDirectional.Message.hbm.xml" />
+    <Compile Include="UniDirectional\Department.cs" />
+    <Compile Include="UniDirectional\Employee.cs" />
+    <EmbeddedResource Include="UniDirectional.Department.hbm.xml" />
+    <EmbeddedResource Include="UniDirectional.Employee.hbm.xml" />
+    <Compile Include="UniDirectional\Habitant.cs" />
+    <Compile Include="UniDirectional\PersonName.cs" />
+    <Compile Include="UniDirectional\Street.cs" />
+    <EmbeddedResource Include="UniDirectional.Habitant.hbm.xml" />
+    <EmbeddedResource Include="UniDirectional.PersonName.hbm.xml" />
+    <EmbeddedResource Include="UniDirectional.Street.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

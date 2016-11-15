@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" namespace="TestVIII" assembly="TestVIII">
+<!--
+  <sql-query name="CallTestFunction">
+    <return alias="CallTestFunction" class="TestVIII.Dual, TestVIII" />
+    call aspnetuser.test_function(:arg)
+  </sql-query>
+-->
+  <sql-query name="CallTestProcedure">
+    <return alias="CallTestProcedure" class="TestVIII.Dual, TestVIII">
+      <return-property name="Dummy" column="DUMMY"/>
+    </return>
+    { call aspnetuser.test_procedure(:arg) }
+  </sql-query>
+  
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title></title>
+
+<script language="javascript" type="text/javascript">
+<!--
+
+function Button1_onclick() {
+    window.external.SaySomething ();
+}
+function Button2_onclick() {
+    window.external.AMessageFromHome = "A message from HTML page.";
+}
+
+function Button3_onclick() {
+    alert (window.external.AMessageFromHome);
+}
+
+-->
+</script>
+</head><body><p>
+        <input id="Button1" type="button" value="Invoke SaySomething method" onclick="return Button1_onclick()">
+</P><p>
+        <br>
+        <input id="Button3" type="button" value="Show me a message from control." onclick="return Button3_onclick()">
+</P><p>
+        <br>
+        <input id="Button2" type="button" value="Try to change something!" onclick="return Button2_onclick()"><br>
+</P></body></html>

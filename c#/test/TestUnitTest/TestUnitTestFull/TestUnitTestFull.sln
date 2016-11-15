@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EssentialTools", "EssentialTools\EssentialTools.csproj", "{65B8416C-DE93-4A9E-AC65-514FD37E44EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EssentialTools.Test", "EssentialTools.Test\EssentialTools.Test.csproj", "{0884E643-8CDB-4FC3-81AF-53D269C5B042}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65B8416C-DE93-4A9E-AC65-514FD37E44EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B8416C-DE93-4A9E-AC65-514FD37E44EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B8416C-DE93-4A9E-AC65-514FD37E44EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B8416C-DE93-4A9E-AC65-514FD37E44EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0884E643-8CDB-4FC3-81AF-53D269C5B042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0884E643-8CDB-4FC3-81AF-53D269C5B042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0884E643-8CDB-4FC3-81AF-53D269C5B042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0884E643-8CDB-4FC3-81AF-53D269C5B042}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

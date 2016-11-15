@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07E3BD7E-0A6C-45A6-90E1-F36DABA1C2D4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestLayout</RootNamespace>
+    <AssemblyName>TestLayout</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="main.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormEdit.designer.cs">
+      <DependentUpon>MainFormEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormEditWSplitControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormEditWSplitControl.Designer.cs">
+      <DependentUpon>MainFormEditWSplitControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormWToolBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormWToolBar.Designer.cs">
+      <DependentUpon>MainFormWToolBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormWToolBarII.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormWToolBarII.Designer.cs">
+      <DependentUpon>MainFormWToolBarII.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormWToolBarIII.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormWToolBarIII.Designer.cs">
+      <DependentUpon>MainFormWToolBarIII.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDEControlsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestDEControlsForm.Designer.cs">
+      <DependentUpon>TestDEControlsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestInheritedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestInheritedForm.Designer.cs">
+      <DependentUpon>TestInheritedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestInheritedFormFromMainFormWToolBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestInheritedFormFromMainFormWToolBar.Designer.cs">
+      <DependentUpon>TestInheritedFormFromMainFormWToolBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestInheritedFormWGroupControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestInheritedFormWGroupControls.Designer.cs">
+      <DependentUpon>TestInheritedFormWGroupControls.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormEdit.resx">
+      <DependentUpon>MainFormEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormEditWSplitControl.resx">
+      <DependentUpon>MainFormEditWSplitControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormWToolBar.resx">
+      <DependentUpon>MainFormWToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormWToolBarII.resx">
+      <DependentUpon>MainFormWToolBarII.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormWToolBarIII.resx">
+      <DependentUpon>MainFormWToolBarIII.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestInheritedFormFromMainFormWToolBar.resx">
+      <DependentUpon>TestInheritedFormFromMainFormWToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="TestDEControlsForm.resx">
+      <DependentUpon>TestDEControlsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestInheritedFormWGroupControls.resx">
+      <DependentUpon>TestInheritedFormWGroupControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

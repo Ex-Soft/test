@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StubsTutorial.Moles</name>
+    </assembly>
+    <members>
+        <member name="T:StubsTutorial.Moles.MFileSystem">
+            <summary>Mole type of <see cref="T:StubsTutorial.FileSystem"/>
+            .</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MFileSystem.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MFileSystem.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MFileSystem.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MFileSystem.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MFileSystem.ReadAllTextString">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.FileSystem.ReadAllText(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.MTestReader">
+            <summary>Mole type of <see cref="T:StubsTutorial.TestReader"/>
+            .</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReader.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReader.#ctor(StubsTutorial.TestReader)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReader.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReader.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.Constructor">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.TestReader.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.ContentGet">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReader.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.ContentSetString">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReader.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.LoadFileString">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.TestReader.LoadFile(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.MTestReader.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.AllInstances.ContentGet">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReader.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.AllInstances.ContentSetString">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReader.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReader.AllInstances.LoadFileString">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.TestReader.LoadFile(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.MTestReaderWithStubs">
+            <summary>Mole type of <see cref="T:StubsTutorial.TestReaderWithStubs"/>
+            .</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReaderWithStubs.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReaderWithStubs.#ctor(StubsTutorial.TestReaderWithStubs)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReaderWithStubs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.MTestReaderWithStubs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.ConstructorIFileSystem">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.TestReaderWithStubs.#ctor(StubsTutorial.IFileSystem)"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.ContentGet">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReaderWithStubs.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.ContentSetString">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReaderWithStubs.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.LoadFileString">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.TestReaderWithStubs.LoadFile(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.MTestReaderWithStubs.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.AllInstances.ContentGet">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReaderWithStubs.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.AllInstances.ContentSetString">
+            <summary>Sets the mole of <see cref="P:StubsTutorial.TestReaderWithStubs.Content"/>
+            </summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.MTestReaderWithStubs.AllInstances.LoadFileString">
+            <summary>Sets the mole of <see cref="M:StubsTutorial.TestReaderWithStubs.LoadFile(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.SIFileSystem">
+            <summary>Stub type of <see cref="T:StubsTutorial.IFileSystem"/>
+            .</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.SIFileSystem.#ctor">
+            <summary>Initializes a new instance of type SIFileSystem</summary>
+        </member>
+        <member name="F:StubsTutorial.Moles.SIFileSystem.ReadAllTextString">
+            <summary>Sets the stub of <see cref="M:StubsTutorial.IFileSystem.ReadAllText(System.String)"/>
+            </summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.SIFileSystem.st::StubsTutorial#IFileSystem#ReadAllText(System.String)">
+            <summary>Sets the stub of <see cref="M:StubsTutorial.IFileSystem.ReadAllText(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.STestReader">
+            <summary>Stub type of <see cref="T:StubsTutorial.TestReader"/>
+            .</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.STestReader.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.STestReader.InitializeStub">
+            <summary>Initializes a new instance of type STestReader</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.STestReader.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.STestReader.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:StubsTutorial.Moles.STestReaderWithStubs">
+            <summary>Stub type of <see cref="T:StubsTutorial.TestReaderWithStubs"/>
+            .</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.STestReaderWithStubs.#ctor(StubsTutorial.IFileSystem)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:StubsTutorial.Moles.STestReaderWithStubs.InitializeStub">
+            <summary>Initializes a new instance of type STestReaderWithStubs</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.STestReaderWithStubs.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:StubsTutorial.Moles.STestReaderWithStubs.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+    </members>
+</doc>

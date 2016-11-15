@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2760E82-9A1A-4AB2-9190-7469615C0913}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestDB</RootNamespace>
+    <AssemblyName>TestDB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="main.cs" />
+    <Compile Include="Models\Mapping\StaffMap.cs" />
+    <Compile Include="Models\Mapping\TableWithHierarchyMap.cs" />
+    <Compile Include="Models\Mapping\TableWithImgSrcMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTrigger1Map.cs" />
+    <Compile Include="Models\Mapping\TableWithTrigger1WDMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTrigger2Map.cs" />
+    <Compile Include="Models\Mapping\TableWithTrigger2WDMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTriggerAfterMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTriggerAfterStubMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTriggerIUDHistoryMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTriggerIUDMap.cs" />
+    <Compile Include="Models\Mapping\TableWithTriggerUMap.cs" />
+    <Compile Include="Models\Mapping\TestAllAnyDepartmentMap.cs" />
+    <Compile Include="Models\Mapping\TestAllAnyEmployeeMap.cs" />
+    <Compile Include="Models\Mapping\TestDEMap.cs" />
+    <Compile Include="Models\Mapping\TestDetailMap.cs" />
+    <Compile Include="Models\Mapping\TestDuplicateMap.cs" />
+    <Compile Include="Models\Mapping\TestMasterMap.cs" />
+    <Compile Include="Models\Mapping\TestTable4ApplyIIMap.cs" />
+    <Compile Include="Models\Mapping\TestTable4ApplyIMap.cs" />
+    <Compile Include="Models\Mapping\TestTable4IUDDestMap.cs" />
+    <Compile Include="Models\Mapping\TestTable4IUDSrcMap.cs" />
+    <Compile Include="Models\Mapping\TestTable4TypesMap.cs" />
+    <Compile Include="Models\Mapping\TestTableWDefaultMap.cs" />
+    <Compile Include="Models\Mapping\TestTableWithNullFieldMap.cs" />
+    <Compile Include="Models\Mapping\VictimMap.cs" />
+    <Compile Include="Models\Mapping\XPObjectTypeMap.cs" />
+    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\TableWithHierarchy.cs" />
+    <Compile Include="Models\TableWithImgSrc.cs" />
+    <Compile Include="Models\TableWithTrigger1.cs" />
+    <Compile Include="Models\TableWithTrigger1WD.cs" />
+    <Compile Include="Models\TableWithTrigger2.cs" />
+    <Compile Include="Models\TableWithTrigger2WD.cs" />
+    <Compile Include="Models\TableWithTriggerAfter.cs" />
+    <Compile Include="Models\TableWithTriggerAfterStub.cs" />
+    <Compile Include="Models\TableWithTriggerIUD.cs" />
+    <Compile Include="Models\TableWithTriggerIUDHistory.cs" />
+    <Compile Include="Models\TableWithTriggerU.cs" />
+    <Compile Include="Models\TestAllAnyDepartment.cs" />
+    <Compile Include="Models\TestAllAnyEmployee.cs" />
+    <Compile Include="Models\testdbContext.cs" />
+    <Compile Include="Models\TestDE.cs" />
+    <Compile Include="Models\TestDetail.cs" />
+    <Compile Include="Models\TestDuplicate.cs" />
+    <Compile Include="Models\TestMaster.cs" />
+    <Compile Include="Models\TestTable4ApplyI.cs" />
+    <Compile Include="Models\TestTable4ApplyII.cs" />
+    <Compile Include="Models\TestTable4IUDDest.cs" />
+    <Compile Include="Models\TestTable4IUDSrc.cs" />
+    <Compile Include="Models\TestTable4Types.cs" />
+    <Compile Include="Models\TestTableWDefault.cs" />
+    <Compile Include="Models\TestTableWithNullField.cs" />
+    <Compile Include="Models\Victim.cs" />
+    <Compile Include="Models\XPObjectType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

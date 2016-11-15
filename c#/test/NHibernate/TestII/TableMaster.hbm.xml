@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" namespace="TestII" assembly="TestII">
+  
+  <class name="TableMaster" lazy="true">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+    <property name="Val" column ="Val"/>
+    
+    <set name="Details" table="TableDetail" cascade="all" inverse="true">
+      <key column="MasterId" />
+      <one-to-many class="TableDetail"/>
+    </set>
+  </class>
+  
+</hibernate-mapping>

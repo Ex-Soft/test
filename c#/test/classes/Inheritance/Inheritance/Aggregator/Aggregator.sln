@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aggregator", "Aggregator.csproj", "{B461787F-CC2A-4E60-884B-4A17E6F558FD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerivedClass1", "DerivedClass1\DerivedClass1.csproj", "{A194AF02-6E8C-4767-9711-C46EC02318D1}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerivedClass2", "DerivedClass2\DerivedClass2.csproj", "{1D8B5797-330E-4641-8229-517E378918BB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{B461787F-CC2A-4E60-884B-4A17E6F558FD}.Debug.ActiveCfg = Debug|.NET
+		{B461787F-CC2A-4E60-884B-4A17E6F558FD}.Debug.Build.0 = Debug|.NET
+		{B461787F-CC2A-4E60-884B-4A17E6F558FD}.Release.ActiveCfg = Release|.NET
+		{B461787F-CC2A-4E60-884B-4A17E6F558FD}.Release.Build.0 = Release|.NET
+		{A194AF02-6E8C-4767-9711-C46EC02318D1}.Debug.ActiveCfg = Debug|.NET
+		{A194AF02-6E8C-4767-9711-C46EC02318D1}.Debug.Build.0 = Debug|.NET
+		{A194AF02-6E8C-4767-9711-C46EC02318D1}.Release.ActiveCfg = Release|.NET
+		{A194AF02-6E8C-4767-9711-C46EC02318D1}.Release.Build.0 = Release|.NET
+		{1D8B5797-330E-4641-8229-517E378918BB}.Debug.ActiveCfg = Debug|.NET
+		{1D8B5797-330E-4641-8229-517E378918BB}.Debug.Build.0 = Debug|.NET
+		{1D8B5797-330E-4641-8229-517E378918BB}.Release.ActiveCfg = Release|.NET
+		{1D8B5797-330E-4641-8229-517E378918BB}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

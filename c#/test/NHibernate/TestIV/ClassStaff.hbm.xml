@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" namespace="TestIV" assembly="TestIV">
+
+  <class name="ClassStaff" table="Staff" lazy="true">
+    <id name="ID">
+      <generator class="native" />
+    </id>
+    <property name="Name" column ="Name"/>
+    <property name="Salary" column ="Salary"/>
+    <!-- <property name="SalaryAdd" formula="(select s.Salary from Staff s where (s.ID=ID))"/> -->
+    
+  </class>
+
+  <sql-query name="NamedQuery1">
+    <return alias="NamedQuery1" class="TestIV.ClassStaff">
+      <return-property name="ID" column="ID"/>
+      <return-property name="Name" column="Name"/>
+      <return-property name="Salary" column="Salary"/>
+      <return-property name="SalaryAdd" column="SalaryAdd"/>
+    </return>
+    select
+      s.*,
+      testdb.dbo.SalaryAdd(s.Salary, :pCoeff) as SalaryAdd
+    from
+      Staff s
+    where
+      s.ID=:pID
+  </sql-query>
+</hibernate-mapping>

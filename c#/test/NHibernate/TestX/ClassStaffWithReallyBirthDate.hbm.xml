@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" namespace="TestX" assembly="TestX">
+
+  <class name="ClassStaffWithReallyBirthDate">
+    <id name="ID">
+      <generator class="native" />
+    </id>
+    <property name="Name" column ="Name"/>
+    <property name="BirthDate" column ="BirthDate"/>
+  </class>
+
+  <sql-query name="NamedQuery1">
+    <return alias="SmthAlias" class="TestX.ClassStaffWithReallyBirthDate" />
+      select
+        s.*,
+        cast('20101231' as datetime) as BirthDate
+      from
+        Staff s
+      where
+        s.ID=:pID
+  </sql-query>
+
+</hibernate-mapping>

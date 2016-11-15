@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteToFileSelfSync", "WriteToFileSelfSync.csproj", "{EFA96C96-3FB7-4190-A507-4B32AF528DEC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{EFA96C96-3FB7-4190-A507-4B32AF528DEC}.Debug.ActiveCfg = Debug|.NET
+		{EFA96C96-3FB7-4190-A507-4B32AF528DEC}.Debug.Build.0 = Debug|.NET
+		{EFA96C96-3FB7-4190-A507-4B32AF528DEC}.Release.ActiveCfg = Release|.NET
+		{EFA96C96-3FB7-4190-A507-4B32AF528DEC}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityOnFire", "CityOnFire.csproj", "{799C1AA0-794E-4284-8A34-B9AF2FEBE1DC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{799C1AA0-794E-4284-8A34-B9AF2FEBE1DC}.Debug.ActiveCfg = Debug|.NET
+		{799C1AA0-794E-4284-8A34-B9AF2FEBE1DC}.Debug.Build.0 = Debug|.NET
+		{799C1AA0-794E-4284-8A34-B9AF2FEBE1DC}.Release.ActiveCfg = Release|.NET
+		{799C1AA0-794E-4284-8A34-B9AF2FEBE1DC}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

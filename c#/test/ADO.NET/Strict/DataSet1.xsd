@@ -1,0 +1,57 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="DataSet1" targetNamespace="http://www.tempuri.org/DataSet1.xsd" xmlns:mstns="http://www.tempuri.org/DataSet1.xsd"
+	xmlns="http://www.tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="DataSet1" msdata:IsDataSet="true" msdata:Locale="ru-RU">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="CITY">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CITY_ID" type="xs:decimal" />
+							<xs:element name="CITY_NAME_ID" type="xs:decimal" />
+							<xs:element name="COUNTRY_ID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="AREA_ID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="REGION_ID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="PHONE_COD" type="xs:string" minOccurs="0" />
+							<xs:element name="CITY_TYPE_ID" type="xs:short" minOccurs="0" />
+							<xs:element name="RECORD_STATE" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="USER_ID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="RECORD_MODIFY" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TERRITORY">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TERRITORY_ID" type="xs:decimal" />
+							<xs:element name="TERRITORY_NAME" type="xs:string" />
+							<xs:element name="TERRITORY_PARAM_ID" type="xs:short" />
+							<xs:element name="RECORD_STATE" type="xs:unsignedByte" minOccurs="0" />
+							<xs:element name="USER_ID" type="xs:decimal" minOccurs="0" />
+							<xs:element name="RECORD_MODIFY" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:key name="DataSet1Key1">
+			<xs:selector xpath=".//mstns:TERRITORY" />
+			<xs:field xpath="mstns:TERRITORY_ID" />
+		</xs:key>
+		<xs:keyref name="TERRITORY_CITY_CITY_NAME_ID" refer="mstns:DataSet1Key1" msdata:AcceptRejectRule="Cascade"
+			msdata:DeleteRule="Cascade" msdata:UpdateRule="Cascade">
+			<xs:selector xpath=".//mstns:CITY" />
+			<xs:field xpath="mstns:CITY_NAME_ID" />
+		</xs:keyref>
+		<xs:key name="DataSet1Key2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:TERRITORY" />
+			<xs:field xpath="mstns:TERRITORY_ID" />
+		</xs:key>
+		<xs:keyref name="TERRITORY_CITY_COUNTRY_ID" refer="mstns:DataSet1Key2" msdata:AcceptRejectRule="Cascade"
+			msdata:DeleteRule="Cascade" msdata:UpdateRule="Cascade">
+			<xs:selector xpath=".//mstns:CITY" />
+			<xs:field xpath="mstns:COUNTRY_ID" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

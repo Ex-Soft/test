@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true" namespace="TestXI" assembly="TestXI">
+
+  <class name="Party"
+         abstract="true"
+         table="Parties">
+    <id name="Id">
+      <generator class="identity"/>
+    </id>
+    <!--
+    <discriminator column="Discriminator"
+        not-null="true"
+        type="System.String"/>
+
+    <subclass
+      name="Person"
+      discriminator-value="Person">
+      <property name="FirstName"/>
+    </subclass>
+
+    <subclass
+      name="Company"
+      discriminator-value="Company">
+      <property name="CompanyName"/>
+    </subclass> -->
+  </class>
+
+
+</hibernate-mapping>

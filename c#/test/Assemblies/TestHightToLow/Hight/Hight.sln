@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryHight", "LibraryHight\LibraryHight.csproj", "{2E5960AC-94EF-4D8B-AF78-F7D8B073BFC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainHight", "MainHight\MainHight.csproj", "{BDE56B20-FC13-4C03-B08C-185784D592E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E5960AC-94EF-4D8B-AF78-F7D8B073BFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5960AC-94EF-4D8B-AF78-F7D8B073BFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5960AC-94EF-4D8B-AF78-F7D8B073BFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5960AC-94EF-4D8B-AF78-F7D8B073BFC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE56B20-FC13-4C03-B08C-185784D592E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE56B20-FC13-4C03-B08C-185784D592E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE56B20-FC13-4C03-B08C-185784D592E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE56B20-FC13-4C03-B08C-185784D592E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Reports>
+	<Report id="1" outercode="01" ProcessedIn1CFacing="blah-blah-blah" />
+	<Report id="2" outercode="02" ProcessedIn1CFacing="blah-blah-blah" />
+	<Report id="3" outercode="03" ProcessedIn1CFacing="blah-blah-blah" />
+	<Report id="4" outercode="04" ProcessedIn1CFacing="blah-blah-blah" />
+	<Report id="5" outercode="05" ProcessedIn1CFacing="blah-blah-blah" />
+</Reports>

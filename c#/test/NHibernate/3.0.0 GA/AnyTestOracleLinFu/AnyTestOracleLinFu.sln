@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyTestOracleLinFu", "AnyTestOracleLinFu.csproj", "{B7A480EA-C93C-40F5-83F3-1C5909E029C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7A480EA-C93C-40F5-83F3-1C5909E029C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A480EA-C93C-40F5-83F3-1C5909E029C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A480EA-C93C-40F5-83F3-1C5909E029C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A480EA-C93C-40F5-83F3-1C5909E029C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

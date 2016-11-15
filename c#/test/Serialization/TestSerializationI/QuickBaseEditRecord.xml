@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<qdbapi>
+	<udata>mydata</udata>
+	<ticket>auth_ticket</ticket>
+	<apptoken>app_token</apptoken>
+	<rid>4</rid>
+	<field name="start_date">06-08-2008</field>
+	<field name="attendee_name">Joseph Riesentrotter</field>
+</qdbapi>

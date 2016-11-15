@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{532CD854-51BE-4C56-B894-C882A68579F4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DictionaryAndLocksSample</RootNamespace>
+    <AssemblyName>DictionaryAndLocksSample</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllSamples.cs" />
+    <Compile Include="ConcurrentDictionarySample.cs" />
+    <Compile Include="DictionaryPlusReaderWriterLockSlimSampleAllowingDuplicates.cs" />
+    <Compile Include="DictionaryPlusSpinReaderWriterLockSlimAllowingDuplicatesSample.cs" />
+    <Compile Include="Pfz\Collections\DiscardUnusedValueDelegate.cs" />
+    <Compile Include="Pfz\Collections\EmptyArray.cs" />
+    <Compile Include="Pfz\Collections\ForEachDictionaryDelegate.cs" />
+    <Compile Include="Pfz\Collections\IDisposableDictionary.cs" />
+    <Compile Include="Pfz\Collections\IPfzDictionary.cs" />
+    <Compile Include="Pfz\Collections\IThreadSafeAndDisposableDictionary.cs" />
+    <Compile Include="Pfz\Collections\IThreadSafeDictionary.cs" />
+    <Compile Include="Pfz\Collections\LockedThreadSafeDictionary.cs" />
+    <Compile Include="Pfz\Collections\RemoveManyDictionaryDelegate.cs" />
+    <Compile Include="Pfz\Collections\ThreadSafeDictionary.cs" />
+    <Compile Include="Pfz\Collections\ValueConstructorDelegate.cs" />
+    <Compile Include="Pfz\Collections\_DictionaryHelper.cs" />
+    <Compile Include="Pfz\Collections\_ThreadSafeDictionaryNode.cs" />
+    <Compile Include="Pfz\IAdvancedDisposable.cs" />
+    <Compile Include="Pfz\Threading\Disposers\IUpgradeableLock.cs" />
+    <Compile Include="Pfz\Threading\Disposers\OptimisticReadLock.cs" />
+    <Compile Include="Pfz\Threading\Disposers\OptimisticUpgradeableLock.cs" />
+    <Compile Include="Pfz\Threading\Disposers\OptimisticWriteLock.cs" />
+    <Compile Include="Pfz\Threading\IReaderWriterLock.cs" />
+    <Compile Include="Pfz\Threading\IReaderWriterLockSlim.cs" />
+    <Compile Include="Pfz\Threading\OptimisticReaderWriterLock.cs" />
+    <Compile Include="Pfz\Threading\SpinReaderWriterLockSlim.cs" />
+    <Compile Include="ThreadSafeDictionarySampleAllowingDuplicates.cs" />
+    <Compile Include="DictionaryPlusFullLockSampleAllowingDuplicates.cs" />
+    <Compile Include="ThreadSafeDictionarySample.cs" />
+    <Compile Include="DictionaryPlusSpinReaderWriterLockSlimSample.cs" />
+    <Compile Include="DictionaryPlusReaderWriterLockSlimSample.cs" />
+    <Compile Include="DictionaryPlusFullLockSample.cs" />
+    <Compile Include="IGetOrCreateValueSample.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
