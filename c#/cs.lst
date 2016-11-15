@@ -1,0 +1,11 @@
+bin
+obj
+packages
+TestResults
+_ReSharper.*
+DevExpress.asm
+*.suo
+*.user
+*.exe
+*.DotSettings
+*.json
