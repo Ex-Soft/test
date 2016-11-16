@@ -89,6 +89,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="sql\create.cmd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\TestDB.Context.tt">
