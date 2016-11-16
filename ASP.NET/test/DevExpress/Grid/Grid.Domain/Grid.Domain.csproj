@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,15 +52,58 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IStaffRepository.cs" />
-    <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFStaffRepository.cs" />
-    <Compile Include="Entities\Staff.cs" />
+    <Compile Include="Database\Staff.cs">
+      <DependentUpon>TestDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TestDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TestDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TestDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Database\TestDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\TestDB.edmx.diagram">
+      <DependentUpon>TestDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\TestDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestDB.edmx</DependentUpon>
+      <LastGenOutput>TestDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\TestDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestDB.edmx</DependentUpon>
+      <LastGenOutput>TestDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

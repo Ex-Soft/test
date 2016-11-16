@@ -98,9 +98,16 @@ jquery*.css
 jquery*.css.map
 *.dat
 UpgradeLog.htm
+
+#bootstrap
 bootstrap*.js
 bootstrap*.css
 bootstrap*.css.map
+glyphicons-halflings-regular.eot
+glyphicons-halflings-regular.svg
+glyphicons-halflings-regular.ttf
+glyphicons-halflings-regular.woff
+
 modernizr*.js
 respond*.js
 MicrosoftAjax*.js

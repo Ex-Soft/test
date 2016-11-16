@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Grid.Domain.Entities;
+using Grid.Domain.Database;
 
 namespace Grid.Domain.Abstract
 {

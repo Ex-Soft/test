@@ -1,16 +1,16 @@
 ﻿using System.Linq;
 using Grid.Domain.Abstract;
-using Grid.Domain.Entities;
+using Grid.Domain.Database;
 
 namespace Grid.Domain.Concrete
 {
     public class EFStaffRepository : IStaffRepository
     {
-        private EFDbContext context = new EFDbContext();
+        private testlocaldbEntities context = new testlocaldbEntities();
 
         public IQueryable<Staff> Staffs
         {
-            get { return context.Staffs; }
+            get { return context.Staff; }
         } 
     }
 }

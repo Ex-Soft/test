@@ -2,16 +2,17 @@
 using System.Web.Http;
 using Grid.Domain.Abstract;
 using Grid.Domain.Concrete;
-using Grid.Domain.Entities;
+using Grid.Domain.Database;
 
 namespace BackEnd.Controllers
 {
-    public class StaffController : ApiController
+    public class StaffsController : ApiController
     {
-        IStaffRepository staffRepository = new EFStaffRepository();
+        private readonly IStaffRepository _staffRepository = new EFStaffRepository();
+
         public IEnumerable<Staff> GetAllStaffs()
         {
-            return staffRepository.Staffs;
+            return _staffRepository.Staffs;
         } 
     }
 }
