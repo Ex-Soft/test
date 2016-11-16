@@ -1,0 +1,9 @@
+set serveroutput on;
+declare
+  outval number;
+  retval number;
+begin
+  retval := Test_SimpleFunction(1, 1, outval);
+  dbms_output.put_line('outval = ' || outval);
+  dbms_output.put_line('retval = ' || retval);
+end;

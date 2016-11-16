@@ -1,0 +1,118 @@
+<deadlock-list>
+ <deadlock victim="processe827dc8">
+  <process-list>
+   <process id="processe827dc8" taskpriority="0" logused="324" waitresource="PAGE: 5:3:100039194" waittime="10515" ownerId="5776217757" transactionname="user_transaction" lasttranstarted="2013-12-26T15:49:13.440" XDES="0x11929b140" lockMode="S" schedulerid="16" kpid="7144" status="suspended" spid="1165" sbid="2" ecid="9" priority="0" trancount="0" lastbatchstarted="2013-12-26T15:49:13.450" lastbatchcompleted="2013-12-26T15:48:58.390" clientapp=".Net SqlClient Data Provider" hostname="DB2" hostpid="4968" isolationlevel="read committed (2)" xactid="5776217757" currentdb="5" lockTimeout="4294967295" clientoption1="671090784" clientoption2="128056">
+    <executionStack>
+     <frame procname="adhoc" line="1" stmtstart="166" stmtend="422" sqlhandle="0x0200000073cd8c032b61b9b2e3fcf6e84dba8992e9974ddf">
+insert into &quot;dbo&quot;.&quot;refQstAnswers&quot;(&quot;id&quot;,&quot;deleted&quot;,&quot;Value&quot;,&quot;GroupName&quot;,&quot;Priority&quot;,&quot;idDistributor&quot;)values(@p0,@p1,@p2,@p3,null,@p4)     </frame>
+     <frame procname="unknown" line="1" sqlhandle="0x000000000000000000000000000000000000000000000000">
+unknown     </frame>
+    </executionStack>
+    <inputbuf>
+    </inputbuf>
+   </process>
+   <process id="processe9054c8" taskpriority="0" logused="10000" waittime="1839" schedulerid="17" kpid="14452" status="suspended" spid="1165" sbid="2" ecid="2" priority="0" trancount="0" lastbatchstarted="2013-12-26T15:49:13.450" lastbatchcompleted="2013-12-26T15:48:58.390" clientapp=".Net SqlClient Data Provider" hostname="DB2" hostpid="4968" isolationlevel="read committed (2)" xactid="5776217757" currentdb="5" lockTimeout="4294967295" clientoption1="671090784" clientoption2="128056">
+    <executionStack>
+     <frame procname="adhoc" line="1" stmtstart="166" stmtend="422" sqlhandle="0x0200000073cd8c032b61b9b2e3fcf6e84dba8992e9974ddf">
+insert into &quot;dbo&quot;.&quot;refQstAnswers&quot;(&quot;id&quot;,&quot;deleted&quot;,&quot;Value&quot;,&quot;GroupName&quot;,&quot;Priority&quot;,&quot;idDistributor&quot;)values(@p0,@p1,@p2,@p3,null,@p4)     </frame>
+     <frame procname="unknown" line="1" sqlhandle="0x000000000000000000000000000000000000000000000000">
+unknown     </frame>
+    </executionStack>
+    <inputbuf>
+    </inputbuf>
+   </process>
+   <process id="process1881d288" taskpriority="0" logused="10000" waittime="142146" schedulerid="45" kpid="7960" status="suspended" spid="1165" sbid="2" ecid="0" priority="0" trancount="2" lastbatchstarted="2013-12-26T15:49:13.450" lastbatchcompleted="2013-12-26T15:48:58.390" clientapp=".Net SqlClient Data Provider" hostname="DB2" hostpid="4968" loginname="SALESINFO\i.nozhenko" isolationlevel="read committed (2)" xactid="5776217757" currentdb="5" lockTimeout="4294967295" clientoption1="671090784" clientoption2="128056">
+    <executionStack>
+     <frame procname="adhoc" line="1" stmtstart="166" stmtend="422" sqlhandle="0x0200000073cd8c032b61b9b2e3fcf6e84dba8992e9974ddf">
+insert into &quot;dbo&quot;.&quot;refQstAnswers&quot;(&quot;id&quot;,&quot;deleted&quot;,&quot;Value&quot;,&quot;GroupName&quot;,&quot;Priority&quot;,&quot;idDistributor&quot;)values(@p0,@p1,@p2,@p3,null,@p4)     </frame>
+     <frame procname="unknown" line="1" sqlhandle="0x000000000000000000000000000000000000000000000000">
+unknown     </frame>
+    </executionStack>
+    <inputbuf>
+(@p0 bigint,@p1 bit,@p2 nvarchar(4000),@p3 nvarchar(4000),@p4 bigint,@r int output)insert into &quot;dbo&quot;.&quot;refQstAnswers&quot;(&quot;id&quot;,&quot;deleted&quot;,&quot;Value&quot;,&quot;GroupName&quot;,&quot;Priority&quot;,&quot;idDistributor&quot;)values(@p0,@p1,@p2,@p3,null,@p4) set @r=1    </inputbuf>
+   </process>
+   <process id="processf1c5288" taskpriority="0" logused="48860" waitresource="KEY: 5:72057603730571264 (9c134467458c)" waittime="40737" ownerId="5779064474" transactionname="_trImpSurvey_" lasttranstarted="2013-12-26T15:50:55.503" XDES="0x149d0e33c0" lockMode="S" schedulerid="18" kpid="4992" status="suspended" spid="988" sbid="0" ecid="0" priority="0" trancount="2" lastbatchstarted="2013-12-26T15:49:44.817" lastbatchcompleted="2013-12-26T15:49:44.817" clientapp=".Net SqlClient Data Provider" hostname="DB4" hostpid="52356" loginname="SALESINFO\dexservice" isolationlevel="read committed (2)" xactid="5779064474" currentdb="5" lockTimeout="4294967295" clientoption1="673187936" clientoption2="128056">
+    <executionStack>
+     <frame procname="chicago_kraft.dbo.sp_impSurveys_Import" line="664" stmtstart="43248" stmtend="44072" sqlhandle="0x030005005ebd2356a101270071a200000100000000000000">
+INSERT INTO [dbo].[drSurveyValues]
+           ([id]
+           ,[idDocRow]
+           ,[AnswerStr]
+           ,[AnswerNumber]
+           ,[AnswerDate]
+           ,[AnswerID])
+	SELECT
+			[id]
+           ,[idDocRow]
+           ,[AnswerStr]
+           ,[AnswerNumber]
+           ,[AnswerDate]
+           ,[AnswerID]
+	FROM #drSurveyValues;
+
+
+	--сторнируем документы которые необходимо сторнировать     </frame>
+     <frame procname="chicago_kraft.dbo.onl_Packet_Process" line="290" stmtstart="24564" stmtend="25024" sqlhandle="0x03000500996d42684302270071a200000100000000000000">
+EXEC dbo.sp_impSurveys_Import
+			@idOpRoute        = @idRoute,
+			@idDistributor    = @idDistributor,
+			@idPhysicalPerson = @idPhysicalPerson,
+			@idSession        = @idSession,
+			@IsError          = @WasErrors output     </frame>
+     <frame procname="chicago_kraft.dbo.sp_onlPacket_Begin" line="1096" stmtstart="65802" stmtend="66292" sqlhandle="0x03000500b622076d7a02270071a200000100000000000000">
+EXEC dbo.onl_Packet_Process 
+				@idRoute       = @idRoutePPC, 
+				@idDistributor = @idDistributor, 
+				@FolderIn      = @FolderIn, 
+				@Session       = @Session, 
+				@idSession     = @idSession, 
+				@WasErrors     = @IsError output     </frame>
+     <frame procname="chicago_kraft.dbo.dexOnline" line="62" stmtstart="3676" stmtend="4100" sqlhandle="0x03000500286bef6e8b02270071a200000100000000000000">
+EXEC dbo.sp_onlPacket_Begin 
+							@FolderIn      = @FolderIn, 
+							@FolderOut     = @FolderOut, 
+							@idRoutePPC    = @idRoute,
+							@idDistributor = @idDistributor
+
+					-- точка расширения     </frame>
+    </executionStack>
+    <inputbuf>
+Proc [Database Id = 5 Object Id = 1861184296]    </inputbuf>
+   </process>
+  </process-list>
+  <resource-list>
+   <pagelock fileid="3" pageid="100039194" dbid="5" objectname="chicago_kraft.dbo.drSurvey" id="lock9b0206a80" mode="IX" associatedObjectId="72057604739760128">
+    <owner-list>
+     <owner id="processf1c5288" mode="IX"/>
+    </owner-list>
+    <waiter-list>
+     <waiter id="processe827dc8" mode="S" requestType="wait"/>
+    </waiter-list>
+   </pagelock>
+   <exchangeEvent id="Pipecd9676700" WaitType="e_waitPipeGetRow" nodeId="47">
+    <owner-list>
+     <owner id="processe827dc8"/>
+    </owner-list>
+    <waiter-list>
+     <waiter id="processe9054c8"/>
+    </waiter-list>
+   </exchangeEvent>
+   <exchangeEvent id="Port80521600" WaitType="e_waitPortOpen" nodeId="44">
+    <owner-list>
+     <owner id="processe9054c8"/>
+    </owner-list>
+    <waiter-list>
+     <waiter id="process1881d288"/>
+    </waiter-list>
+   </exchangeEvent>
+   <keylock hobtid="72057603730571264" dbid="5" objectname="chicago_kraft.dbo.refQstAnswers" indexname="PK_refQstAnswers" id="lock197c1f00" mode="X" associatedObjectId="72057603730571264">
+    <owner-list>
+     <owner id="process1881d288" mode="X"/>
+    </owner-list>
+    <waiter-list>
+     <waiter id="processf1c5288" mode="S" requestType="wait"/>
+    </waiter-list>
+   </keylock>
+  </resource-list>
+ </deadlock>
+</deadlock-list>

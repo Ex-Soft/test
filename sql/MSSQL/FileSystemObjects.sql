@@ -1,0 +1,1 @@
+https://www.simple-talk.com/sql/t-sql-programming/the-tsql-of-text-files/

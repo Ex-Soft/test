@@ -1,0 +1,1 @@
+sqlcmd -S . -U sa -P 123 -i TestVarII.sql

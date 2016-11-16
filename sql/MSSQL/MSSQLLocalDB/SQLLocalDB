@@ -1,0 +1,5 @@
+"c:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe" info v11.0
+"c:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe" start v11.0
+"c:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe" stop v11.0
+"c:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe" delete v11.0
+"c:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe" info

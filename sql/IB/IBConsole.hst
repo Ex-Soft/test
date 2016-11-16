@@ -1,0 +1,324 @@
+SQL Statement
+
+select * from "Insurant" where ("USBNo"=485) order by "InsurantCode"
+
+select * from "Insurant" where ("USBNo"=485) and ("InsurantCode"=2)
+
+select * from "Contract" where ("USBNo"=485) and ("Year"=2) and ("Kind"=1) and ("Branch"=3) and ("ContrNo"=5)
+
+select * from "Certif" where ("USBNo"=485) and ("Year"=2) and ("Kind"=1) and ("Branch"=3) and ("ContrNo"=5) order by "OrdNo"
+
+update "Certif" set "PrivilCoeff"=1, "VersParam"=1, "VersTermCoeff"=1, "VersBlank"=2 where ("USBNo"=640) and ("Year"=3) and ("Kind"=1) and ("Branch"=1) and ("ContrNo"=9) and ("OrdNo"=1)
+
+select * from "Contract" where "USBNo"=860 order by "Year","Kind","Branch","ContrNo"
+
+delete from "Contract" where ("USBNo"=860) and ("Year"=3) and ("Kind"=1) and ("Branch"=1) and ("ContrNo"=13)
+
+delete from "Certif" where ("USBNo"=860) and ("Year"=3) and ("Kind"=1) and ("Branch"=1) and ("ContrNo"=13)
+
+select * from "Contract" where ("ChiefId" is null) or ("ChiefId"=0)
+
+update "Contract" set "ChiefId"=1 where ("ChiefId" is null) or ("ChiefId"=0)
+
+select Cert.*
+from "Contract" Contr left outer join "Certif" Cert
+on (Contr."USBNo"=Cert."USBNo") and (Contr."Year"=Cert."Year") and (Contr."Kind"=Cert."Kind") and (Contr."Branch"=Cert."Branch") and (Contr."ContrNo"=Cert."ContrNo")
+where exists
+(
+select Cert.*
+from "Certif" Cert
+where (Contr."USBNo"=Cert."USBNo") and (Contr."Year"=Cert."Year") and (Contr."Kind"=Cert."Kind") and (Contr."Branch"=Cert."Branch") and (Contr."ContrNo"=Cert."ContrNo")
+)
+order by Cert."USBNo", Cert."Year", Cert."Kind", Cert."Branch", Cert."ContrNo", Cert."OrdNo"
+
+select *
+from "Insurant" i left outer join (
+                                   "NaturPerson" n full join "JuridPerson" j
+                                   on (n."CentId"=j."CentId") and
+                                      (n."InstId"=j."InstId") and
+                                      (n."NodeId"=j."NodeId") and
+                                      (n."PersonId"=j."PersonId")
+                                  )
+on (
+    (i."CentId"=j."CentId") and
+    (i."InstId"=j."InstId") and
+    (i."NodeId"=j."NodeId") and
+    (i."PersonId"=j."PersonId")
+   )
+   or
+   (
+    (i."CentId"=n."CentId") and
+    (i."InstId"=n."InstId") and
+    (i."NodeId"=n."NodeId") and
+    (i."PersonId"=n."PersonId")
+   )
+order by i."CentId",i."InstId",i."NodeId",i."PersonId"
+
+select distinct Cert."GroupCode", Cert."ObjectName", Cert."Colour", Cert."StateNo", Cert."OutYear", Cert."Chassis", Cert."RegCertNo", Cert."AntiHiJack", Cert."VehicleRun"
+from "Certif" Cert join "Contract" Contr
+on (Cert."USBNo"=Contr."USBNo") and
+   (Cert."Year"=Contr."Year") and
+   (Cert."Kind"=Contr."Kind") and
+   (Cert."Branch"=Contr."Branch") and
+   (Cert."ContrNo"=Contr."ContrNo")
+where
+   (Cert."Type"=21) and
+   (Contr."InsurantCode"=1)
+order by Cert."ObjectName"
+
+select Blank.*,TypeDoc."Name",InsComp."NameN"
+from "Civil_Blank" Blank
+left outer join "Civil_TypeDoc" TypeDoc
+on (Blank."TypeDoc"=TypeDoc."TypeDoc")
+left outer join "Civil_InsComp" InsComp
+on (Blank."InsCompNo"=InsComp."InsCompNo")
+
+> INSERT INTO T1(f1t1,f2t1,f3t1,date1t1,date2t1,date3t1)
+> SELECT f1t2,f2t2,f3t2,
+>  cast(DATE1T2 as date),cast(DATE2T2 as date),cast(DATE3T2 as date)
+> FROM t2
+
+Если даты передаются в виде строки прямо в запросе, то должен быть задан четкий
+формат.
+'dd.mm.yyyy'
+'mm/dd/yyyy'
+'dd-mmm-yyyy'
+
+по поводу нескольких селектов:
+Привет, Kirill!
+Вы пишешь 20 января 2004:
+
+KVR> Есть таблица
+KVR> CREATE TABLE INCOMES (
+KVR> DATED DATE NOT NULL,
+KVR> SHOP_ID SMALLINT NOT NULL,
+KVR> INCOME INTEGER NOT NULL);
+KVR> ALTER TABLE INCOMES ADD PRIMARY KEY (DATED, SHOP_ID);
+
+KVR> Напомните плиз, как в DbGrid получить таблицу со строками в виде даты
+KVR> и столбцами в виде Shop_ID?
+
+Прямого пути нет, т.к. IB не имеет встроенной поддержки PIVOT.
+Можно собирать запрос "руками", если количество Shop_ID не фиксировано.
+Примерно так:
+SELECT DISTINCT i.DATED,
+(SELECT INCOME FROM INCOMES WHERE DATED = i.DATED AND SHOP_ID = 1) I1,
+(SELECT INCOME FROM INCOMES WHERE DATED = i.DATED AND SHOP_ID = 2) I2,
+(SELECT INCOME FROM INCOMES WHERE DATED = i.DATED AND SHOP_ID = 3) I3,
+(SELECT INCOME FROM INCOMES WHERE DATED = i.DATED AND SHOP_ID = 4) I4,
+.......................
+FROM INCOMES i
+WHERE (i.DATED >= :DateStart) AND (i.DATED < :DateEnd);
+
+--
+With best regards, Alex Cherednichenko.
+
+select *
+from "Contract" C
+left outer join "Insurant" I on (i."NodeId"=c."NodeId") and (i."PersonId"=c."PersonId")
+left outer join "JuridPerson" J on (i."NodeId"=j."NodeId") and (i."PersonId"=j."PersonId")
+left outer join "NaturPerson" N on (i."NodeId"=n."NodeId") and (i."PersonId"=n."PersonId")
+where
+(c."NodeId"=10000000100000) and
+(c."ContrNo"=2)
+
+ select C."NodeId", C."Year", C."Kind", C."Branch", C."Status", C."Date", C."ContrNo", C."PersonId", C."DocVers", U."Reward", U."Papers", I."PersonType", J."Name", N."LastName", N."FirstName", N."FathersName", P."DateBeg"
+ from "Contract" C
+ left outer join "Insurant" I on (I."NodeId" = C."NodeId") and (I."PersonId" = C."PersonId")
+ left outer join "JuridPerson" J on (J."NodeId" = I."NodeId") and (J."PersonId" = I."PersonId")
+ left outer join "NaturPerson" N on (N."NodeId" = I."NodeId") and (N."PersonId" = I."PersonId")
+ left outer join "USI_Contract" U on (U."NodeId" = C."NodeId") and (U."Year" = C."Year") and (U."Kind" = C."Kind") and (U."Branch" = C."Branch") and (U."ContrNo" = C."ContrNo")
+ left outer join "USI_Payment" P on (P."NodeId" = C."NodeId") and (P."Year" = C."Year") and (P."Kind" = C."Kind") and (P."Branch" = C."Branch") and (P."ContrNo" = C."ContrNo") and (P."GroupNo" = 1) and (P."StageNo" = 1)
+ left outer join (select "NodeId", "Year", "Kind", "Branch", "ContrNo", "GroupNo", sum("Pc100") as "Payment" from "USI_Payment" Q where (Q."NodeId" = C."NodeId") and (Q."Year" = C."Year") and (Q."Kind" = C."Kind") and (Q."Branch" = C."Branch") and (Q."ContrNo" = C."ContrNo") and (Q."GroupNo" = 1) group by "NodeId", "Year", "Kind", "Branch", "ContrNo", "GroupNo") on (Q."NodeId" = C."NodeId") and (Q."Year" = C."Year") and (Q."Kind" = C."Kind") and (Q."Branch" = C."Branch") and (Q."ContrNo" = C."ContrNo") and (Q."GroupNo" = 1)
+ where C."NodeId" = 10000000100000 and C."Branch" = 1 and C."Kind" = 1  and I."NodeId" = C."NodeId" and I."PersonId" = C."PersonId" and (J."NodeId" = C."NodeId" and J."PersonId" = C."PersonId" or N."NodeId" = C."NodeId" and N."PersonId" = C."PersonId")
+ order by C."NodeId", C."Kind", C."Branch", C."Year", C."ContrNo"
+
+select
+C.*,
+(select sum(P."CostRestore") from "Certif" P where (P."USBNo"=C."USBNo") and (P."Year"=C."Year") and (P."Kind"=C."Kind") and (P."Branch"=C."Branch") and (P."ContrNo"=C."ContrNo") group by P."USBNo", P."Year", P."Kind", P."Branch", P."ContrNo") as "SumSum"
+from "Contract" C
+
+select * from "Abroad_Tariff" where ("Version"=1) and ("Duration">=99) and ("InsuredSum"=10000) and ("Unbroken"=1) order by "Duration" ascending
+
+constraint fk
+select F.RDB$RELATION_NAME,
+       F.RDB$CONSTRAINT_TYPE,
+       C.RDB$CONSTRAINT_NAME,
+       B.RDB$FIELD_NAME,
+       B.RDB$FIELD_POSITION,
+       A.RDB$RELATION_NAME,
+       A.RDB$CONSTRAINT_TYPE,
+       C.RDB$CONST_NAME_UQ,
+       I.RDB$FIELD_NAME,
+       I.RDB$FIELD_POSITION,
+       C.RDB$MATCH_OPTION,
+       C.RDB$UPDATE_RULE,
+       C.RDB$DELETE_RULE
+from
+RDB$REF_CONSTRAINTS C,
+RDB$RELATION_CONSTRAINTS F
+right outer join RDB$INDEX_SEGMENTS B on (F.RDB$INDEX_NAME = B.RDB$INDEX_NAME),
+RDB$RELATION_CONSTRAINTS A right outer join RDB$INDEX_SEGMENTS I on (A.RDB$INDEX_NAME = I.RDB$INDEX_NAME)
+where
+(C.RDB$CONSTRAINT_NAME = F.RDB$CONSTRAINT_NAME) and
+(F.RDB$RELATION_NAME='Detail') and
+(A.RDB$CONSTRAINT_NAME = C.RDB$CONST_NAME_UQ)
+order by C.RDB$CONSTRAINT_NAME, B.RDB$FIELD_POSITION, I.RDB$FIELD_POSITION
+
+select F.RDB$RELATION_NAME as "DetailTable",
+       F.RDB$CONSTRAINT_TYPE as "DetailTableConstraintType",
+       C.RDB$CONSTRAINT_NAME as "DetailTableConstraintName",
+       B.RDB$FIELD_NAME as "DetailTableFieldName",
+       B.RDB$FIELD_POSITION as "DetailTableFieldPosition",
+       A.RDB$RELATION_NAME as "MasterTable",
+       A.RDB$CONSTRAINT_TYPE as "MasterTableConstraintType",
+       C.RDB$CONST_NAME_UQ as "MasterTableConstraintName",
+       I.RDB$FIELD_NAME as "MasterTableFieldName",
+       I.RDB$FIELD_POSITION as "MasterTableFieldPosition",
+       C.RDB$MATCH_OPTION as "MatchOption",
+       C.RDB$UPDATE_RULE as "UpdateRule",
+       C.RDB$DELETE_RULE as "DeleteRule"
+from
+RDB$REF_CONSTRAINTS C,
+RDB$RELATION_CONSTRAINTS F
+right outer join RDB$INDEX_SEGMENTS B on (F.RDB$INDEX_NAME = B.RDB$INDEX_NAME),
+RDB$RELATION_CONSTRAINTS A right outer join RDB$INDEX_SEGMENTS I on (A.RDB$INDEX_NAME = I.RDB$INDEX_NAME)
+where
+(C.RDB$CONSTRAINT_NAME = F.RDB$CONSTRAINT_NAME) and
+(F.RDB$RELATION_NAME='Civil_Polis') and
+(A.RDB$CONSTRAINT_NAME = C.RDB$CONST_NAME_UQ)
+order by C.RDB$CONSTRAINT_NAME, B.RDB$FIELD_POSITION, I.RDB$FIELD_POSITION
+
+select 'Дата: ' || extract(day from field)
+|| '/' || extract(month from field)
+|| '/' || extract(year from field)
+from table
+
+SELECT "Name", "Salary"
+FROM "Staff" "S"
+WHERE (SELECT COUNT(DISTINCT "Salary")
+       FROM "Staff"
+       WHERE "Salary" > "S"."Salary"
+      ) < 3
+ORDER BY "Salary" DESC
+
+Придумал тут задачку для теста знания SQL
+предлагаю вашему вниманию..
+
+| а |       | b |
+--ID--       -ID---
+| 1 |       | 2 |
+| 2 |       | 2 |
+| 3 |       | 4 |
+| 4 |       | 4 |
+
+приведите набор данных который вернет следующий запрос
+
+select * from a left join b on a.id=b.id and a.id>2
+
+BA> А я сдесь решил попробовать....
+ BA> Ожидал оно быть
+ BA> ID          ID
+ BA> ----------- -----------
+ BA> 1           NULL
+ BA> 2           NULL
+ BA> 3           NULL
+ BA> 4           4
+ BA> 4           4
+
+да, в отладчике "Листочек+карандаш" получился такой же результат :)
+
+ BA> Но Firebird 1.5.0.4290
+ BA> дал это:
+ BA> ID          ID
+ BA> ----------- -----------
+ BA> 3           NULL
+ BA> 4           4
+ BA> 4           4
+
+Firebitd 1.5.1 SS Win тоже дал эту фигню
+
+Firebird 1.0.3 CS Lin подтвердил верность бумажки с ручкой
+
+может кто прокомментировать  это?!
+
+With best regards, Dennis Erokhin.  E-mail: derokhin@mail.kubsu.ru
+
+Запрос:
+Select * from table1 where field=:par
+
+Можно ли составить условие так, чтобы проверять field на is null, если par=0
+?
+Вообщем, если par=0, то надо вывести и все записи, где table1.field is null
+
+WHERE COALESCE(FIELD, 0) = :PAR
+
+select Rem.IDCommodity,
+       A.IDCOMMODITYTREE,
+       A.CODE1,
+       A.CODE2,
+       A.TEXT,
+       A.PROPERTYTEXT,
+       A.IDMEASURE,
+       A.TEXTAdd,
+       A.PROPERTYTEXTAdd,
+       A.IDMEASUREAdd,
+       0.000 as MinQuantity,
+       rem.CostPrice,
+       Rem.saleprice,
+       Rem.usebydate,
+       Rem.idcolor,
+       Rem.barcode,
+       Rem.Param1,
+       Rem.Param2,
+       Sum(Rem.QUANTITY)
+From SP_QUICK_REMAINDER_ByDate7(?IDScheme,?IDDate,'10036,') Rem
+     inner join Commodity A on A.IDKey=Rem.IDCommodity
+group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
+
+select
+m.*,
+det_l_I.*,
+det_l_II.*
+from
+"Main" m
+left outer join "Sub1" det_l_I on (det_l_I."Id"=m."Id")
+left outer join "SubSub" det_l_II on (det_l_II."Id"=m."Id") and (det_l_II."Id1"=det_l_I."Id1")
+order by m."Id",det_l_I."Id1",det_l_II."Id2"
+
+select
+m.*,
+det_l_I.*,
+det_l_II.*
+from
+"Main" m
+left outer join "Sub1" det_l_I on (det_l_I."Id"=m."Id")
+left outer join "SubSub" det_l_II on (det_l_II."Id"=det_l_I."Id") and (det_l_II."Id1"=det_l_I."Id1")
+order by m."Id",det_l_I."Id1",det_l_II."Id2"
+
+select
+RC.*,
+I.*,
+IDXS.*
+from
+rdb$relation_constraints RC
+join rdb$indices I on (I.RDB$INDEX_NAME=RC.RDB$INDEX_NAME)
+join rdb$index_segments IDXS on (IDXS.RDB$INDEX_NAME=I.RDB$INDEX_NAME)
+where
+RC.RDB$CONSTRAINT_TYPE='PRIMARY KEY'
+order by RC.RDB$CONSTRAINT_NAME, IDXS.RDB$FIELD_POSITION
+
+select
+  "CDate",
+  extract(day from "CDate") as D,
+  extract(month from "CDate") as M,
+  extract(year from "CDate") as Y,
+  extract(weekday from "CDate") as WD,
+  extract(yearday from "CDate") as YD,
+  "CTime",
+  extract(hour from "CTime") as H,
+  extract(minute from "CTime") as M,
+  extract(second from "CTime") as S,
+  "CTimeStamp"
+from
+  "TestDataTypes"
