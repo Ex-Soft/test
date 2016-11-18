@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
+using DevExpress.Web.Mvc;
 
 namespace FrontEnd
 {
@@ -9,6 +12,13 @@ namespace FrontEnd
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.DefaultBinder = new DevExpressEditorsBinder();
+        }
+
+        protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)
+        {
+            DevExpressHelper.Theme = "Aqua";
         }
     }
 }

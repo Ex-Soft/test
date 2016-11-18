@@ -1,0 +1,10 @@
+﻿@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "TestGridView";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridViewPart" };
+        settings.Columns.Add("Name");
+        settings.Columns.Add("Salary");
+        settings.Columns.Add("Dep");
+        settings.Columns.Add("BirthDate");
+    }).Bind(Model).GetHtml()
