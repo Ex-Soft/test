@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevExpress.Utils;
@@ -114,6 +115,16 @@ namespace TestDEControls
         {
             InitializeComponent();
 
+            //textEdit4.ReadOnly = true;
+            textEdit4.Properties.Appearance.Image = global::TestDEControls.Properties.Resources.save_16x16;
+            textEdit4.Properties.Appearance.Options.UseImage = true;
+            textEdit4.Properties.AppearanceFocused.Image = global::TestDEControls.Properties.Resources.save_16x16;
+            textEdit4.Properties.AppearanceFocused.Options.UseImage = true;
+            textEdit4.Properties.AppearanceDisabled.Image = global::TestDEControls.Properties.Resources.save_16x16;
+            textEdit4.Properties.AppearanceDisabled.Options.UseImage = true;
+            textEdit4.Properties.AppearanceReadOnly.Image = global::TestDEControls.Properties.Resources.save_16x16;
+            textEdit4.Properties.AppearanceReadOnly.Options.UseImage = true;
+
             btnSet.Visible = false;
 
             _boolVictim4CheckBox = _boolVictim4ToggleSwitch = true;
@@ -213,6 +224,19 @@ namespace TestDEControls
             var assembly = typeof(PictureMenu).Assembly;
             var imageList = ImageHelper.CreateImageCollectionFromResources("DevExpress.XtraEditors.Images.PictureMenu.png", typeof(PictureMenu).Assembly, new Size(0x10, 0x10), Color.Empty);
 
+            Image img = null;
+            try
+            {
+                img = ResourceImageHelper.CreateBitmapFromResources("DevExpress.XtraEditors.ImageEdit.bmp", typeof(ButtonEdit).Assembly);
+                img.Save("ImageEdit.bmp");
+                imageList = ImageHelper.CreateImageCollectionFromResources("DevExpress.XtraEditors.Images.Editors.bmp", typeof(PictureMenu).Assembly, new Size(0x10, 0x10), Color.Empty);
+                imageList.Images[12].Save("12.bmp");
+                //img = (Bitmap)Bitmap.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream("DevExpress.XtraEditors.Images.Editors.bmp"));
+            }
+            catch (Exception)
+            {
+            }
+
             comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             comboBoxEdit1.Properties.Items.AddRange(Enumerable.Range(65, 26).Select(item => (object)(new string((char)item, 10))).ToArray());
 
@@ -233,6 +257,20 @@ namespace TestDEControls
             _toggleSwitch2Binding.Parse += ToggleSwitchBindingParse;
             _toggleSwitch2Binding.Format += ToggleSwitchBindingFormat;
             _toggleSwitch2Binding.BindingComplete += ToggleSwitchBindingBindingComplete;
+
+            buttonEdit1.ReadOnly = true;
+            buttonEdit1.ButtonClick += ButtonEdit1_ButtonClick;
+            buttonEdit1.Properties.Buttons[1].Enabled = false;
+            buttonEdit1.EditValue = "blah-blah-blah";
+        }
+
+        private void ButtonEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit buttonEdit;
+            if ((buttonEdit = sender as ButtonEdit) == null)
+                return;
+
+            Debug.WriteLine(string.Format("\"{0}\" \"{1}\"", buttonEdit.Name, e.Button.Kind));
         }
 
         void ToggleSwitchBindingBindingComplete(object sender, BindingCompleteEventArgs e)
@@ -657,6 +695,16 @@ namespace TestDEControls
         private void BarButtonItem1ItemClick(object sender, ItemClickEventArgs e)
         {
 
+        }
+
+        private void textEdit4_Enter(object sender, EventArgs e)
+        {
+            Debug.WriteLine("textEdit4_Enter()");
+        }
+
+        private void textEdit4_Leave(object sender, EventArgs e)
+        {
+            Debug.WriteLine("textEdit4_Leave()");
         }
 
         private void comboBoxEdit1_Spin(object sender, SpinEventArgs e)

@@ -1,5 +1,4 @@
 ﻿//#define TEST_BIT_CONVERTER
-//#define TEST_FILE_TIME
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
@@ -10,7 +9,7 @@
 //#define TEST_GUID
 //#define TEST_REFERENCE_EQUALS
 //#define TEST_DEFAULT
-//#define TEST_SYSTEM_OBJECT
+#define TEST_SYSTEM_OBJECT
 //#define TEST_COLOR
 //#define TEST_FILE
 //#define TEST_CLONE
@@ -40,7 +39,7 @@
 //#define TEST_FOR
 //#define TEST_REF
 //#define TEST_PATH
-#define TEST_FORMAT
+//#define TEST_FORMAT
 
 using System;
 using System.Globalization;
@@ -520,20 +519,24 @@ namespace AnyTest
             #endif
 
             #if TEST_SYSTEM_OBJECT
+				tmpObject = (string)null;
+				tmpString = Convert.ToString(tmpObject); // ""
                 tmpObject = new Object();
+				tmpString = Convert.ToString(tmpObject); // "System.Object"
+				tmpString = tmpObject.ToString(); // "System.Object"
                 tmpObjectII = new Object();
-                Console.WriteLine("Object.ReferenceEquals(null, null) = {0}", Object.ReferenceEquals(null, null));
-                Console.WriteLine("Object.ReferenceEquals(object, null) = {0}", Object.ReferenceEquals(tmpObject, null));
-                Console.WriteLine("Object.ReferenceEquals(null, object) = {0}", Object.ReferenceEquals(null, tmpObject));
-                Console.WriteLine("Object.ReferenceEquals(object, object) = {0}", Object.ReferenceEquals(tmpObject, tmpObject));
-                Console.WriteLine("Object.ReferenceEquals(object1, object2) = {0}", Object.ReferenceEquals(tmpObject, tmpObjectII));
+                Console.WriteLine("Object.ReferenceEquals(null, null) = {0}", Object.ReferenceEquals(null, null)); // true
+                Console.WriteLine("Object.ReferenceEquals(object, null) = {0}", Object.ReferenceEquals(tmpObject, null)); // false
+                Console.WriteLine("Object.ReferenceEquals(null, object) = {0}", Object.ReferenceEquals(null, tmpObject)); // false
+                Console.WriteLine("Object.ReferenceEquals(object, object) = {0}", Object.ReferenceEquals(tmpObject, tmpObject)); // true
+                Console.WriteLine("Object.ReferenceEquals(object1, object2) = {0}", Object.ReferenceEquals(tmpObject, tmpObjectII)); // false
 
 				tmpObject = 13L;
 				tmpObjectII = 13L;
 
-				Console.WriteLine("tmpObject {0}= tmpObjectII", tmpObject == tmpObjectII ? "=" : "!");
-				Console.WriteLine("tmpObject.Equals(tmpObjectII) = {0}", tmpObject.Equals(tmpObjectII));
-				Console.WriteLine("Object.Equals(tmpObject, tmpObjectII) = {0}", Object.Equals(tmpObject, tmpObjectII));
+				Console.WriteLine("tmpObject {0}= tmpObjectII", tmpObject == tmpObjectII ? "=" : "!"); // tmpObject != tmpObjectII
+				Console.WriteLine("tmpObject.Equals(tmpObjectII) = {0}", tmpObject.Equals(tmpObjectII)); // true
+				Console.WriteLine("Object.Equals(tmpObject, tmpObjectII) = {0}", Object.Equals(tmpObject, tmpObjectII)); // true
             #endif
 
             #if TEST_COLOR
@@ -1124,6 +1127,10 @@ namespace AnyTest
 				tmpLong = long.MinValue;
 				long.TryParse(tmpString, out tmpLong);
 
+				tmpString = null;
+				tmpLong = long.MinValue;
+				long.TryParse(tmpString, out tmpLong);
+
 				tmpString = "9:00";
 				tmpString = "blah-blah-blah";
 				TimeSpan.TryParse(tmpString, out tmpTimeSpan);
@@ -1346,7 +1353,7 @@ namespace AnyTest
 
 				try
 				{
-					tmpString = Convert.ToString(null);
+					tmpString = Convert.ToString(null); // oB! tmpString == null
 				}
 				catch (Exception eException)
 				{
@@ -1355,7 +1362,7 @@ namespace AnyTest
 
 				try
 				{
-					tmpString = Convert.ToString(DBNull.Value);
+					tmpString = Convert.ToString(DBNull.Value); // oB! tmpString == ""
 				}
 				catch (Exception eException)
 				{

@@ -20,6 +20,7 @@ using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
 using DevExpress.Xpo.Metadata;
 using DevExpress.Xpo.Metadata.Helpers;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 
@@ -281,10 +282,23 @@ namespace TestDataTable
 
             //gridControlStaff.MainView.ExportToXls("test.xls");
             //gridControlStaff.MainView.ExportToXlsx("test.xlsx");
+
             gridControlMasterDetail.DataSource = xpServerCollectionSourceMasterDetail;
+            gridControlMasterDetail.ViewRegistered += GridControlMasterDetail_ViewRegistered;
+
             gridControlADOdotNETDataTable.DataSource = GetDataTable();
 
             gridControlTestTable4Types.DataSource = new XPCollection(session, typeof (TestTable4Types));
+        }
+
+        private void GridControlMasterDetail_ViewRegistered(object sender, ViewOperationEventArgs e)
+        {
+            GridControl gridControl;
+            if ((gridControl = sender as GridControl) == null
+                || e.View.SourceRowHandle == GridControl.InvalidRowHandle)
+                return;
+
+            var row = e.View.GetRow(e.View.SourceRowHandle);
         }
 
         private void GridViewTestTable4TypesCellValueChanged(object sender, CellValueChangedEventArgs e)

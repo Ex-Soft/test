@@ -235,6 +235,32 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+			List<A> listOfA = new List<A>
+			{
+				new A { FA = 1, FB = true },
+				new A { FA = 1, FB = true },
+				new A { FA = 2 },
+				new A { FA = 2 }
+			};
+
+			var doubles = listOfA.GroupBy(item => new {item.FA, item.FB});
+	        var keys = doubles.Select(g => g.Key);
+	        int tmpInt = keys.Count();
+
+			listOfA.Add(new A { FA = 1 });
+			doubles = listOfA.GroupBy(item => new { item.FA, item.FB });
+			keys = doubles.Select(g => g.Key);
+	        tmpInt = keys.Count();
+
+			var doublesII = listOfA.GroupBy(a => a.FA).Where(ga => ga.GroupBy(b => b.FB).Select(gb => gb.Key).Count() > 1);
+	        foreach (IGrouping<int, A> g in doublesII)
+		        foreach (A a in g)
+					Debug.WriteLine(a);
+
+			doublesII = listOfA.GroupBy(a => a.FA).Where(ga => ga.GroupBy(b => b.FB).Select(gb => gb.Key).Count() > 1);
+			foreach (A a in doublesII.SelectMany(g => g))
+				Debug.WriteLine(a);
+
             List<bool> listOfBool = new List<bool> { true, true, true };
             bool tmpBool = listOfBool.Aggregate(true, (val, next) => { return val && next; });
             listOfBool = new List<bool> { true, false, true };
@@ -276,7 +302,6 @@ namespace TestIEnumerable
             var _equalsNodes = dictionaryIntListOfA.Where(item => item.Value.GroupBy(a => a.FA).Any(g => g.Count() > 1));
 
             int[] tmpInts = null;
-            int tmpInt;
 
             try
             {
@@ -334,13 +359,14 @@ namespace TestIEnumerable
             foreach (var pair in query)
                 Console.WriteLine(pair.Place.Place + ": " + pair.City.CityName);
 
-            List<A>
-                listOfA = new List<A>(new[]
-                {
-                    new A() { FA = 1 },
-                    new A() { FA = 2 },
-                    new A() { FA = 3 }
-                }),
+	        listOfA = new List<A>(new[]
+	        {
+		        new A { FA = 1 },
+		        new A { FA = 2 },
+		        new A { FA = 3 }
+	        });
+
+			List<A>
                 listOfAII = new List<A>(new[]
                 {
                     new A() { FA = 1 },

@@ -1,5 +1,5 @@
 ﻿//#define TEST_DUPLICATES
-#define TEST_UOW_EVENTS
+//#define TEST_UOW_EVENTS
 //#define TEST_NESTED_UOW
 //#define TEST_NESTED_UOW_2
 //#define TEST_NESTED_UOW_WITH_NEW
@@ -29,7 +29,9 @@ namespace TestUOW
 						AddEventsListeners(unitOfWork);
 					#endif
 
-					TestDE testDE;
+					TestDE
+                        testDE,
+                        testDEII;
 					
 					#if TEST_UOW_EVENTS
 						testDE = new TestDE(unitOfWork);
@@ -185,7 +187,21 @@ namespace TestUOW
                             System.Diagnostics.Debug.WriteLine("Double is found: key = {0}; ClassInfo = {1}; {2} -> {3}", key, cInfo, obj, doubleObj);
                         }
                     #endif
-					
+
+                    id = -1;
+                    testDE = unitOfWork.GetObjectByKey<TestDE>(id);
+                    if (testDE == null)
+                    {
+                        testDE = new TestDE(unitOfWork);
+                        testDE.id = id;
+
+                        testDEII = unitOfWork.GetObjectByKey<TestDE>(id); // null
+
+                        testDE.Save();
+                        testDEII = unitOfWork.GetObjectByKey<TestDE>(id); // null
+                    }
+
+
 	                id = 3;
 
                     if ((testDE = unitOfWork.FindObject<TestDE>(CriteriaOperator.Parse("id=?", id))) == null)

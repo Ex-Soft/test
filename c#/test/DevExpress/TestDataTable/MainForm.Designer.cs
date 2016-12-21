@@ -98,7 +98,7 @@
             // 
             this.xtraTabPageMasterDetail.Controls.Add(this.gridControlMasterDetail);
             this.xtraTabPageMasterDetail.Name = "xtraTabPageMasterDetail";
-            this.xtraTabPageMasterDetail.Size = new System.Drawing.Size(278, 233);
+            this.xtraTabPageMasterDetail.Size = new System.Drawing.Size(535, 233);
             this.xtraTabPageMasterDetail.Text = "MasterDetail";
             // 
             // gridControlMasterDetail
@@ -107,7 +107,7 @@
             this.gridControlMasterDetail.Location = new System.Drawing.Point(0, 0);
             this.gridControlMasterDetail.MainView = this.gridViewMasterDetail;
             this.gridControlMasterDetail.Name = "gridControlMasterDetail";
-            this.gridControlMasterDetail.Size = new System.Drawing.Size(278, 233);
+            this.gridControlMasterDetail.Size = new System.Drawing.Size(535, 233);
             this.gridControlMasterDetail.TabIndex = 0;
             this.gridControlMasterDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewMasterDetail});
@@ -121,7 +121,7 @@
             // 
             this.xtraTabPageADOdotNETDataTable.Controls.Add(this.gridControlADOdotNETDataTable);
             this.xtraTabPageADOdotNETDataTable.Name = "xtraTabPageADOdotNETDataTable";
-            this.xtraTabPageADOdotNETDataTable.Size = new System.Drawing.Size(278, 233);
+            this.xtraTabPageADOdotNETDataTable.Size = new System.Drawing.Size(535, 233);
             this.xtraTabPageADOdotNETDataTable.Text = "ADO.NET DataTable";
             // 
             // gridControlADOdotNETDataTable
@@ -130,7 +130,7 @@
             this.gridControlADOdotNETDataTable.Location = new System.Drawing.Point(0, 0);
             this.gridControlADOdotNETDataTable.MainView = this.gridViewADOdotNETDataTable;
             this.gridControlADOdotNETDataTable.Name = "gridControlADOdotNETDataTable";
-            this.gridControlADOdotNETDataTable.Size = new System.Drawing.Size(278, 233);
+            this.gridControlADOdotNETDataTable.Size = new System.Drawing.Size(535, 233);
             this.gridControlADOdotNETDataTable.TabIndex = 0;
             this.gridControlADOdotNETDataTable.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewADOdotNETDataTable});
@@ -163,11 +163,6 @@
             // 
             this.gridViewTestTable4Types.GridControl = this.gridControlTestTable4Types;
             this.gridViewTestTable4Types.Name = "gridViewTestTable4Types";
-            this.gridViewTestTable4Types.CellValueChanged += GridViewTestTable4TypesCellValueChanged;
-            this.gridViewTestTable4Types.CustomRowCellEdit += GridViewTestTable4TypesCustomRowCellEdit;
-            this.gridViewTestTable4Types.CustomRowCellEditForEditing += GridViewTestTable4TypesCustomRowCellEditForEditing;
-            this.gridViewTestTable4Types.HiddenEditor += GridViewTestTable4TypesHiddenEditor;
-            this.gridViewTestTable4Types.ShownEditor += GridViewTestTable4TypesShownEditor;
             // 
             // MainForm
             // 

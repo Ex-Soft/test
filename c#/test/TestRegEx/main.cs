@@ -1,6 +1,9 @@
-﻿using System;
+﻿#define TEST_XML
+
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace TestRegEx
 {
@@ -19,7 +22,12 @@ namespace TestRegEx
             string
                 srcString,
                 tmpString = string.Empty,
-                tmpStringII;
+                tmpStringII,
+                currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location,
+                fileName;
+
+            if (currentDirectory.IndexOf("bin") != -1)
+                currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
 
             Regex
                 r,
@@ -33,6 +41,24 @@ namespace TestRegEx
 
             GroupCollection
                 groupcollection;
+
+            #if TEST_XML
+                if (File.Exists(fileName = Path.Combine(currentDirectory, "Chicago2.Core.ch2res")))
+                {
+                    srcString = File.ReadAllText(fileName);
+                    r = new Regex("(?<=<Object).*<Object.*</Object>(?=</Object>)", RegexOptions.Singleline);
+                    match = r.Match(srcString);
+                    if (match.Success)
+                        tmpString = r.Replace(srcString, string.Empty);
+                }
+            #endif
+
+            srcString = "<Object><Object></Object></Object><Object><Object></Object></Object><Object></Object><Object></Object>";
+            //srcString = "<Object></Object><Object></Object><Object></Object><Object></Object>";
+            r = new Regex("(?<=<Object).*<Object.*</Object>(?=</Object>)");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
 
             srcString = "_{0}_";
             r = new Regex("\\{0}");

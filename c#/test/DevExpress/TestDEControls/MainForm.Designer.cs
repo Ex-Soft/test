@@ -1,4 +1,5 @@
 ﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
 
 namespace TestDEControls
 {
@@ -32,6 +33,7 @@ namespace TestDEControls
         {
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
             this.tabPageEditors = new DevExpress.XtraTab.XtraTabPage();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.toggleSwitch2 = new DevExpress.XtraEditors.ToggleSwitch();
             this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -62,6 +64,10 @@ namespace TestDEControls
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblAutoSizeModeDefault = new DevExpress.XtraEditors.LabelControl();
+            this.lblAutoSizeModeHorizontal = new DevExpress.XtraEditors.LabelControl();
+            this.lblAutoSizeModeVertical = new DevExpress.XtraEditors.LabelControl();
+            this.lblAutoSizeModeNone = new DevExpress.XtraEditors.LabelControl();
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.lookUpEdit4 = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
@@ -89,6 +95,7 @@ namespace TestDEControls
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPageEditors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
@@ -148,6 +155,7 @@ namespace TestDEControls
             // 
             // tabPageEditors
             // 
+            this.tabPageEditors.Controls.Add(this.textEdit4);
             this.tabPageEditors.Controls.Add(this.toggleSwitch2);
             this.tabPageEditors.Controls.Add(this.toggleSwitch1);
             this.tabPageEditors.Controls.Add(this.spinEdit1);
@@ -163,6 +171,10 @@ namespace TestDEControls
             this.tabPageEditors.Controls.Add(this.textEdit2);
             this.tabPageEditors.Controls.Add(this.textEdit1);
             this.tabPageEditors.Controls.Add(this.labelControl1);
+            this.tabPageEditors.Controls.Add(this.lblAutoSizeModeDefault);
+            this.tabPageEditors.Controls.Add(this.lblAutoSizeModeHorizontal);
+            this.tabPageEditors.Controls.Add(this.lblAutoSizeModeVertical);
+            this.tabPageEditors.Controls.Add(this.lblAutoSizeModeNone);
             this.tabPageEditors.Controls.Add(this.checkEdit2);
             this.tabPageEditors.Controls.Add(this.lookUpEdit4);
             this.tabPageEditors.Controls.Add(this.lookUpEdit3);
@@ -175,6 +187,15 @@ namespace TestDEControls
             this.tabPageEditors.Name = "tabPageEditors";
             this.tabPageEditors.Size = new System.Drawing.Size(1388, 407);
             this.tabPageEditors.Text = "Editors";
+            // 
+            // textEdit4
+            // 
+            this.textEdit4.Location = new System.Drawing.Point(235, 306);
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Size = new System.Drawing.Size(100, 20);
+            this.textEdit4.TabIndex = 26;
+            this.textEdit4.Enter += new System.EventHandler(this.textEdit4_Enter);
+            this.textEdit4.Leave += new System.EventHandler(this.textEdit4_Leave);
             // 
             // toggleSwitch2
             // 
@@ -482,6 +503,41 @@ namespace TestDEControls
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "labelControl1";
             // 
+            // lblAutoSizeModeDefault
+            // 
+            this.lblAutoSizeModeDefault.Location = new System.Drawing.Point(611, 23);
+            this.lblAutoSizeModeDefault.Name = "lblAutoSizeModeDefault";
+            this.lblAutoSizeModeDefault.Size = new System.Drawing.Size(132, 13);
+            this.lblAutoSizeModeDefault.TabIndex = 22;
+            this.lblAutoSizeModeDefault.Text = "LabelAutoSizeMode.Default";
+            // 
+            // lblAutoSizeModeHorizontal
+            // 
+            this.lblAutoSizeModeHorizontal.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.lblAutoSizeModeHorizontal.Location = new System.Drawing.Point(611, 55);
+            this.lblAutoSizeModeHorizontal.Name = "lblAutoSizeModeHorizontal";
+            this.lblAutoSizeModeHorizontal.Size = new System.Drawing.Size(145, 13);
+            this.lblAutoSizeModeHorizontal.TabIndex = 23;
+            this.lblAutoSizeModeHorizontal.Text = "LabelAutoSizeMode.Horizontal";
+            // 
+            // lblAutoSizeModeVertical
+            // 
+            this.lblAutoSizeModeVertical.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
+            this.lblAutoSizeModeVertical.Location = new System.Drawing.Point(611, 108);
+            this.lblAutoSizeModeVertical.Name = "lblAutoSizeModeVertical";
+            this.lblAutoSizeModeVertical.Size = new System.Drawing.Size(100, 26);
+            this.lblAutoSizeModeVertical.TabIndex = 24;
+            this.lblAutoSizeModeVertical.Text = "LabelAutoSizeMode.Vertical";
+            // 
+            // lblAutoSizeModeNone
+            // 
+            this.lblAutoSizeModeNone.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblAutoSizeModeNone.Location = new System.Drawing.Point(611, 82);
+            this.lblAutoSizeModeNone.Name = "lblAutoSizeModeNone";
+            this.lblAutoSizeModeNone.Size = new System.Drawing.Size(100, 13);
+            this.lblAutoSizeModeNone.TabIndex = 25;
+            this.lblAutoSizeModeNone.Text = "LabelAutoSizeMode.None";
+            // 
             // checkEdit2
             // 
             this.checkEdit2.Location = new System.Drawing.Point(22, 149);
@@ -715,6 +771,7 @@ namespace TestDEControls
             this.tabControl.ResumeLayout(false);
             this.tabPageEditors.ResumeLayout(false);
             this.tabPageEditors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
@@ -775,6 +832,10 @@ namespace TestDEControls
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit4;
         private DevExpress.XtraEditors.CheckEdit checkEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblAutoSizeModeDefault;
+        private DevExpress.XtraEditors.LabelControl lblAutoSizeModeHorizontal;
+        private DevExpress.XtraEditors.LabelControl lblAutoSizeModeVertical;
+        private DevExpress.XtraEditors.LabelControl lblAutoSizeModeNone;
         private DevExpress.XtraTab.XtraTabPage tabPageButtons;
         private DevExpress.XtraEditors.SimpleButton btnSet;
         private DevExpress.XtraEditors.TextEdit textEdit1;
@@ -816,6 +877,7 @@ namespace TestDEControls
         private DevExpress.XtraEditors.ToggleSwitch toggleSwitch1;
         private DevExpress.XtraEditors.ToggleSwitch toggleSwitch2;
         private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
+        private TextEdit textEdit4;
     }
 }
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Helpers;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
@@ -22,8 +23,13 @@ namespace GridWithEditors
         private const string FieldNameWithString = "FString";
         private const string FieldNameWithLookUp = "FLookUp";
         private const string FieldNameWithGridLookUp = "FGridLookUp";
+        private const string FieldNameWithBoolean = "FBoolean";
+        private const string FieldNameWithMix = "FMix";
 
         private readonly DataSet _dataSet;
+
+        private readonly RepositoryItemCheckEdit _repositoryItemCheckEdit = new RepositoryItemCheckEdit();
+        private readonly RepositoryItemLookUpEdit _repositoryItemLookUpEdit = new RepositoryItemLookUpEdit();
 
         public MainForm()
         {
@@ -32,6 +38,8 @@ namespace GridWithEditors
             _dataSet = GenerateDataSet();
 
             SetDataSource(_dataSet.Tables[TableNameWithMainData]);
+
+            gridView.OptionsBehavior.EditorShowMode = EditorShowMode.MouseDown; // https://www.devexpress.com/Support/Center/Question/Details/Q295448 In order to edit checkbox column 2 click is needed, how do I get around that?
 
             gridView.Columns[FieldNameWithLookUp].ColumnEdit = CreateLookUpEditor();
             gridView.Columns[FieldNameWithGridLookUp].ColumnEdit = CreateGridLookUpEditor();
@@ -44,6 +52,37 @@ namespace GridWithEditors
             gridView.CellValueChanged += GridView_CellValueChanged;
 
             gridView.HiddenEditor += GridView_HiddenEditor;
+
+            gridView.CustomRowCellEditForEditing += GridView_CustomRowCellEditForEditing;
+            gridView.CustomRowCellEdit += GridView_CustomRowCellEdit;
+        }
+
+        private void GridView_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("CustomRowCellEdit()");
+        }
+
+        private void GridView_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("CustomRowCellEditForEditing()");
+
+            if (e.Column.FieldName != FieldNameWithMix)
+                return;
+
+            bool tmpBool;
+            if (bool.TryParse(e.CellValue.ToString(), out tmpBool))
+            {
+                _repositoryItemCheckEdit.ValueChecked = true;
+                _repositoryItemCheckEdit.ValueUnchecked = false;
+                e.RepositoryItem = _repositoryItemCheckEdit;
+            }
+
+            int tmpInt;
+            if (int.TryParse(e.CellValue.ToString(), out tmpInt))
+            {
+                _repositoryItemLookUpEdit.DataSource = _dataSet.Tables[TableNameWithLookUpData];
+                e.RepositoryItem = _repositoryItemLookUpEdit;
+            }
         }
 
         private void GridView_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
@@ -229,6 +268,8 @@ namespace GridWithEditors
             result.Columns.Add(FieldNameWithString, typeof(string));
             result.Columns.Add(FieldNameWithLookUp, typeof(int));
             result.Columns.Add(FieldNameWithGridLookUp, typeof(int));
+            result.Columns.Add(FieldNameWithBoolean, typeof(bool));
+            result.Columns.Add(FieldNameWithMix, typeof(string));
             result.PrimaryKey = new[] { result.Columns[FieldNameWithId] };
 
             return result;
@@ -255,7 +296,8 @@ namespace GridWithEditors
                 row[FieldNameWithString] = $"Row {i}";
                 row[FieldNameWithLookUp] = i % LookUpDataMaxRowsCount;
                 row[FieldNameWithGridLookUp] = i % LookUpDataMaxRowsCount;
-
+                row[FieldNameWithBoolean] = i % 2 == 1;
+                row[FieldNameWithMix] = i % 2 == 1 ? (i % LookUpDataMaxRowsCount).ToString() : "True";
                 dataTable.Rows.Add(row);
             }
             return dataTable;

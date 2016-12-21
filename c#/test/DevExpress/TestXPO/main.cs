@@ -1,10 +1,12 @@
-﻿//#define TEST_DISPOSE
+﻿#define TEST_LockingException
+//#define TEST_XP_INFO
+//#define TEST_DISPOSE
 //#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
-#define TEST_LIFECYCLE
+//#define TEST_LIFECYCLE
 //#define TEST_OBJECT_SET
 //#define TEST_CUSTOM_SESSION
 //#define TEST_SESSION_TRANSACTION
@@ -74,6 +76,36 @@ namespace TestXPO
 	            XPCollection
 		            xpCollection;
 
+                #if TEST_LockingException
+                    try
+                    {
+					    if ((testMaster = session.GetObjectByKey<TestMaster>(1L)) != null)
+					    {
+						    testMaster.Name = "Test LockingException";
+                            testMaster.Save();
+
+                            // update TestMaster set OptimisticLockField = OptimisticLockField + 1 where Id = 1
+                            testMaster.Name = "Test LockingException II";
+                            testMaster.Save();
+                        }
+                    }
+                    catch(LockingException e)
+                    {
+                    }
+                #endif
+
+				#if TEST_XP_INFO
+					classInfo = session.GetClassInfo<TestMaster>();
+					memberInfo = classInfo.PersistentProperties.OfType<XPMemberInfo>().FirstOrDefault(m => m.MappingField == "Val");
+					memberInfo = classInfo.FindMember("Name"); // memberInfo.Name == "Name"; memberInfo.DisplayName == "Val"; memberInfo.MappingField == "Val";
+
+					if ((testMaster = session.GetObjectByKey<TestMaster>(1L)) != null)
+					{
+						testMaster.Name = "blah-blah-blah";
+					}
+				#endif
+
+
 				#if TEST_DISPOSE
 					testMaster = session.GetObjectByKey<TestMaster>(1L);
 					session.Dispose();
@@ -90,7 +122,26 @@ namespace TestXPO
 				#endif
 
 				#if TEST_CRITERIA
-                    CriteriaOperator criteria;
+                    CriteriaOperator
+                        criteria,
+                        criteriaII;
+
+                    criteria = new BinaryOperator(new OperandProperty("Id"), new OperandValue(1), BinaryOperatorType.Equal);
+                    criteriaII = new BinaryOperator(new OperandProperty("Id"), new OperandValue(1), BinaryOperatorType.Equal);
+                    Debug.WriteLine(string.Format("criteria {0}= criteriaII", criteria == criteriaII ? "=" : "!")); // criteria != criteriaII
+                    Debug.WriteLine(string.Format("{0}criteria.Equals(criteriaII)", criteria.Equals(criteriaII) ? "" : "!")); // criteria.Equals(criteriaII)
+                    criteriaII = new BinaryOperator(new OperandProperty("Id"), new OperandValue(2), BinaryOperatorType.Equal);
+                    Debug.WriteLine(string.Format("{0}criteria.Equals(criteriaII)", criteria.Equals(criteriaII) ? "" : "!")); // criteria.Equals(criteriaII)
+
+                    GroupOperator groupOperator = CriteriaOperator.And(criteria, criteriaII, new BinaryOperator(new OperandProperty("Id"), new OperandValue(3), BinaryOperatorType.Equal), new BinaryOperator(new OperandProperty("Id"), new OperandValue(4), BinaryOperatorType.Equal), new BinaryOperator(new OperandProperty("Id"), new OperandValue(4), BinaryOperatorType.Equal)) as GroupOperator;
+                    if (!ReferenceEquals(groupOperator, null))
+                    {
+                        foreach (var operand in groupOperator.Operands)
+                            Debug.WriteLine(string.Format("{0}operand.Equals(criteria)", operand.Equals(criteria) ? "" : "!"));
+
+                        var newGroupOperator = CriteriaOperator.And(groupOperator.Operands.Distinct());
+                        var exists = groupOperator.Operands.Exists(item => item.Equals(criteria));
+                    }
 
                     try
                     {

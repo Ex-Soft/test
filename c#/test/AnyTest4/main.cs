@@ -1,5 +1,6 @@
 ﻿// http://msdn.microsoft.com/en-us/library/hh534540.aspx [CallerMemberName]/[CallerFilePath]/[CallerLineNumber] 4.5
 
+#define TEST_EXPANDO_OBJECT
 //#define TEST_SORTER
 //#define TEST_TUPLE
 //#define TEST_ENUM
@@ -9,12 +10,13 @@
 //#define TEST_DYNAMIC
 //#define TEST_DYNAMIC_ATTRIBUTE
 //#define TEST_COVARIANCE
-#define TEST_STRING
+//#define TEST_STRING
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -194,8 +196,30 @@ namespace AnyTest4
             DateTime
                 tmpDateTime;
 
+		    object
+		        tmpObject;
+
 			try
 			{
+                #if TEST_EXPANDO_OBJECT
+                    dynamic expandoObject = new ExpandoObject();
+
+                    expandoObject.Field1 = "Field1";
+                    expandoObject.Field2 = "Field2";
+
+			        tmpString = expandoObject.Field1;
+                    tmpString = expandoObject.Field2;
+                    try
+                    { 
+                        tmpString = expandoObject.Field3; // "System.Dynamic.ExpandoObject" не содержит определения для "Field3" Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
+                    }
+                    catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e.Message);
+                    }
+                    expandoObject.TryGetValue("Field3", out tmpObject);
+                #endif
+
 				#if TEST_STRING
 					tmpBool = string.IsNullOrEmpty(tmpString);
 					tmpBool = string.IsNullOrWhiteSpace(tmpString);
