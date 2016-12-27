@@ -1,5 +1,5 @@
 ﻿//#define TEST_DUPLICATES
-//#define TEST_UOW_EVENTS
+#define TEST_UOW_EVENTS
 //#define TEST_NESTED_UOW
 //#define TEST_NESTED_UOW_2
 //#define TEST_NESTED_UOW_WITH_NEW
@@ -36,6 +36,7 @@ namespace TestUOW
 					#if TEST_UOW_EVENTS
 						testDE = new TestDE(unitOfWork);
 						AddEventsListeners(testDE);
+                        testDE.f1 = int.MaxValue;
 						testDE.Save();
 						unitOfWork.Save(testDE);
 						unitOfWork.CommitChanges();

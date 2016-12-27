@@ -1,5 +1,5 @@
-﻿//#define TEST_ADD
-#define TEST_LIFECYCLE
+﻿#define TEST_ADD
+//#define TEST_LIFECYCLE
 //#define TEST_CREATE
 //#define TEST_LOAD
 //#define TEST_SET
