@@ -2,11 +2,11 @@
 // DevExpress.Xpo.Metadata.ReflectionMemberInfo.CreateAccessorInternal()
 // https://msdn.microsoft.com/en-us/library/bb397951.aspx
 
-#define TEST_DUPLICATES
+//#define TEST_DUPLICATES
 //#define TEST_MEMBER_EXPRESSION
 //#define TEST_PARSE
 //#define TEST_CREATE_ACCESSOR
-//#define TEST_CLOSURE
+#define TEST_CLOSURE
 //#define ANY_TEST
 
 using System;

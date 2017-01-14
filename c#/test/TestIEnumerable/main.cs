@@ -733,6 +733,13 @@ namespace TestIEnumerable
 
             tmpListOfA = listOfA.Where(r => r.FC).ToList();
 
+            DateTime
+                tmpDateTimeI = new DateTime(2017, 1, 1),
+                tmpDateTimeII = new DateTime(2017, 1, 5);
+
+            IEnumerable<DateTime>
+                tmpListOfDateTime = Enumerable.Range(0, (int)(tmpDateTimeII - tmpDateTimeI).TotalDays + 1).Select(x => tmpDateTimeI.AddDays(x)).ToList();
+
             IEnumerable<int>
                 tmpListOfInt = Enumerable.Range(0, 10); // [0,1,2,3,4,5,6,7,8,9]
 
