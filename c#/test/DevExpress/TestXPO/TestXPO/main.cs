@@ -1,4 +1,4 @@
-﻿#define TEST_LockingException
+﻿//#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
@@ -47,6 +47,11 @@ namespace TestXPO
 
     class Program
     {
+        private static void CommitCallback(Exception e)
+        {
+            Debug.WriteLine("CommitCallback()");
+        }
+
         static void Main(string[] args)
         {
             try
@@ -72,6 +77,9 @@ namespace TestXPO
 
 	            TestMaster
 		            testMaster;
+
+                TestDE
+                    testDE;
 
 	            XPCollection
 		            xpCollection;
@@ -294,7 +302,7 @@ namespace TestXPO
 						session.BeginTransaction();
 					#endif
 
-                    var testDE = session.GetObjectByKey<TestDE>(1L); //new TestDE(session);
+                    testDE = session.GetObjectByKey<TestDE>(1L); //new TestDE(session);
 
                     AddEventsListeners(testDE);
 
