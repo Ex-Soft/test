@@ -97,6 +97,8 @@ project.lock.json
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.* 
 
+FakesAssemblies/
+
 ipch
 packages
 _ReSharper*
