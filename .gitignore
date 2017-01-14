@@ -65,19 +65,42 @@ InBase/
 TestMDM/
 TestPCB/
 Veksel/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.lock.json
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+*.lock.json
+project.lock.json
+
+# Visual Studo 2015 cache/options directory
 .vs/
-x64
-Debug
-Release
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.* 
+
 ipch
-bin
-obj
-TestResults
 packages
 _ReSharper*
 *.sdf
-*.suo
-*.user
 *.ncb
 *.resharper
 *.resharperoptions
