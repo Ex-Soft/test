@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SqlServer Condition="'$(SqlServer)' == ''">blah-blah-blah</SqlServer>
+  </PropertyGroup>
+  <Target Name="DeployQuickBaseIntegration">
+    <ItemGroup>
+      <IntegrationProcedure Include="Databases\QuickBase\rspSunEdgeQBLeaseSyncParam.sql" />
+      <IntegrationProcedure Include="Databases\QuickBase\rspQBGetProjects.sql" />
+      <IntegrationProcedure Include="Databases\QuickBase\rspQBUpdateProject.sql" />
+    </ItemGroup>
+    
+    <Message Text="IntegrationProcedure: @(IntegrationProcedure)" />
+    <Message Text="  %(IntegrationProcedure.Identity)  Count: @(IntegrationProcedure->Count())" />
+
+    <exec command="params %(IntegrationProcedure.Identity) $(SqlServer)" />
+  </Target>
+</Project>
