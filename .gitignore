@@ -17,7 +17,6 @@ CreateQuery/
 DEParse/
 FtpClient/
 GeoFramework/
-hex2bin/
 Hub.Gate/
 Planogram/
 ReZipAndCryptoPrototype/
@@ -32,10 +31,6 @@ TestTWS/
 iTextSharpTutorial/
 lib/
 download/
-DelTab/
-Duplicate/
-Filer/
-QuickBase/
 Mvc-dev/
 node_modules/
 logs/
