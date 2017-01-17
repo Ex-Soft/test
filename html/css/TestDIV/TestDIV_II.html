@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>&laquo;Test DIV II&raquo;</title>
+		<style type="text/css">
+body
+{
+	color: white;
+	background-color: blue;
+}
+
+div
+{
+	border: 5px solid red;
+}
+
+div span
+{
+	background-color: navy;
+}
+
+#Div
+{
+	background-color: olive;
+}
+
+#DivWMargin
+{
+	margin: 10px;
+	background-color: lime;
+}
+
+#DivWPadding
+{
+	padding: 10px;
+	background-color: aqua;
+}
+
+#DivWMarginPadding
+{
+	margin: 10px;
+	padding: 10px;
+	background-color: green;
+}
+
+		</style>
+	</head>
+	<body>
+		<div id="Div"><span>DIV</span></div>
+		<div id="DivWMargin"><span>DIV with margin</span></div>
+		<div id="DivWPadding"><span>DIV with padding</span></div>
+		<div id="DivWMarginPadding"><span>DIV with margin && padding</span></div>
+		<p style="width: 200px; background-color: red;">width?</p>
+		<p style="width: 200px; margin: 20px; padding: 10px; background-color: red;">width?</p>
+		<div style="width: 30em;">
+			<p style="margin: 1em; border: 1px solid;">A paragraph with a margin 1em.</p>
+			<p style="margin: 1em; border: 1px solid;">Another paragraph with a margin 1em.</p>
+		</div>
+		<div style="width: 400px;">
+			<p style="border: 1px solid;">&lt;div style=&quot;width: 400px&quot;&gt;</p>
+			<p style="margin-left: auto; width: 100px; margin-right: 100px; border: 1px solid;">auto 100 100</p>
+			<p style="margin-left: 100px; width: 100px; margin-right: 100px; border: 1px solid;">100 100 100</p>
+			<p style="margin-left: 100px; width: 100px; margin-right: auto; border: 1px solid;">100 100 auto</p>
+			<p style="margin-left: 100px; width: auto; margin-right: 100px; border: 1px solid;">100 auto 100</p>
+			<p style="margin-left: auto; width: 100px; margin-right: auto; border: 1px solid;">auto 100 auto</p>
+			<p style="margin-left: auto; width: auto; margin-right: 100px; border: 1px solid;">auto auto 100</p>
+			<p style="margin-left: auto; width: auto; margin-right: auto; border: 1px solid;">auto auto auto</p>
+		</div>
+		<div style="padding: 30px; background: silver;">
+			<p style="margin: 20px; padding: 0; color: red; background: white;">Paragraph</p>
+		</div>
+		<div style="width: 400px; border: 3px solid black;">
+			<p style="margin-left: 10px; width: auto; margin-right: -50px; border: 1px solid;">Paragraph</p>
+			<p style="margin-left: 10px; width: 500px; margin-right: auto; border: 1px solid;">Paragraph</p>
+			<p style="margin-left: -50px; width: auto; margin-right: 10px; border: 1px solid;">Paragraph</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test alternative of calc</title>
+		<style>
+html, body
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.container
+{
+	background-color: red;
+	position: relative;
+	top: 200px;
+	left: 200px;
+	height: 400px;
+	width: 400px;
+}
+
+.top
+{
+	background-color: blue;
+	height: 100px;
+}
+
+.bottom
+{
+	background-color: aqua;
+	position: absolute;
+	top: 100px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+		</style>
+	</head>
+	<body>
+		<div id="container" class="container">
+			<div id="top" class="top">top</div>
+			<div id="bottom" class="bottom">bottom</div>
+		</div>
+	</body>
+</html>

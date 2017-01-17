@@ -1,0 +1,423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+  <HEAD>
+    <title>MainForm</title>
+  </HEAD>
+  <body>
+    <form id="MainForm" name="MainForm">
+      <div id="TestDivV" name="TestDivV" style="VISIBILITY: hidden; border: 3px solid black; background-color: blue; ">TestDivV</div>
+      <br>
+      <div id="TestDivD" name="TestDivD" style="DISPLAY: none; border: 3px solid black; background-color: blue; ">TestDivD</div>
+    <SCRIPT TYPE="text/javascript">
+<!--
+var
+  numtimes=0;
+
+function debug(msg)
+{
+   if(!debug.box)
+   {
+      debug.box=document.createElement("div");
+      debug.box.setAttribute("style",
+                             "background-color: white; "
+                             +"font-family: monospace; "
+                             +"border: solid black 3px; "
+                             +"padding: 10px;");
+      document.body.appendChild(debug.box);
+      debug.box.innerHTML="<h1 style='text-align:center'>Debugging Output</h1>";
+   }
+   
+   var
+     p=document.createElement("p");
+     
+   p.appendChild(document.createTextNode(msg));
+   debug.box.appendChild(p);  
+}
+
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+var
+  divV=document.getElementById("TestDivV"),
+  divD=document.getElementById("TestDivD"),
+  tmp;
+
+document.writeln("<hr>");
+if("all" in document)
+  document.writeln("\"all\" in document");
+else
+  document.writeln("!\"all\" in document");
+document.writeln("<br>");
+
+if(document.implementation)
+{
+   if(document.implementation.hasFeature)
+   {
+      if(document.implementation.hasFeature("html","1.0"))
+        document.writeln("1.0");
+      document.writeln("<br>");
+      if(document.implementation.hasFeature("html","2.0"))
+        document.writeln("2.0");
+   }
+}
+
+if(divV!=undefined && divV!=null)
+{
+   document.writeln("<hr>");
+   makeObjectTable("divV",divV);
+   document.writeln("<br>");
+
+   document.writeln("divV.parentNode.nodeType=");
+   document.writeln(divV.parentNode.nodeType);
+   document.writeln("<br>");
+
+   document.writeln("divV.parentNode.className=");
+   if(divV.parentNode.className!=undefined)
+   {
+      if(divV.parentNode.className!=null)
+        document.writeln("\""+divV.parentNode.className+"\"");
+      else
+        document.writeln("divV.parentNode.className==null");
+   }
+   else
+   {
+      document.writeln("divV.parentNode.className==undefined");
+   }
+   document.writeln("<br>");
+
+   document.writeln("divV.parentNode.id=");
+   document.writeln(divV.parentNode.id);
+   document.writeln("<br>");
+
+   tmp=divV.getAttribute("style");
+   if(tmp!=undefined && tmp!=null)
+   {
+      document.writeln("getAttribute(\"style\")=");
+      document.writeln("\""+tmp+"\"");
+      document.writeln("<br>");
+   }
+   else
+   {
+      document.writeln("!getAttribute(\"style\")");
+   }
+
+   document.writeln("divV.style=");
+   if(divV.style!=undefined)
+   {
+      if(divV.style!=null)
+        document.writeln("\""+divV.style+"\"");
+      else
+        document.writeln("divV.style==null");
+   }
+   else
+   {
+      document.writeln("divV.style==undefined");
+   }
+   document.writeln("<br>");
+
+   document.writeln("<hr>");
+   makeObjectTable("divV.style",divV.style);
+   document.writeln("<br>");
+
+   for(var i=0; i<divV.style.length; ++i)
+      {
+         tmp=divV.style.item(i);
+         document.writeln("\""+tmp+"\"");
+         document.writeln("<br>");
+      }
+
+   document.writeln("divV.style.visibility=");
+   if(divV.style.visibility!=undefined)
+   {
+      if(divV.style.visibility!=null)
+        {
+           document.writeln("\""+divV.style.visibility+"\"");
+           divV.style.visibility="visible";
+           document.writeln("\""+divV.style.visibility+"\"");
+        }
+      else
+        document.writeln("divV.style.visibility==null");
+   }
+   else
+   {
+      document.writeln("divV.style.visibility==undefined");
+   }
+   document.writeln("<br>");
+
+   if("getPropertyValue" in divD.style)
+     {
+        tmp=divD.style.getPropertyValue("visibility");
+        if(tmp!=undefined)
+        {
+           if(tmp!=null)
+           {
+              document.writeln(typeof tmp);
+              document.writeln("\""+tmp+"\"");
+           }
+           else
+           {
+              document.writeln("getPropertyValue(\"visibility\")==null");
+           }
+        }
+        else
+        {
+           document.writeln("getPropertyValue(\"visibility\")==undefined");
+        }
+     }
+   else
+     {
+        document.writeln("!getPropertyValue(\"visibility\")");
+        document.writeln("<br>");
+     }
+   
+   if("getPropertyCSSValue" in divD.style)
+     {
+        tmp=divD.style.getPropertyCSSValue("visibility");
+        if(tmp!=undefined)
+        {
+           if(tmp!=null)
+           {
+              document.writeln("!!!");
+           }
+           else
+           {
+              document.writeln("getPropertyCSSValue(\"visibility\")==null");
+           }
+        }
+        else
+        {
+           document.writeln("getPropertyCSSValue(\"visibility\")==undefined");
+        }
+     }
+   else
+     {
+        document.writeln("!getPropertyCSSValue(\"visibility\")");
+        document.writeln("<br>");
+     }
+}
+
+if(divD!=null && divD!=undefined)
+{
+   document.writeln("<hr>");
+   makeObjectTable("divD",divD);
+   document.writeln("<br>");
+
+   document.writeln("divD.parentNode.nodeType=");
+   document.writeln(divD.parentNode.nodeType);
+   document.writeln("<br>");
+
+   document.writeln("divD.parentNode.className=");
+   if(divD.parentNode.className!=undefined)
+   {
+      if(divD.parentNode.className!=null)
+        document.writeln("\""+divD.parentNode.className+"\"");
+      else
+        document.writeln("divD.parentNode.className==null");
+   }
+   else
+   {
+      document.writeln("divD.parentNode.className==undefined");
+   }
+   document.writeln("<br>");
+
+   document.writeln("divD.parentNode.id=");
+   document.writeln(divD.parentNode.id);
+   document.writeln("<br>");
+
+   document.writeln("divD.style=");
+   if(divD.style!=undefined)
+   {
+      if(divD.style!=null)
+        document.writeln("\""+divD.style+"\"");
+      else
+        document.writeln("divD.style==null");
+   }
+   else
+   {
+      document.writeln("divD.style==undefined");
+   }
+   document.writeln("<br>");
+
+   document.writeln("<hr>");
+   makeObjectTable("divD.style",divD.style);
+   document.writeln("<br>");
+
+   document.writeln("divD.style.display=");
+   if(divD.style.display!=undefined)
+   {
+      if(divD.style.display!=null)
+        {
+           document.writeln("\""+divD.style.display+"\"");
+           divD.style.display="block";
+           document.writeln("\""+divD.style.display+"\"");
+        }
+      else
+        document.writeln("divD.style.display==null");
+   }
+   else
+   {
+      document.writeln("divD.style.display==undefined");
+   }
+   document.writeln("<br>");
+}
+
+if(document.Element!=null && document.Element!=undefined)
+{
+   document.writeln("document.Element");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.Element");
+   document.writeln("<br>");
+}
+
+if(document.documentElement!=null && document.documentElement!=undefined)
+{
+   document.writeln("document.documentElement");
+   document.writeln("<br>");
+
+   var
+     n=document.documentElement,
+     children=n.childNodes,
+     head=children.item(0),
+     body=children[1];
+}
+else
+{
+   document.writeln("!document.documentElement");
+   document.writeln("<br>");
+}
+
+if(document.HTMLElement!=null && document.HTMLElement!=undefined)
+{
+   document.writeln("document.HTMLElement");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.HTMLElement");
+   document.writeln("<br>");
+}
+
+if(document.documentElement.HTMLElement!=null && document.documentElement.HTMLElement!=undefined)
+{
+   document.writeln("document.documentElement.HTMLElement");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.documentElement.HTMLElement");
+   document.writeln("<br>");
+}
+
+if(document.documentElement.HTMLDivElement!=null && document.documentElement.HTMLDivElement!=undefined)
+{
+   document.writeln("document.documentElement.HTMLDivElement");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.documentElement.HTMLDivElement");
+   document.writeln("<br>");
+}
+
+if(document.documentElement.TestDivV!=null && document.documentElement.TestDivV!=undefined)
+{
+   document.writeln("document.documentElement.TestDivV");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.documentElement.TestDivV");
+   document.writeln("<br>");
+}
+
+if(document.TestDivV!=null && document.TestDivV!=undefined)
+{
+   document.writeln("document.TestDivV");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.TestDivV");
+   document.writeln("<br>");
+}
+
+if(document.forms.MainForm!=null && document.forms.MainForm!=undefined)
+{
+   document.writeln("document.forms.MainForm");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.forms.MainForm");
+   document.writeln("<br>");
+}
+
+if(document.MainForm!=null && document.MainForm!=undefined)
+{
+   document.writeln("document.MainForm");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.MainForm");
+   document.writeln("<br>");
+}
+
+if(document.forms.MainForm.TestDivV!=null && document.forms.MainForm.TestDivV!=undefined)
+{
+   document.writeln("document.forms.MainForm.TestDivV");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.forms.MainForm.TestDivV");
+   document.writeln("<br>");
+}
+
+if(document.MainForm.TestDivV!=null && document.MainForm.TestDivV!=undefined)
+{
+   document.writeln("document.MainForm.TestDivV");
+   document.writeln("<br>");
+}
+else
+{
+   document.writeln("!document.MainForm.TestDivV");
+   document.writeln("<br>");
+}
+
+if(navigator.appName.indexOf("Microsoft")!=-1)
+{
+   if(document.all.TestDivV!=null && document.all.TestDivV!=undefined)
+   {
+      document.writeln("document.all.TestDivV");
+      document.writeln("<br>");
+   }
+   else
+   {
+      document.writeln("!document.all.TestDivV");
+      document.writeln("<br>");
+   }
+}
+
+if(navigator.appName.indexOf("Netscape")!=-1)
+{
+}
+
+// -->
+    </SCRIPT>
+    </form>
+  </body>
+</HTML>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ru">
+	<head>
+		<title>Title</title>
+		<meta http-equiv="content-type" content="text/html;charset=windows-1251">
+		<link href="div_hidden.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+#d.v div
+{
+	visibility: visible;
+}
+
+#d
+{
+	height: 100px;
+}
+
+#d div
+{
+	height: 100%;
+	background: #369;
+	visibility: hidden;
+}
+		</style>
+	</head>
+	<body>
+		<div id="d" onmouseover="this.className='v'" onmouseout="this.className=''">
+   			<div>
+				AAAAAAAAAAAAA
+			</div>
+		</div>
+		<div>
+			AAAAAAAAAAAAA
+		</div>
+		<div class="h" onmouseover="this.className='vv'" onmouseout="this.className='hh'">
+			<div>
+				AAAAAAAAAAAAA
+			</div>
+		</div>
+	</body>
+</html>

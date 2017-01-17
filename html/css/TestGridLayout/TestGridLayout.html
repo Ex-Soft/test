@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<!-- https://getflywheel.com/layout/css-grid-layouts-how-to/ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Test Grid Layout</title>
+		<style>
+.container {
+	display: grid;
+	grid-template-columns: 0.25fr 15px 0.75fr;
+	grid-template-rows: auto 25px auto 25px auto 25px auto;
+}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="grid header">Header</div>
+			<div class="grid sidebar">Sidebar</div>
+			<div class="grid content">Main Content</div>
+			<div class="grid extra">Extra Content</div>
+			<div class="grid footer">Footer</div>
+		</div>
+	</body>
+</html>

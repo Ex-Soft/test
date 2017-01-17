@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="TestIf.xsl"?>
+<root>
+	<item>
+		<value1 id="11" idc="a" idn="11">value_1_1</value1>
+		<value2 id="12" idc="b" idn="12">value_1_2</value2>
+		<value3 id="13" idc="c" idn="13">value_1_3</value3>
+	</item>
+	<item>
+		<value1 id="21" idc="aa" idn="21">value_2_1</value1>
+		<value2 id="22" idc="bb" idn="22">value_2_2</value2>
+		<value3 id="23" idc="cc" idn="23">value_2_3</value3>
+	</item>
+	<item>
+		<value1 id="31" idc="aaa" idn="31">value_3_1</value1>
+		<value2 id="32" idc="bbb" idn="32">value_3_2</value2>
+		<value3 id="33" idc="ccc" idn="33">value_3_3</value3>
+	</item>
+	<item>
+		<value1 id="41" idc="aaaa" idn="41">value_4_1</value1>
+		<value2 id="42" idc="bbbb" idn="42">value_4_2</value2>
+	</item>
+</root>

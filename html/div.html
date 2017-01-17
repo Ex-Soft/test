@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+  <HEAD>
+    <title>MainForm</title>
+    <SCRIPT TYPE="text/javascript">
+<!--
+var
+  ValueOn=1;
+
+function OnChange()
+{
+   var
+     Selector=document.getElementById("SelectorOnOff"),
+     divV=document.getElementById("TestDivV"),
+     divD=document.getElementById("TestDivD"),
+     divVValue,
+     divDValue;
+
+   if(Selector==undefined || Selector==null)
+     return;
+
+   divVValue = Selector.options[Selector.selectedIndex].value==ValueOn ? "visible" : "hidden";
+   divDValue = Selector.options[Selector.selectedIndex].value==ValueOn ? "block" : "none";
+
+   if(divV!=undefined && divV!=null)
+     {
+        if(divV.style.visibility!=undefined)
+          {
+             if(divV.style.visibility!=null)
+               divV.style.visibility=divVValue;
+             else
+               ;
+          }
+        else
+          {
+             ;
+          }
+     }
+
+   if(divD!=undefined && divD!=null)
+     {
+        if(divD.style.display!=undefined)
+          {
+             if(divD.style.display!=null)
+               divD.style.display=divDValue;
+             else
+               ;
+          }
+        else
+          {
+             ;
+          }
+     }
+}
+
+function Show()
+{
+   var
+     tmpStr="",
+     form=document.getElementById("MainForm");
+
+   for(var i=0; i<form.elements.length; ++i)
+   {
+      if(tmpStr.length!=0)
+        tmpStr+="<br>";
+      tmpStr+=form.elements[i].id;
+   }
+   document.getElementById("Info").innerHTML=tmpStr;
+}
+
+function ShowAdd(eId)
+{
+   var
+     tmpStr="",
+     e=document.getElementById(eId),
+     child=e.childNodes;
+
+   for(var i=0; i<child.length; ++i)
+   {
+      if(child[i].nodeType!=1)
+        continue;
+
+      if(tmpStr.length!=0)
+        tmpStr+="<br>";
+      tmpStr+=child[i].nodeName+" "+child[i].id;
+   }
+   document.getElementById("Info").innerHTML=tmpStr;
+}
+// -->
+    </SCRIPT>
+  </HEAD>
+  <body>
+    <form id="MainForm" name="MainForm">
+	<hr />
+	<div color="red">
+		color=&quot;red&quot;
+	</div>
+	<div style="color: red;">
+		style=&quot;color: red;&quot;
+	</div>
+	<hr />
+      <select id="SelectorOnOff" onchange="OnChange()">
+        <option value="0">Off</option>
+        <option value="1">On</option>
+        <option value="2">Unknown</option>
+      </select>
+      <br>
+      TestDivV b4
+      <br>
+      <div id="TestDivV" name="TestDivV" style="VISIBILITY: hidden;  border: 3px solid black; background-color: blue; ">
+        TestDivV<br>
+        <input id="TestDivVInput1" name="TestDivVInput1" type="text">&nbsp;<input id="TestDivVButton1" name="TestDivVButton1" type="button" value="Button# 1"><br>
+        <input id="TestDivVInput2" name="TestDivVInput2" type="text">&nbsp;<input id="TestDivVButton2" name="TestDivVButton2" type="button" value="Button# 2"><br>
+      </div>
+      TestDivV after
+      <br>
+      TestDivD b4
+      <br>
+      <div id="TestDivD" name="TestDivD" style="DISPLAY: none;  border: 3px solid black; background-color: blue; ">
+        TestDivD<br>
+        <input id="TestDivDInput1" name="TestDivDInput1" type="text">&nbsp;<input id="TestDivDButton1" name="TestDivDButton1" type="button" value="Button# 1"><br>
+        <input id="TestDivDInput2" name="TestDivDInput2" type="text">&nbsp;<input id="TestDivDButton2" name="TestDivDButton2" type="button" value="Button# 2"><br>
+      </div>
+      TestDivD after
+      <br>
+      <input id="ButtonShow" name="ButtonShow" type="button" value="Show" onclick="Show()"><br>
+      <input id="ButtonShowAdd" name="ButtonShowAdd" type="button" value="Show Add" onclick="ShowAdd('MainForm')"><br>
+      <p id="Info" name="Info"></p>
+      <p id="InfoAdd" name="InfoAdd"></p>
+    </form>
+  </body>
+</HTML>

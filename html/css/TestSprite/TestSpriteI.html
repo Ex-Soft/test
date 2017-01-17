@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test CSS (sprite) I</title>
+    <style>
+a.sprite-demo
+{
+	display: block;
+	width: 100px;
+	height: 30px;
+	background: url("css-sprite.png") left top;
+}
+
+a.sprite-demo:hover
+{
+	background-position: left 20px;
+}
+
+.DivTest1
+{
+	width: 499px;
+	height: 371px;
+	background: url("../../img/0322.jpg") no-repeat 50px 100px;
+}
+
+.DivTest2
+{
+	width: 100px;
+	height: 60px;
+	background: url("css-sprite.png") repeat 50px 15px;
+}
+    </style>
+</head>
+<body>
+	<a href="#" class="sprite-demo">&nbsp;</a>
+	<hr />
+	<div class="DivTest1">&nbsp;</div>
+	<hr />
+	<div class="DivTest2">&nbsp;</div>
+</body>
+</html>

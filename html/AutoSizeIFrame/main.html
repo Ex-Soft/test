@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+	<head>
+		<title>main</title>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	var
+		Ctrl,
+		CtrlOut;
+
+	if(!(Ctrl=document.getElementById("IFrame1")))
+		return;
+
+	Ctrl.style.height = ("height" in Ctrl.contentWindow.document ? Ctrl.contentWindow.document.height : Ctrl.contentWindow.document.body.scrollHeight)+"px";
+	if("overflowY" in Ctrl.style)
+		Ctrl.style.overflowY="hidden";
+	else
+		Ctrl.style.overflow="hidden";
+
+	if(Ctrl.contentWindow.document.height
+		&& (CtrlOut=document.getElementById("SpanDocumentHeight")))
+		CtrlOut.innerHTML=Ctrl.contentWindow.document.height;
+	if(CtrlOut=document.getElementById("SpanDocumentBodyClientHeight"))
+		CtrlOut.innerHTML=Ctrl.contentWindow.document.body.clientHeight;
+	if(CtrlOut=document.getElementById("SpanDocumentBodyOffsetHeight"))
+		CtrlOut.innerHTML=Ctrl.contentWindow.document.body.offsetHeight;
+	if(CtrlOut=document.getElementById("SpanDocumentBodyScrollHeight"))
+		CtrlOut.innerHTML=Ctrl.contentWindow.document.body.scrollHeight;
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td style="background-color: green">
+					<iframe id="IFrame1" name="IFrame1" src="iframe.html" hspace="0" vspace="0" frameborder="0" border="0" framespacing="0" marginwidth="0" marginheight="0" style="border-style: solid; border-width: 0px; width: 100%; height: 100%;" width="100%" height="100%"></iframe> <!--  overflow: hidden; overflow-y: hidden; -->
+				</td>
+			</tr>
+			<tr>
+				<td>document.height=<span id="SpanDocumentHeight"></span></td>
+			</tr>
+			<tr>
+				<td>document.body.clientHeight=<span id="SpanDocumentBodyClientHeight"></span></td>
+			</tr>
+			<tr>
+				<td>document.body.offsetHeight=<span id="SpanDocumentBodyOffsetHeight"></span></td>
+			</tr>
+			<tr>
+				<td>document.body.scrollHeight=<span id="SpanDocumentBodyScrollHeight"></span></td>
+			</tr>
+			<tr>
+				<td>Blah-Blah-Blah</td>
+			</tr>
+		</table>
+	</body>
+</html>

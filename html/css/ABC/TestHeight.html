@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test Height</title>
+		<style type="text/css">
+p.neg
+{
+	margin-top: -50px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 0;
+	border: 3px solid gray;
+}
+		</style>
+	</head>
+	<body>
+		<div style="height: 6em; background: silver;">
+			<p style="height: 50%;">Half as tall</p>
+		</div>
+		<div style="height: auto; background: silver;">
+			<p style="height: 50%;">NOT half as tall; height reset to auto</p>
+		</div>
+		<div style="height: auto; background: silver;">
+			<p style="margin-top: 2em; margin-bottom: 2em;">A paragraph!</p>
+		</div>
+		<div style="height: auto; border-top: 1px solid; border-bottom: 1px solid; background: silver;">
+			<p style="margin-top: 2em; margin-bottom: 2em;">A paragraph!</p>
+		</div>
+		<div style="width: 420px; padding: 10px; margin-top: 50px; border: 1px solid silver;">
+			<p class="neg">
+				A paragraph.
+			</p>
+			A div.
+		</div>
+	</body>
+</html>

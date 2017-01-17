@@ -1,0 +1,21 @@
+﻿<!doctype html>
+<!-- http://techniblogic.com/how-to-disable-anchor-tag-href-links-by-html-css-javascript/ -->
+<!-- http://technofizi.com/how-to-disable-anchor-tag-in-html-css-javascript/ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test &lt;a ... &gt; (disabled)</title>
+		<style>
+.not-active
+{
+	pointer-events: none;
+	cursor: default;
+}
+		</style>
+	</head>
+	<body>
+		<a href="http://www.google.com/ncr" disabled="disabled">&lt; ... disabled=&quot;disabled&quot; ... &gt;</a><br/>
+		<a href="http://www.google.com/ncr" class="not-active">&lt; ... class=&quot;not-active&quot; ... &gt;</a><br/>
+		<a href="http://www.google.com/ncr" onclick="return false">&lt; ... onclick=&quot;return false&quot; ... &gt;</a><br/>
+	</body>
+</html>

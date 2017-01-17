@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>&laquo;Test Specificity&raquo;</title>
+		<style>
+h1 + p
+{
+	color: black;
+	font-style: italic;
+}
+
+p
+{
+	color: gray;
+	background: white;
+	font-style: normal;
+}
+
+*.aside
+{
+	color: black;
+	background: silver;
+}
+		</style>
+		<link rel="stylesheet" href="style1.css">
+		<link rel="stylesheet" href="style2.css">
+	</head>
+	<body>
+		<h1>&lt;h1&gt;</h1>
+		<p class="aside">&lt;p class=&quot;acide&quot;&gt;</p>
+		<p>&lt;p&gt;</p>
+		<h1>&lt;h1&gt;</h1>
+		<p>&lt;p&gt;</p>
+		<p class="aside">&lt;p class=&quot;acide&quot;&gt;</p>
+		<div>Victim</div>
+		<div class="divVictim">Victim</div>
+	</body>
+</html>

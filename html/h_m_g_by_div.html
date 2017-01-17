@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+		<title>трехколонный макет, футер снизу</title>
+		<style type="text/css">
+html, body { 
+	margin: 0; 
+	padding: 0; 
+	height: 100%; 
+	width: 100%; 
+}
+#main {
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	margin: 0 auto;
+	background: #999 url("./img/3022.jpg") repeat-y left; 
+	width: 100%;
+	min-width: 800px;
+	width: expression(((document.documentElement.clientWidth || document.body.clientWidth) < 800)? "800px" : "100%");
+}
+#header {
+	background: #cda;
+	height: 100px;
+	margin: 0 auto -100px;
+	position: relative;
+}
+#footer {
+	background: #cad;
+	height: 70px;
+	margin: -70px auto 0;
+	clear: both;
+}
+#columns {
+	padding: 100px 0 70px 0;
+	overflow: hidden;
+	width: 100%;
+}
+#wrap {
+	float: left; 
+	width: 100%; 
+	margin-right: -240px;
+	background: #999 url("./img/3022.jpg") repeat-y right;
+}
+#container {
+	margin-right: 240px;
+	height: 100%;
+	background: #999 url("./img/3022.jpg") repeat-y left;
+}
+#left { 
+	float: left;  
+	width: 240px; 
+	background-color: #b0dbf2; 
+}
+#right { 
+	float: right; 
+	width: 240px; 
+	background-color: #abb3f8; 
+}
+#content { 
+	margin-left: 240px; 
+	background-color: #999; 
+}
+		</style>
+	</head>
+	<body>
+		<div id="header">header</div>	
+		<div id="main">
+			<div id="columns">
+				<div id="wrap">
+					<div id="container">
+						<div id="left">
+							left left left left left 
+						</div>
+						<div id="content">
+							content <br>content content <br>content content <br>content content <br>content content content content 
+						</div>
+					</div>
+				</div>
+				<div id="right">
+					right right right 
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			footer footer footer footer footer 
+		</div>
+	</body>
+</html>

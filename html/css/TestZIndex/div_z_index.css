@@ -1,0 +1,9 @@
+.h div
+{
+	visibility: hidden;
+}
+
+.v div
+{
+	visibility: visible;
+}

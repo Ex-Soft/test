@@ -1,0 +1,97 @@
+.div_down
+{
+	color: blue;
+	font-weight: bold;
+	font-size: large;
+	background-color: aqua;
+}
+
+.div_up_abs
+{
+	color: red;
+	font-weight: bold;
+	font-size: large;
+	background-color: yellow;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 100px;
+	height: 100px;
+}
+.div_up_fix
+{
+	color: blue;
+	font-weight: bold;
+	font-size: large;
+	background-color: grey;
+	position: fixed;
+	left: 90px;
+	top: 10px;
+	width: 100px;
+	height: 100px;
+}
+
+.div_up_trans
+{
+	color: yellow;
+	font-weight: bold;
+	font-size: large;
+	background-color: black;
+	position: absolute;
+	left: 180px;
+	top: 10px;
+	width: 100px;
+	height: 100px;
+	filter:alpha(opacity=10);
+	-moz-opacity:0.1;
+	opacity:0.1;
+}
+
+.div_up_hidden
+{
+	color: yellow;
+	font-weight: bold;
+	font-size: large;
+	background-color: black;
+	position: absolute;
+	left: 260px;
+	top: 10px;
+	width: 100px;
+	height: 100px;
+	filter:alpha(opacity=0);
+	-moz-opacity:0;
+	opacity:0;
+	-khtml-opacity:0;
+}
+
+.div_up_visible
+{
+	color: yellow;
+	font-weight: bold;
+	font-size: large;
+	background-color: black;
+	position: absolute;
+	left: 260px;
+	top: 10px;
+	width: 100px;
+	height: 100px;
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	opacity:1.0;
+	-khtml-opacity:1.0;
+}
+
+#block div
+{
+	visibility: hidden;
+}
+
+.div_hidden
+{
+	visibility: hidden;
+}
+
+.div_visible
+{
+	visibility: visible;
+}

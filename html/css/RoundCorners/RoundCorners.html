@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test Round Corners</title>
+		<style>
+b.rtop, b.rbottom {display:block;}
+b.rtop b, b.rbottom b{display:block; height: 1px; overflow: hidden; background: red;}
+b.r1{margin: 0 5px}
+b.r2{margin: 0 3px}
+b.r3{margin: 0 2px}
+b.rtop b.r4, b.rbottom b.r4{margin: 0 1px; height: 2px}
+		</style>
+	</head>
+	<body>
+		<div style="background-color:#fdf7e9;">
+			<b class="rtop">
+				<b class="r1"></b>
+				<b class="r2"></b>
+				<b class="r3"></b>
+				<b class="r4"></b>
+			</b>
+			<div style="padding:10px; background: red;">
+				Блок с закругленными углами
+			</div>
+			<b class="rbottom">
+				<b class="r4"></b>
+				<b class="r3"></b>
+				<b class="r2"></b>
+				<b class="r1"></b>
+			</b>
+		</div>
+	</body>
+</html>

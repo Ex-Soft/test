@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>&laquo;Test DIV&raquo;</title>
+		<style type="text/css">
+html, body
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#HeaderDiv
+{
+	height: 100px;
+	margin: 0 auto -100px;
+	position: relative;
+	background-color: olive;
+}
+
+#LeftDiv
+{
+	float:left;
+	width: 50%;
+	background-color: blue;
+}
+
+#RightDiv
+{
+	float: right;
+	width: 50%;
+	background-color: aqua;
+}
+
+#MainDiv
+{
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	margin: 0 auto;
+	width: 100%;
+	min-width: 800px;
+	width: expression(((document.documentElement.clientWidth || document.body.clientWidth) < 800)? "800px" : "100%");
+	background-color: red;
+}
+
+#FooterDiv
+{
+	height: 70px;
+	margin: -70px auto 0;
+	clear: both;
+	background-color: yellow;
+}
+		</style>
+	</head>
+	<body>
+		<div id="HeaderDiv">Header DIV</div>
+		<div id="LeftDiv">Left DIV</div><div id="RightDiv" style="">Right DIV</div>
+		<div id="MainDiv">Main DIV</div>
+		<div id="FooterDiv">Footer DIV</div>
+	</body>
+</html>

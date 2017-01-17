@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html> <!-- dir="rtl" -->
+	<head>
+		<meta charset="utf-8" />
+		<title>ABC (HTML5)</title>
+		<script>
+function DoIt()
+{
+	var
+		ctrls = [ "inputDateTime", "inputDate", "inputMonth", "inputWeek", "inputTime", "inputDateTimeLocal" ];
+
+	for(var i=0; i<ctrls.length; ++i)
+	{
+		if(window.console && console.log)
+			console.log("%s.value = \"%s\"", ctrls[i], document.getElementById(ctrls[i]).value);
+	}
+}
+		</script>
+	</head>
+	<body>
+		<label for="input1">Label 4 "input1": </label><input type="text" id="input1" /><br />
+		<label>Label 4 "input2": <input type="text" id="input2" /></label><br />
+		<label>autofocus: <input type="text" autofocus /></label><br />
+		<label>required: <input type="text" required /></label><br />
+		<label>required="required": <input type="text" required="required" /></label><br />
+		<label>pattern="[A-Za-z]{4,10}": <input type="text" pattern="[A-Za-z]{4,10}" /></label><br />
+		<hr/>
+		<label>type="search": <input type="search" /></label><br />
+		<label>type="tel": <input type="url" /></label><br />
+		<label>type="url": <input type="url" /></label><br />
+		<label>type="email": <input type="email" /></label><br />
+		<label>type="datetime": <input id="inputDateTime" type="datetime" value="2014-03-27T12:12:00" /></label><br />
+		<label>type="date": <input id="inputDate" type="date" value="2014-03-27" /></label><br />
+		<label>type="month": <input id="inputMonth" type="month" value="2014-03" /></label><br />
+		<label>type="week": <input id="inputWeek" type="week" value="2014-W12" /></label><br />
+		<label>type="time": <input id="inputTime" type="time" value="12:12:00" /></label><br />
+		<label>type="datetime-local": <input id="inputDateTimeLocal" type="datetime-local" value="2014-03-27T12:12:00" /></label><br />
+		<label>type="number": <input type="number" /></label><br />
+		<label>type="number": <input type="number" step="0.01" /></label><br />
+		<label>type="range": <input type="range" min="10" max="20" /></label><br />
+		<label>type="color": <input type="color" /></label><br />
+		<hr/>
+		<label>placeholder: <input type="text" placeholder="blah-blah-blah" /></label><br />
+		<select placeholder="blah"> <!-- autofocus --> <!-- It does work!!! -->
+			<option>1
+			<option>2
+			<option>3
+		</select>
+		<hr/>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

@@ -1,0 +1,15 @@
+﻿div {
+	color: gray;
+	background-color: blue !important;
+	font-style: normal;
+	border: 5px solid black;
+	padding: 15px;
+}
+
+.divVictim {
+	color: gray;
+	background: white;
+	font-style: normal;
+	border-style: dotted;
+	padding-bottom: 5px;
+}

@@ -1,0 +1,47 @@
+body
+{
+	color: blue;
+	background-color: white;
+	font-size: 15pt;
+	font-weight: bold;
+}
+
+table
+{
+	color: red;
+	background-color: yellow;
+	font-size: 20pt;
+	font-weight: normal;
+}
+
+tr
+{
+	color: white;
+	background-color: green;
+	font-size: 25pt;
+	font-weight: bolder;
+}
+
+td
+{
+	color: aqua;
+	background-color: black;
+	font-size: 30pt;
+	font-weight: lighter;
+}
+
+.trClass
+{
+	color: lime;
+	background-color: brown;
+	font-size: 35pt;
+	font-weight: 100;
+}
+
+.tdClass
+{
+	color: fuchsia;
+	background-color: teal;
+	font-size: 40pt;
+	font-weight: 200;
+}

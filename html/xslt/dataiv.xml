@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="dataiv.xsl"?>
+<body>
+  <type name="type1">
+    <question>Где трудишься?</question>
+    <answer>SOny</answer>
+    <answer>Panasonic</answer>
+    <answer>Samsung</answer>
+  </type>
+</body>

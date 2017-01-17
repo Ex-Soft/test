@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Inheritance IV</title>
+		<style>
+.colorRed
+{
+	color: red;
+}
+
+.fontWeightBold
+{
+	font-weight: bold;
+}
+
+.colorRed .fontWeightBold
+{
+	text-decoration: overline;
+}
+
+.fontWeightBold .colorRed
+{
+	text-decoration: underline;
+}
+
+.colorRed.fontWeightBold
+{
+	text-decoration: line-through;
+}
+/*
+.fontWeightBold.colorRed
+{
+	text-decoration: blink;
+}
+*/
+		</style>
+	</head>
+	<body>
+		<div class="colorRed">&lt;div class=&quot;colorRed&quot;&gt;colorRed&lt;/div&gt;</div>
+		<div class="fontWeightBold">&lt;div class=&quot;fontWeightBold&quot;&gt;fontWeightBold&lt;/div&gt;</div>
+		<div class="colorRed">
+			<div>
+				<div class="fontWeightBold">&lt;div class=&quot;fontWeightBold&quot;&gt;fontWeightBold&lt;/div&gt;</div>
+			</div>
+		</div>
+		<div class="fontWeightBold">
+			<div>
+				<div class="colorRed">&lt;div class=&quot;colorRed&quot;&gt;colorRed&lt;/div&gt;</div>
+			</div>
+		</div>
+		<div class="colorRed fontWeightBold">&lt;div class=&quot;colorRed fontWeightBold&quot;&gt;colorRed fontWeightBold&lt;/div&gt;</div>
+		<div class="fontWeightBold colorRed">&lt;div class=&quot;fontWeightBold colorRed&quot;&gt;fontWeightBold colorRed&lt;/div&gt;</div>
+	</body>
+</html>

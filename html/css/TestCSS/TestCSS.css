@@ -1,0 +1,136 @@
+body
+{
+	color: white;
+	background-color: blue;
+}
+
+p
+{
+	background-color: teal;
+}
+
+p:first-letter
+{
+	color: red;
+}
+
+i
+{
+	color: yellow;
+}
+
+p i
+{
+	color: aqua;
+}
+
+*[title]
+{
+	color: black;
+}
+
+a[href][title]
+{
+	font-size: 150%;
+	font-weight: bold;
+}
+
+a[href="http://www.w3.org"][title="W3C Home"]
+{
+	font-size: 200%;
+}
+
+.BoldClass
+{
+	font-weight: bold;
+}
+
+.ItalicClass
+{
+	font-style: italic;
+}
+
+.BoldClass.ItalicClass
+{
+	color: silver;
+	background-color: yellow;
+}
+
+.Warning
+{
+	color: red;
+	font-weight: bold;
+}
+
+p.Warning
+{
+	font-weight: 100;
+	text-decoration: underline;
+}
+
+#P_With_Id
+{
+	color:yellow;
+}
+
+span[class~="ItalicClass"]
+{
+	background-color: purple;
+}
+
+span[title^="title"]
+{
+	color: red;
+}
+
+span[title*="title"]
+{
+	color: green;
+}
+
+span[title$="title"]
+{
+	color: blue;
+}
+
+*[lang|="en"]
+{
+	color: aqua;
+}
+
+h1>strong
+{
+	color: red;
+}
+
+h1+div
+{
+	color: green;
+}
+
+input:focus
+{
+	font-weight: bold;
+}
+
+span:first-child
+{
+	background-color: black;
+}
+
+h2:before
+{
+	content: "[[";
+	color: silver;
+}
+
+h2:after
+{
+	content: "]]";
+	color: silver;
+}
+
+li + li
+{
+	font-weight: bold;
+}

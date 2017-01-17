@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test &lt;a ... href=&quot;mailto:...&quot; ... &gt;</title>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td><a href="mailto:anonymous@mail.ru?subject=subject&body=body &#34;text \' \\\\||// \' text&#34; body">&amp;#34;</a></td><td><table><tr><td>FF</td><td>GC</td><td>Opera</td><td>!M$ IE</td></tr></table></td>
+			</tr>
+			<tr>
+				<td><a href="mailto:anonymous@mail.ru?subject=subject&body=body &#x22;text \' \\\\||// \' text&#x22; body">&amp;#x22;</a></td><td><table><tr><td>FF</td><td>GC</td><td>Opera</td><td>!M$ IE</td></tr></table></td>
+			</tr>
+			<tr>
+				<td><a href="mailto:anonymous@mail.ru?subject=subject&body=body &quot;text \' \\\\||// \' text&quot; body">&amp;quot;</a></td><td><table><tr><td>FF</td><td>GC</td><td>Opera</td><td>!M$ IE</td></tr></table></td>
+			</tr>
+			<tr>
+				<td><a href="mailto:anonymous@mail.ru?subject=subject&body=body \x22text \' \\\\||// \' text\x22 body">\x22</a></td><td><table><tr><td>FF</td><td>GC</td><td>Opera</td><td>M$ IE</td><td>(\x22)</td></tr></table></td>
+			</tr>
+			<tr>
+				<td><a href="mailto:anonymous@mail.ru?subject=subject&body=body \u0022text \' \\\\||// \' text\u0022 body">\u0022</a></td><td><table><tr><td>FF</td><td>GC</td><td>Opera</td><td>M$ IE</td><td>(\u0022)</td></tr></table></td>
+			</tr>
+		</table>
+	</body>
+</html>

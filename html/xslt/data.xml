@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="data.xsl"?>
+<contract>
+	<contragent>Иванов Иван Иванович</contragent>
+	<date>2009.03.11</date>
+	<no>13</no>
+	<othersperson>
+		<contragent date="1870.04.22">Ленин Владимир Ильич</contragent>
+		<contragent date="1878.12.18">Сталин Иосиф Виссарионович</contragent>
+		<contragent date="1894.04.17">Хрущев Никита Сергеевич</contragent>
+	</othersperson>
+</contract>

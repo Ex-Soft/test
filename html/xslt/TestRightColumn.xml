@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="TestRightColumn.xsl"?>
+<root>
+	<value id="1">value_1</value>
+	<value id="3">value_3</value>
+	<value id="2">value_2</value>
+</root>

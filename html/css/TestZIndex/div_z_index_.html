@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+	<head>
+		<title>Test DIV z-index</title>
+		<link href="div_z_index_.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript">
+<!--
+function SetVisibility(obj,val)
+{
+	obj.style.visibility=val;
+}
+
+function SetVisible(obj,val)
+{
+	obj.className = val ? "div_up_visible" : "div_up_hidden";
+}
+// -->
+		</script>
+
+	</head>
+	<body>
+		<div id="DivDown" class="div_down">
+			<h1>DIV Down</h1>
+			<h2>
+				1<br>
+				2<br>
+				3<br>
+				4<br>
+				5<br>
+				6<br>
+				7<br>
+				8<br>
+				9<br>
+				10<br>
+				11<br>
+				12<br>
+				13<br>
+			</h2>
+		</div>
+		<div id="DivUpAbs" class="div_up_abs" onmouseover="SetVisibility(this,'visible')" onmouseout="SetVisibility(this,'hidden')">DIV Up (absolute)</div>
+		<div id="DivUpFix" class="div_up_fix" onmouseover="SetVisibility(this,'visible')" onmouseout="SetVisibility(this,'hidden')">DIV Up (fixed)</div>
+		<div id="DivUpTransparent" class="div_up_trans">DIV Up (transparent)</div>
+		<div id="DivUpHidden" class="div_up_hidden" onmouseover="SetVisible(this,true)" onmouseout="SetVisible(this,false)">DIV Up (hidden)</div>
+		<div id="block" onmouseover="alert('onmouseover');this.style.visibility='visible'" onmouseout="alert('onmouseout');this.style.visibility='hidden'">
+			<div>
+				...
+			</div>
+		</div>
+		<div class="div_hidden" onmouseover="this.className='div_visible';" onmouseout="this.className='div_hidden';">
+			<div>
+				AAAAAAAAAA
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet type="text/xsl" href="TestApplyTemplates3.xsl"?>
+<root>
+	<item>
+		<value1>value_1_1</value1>
+		<value2>value_1_2</value2>
+		<value3>value_1_3</value3>
+	</item>
+	<item>
+		<value1>value_2_1</value1>
+		<value2>value_2_2</value2>
+		<value3>value_2_3</value3>
+	</item>
+	<item>
+		<value1>value_3_1</value1>
+		<value2>value_3_2</value2>
+		<value3>value_3_3</value3>
+	</item>
+	<item>
+		<value1>value_4_1</value1>
+		<value2>value_4_2</value2>
+	</item>
+</root>

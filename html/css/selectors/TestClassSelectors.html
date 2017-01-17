@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>&laquo;Test Class Selectors&raquo;</title>
+		<style type="text/css">
+.class_red
+{
+	color: red;
+}
+
+.class_bold
+{
+	font-weight: bold;
+}
+
+.class_italic
+{
+	font-style: italic;
+}
+
+.class_red.class_bold
+{
+	text-decoration: underline;
+}
+
+.class_red.class_italic
+{
+	background-color: blue;
+}
+
+.class_red .class_bold
+{
+	text-decoration: blink;
+}
+		</style>
+	</head>
+	<body>
+		<p class="class_red">class_red</p>
+		<p class="class_bold">class_red</p>
+		<p class="class_red class_bold">class_red class_bold</p>
+		<p class="class_bold class_red">class_bold class_red</p>
+		<p class="class_bold class_red class_italic">class_bold class_red class_italic</p>
+		<p class="class_red"><span class="class_bold">class_red class_bold</span></p>
+	</body>
+</html>

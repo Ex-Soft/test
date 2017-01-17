@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Test CSS (sprite) II</title>
+	<style>
+.DivEtalon
+{
+	background: url("trigger.gif");
+	height: 24px;
+	width: 102px;
+}
+
+.DivTest
+{
+	background: url("trigger.gif") no-repeat left top;
+	height: 24px;
+	width: 16px;
+}
+
+.DivTest:hover
+{
+	background: url("trigger.gif") no-repeat -17px top;
+	cursor: pointer;
+}
+	</style>
+</head>
+<body>
+	<div class="DivEtalon">&nbsp;</div>
+	<div class="DivTest">&nbsp;</div>
+</body>
+</html>

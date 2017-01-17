@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test position (relative)</title>
+		<style>
+html, body
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.container
+{
+	background-color: red;
+	height: 450px;
+	width: 100%;
+}
+
+.top
+{
+	background-color: blue;
+	height: 100px;
+}
+
+.center
+{
+	background-color: olive;
+	height: 200px;
+	position: relative;
+}
+
+.bottom
+{
+	background-color: aqua;
+	height: 50px;
+}
+		</style>
+		<script>
+
+function OnLoad()
+{
+	var
+		container = document.getElementById("container"),
+		containerHeight = container.clientHeight,
+		top = document.getElementById("top"),
+		topHeight = top.clientHeight,
+		center = document.getElementById("center"),
+		centerHeight = center.clientHeight;
+		bottom = document.getElementById("bottom"),
+		bottonHeight = bottom.clientHeight,
+		offset = containerHeight - topHeight - centerHeight - bottonHeight;
+
+	offset = offset < 0 ? 0 : topHeight;
+	center.style.marginTop=offset+"px";
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<div id="container" class="container">
+			<div id="top" class="top"></div>
+			<div id="center" class="center"></div>
+			<div id="bottom" class="bottom"></div>
+		</div>
+	</body>
+</html>
