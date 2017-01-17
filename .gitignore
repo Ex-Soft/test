@@ -12,22 +12,6 @@ VB/
 workspace/
 cryptest/
 TestEncryptor/
-CrashTest/
-CreateQuery/
-DEParse/
-FtpClient/
-GeoFramework/
-Hub.Gate/
-Planogram/
-ReZipAndCryptoPrototype/
-TestAssBase/
-TestCalcCRC/
-TestExcel/
-TestFileParser/
-TestOrgBouncyCastleCrypto/
-TestReadExcel/
-TestSTDrive/
-TestTWS/
 iTextSharpTutorial/
 lib/
 download/
@@ -80,6 +64,9 @@ project.lock.json
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.* 
+
+# eclipse
+.settings/
 
 FakesAssemblies/
 
