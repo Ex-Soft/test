@@ -1,6 +1,5 @@
 access/
 android/
-asm/
 ASP/
 CBuilder/
 electron/
@@ -112,7 +111,11 @@ _ReSharper*
 *.log
 *.InstallLog
 *.out
-*.exe
+*.[Oo][Bb][Jj]
+*.[Cc][Oo][Mm]
+*.[Ee][Xx][Ee]
+*.[Mm][Aa][Pp]
+*.[Ll][Ss][Tt]
 *.pdb
 *.netmodule
 ReadMe.*
