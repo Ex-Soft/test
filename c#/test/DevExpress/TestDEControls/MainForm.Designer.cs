@@ -31,10 +31,10 @@ namespace TestDEControls
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
             this.tabPageEditors = new DevExpress.XtraTab.XtraTabPage();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.toggleSwitch2 = new DevExpress.XtraEditors.ToggleSwitch();
+            this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
@@ -48,6 +48,8 @@ namespace TestDEControls
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.toggleSwitch2 = new DevExpress.XtraEditors.ToggleSwitch();
             this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
             this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
             this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
@@ -95,10 +97,11 @@ namespace TestDEControls
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPageEditors.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
@@ -155,6 +158,7 @@ namespace TestDEControls
             // 
             // tabPageEditors
             // 
+            this.tabPageEditors.Controls.Add(this.checkedComboBoxEdit1);
             this.tabPageEditors.Controls.Add(this.textEdit4);
             this.tabPageEditors.Controls.Add(this.toggleSwitch2);
             this.tabPageEditors.Controls.Add(this.toggleSwitch1);
@@ -188,24 +192,16 @@ namespace TestDEControls
             this.tabPageEditors.Size = new System.Drawing.Size(1388, 407);
             this.tabPageEditors.Text = "Editors";
             // 
-            // textEdit4
+            // checkedComboBoxEdit1
             // 
-            this.textEdit4.Location = new System.Drawing.Point(235, 306);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(100, 20);
-            this.textEdit4.TabIndex = 26;
-            this.textEdit4.Enter += new System.EventHandler(this.textEdit4_Enter);
-            this.textEdit4.Leave += new System.EventHandler(this.textEdit4_Leave);
-            // 
-            // toggleSwitch2
-            // 
-            this.toggleSwitch2.Location = new System.Drawing.Point(388, 197);
-            this.toggleSwitch2.MenuManager = this.barManager1;
-            this.toggleSwitch2.Name = "toggleSwitch2";
-            this.toggleSwitch2.Properties.OffText = "Off";
-            this.toggleSwitch2.Properties.OnText = "On";
-            this.toggleSwitch2.Size = new System.Drawing.Size(95, 24);
-            this.toggleSwitch2.TabIndex = 21;
+            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(509, 261);
+            this.checkedComboBoxEdit1.MenuManager = this.barManager1;
+            this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
+            this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", "TagValue", null, true)});
+            this.checkedComboBoxEdit1.Size = new System.Drawing.Size(100, 20);
+            this.checkedComboBoxEdit1.TabIndex = 27;
             // 
             // barManager1
             // 
@@ -324,6 +320,25 @@ namespace TestDEControls
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1394, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 435);
+            // 
+            // textEdit4
+            // 
+            this.textEdit4.Location = new System.Drawing.Point(235, 306);
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Size = new System.Drawing.Size(100, 20);
+            this.textEdit4.TabIndex = 26;
+            this.textEdit4.Enter += new System.EventHandler(this.textEdit4_Enter);
+            this.textEdit4.Leave += new System.EventHandler(this.textEdit4_Leave);
+            // 
+            // toggleSwitch2
+            // 
+            this.toggleSwitch2.Location = new System.Drawing.Point(388, 197);
+            this.toggleSwitch2.MenuManager = this.barManager1;
+            this.toggleSwitch2.Name = "toggleSwitch2";
+            this.toggleSwitch2.Properties.OffText = "Off";
+            this.toggleSwitch2.Properties.OnText = "On";
+            this.toggleSwitch2.Size = new System.Drawing.Size(95, 24);
+            this.toggleSwitch2.TabIndex = 21;
             // 
             // toggleSwitch1
             // 
@@ -771,10 +786,11 @@ namespace TestDEControls
             this.tabControl.ResumeLayout(false);
             this.tabPageEditors.ResumeLayout(false);
             this.tabPageEditors.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
@@ -878,6 +894,7 @@ namespace TestDEControls
         private DevExpress.XtraEditors.ToggleSwitch toggleSwitch2;
         private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
         private TextEdit textEdit4;
+        private CheckedComboBoxEdit checkedComboBoxEdit1;
     }
 }
 
