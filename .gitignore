@@ -92,6 +92,7 @@ _ReSharper*
 *.[Cc][Ll][Aa][Ss][Ss]
 *.pdb
 *.netmodule
+*.opendb
 ReadMe.*
 jquery*.js
 jquery*.map
