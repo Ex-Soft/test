@@ -14,6 +14,7 @@ Planogram/
 ReZipAndCryptoPrototype/
 TestAssBase/
 TestCalcCRC/
+TestEncryptor/
 TestExcel/
 TestFileParser/
 TestOrgBouncyCastleCrypto/
