@@ -8,8 +8,17 @@ IdentityServer4/
 Mvc-dev/
 
 ext/
+ext4.2.1/
 LightSwitch/
 JayData/
+Kendo.Mvc.Examples/
+
+themes/
+
+**/Content/kendo
+**/Scripts/kendo
+**/kendo/examples
+**/kendo/src
 
 #bootstrap
 bootstrap*.js
