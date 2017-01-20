@@ -23,8 +23,11 @@ void DLL_EI cdecl TestArrayOfData(Data *data, int size)
 	for (int i = 0; i < size; ++i)
 	{
 		#pragma warning(disable:4996)
-			message += std::string("{fInt1:") + std::string(itoa((data + i)->fInt1, buffer, 10)) + std::string(", fInt2:") + std::string(itoa((data + i)->fInt2, buffer, 10)) + std::string("},");
+			message += std::string("{fInt1:") + std::string(itoa((data + i)->fInt1, buffer, 10)) + std::string(", fInt2:") + std::string(itoa((data + i)->fInt2, buffer, 10)) + std::string("}");
 		#pragma warning(default:4996)
+
+		if (i < size - 1)
+			message += std::string(", ");
 	}
 	message += std::string("}");
 
