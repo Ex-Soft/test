@@ -24,3 +24,6 @@ YUI/**
 *_out.xlsx
 *_out.doc
 *_out.docx
+
+bootstrap.js
+bootstrap.css
