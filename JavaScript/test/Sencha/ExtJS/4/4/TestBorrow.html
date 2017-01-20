@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>&laquo;Test Borrow&raquo;</title>
+		<script charset="windows-1251" src="../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+    enabled: true
+});
+
+Ext.define("O1", {
+	o1prop: "O1prop",
+	o1func: function(){
+		if(window.console && console.log)
+			console.log("O1func");
+	}
+});
+
+Ext.define("O2", {
+});
+
+O2.borrow(O1, ["o1prop", "o1func"]);
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		o2 = new O2();
+
+	if(window.console && console.log)
+		console.log("%s", o2.o1prop);
+
+	o2.o1func();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

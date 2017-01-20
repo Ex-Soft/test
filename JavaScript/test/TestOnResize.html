@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test onresize</title>
+
+		<!-- https://developer.mozilla.org/en/docs/Web/CSS/resize -->
+		<style>
+.resizable {
+	resize: both;
+	overflow: scroll;
+	border: 1px solid black;
+}
+
+div {
+	height: 300px;
+	width: 300px;
+}
+
+p {
+	height: 200px;
+	width: 200px;
+}
+		</style>
+
+		<script>
+function OnLoad()
+{
+	add(window, OnWindowResize);
+	add(document, OnDocumentResize);
+	add(document.body, OnBodyResize);
+	add(document.getElementById("resizableDiv"), OnDivResize);
+	add(document.getElementById("resizableP"), OnPResize);
+}
+
+function add(ctrl, fn)
+{
+	if ("addEventListener" in ctrl)
+		ctrl.addEventListener("resize", fn, false);
+	else if ("attachEvent" in ctrl)
+		ctrl.attachEvent("onresize", fn);
+	else
+		ctrl.onresize = fn;
+}
+
+function OnWindowResize()
+{
+	if (window.console && console.log)
+		console.log("OnWindowResize(%o)", arguments);
+}
+
+function OnDocumentResize()
+{
+	if (window.console && console.log)
+		console.log("OnDocumentResize(%o)", arguments);
+}
+
+function OnBodyResize()
+{
+	if (window.console && console.log)
+		console.log("OnBodyResize(%o)", arguments);
+}
+
+function OnDivResize()
+{
+	if (window.console && console.log)
+		console.log("OnDivResize(%o)", arguments);
+}
+
+function OnPResize()
+{
+	if (window.console && console.log)
+		console.log("OnDocumentResize(%o)", arguments);
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<div id="resizableDiv" class="resizable">
+			<p id="resizableP" class="resizable">
+				This paragraph is resizable, because the CSS resize property is set to 'both' on this element.
+			</p>
+		</div>
+	</body>
+</html>

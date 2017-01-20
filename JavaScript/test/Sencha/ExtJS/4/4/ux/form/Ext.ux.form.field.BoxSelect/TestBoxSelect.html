@@ -1,0 +1,171 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.ux.form.field.BoxSelect</title>
+		<link rel="stylesheet" href="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<link rel="stylesheet" href="ux/form/field/BoxSelect.css"/>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false,
+	paths: {
+		"Ext.ux": "ux"
+	}
+});
+
+Ext.require([
+	"Ext.ux.form.field.BoxSelect"
+], function() {
+	Ext.define("MyBoxSelect", {
+		override: "Ext.ux.form.field.BoxSelect",
+
+		setValue: function(value, doSelect, skipLoad) {
+			if(Ext.isString(arguments[0]))
+				arguments[0] = Ext.JSON.decode("[" + arguments[0] + "]");
+
+			this.callParent(arguments);
+		},
+
+		getValue: function() {
+			var
+				value = this.callParent(arguments);
+
+			return Ext.JSON.encode(value);
+		}
+	});
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+/*
+	Ext.ux.form.field.BoxSelect.override({
+		setValue: function(value, doSelect, skipLoad) {
+			if(Ext.isString(arguments[0]))
+				arguments[0] = Ext.JSON.decode("[" + arguments[0] + "]");
+
+			this.callParent(arguments);
+		},
+
+		getValue: function() {
+			var
+				value = this.callParent(arguments);
+
+			return Ext.JSON.encode(value);
+		}
+	});
+*/
+	var
+		createData = function(max) {
+			var
+				data = [];
+
+			for(var i=0; i<max; ++i)
+				data.push( { id: i, name: "Record# "+i } );
+
+			return data;
+		},
+		store = Ext.create("Ext.data.Store", {
+			fields: [
+				{ name: "id", type: "int" },
+				"name"
+			],
+			data: [] //createData(1000)
+		}),
+		boxSelect = Ext.create("Ext.ux.form.field.BoxSelect", {
+			fieldLabel: "boxSelect",
+			displayField: "name",
+			valueField: "id",
+			width: 500,
+			store: store,
+			queryMode: "local",
+			value: [5, 6]
+		}),
+		f = Ext.create("Ext.form.Panel", {
+			frame: true,
+			items: [
+				boxSelect
+			],
+			dockedItems: [{
+				xtype: "toolbar",
+				dock: "top",
+				items: [{
+					text: "load()",
+					handler: function(btn, e) {
+						var
+							data = createData(1000);
+
+						boxSelect.getStore().loadData(data);
+					}
+				}, {
+					text: "setValue()",
+					handler: function(btn, e) {
+						boxSelect.setValue("1, 2, 3"/*[1, 2, 3]*/); // "1, 2, 3" - doesn't work without overriden
+					}
+				}, {
+					text: "setValueWOLoad()",
+					handler: function(btn, e) {
+						var
+							tplData = [
+								{ id: 1, name: "Record# 1"},
+								{ id: 2, name: "Record# 2"},
+								{ id: 3, name: "Record# 3"}
+							],
+							data = [
+								Ext.create(boxSelect.getStore().getProxy().getModel(), { id: 1, name: "Record# 1"}),
+								Ext.create(boxSelect.getStore().getProxy().getModel(), { id: 2, name: "Record# 2"}),
+								Ext.create(boxSelect.getStore().getProxy().getModel(), { id: 3, name: "Record# 3"})
+							];
+
+						boxSelect.value = [1, 2, 3];
+						boxSelect.originalValue = "[1,2,3]";
+						boxSelect.lastValue = "1, 2, 3";
+						boxSelect.displayTplData = tplData;
+						boxSelect.setRawValue("Record# 1, Record# 2, Record# 3");
+						boxSelect.valueStore.add(data[0]);
+						boxSelect.valueStore.add(data[1]);
+						boxSelect.valueStore.add(data[2]);
+					}
+				}, {
+					text: "getValue()",
+					handler: function(btn, e) {
+						var
+							value = boxSelect.getValue();
+
+						if(window.console && console.log)
+							console.log("%o", value);
+					}
+				}]
+			}, {
+				xtype: "toolbar",
+				dock: "bottom",
+				items: [{
+					text: "submit",
+					handler: function(btn, e) {
+						var
+							form = f.getForm(),
+							isValid = form.isValid(),
+							value = boxSelect.getValue(),
+							isDirty = boxSelect.isDirty();
+
+						if(window.console && console.log)
+							console.log("Ext.form.Basic.isValid() = %s, Ext.form.field.ComboBox.getValue() = \"%s\", Ext.form.field.ComboBox.isDirty() = \"%s\"", isValid, value, isDirty);
+					}
+				}]
+			}],
+			renderTo: Ext.getBody()
+		});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

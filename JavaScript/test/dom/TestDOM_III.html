@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<!-- http://www.yiotabytes.com/2010/08/html-collections-are-live.html -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test DOM III</title>
+		<style type="text/css">
+.DivClass1
+{
+	color: red;
+}
+
+.DivClass2
+{
+	color: green;
+}
+		</style>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		elems1 = document.getElementsByTagName("a"),
+		elems2 = document.querySelectorAll("a"),
+		elems3 = document.getElementsByClassName ? document.getElementsByClassName("DivClass1") : [],
+		elems4 = document.getElementsByClassName ? document.getElementsByClassName("DivClass2") : [],
+		elems5 = document.getElementById("DivParent").getElementsByTagName("div");
+
+	document.body.appendChild(document.createElement("a"));
+	document.getElementById("DivParent").appendChild(document.createElement("div"));
+
+	if(window.console)
+		console.log(elems1.length, elems2.length, elems5.length);
+
+	if(window.console)
+		console.log(elems3.length, elems4.length);
+
+	for(var i=0; i<elems3.length; ++i)
+		if(elems3[i])
+			elems3[i].className="DivClass2";
+
+	if(window.console)
+		console.log(elems3.length, elems4.length);
+}
+		</script>
+	</head>
+	<body>
+		<a href="http://yandex.ru/">Яндекс</a>,
+		<a href="http://yandex.com/">Yandex</a>
+		<div id="DivParent">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class="DivClass1"></div>
+		<div class="DivClass1"></div>
+		<div class="DivClass1"></div>
+		<input type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

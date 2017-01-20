@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test focus after &lt;DIV&gt;</title>
+		<style>
+html, body
+{
+	height: 100%;
+}
+
+input
+{
+	width: 50%;
+}
+
+#divSplash
+{
+	background-color: red;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+		</style>
+		<script>
+var
+	ms = 3000;
+
+function onLoad()
+{
+	document.getElementById("setTimeoutInput").value = ms
+	setTimeout(divOn, ms);
+}
+
+function divOn() {
+	divOnOff(true);
+	setTimeout(divOff, ms);
+}
+
+function divOff() {
+	divOnOff(false);
+	setTimeout(divOn, ms);
+}
+
+function divOnOff(on) {
+	document.getElementById("divSplash").style.display = on ? "" : "none";
+}
+
+		</script>
+	</head>
+	<body onload="onLoad()">
+		<label>Description: <input type="text" placeholder="Test focus after <DIV>" autofocus /></label><br />
+		<label>setTimeout: <input type="text" id="setTimeoutInput" /> (ms)</label><br />
+		<label>Note: <input type="text" value="But you can use keyboard" /></label><br />
+		<div id="divSplash" style="display: none; "></div>
+	</body>
+</html>

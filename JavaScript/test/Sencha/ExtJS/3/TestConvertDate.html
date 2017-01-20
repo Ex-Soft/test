@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<title>&laquo;Test Convert Date&raquo;</title>
+		<link rel="stylesheet" type="text/css" href="../../ExtJS/resources/css/ext-all.css"/>
+		<script type="text/javascript" charset="windows-1251" src="../../ExtJS/adapter/ext/ext-base.js"></script>
+		<script type="text/javascript" charset="windows-1251" src="../../ExtJS/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../ExtJS/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Date.patterns = {
+		ISO8601Long:"Y-m-d H:i:s",
+		ISO8601Short:"Y-m-d",
+		ShortDate: "n/j/Y",
+		LongDate: "l, F d, Y",
+		FullDateTime: "l, F d, Y g:i:s A",
+		MonthDay: "F d",
+		ShortTime: "g:i A",
+		LongTime: "g:i:s A",
+		SortableDateTime: "Y-m-d\\TH:i:s",
+		UniversalSortableDateTime: "Y-m-d H:i:sO",
+		YearMonth: "F, Y"
+	};
+
+	var
+		now=new Date(),
+		SortableDateTime=now.format(Date.patterns.SortableDateTime),
+		UniversalSortableDateTime=now.format(Date.patterns.UniversalSortableDateTime),
+		//DateStr="2010-03-23T00:00:00.0000000+02:00",
+		DateStr="2010-03-23T11:30:42.2045823+02:00",
+		d=Date.parseDate(DateStr,"c");
+
+	Ext.Msg.alert("Test Convert Date",d.format("d.m.Y"));
+});
+// -->
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

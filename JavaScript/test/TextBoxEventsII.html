@@ -1,0 +1,48 @@
+<html>
+<body onLoad="test();">
+<!-- <input type="text" id="inp" /> -->
+<input type="text" id="inp" autocomplete="off" />
+<!-- <textarea id="inp"></textarea> -->
+<script type="text/javascript" language="javascript">
+function test()
+{
+	var inp = document.getElementById('inp');
+	alert((!inp.autocomplete?"!":"")+"autocomplete");
+	if(inp.addEventListener)
+	{
+		inp.addEventListener("keydown",key_down,false);
+		inp.addEventListener("keyup",key_up,false);
+		inp.addEventListener("keypress",key_press,false);
+	}
+	else if(inp.attachEvent)
+	{
+		inp.attachEvent("onkeydown",key_down);
+		inp.attachEvent("onkeyup",key_up);
+		inp.attachEvent("onkeypress",key_press);
+	}
+	else
+	{
+		inp.onkeydown = key_down;
+		inp.onkeyup = key_up;
+		inp.onkeypress = key_press;
+	}
+}
+
+function key_up(e)
+{
+	document.getElementById("DivLog").innerHTML += "onkeyup ('"+document.getElementById("inp").value+"')<br />";
+}
+
+function key_down(e)
+{
+	document.getElementById("DivLog").innerHTML += "onkedown ('"+document.getElementById("inp").value+"')<br />";
+}
+
+function key_press(e)
+{
+	document.getElementById("DivLog").innerHTML += "onkeypress ('"+document.getElementById("inp").value+"')<br />";
+}
+</script>
+<div id="DivLog"></>
+</body>
+</html>

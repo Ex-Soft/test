@@ -1,0 +1,37 @@
+﻿function TestArray5()
+{
+	var
+		store = new Ext.data.ArrayStore({
+			idProperty: "name",
+			fields: [
+				{ name: "name", type: "string" }
+			],
+			data: [
+				[ "Record# 1" ],
+				[ "Record# 2" ],
+				[ "Record# 3" ],
+				[ "Record# 4" ]
+			]
+		}),
+		tmpRec;
+
+	store.each(function(r)
+	{
+		if(window.console && console.log)
+			console.log("name=\"%s\"", r.get("name"));
+	});
+
+	tmpRec=store.getById("Record# 1");
+	if(tmpRec)
+	{
+		if(window.console && console.log)
+			console.log("Store.getById(): name=\"%s\"", tmpRec.get("name"));
+	}
+
+	tmpRec=store.findRecord("name", "Record# 3");
+	if(tmpRec)
+	{
+		if(window.console && console.log)
+			console.log("Store.findRecord(): name=\"%s\"", tmpRec.get("name"));
+	}
+}

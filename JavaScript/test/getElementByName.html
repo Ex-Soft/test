@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Test getElementByName()</title>
+<script type="text/javascript">
+<!--
+function Sum()
+{
+	var
+		Ctrls,
+		TotalSum=0;
+
+	if(!(Ctrls=document.getElementsByName("Items2Sum")))
+		return;
+
+	for(var c in Ctrls)
+		alert("typeof()="+typeof(c)+" = "+c);
+
+	for(var i=0; i<Ctrls.length; ++i)
+		TotalSum+= !isNaN(parseFloat(Ctrls[i].value)) ? parseFloat(Ctrls[i].value) : 0;
+	alert(TotalSum);
+
+	var
+		Ctrl,
+		i=1;
+
+	TotalSum=0;
+	while(Ctrl=document.getElementById("Text"+i++))
+		TotalSum+= !isNaN(parseFloat(Ctrl.value)) ? parseFloat(Ctrl.value) : 0;
+	alert(TotalSum);
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form>
+	<input type="text" id="Text1" name="Items2Sum">
+	<input type="text" id="Text2" name="Items2Sum">
+	<input type="text" id="Text3" name="Items2Sum">
+	<input type="button" id="btnSum" value="Sum" onclick="Sum()">
+    </form>
+  </body>
+</html>

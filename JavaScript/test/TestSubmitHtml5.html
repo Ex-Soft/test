@@ -1,0 +1,21 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Submit HTML5</title>
+		<script>
+function onLog(msg)
+{
+	if(window.console && console.log)
+		console.log("%s", msg);
+}
+		</script>
+	</head>
+	<body>
+		<form id="MainForm" onsubmit="onLog('onsubmit'); return false;" method="post">
+			<input type="text" onfocus="onLog('onfocus');" onblur="onLog('onblur');" pattern="\d+" required placeholder="0"><br />
+			<input type="text" onfocus="onLog('onfocus');" onblur="onLog('onblur');"><br />
+			<input type="submit" value="submit"><br />
+		</form>
+	</body>
+</html>

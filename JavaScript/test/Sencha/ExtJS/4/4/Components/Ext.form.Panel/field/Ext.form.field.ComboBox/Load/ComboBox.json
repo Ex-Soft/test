@@ -1,0 +1,11 @@
+﻿{
+	"success": true,
+	"total": 5,
+	"data": [
+		{ "Id": 1, "Name": "Name 1" },
+		{ "Id": 2, "Name": "Name 2" },
+		{ "Id": 3, "Name": "Name 3" },
+		{ "Id": 4, "Name": "Name 4" },
+		{ "Id": 5, "Name": "Name 5" }
+	]
+}

@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test setTimeout (II)</title>
+		<script>
+var
+	timeoutID;
+
+function OnLoad()
+{
+	timeoutID = setTimeout("DoIt()",5000);
+}
+
+function DoIt()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("Div1"))
+		Ctrl.style.display="none";
+	if(Ctrl=document.getElementById("Div2"))
+		Ctrl.style.display="block";
+}
+
+function Watch()
+{
+	if(window.console && console.log)
+		console.log("typeof timeoutID = \"%s\", timeoutID = %i", typeof timeoutID, timeoutID);
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<h1>Test setTimeout</h1>
+		<hr/>
+		<div id="Div1"><img src="http://www.sql.ru/forum/images/smoke.gif" /></div>
+		<div id="Div2" style="display: none; "><img src="http://www.sql.ru/forum/images/biggrin.gif" /></div>
+		<hr/>
+		<input type="button" value="Watch" onclick="Watch()" />
+	</body>
+</html>

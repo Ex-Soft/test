@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Test Table (create) III</title>
+		<script type="text/javascript">
+<!--
+function Test()
+{
+	var
+		Table,
+		TBody,
+		tr,
+		td,
+		i;
+
+	if(!(Table=document.getElementById("TableTest")))
+		return;
+
+	TBody=Table.getElementsByTagName("tbody");
+	if(TBody.length==0)
+		return;
+
+	for(i=0; i<100; ++i)
+	{
+		if(!(tr=document.createElement("TR"))
+			|| !(td=document.createElement("TD")))
+			continue;
+
+		td.innerHTML="Test (Line# "+i+")";
+		tr.appendChild(td);
+		TBody[0].appendChild(tr);
+	}
+
+	if(!(Table=document.getElementById("TableTest2")))
+		return;
+
+	for(i=0; i<100; ++i)
+	{
+		if(!(tr=Table.insertRow(Table.rows.length))
+			|| !(td=tr.insertCell(tr.cells.length)))
+			continue;
+
+		td.innerHTML="Test (Line# "+i+")";
+	}
+}
+// -->
+		</script>
+	</head>
+	<body onload="Test()">
+		<form>
+			<table id="TableTest" style="width: 100%; " cellspacing="0" cellpadding="0" border="1">
+				<tbody>
+				</tbody>
+			</table>
+			<hr>
+			<table id="TableTest2" style="width: 100%; " cellspacing="0" cellpadding="0" border="1" />
+		</form>
+	</body>
+</html>

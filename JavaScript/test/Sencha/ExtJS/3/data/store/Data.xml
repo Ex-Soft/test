@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<total>2</total>
+	<success>true</success>
+	<row>
+		<id>1</id>
+		<name>Name# 1</name>
+	</row>
+	<row>
+		<id>2</id>
+		<name>Name# 2</name>
+	</row>
+</dataset>

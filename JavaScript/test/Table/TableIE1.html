@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>Test Table IE</title>
+<script type="text/javascript">
+<!--
+var
+  MaxRow=4,
+  MarkerName="MarkDel",
+  oTBody,
+  InputName,
+  AddNameButt,
+  MarkDelAll;
+
+function Add()
+{
+   var
+     oRow,
+     oCell,
+     row,
+     tmpStr;
+
+   if(InputName==null || InputName==undefined)
+     InputName=document.getElementById("InputName");
+
+   if(InputName==null || InputName==undefined)
+     alert("InputName==null || InputName==undefined");
+
+   if(InputName.value.length==0)
+     return;
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     AddNameButt=document.getElementById("AddNameButt");
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     alert("AddNameButt==null || AddNameButt==undefined");
+
+   if(oTBody==null || oTBody==undefined)
+     oTBody=document.getElementById("oTBody");
+
+   if(oTBody==null || oTBody==undefined)
+     alert("oTBody==null || oTBody==undefined");
+
+   oRow=oTBody.insertRow();
+   if(oRow==null || oRow==undefined)
+     alert("oRow==null || oRow==undefined");
+   
+   row=oTBody.rows.length;
+
+   if(row>=MaxRow)
+     AddNameButt.disabled=true;
+
+   oCell=oRow.insertCell();
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr=InputName.value+"<input id=\"InputId"+(row-1)+"\" name=\"InputId"+(row-1)+"\" type=\"hidden\" value=\""+(row-1)+"\">";
+   oCell.innerHTML=tmpStr;
+
+   oCell=oRow.insertCell();
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\"InputSeria"+(row-1)+"\" name=\"InputSeria"+(row-1)+"\" type=\"text\">";
+   oCell.innerHTML=tmpStr;
+
+   oCell=oRow.insertCell();
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\"InputNo"+(row-1)+"\" name=\"InputNo"+(row-1)+"\" type=\"text\">";
+   oCell.innerHTML=tmpStr;
+
+   oCell=oRow.insertCell();
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\"InputDate"+(row-1)+"\" name=\"InputDate"+(row-1)+"\" type=\"text\">";
+   oCell.innerHTML=tmpStr;
+
+   oCell=oRow.insertCell();
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\""+MarkerName+(row-1)+"\" name=\""+MarkerName+(row-1)+"\" type=\"checkbox\">";
+   oCell.innerHTML=tmpStr;
+}
+
+function FindMarker(aRow,aMarkerName)
+{
+   var
+     Marker=null,
+     MarkerStr,
+     Cells=aRow.cells,
+     idStr="id=",
+     startIdx,
+     stopIdx;
+
+   for(var c=0; c<Cells.length; ++c)
+   {
+      startIdx=Cells[c].innerHTML.indexOf(idStr+aMarkerName);
+      if(startIdx!=-1)
+      {
+         stopIdx=Cells[c].innerHTML.indexOf(" ",startIdx);
+         if(stopIdx!=-1)
+           MarkerStr=Cells[c].innerHTML.substring(startIdx+idStr.length,stopIdx);
+         else
+           MarkerStr=Cells[c].innerHTML.substring(startIdx+idStr.length);
+         Marker=document.getElementById(MarkerStr);
+         if(Marker!=null)
+           break;
+      }
+   } 
+
+   return(Marker);
+}
+
+function DelAllClick()
+{
+   var
+     tmpMarkDel;
+
+   if(MarkDelAll==null || MarkDelAll==undefined)
+     MarkDelAll=document.getElementById("MarkDelAll");
+
+   if(MarkDelAll==null || MarkDelAll==undefined)
+     alert("MarkDelAll==null || MarkDelAll==undefined");
+
+   if(oTBody==null || oTBody==undefined)
+     oTBody=document.getElementById("oTBody");
+
+   if(oTBody==null || oTBody==undefined)
+     alert("oTBody==null || oTBody==undefined");
+
+   for(var i=0; i<oTBody.rows.length; ++i)
+   {
+      tmpMarkDel=FindMarker(oTBody.rows[i],MarkerName);
+      if(tmpMarkDel!=null && tmpMarkDel!=undefined)
+        tmpMarkDel.checked=MarkDelAll.checked;
+   }
+}
+
+function Del()
+{
+   var
+     tmpMarkDel;
+
+   if(MarkDelAll==null || MarkDelAll==undefined)
+     MarkDelAll=document.getElementById("MarkDelAll");
+
+   if(MarkDelAll==null || MarkDelAll==undefined)
+     alert("MarkDelAll==null || MarkDelAll==undefined");
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     AddNameButt=document.getElementById("AddNameButt");
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     alert("AddNameButt==null || AddNameButt==undefined");
+
+   if(oTBody==null || oTBody==undefined)
+     oTBody=document.getElementById("oTBody");
+
+   if(oTBody==null || oTBody==undefined)
+     alert("oTBody==null || oTBody==undefined");
+
+   for(var i=oTBody.rows.length-1; i>=0; --i)
+   {
+      tmpMarkDel=FindMarker(oTBody.rows[i],MarkerName);
+      if(tmpMarkDel!=null && tmpMarkDel!=undefined)
+        if(tmpMarkDel.checked)
+         oTBody.deleteRow(i);
+   }
+   AddNameButt.disabled = oTBody.rows.length>=MaxRow ;
+   MarkDelAll.checked=false;
+}
+// -->
+</script>
+  </head>
+  <body>
+    <h1>Test Table IE</h1>
+    <hr>
+    <input id="InputName" type="text">&nbsp;<input id="AddNameButt" type="button" value="Add" onclick="Add();"><br>
+    <table ID="oTable" border>
+      <thead>
+        <tr>
+          <th>Col# 1</th>
+          <th>Col# 2</th>
+          <th>Col# 3</th>
+          <th>Col# 4</th>
+          <th><input type="checkbox" name="MarkDelAll" id="MarkDelAll" onclick="DelAllClick();">&nbsp;<input id="DelButt" type="button" value="Delete" onclick="Del();"></th>
+        </tr>
+      </thead>
+      <tbody ID="oTBody"></tbody>
+    </table>
+  </body>
+</html>

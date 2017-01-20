@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>Test &lt;input type="file"&gt;</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+function Show()
+{
+	var
+		Ctrl,
+		tmpStr,
+		f,
+		o;
+
+	if(!(Ctrl=document.getElementById("HtmlInputFile")))
+		return;
+
+	alert(Ctrl.value);
+	tmpStr = (Ctrl.files ? "" : "!")+"Ctrl.files";
+	alert(tmpStr);
+	tmpStr="Ctrl.files.length";
+	if(Ctrl.files.length)
+	{
+		alert(tmpStr+"="+Ctrl.files.length);
+		for(var i=0; i<Ctrl.files.length; ++i)
+		{
+			f=Ctrl.files[i];
+			tmpStr="f.fileName";
+			if(f.fileName)
+				alert(tmpStr+"=\""+f.fileName+"\"");
+			else
+				alert("!"+tmpStr);
+
+			tmpStr="f.fileSize";
+			if(f.fileSize)
+				alert(tmpStr+"=\""+f.fileSize+"\"");
+			else
+				alert("!"+tmpStr);
+
+			tmpStr="f.getAsText";
+			if(f.getAsText)
+			{
+				alert(tmpStr);
+				o=f.getAsText("");
+				alert(o);
+			}
+			else
+				alert("!"+tmpStr);
+
+			tmpStr="f.getAsDataURL";
+			if(f.getAsDataURL)
+			{
+				alert(tmpStr);
+				//o=f.getAsDataURL();
+			}
+			else
+				alert("!"+tmpStr);
+
+			tmpStr="f.getAsBinary";
+			if(f.getAsBinary)
+			{
+				alert(tmpStr);
+				//o=f.getAsBinary();
+			}
+			else
+				alert("!"+tmpStr);
+		}
+	}
+	else
+		alert("!"+tmpStr);
+}
+
+function Add()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.createElement("input")))
+		return;
+
+	Ctrl.type="file";
+	Ctrl.id="HtmlInputFile5";
+	Ctrl.name="HtmlInputFile5";
+	//Ctrl.value="c:\\boot.ini";
+	
+	document.body.appendChild(Ctrl);
+
+	if(Ctrl=document.getElementById("HtmlInputFile5"))
+		alert(Ctrl.name);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="file" id="HtmlInputFile" onkeydown="alert('onkeydown')" onkeypress="alert('onkeypress')" onkeyup="alert('onkeyup')" onchange="alert('onchange')" onclick="alert('onclick')">
+		<input type="file" id="HtmlInputFile2" accept="*.jpg,*.jpeg">
+		<input type="file" id="HtmlInputFile3" value="valuevalue">
+		<input type="file" id="HtmlInputFile4"><input type="button" value="On/Off" onclick="document.getElementById('HtmlInputFile4').style.display = document.getElementById('HtmlInputFile4').style.display=='' ? 'none' : ''">
+		<input type="button" value="Show" onclick="Show()">
+		<input type="button" value="Add" onclick="Add()">
+	</body>
+</html>

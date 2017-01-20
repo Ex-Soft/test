@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Test OnBoardDevices</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		locator = new ActiveXObject ("WbemScripting.SWbemLocator"),
+		service = locator.ConnectServer("."),
+		properties = service.ExecQuery("SELECT * FROM Win32_OnBoardDevice"),
+		e = new Enumerator (properties);
+
+	document.write("OnBoardDevices");
+	document.write("<table border=1>");
+	for (;!e.atEnd();e.moveNext ())
+	{
+		var
+			p = e.item ();
+
+		document.write("<tr>");
+		document.write("<td>" + p.Description + "</td>");
+		document.write("<td>" + p.DeviceType + "</td>");
+		document.write("<td>" + p.Enabled + "</td>");
+		document.write("<td>" + p.Tag + "</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+		</script>
+	</head>
+	<body>
+		<input id="Button1" type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

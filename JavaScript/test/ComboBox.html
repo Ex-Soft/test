@@ -1,0 +1,235 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><TITLE>Test ComboBox</TITLE>
+<SCRIPT type=text/javascript>
+<!--
+var
+  DDL,
+  DDLClear;
+  
+function Change()
+{
+   if(DDLClear==undefined || DDLClear==false)
+   {
+      if(DDL==undefined || DDL==null)
+        DDL=document.getElementById("TestDDL");
+        
+      if(DDL!=undefined && DDL!=null)
+      {
+         for(var i=0; i<DDL.options.length; ++i)
+         {
+            alert("i="+i+" DDL.options["+i+"]='"+DDL.options[i].value+"'");
+            if(DDL.options[i].value==" ")
+            {
+               DDL.remove(i);
+               DDLClear=true;
+               break;  
+            }
+         }
+      }
+   }
+}
+
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+function Add()
+{
+   var
+     objSelect=document.getElementById("TestDDL"),
+     BlankOption=new Option(" "," ",true,true),
+     b4 = navigator.userAgent.indexOf('MSIE')>=0 ? 0 : objSelect.options[0],
+     t;
+
+   objSelect.title="Title";
+   objSelect.add(BlankOption,b4);
+   objSelect.selectedIndex=0;
+   DDLClear=false;
+
+   objSelect=document.getElementById("TestDDL1");
+   objSelect.title="Title";
+   BlankOption=new Option(" "," ",true,true);
+   objSelect.options.add(BlankOption,0);
+   objSelect.selectedIndex=0;
+
+   objSelect=document.getElementById("TestDDL2");
+   objSelect.title="Title";
+   BlankOption=new Option();
+   t=document.createTextNode(" ");
+   BlankOption.appendChild(t);
+   BlankOption.value=" ";
+   objSelect.insertBefore(BlankOption,objSelect.options[0]);
+   objSelect.selectedIndex=0;
+
+   objSelect=document.getElementById("TestDDL3");
+   objSelect.title="Title";
+   BlankOption=document.createElement("option");
+   t=document.createTextNode(" ");
+   BlankOption.appendChild(t);
+   BlankOption.value=" ";
+   objSelect.insertBefore(BlankOption,objSelect.options[0]);
+   objSelect.selectedIndex=0;
+}
+
+function MasterDLLChange(obj)
+{
+   var
+     Ctrl;
+
+   if(Ctrl=document.getElementById("DetailDDL1"))
+   {
+      Ctrl.style.display = obj.options[obj.selectedIndex].value=="0" ? "none" : "" /* "block" is wrong!!! SELECT is non-block element */;
+      Ctrl.selectedIndex=2;
+   }
+   if(Ctrl=document.getElementById("DetailDDL2"))
+     Ctrl.style.display = obj.options[obj.selectedIndex].value=="0" ? "none" : "block" /* Wrong!!! SELECT is non-block element */;
+}
+
+function ListBoxMove()
+{
+   var
+     LB1,
+     LB2,
+     i,
+     tmpOption;
+
+   if(!(LB1=document.getElementById("ListBox1"))
+      || !(LB2=document.getElementById("ListBox2")))
+     return;
+
+   //for(i=LB2.options.length-1; i>=0; --i)
+   //   LB2.remove(0);
+
+   LB2.options.length=0;
+   for(i=0; i<LB1.options.length; ++i)
+   {
+      tmpOption=new Option(LB1.options[i].text,LB1.options[i].value);
+      LB2.options.add(tmpOption,LB2.options.length);
+   }
+   LB1.options.length=0;
+}
+// -->
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM id=MainForm>
+<SELECT id="TestDDL" name="TestDDL" onchange="Change();" title="StartTitle">
+<!--  <OPTION value=" "> </OPTION> -->
+  <OPTION value=1>1st</OPTION>
+  <OPTION value=2>2nd</OPTION>
+  <OPTION value=3>3rd</OPTION>
+  <OPTION value=4>4th</OPTION>
+</SELECT>
+<SELECT id="TestDDL1" name="TestDDL1" ondblclick="alert('ondblclick');">
+  <OPTION value=1>1st</OPTION>
+  <OPTION value=2>2nd</OPTION>
+  <OPTION value=3>3rd</OPTION>
+  <OPTION value=4>4th</OPTION>
+</SELECT>
+<SELECT id="TestDDL2" name="TestDDL2">
+  <OPTION value=1>1st</OPTION>
+  <OPTION value=2>2nd</OPTION>
+  <OPTION value=3>3rd</OPTION>
+  <OPTION value=4>4th</OPTION>
+</SELECT>
+<SELECT id="TestDDL3" name="TestDDL3">
+  <OPTION value=1>1st</OPTION>
+  <OPTION value=2>2nd</OPTION>
+  <OPTION value=3>3rd</OPTION>
+  <OPTION value=4>4th</OPTION>
+</SELECT>
+<input type="button" value="Add" onclick="Add()">
+<hr>
+<SELECT id="MasterDDL" name="MasterDDL" onchange="MasterDLLChange(this)">
+  <OPTION value=0 SELECTED>Off</OPTION>
+  <OPTION value=1>On</OPTION>
+</SELECT>
+<SELECT id="DetailDDL1" name="DetailDDL1" style="display: none;">
+  <OPTION value=1 SELECTED>1st</OPTION>
+  <OPTION value=2>2nd</OPTION>
+  <OPTION value=3>3rd</OPTION>
+  <OPTION value=4>4th</OPTION>
+</SELECT>
+<SELECT id="DetailDDL2" name="DetailDDL2" style="display: none;">
+  <OPTION value=1 SELECTED>1st</OPTION>
+  <OPTION value=2>2nd</OPTION>
+  <OPTION value=3>3rd</OPTION>
+  <OPTION value=4>4th</OPTION>
+</SELECT>
+<hr>
+<select id="ListBox1" name="ListBox1" size="4" ondblclick="alert('ondblclick');">
+  <option value=1>ListBox1 #1</option> 
+  <option value=2>ListBox1 #2</option> 
+  <option value=3>ListBox1 #3</option> 
+  <option value=4>ListBox1 #4</option> 
+  <option value=5>ListBox1 #5</option> 
+  <option value=6>ListBox1 #6</option> 
+</select>
+<select id="ListBox2" name="ListBox2" size="4">
+  <option value=1>ListBox2 #1</option> 
+  <option value=2>ListBox2 #2</option> 
+  <option value=3>ListBox2 #3</option> 
+  <option value=4>ListBox2 #4</option> 
+  <option value=5>ListBox2 #5</option> 
+  <option value=6>ListBox2 #6</option> 
+  <option value=7>ListBox2 #7</option> 
+  <option value=8>ListBox2 #8</option> 
+</select>
+<input type="button" id="ButtonListBoxMove" name="ButtonListBoxMove" value="Move" onclick="ListBoxMove()">
+<br>
+<hr>
+<select id="s1" onmousedown="return(false)" onkeydown="return(false)">
+  <option value=1>1st</option>
+  <option value=2>2nd</option>
+  <option value=3 selected>3rd</option>
+  <option value=4>4th</option>
+</select>
+<select id="s2" onchange="this.selectedIndex=2">
+  <option value=1>1st</option>
+  <option value=2>2nd</option>
+  <option value=3 selected>3rd</option>
+  <option value=4>4th</option>
+</select>
+<input type="button" value="Show" onclick="alert(document.getElementById('s1').value)">
+<br>
+<hr>
+<select id="SetSelect">
+  <option value=1>1st</option>
+  <option value=2>2nd</option>
+  <option value=3 selected>3rd</option>
+  <option value=4>4th</option>
+</select>
+<input type="text" id="InputTextValueIndex">
+<input type="button" value="Set by value" onclick="document.getElementById('SetSelect').value=document.getElementById('InputTextValueIndex').value">
+<input type="button" value="Set by selectedIndex" onclick="document.getElementById('SetSelect').selectedIndex=document.getElementById('InputTextValueIndex').value">
+<SCRIPT type=text/javascript>
+<!--
+document.write("<br>");
+document.write("<hr>");
+document.write("navigator.userAgent=",navigator.userAgent,"<br>");
+document.write("navigator.appName=",navigator.appName,"<br>");
+if(document.implementation
+   && document.implementation.hasFeature
+   && document.implementation.hasFeature("html","1.0"))
+document.write("HTML","<br>");
+document.write("<hr>");
+document.write("<br>");
+
+if(DDL==undefined || DDL==null)
+  DDL=document.getElementById("TestDDL");
+makeObjectTable("TestDDL",DDL);
+// -->
+</SCRIPT>
+</FORM>
+</BODY>
+</HTML>

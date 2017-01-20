@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Class with config (II)</title>
+		<script charset="utf-8" src="../../../../Sencha/Touch/Touch2.3/touch-2.3.1/sencha-touch-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("ClassWithConfig", {
+	config: {
+		podProp: "undefinedConfigPodProp",
+		objectProp: {
+			objectPropProp1: "undefinedConfigObjectPropProp1",
+			objectPropProp2: "undefinedConfigObjectPropProp2"
+		}
+	},
+
+	constructor: function(config) {
+		if(window.console && console.log)
+			console.log("ClassWithConfig.constructor(%o)", arguments);
+
+		this.initConfig(config);
+	},
+
+	beforeInitConfig: function(config) {
+		if(window.console && console.log)
+			console.log("ClassWithConfig.beforeInitConfig(%o)", arguments);
+
+		Ext.merge/*apply*/(config.objectProp, {
+			objectPropProp1: "undefinedConfigObjectPropProp1FromBeforeInitConfig",
+			objectPropProp2: "undefinedConfigObjectPropProp2FromBeforeInitConfig"
+		});
+
+		this.callParent(config);
+	},
+
+	applyPodProp: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("ClassWithConfig.applyPodProp(%o)", arguments);
+
+		return value; // without this or return undefined - property doesn't set
+	},
+
+	updatePodProp: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("ClassWithConfig.updatePodProp(%o)", arguments);
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.log)
+		console.log("core: %s, touch: %s", Ext.versions.core.version, Ext.versions.touch.version);
+
+	var
+		classWithConfig1 = Ext.create("ClassWithConfig", { podProp: "podProp" });
+
+	if(classWithConfig1)
+		;
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

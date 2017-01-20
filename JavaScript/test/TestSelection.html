@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="windows-1251"/>
+    <title>Test Selection</title>
+<script type="text/javascript">
+<!--
+function DoIt()
+{
+	var
+		w=window,
+		Ctrl,
+		rng;
+
+	if(document.selection && document.selection.createRange)
+	{
+		//if(!(Ctrl=document.getElementById("myTextArea")))
+		//	return;
+
+		//Ctrl.focus();
+
+		if(!(rng=document.selection.createRange()))
+			return;
+
+		//rng.moveEnd('character',3);
+		//rng.select();
+        	alert(rng.text);
+	}
+
+	if(w.getSelection)
+	{
+		if(!(Ctrl=w.getSelection()))
+			return;
+
+
+//		Ctrl.anchorOffset-=1; // Error: setting a property that has only a getter
+//		Ctrl.focusOffset-=1;  // Error: setting a property that has only a getter
+
+		alert(Ctrl);
+	}
+	else if(w.document.getSelection) 
+	{
+		if(!(Ctrl=document.getElementById("myTextArea")))
+			return;
+
+		Ctrl.selectionStart-=1;
+
+		alert(Ctrl.value.substring(Ctrl.selectionStart,Ctrl.selectionEnd)); 
+	}
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form>
+	ghjgh jhgkjfgk jgfh jhgjhg jkhg
+	<textarea id="myTextArea">The text</textarea>
+	<input type="text" id="myText" value="The text">
+	<input type="button" id="btnDoIt" name="btnDoIt" value="DoIt!" onclick="DoIt()">
+    </form>
+  </body>
+</html>

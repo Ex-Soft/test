@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Layout (Anchor)</title>
+
+		<!-- <link rel="stylesheet" href="http://cdn.sencha.io/ext-4.1.1a-gpl/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1a-gpl/ext-all-debug.js"></script> -->
+
+		<!-- <link rel="stylesheet" href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all-debug.js"></script> -->
+
+		<link rel="stylesheet" href="../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	Ext.create("Ext.window.Window", {
+		title: "Test Ext.layout.container.Anchor",
+		autoShow: true,
+		height: 300,
+		width: 300,
+		layout: "fit",
+		border: 0,
+		items:[{
+			xtype: "form",
+			frame: true,
+			bodyStyle: "padding: 5px 0 0 0",
+			items: [{
+				xtype: "textfield",
+				fieldLabel: "textfield",
+				anchor: "100%"
+			}, {
+				xtype: "combobox",
+				fieldLabel: "combobox",
+				anchor: "100%"
+			}, {
+				xtype: "datefield",
+				fieldLabel: "datefield",
+				anchor: "100%"
+			}, {
+				xtype: "textareafield",
+				fieldLabel: "textareafield",
+				labelAlign: "top",
+				anchor: "100% 70%"
+			}]
+		}]
+	});
+
+	Ext.create("Ext.window.Window", {
+		autoShow: true,
+		x: 0,
+		y: 0,
+		width: 400,
+		height: 400,
+		title: "Anchor Layout Panel - Sides",
+		layout: "anchor",
+		items: [{
+			xtype: "panel",
+			title: "Sides",
+			height: 200,
+			width: 200,
+			html: "Panel Content",
+			anchor: "r b"
+		}]
+	});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

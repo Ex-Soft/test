@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<title>&laquo;Test XTemplate I&raquo;</title>
+		<link rel="stylesheet" type="text/css" href="../../../ExtJS/resources/css/ext-all.css"/>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../../ExtJS/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		UserInfo={
+			Name: "Name",
+			Login: "Login",
+			ManagerEmail: "lenin@mail.ru",
+			ManagerName: "Manager",
+			ManagerPhone: "4-21-35",
+			ManagerICQ: 169792846
+		},
+		PanelCenter=new Ext.Panel({
+			region: "center"
+		}),
+		tpl=new Ext.XTemplate(
+			"<span class=\"UserNameLabel\" style=\"display: none; \">Пользователь:&nbsp;</span><span class=\"UserName\" style=\"display: none; \">{Name}</span>",
+			"<span class=\"UserLoginLabel\" style=\"display: none; \">&nbsp;Login:&nbsp;</span><span class=\"UserLogin\">{Login}</span>",
+			"<span class=\"ManagerNameLabel\">&nbsp;Ваш менеджер:&nbsp;</span><a href=\"mailto:{ManagerEmail}\">{ManagerName}</a>",
+			"<tpl if=\"ManagerPhone\">",
+				"<span class=\"ManagerPhoneLabel\">&nbsp;Телефон:&nbsp;</span><span class=\"ManagerPhone\">{ManagerPhone}</span>",
+			"</tpl>",
+			"<tpl if=\"ManagerICQ\">",
+				"<a href=\"http://wwp.icq.com/scripts/contact.dll?msgto={ManagerICQ}\"><img src=\"http://status.icq.com/online.gif?icq={ManagerICQ}&img=5\" align=\"center\" valign=\"middle\" border=\"0\" hspace=\"2\" /></a><a href=\"http://wwp.icq.com/scripts/contact.dll?msgto={ManagerICQ}\">{ManagerICQ}</a>",
+			"</tpl>"
+		),
+		viewport=new Ext.Viewport({
+			layout: "border",
+			border: false,
+			renderTo: Ext.getBody(),
+			items: [ PanelCenter ]
+		});
+
+		tpl.overwrite(PanelCenter.body, UserInfo);
+});
+// -->
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

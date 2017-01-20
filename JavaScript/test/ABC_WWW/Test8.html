@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Array/Object Duality</TITLE>
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+// -->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="WHITE">
+<H1>Array/Object Duality</H1>
+<SCRIPT TYPE="text/javascript">
+<!--
+  var
+    arrayObj=new Object();
+
+  arrayObj[0]="Index zero";
+  arrayObj[10]="Index ten";
+  arrayObj.field1="Field One";
+  arrayObj["field2"]="Field Two";
+  makeObjectTable("arrayObj",arrayObj);
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>test for</title>
+		<script>
+function onLoad()
+{
+	var
+		a = "1" + "2",
+		b = "1" + 2,
+		c = 1 + "2",
+		enumOfDigits = {
+			ZERO: 0,
+			ONE: 1,
+			TWO: 2
+		};
+		
+	if(window.console && console.log)
+	{
+		console.log(a);
+		console.log(b);
+		console.log(c);
+
+		a = "1";
+		console.log("a %s= enumOfDigits.ONE", a == enumOfDigits.ONE ? "=" : "!");
+		console.log("a %s== enumOfDigits.ONE", a === enumOfDigits.ONE ? "=" : "!");
+
+		switch(a)
+		{
+			case enumOfDigits.ONE:
+			{
+				console.log("a (%s) %o case enumOfDigits.ONE", typeof a, a);
+				break;
+			}
+			default:
+				console.log("a (%s) %o default", typeof a, a);
+		}
+
+		a = 1;
+		console.log("a %s= enumOfDigits.ONE", a == enumOfDigits.ONE ? "=" : "!");
+		console.log("a %s== enumOfDigits.ONE", a === enumOfDigits.ONE ? "=" : "!");
+
+		switch(a)
+		{
+			case enumOfDigits.ONE:
+			{
+				console.log("a (%s) %o case enumOfDigits.ONE", typeof a, a);
+				break;
+			}
+			default:
+				console.log("a (%s) %o default", typeof a, a);
+		}
+	}
+}		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

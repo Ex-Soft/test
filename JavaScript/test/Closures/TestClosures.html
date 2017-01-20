@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>Test closures</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+function createFunc(n)
+{
+	return function(){alert(n*n);};
+}
+
+function create1(number)
+{
+	var
+		arr=[];
+
+	for(var i=1; i<=number; i++)
+	{
+		arr[i]=createFunc(i);
+	}
+
+	return arr;
+}
+
+function create2(number)
+{
+	var
+		arr=[];
+
+	for(var i=1; i<=number; i++)
+	{
+		arr[i]=function(){alert(i*i);};
+	}
+
+	return arr;
+}
+
+function create3(number)
+{
+	var
+		arr=[];
+
+	for(var i=1; i<=number; i++)
+	{
+		arr[i]=function(x){return function(){alert(x*x);}}(i);
+	}
+
+	return arr;
+}
+
+function Test1()
+{
+	var
+		arr=create1(100);
+
+	arr[4]();
+}
+
+function Test2()
+{
+	var
+		arr=create2(100);
+
+	arr[4]();
+}
+
+function Test3()
+{
+	var
+		arr=create3(100);
+
+	arr[4]();
+}
+
+var
+	x=5;
+
+var
+	alertX1=function(){alert(x);};
+
+x=10;
+
+var
+	alertX2=function(){alert(x);};
+
+function Test4()
+{
+	alertX1();
+	alertX2();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" value="Test# 1" onclick="Test1()">
+		<input type="button" value="Test# 2" onclick="Test2()">
+		<input type="button" value="Test# 3" onclick="Test3()">
+		<input type="button" value="Test# 4" onclick="Test4()">
+	</body>
+</html>

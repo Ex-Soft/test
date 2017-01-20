@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test QuickBaseClient</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	var
+		getQuickBaseClient = function() {
+			if (!window.QuickBaseClient)
+				return $.getScript("QuickBaseClient.js");
+			else
+			{
+				var dfd = $.Deferred();
+				dfd.resolve(null, "success", null);
+				return dfd.promise();
+			}
+		},
+		getProject = function(data, statusText, jqXHR) {
+			if (statusText !== "success")
+				return;
+
+			var client = new QuickBaseClient("https://oneroofenergy.quickbase.com");
+			client.Authenticate("systems2@oneroofenergy.com", "ORE2014#");
+			var record = client.GetRecordInfo("bkfnh9dk2", "9336").querySelectorAll("field");
+		};
+
+	$("#btnDoIt").on("click", function(e) {
+		$.when(getQuickBaseClient())
+			.then(getProject)
+			.fail(function(jqXHR, statusText, error) {
+				if(window.console && console.log)
+					console.log("fail(%o)", arguments);
+			});
+	});
+});
+		</script>
+	</head>
+	<body>
+		<button id="btnDoIt">DoIt!</button>
+	</body>
+</html>

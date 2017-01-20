@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Test window.open()</title>
+		<script type="text/javascript">
+<!--
+function wOpen()
+{
+	var
+		w=window.open("","Page"+1,"location=no,menubar=yes,scrollbars=yes,height="+screen.availHeight/2+"px,width="+screen.availWidth/2+"px");
+
+	w.window.document.open();
+	w.window.document.write("<h1>","Test","</h1>");
+	w.window.document.close();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="wOpen()" value="Open">
+	</body>
+</html>

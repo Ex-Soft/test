@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>Test opacity</title>
+		<script type="text/javascript">
+var
+	i_strngth=0,
+	i_image=0,
+	imageurl=new Array(),
+	timer=null;
+
+imageurl[0]="sandraaa0.jpg"
+imageurl[1]="sandraaa1.jpg"
+imageurl[2]="sandraaa2.jpg"
+
+function showimage()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("testimage")))
+		return;
+
+	if(i_strngth>=0 && i_strngth<=100)
+		Ctrl.innerHTML=ImgSrc();
+	i_strngth+=10;
+	if(!timer)
+		timer=setInterval("showimage()",100);
+	if(i_strngth>100)
+	{
+		clearInterval(timer);
+		timer=setInterval("hideimage()",100);
+	}
+}
+
+function hideimage()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("testimage")))
+		return;
+
+	if(i_strngth>=0 && i_strngth<=100)
+		Ctrl.innerHTML=ImgSrc();
+	i_strngth-=10;
+	if(!timer)
+		timer=setInterval("hideimage()",100);
+	if(i_strngth<0)
+	{
+		clearInterval(timer);
+		if(++i_image>2)
+			i_image=0;
+		timer=setInterval("showimage()",100);
+	}
+}
+
+function ImgSrc()
+{
+	/* -moz-opacity:"+i_strngth/100+"; -khtml-opacity:"+i_strngth/100+"; */
+	return("<img style=\"filter:alpha(opacity="+i_strngth+"); opacity:"+i_strngth/100+"; \" src=\""+imageurl[i_image]+"\" border=\"0\">");
+}
+		</script>
+	</head>
+	<body bgcolor="#737994" text="#FFFFFF" link="#FFFFFF" topmargin="0" leftmargin="0" onload="showimage()">
+		<div id="mainbod" style="position:absolute; visibility:visible; top:50px; left:360px; "></div>
+		<div id="testimage" style="position:absolute; visibility:visible; top:50px; left:40px; "></div>
+	</body>
+</html>

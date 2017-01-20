@@ -1,0 +1,22 @@
+<html>
+    <head>
+	<script type="text/javascript">
+<!--
+var
+    wc=null;
+    
+function OpenChild()
+{
+    if(!wc)
+	wc=open("child.html");
+}
+// -->
+	</script>
+    </head>
+    <body>
+	<input type="button" value="Open child.html" onclick="OpenChild()"><br>
+	<input type="button" value="Show v in child.html (js-script)" onclick="if(wc) alert(wc.v)"><br>
+	<input type="button" value="Set v in child.html (js)" onclick="if(wc) wc.v='From main.html'"><br>
+	<input type="button" value="SetInputText() in child.html (by js-script)" onclick="if(wc) wc.SetInputText('From main.html')">	
+    </body>
+</html>

@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test DOM IV)</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		parent = document.getElementById("divParent"),
+		child = document.getElementById("divChild");
+
+	if(window.console && console.log)
+	{
+		console.log("HTMLElement.contains = %s", parent.contains ? parent.contains : "undefined");
+		if(parent.contains)
+		{
+			console.log("parent.contains(child) = %s", parent.contains(child));
+			console.log("child.contains(parent) = %s", child.contains(parent));
+		}
+	}
+}
+		</script>
+	</head>
+	<body>
+		<div id="divParent">
+			<div id="divChild">
+				<input type="button" value="DoIt!" onclick="DoIt()" />
+			</div>
+		</div>
+	</body>
+</html>

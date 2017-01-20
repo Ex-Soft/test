@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Test DEFER (M$ IE only)</title>
+		<script type="text/javascript">
+<!--
+var
+	msg="";
+// -->
+		</script>
+		<script type="text/javascript" defer="defer">
+<!--
+msg+="Inline Head Deferred\n";
+// -->
+		</script>
+		<script type="text/javascript">
+<!--
+msg+="Inline Head\n";
+// -->
+		</script>
+		<script type="text/javascript" src="TestDefer1.js" defer="defer"></script>
+		<script type="text/javascript" src="TestDefer2.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript" defer="defer">
+<!--
+msg+="Inline Body Deferred\n";
+// -->
+		</script>
+		<script type="text/javascript">
+<!--
+msg+="Inline Body\n";
+// -->
+		</script>
+		<script type="text/javascript" src="TestDefer3.js" defer="defer"></script>
+		<script type="text/javascript" src="TestDefer4.js"></script>
+		<script type="text/javascript" defer="defer">
+<!--
+alert(document.forms[0].elements.length);
+// -->
+		</script>
+		<form>
+			<input value="Bla">
+			<input type="button" id="btnShow" value="Show" onclick="alert(document.forms[0].elements.length);alert(msg)">
+		</form>
+	</body>
+</html>
+

@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Test Data</title>
+		<script type="text/javascript">
+<!--
+function DoIt(sender)
+{
+	var
+		IsMSIE=document.all;
+
+	alert(sender.parentNode.parentNode.parentNode.parentNode.childNodes[!IsMSIE?1:0].childNodes[!IsMSIE?1:0].childNodes[!IsMSIE?1:0].childNodes[0].data)
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<table id="t">
+			<thead id="th">
+				<tr id="th_tr1">
+					<th id="th_tr1_th1">Data</th>
+				</tr>
+			</thead>
+			<tbody id="tb">
+				<tr id="tb_tr1">
+					<td id="tb_tr1_tr1"><input type="button" value="DoIt!" onclick="DoIt(this)"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

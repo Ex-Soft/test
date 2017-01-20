@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>Test Table DOM</title>
+<script type="text/javascript">
+<!--
+var
+  MaxRow=4,
+  DelButtName="DelButt",
+  DelFuncName="Del",
+  oTBody,
+  InputName,
+  AddNameButt;
+
+function Add()
+{
+   var
+     oRow,
+     oCell,
+     row,
+     tmpStr;
+
+   if(InputName==null || InputName==undefined)
+     InputName=document.getElementById("InputName");
+
+   if(InputName==null || InputName==undefined)
+     alert("InputName==null || InputName==undefined");
+
+   if(InputName.value.length==0)
+     return;
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     AddNameButt=document.getElementById("AddNameButt");
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     alert("AddNameButt==null || AddNameButt==undefined");
+
+   if(oTBody==null || oTBody==undefined)
+     oTBody=document.getElementById("oTBody");
+
+   if(oTBody==null || oTBody==undefined)
+     alert("oTBody==null || oTBody==undefined");
+
+   oRow=document.createElement("TR");
+   if(oRow==null || oRow==undefined)
+     alert("oRow==null || oRow==undefined");
+
+   oTBody.appendChild(oRow);
+
+   row=oTBody.childNodes.length;
+
+   if(row>=MaxRow)
+     AddNameButt.disabled=true;
+
+   oCell=document.createElement("TD");
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr=InputName.value+"<input id=\"InputId"+(row-1)+"\" name=\"InputId"+(row-1)+"\" type=\"hidden\" value=\""+(row-1)+"\">";
+   oCell.innerHTML=tmpStr;
+   oRow.appendChild(oCell);
+
+   oCell=document.createElement("TD");
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\"InputSeria"+(row-1)+"\" name=\"InputSeria"+(row-1)+"\" type=\"text\">";
+   oCell.innerHTML=tmpStr;
+   oRow.appendChild(oCell);
+
+   oCell=document.createElement("TD");
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\"InputNo"+(row-1)+"\" name=\"InputNo"+(row-1)+"\" type=\"text\">";
+   oCell.innerHTML=tmpStr;
+   oRow.appendChild(oCell);
+
+   oCell=document.createElement("TD");
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<input id=\"InputDate"+(row-1)+"\" name=\"InputDate"+(row-1)+"\" type=\"text\">";
+   oCell.innerHTML=tmpStr;
+   oRow.appendChild(oCell);
+
+   oCell=document.createElement("TD");
+   if(oCell==null || oCell==undefined)
+     alert("oCell==null || oCell==undefined");
+   tmpStr="<a href=\"#\" id=\""+DelButtName+(row-1)+"\" name=\""+DelButtName+(row-1)+"\" onclick=\""+DelFuncName+"("+(row-1)+");return(false)\"><img src=\"img\\boks.gif\" border=\"0\" alt=\"Видалити\" title=\"Видалити\"></a>";
+   oCell.innerHTML=tmpStr;
+   oRow.appendChild(oCell);
+}
+
+function FindMarker(aRow,aMarkerName)
+{
+   var
+     Marker=null,
+     Cells=aRow.childNodes,
+     Entry;
+
+   for(var c=0; c<Cells.length; ++c)
+   {
+      Entry=Cells[c].childNodes;
+      for(var e=0; e<Entry.length; ++e)
+      {
+         if(Entry[e].id!=undefined)
+         {
+            if(Entry[e].id.substring(0,aMarkerName.length)==aMarkerName)
+            {
+               Marker=Entry[e];
+               break;
+            }
+         }
+      }
+      if(Marker!=null)
+        break;
+   } 
+
+   return(Marker);
+}
+
+function Del(row)
+{
+   var
+     tmpDelButt;
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     AddNameButt=document.getElementById("AddNameButt");
+
+   if(AddNameButt==null || AddNameButt==undefined)
+     alert("AddNameButt==null || AddNameButt==undefined");
+
+   if(oTBody==null || oTBody==undefined)
+     oTBody=document.getElementById("oTBody");
+
+   if(oTBody==null || oTBody==undefined)
+     alert("oTBody==null || oTBody==undefined");
+
+   oTBody.deleteRow(row);
+   for(var i=row; i<oTBody.childNodes.length; ++i)
+   {
+      tmpDelButt=FindMarker(oTBody.childNodes[i],DelButtName);
+      if(tmpDelButt!=null && tmpDelButt!=undefined)
+        tmpDelButt.onclick=new Function(DelFuncName+"("+i+");return(false)");
+   }
+   AddNameButt.disabled=oTBody.rows.length>=MaxRow;
+}
+// -->
+</script>
+  </head>
+  <body>
+    <h1>Test Table DOM</h1>
+    <hr>
+    <input id="InputName" type="text">&nbsp;<input id="AddNameButt" type="button" value="Add" onclick="Add();"><br>
+    <table ID="oTable" border>
+      <thead>
+        <tr>
+          <th>Col# 1</th>
+          <th>Col# 2</th>
+          <th>Col# 3</th>
+          <th>Col# 4</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody ID="oTBody"></tbody>
+    </table>
+  </body>
+</html>

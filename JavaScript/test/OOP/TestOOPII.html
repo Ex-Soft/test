@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test OOP (II)</title>
+		<script type="text/javascript">
+function A()
+{
+	this.name="name";
+	this.namename="namename"
+}
+
+function ListA()
+{
+	this.list=[];
+}
+ListA.prototype=new A;
+
+function Rectangle(w, h)
+{
+	this.width=w;
+	this.height=h;
+}
+
+Rectangle.prototype.area=function()
+{
+	return this.width*this.height;
+}
+
+function OnLoad()
+{
+	var
+		a=new A(),
+		la=new ListA();
+
+	if(console && console.log)
+		console.log("%s %s", a.name, a.namename);
+
+	var
+		r=new Rectangle(3,4),
+		s;
+
+	s=r.area();
+}
+		</script>
+	</head>
+	<body onload="OnLoad();">
+	</body>
+</html>

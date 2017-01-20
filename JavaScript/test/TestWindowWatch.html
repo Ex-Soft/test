@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<!-- http://abdulapopoola.com/2015/04/17/how-to-watch-variables-in-javascript/ -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test window.watch</title>
+		<script>
+function onLoad()
+{
+	if(window.console && console.clear)
+		console.clear();
+
+	window.val = 2;
+
+	window.watch("val", function(id, old, cur) {
+		if(window.console && console.log) {
+			console.log("Changed property: ", id);
+			console.log("Original val: ", old);
+			console.log("New val: ", cur);
+		}
+	});
+
+	val = 4;
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

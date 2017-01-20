@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Test Processors</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		locator = new ActiveXObject ("WbemScripting.SWbemLocator"),
+		service = locator.ConnectServer("."),
+		properties = service.ExecQuery("SELECT * FROM Win32_Processor"),
+		e = new Enumerator (properties);
+
+	document.write("Test Processors");
+	document.write("<table border=1>");
+	for (;!e.atEnd();e.moveNext ())
+	{
+		var
+			p = e.item ();
+
+		document.write("<tr>");
+		document.write("<td>" + p.Caption + "</td>");
+		document.write("<td>" + p.DeviceID + "</td>");
+		document.write("<td>" + p.Name + "</td>");
+		document.write("<td>" + p.CpuStatus + "</td>");
+		document.write("<td>" + p.Availability + "</td>");
+		document.write("<td>" + p.Level + "</td>");
+		document.write("<td>" + p.ProcessorID + "</td>");
+		document.write("<td>" + p.SystemName + "</td>");
+		document.write("<td>" + p.ProcessorType + "</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+		</script>
+	</head>
+	<body>
+		<input id="Button1" type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

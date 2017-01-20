@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test location.hash</title>
+		<script>
+function onLoad()
+{
+	if(window.console && console.log)
+		console.log("onLoad");
+}
+
+function onHashChange()
+{
+	if(window.console && console.log)
+		console.log("onHashChange");
+}
+		</script>
+	</head>
+	<body onload="onLoad()" onhashchange="onHashChange()">
+		<input type="button" value="hash1" onclick="window.location.hash='aaa'" />
+		<input type="button" value="hash2" onclick="window.location.hash='bbb'" />
+		<input type="button" value="hash3" onclick="window.location.hash='ccc'" />
+		<br>
+		<input type="button" value="href1" onclick="window.location.href='http://localhost/JavaScript/test/location/TestHash.html#aaa'" />
+		<input type="button" value="href2" onclick="window.location.href='http://localhost/JavaScript/test/location/TestHash.html#bbb'" />
+		<input type="button" value="href3" onclick="window.location.href='http://localhost/JavaScript/test/location/TestHash.html#ccc'" />
+	</body>
+</html>

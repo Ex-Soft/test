@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test IndexedDB</title>
+		<!-- <script charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1a-gpl/ext-all-debug.js"></script> -->
+		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("TestModel", {
+	extend: "Ext.data.Model",
+	idProperty: "id",
+	fields: [
+		{ name: "id", type: "int" },
+		{ name: "fdate1", type: "date", dateFormat: "c", useNull: true },
+		{ name: "fdate2", type: "date", dateFormat: "c", useNull: true },
+		{ name: "fdate3", type: "date", dateFormat: "c", useNull: true },
+		{ name: "fdate4", type: "date", dateFormat: "c", useNull: true },
+		{ name: "fdate5", type: "date", dateFormat: "c", useNull: true }
+	]
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		indexedDB=null,
+		dbName="TestIndexedDB",
+		dbVersion=1;
+
+	if(!(indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB))
+	{
+		if(window.console && console.info)
+			console.info("!indexedDB");
+
+		return;
+	}
+
+	if(window.webkitIndexedDB)
+	{
+		if(!window.IDBTransaction)
+			window.IDBTransaction = window.webkitIDBTransaction;
+
+		if(!window.IDBKeyRange)
+			window.IDBKeyRange = window.webkitIDBKeyRange;
+	}
+
+	var
+		openDBRequest = indexedDB.open(dbName, dbVersion);
+
+	loadStore();
+
+	openDBRequest.onsuccess=function(event){
+		if(window.console && console.log)
+			console.log("IDBOpenDBRequest.onsuccess(%o)", arguments);
+	};
+
+	openDBRequest.onupgradeneeded=function(event){
+		if(window.console && console.log)
+			console.log("IDBOpenDBRequest.onupgradeneeded(%o)", arguments);
+	};
+
+	openDBRequest.onerror=function(event){
+		if(window.console && console.log)
+			console.log("IDBOpenDBRequest.onerror(%o)", arguments);
+	};
+
+	openDBRequest.onblocked=function(event){
+		if(window.console && console.log)
+			console.log("IDBOpenDBRequest.onblocked(%o)", arguments);
+	};
+});
+
+function loadStore() {
+	var
+		store = new Ext.data.Store({
+			model: "TestModel"
+		}),
+		logName = "loadData";
+
+	if(window.console && console.time)
+		console.time(logName);
+
+	store.loadData(createData(50000));
+
+	if(window.console && console.timeEnd)
+		console.timeEnd(logName);
+}
+
+function createData(max) {
+	var
+		data = [];
+
+	for(var i=0; i<max; ++i)
+		data.push([ i, Ext.Date.format(new Date(), "c"), Ext.Date.format(new Date(), "c"), Ext.Date.format(new Date(), "c"), Ext.Date.format(new Date(), "c"), Ext.Date.format(new Date(), "c") ]);
+
+	return data;
+}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test ComboBox IV</title>
+	</head>
+	<body>
+		<select id="ComboBox1" onmouseover="document.getElementById('Span1').innerHTML=this.value+' '+this.options[this.selectedIndex].text+' '+this.options[this.selectedIndex].label">
+			<option value="1">1st</option>
+			<option value="2">2nd</option>
+			<option value="3">3rd</option>
+			<option value="4">4th</option>
+		</select>
+		<span id="Span1"></span>
+	</body>
+</html>

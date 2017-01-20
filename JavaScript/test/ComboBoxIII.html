@@ -1,0 +1,40 @@
+﻿<html>
+	<head>
+		<title>Test ComboBox III</title>
+		<script type="text/javascript">
+<!--
+function Create()
+{
+	var
+		CtrlSrc,
+		CtrlDest,
+		lst=["1","2","3","4","5"];
+
+	if(!(CtrlSrc=document.getElementById("ComboBoxParent"))
+		|| !(CtrlDest=document.getElementById("ComboBoxChild1")))
+		return;
+
+	for(var i=0; i<lst.length; ++i)
+		CtrlDest.options.add(new Option(lst[i],lst[i]+lst[i],false,false),i);
+
+	if(CtrlDest=CtrlSrc.cloneNode(true))
+	{
+		CtrlDest.id="ComboBoxChild2";
+		document.body.appendChild(CtrlDest);
+	}
+	/* CtrlDest.options=CtrlSrc.options; */
+}
+// -->
+		</script>
+	</head>
+	<body onload="Create()">
+		<select id="ComboBoxParent">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+		</select>
+		<select id="ComboBoxChild1"></select>
+	</body>
+</html>

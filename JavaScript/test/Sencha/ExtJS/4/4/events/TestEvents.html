@@ -1,0 +1,120 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Events</title>
+		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("Bus", {
+	extend: "Ext.util.Observable",
+
+	constructor: function(config) {
+		this.addEvents({
+			"TestEvent1" : true,
+			"TestEvent2" : true,
+			"TestEvent3" : true
+		});
+
+		this.listeners = config.listeners;
+		this.callParent(arguments);
+
+		return this;
+	}
+});
+
+Ext.define("TestObject", {
+	name: "undefined",
+	
+	config: {
+		name: "undefinedundefined"
+	},
+
+	constructor: function(config) {
+		this.initConfig(config);
+
+		return this;
+	},
+
+	onTestEvent: function(param) {
+		if(window.console && console.log)
+			console.log("%s.onTestEvent(%o)", this.name, param);
+	}
+});
+
+Ext.define("TestObjectWithObservable", {
+	mixins: {
+		observable: "Ext.util.Observable"
+	},
+
+	name: "undefined",
+	
+	config: {
+		name: "undefinedundefined"
+	},
+
+	constructor: function(config) {
+		this.mixins.observable.constructor.call(this);
+
+		this.initConfig(config);
+		this.addEvents("TestEvent1Ex");
+		this.addEvents({
+			"TestEvent2Ex" : true,
+			"TestEvent3Ex" : true
+		});
+		this.addListener("TestEvent1Ex", this.onTestEventEx, this);
+		this.addListener("TestEvent2Ex", this.onTestEventEx, this);
+		this.addListener("TestEvent3Ex", this.onTestEventEx, this);
+
+		return this;
+	},
+
+	onTestEventEx: function(param) {
+		if(window.console && console.log)
+			console.log("%s.onTestEventEx(%o)", this.name, param);
+
+		if(param.eventName === "TestEvent1Ex")
+			this.removeListener("TestEvent1Ex", arguments.callee, this);
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		bus = Ext.create("Bus", {}),
+		o1 = Ext.create("TestObject", { name: "TestObject1" }),
+		o2 = Ext.create("TestObject", { name: "TestObject2" }),
+		oo1 = Ext.create("TestObjectWithObservable", { name: "TestObjectWithObservable1" }),
+		oo2 = Ext.create("TestObjectWithObservable", { name: "TestObjectWithObservable2" });
+
+	bus.addListener("TestEvent1", o1.onTestEvent, o1);
+	bus.addListener("TestEvent2", o2.onTestEvent, o2);
+	bus.addListener("TestEvent3", o1.onTestEvent, o1);
+	bus.addListener("TestEvent3", o2.onTestEvent, o2);
+
+	bus.fireEvent("TestEvent1", { eventName: "TestEvent1" });
+	bus.fireEvent("TestEvent2", { eventName: "TestEvent2" });
+	bus.fireEvent("TestEvent3", { eventName: "TestEvent3" });
+	
+	oo1.fireEvent("TestEvent1Ex", { eventName: "TestEvent1Ex" });
+	oo1.fireEvent("TestEvent2Ex", { eventName: "TestEvent2Ex" });
+	oo1.fireEvent("TestEvent3Ex", { eventName: "TestEvent3Ex" });
+	oo2.fireEvent("TestEvent1Ex", { eventName: "TestEvent1Ex" });
+
+	oo1.fireEvent("TestEvent1Ex", { eventName: "TestEvent1Ex" });
+	oo2.fireEvent("TestEvent1Ex", { eventName: "TestEvent1Ex" });
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

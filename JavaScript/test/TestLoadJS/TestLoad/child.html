@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>Test load JS (child)</title>
+		<script type="text/javascript" id="ChildsScript">
+<!--
+function DoIt()
+{
+	if(!("F1inJS1" in this))
+	{
+		alert("!(\"F1inJS1\" in this)");
+		return;
+	}
+
+	F1inJS1();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btnDoIt" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

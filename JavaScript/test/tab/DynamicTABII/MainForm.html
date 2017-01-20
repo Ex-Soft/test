@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+	<head>
+		<title>Test Dynamic TAB</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<link href="../../../js/tab.winclassic.css" rel="stylesheet" type="text/css">
+		<script src="../../../js/tabpane.js" type="text/javascript"></script>
+		<script type="text/javascript">
+<!--
+function SetSrc()
+{
+	var
+		IFrm,
+		Ctrl,
+		TABNo,
+		IFrameId,
+		SelectBefore;
+
+	if(!(Ctrl=document.getElementById("InputTABNo"))
+		|| isNaN(TABNo=parseInt(Ctrl.value,10))
+		|| TABNo<0
+		|| TABNo>=tp.pages.length)
+		return;
+
+	if(!(Ctrl=document.getElementById("InputIFrameName")))
+		return;
+	IFrameId=Ctrl.value.replace(/\s/g,"");
+	if(!IFrameId.length)
+		return;
+
+	if(!(Ctrl=document.getElementById("RadioBefore")))
+		return;
+
+	if(SelectBefore=Ctrl.checked)
+		tp.pages[TABNo].select();
+
+	if((IFrm=document.getElementById(IFrameId))
+		&& (Ctrl=document.getElementById("InputIFrameSrc")))
+		IFrm.src=Ctrl.value;
+
+	if(IFrm
+		&& (Ctrl=document.getElementById("SpanIFrameSrc")))
+		Ctrl.innerHTML=IFrm.src;
+
+	if(!SelectBefore)
+		tp.pages[TABNo].select();
+}
+
+function getArgs()
+{
+	var
+		args=new Object(),
+		query=location.search.substring(1),
+		pairs=query.split(","),
+		pos,
+		argname,
+		value;
+
+	for(var i=0; i<pairs.length; ++i)
+	{
+		pos=pairs[i].indexOf("=");
+		if(pos==-1)
+			continue;
+		argname=pairs[i].substring(0,pos);
+		value=pairs[i].substring(pos+1);
+		args[argname.toLowerCase()]=unescape(value);
+		//args[argname]=decodeURIComponent(value);
+	}
+
+	return(args);
+}
+
+function OnLoad()
+{
+	var
+		args=getArgs(),
+		TABNo;
+
+	if(args.tabno)
+		TABNo=parseInt(args.tabno);
+
+	if(!TABNo || isNaN(TABNo) || TABNo<0)
+		TABNo=0;
+
+	if(TABNo>=tp.pages.length)
+		TABNo=tp.pages.length-1;
+
+	tp.pages[TABNo].select();
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<form>
+			TAB#&nbsp;<input type="text" id="InputTABNo" name="InputTABNo" value="2"><br>
+			IFrame.name&nbsp;<input type="text" id="InputIFrameName" name="InputIFrameName" value="IFrame2"><br>
+			IFrame.src&nbsp;<input type="text" id="InputIFrameSrc" name="InputIFrameSrc" value="IFrame2.html"><br>
+			TAB.select()&nbsp<input type="radio" id="RadioBefore" name="TABSelectType" value="before" checked>Before&nbsp;<input type="radio" id="RadioAfter" name="TABSelectType" value="after">After<br>
+			<input type="button" id="btnSet" value="Set" onclick="SetSrc()"><br>
+			IFrame.src=<span id="SpanIFrameSrc" name="SpanIFrameSrc"></span><br>
+			<div class="tab-pane" id="tabPanel">
+<script type="text/javascript">
+<!--
+tp=new WebFXTabPane(document.getElementById("tabPanel"));
+// -->
+</script>
+				<div class="tab-page" id="tabPage0">
+					<h2 class="tab">TAB# 0</h2>
+					<iframe id="IFrame0" name="IFrame0"></iframe>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage0"));
+// -->
+</script>
+				</div>
+				<div class="tab-page" id="tabPage1">
+					<h2 class="tab">TAB# 1</h2>
+					<iframe id="IFrame1" name="IFrame1"></iframe>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage1"));
+// -->
+</script>
+				</div>
+				<div class="tab-page" id="tabPage2">
+					<h2 class="tab">TAB# 2</h2>
+					<iframe id="IFrame2" name="IFrame2"></iframe>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage2"));
+// -->
+</script>
+				</div>
+				<div class="tab-page" id="tabPage3">
+					<h2 class="tab">TAB# 3</h2>
+					<iframe id="IFrame3" name="IFrame3" src="IFrame3.html" style="display: block; visibility: visible; "></iframe>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage3"));
+// -->
+</script>
+				</div>
+
+<script type="text/javascript">
+<!--
+setupAllTabs();
+// -->
+</script>
+			</div>
+		</form>
+	</body>
+</html>

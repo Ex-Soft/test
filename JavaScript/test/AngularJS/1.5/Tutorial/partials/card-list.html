@@ -1,0 +1,22 @@
+<div>
+	<div>
+		<div>
+			Search: <input ng-model="query">
+			Sort by:
+			<select ng-model="orderProp">
+				<option value="field1">field# 1</option>
+				<option value="field2">field# 2</option>
+			</select>
+		</div>
+		<div>
+			<ul>
+				<li ng-repeat="item in data | filter:query | orderBy:orderProp">
+					<a href="#/cards/{{item.id}}"><img ng-src="{{item.url}}" alt="{{item.name}}"></a>
+					<a href="#/cards/{{item.id}}">{{item.name}}</a>
+					<span>{{item.field1}}</span>
+					<p>{{item.field2}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

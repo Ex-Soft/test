@@ -1,0 +1,150 @@
+<html>
+ <head>
+  <title>Object Model Table Sample</title>
+ </head>
+ <body>
+   <!-- Placeholder for the table -->
+   <DIV ID="oTableContainer"></DIV>
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      if(field=="makeObjectTable")
+        continue;
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+// Declare variables and create the header, footer, and caption.
+var oTableContainer=document.getElementById("oTableContainer");
+var oTable = document.createElement("TABLE");
+var oTHead = document.createElement("THEAD");
+var oTBody0 = document.createElement("TBODY");
+var oTBody1 = document.createElement("TBODY");
+var oTFoot = document.createElement("TFOOT");
+var oCaption = document.createElement("CAPTION");
+var oRow, oCell;
+var i, j;
+
+// Insert the table into the document tree.
+oTableContainer.appendChild(oTable);
+
+// Set the table's border width and colors.
+oTable.border=1;
+oTable.bgColor="lightslategray";
+
+// Insert the created elements into oTable.
+oTable.appendChild(oTHead);
+oTable.appendChild(oTBody0);
+oTable.appendChild(oTBody1);
+oTable.appendChild(oTFoot);
+
+// Set the innerText of the caption and position it at the bottom of the table.
+oCaption.innerHTML = "Created using Document Object Model.";
+oCaption.style.fontSize = "10";
+oCaption.align = "bottom";
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//                         Especially 4 Mozilla
+oTable.appendChild(oCaption);
+
+// Insert a row into the header and set its background color.
+oRow = document.createElement("TR");
+oTHead.appendChild(oRow);
+oTHead.bgColor = "lightskyblue"; // ! in Mozilla
+
+// Declare stock data that would normally be imported from a stock Web site.
+var heading = new Array();
+
+heading[0] = "Stock symbol";
+heading[1] = "High";
+heading[2] = "Low";
+heading[3] = "Close";
+
+// Create and insert cells into the header row.
+for (i=0; i<4; i++)
+{
+  oCell = document.createElement("TH");
+  oCell.innerHTML = heading[i];
+  oCell.bgColor = "lightskyblue";  // Especially 4 Mozilla
+  oRow.appendChild(oCell);
+}
+
+var stock = new Array();
+
+stock["0,0"] = "ABCD";
+stock["0,1"] = "88.625";
+stock["0,2"] = "85.50";
+stock["0,3"] = "85.81";
+
+stock["1,0"] = "EFGH";
+stock["1,1"] = "102.75";
+stock["1,2"] = "97.50";
+stock["1,3"] = "100.063";
+
+stock["2,0"] = "IJKL";
+stock["2,1"] = "56.125";
+stock["2,2"] = "54.50";
+stock["2,3"] = "55.688";
+
+stock["3,0"] = "MNOP";
+stock["3,1"] = "71.75";
+stock["3,2"] = "69.00";
+stock["3,3"] = "69.00";
+
+// Create and insert rows and cells into the first body.
+for (i=0; i<2; i++)
+{
+  oRow = document.createElement("TR");
+  oTBody0.appendChild(oRow);
+
+  for (j=0; j<4; j++)
+  {
+    oCell = document.createElement("TD");
+    oCell.innerHTML = stock[i + "," + j];
+    oCell.bgColor = "lemonchiffon"; // Especially 4 Mozilla
+    oRow.appendChild(oCell);
+  }
+}
+
+// Set the background color of the first body.
+oTBody0.bgColor = "lemonchiffon"; // ! in Mozilla
+
+// Create and insert rows and cells into the second body.
+for (i=2; i<4; i++)
+{
+  oRow = document.createElement("TR");
+  oTBody1.appendChild(oRow);
+
+  for (j=0; j<4; j++)
+  {
+    oCell = document.createElement("TD");
+    oCell.innerHTML = stock[i + "," + j];
+    oCell.bgColor = "goldenrod"; // Especially 4 Mozilla
+    oRow.appendChild(oCell);
+  }
+}
+
+// Set the background color of the second body.
+oTBody1.bgColor = "goldenrod"; // ! in Mozilla
+
+// Create and insert rows and cells into the footer row.
+oRow = document.createElement("TR");
+oTFoot.appendChild(oRow);
+oCell = document.createElement("TD");
+oRow.appendChild(oCell);
+oCell.innerHTML = "Quotes are for example only.";
+oCell.colSpan = "4";
+oCell.bgColor = "lightskyblue";
+// -->
+</SCRIPT>
+ </body>
+</html>

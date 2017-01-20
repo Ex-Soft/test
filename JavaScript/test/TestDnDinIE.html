@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>IVBDataObject Demo</title>
+
+<style type="text/css">
+fieldset{
+text-align:center;
+padding:2em
+}
+object{
+width:3em;height:3em;
+border:6px double activecaption;
+vertical-align:middle
+}
+textarea{
+width:60%;margin-top:1em;
+word-wrap:normal;
+vertical-align:middle
+}
+</style>
+
+</head>
+<body>
+
+<fieldset>
+<legend><strong>Drop File(s) » </strong>
+
+<object id="IAnimation" 
+classid="clsid:B09DE715-87C1-11D1-8BE3-0000F8754DA1">
+<param name="OleDropMode" value="1">
+</object>
+
+&nbsp;</legend>
+<label><em>output: </em></label>
+<textarea id="output" cols="100" rows="10"></textarea>
+</fieldset>
+
+
+<script type="text/JScript">
+
+function IAnimation::OLEDragDrop(Data){
+if(Data.GetFormat(15)){
+var O = "";
+var e = new Enumerator(Data.Files);
+while(!e.atEnd()){ alert(e.item());
+O += e.item() + "\n";
+e.moveNext();
+}
+output.value = O;
+BackColor=0x80000003;}
+}
+
+
+// Just for visual feedback...
+
+function IAnimation::OLEDragOver(Data, _, _, _, _, _, State){
+if (State == 0){
+if(Data.GetFormat(15)){Backcolor = 0x80000002;}
+}
+if(State == 1){Backcolor = 0x80000003;}
+}
+
+function window::onload(){
+IAnimation.BackColor=0x80000003;
+}
+</script>
+</body>
+</html>

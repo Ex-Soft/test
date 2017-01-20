@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <title>Test Download</title>
+<script type="text/javascript">
+<!--
+function DoDownload()
+{
+   var
+     Url=null,
+     To=null,
+     xmlHTTP=null,
+     contents=null,
+     oStr=null;
+
+   if(!(Url=document.getElementById("Url")))
+     return;
+   if(!(To=document.getElementById("DownloadTo")))
+     return;
+
+   Url=Url.value.replace(/\s/g,"");
+   To=To.value.replace(/\s/g,"");
+
+   if(!Url.length || !To.length)
+     return;
+
+   if(!(xmlHTTP=new ActiveXObject("Microsoft.XMLHTTP")))
+   {
+      alert("!Microsoft.XMLHTTP");
+      return;
+   }
+   else
+   {
+      xmlHTTP.open("GET",Url,false);
+      xmlHTTP.Send();
+
+      document.getElementById("_Content_Length_").value=xmlHTTP.getResponseHeader("Content-Length");
+      document.getElementById("_Location_").value="\""+xmlHTTP.getResponseHeader("Location")+"\"";
+      document.getElementById("_Server_").value="\""+xmlHTTP.getResponseHeader("Server")+"\"";
+      document.getElementById("_readyState_").value=xmlHTTP.readyState;
+      document.getElementById("_status_").value=xmlHTTP.status;
+      document.getElementById("_statusText_").value=xmlHTTP.statusText;
+
+      if((contents=xmlHTTP.responseBody)==null)
+      {
+         alert("!xmlHTTP.responseBody");
+         return;
+      }
+      else
+      {
+         if(!(oStr=new ActiveXObject("ADODB.Stream")))
+         {
+            alert("!ADODB.Stream");
+            return;
+         }
+         else
+         {
+            oStr.Mode=3; // adModeReadWrite
+            oStr.Type=1; // adTypeBinary
+            oStr.Open();
+            oStr.Write(contents);
+            oStr.SaveToFile(To,2 /* adSaveCreateOverwrite */);
+            alert("Download complete!!!");
+         }
+      }
+   }
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form>
+      <table border="1" width="100%">
+        <tr>
+          <td width="25%">URL: (http://...)</td>
+          <td><input type="text" id="Url" name="Url" style="WIDTH: 100%; "></td>
+        </tr>
+        <tr>
+          <td>DownloadTo: (c:\...)</td>
+          <td><input type="text" id="DownloadTo" name="DownloadTo" style="WIDTH: 100%; "></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="button" id="btnDownload" name="btnDownload" value="Download" onclick="DoDownload()" style="WIDTH: 100%; "></td>
+        </tr>
+        <tr>
+          <td>Content-Length:
+          <td><input type="text" id="_Content_Length_" name="_Content_Length_" readonly style="WIDTH: 100%; ">
+        </tr>
+        <tr>
+          <td>Location:
+          <td><input type="text" id="_Location_" name="_Location_" readonly style="WIDTH: 100%; ">
+        </tr>
+        <tr>
+          <td>Server:
+          <td><input type="text" id="_Server_" name="_Server_" readonly style="WIDTH: 100%; ">
+        </tr>
+        <tr>
+          <td>readyState:
+          <td><input type="text" id="_readyState_" name="_readyState_" readonly style="WIDTH: 100%; ">
+        </tr>
+        <tr>
+          <td>status:
+          <td><input type="text" id="_status_" name="_status_" readonly style="WIDTH: 100%; ">
+        </tr>
+        <tr>
+          <td>statusText:
+          <td><input type="text" id="_statusText_" name="_statusText_" readonly style="WIDTH: 100%; ">
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

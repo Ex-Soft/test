@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>&laquo;Test Namespace&raquo;</title>
+		<script type="text/javascript" charset="utf-8" src="TestNamespace.js"></script>
+		<script type="text/javascript" charset="utf-8" src="ClassI/ClassI.js"></script>
+		<script type="text/javascript" charset="utf-8" src="ClassII/ClassII.js"></script>
+		<script type="text/javascript">
+function DoIt()
+{
+	TestNamespace.ClassI.MethodI();
+	TestNamespace.ClassI.MethodII();
+
+	var
+		o1=new TestNamespace.ClassII("o11", "o12"),
+		o2=new TestNamespace.ClassII("o21", "o22");
+
+	o1.MethodI();
+	o1.MethodII();
+	o2.MethodI();
+	o2.MethodII();
+
+	if(window.console && console.log)
+	{
+		console.log("%s", o1.SmthConst);
+		console.log("%s", o2.SmthConst);
+	}
+	
+	o1.propertyI+=o1.propertyI;
+	o1.propertyII+=o1.propertyII;
+	o2.propertyI+=o2.propertyI;
+	o2.propertyII+=o2.propertyII;
+
+	o1.MethodI();
+	o1.MethodII();
+	o2.MethodI();
+	o2.MethodII();
+	
+	o1.SmthConst="o1.SmthConst";
+	if(window.console && console.log)
+	{
+		console.log("%s", o1.SmthConst);
+		console.log("%s", o2.SmthConst);
+	}
+}
+		</script>
+	</head>
+	<body onload="DoIt()">
+	</body>
+</html>

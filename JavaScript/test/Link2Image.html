@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Test anchors</title>
+<script type="text/javascript">
+<!--
+var
+  CurrentState=false;
+
+function OnMouse(IsShowImg)
+{
+   if(CurrentState!=IsShowImg)
+   {
+      CurrentState=IsShowImg;
+
+      var
+        CtrlImg=document.getElementById("divImg"),
+        StyleDisplayImg = IsShowImg ? "block" : "none",
+        CtrlTxt=document.getElementById("divTxt"),
+        StyleDisplayTxt = IsShowImg ? "none" : "block";
+
+        CtrlImg.style.display=StyleDisplayImg;
+        CtrlTxt.style.display=StyleDisplayTxt;
+
+	//window.defaultStatus=CurrentState;
+	window.status=CurrentState;
+   }
+}
+// -->
+</script>
+  </head>
+<body>
+  <a href="#" onmouseover="OnMouse(true)" onmouseout="OnMouse(false)"><div id="divImg" name="divImg" style="DISPLAY: none; "><img id="Img" name="Img" src="./pix/sm10_eyes.gif" border=0></div><div id="divTxt" name="divTxt" style="DISPLAY: block; ">LINK</div></a>
+</body>
+<html>

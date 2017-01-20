@@ -1,0 +1,348 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <title>Any Test</title>
+<script type="text/javascript">
+<!--
+function DoIt()
+{
+   var
+     _Array_,
+     a=3,
+     b,
+     start,
+     stop;
+
+   b=a*4&0x04; alert(b);
+   b="     ";
+   b=b.replace(/\s/g,"");
+   start = !b.length ? "!" : "";
+   alert(start+"b.length");
+
+   b="98123456.7";
+   start=parseFloat(b);
+   alert(start);
+   //start=(Math.round(start*100))/100;
+   alert(start);
+   b=start.toString();
+   if(b.indexOf(".")==-1)
+     b+=",00";
+   else
+   {
+      if(b.indexOf(".")==b.length-1)
+        b+="00";
+      else if(b.indexOf(".")==b.length-2)
+        b+="0";
+   }
+   if(b.indexOf(".") > 3)
+     b=b.substring(0,b.indexOf(".")-3)+" "+b.substring(b.indexOf(".")-3,b.length);
+   alert(b);
+
+   b='asdf\'gfh';
+   alert("b='"+b+"'");
+   alert("b[4]='"+b[4]+"'");
+   alert("b.substr(4,1)='"+b.substr(4,1)+"'");
+   alert("b.substring(4,5)='"+b.substring(4,5)+"'");
+   alert("b.charAt(4)='"+b.charAt(4)+"'");
+   b='КПК "Об\'ява"';
+   alert(b);
+
+   start=new Date();
+   RealyDelay(5000);
+   stop=new Date();
+
+   alert(start);
+   alert(stop);
+   alert(stop-start);
+
+   b=a.toString();
+   alert(typeof(a));
+   alert(typeof(b));
+
+   b="   123   ";
+   alert(b.replace(/\s/g,"").length);
+
+   _Array_=CreateArraySumDiv(20,4);
+   if(_Array_ instanceof Array)
+   {
+      for(var i=0; i<_Array_.length; ++i)
+         alert("["+i+"]="+_Array_[i]);
+
+      //_Array_.splice(0,1);
+      //for(var i=0; i<_Array_.length; ++i)
+      //   alert("["+i+"]="+_Array_[i]);
+
+      _Array_.splice(0,_Array_.length-1);
+      for(var i=0; i<_Array_.length; ++i)
+         alert("["+i+"]="+_Array_[i]);
+   }
+
+   b=document.getElementById("Div1");
+   a=document.createElement("input");
+   a.setAttribute("type","text");
+   a.setAttribute("name","TextDynamic");
+   a.setAttribute("id","TextDynamic");
+   b.appendChild(a);
+   b=document.getElementById("TextDynamic");
+   b.value="TextDynamic";
+}
+
+function RealyDelay(mSec)
+{
+   var
+     start=new Date(),
+     stop;
+
+   do
+   {
+      stop=new Date();
+   }while(stop.getTime()-start.getTime()<mSec);
+}
+
+function CreateArraySumDiv(aSum, aCount)
+{
+	var
+		outArray=new Array(aCount),
+		tmpS=RoundTo(aSum/aCount,-2),
+		i=0;
+
+	for(var i=0; i<outArray.length; ++i)
+	{
+		outArray[i] = i!=outArray.length-1 ? tmpS : RoundTo(aSum,-2) ;
+		aSum-=tmpS;
+	}
+
+	return(outArray)
+}
+
+function RoundTo(aValue, aDigit)
+{
+   var
+     LFactor = arguments.length>=2 ? Math.pow(10,-aDigit) : 1,
+     tmpInt;
+
+   aValue*=LFactor;
+   tmpInt = aValue<0 ? aValue-0.5 : aValue+0.5;
+   tmpInt=Math.floor(tmpInt);
+
+   return(tmpInt/LFactor);
+}
+
+function OnLoad()
+{
+   var
+     Ctrl;
+
+   if(Ctrl=document.getElementById("BodyId"))
+     alert("<BODY> - Yes!!!");
+   else
+     alert("<BODY> - No!!!");
+
+   TableBody("TestTable");
+}
+
+function CopyToP()
+{
+	var
+		Ctrl,
+		tmpStr;
+
+	if(!(Ctrl=document.getElementById("InputText1")))
+		return;
+
+	tmpStr=Ctrl.value;
+
+	if(!(Ctrl=document.getElementById("InputText1P")))
+		return;
+
+	Ctrl.innerHTML=tmpStr;
+}
+
+function TableBody(id)
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById(id))
+	{
+		alert(Ctrl.rows.length);
+		Ctrl=Ctrl.getElementsByTagName("tbody");
+		alert(Ctrl.length);
+		alert(Ctrl[0].nodeName);
+	}
+}
+
+function TestInvalidDate()
+{
+	var
+		tmpDate=new Date(2007,1,29);
+
+	alert(tmpDate);
+	alert(tmpDate.getFullYear());
+}
+
+function TestFor()
+{
+	var
+		i,
+		_max_=10,
+		tmpStr;
+
+	tmpStr="";
+	for(i=0; i<_max_; ++i)
+		tmpStr+=i+" ";
+	alert(tmpStr);
+
+	tmpStr="";
+	for(i=0; i<_max_; i++)
+		tmpStr+=i+" ";
+	alert(tmpStr);
+
+	tmpStr="";
+	for(i=0; (++i)<_max_; )
+		tmpStr+=i+" ";
+	alert(tmpStr);
+
+	tmpStr="";
+	for(i=0; (i++)<_max_; )
+		tmpStr+=i+" ";
+	alert(tmpStr);
+}
+
+function OnSubmit(e)
+{
+	alert('onsubmit');
+	if(e.srcElement)
+		alert(e.srcElement);
+	if(e.target)
+		alert(e.target);
+	if(e.currentTarget)
+		alert(e.currentTarget);
+}
+
+function CheckBoxTernaryClick()
+{
+	var
+		Ctrl,
+		dn=new Date(),
+		d1,
+		d2,
+		d3,
+		d4;
+
+	document.getElementById("InputTextTernary").disabled=(Ctrl=document.getElementById("CheckBoxTernary")).checked;
+	Ctrl.value = Ctrl.checked ? "CheckBoxTernaryClick()" : (Ctrl=document.getElementById("InputTextTernary")).value;
+	d4 = (d1=new Date()) < dn ? d2=new Date() : d3=new Date();
+	alert("dn="+dn.getTime());
+	alert("d1="+d1.getTime());
+	alert("d2="+d2.getTime());
+	alert("d3="+d3.getTime());
+	alert("d4="+d4.getTime());
+}
+// -->
+</script>
+  </head>
+  <body id="BodyId" onload="OnLoad()">
+    <form onsubmit="OnSubmit(event)">
+	<input type="button" id="btnDoIt" name="btnDoIt" value="DoIt!" onclick="DoIt()">
+	<input type="checkbox" id="CheckBox1" name="CheckBox1" checked>&nbsp;CheckBox
+	<div id="Div1">
+		<input type="text" id="Div1Text1">
+		<input type="text" id="Div1Text2">
+	</div>
+        <table border="1">
+		<tr onclick="alert('<tr>')">
+			<td>&nbsp;</td>
+			<td><input type="button" id="btnInRow1" value="DoIt!" onclick="alert('<td></td>'); event.stopPropagation ? event.stopPropagation() : event.cancelBubble=true"></td>
+			<td><input type="button" id="btnInRow2" value="DoIt!" OnClick="alert('<td></td>');if(event){if('cancelBubble' in event)event.cancelBubble=true;else alert('!event.cancelBubble');if(event.stopPropagation)event.stopPropagation()}"></td>
+		</tr>
+	</table>
+	<table border="1">
+		<tr>
+			<td><input type="text" onkeyup="document.getElementById('LabelSpan').innerHTML=this.value"></td>
+			<td><span id="LabelSpan" /></td>
+		</tr>
+	</table>
+	<table id="TestTable" border="1">
+		<tr>
+			<td><input type="text" id="InputText1"></td>
+			<td><input type="button" id="btnInputText1" value=" -> " onclick="CopyToP()"></td>
+			<td><p id="InputText1P"></p></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="button" id="btnTestInvalidDate" value=" new Date(invalid) " onclick="TestInvalidDate()"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="button" id="btnTestFor" value="TestFor" onclick="TestFor()"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="button" id="btnTestPrint" value="TestPrint" onclick="print()"></td>
+		</tr>
+	</table>
+	<table border="1">
+		<tr>
+			<td><input type="checkbox" id="TestCheckBoxOk">&nbsp;CheckBox <u>with</u> <b><font color=red>id</font></b></td>
+			<td><input type="checkbox" name="TestCheckBoxBad">&nbsp;CheckBox <u>without</u> <b><font color=red>id</font></b></td>
+		</tr>
+		<tr>
+			<td><input type="button" id="btnTestCheckBoxOk" value="Test" onclick="document.getElementById('TestCheckBoxOk').checked=true"></td>
+			<td><input type="button" id="btnTestCheckBoxBad" value="Test" onclick="document.getElementById('TestCheckBoxBad').checked=true"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="submit" id="btnSubmit" value="Submit" onclick="alert('btnSubmit')"></td>
+		</tr>
+	</table>
+	<table border="1">
+		<tr>
+			<td><input type="checkbox" id="CheckBoxTernary" onclick="CheckBoxTernaryClick()">CheckBoxTernary</td>
+			<td><input type="text" id="InputTextTernary" value="InputTextTernary"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="button" id="btnWithQuot" value="Quot" onclick="alert(&quot;btn\&quot;Quot&quot;)"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="button" id="btnPrompt" value="ShowPrompt" onclick="prompt('Line# 1\r\nLine# 2\r\nLine# 3')"></td>
+		</tr>
+	</table>
+	<table border="1" onclick="this.style.border='2px solid yellow'">
+		<tr onclick="this.style.border='2px solid blue'">
+			<td onclick="this.style.border='2px solid red'">&nbsp;</td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="button" id="btnCharset" value="Show Charset" onclick="if(document.inputEncoding) alert(document.inputEncoding); else alert(document.charset);"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td><input type="radio" id="Radio1" name="RadioTest" value="Radio1">Radio1</td>
+			<td><input type="radio" id="Radio2" name="RadioTest" value="Radio1">Radio2</td>
+			<td><input type="radio" id="Radio3" name="RadioTest" value="Radio3">Radio3</td>
+			<td><input type="text" onkeyup="document.getElementById('Radio3').checked=this.value.length"></td>
+		</tr>
+	</table>
+	<table border="0">
+		<tr>
+			<td id="someId" onclick="alert(document.getElementById('someId').innerHTML)">
+				here comes some text
+			</td>
+		</tr>
+	</table>
+	<inpyt type="text" id="new" value="blah-blah-blah"><input type="button" value="Check" onclick="alert(document.getElementById('new').value)">
+	<div onclick="alert('onclick');">&lt;DIV ... onclick=&quot;alert('onclick')&quot;...&gt;</div>
+    </form>
+  </body>
+</html>

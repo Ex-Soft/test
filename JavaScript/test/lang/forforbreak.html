@@ -1,0 +1,70 @@
+<HTML>
+  <HEAD>
+    <TITLE>Test inner && outer</TITLE>
+  </HEAD>
+  <BODY>
+<SCRIPT type=text/javascript>
+<!--
+for(var i=0; i<5; ++i)
+{
+   for(var j=0; j<5; ++j)
+   {
+      document.write("["+i+"]["+j+"]","&nbsp;");
+   }
+   document.write("<br>");
+}
+
+document.write("<br>");
+for(var i=0; i<5; ++i)
+{
+   for(var j=0; j<5; ++j)
+   {
+      document.write("["+i+"]["+j+"]","&nbsp;");
+      if(j==3)
+        break;
+   }
+   document.write("<br>");
+}
+
+document.write("<br>");
+OuterLoop:
+for(var i=0; i<5; ++i)
+{
+   for(var j=0; j<5; ++j)
+   {
+      document.write("["+i+"]["+j+"]","&nbsp;");
+      if(j==3)
+        break OuterLoop;
+   }
+   document.write("<br>");
+}
+
+document.write("<br>");
+OuterLoop:
+for(var i=0; i<5; ++i)
+{
+   for(var j=0; j<5; ++j)
+   {
+      document.write("["+i+"]["+j+"]","&nbsp;");
+      if(j==2)
+        break OuterLoop;
+   }
+   document.write("<br>");
+}
+
+document.write("<br>");
+OuterLoop:
+for(var i=0; i<5; ++i)
+{
+   for(var j=0; j<5; ++j)
+   {
+      document.write("["+i+"]["+j+"]","&nbsp;");
+      if(j==1)
+        break OuterLoop;
+   }
+   document.write("<br>");
+}
+// -->
+</SCRIPT>
+  </BODY>
+</HTML>

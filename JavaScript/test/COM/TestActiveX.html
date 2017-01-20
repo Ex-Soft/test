@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <title>Test ActiveX</title>
+<script type="text/javascript">
+<!--
+function TestCOM()
+{
+   var
+     word=null,
+     oFS=null,
+     WshShell=null,
+     WshSysEnv=null,
+     FileName="d:\\Test1.doc",
+     f=null,
+     fc=null,
+     s="",
+     xmlHTTP=null,
+     contents=null,
+     oStr=null,
+     Result;
+
+   //alert(screen.width);
+   //alert(screen.height);
+
+   if(!(WshShell=new ActiveXObject("WScript.Shell")))
+   {
+      alert("!WScript.Shell");
+   }
+   else
+   {
+      alert(WshShell.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Cache\\Paths\\Directory"));
+      if(!(WshSysEnv=WshShell.Environment("SYSTEM")))
+      {
+         alert("!SYSTEM");
+      }
+      else
+      {
+         alert(WshShell.ExpandEnvironmentStrings(WshSysEnv("TEMP")));
+      }
+   }
+
+   if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+   {
+      alert("!Scripting.FileSystemObject");
+   }
+   else
+   {
+      if(!oFS.FileExists(FileName))
+      {
+         alert("!FileExists");
+      }
+
+      alert(oFS.GetSpecialFolder(2).Path);
+
+      f=oFS.GetFolder("c:\\");
+      fc=new Enumerator(f.SubFolders);
+      for(; !fc.atEnd(); fc.moveNext())
+         s+=fc.item()+" ";
+      alert(s);
+   }
+
+   if(!(xmlHTTP=new ActiveXObject("Microsoft.XMLHTTP")))
+   {
+      alert("!Microsoft.XMLHTTP");
+   }
+   else
+   {
+//      xmlHTTP.open("GET","http://localhost/win2000.gif",false);
+      xmlHTTP.open("GET","http://192.168.0.21/exit/test.xls",0);
+      xmlHTTP.Send();
+      //contents=xmlHTTP.responseBody;
+      //alert(contents);
+      //if(contents==null)
+      if((contents=xmlHTTP.responseBody)==null)
+      {
+         alert("!xmlHTTP.responseBody");
+         alert(xmlHTTP.readyState);
+         alert(xmlHTTP.status);
+         alert(xmlHTTP.statusText);
+      }
+      else
+      {
+         if(!(oStr=new ActiveXObject("ADODB.Stream")))
+         {
+            alert("!ADODB.Stream");
+         }
+         else
+         {
+            oStr.Mode=3; // adModeReadWrite
+            oStr.Type=1; // adTypeBinary
+            oStr.Open();
+            oStr.Write(contents);
+            oStr.SaveToFile("d://test.xls",2 /* adSaveCreateOverwrite */);
+         }
+      }
+   }
+
+   //alert(1);
+   //word=GetObject("e:\\Test1.doc","Word.Application");
+   //alert(2);
+   //
+   // PRB: Cannot Call GetObject from Script in IE to Access Running Object
+   // http://support.microsoft.com/kb/q239470/
+   //
+
+   if(!word)
+   {
+      word=new ActiveXObject("Word.Application");
+   }
+
+   //word.Documents.Add();
+   word.Documents.Open(FileName);
+   word.Selection.TypeText("Helo, word!");
+   word.ActiveDocument.SaveAs("d:\\Test2.doc");
+   word.Quit();
+}
+// -->
+</script>
+  </head>
+  <body onload="TestCOM()">
+  </body>
+</html>

@@ -1,0 +1,17 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Button</title>
+		<script>
+function DoIt(btn)
+{
+	if(window.console && console.log)
+		console.log("\"%s\"", btn.tagName.toLowerCase()==="button" ? btn.textContent : btn.value);
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="&lt;input type=&quot;button&quot;&gt;" onclick="DoIt(this)" />
+		<button onclick="DoIt(this)">&lt;button&gt;</button>
+	</body>
+</html>

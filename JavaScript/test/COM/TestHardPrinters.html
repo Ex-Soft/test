@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Test Printers</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		locator = new ActiveXObject ("WbemScripting.SWbemLocator"),
+		service = locator.ConnectServer(".", "root\\CIMV2"),
+		printers = service.ExecQuery("SELECT * FROM Win32_Printer"),
+		//defaultPrinter = service.ExecQuery("SELECT * FROM Win32_Printer Where Default = True"),
+		e = new Enumerator(printers);
+
+	document.write("Printers")
+	document.write("<table border=1>");
+	for (;!e.atEnd();e.moveNext ())
+	{
+		var
+			p = e.item ();
+
+		document.write("<tr>");
+		document.write("<td>" + p.Name + "</td>");
+		document.write("<td>" + (p.Default ? "default" : "&nbsp;") + "</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+		</script>
+	</head>
+	<body>
+		<input id="Button1" type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

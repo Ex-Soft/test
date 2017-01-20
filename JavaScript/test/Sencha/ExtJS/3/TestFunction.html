@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- http://www.sencha.com/learn/legacy/Manual:Utilities:Function#Delegates_and_Callbacks -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test Ext.Function.createX</title>
+		<link rel="stylesheet" type="text/css" href="../../../ExtJS/ExtJS3/resources/css/ext-all.css"/>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ExtJS3/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../../ExtJS/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+/*
+var fn = func1.createCallback(arg1, arg2);
+fn() === func1(arg1, arg2)
+*/
+
+/*
+var fn = func1.createDelegate(scope, [arg1,arg2], true)
+fn(a,b,c) === scope.func1(a,b,c,arg1,arg2);
+ 
+var fn = func1.createDelegate(scope, [arg1,arg2])
+fn(a,b,c) === scope.func1(arg1,arg2);
+ 
+var fn = func1.createDelegate(scope, [arg1,arg2], 1)
+fn(a,b,c) === scope.func1(a,arg1,arg2,b,c);
+*/
+
+	var
+		sayHi = function(name) {
+			alert("Hi, " + name);
+		},
+		sayHicd = function(name) {
+			alert("Hi, " + name + ". You clicked the \"" + this.text + "\" button.");
+		},
+		btncc = new Ext.Button({
+			text: "Say Hi (createCallback)",
+			renderTo: Ext.getBody(),
+			handler: sayHi.createCallback("Fred")
+		}),
+		btncd = new Ext.Button({
+			text: "Say Hi (createDelegate)",
+			renderTo: Ext.getBody()
+		});
+
+	btncd.on("click", sayHicd.createDelegate(btncd, ["Fred"]));
+});
+// -->
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

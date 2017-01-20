@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Selection (II)</title>
+		<script>
+function set()
+{
+	var
+		victim,
+		start,
+		end,
+		range;
+
+	if(!(victim=document.getElementById("victim"))
+		|| !(start=document.getElementById("posStart"))
+		|| isNaN(start=parseInt(start.value,10))
+		|| !(end=document.getElementById("posEnd"))
+		|| isNaN(end=parseInt(end.value,10)))
+		return;
+
+	if(victim.setSelectionRange)
+	{
+		victim.focus();
+		victim.setSelectionRange(start, end);
+	}
+	else if(victim.createTextRange)
+	{
+		range=victim.createTextRange();
+		range.moveStart("character",start);
+		range.moveEnd("character",end-victim.value.length);
+		//range.move("character",start);
+		range.select();
+	}
+}
+		</script>
+	</head>
+	<body>
+		<label>Victim: <input type="text" id="victim" value="0123456789" /></label><br />
+		<label>Start: <input type="text" id="posStart" pattern="^\d+$" value="0" /></label><br />
+		<label>End: <input type="text" id="posEnd" pattern="^\d+$" value="0" /></label><br />
+		<input type="button" value="set" onclick="set()" />
+	</body>
+</html>

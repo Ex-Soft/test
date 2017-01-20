@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="windows-1251"/>
+		<title>Test eval</title>
+		<script>
+function DoIt()
+{
+	if(window.console && console.clear)
+		console.clear();
+
+	var
+		f=function(){ if(window.console && console.log) console.log("from eval"); },
+		fstr = f.toString(),
+		o = { prop: "property" },
+		p;
+
+	if(window.console && console.log)
+		console.log("%s", f.toString());
+
+	eval("(" + f.toString() + ")()");
+
+	var
+		a,
+		b;
+
+	a=0;
+	b=eval("a++");
+	if(window.console && console.log)
+		console.log("a=%i, b=%i", a, b);
+
+	a=0;
+	b=eval("++a");
+	if(window.console && console.log)
+		console.log("a=%i, b=%i", a, b);
+
+	fstr = "[ 1, \"string\", 123.45, true, new Date(2012,10,4,7,0,0)]";
+	a=eval("("+fstr+")");
+	if(window.console && console.log)
+		console.log("a=%o", a);
+
+	fstr = "function test1(a, b) { if(window.console && console.log) console.log(\"a = %s, b = %s, arguments=%o\", a, b, arguments); }";
+	f=eval(fstr); // create global.test1 (f=undefined)
+	test1(1,2);
+
+	fstr = "function(a, b) { if(window.console && console.log) console.log(\"a = %s, b = %s, arguments=%o\", a, b, arguments); }";
+	f=eval("("+fstr+")"); // Doesn't work in M$ IE (f=undefined)
+	if(typeof f === "function")
+		f(1,2);
+
+	fstr = "function test2(a, b) { if(window.console && console.log) console.log(\"a = %s, b = %s, arguments=%o\", a, b, arguments); }";
+	eval(fstr, o); // create global.test2 (o.test2=undefined)
+	if(window.console && console.log)
+		console.log("typeof o.test2=\"%s\"", typeof o.test2);
+
+	fstr = "function test3(a, b) { if(window.console && console.log) console.log(\"a = %s, b = %s, arguments=%o\", a, b, arguments); }";
+	with(o) {
+		eval(fstr); // create global.test3 (o.test3=undefined)
+	}
+	if(window.console && console.log)
+		console.log("typeof o.test3=\"%s\"", typeof o.test3);
+
+	fstr = "function(a, b) { if(window.console && console.log) console.log(\"a = %s, b = %s, this.prop = %s arguments=%o\", a, b, this.prop, arguments); }";
+	with(o) {
+		o.test1=eval("("+fstr+")"); // Doesn't work in M$ IE (o.test1=undefined)
+	}
+	if(window.console && console.log)
+		console.log("typeof o.test1=\"%s\"", typeof o.test1);
+	if(typeof o.test1==="function")
+		o.test1(1,2);
+
+	o.test2=eval("("+fstr+")"); // Doesn't work in M$ IE (o.test2=undefined)
+	if(window.console && console.log)
+		console.log("typeof o.test2=\"%s\"", typeof o.test2);
+	if(typeof o.test1==="function")
+		o.test2(1,2);
+	
+	fstr = "function(a, b) { if(window.console && console.log) console.log(\"a = %s, b = %s, arguments=%o\", a, b, arguments); }";
+	f=eval("("+fstr+")"); // Doesn't work in M$ IE (f=undefined)
+	if(typeof f==="function")
+		f(1,2);
+
+	fstr = "{ method: function(a, b) { if(window.console && console.log) console.log(\"object.method a = %s, b = %s, arguments=%o\", a, b, arguments); } }";
+	o = eval("("+fstr+")\n//@ sourceURL=Test");
+	if(window.console && console.log)
+		console.log("typeof o.method=\"%s\"", typeof o.method);
+	if(typeof o.method==="function")
+		o.method(1,2);
+
+	fstr = "{ method: function(a, b) { if(window.console && console.log) console.log(\"object.method a = %s, b = %s, arguments=%o\", a, b, arguments); } }";
+	o = eval("("+fstr+")");
+	if(window.console && console.log)
+		console.log("typeof o.method=\"%s\"", typeof o.method);
+	if(typeof o.method==="function")
+		o.method(1,2);
+
+	fstr = "{ method: function(a, b) { if(window.console && console.log) console.log(\"object.method a = %s, b = %s, arguments=%o\", a, b, arguments); } }";
+	o = {};
+	eval("("+fstr+")", o); // o === {}
+	if(window.console && console.log)
+		console.log("typeof o.method=\"%s\"", typeof o.method);
+	if(typeof o.method==="function")
+		o.method(1,2);
+
+	fstr = "{ method: this.realMethod }";
+	o = eval("("+fstr+")");
+	o.realMethod = function(a, b) {
+		if(window.console && console.log)
+			console.log("object.method a = %s, b = %s, arguments=%o", a, b, arguments);
+	};
+	if(window.console && console.log)
+		console.log("typeof o.method=\"%s\"", typeof o.method);
+	if(typeof o.method==="function")
+		o.method(1,2);
+
+	fstr = "{ method: function() { return this.realMethod; } }";
+	o = eval("("+fstr+")");
+	o.realMethod = function() {
+		if(window.console && console.log)
+			console.log("object.realMethod(%o)", arguments);
+	};
+	if(window.console && console.log)
+		console.log("typeof o.method=\"%s\"", typeof o.method);
+	if(typeof o.method==="function")
+		o.method()();
+	
+	f = function(a, b) {
+		if(window.console && console.log)
+			console.log("object.method a = %s, b = %s, arguments=%o", a, b, arguments);
+	};
+	fstr = "{ method: f }";
+	o = eval("("+fstr+")");
+	if(window.console && console.log)
+		console.log("typeof o.method=\"%s\"", typeof o.method);
+	if(typeof o.method==="function")
+		o.method(1,2);
+
+	fstr = "{ prop: \"prop\" }";
+	o = eval("("+fstr+")");
+	if(window.console && console.log)
+		console.log("typeof o.prop=\"%s\"", typeof o.prop);
+
+	fstr= "{ c: \"c\", b: \"b\", a: \"a\"}";
+	o = eval("("+fstr+")");
+	for(p in o)
+		if(window.console && console.log)
+			console.log("o[%s]=\"%s\"", p, o[p]);
+
+	fstr= "{ \"c\": \"c\", \"b\": \"b\", \"a\": \"a\"}";
+	o = eval("("+fstr+")");
+	for(p in o)
+		if(window.console && console.log)
+			console.log("o[%s]=\"%s\"", p, o[p]);
+
+	fstr = "var _a_=\"valueOf_A_\";\n";
+	o = eval(fstr);
+	if(o)
+		;
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

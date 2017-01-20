@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<!-- https://github.com/iwiznia/Ext.ux.Exporter -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.ux.exporter.Exporter</title>
+		<link rel="stylesheet" href="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script charset="utf-8" src="swfobject.js"></script>
+		<script charset="utf-8" src="downloadify.min.js"></script>
+		<script charset="utf-8" src="ux/exporter/Exporter.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false,
+	paths: {
+		"Ext.ux": "ux"
+	}
+});
+
+Ext.require([
+	"Ext.ux.exporter.Button"
+]);
+
+Ext.define("TestModel", {
+	extend: "Ext.data.Model",
+	idProperty: "id",
+	fields: [
+		{ name: "id", type: "int" },
+		"name"
+	]
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		store = Ext.create("Ext.data.ArrayStore", {
+			model: "TestModel",
+			data: [
+				[ 1, "Record# 1" ],
+				[ 2, "Record# 2" ],
+				[ 3, "Record# 4" ],
+				[ 4, "Record# 4" ]
+			]
+		}),
+		grid = Ext.create("Ext.grid.Panel", {
+			store: store,
+			columns: [
+				{ dataIndex: "id", header: "id" },
+				{ dataIndex: "name", header: "name", flex: 1 },
+			],
+			dockedItems: [{
+				xtype: "toolbar",
+				dock: "top",
+				items: [{
+					xtype: "exporterbutton"
+					//,text: "Export"
+					//,downloadImage: "excel.png"
+					//height: 22,
+					//width: 22
+					,downloadName: "downloadName"
+				}]
+			}],
+			renderTo: Ext.getBody()
+		});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

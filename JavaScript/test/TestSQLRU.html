@@ -1,0 +1,54 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test SQL.RU</title>
+		<script>
+function FocusTab(Tab) 
+{
+  /*  1-я часть скрипта (меняем стиль самой закладки ... обычная или активная) */
+  var TabList=Tab.parentNode.parentNode.childNodes;
+  for (var i=0;i<=TabList.length-1;i++)
+  {	  var el=TabList[i];
+	  if (el==Tab.parentNode)
+	  {el.className="FocusedTab";  var x=i; }
+	  else { el.className=""; }
+  }
+  
+  /* 2-я часть скрипта (отображаем или скрываем нужный слой в соответствии с выбранной закладкой ) */
+  TabList=Tab.parentNode.parentNode.parentNode.childNodes;
+  for (i=0;i<TabList.length;i++)
+  {
+	el=TabList[i];
+	if (el.id=="tabcont")
+	{
+		TabList=el.childNodes;
+	    for (i=0;i<TabList.length;i++)
+	    {
+			el=TabList[i];
+     		if (el.className=="cont")
+			{
+			    {el.style.display=(i==x)?'block':'none'}
+		    }
+	    }
+	}
+  }
+}
+		</script>
+	</head>
+	<body>
+<div>
+  <ul id="tabnav">
+	<li class="FocusedTab"><a href="javascript:void(0)" onclick="FocusTab(this)">TAB № 1</a></li>
+	<li class=""><a href="javascript:void(0)" onclick="FocusTab(this)">TAB № 2</a></li>
+	<li class=""><a href="javascript:void(0)" onclick="FocusTab(this)">TAB № 3</a></li>
+	<li class=""><a href="javascript:void(0)" onclick="FocusTab(this)">TAB № 4</a></li>
+  </ul>
+  <div id="tabcont">
+    <div class="cont" style="display:block">TAB № 1</div>
+    <div class="cont" style="display:none">TAB № 2</div>
+    <div class="cont" style="display:none">TAB № 3</div>
+    <div class="cont" style="display:none">TAB № 4</div>
+  </div>
+</div>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>Test Events In Child Window (Main)</title>
+		<script type="text/javascript">
+<!--
+function Open(url)
+{
+	var
+		w;
+
+	w=window.open(url);
+	if(w.attachEvent)
+	{
+		w.attachEvent("onload",OnLoad);
+		w.attachEvent("onunload",OnUnLoad);
+	}
+	else if(w.addEventListener)
+	{
+		w.addEventListener("load",OnLoad,false);
+		w.addEventListener("unload",OnUnLoad,false);
+	}
+	else
+	{
+		w.onload=OnLoad;
+		w.unload=OnUnLoad;
+	}
+}
+
+function OpenAfter(url)
+{
+	var
+		w;
+
+	w=window.open();
+	if(w.attachEvent)
+	{
+		w.attachEvent("onload",OnLoad);
+		w.attachEvent("onunload",OnUnLoad);
+	}
+	else if(w.addEventListener)
+	{
+		w.addEventListener("load",OnLoad,false);
+		w.addEventListener("unload",OnUnLoad,false);
+	}
+	else
+	{
+		w.onload=OnLoad;
+		w.unload=OnUnLoad;
+	}
+	w.location.href=url;
+}
+
+function OnLoad()
+{
+	alert("OnLoad");
+}
+
+function OnUnLoad()
+{
+	alert("OnUnLoad");
+}
+// -->
+		</script>
+
+	</head>
+	<body>
+		<input type="button" value="google.com" onclick="Open('http://google.com/')" />
+		<input type="button" value="&quot;&quot; -&gt; google.com" onclick="OpenAfter('http://google.com/')" />
+		<input type="button" value="child.html" onclick="Open('child.html')" />
+		<input type="button" value="&quot;&quot; -&gt; child.html" onclick="OpenAfter('child.html')" />
+	</body>
+</html>

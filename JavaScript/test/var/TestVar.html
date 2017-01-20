@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Test Var</title>
+		<script type="text/javascript">
+<!--
+var
+	x=123.210000;
+
+function OnLoad()
+{
+	var
+		tmpInt=-9223372036854775808;
+
+	if(console && console.log)
+		console.log("%s %i", tmpInt, tmpInt);
+
+	alert(x);
+	document.getElementById("InputText1").value=x;
+	document.getElementById("Span1").innerHTML=x;
+	f1(056);
+}
+
+function f1(param)
+{
+	alert(param);
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<input type="text" id="InputText1" />
+		<br/>
+		<span id="Span1"></span>
+	</body>
+</html>

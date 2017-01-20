@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+  <HEAD>
+		<title>IFrameStandalone</title>
+<script type="text/javascript">
+<!--
+var
+  f,
+  OldSubmit;
+
+function NewSubmit(aStr)
+{
+   alert("IFrameStandaloneForm.NewSubmit("+aStr+")");
+}
+// -->
+</script>
+</HEAD>
+	<body onload="f=document.getElementById('IFrameStandaloneForm'); OldSubmit=f.submit; f.submit=function(){NewSubmit('b4');OldSubmit();NewSubmit('after')}">
+		<form id="IFrameStandaloneForm" name="IFrameStandaloneForm" method="post" onsubmit="alert('IFrameStandaloneForm.onsubmit'); return(true)">
+			<input type="text" id="IFrameStandaloneTextBox1" name="IFrameStandaloneTextBox1"><br>
+			<input type="text" id="IFrameStandaloneTextBox2" name="IFrameStandaloneTextBox2"><br>
+			<input type="text" id="IFrameStandaloneTextBox3" name="IFrameStandaloneTextBox3"><br>
+			<input type="submit" id="IFrameStandaloneBtnSubmit" name="IFrameStandaloneBtnSubmit" style="width: 10px; height: 10px; " value="" onclick="alert('IFrameStandaloneBtnSubmit.onclick')">
+		</form>
+	</body>
+</HTML>

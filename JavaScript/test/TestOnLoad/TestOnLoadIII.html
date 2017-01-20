@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test onload (III)</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		w;
+
+	w=window.open("http://google.com/");
+	if(w.attachEvent)
+	{
+		alert("attachEvent");
+		w.attachEvent("onload",OnLoad);
+		w.attachEvent("onunload",OnUnLoad);
+	}
+	else if(w.addEventListener)
+	{
+		alert("addEventListener");
+		w.addEventListener("load",OnLoad,false);
+		w.addEventListener("unload",OnUnLoad,false);
+	}
+	else
+	{
+		alert("!");
+		w.onload=OnLoad;
+		w.unload=OnUnLoad;
+	}
+}
+
+function OnLoad()
+{
+	alert("OnLoad");
+}
+
+function OnUnLoad()
+{
+	alert("OnUnLoad");
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

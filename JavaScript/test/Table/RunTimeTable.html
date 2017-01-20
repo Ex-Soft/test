@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Test RunTime Table</title>
+    <script type="text/javascript">
+<!--
+function CreateTable()
+{
+   var
+     Form,
+     Table,
+     TableInner,
+     Body,
+     BodyInner,
+     Row,
+     RowInner,
+     Cell,
+     CellInner,
+     MaxRow=3,
+     MaxCell=5,
+     MaxRowInner=2,
+     MaxCellInner=3,
+     i,
+     j,
+     ii,
+     jj,
+     tBegin,
+     tEnd;
+
+   tBegin=new Date();
+   
+   if(!(Form=document.getElementById("DocumentForm")))
+     return;
+   if(!(Table=document.createElement("TABLE")))
+     return;
+   Table.setAttribute("cellpadding","5");
+   Table.setAttribute("cellspacing","10");
+   Table.setAttribute("border","3");
+   Table.setAttribute("bordercolor","red");
+   Table.style.fontSize="10px";
+   Form.appendChild(Table);
+   if(!(Body=document.createElement("TBODY")))
+     return;
+   Table.appendChild(Body);   
+   for(i=0; i<MaxRow; ++i)
+   {
+      if(!(Row=document.createElement("TR")))
+        return;
+      Body.appendChild(Row);
+      for(j=0; j<MaxCell; ++j)
+      {
+         if(!(Cell=document.createElement("TD")))
+           return;
+         Row.appendChild(Cell);
+
+         if(!(TableInner=document.createElement("TABLE")))
+           return;
+         TableInner.setAttribute("cellpadding","0");
+         TableInner.setAttribute("cellspacing","0");
+         TableInner.setAttribute("border","1");
+         TableInner.setAttribute("bordercolor","blue");
+         Cell.appendChild(TableInner);
+         if(!(BodyInner=document.createElement("TBODY")))
+           return;
+         TableInner.appendChild(BodyInner);
+         for(ii=0; ii<MaxRowInner; ++ii)
+         {
+            if(!(RowInner=document.createElement("TR")))
+              return;
+            BodyInner.appendChild(RowInner);
+            for(jj=0; jj<MaxCellInner; ++jj)
+            {
+               if(!(CellInner=document.createElement("TD")))
+                 return;
+               RowInner.appendChild(CellInner);
+               CellInner.innerHTML="["+ii+"]["+jj+"]";
+            }
+         }
+      }
+   }
+
+   tEnd=new Date();
+   if(Cell=document.getElementById("SpanDiffTime"))
+     Cell.innerHTML=tEnd.getTime()-tBegin.getTime();
+}
+// -->
+    </script>
+  </head>
+  <body id="DocumentBody" name="DocumentBody" onload="">
+    <form id="DocumentForm" name="DocumentForm" method="post">
+      <input type="button" id="btnCreateTable" name="btnCreateTable" value="Create Table" onclick="CreateTable()">&nbsp;
+      DiffTime&nbsp;<span id="SpanDiffTime" name="SpanDiffTime"></span>&nbsp;msec<br>
+    </form>
+  </body>
+</html>

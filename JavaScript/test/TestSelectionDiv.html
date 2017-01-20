@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<meta charset="windows-1251"/>
+		<title>Test Selection (DIV)</title>
+		<script>
+function DoIt()
+{
+	var
+		w=window,
+		Ctrl,
+		range,
+		s;
+
+	if(Ctrl=document.getElementById("victim"))
+		if(window.console && console.log)
+			console.log("div.contentEditable=\"%s\" (%s) div.isContentEditable=%s (%s)", Ctrl.contentEditable, typeof Ctrl.contentEditable, Ctrl.isContentEditable, typeof Ctrl.isContentEditable);
+
+	if(document.selection)
+	{
+		document.selection.empty();
+
+		range=document.body.createTextRange();
+		range.moveToElementText(Ctrl);
+		range.select();
+	}
+	else if(window.getSelection
+		&& (s = window.getSelection())
+		&& (range = document.createRange()))
+	{
+		if(s.rangeCount>0)
+			s.removeAllRanges();
+
+		range.selectNode(Ctrl.firstChild);
+		s.addRange(range);
+	}
+}
+		</script>
+	</head>
+	<body>
+		<div id="victim">
+			ghjgh jhgkjfgk jgfh jhgjhg jkhg
+		</div>
+		<input type="button" id="btnDoIt" name="btnDoIt" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

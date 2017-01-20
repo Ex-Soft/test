@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Main</title>
+		<script type="text/javascript">
+var
+	w;
+
+function wOnLoad()
+{
+	var
+		ci=w.document.getElementById("InputChild"),
+		pi=document.getElementById("InputMain");
+
+	if(ci && pi)
+		ci.value=pi.value;
+	else if(!pi)
+	{
+		if(console && console.log)
+			console.log("!pi");
+	}
+	else if(!ci)
+	{
+		if(console && console.log)
+			console.log("!ci");
+	}
+}
+
+function wOpen()
+{
+	w=window.open("child.html");
+
+	var
+		ci=w.document.getElementById("InputChild"),
+		pi=document.getElementById("InputMain");
+
+	if("attachEvent" in w)
+		w.attachEvent("onload",wOnLoad);
+	else if("addEventListener" in w)
+		w.addEventListener("load",wOnLoad,false);
+	else
+		w.onload=wOnLoad;
+
+	if(ci && pi)
+		ci.value=pi.value;
+	else if(!pi)
+	{
+		if(console && console.log)
+			console.log("!pi");
+	}
+	else if(!ci)
+	{
+		if(console && console.log)
+			console.log("!ci");
+	}
+}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="InputMain" value="From Main" />
+		<input type="button" onclick="wOpen()" value="Open" />
+	</body>
+</html>

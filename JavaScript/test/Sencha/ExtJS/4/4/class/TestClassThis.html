@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>&laquo;Test Class I&raquo;</title>
+		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+    enabled: true
+});
+
+Ext.define("BaseClass", {
+	baseClassProp1: "undefined",
+	baseClassProp2: { prop: "undefined" },
+
+	constructor: function(val) {
+		if(val)
+			Ext.applyIf(this, val);
+	}
+});
+
+Ext.define("DerivedClass", {
+	extend: "BaseClass",
+	
+	derivedClassProp1: "undefined",
+	derivedClassProp2: "undefined",
+
+	constructor: function(val) {
+		Ext.applyIf(this, val);
+	}
+});
+
+Ext.onReady(function() {
+	var
+		baseClass1 = Ext.create("BaseClass", {
+			baseClassProp3: "baseClass1.baseClassProp3",
+			baseClassProp4: { prop: "baseClass1.baseClassProp4.prop" }
+		}),
+		baseClass2 = Ext.create("BaseClass", {
+			baseClassProp3: "baseClass2.baseClassProp3",
+			baseClassProp4: { prop: "baseClass2.baseClassProp4.prop" }
+		}),
+		derivedClass1 = Ext.create("DerivedClass");
+
+	if(window.console && console.log)
+	{
+		console.log("baseClass1.baseClassProp1 = \"%s\"", baseClass1.baseClassProp1);
+		console.log("baseClass1.baseClassProp2 = %o", baseClass1.baseClassProp2);
+		console.log("baseClass1.baseClassProp3 = \"%s\"", baseClass1.baseClassProp3);
+		console.log("baseClass1.baseClassProp4 = %o", baseClass1.baseClassProp4);
+		console.log("baseClass2.baseClassProp1 = \"%s\"", baseClass2.baseClassProp1);
+		console.log("baseClass2.baseClassProp2 = %o", baseClass2.baseClassProp2);
+		console.log("baseClass2.baseClassProp3 = \"%s\"", baseClass2.baseClassProp3);
+		console.log("baseClass2.baseClassProp4 = %o", baseClass2.baseClassProp4);
+		console.log("derivedClass1.baseClassProp1 = \"%s\"", derivedClass1.baseClassProp1);
+		console.log("derivedClass1.baseClassProp2 = %o", derivedClass1.baseClassProp2);
+	}
+
+	baseClass1.baseClassProp1="baseClass1.baseClassProp1";
+	baseClass1.baseClassProp2.prop="baseClass1.baseClassProp2.prop";
+	baseClass1.baseClassProp3="_baseClass1.baseClassProp3_";
+	baseClass1.baseClassProp4.prop="_baseClass1.baseClassProp4.prop_"
+
+	if(window.console && console.log)
+	{
+		console.log("baseClass1.baseClassProp1 = \"%s\"", baseClass1.baseClassProp1);
+		console.log("baseClass1.baseClassProp2 = %o", baseClass1.baseClassProp2);
+		console.log("baseClass1.baseClassProp3 = \"%s\"", baseClass1.baseClassProp3);
+		console.log("baseClass1.baseClassProp4 = %o", baseClass1.baseClassProp4);
+		console.log("baseClass2.baseClassProp1 = \"%s\"", baseClass2.baseClassProp1);
+		console.log("baseClass2.baseClassProp2 = %o", baseClass2.baseClassProp2);
+		console.log("baseClass2.baseClassProp3 = \"%s\"", baseClass2.baseClassProp3);
+		console.log("baseClass2.baseClassProp4 = %o", baseClass2.baseClassProp4);
+		console.log("derivedClass1.baseClassProp1 = \"%s\"", derivedClass1.baseClassProp1);
+		console.log("derivedClass1.baseClassProp2 = %o", derivedClass1.baseClassProp2);
+	}
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

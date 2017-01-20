@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>React</title>
+		<style>
+		</style>
+		<!-- <script charset="utf-8" src="../../babel/babel.js"></script> -->
+		<script charset="utf-8" src="../../react/react.js"></script>
+		<script charset="utf-8" src="../../react/react-dom.js"></script>
+		<script type="text/babel"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.js"></script> -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js"></script> -->
+		<!-- <script charset="utf-8" src="../../babel/browser.js"></script> -->
+		<script type="text/babel"></script>
+		<script>
+function OnLoad()
+{
+	if (window.console && console.log)
+		console.log("OnLoad()");
+
+	/*var ProductCategoryRow = React.createClass({
+		render: function() {
+			return (<tr><th colSpan="2">{this.props.category}</th></tr>);
+		}
+	});*/
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<div id="container">
+		<script type="text/babel">
+//function OnLoad()
+//{
+	var ProductCategoryRow = React.createClass({
+		render: function() {
+			return (<tr><th colSpan="2">{this.props.category}</th></tr>);
+		}
+	});
+
+	var ProductRow = React.createClass({
+		render: function() {
+			var name = this.props.product.stocked ?
+				this.props.product.name :
+				<span style={{color: 'red'}}>
+					{this.props.product.name}
+				</span>;
+			return (
+				<tr>
+					<td>{name}</td>
+					<td>{this.props.product.price}</td>
+				</tr>
+			);
+		}
+	});
+
+	var ProductTable = React.createClass({
+		render: function() {
+			var rows = [];
+			var lastCategory = null;
+			this.props.products.forEach(function(product) {
+				if (product.category !== lastCategory) {
+					rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
+				}
+				rows.push(<ProductRow product={product} key={product.name} />);
+				lastCategory = product.category;
+			});
+			return (
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>{rows}</tbody>
+				</table>
+			);
+		}
+	});
+
+	var SearchBar = React.createClass({
+		render: function() {
+			return (
+				<form>
+					<input type="text" placeholder="Search..." />
+					<p>
+						<input type="checkbox" />
+						{' '}
+						Only show products in stock
+					</p>
+				</form>
+			);
+		}
+	});
+
+	var FilterableProductTable = React.createClass({
+		render: function() {
+			return (
+				<div>
+					<SearchBar />
+					<ProductTable products={this.props.products} />
+				</div>
+			);
+		}
+	});
+
+	var PRODUCTS = [
+		{category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+		{category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+		{category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+		{category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+		{category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+		{category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+	];
+ 
+	ReactDOM.render(
+		<FilterableProductTable products={PRODUCTS} />,
+		document.getElementById('container')
+	);
+//}
+		</script>
+		</div>
+	</body>
+</html>

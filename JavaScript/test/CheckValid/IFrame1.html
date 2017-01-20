@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+  <HEAD>
+		<title>IFrame1</title>
+		<script type="text/javascript" src="../../js/misc.js"></script>
+		<script src="../../js/form.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var
+  CheckElement=new Array(),
+  InvalidColor="rgb(255,191,191)";
+
+CheckElement[0]={Id:"IFrame1TextBox1",Required:true,typeofStore:"int"};
+CheckElement[1]={Id:"IFrame1TextBox3",Required:true,typeofStore:"double"};
+
+function TestSubmit()
+{
+   var
+     result,
+     str="IFrame1Form.onsubmit";
+
+   alert(str);
+   result=top.CheckForm(top,InvalidColor,'IFrame1Form');
+   alert(str+"="+result);
+   return(result);
+}
+// -->
+</script>
+</HEAD>
+	<body id="IFrame1Body" name="IFrame1Body" onload="PrepareForm()">
+		<form id="IFrame1Form" name="IFrame1Form" method="post" onsubmit="return(TestSubmit())">
+			<input type="text" id="IFrame1TextBox1" name="IFrame1TextBox1"><br>
+			<input type="text" id="IFrame1TextBox2" name="IFrame1TextBox2"><br>
+			<input type="text" id="IFrame1TextBox3" name="IFrame1TextBox3"><br>
+			<input type="submit" id="IFrame1BtnSubmit" name="IFrame1BtnSubmit" style="width: 0px; height: 0px; " value="" onclick="alert('IFrame1BtnSubmit.onclick')"><br>
+<script type="text/javascript">
+<!--
+var
+  e=document.getElementById("IFrame1TextBox1");
+
+document.write("e.id=",e.id,"<br>");
+document.write("e.name=",e.name,"<br>");
+document.write("element->form==element.form e.form.id=",e.form.id,"<br>");
+document.write("form->document==form.ownerDocument e.form.ownerDocument.forms[0].id=",e.form.ownerDocument.forms[0].id,"<br>");
+if("parentWindow" in e.form.ownerDocument)
+{
+   document.write("e.form.ownerDocument.parentWindow present","<br>");
+   document.write("e.form.ownerDocument.parentWindow.parent.frames.length=",e.form.ownerDocument.parentWindow.parent.frames.length,"<br>");
+   document.write("e.form.ownerDocument.parentWindow.parent.document.forms[0].elements.length=",e.form.ownerDocument.parentWindow.parent.document.forms[0].elements.length,"<br>");
+}
+else
+  document.write("e.form.ownerDocument.parentWindow not present","<br>");
+// -->
+</script>
+		</form>
+	</body>
+</HTML>

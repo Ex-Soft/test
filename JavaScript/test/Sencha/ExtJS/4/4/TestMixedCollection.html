@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Ext.util.MixedCollection</title>
+		<script charset="utf-8" src="../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+	
+	var
+		coll = new Ext.util.MixedCollection(),
+		item,
+		arr,
+		str;
+
+	if(window.console && console.log)
+		console.log("isArray = %s isIterable = %s, isObject = %s", Ext.isArray(coll), Ext.isIterable(coll), Ext.isObject(coll));
+
+	coll.add("key1", { prop: "Prop1" });
+	coll.add("key2", { prop: "Prop2" });
+	coll.add("key3", { prop: "Prop3" });
+
+	str = Ext.encode(coll);
+
+	if(window.console && console.log)
+		console.log("Ext.util.MixedCollection.each()");
+
+	coll.each(function(item, index, length) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.each(Ext.util.MixedCollection)");
+
+	Ext.each(coll, function() {
+		if(window.console && console.log)
+			console.log("%o", arguments); // [ undefined, 0..3, [ undefined, undefined, undefined ] ]
+	});
+
+	item = coll.findBy(function(item, key) {
+		if(window.console && console.log)
+			console.log("findBy(%o)", arguments);
+
+		return item.prop === "Prop2";
+	});
+
+	if(item)
+	{
+		if(window.console && console.log)
+			console.log("item = %o", item);
+	}
+
+	arr = Ext.toArray(coll); // [ undefined, undefined, undefined ]
+	if(window.console && console.log)
+		console.log("isArray = %s isIterable = %s, isObject = %s", Ext.isArray(arr), Ext.isIterable(arr), Ext.isObject(arr));
+
+	coll.clear();
+	coll.add("key1", { prop: "Prop1", rate: 3 });
+	coll.add("key2", { prop: "Prop2", rate: 5 });
+	coll.add("key3", { prop: "Prop3", rate: 1 });
+	coll.sort({property: "rate", direction: "DESC" });
+
+	coll.each(function(item, index, length) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	coll.add("key4", { prop: "Prop4", rate: 4 });
+	coll.get("key2").rate *= 10;
+	item = coll.last();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+  <HEAD>
+    <TITLE>IFrame</TITLE>
+<SCRIPT type=text/javascript>
+<!--
+function Close()
+{
+   var
+     frame=self.parent.document.getElementById(self.parent.IFrameId);
+
+   frame.src="";
+   frame.style.display="none";
+}
+// -->
+</SCRIPT>
+  </HEAD>
+  <BODY>
+    <FORM id="IFrameForm">
+      <h1>Helo, word!</h1>
+      <br>
+      <input type="button" value="Close" onclick="Close()">
+    </FORM>
+  </BODY>
+</HTML>

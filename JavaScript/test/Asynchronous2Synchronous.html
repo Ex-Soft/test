@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Asynchronous to Synchronous</title>
+		<script>
+function DoIt()
+{
+	var
+		a = getValue();
+
+	if(window.console && console.log)
+		console.log("a = %o", a);
+}
+
+function getValue()
+{
+	var
+		done = false,
+		ms = 100,
+		result = "default",
+		callback = function() {
+			if(window.console && console.log)
+				console.log("callback (done = %s)", done);
+
+			done = true;
+		},
+		getDone = function() {
+			return done;
+		};
+
+	setTimeout(callback, ms);
+
+	while(!getDone())
+	{
+	}
+
+	return result;
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

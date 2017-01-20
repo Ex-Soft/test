@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Test closures IV</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+function addEvent(el, event, f)
+{
+	if(el.addEventListener)
+		el.addEventListener(event,f,false)
+	else if(el.attachEven)
+		el.attachEven("on+event",f);
+	else
+		eval("el.on"+event+"="+f);
+		//el.onclick=f;
+}
+
+function Set()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("ButtonVictim")))
+		return;
+
+	var
+		TestVar=true;
+
+	addEvent(Ctrl,"click",function(e){
+		alert(TestVar);
+	});
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="ButtonVictim" value="Victim" /><br/>
+		<input type="button" value="Set" onclick="Set()">
+	</body>
+</html>

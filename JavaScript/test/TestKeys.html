@@ -1,0 +1,208 @@
+<html>
+<body>
+<head>
+<title>Checks</title>
+</head>
+<form>
+<span>MFO</span>&nbsp;<input type="text" id="EditMFO"><br>
+<span>MFO</span>&nbsp;<input type="text" id="EditMFOAcc">&nbsp;<span>Account</span>&nbsp;<input type="text" id="EditAccount"><br>
+<span>OKPO</span>&nbsp;<input type="text" id="EditOKPO"><br>
+<input type="button" value="Click here" onclick="MainCheck();">
+</form>
+<script language="JavaScript">
+
+function MainCheck()
+{
+   try
+     {
+        var
+          val1=document.getElementById("EditMFO"),
+          val2;
+        
+        if(val1!=null && val1!=undefined)
+          {
+             if(MFOKey(val1.value))
+               alert("MFO - oB!");
+             else
+               alert("MFO - Tampax");
+          }
+
+        val1=document.getElementById("EditMFOAcc");
+        val2=document.getElementById("EditAccount");
+        if(val1!=null && val1!=undefined && val2!=null && val2!=undefined)
+          {
+             if(AccountKey(val2.value,val1.value))
+               alert("Account - oB!");
+             else
+               alert("Account - Tampax");
+          }
+
+        val1=document.getElementById("EditOKPO");
+        if(val1!=null && val1!=undefined)
+          {
+             if(OKPOKey(val1.value))
+               alert("OKPO - oB!");
+             else
+               alert("OKPO - Tampax");
+          }
+     }
+   catch(e)
+     {
+        alert(e);
+     }
+}
+
+function MFOKey(InputMFO)
+{
+   if(arguments.length!=1)
+     throw new Error("Too few parameters in call to 'MFOKey(InputMFO)'");
+
+   if(typeof(InputMFO)!="string")
+     throw new Error("Type mismatch in parameter 'InputMFO'");
+
+   var
+     InputMFOString=new String(InputMFO);
+
+   // InputMFOString=InputMFOString.Trim(); ???
+
+   if(InputMFOString.length!=6)
+     return false;
+
+   if(isNaN(Number(InputMFOString)))
+     return false;
+
+   var
+     AllSum=0,
+     OutputMFO=InputMFOString.substr(0,5),
+     ConstConst=new String("0741852963");
+
+   for(var i=0; i<5; ++i)
+      {
+         switch(i)
+           {
+              case 1:
+              case 4:
+                {
+                   AllSum+=Number(OutputMFO.substr(i,1))*3;
+                   break;
+                }
+              case 2:
+                {
+                   AllSum+=Number(OutputMFO.substr(i,1))*7;
+                   break;
+                }
+              default :
+                {
+                   AllSum+=Number(OutputMFO.substr(i,1));
+                }
+           }
+      }
+   OutputMFO+=ConstConst.substr((AllSum-(Math.floor(AllSum/10))*10),1);
+
+   return(InputMFO==OutputMFO);
+}
+
+function AccountKey(InputAccount, MFO)
+{
+   if(arguments.length!=2)
+     throw new Error("Too few parameters in call to 'AccountKey(InputAccount, MFO)'");
+
+   if(typeof(InputAccount)!="string")
+     throw new Error("Type mismatch in parameter 'InputAccount'");
+
+   if(typeof(MFO)!="string")
+     throw new Error("Type mismatch in parameter 'MFO'");
+
+   var
+     InputAccountString=new String(InputAccount);
+
+   if(!MFOKey(MFO))
+     return false;
+
+   var
+     InputMFOString=new String(MFO);
+
+   //InputAccountString=InputAccountString.Trim();
+   //InputMFOString=InputMFOString.Trim();
+
+   var
+     LengthAccount=InputAccountString.length;
+
+   if(LengthAccount<6 || LengthAccount>14)
+     return false;
+
+   if(isNaN(Number(InputAccountString)))
+     return false;
+
+   var
+     ConstConst=new String("1371337137137137137"),
+     OutputAccount=new String(""),
+     LengthMFO=InputMFOString.length,
+     AllSum=0,
+     tmp;
+
+   OutputAccount=InputMFOString.substr(0,5)+InputAccountString.substr(0,4)+"0"+InputAccountString.substr(5);
+   for(var i=0; i<(LengthMFO+LengthAccount-1); ++i)
+      AllSum+=(tmp=Number(OutputAccount.substr(i,1))*Number(ConstConst.substr(i,1)))<10 ? tmp : tmp-(Math.floor(tmp/10))*10;
+   AllSum+=LengthAccount;
+   AllSum=(AllSum<10 ? AllSum : AllSum-(Math.floor(AllSum/10))*10)*7;
+   AllSum=AllSum<10 ? AllSum : AllSum-(Math.floor(AllSum/10))*10;
+
+   tmp=Number(InputAccountString[4]);
+
+   return(AllSum==tmp);
+}
+
+function OKPOKey(InputOKPO)
+{ 
+   if(arguments.length!=1)
+     throw new Error("Too few parameters in call to 'OKPOKey(InputOKPO)'");
+
+   if(typeof(InputOKPO)!="string")
+     throw new Error("Type mismatch in parameter 'InputOKPO'");
+
+   var
+     InputOKPOString=new String(InputOKPO);
+
+   //InputOKPOString=InputOKPOString.Trim() ???
+
+   if(InputOKPOString.length!=8)
+     return false;
+
+   var
+     IntInputOKPO=Number(InputOKPOString);
+
+   if(isNaN(IntInputOKPO))
+     return false;
+
+   var
+     Vector1=new Array(1,2,3,4,5,6,7),
+     Vector2=new Array(7,1,2,3,4,5,6),
+     Vector,
+     SplitOKPO=new Array(8),
+     SumMul=0;
+
+   Vector = (IntInputOKPO<30000000 || IntInputOKPO>60000000) ? Vector1 : Vector2;
+
+   for(var i=0, Minuend=10000000, Subtrahend=100000000; i<8; ++i, Minuend/=10, Subtrahend/=10)
+      {
+         SplitOKPO[i]=Math.floor(IntInputOKPO/Minuend)-Math.floor(IntInputOKPO/Subtrahend)*10;
+         if(i<7)
+           SumMul+=SplitOKPO[i]*Vector[i];
+      }
+   SumMul-=Math.floor(SumMul/11)*11;
+   if(SumMul==10)
+     {
+        SumMul=0;
+        for(i=0; i<7; ++i)
+           SumMul+=SplitOKPO[i]*(Vector[i]+2);
+        SumMul-=Math.floor(SumMul/11)*11;
+        if(SumMul==10)
+          SumMul=0;
+     }
+
+   return(SumMul==SplitOKPO[7]);
+}
+</script>
+</body>
+</html>

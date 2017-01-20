@@ -1,0 +1,152 @@
+<html>
+  <head>
+    <title>Test valid</title>
+<script type="text/javascript">
+<!--
+var
+  InvalidColor="rgb(255,191,191)",
+  OkColor="white",
+  handler;
+
+function kdown(e)
+{ 
+   if(e.which=='S'.charCodeAt(0))
+     alert('S pressed');
+
+   var
+     oForm=document.getElementById("");
+}
+document.captureEvents(Event.Keydown); 
+document.onkeydown=kdown;
+
+function delaySet(obj, val, mSec)
+{
+   handler=setInterval(function(){MakeDalay(obj,val)},mSec);
+}
+
+function MakeDalay(obj, val)
+{
+   clearInterval(handler);
+   obj.style.backgroundColor=val;
+}
+
+function isblank(s)
+{
+   var
+     tmpStr=s.replace(/\s/g,"");
+
+   return(!Boolean(tmpStr.length));
+}
+
+function verify(f)
+{
+   var
+     msg,
+     empty_fields="",
+     errors="",
+     e,
+     v;
+
+   for(var i=0; i<f.length; ++i)
+   {
+      e=f.elements[i];
+      if(((e.type=="text") || (e.type=="textarea")) && !e.optional)
+      {
+         if((e.value==null) || (e.value=="") || isblank(e.value))
+         {
+            empty_fields+="\n          "+e.name;
+            e.style.backgroundColor=InvalidColor;
+            continue;
+         }
+         else
+           e.style.backgroundColor=OkColor;
+
+         if(e.numeric || (e.min!=null) || (e.max!=null))
+         {
+            v=parseFloat(e.value);
+            if(isNaN(v)
+               || ((e.min!=null) && (v<e.min))
+               || ((e.max!=null) && (v>e.max)))
+            {
+               errors+="- The field "+e.name+" must be a number";
+               if(e.min!=null)
+                 errors+=" that is greater then "+e.min;
+               if(e.min!=null && e.max!=null)
+                 errors+=" and less than "+e.max;
+               else if(e.max!=null)
+                      errors+=" that is less than "+e.max;
+               errors+=".\n";
+               e.style.backgroundColor=InvalidColor;
+            }
+            else
+              e.style.backgroundColor=OkColor;
+         }
+      }
+   }
+
+   if(!empty_fields && !errors)
+     return(true);
+
+   msg= "-------------------------------------------------------------\n";
+   msg+="The form was not submitted because of the following error(s).\n";
+   msg+="Please correct these error(s) and re-submit\n";
+   msg+="-------------------------------------------------------------\n";
+
+   if(empty_fields)
+   {
+      msg+="- The following required field(s) are empty:"+empty_fields+"\n";
+      if(errors)
+        msg+="\n";
+   }
+
+   msg+=errors;
+   alert(msg);
+
+   for(var i=0; i<f.length; ++i)
+   {
+      e=f.elements[i];
+      if(e.style.backgroundColor)
+      {
+         msg=e.style.backgroundColor;
+         msg=msg.replace(/\s/g,"");
+         if(msg==InvalidColor)
+         {
+            e.focus();
+            msg=e.style.backgroundColor='red';
+            delaySet(e,InvalidColor,250);
+            break;
+         }
+      }
+   }
+
+   return(false);
+}
+
+function CheckValid(obj)
+{
+   var
+     firstname=document.getElementById("firstname"),
+     phonenumber=document.getElementById("phonenumber"),
+     zip=document.getElementById("zip");
+
+   firstname.optional=true;
+   phonenumber.optional=true;
+   zip.min=0;
+   zip.max=99999;
+   return verify(obj);
+}
+// -->
+</script>
+  </head>
+<!-- onkeypress="if (String.fromCharCode(event.keyCode)=='S') alert('S pressed')" -->
+  <body>
+    <form id="MainForm"onsubmit="return CheckValid(this)">
+      First name:&nbsp;<input type="text" id="firstname" name="firstname">
+      Last name:&nbsp;<input type="text" id="lastname" name="lastname"><br>
+      Address:<br><textarea id="address" name="address" rows="4" cols="40"></textarea><br>
+      Zip Code:&nbsp;<input type="text" id="zip" name="zip"><br>
+      Phone Number:&nbsp;<input type="text" id="phonenumber" name="phonenumber"><br>
+      <input type="submit">
+    </form>
+  </body>
+<html>

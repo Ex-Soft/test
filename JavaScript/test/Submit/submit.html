@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Test submit</title>
+<script type="text/javascript">
+<!--
+function SubmitAll()
+{
+   for(var iFrame=0; iFrame<top.frames.length; ++iFrame)
+      for(var iForm=0; iForm<top.frames[iFrame].document.forms.length; ++iForm)
+         {
+            alert(top.frames[iFrame].document.forms[iForm].id);
+            if("submit" in top.frames[iFrame].document.forms[iForm])
+              alert("submit present");
+            top.frames[iFrame].document.forms[iForm].submit();
+         }
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form method="post" onsubmit="SubmitAll()">
+      <input type="text" id="Input1" name="Input1">
+      <div>
+        <iframe src="iframe.html"></iframe>
+      </div>
+      <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit">
+    </form>
+  </body>
+</html>

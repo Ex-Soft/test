@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<title>Test Firebug</title>
+		<script type="text/javascript">
+<!--
+function DoIt()
+{
+	if(window.console && console.profile)
+		console.profile("title");
+
+	if(window.console && console.log)
+	{
+		console.log("DoIt()");
+		console.log("%s\"console\" in window", "console" in window ? "" : "!");
+		console.log("%swindow.console", window.console ? "" : "!");
+	}
+
+	if(window.console && console.time)
+		console.time("name");
+
+	for(var i=0; i<1000; ++i)
+		Stub();
+
+	if(window.console && console.timeEnd)
+		console.timeEnd("name");
+
+	var
+		xhr;
+
+	if(xhr=initXMLHTTPRequest())
+	{
+		xhr.open("GET", "pix/sm10_eyes.gif", false);
+		//xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+		if(xhr.overrideMimeType)
+			xhr.overrideMimeType("text/plain; charset=x-user-defined");
+		else
+			xhr.setRequestHeader("Accept-Charset", "x-user-defined"); // http://habrahabr.ru/post/143985/
+		xhr.send(null);
+
+		if(window.btoa)
+		{
+			var
+				data="";
+
+			for(var i=0; i<xhr.responseText.length; ++i)
+				data+=String.fromCharCode((xhr.responseText[i].charCodeAt(0) & 0xff));
+
+			var
+				img64=window.btoa(data),
+				img;
+
+			if(img=new Image())
+				img.src="data:image/gif;base64,"+img64;
+
+			document.body.appendChild(img);
+		}
+	}
+
+	if(window.console && console.profileEnd)
+		console.profileEnd("title");
+}
+
+function initXMLHTTPRequest()
+{
+	var
+		xhr=null;
+
+	if(window.XMLHttpRequest)
+		xhr=new XMLHttpRequest();
+	else if(window.ActiveXObject)
+	{
+		try
+		{
+			xhr=new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xhr=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				alert(e.name+": "+e.message);
+			}
+		}
+	}
+
+	return(xhr);
+}
+
+function Stub()
+{
+	for(var i=0; i<1000; ++i)
+		;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<h1>Test Firebug</h1>
+		<hr />
+		<input type="button" id="btnDoIt" name="btnDoIt" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

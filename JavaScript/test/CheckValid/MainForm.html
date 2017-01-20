@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+	<HEAD>
+		<title>MainForm</title>
+		<link href="../../js/tab.winclassic.css" rel="stylesheet">
+		<script src="../../js/tabpane.js" type="text/javascript"></script>
+		<script src="../../js/misc.js" type="text/javascript"></script>
+		<script src="../../js/form.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var
+  CheckElement=new Array(),
+  InvalidColor="rgb(255,191,191)";
+
+CheckElement[0]={Id:"TextBox1",Required:true,typeofStore:"int"};
+CheckElement[1]={Id:"TextBox3",Required:true,typeofStore:"double"};
+CheckElement[2]={Id:"TabPage3TextBox1",Required:true,typeofStore:"int"};
+CheckElement[3]={Id:"TabPage3TextBox3",Required:true,typeofStore:"double"};
+CheckElement[4]={Id:"DDL1",Required:true};
+CheckElement[5]={Id:"TextBox11",Required:true,typeofStore:"int"};
+CheckElement[6]={Id:"TextBox13",Required:true,typeofStore:"double"};
+
+function CheckValid(aWin,aInvalidColor)
+{
+	CheckEmptyType(aWin,aInvalidColor);
+}
+
+function CheckForm(aWin,aInvalidColor,aStr)
+{
+	alert(aStr);	
+
+	CheckValid(aWin,aInvalidColor);
+	if(!FlashControl(aWin,aInvalidColor))
+	  return(false);
+
+	alert('oB# 1!!!');
+
+	for(var iFrame=0; iFrame<aWin.frames.length; ++iFrame)
+	   for(var iForm=0; iForm<aWin.frames[iFrame].document.forms.length; ++iForm)
+			aWin.frames[iFrame].document.forms[iForm].submit();
+	
+	alert('oB# 2!!!');
+	return(true);
+}
+
+function TabSet()
+{
+   var
+     TabNoInput=document.getElementById("inpTabIdx"),
+     TabNo;
+
+   TabNo=parseInt(TabNoInput.value);
+   if(!isNaN(TabNo) && TabNo>=0 && TabNo<tp.pages.length)
+   {
+		tp.pages[TabNo].select();
+   }
+}
+
+function TestSubmit()
+{
+   var
+     result,
+     str="MainForm.onsubmit";
+
+   alert(str);
+   result=CheckForm(window,InvalidColor,'MainForm');
+   alert(str+"="+result);
+   return(result);
+}
+
+function Show()
+{
+   var
+     tmpStr="",
+     f,
+     no=2;
+
+   for(var i in window.frames[no])
+   {
+      tmpStr+=i;
+      if(i=="name")
+      {
+         tmpStr+="=";
+         tmpStr+=window.frames[no].name;
+      }
+      if(i=="frames")
+      {
+         tmpStr+=" length=";
+         tmpStr+=window.frames[no].frames.length;
+      }
+      tmpStr+="<br>";
+   }
+
+   if(f=document.getElementById(window.frames[no].name))
+   {
+     f=f.parentNode;
+     tmpStr+=f.className;
+     f.tabPage.select();
+   }
+   else
+     tmpStr+="???";
+
+   tmpStr+="<br>";
+   document.getElementById("FrameInfo").innerHTML=tmpStr;
+}
+
+function AnyChanged()
+{
+   CheckValid(window,InvalidColor);
+}
+
+function ClickRadio(obj)
+{
+   switch(obj.value)
+   {
+      case "On" :
+      {
+         ShowDiv("DivMainForm",true);
+         break;
+      }
+      case "Off" :
+      {
+         ShowDiv("DivMainForm",false);
+         break;
+      }
+      default :
+      {
+         break;
+      }
+   }
+}
+
+function ClickCheckBox(obj)
+{
+   ShowDiv("DivMainForm",obj.checked);
+}
+
+function ShowDiv(divId,aShow)
+{
+   var
+     div=document.getElementById(divId),
+     val=aShow ? "block" : "none";
+
+   if((!aShow && div.style.display=="none")
+     || (aShow && div.style.display=="block"))
+   return;
+
+   div.style.display=val;
+   SetDivElements(div,aShow);
+}
+
+function SetDivElements(aDiv,aSetValue)
+{
+   var
+     child=aDiv.childNodes;
+
+   for(var i=0; i<child.length; ++i)
+   {
+      if((child[i].nodeName.toLowerCase()=="input")
+        && ("CheckValid" in child[i]))
+      {
+         child[i].CheckValid=aSetValue;
+      }
+
+      if(child[i].childNodes)
+        SetDivElements(child[i],aSetValue);
+   }
+}
+// -->
+</script>
+	</HEAD>
+	<body onload="PrepareForm();SetBackgroundColor('TextBox2','green')">
+		<form id="MainForm" onsubmit="return(TestSubmit())" method="post">
+			<input type="text" id="TextBox1" name="TextBox1"><br>
+			<input type="text" id="TextBox2" name="TextBox2"><br>
+			<input type="text" id="TextBox3" name="TextBox3"><br>
+			<input type="text" id="TextBox4" name="TextBox4"><br>
+			<select id="DDL1" name="DDL1" onchange="DDLChanged('DDL1'); AnyChanged()">
+				<option value=" "> </option>
+				<option value=1>1st</option>
+				<option value=2>2nd</option>
+				<option value=3>3rd</option>
+				<option value=4>4th</option>
+			</select><br>
+ 			<dl>
+				<dt>DIV:
+					<dd><input type="radio" id="Radio1" name="ShowDiv" value="On" checked onclick="ClickRadio(this)">On<br>
+					<dd><input type="radio" id="Radio2" name="ShowDiv" value="Off" onclick="ClickRadio(this)">Off<br>
+			</dl>
+			<input type="checkbox" id="CheckBox1" name="CheckBox1" checked onclick="ClickCheckBox(this)">&nbsp;DIV
+                        <div id="DivMainForm" name="DivMainForm" style="DISPLAY: block; ">
+				<fieldset>
+					<legend>&nbsp;Div on MainForm&nbsp;</legend>
+					<input type="text" id="TextBox11" name="TextBox11"><br>
+					<input type="text" id="TextBox12" name="TextBox12"><br>
+					<input type="text" id="TextBox13" name="TextBox13"><br>
+					<input type="text" id="TextBox14" name="TextBox14"><br>
+				</fieldset>
+                        </div>
+			<div id="DivStandalone1" name="DivStandalone">
+				<iframe id="IFrameStandalone1" name="IFrameStandalone1" src="iframe.html" width="100%" height="100%"></iframe>
+			</div>
+			<div class="tab-pane" id="tabPanel">
+<script type="text/javascript">
+<!--
+tp=new WebFXTabPane(document.getElementById("tabPanel"));
+// -->
+</script>
+				<!--TAB1-->
+				<div class="tab-page" id="tabPage1">
+					<h2 class="tab">Tab#1</h2>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage1"));
+// -->
+</script>
+					<iframe id="TAB1" name="TAB1" style="BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; BORDER-LEFT: 0px solid; WIDTH: 100%; BORDER-BOTTOM: 0px solid; HEIGHT: 100%" src="iframe1.html"></iframe>
+				</div>
+				<!--TAB2-->
+				<div class="tab-page" id="tabPage2">
+					<h2 class="tab">Tab#2</h2>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage2"));
+// -->
+</script>
+					<iframe id="TAB2" name="TAB2" style="BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; BORDER-LEFT: 0px solid; WIDTH: 100%; BORDER-BOTTOM: 0px solid; HEIGHT: 100%" src="iframe2.html"></iframe>
+				</div>
+				<!--TAB3-->
+				<div class="tab-page" id="tabPage3">
+					<h2 class="tab">Tab#3</h2>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage3"));
+// -->
+</script>
+					<input type="text" id="TabPage3TextBox1" name="TabPage3TextBox1"><br>
+					<input type="text" id="TabPage3TextBox2" name="TabPage3TextBox2"><br>
+					<input type="text" id="TabPage3TextBox3" name="TabPage3TextBox3"><br>
+				</div>
+
+<script type="text/javascript">
+<!--
+setupAllTabs();
+// -->
+</script>
+			</div>
+			<input id="inpTabIdx" type="text" name="inpTabIdx">&nbsp;<input id="btnTabSet" onclick="TabSet()" type="button" value="Set" name="btnTabSet"><br>
+                        <input id="btnShow" onclick="Show()" type="button" value="Show" name="btnShow"><br>
+			<input id="btnSubmit" name="btnSubmit" value="Submit" type="submit" onclick="alert('btnSubmit.onclick')"><br>
+                        <p id="FrameInfo" name="FrameInfo"></p>
+		</form>
+	</body>
+</HTML>

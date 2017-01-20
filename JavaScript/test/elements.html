@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>Test elements</title>
+<script type="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+if(!window.Node)
+{
+   var
+     Node={
+             ELEMENT_NODE: 1,
+             ATTRIBUTE_NODE: 2,
+             TEXT_NODE: 3,
+             CDATA_SECTION_NODE: 4,
+             ENTITY_REFERENCE_NODE: 5,
+             ENTITY_NODE: 6,
+             PROCESSING_INSTRUCTION_NODE: 7,
+             COMMENT_NODE: 8,
+             DOCUMENT_NODE: 9,
+             DOCUMENT_TYPE_NODE: 10,
+             DOCUMENT_FRAGMENT_NODE: 11,
+             NOTATION_NODE: 12
+          }
+}
+
+function Show(Element)
+{
+//   if(("nodeType" in Element)
+//      && Element.nodeType!=undefined
+//      && Element.nodeType!=Node.ELEMENT_NODE)
+//   return;
+
+//   if(("nodeName" in Element)
+//      && Element.nodeName!=undefined
+//      && (Element.nodeName.toUpperCase()=="SCRIPT"
+//          || Element.nodeName.toUpperCase()=="BR"));
+//   return;
+
+   if(("id" in Element) && Element.id!=undefined)
+     document.write("id=\"",Element.id,"\"&nbsp;");
+   if(("name" in Element) && Element.name!=undefined)
+     document.write("name=\"",Element.name,"\"&nbsp;");
+   if(("nodeName" in Element) && Element.nodeName!=undefined)
+     document.write("nodeName=\"",Element.nodeName,"\"&nbsp;");
+   if(("nodeType" in Element) && Element.nodeType!=undefined)
+     document.write("nodeType=",Element.nodeType,"&nbsp;");
+   document.write("<br>");
+
+   var
+     children=Element.childNodes;
+
+   for(var i=0; i<children.length; ++i)
+      Show(children[i]);
+}
+// -->
+</script>
+  </head>
+  <body>
+    <table id="Table1" name="Table1">
+      <tr id="Table1Tr1" name="Table1Tr1">
+        <td id="Table1Tr1Td1" name="Table1Tr1Td1">Begin&nbsp;
+<!-- style="background: blue; " -->
+          <input type="text" id="Input1" name="Input1">&nbsp;End
+        </td>
+      </tr>
+    </table>
+<script type="text/javascript">
+<!--
+
+var
+  oInput=document.getElementById("Input1"),
+  oTable=document.getElementById("Table1"),
+  oTmp=document.getElementById("Table1Tr1Td1");
+
+//Show(document.body);
+Show(oTmp);
+makeObjectTable("oInput",oInput);
+makeObjectTable("oInput.style",oInput.style);
+oTmp=oTmp.childNodes;
+for(var i=0; i<oTmp.length; ++i)
+   makeObjectTable("oTmp["+i+"]",oTmp[i]);
+oInput.style.backgroundColor='red';
+// -->
+</script>
+  </body>
+<html>

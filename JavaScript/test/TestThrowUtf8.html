@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test &laquo;throw&raquo; (utf-8)</title>
+		<script>
+function DoIt()
+{
+	var
+		str = "ЙЦУКЕН blah-blah-blah \u0419\u0426\u0423\u041A\u0415\u041D \u03c0";
+
+	if(window.console && console.log)
+		console.log(str);
+
+	throw(str);
+
+	try
+	{
+		throw(str);
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log(e);
+	}
+}
+		</script>
+	</head>
+	<body onload="DoIt()">
+	</body>
+</html>

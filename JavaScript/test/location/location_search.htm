@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Test location.search</title>
+		<script type="text/javascript">
+<!--
+function ChangeWindow()
+{
+	alert("window.location=\""+window.location+"\"");
+	alert("window.location.href=\""+window.location.href+"\"");
+	alert("window.location.search=\""+window.location.search+"\"");
+	window.location.search="";
+}
+
+function ChangeDocument()
+{
+	alert("document.location=\""+document.location+"\"");
+	alert("document.location.href=\""+document.location.href+"\"");
+	alert("document.location.search=\""+document.location.search+"\"");
+	document.location.search="";
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+			<input type="button" id="btnChangeWindow" value="Change window" onclick="ChangeWindow()"><br>
+			<input type="button" id="btnChangeDocument" value="Change document" onclick="ChangeDocument()"><br>
+		</form>
+	</body>
+</html>

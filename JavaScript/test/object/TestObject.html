@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test Object</title>
+		<script type="text/javascript">
+var
+	a = {
+		pa: "a",
+		oa: {
+			pb: this.pa
+		}
+	};
+
+document.write(a.pa,"<br />");
+document.write(a.oa.pb,"<br />");
+
+function TestObject()
+{
+	var
+		a = {
+			pa: "a",
+			oa: {
+				pb: this.pa
+			}
+		};
+
+	document.write(a.pa,"<br />");
+	document.write(a.oa.pb,"<br />");
+}
+
+TestObject();
+
+var
+	obj = {
+		TestObject: function()
+		{
+			var
+				a = {
+					pa: "a",
+					oa: {
+						pb: this.pa,
+						pb2: this.a.pa
+					}
+				};
+
+			document.write(a.pa,"<br />");
+			document.write(a.oa.pb,"<br />");
+		},
+		TestObject2: function()
+		{
+			var
+				a = {
+					pa: "a",
+					oa: {
+						pb: a.pa
+					}
+				};
+
+			document.write(a.pa,"<br />");
+			document.write(a.oa.pb,"<br />");
+		}
+
+	};
+
+obj.TestObject();
+obj.TestObject2();
+		</script>
+	</head>
+<body>
+</body>
+</html>

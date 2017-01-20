@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+    window.captureEvents(Event.MOUSEMOVE);
+    window.onmousemove=updateIT;
+}
+
+function updateIT(e)
+{
+    e=e||window.event;
+    alert("e.pageX="+e.pageX+" e.pageY="+ e.pageY);
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<span id="span1"></span>
+		<span id="span2"></span>
+	</body>
+</html>

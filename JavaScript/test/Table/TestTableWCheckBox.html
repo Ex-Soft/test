@@ -1,0 +1,110 @@
+<html>
+	<head>
+		<title>Test Table with CheckBox</title>
+		<style type="text/css">
+.RowHighlight
+{
+	background-color: aqua;
+}
+
+.ColHighlight
+{
+	background-color: yellow;
+}
+
+.CellHighlight
+{
+	background-color: red;
+}
+
+		</style>
+		<script type="text/javascript">
+<!--
+function HLR(obj)
+{
+	var
+		row;
+
+	if(!(row=FindParent(obj,"TR")))
+		return;
+
+	if(obj.checked)
+	{
+		row.className="RowHighlight";
+		row.cells[1].className = row.cells[1].className=="ColHighlight" ? "CellHighlight" : "";
+	}
+	else
+	{
+		row.className="";
+		row.cells[1].className = row.cells[1].className=="CellHighlight" ? "ColHighlight" : "";
+	}
+}
+
+function HLC(obj)
+{
+	var
+		oTableBody;
+
+	if(!(oTableBody=document.getElementById("TableBody")))
+		return;
+
+	for(var i=0; i<oTableBody.rows.length; ++i)
+		if(obj.checked)
+		{
+			oTableBody.rows[i].cells[1].className = oTableBody.rows[i].className!="" ? "CellHighlight" : "ColHighlight";
+		}
+		else
+			oTableBody.rows[i].cells[1].className="";
+}
+
+function FindParent(obj,NodeName)
+{
+	var
+		_Parent_=null,
+		tmpObj=obj;
+
+	NodeName=NodeName.toLowerCase();
+
+	do
+	{
+		if(tmpObj.nodeType==1 && tmpObj.nodeName.toLowerCase()==NodeName)
+		{
+			_Parent_=tmpObj;
+			break;
+		}
+	}while(tmpObj=tmpObj.parentNode);
+
+	return(_Parent_);
+}
+//-->
+		</script>
+	</head>
+	<body>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>1</th>
+					<th>2&nbsp;<input type="checkbox" id="InputCheckBoxC" onclick="HLC(this)"></th>
+					<th>3</th>
+				</tr>
+			</thead>
+			<tbody id="TableBody">
+				<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3&nbsp;<input type="checkbox" id="InputCheckBoxR1" onclick="HLR(this)"></td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3&nbsp;<input type="checkbox" id="InputCheckBoxR2" onclick="HLR(this)"></td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3&nbsp;<input type="checkbox" id="InputCheckBoxR3" onclick="HLR(this)"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

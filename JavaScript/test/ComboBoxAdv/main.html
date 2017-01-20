@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>ComboBox</title>
+		<link type="text/css" rel="stylesheet" href="screen.css">
+		<script type="text/javascript" src="js.js"></script>
+	</head>
+	<body>
+		<div style="display: none;" id="tooltip2"></div>
+		<div id="a_a2_6_select" class="select_div">
+			<select name="a_a2_6" id="Fa_a2_6" class="select_select" onmouseover="showSubFoto('a_a2_6'+'_'+this.value);" onchange="showSubFoto('a_a2_6'+'_'+this.value);">
+				<option value="1" selected="selected">Square</option>
+				<option value="2">Round</option>
+				<option value="3">Dovetail joint</option>
+				<option value="4">Hand-made</option>
+				<option value="5">Norwegian</option>
+				<option value="6">Laminated</option>
+			</select>
+			<div style="background-image: url(http://www.dreamhouse.lt/img/downarrow.gif);" id="a_a2_6_select_box" onmouseover="sel_a_a2_6_sel.mouseon(); showSubFoto('a_a2_6'+'_'+document.getElementById('Fa_a2_6').value);" onmouseout="sel_a_a2_6_sel.mouseout(); hidetip2();" onclick="sel_a_a2_6_sel.click()" class="select_box">Square</div>
+			<div id="a_a2_6_select_dropdown" onmouseout="sel_a_a2_6_sel.mouseout()" onmouseover="sel_a_a2_6_sel.mouseon()" class="select_dropdown">
+				<a href="javascript:sel_a_a2_6_sel.selectItem(0)" onmouseover=" showSubFoto('a_a2_6_1'); return true" onmouseout="return window.status=''; return true" class="selOpt_first">Square</a>
+				<a href="javascript:sel_a_a2_6_sel.selectItem(1)" onmouseover=" showSubFoto('a_a2_6_2'); return true" onmouseout="return window.status=''; return true">Round</a>
+				<a href="javascript:sel_a_a2_6_sel.selectItem(2)" onmouseover=" showSubFoto('a_a2_6_3'); return true" onmouseout="return window.status=''; return true">Dovetail joint</a>
+				<a href="javascript:sel_a_a2_6_sel.selectItem(3)" onmouseover=" showSubFoto('a_a2_6_4'); return true" onmouseout="return window.status=''; return true">Hand-made</a>
+				<a href="javascript:sel_a_a2_6_sel.selectItem(4)" onmouseover=" showSubFoto('a_a2_6_5'); return true" onmouseout="return window.status=''; return true">Norwegian</a>
+				<a href="javascript:sel_a_a2_6_sel.selectItem(5)" onmouseover=" showSubFoto('a_a2_6_6'); return true" onmouseout="return window.status=''; return true" class="selOpt_last">Laminated</a>
+			</div>
+			<script type="text/javascript">
+<!--
+var
+	sel_a_a2_6_sel=new Dropdown('sel_a_a2_6_sel','a_a2_6_select_box','a_a2_6_select_dropdown','Fa_a2_6');
+	sel_a_a2_6_sel.list();
+	sel_a_a2_6_sel.setActive(document.getElementById('Fa_a2_6').options[document.getElementById('Fa_a2_6').selectedIndex].text);
+// -->
+			</script>
+		</div>
+		<img id="subMenuFoto" style="display: block;">
+	</body>
+</html>

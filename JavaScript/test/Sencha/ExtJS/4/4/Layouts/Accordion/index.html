@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Layout (Accordionn)</title>
+
+		<link rel="stylesheet" href="../../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4.2.1/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4.2.1/ext-all-debug.js"></script>
+
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var tp = Ext.create("Ext.tab.Panel", {
+		title: "Test Ext.layout.container.Accordion",
+		//height: 300,
+		//width: 300,
+		items:[{
+			title: "Tab 1",
+			layout: {
+				type: "accordion"
+			},
+			items: [{
+				xtype: "grid",
+				title: "Sales outlets",
+				store: Ext.create("Ext.data.ArrayStore", {
+					fields: [ "id", "name" ],
+					data: [ [ 1, "name 1" ], [ 2, "name 2" ] ]
+				}),
+				columns: [
+					{ text: "id", dataIndex: "id" },
+					{ text: "name", dataIndex: "name" }
+				]
+			}, {
+				xtype: "grid",
+				title: "Segments",
+				store: Ext.create("Ext.data.ArrayStore", {
+					fields: [ "id", "name" ],
+					data: [ [ 1, "name 1" ], [ 2, "name 2" ] ]
+				}),
+				columns: [
+					{ text: "id", dataIndex: "id" },
+					{ text: "name", dataIndex: "name" }
+				]
+			}],
+			dockedItems: [{
+				dock: "bottom",
+				xtype: "panel",
+				items: [{
+					xtype: "button",
+					text: "button"
+				}]
+			}]
+		}, {
+			title: "Tab 2",
+			layout: "fit",
+			items: [{
+				xtype: "panel",
+				layout: {
+					type: "accordion"
+				},
+				items: [{
+					title: "Title 1"
+				}, {
+					title: "Title 2"
+				}]
+			}, {
+				xtype: "button",
+				text: "button"
+			}]
+		}, {
+			title: "Tab 3"
+		}]
+		//, renderTo: Ext.getBody()
+	});
+	
+	Ext.create("Ext.window.Window", {
+		autoShow: true,
+		height: 500,
+		width: 500,
+		layout: "fit",
+		items: [{
+			xtype: "form",
+			layout: "fit",
+			items: [tp]
+		}]
+	});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

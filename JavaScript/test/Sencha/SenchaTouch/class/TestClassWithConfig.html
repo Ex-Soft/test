@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Class with config</title>
+		<script charset="utf-8" src="../../../../Sencha/Touch/Touch2.3/touch-2.3.1/sencha-touch-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("BaseClassWithConfig", {
+	baseClassProp: "undefinedBaseClassProp",
+
+	config: {
+		baseClassConfigProp: "undefinedBaseClassConfigProp",
+		smthArray: [ "1st", "2nd", "3rd" ]
+	},
+
+	constructor: function(config) {
+		if(window.console && console.log)
+			console.log("BaseClassWithConfig.constructor(%o)", arguments);
+
+		this.initConfig(config);
+
+		if(Ext.isDefined(config)
+			&& Ext.isDefined(config.baseClassProp)
+			&& this.baseClassProp !== config.baseClassProp)
+			this.baseClassProp=config.baseClassProp;
+	},
+
+	applyBaseClassConfigProp: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("BaseClassWithConfig.applyBaseClassConfigProp(%o)", arguments);
+
+		return value; // without this or return undefined - property doesn't set
+	},
+
+	updateBaseClassConfigProp: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("BaseClassWithConfig.updateBaseClassConfigProp(%o)", arguments);
+	},
+
+	baseClassFoo: function() {
+		if(window.console && console.log)
+			console.log("BaseClassWithConfig.baseClassFoo()");
+	},
+
+	Foo: function() {
+		if(window.console && console.log)
+			console.log("BaseClassWithConfig.Foo()");
+	}
+});
+
+Ext.define("DerivedClassWithConfig", {
+	extend: "BaseClassWithConfig",
+
+	config: {
+		smthArray: [ "4th", "5th" ],
+		derivedClassConfigProp: "undefinedDerivedClassConfigProp"
+	}
+
+	/*, constructor: function(config) {
+		if(window.console && console.log)
+			console.log("DerivedClassWithConfig.constructor(%o)", arguments);
+
+		this.initConfig(config);
+		this.callParent(arguments);
+
+		return this;
+	}*/
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, touch: %s", Ext.versions.core.version, Ext.versions.touch.version);
+
+	var
+		baseClassWithConfig1 = Ext.create("BaseClassWithConfig", { baseClassProp: "BaseClassProp1", baseClassConfigProp: "BaseClassConfigProp1" }),
+		derivedClassWithConfig1 = Ext.create("DerivedClassWithConfig");
+
+	baseClassWithConfig1.setBaseClassConfigProp("blah-blah-blah");
+
+	if(window.console && console.log)
+	{
+		console.log("%s", baseClassWithConfig1.baseClassProp);
+		console.log("%s", baseClassWithConfig1.getBaseClassConfigProp());
+	}
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

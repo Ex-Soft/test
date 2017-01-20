@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>Test Table (Simple)</title>
+		<script type="text/javascript">
+<!--
+function Test()
+{
+	var
+		Table,
+		TBody,
+		Ctrls;
+
+	if(!(Table=document.getElementById("TableTest")))
+		return;
+
+	TBody=Table.getElementsByTagName("tbody");
+	if(TBody.length==0)
+		return;
+
+	Ctrls="\"getElementsByName\" in HTMLTableRowElement";
+	if(!("getElementsByName" in TBody[0].rows[0]))
+		Ctrls="!("+Ctrls+")";
+	alert(Ctrls);
+
+	Ctrls="\"getElementById\" in HTMLTableRowElement";
+	if(!("getElementById" in TBody[0].rows[0]))
+		Ctrls="!("+Ctrls+")";
+	alert(Ctrls);
+
+	Ctrls="\"getElementsByName\" in HTMLTableCellElement";
+	if(!("getElementsByName" in TBody[0].rows[0].cells[0]))
+		Ctrls="!("+Ctrls+")";
+	alert(Ctrls);
+
+	Ctrls="\"getElementById\" in HTMLTableCellElement";
+	if(!("getElementById" in TBody[0].rows[0].cells[0]))
+		Ctrls="!("+Ctrls+")";
+	alert(Ctrls);
+
+	//Ctrls=TBody[0].rows[0].getElementsByName("FIO");
+	//Ctrls=TBody[0].rows[0].cells[0].getElementsByName("FIO");
+
+	if(TBody[0].rows[0].cells[0].childNodes[0].name=="bla-bla-bla")
+		alert("oB!");
+	else
+		alert("Tampax");
+
+	Ctrls=TBody[0].rows[0].getElementsByTagName("span");
+	for(var i=0; i<Ctrls.length; ++i)
+	{
+		alert(Ctrls[i].getAttribute("name"));
+	}
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+			<table id="TableTest" style="width: 100%; " cellspacing="0" cellpadding="0" border="1">
+				<tr>
+					<td name="FIO" align="center"><span name="SpanName">Ô. È. Î.</span></td>
+					<td name="DR" align="center"><span name="SpanDR">ÄÐ</span></td>
+				</tr>
+			</table>
+			<input type="button" id="ButtonTest" value="DoIt!" onclick="Test()">
+		</form>
+	</body>
+</html>

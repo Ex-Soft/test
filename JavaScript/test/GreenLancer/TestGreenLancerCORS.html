@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test GreenLancer (CORS)</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	$("#btnDoIt").on("click", function(e) {
+		$.ajax({
+			url: "http://localhost:51655/greenlancer.aspx",
+			crossDomain: true,
+			type: "POST",
+			dataType: "json",
+			contentType: "application/json",
+			data: JSON.stringify({
+				method: "authUser",
+				params: {
+					email: "jwang@oneroofenergy.com",
+					password: "NhXfBbLd7AnArx9tCTyM"
+				}
+			})
+		})
+		.then(function (data, textStatus, jqXHR) {
+			if (window.console && window.console.log)
+				console.log("then(%o)", arguments);
+		})
+		.fail(function (jqXHR, textStatus, errorThrown) {
+			if (window.console && window.console.log)
+				console.log("fail(%o)", arguments);
+		});
+	});
+});
+		</script>
+	</head>
+	<body>
+		<button id="btnDoIt">DoIt!</button>
+	</body>
+</html>

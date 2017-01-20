@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Date</title>
+		<!-- <script charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all-debug.js"></script> -->
+		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		tmpStr="2012-07-07T15:15:45",
+		d=Ext.Date.parse(tmpStr, "c"),
+		dp;
+
+	if(window.console && console.log)
+		console.log("%o %s", d, Ext.Date.format(d, "d.m.Y g:i:sa"));
+
+	d = new Date();
+	tmpStr = Ext.Date.format(d, "MS");
+	dp = Ext.Date.parse(tmpStr, "MS");
+	dp = Ext.Date.parse(tmpStr, "MS");
+	
+	if(window.console && console.log)
+	{
+		console.log("%s", d);
+		console.log("%s", tmpStr);
+		console.log("%s", dp);
+	}
+
+	if(window.console && console.log)
+		console.log(Ext.Date.format(Ext.Date.add(Ext.Date.parse("2012-01-01T00:00:00", "c"),Ext.Date.DAY, 255),"d.m.Y"));
+
+	d = Ext.Date.parse("", "c");
+	if(window.console && console.log)
+		console.log("%o %s", d, Ext.Date.format(d, "d.m.Y g:i:sa"));
+
+	tmpStr="2012-12-31T23:59:59+02:00";
+	d=Ext.Date.parse(tmpStr, "c");
+	dp=new Date(tmpStr);
+	if(window.console && console.log)
+	{
+		console.log("%o", d);
+		console.log("%o", dp);
+	}
+	
+	tmpStr="2012-12-31T21:59:59Z";
+	d=Ext.Date.parse(tmpStr, "c");
+	dp=new Date(tmpStr);
+	if(window.console && console.log)
+	{
+		console.log("%o", d);
+		console.log("%o", dp);
+	}
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

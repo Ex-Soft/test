@@ -1,0 +1,185 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>&laquo;Custom Drag'n'Drop&raquo;</title>
+		<link rel="stylesheet" href="../../../../../../ExtJS/ExtJS4/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<style type="text/css">
+body
+{
+	padding: 10px;
+}
+
+.availableLot
+{
+	width: 105px;
+	border: 1px solid #999999;
+	padding: 10px;
+	height: 290px;
+	-moz-border-radius: 17px;
+	-webkit-border-radius: 17px;
+}
+
+.rented, .repair
+{
+	width: 195px;
+}
+
+.availableLot div
+{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 85px;
+	border: 1px solid #666666;
+	padding: 3px;
+	background-color: #FFFFFF;
+	margin: 5px;
+	cursor: move;
+	text-align: center;
+}
+
+#cars div, #trucks div
+{
+	margin: 5px;
+	width: 85px;
+}
+
+#repair div, #rented div
+{
+	float: left;
+	margin: 2px;
+	/*padding: 3px;*/
+}
+
+.imgThumb
+{
+	height: 57px;
+	width: 77px;
+	border: 1px solid #777777;
+}
+
+.dropOK
+{
+	background-color: #99ff99 !important;
+}
+
+.dropNotOK
+{
+	border: 1px solid #FF0000 !important;
+}
+		</style>
+		<!--[if IE]>
+		<style type="text/css">
+body
+{
+	padding: 10px;
+}
+
+.availableLot
+{
+	width: 120px;
+	border: 1px solid #999999;
+	padding: 10px;
+	height: 320px;
+}
+
+.rented, .repair
+{
+	width: 210px;
+}
+
+.availableLot div
+{
+	width: 85px;
+	border: 1px solid #666666;
+	padding: 3px;
+	background-color: #FFFFFF;
+	margin: 5px;
+	cursor: move;
+	text-align: center;
+}
+
+#cars div, #trucks div
+{
+	margin: 5px;
+	width: 85px;
+}
+
+#repair div, #rented div
+{
+	float: left;
+	margin: 2px;
+}
+
+.imgThumb
+{
+	height: 57px;
+	width: 77px;
+	border: 1px solid #777777;
+}
+
+.dropOK
+{
+	background-color: #99ff99 !important;
+}
+
+.dropNotOK
+{
+	border: 1px solid #FF0000 !important;
+}
+		</style>
+		<![endif]-->
+		<script charset="utf-8" src="app.js"></script>
+	</head>
+	<body>
+		<table class="x-unselectable">
+			<tbody>
+				<tr>
+					<td>
+						<table>
+							<tbody>
+								<tr>
+									<td align="center">Available Cars</td>
+									<td align="center">Available Trucks</td>
+								</tr>
+								<tr>
+									<td>
+										<div id="cars" class="availableLot">
+											<div><img src="img/camaro.jpg" class="imgThumb" qtip="Camaro"></div>
+											<div><img src="img/miata.jpg" class="imgThumb" qtip="Miata"></div>
+											<div><img src="img/mustang.jpg" class="imgThumb" qtip="Mustang"></div>
+											<div><img src="img/corvette.jpg" class="imgThumb" qtip="Corvette"></div>
+										</div>
+									</td>
+									<td>
+										<div id="trucks" class="availableLot">
+											<div><img src="img/f150.jpg" class="imgThumb" qtip="F150"></div>
+											<div><img src="img/tahoe.jpg" class="imgThumb" qtip="Tahoe"></div>
+											<div><img src="img/tacoma.jpg" class="imgThumb" qtip="Tacoma"></div>
+											<div><img src="img/s10.jpg" class="imgThumb" qtip="S10"></div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td style="width: 200px;" align="center">
+						<table>
+							<tbody>
+								<tr>
+									<td style="width: 200px;" align="center">Vehicles Rented</td>
+									<td style="width: 200px;" align="center">Vehicles In Repair</td>
+								</tr>
+								<tr>
+									<td><div id="rented" class="availableLot rented"></div></td>
+									<td><div id="repair" class="availableLot repair"></div></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

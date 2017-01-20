@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>countdown</title>
+		<script type=text/javascript>
+<!--
+var
+	hInterval=null,
+	SecondsCount=10,
+	PropellerStr="|/-\\";
+
+function start()
+{
+	DoIt();
+	hInterval=setInterval("DoIt()",1000);
+}
+
+function DoIt()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("SpanPropeller"))
+		Ctrl.innerHTML=PropellerStr.charAt(SecondsCount%4);
+	if(Ctrl=document.getElementById("SpanCountdown"))
+		Ctrl.innerHTML=SecondsCount--;
+
+	if(SecondsCount<0)
+	{
+		if(hInterval)
+			clearInterval(hInterval);
+		// DoSmth();
+	}
+}
+// -->
+		</script>
+	</head>
+	<body onload="start()">
+		<span id="SpanPropeller"></span>&nbsp;<span id="SpanCountdown"></span>
+	</body>
+</html>

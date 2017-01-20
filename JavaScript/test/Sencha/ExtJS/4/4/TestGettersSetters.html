@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>&laquo;Test Getters &amp;&amp; Setters&raquo;</title>
+		<script charset="windows-1251" src="../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+    enabled: true
+});
+
+Ext.define("TestClass", {
+	config: {
+		p1: "p1",
+		p3: "p3",
+		p4: "p4",
+		p6: "p6"
+	},
+
+	p5: "p5",
+
+	constructor: function(config) {
+		config = config || {};
+		this.initConfig(config);
+
+		return this;
+	},
+	
+	getP4: function() {
+		if(window.console && console.log)
+			console.log("getP4(%o)", arguments);
+
+		return this.p4;
+	},
+
+	setP4: function(val) {
+		if(window.console && console.log)
+			console.log("setP4(%o)", arguments);
+
+		this.p4 = val;
+	}
+});
+
+Ext.onReady(function() {
+	var
+		o1 = Ext.create("TestClass"),
+		o2 = Ext.create("TestClass", {
+			p2: "p2",
+			p6: "p6p6"
+		});
+
+	if(window.console && console.log)
+	{
+		if(o1.getP1)
+			console.log("%s", o1.getP1());
+		if(o2.getP2)
+			console.log("%s", o2.getP2());
+		if(o1.getP3)
+			console.log("%s", o1.getP3());
+		if(o1.getP4)
+			console.log("%s", o1.getP4());
+		if(o1.getP4)
+			o1.setP4("p4p4");
+		if(o1.getP4)
+			console.log("%s", o1.getP4());
+		if(o1.getP5)
+			console.log("%s", o1.getP5());
+		if(o2.getP6)
+			console.log("%s", o2.getP6());
+	}
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

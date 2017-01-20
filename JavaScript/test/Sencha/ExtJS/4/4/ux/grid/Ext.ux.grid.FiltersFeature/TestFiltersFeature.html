@@ -1,0 +1,158 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.ux.grid.FiltersFeature</title>
+		<link rel="stylesheet" href="../../../../../../../ExtJS/ExtJS4/ExtJS4.2.0/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../../ExtJS/ExtJS4/ExtJS4.2.0/ext-all-debug.js"></script>
+		<link rel="stylesheet" href="ux/grid/css/GridFilters.css"/>
+		<link rel="stylesheet" href="ux/grid/css/RangeMenu.css"/>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false,
+	paths: {
+		"Ext.ux": "ux"
+	}
+});
+
+Ext.require([
+	"Ext.ux.grid.FiltersFeature"
+]);
+
+Ext.define("TestModel", {
+	extend: "Ext.data.Model",
+	idProperty: "id",
+	fields: [
+		{ name: "id", type: "int" },
+		{ name: "fstring", type: "string" },
+		{ name: "ffloat", type: "float" },
+		{ name: "fdate", type: "date", dateFormat: "c" },
+		{ name: "fboolean", type: "boolean" },
+		{ name: "fint", type: "int" }
+	]
+});
+
+Ext.define("ListModel", {
+	extend: "Ext.data.Model",
+	idProperty: "id",
+	fields: [
+		{ name: "id", type: "int" },
+		{ name: "fstring", type: "string" }
+	]
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		list = [
+			[ 1, "Record# 1" ],
+			[ 2, "Record# 2" ],
+			[ 3, "Record# 3" ]
+		],
+		storeList = Ext.create("Ext.data.ArrayStore", {
+			model: "ListModel",
+			data: list
+		}),
+		listRenderer = function (value, metaData, record, rowIndex, colIndex, store, view) {
+			var
+				listRecord;
+
+			return (listRecord = storeList.getById(value)) ? listRecord.get("fstring") : "!storeList.getById(name)";
+		},
+		store = Ext.create("Ext.data.ArrayStore", {
+			model: "TestModel",
+			data: [
+				[ 1, "Record# 1", 123.45, "1900-01-01", true, 1 ],
+				[ 2, "Record# 2", 234.56, "1901-01-01", false, 1 ],
+				[ 3, "Record# 3", 345.67, "1902-01-01", false, 2 ],
+				[ 4, "Record# 4", 456.78, "1903-01-01", false, 3 ]
+			]
+		}),
+		grid = Ext.create("Ext.grid.Panel", {
+			store: store,
+			columns: [
+				{ dataIndex: "id", header: "id", filterable: true },
+				{ dataIndex: "fstring", header: "fstring", filterable: true, flex: 1 },
+				{ dataIndex: "ffloat", header: "ffloat", filterable: true },
+				{ dataIndex: "fdate", header: "fdate", renderer: Ext.util.Format.dateRenderer("d.m.Y"), filter: { type: "date", dateFormat: "d.m.Y", afterText: "afterText", beforeText: "beforeText", onText: "onText" } },
+				{ dataIndex: "fboolean", header: "fboolean", filterable: true },
+				{ dataIndex: "fint", header: "fint", renderer: listRenderer, filter: { type: "list", dataIndex: "fint", options: list } }
+			],
+			features: [{
+				ftype: "filters",
+				local: true
+			}],
+			dockedItems: [{
+				xtype: "toolbar",
+				dock: "top",
+				items: [{
+					text: "id",
+					handler: function(btn, e) {
+						setValue(btn, { eq: 1 });
+					}
+				}, {
+					text: "fstring",
+					handler: function(btn, e) {
+						setValue(btn, "Record# 1");
+					}
+				}, {
+					text: "ffloat",
+					handler: function(btn, e) {
+						setValue(btn, { eq: 123.45 });
+					}
+				}, {
+					text: "fdate",
+					handler: function(btn, e) {
+						setValue(btn, { on: Ext.Date.parse("01.01.1900", "d.m.Y") });
+					}
+				}, {
+					text: "fboolean",
+					handler: function(btn, e) {
+						setValue(btn, true);
+					}
+				}, {
+					text: "fint",
+					handler: function(btn, e) {
+						setValue(btn, [1]);
+					}
+				}]
+			}],
+			listeners: {
+				afterrender: function(grid, eOpts) {
+					grid.filters.createFilters();
+				}
+			},
+			renderTo: Ext.getBody()
+		});
+});
+
+function setValue(btn, value) {
+	var
+		grid = btn.up("grid"),
+		filter = grid.filters.getFilter(btn.text);
+
+		if(filter)
+		{
+			//filter.setActive(true);
+			//Ext.Function.defer(function() {
+				filter.setValue(value);
+				//filter.setActive(true);
+			//}, 500);
+			//filter.setValue(value);
+			//filter.fireEvent("update", filter);
+			//filter.setActive(true);
+		}
+}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

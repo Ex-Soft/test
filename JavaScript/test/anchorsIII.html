@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="windows-1251"/>
+		<title>this is the title</title>
+		<script>
+function Change()
+{
+	var
+		Ctrl;
+		
+	if(!(Ctrl=document.getElementById("Victim")))
+		return;
+		
+	Ctrl.src = Ctrl.src.indexOf("fwd.gif")==-1 ? "pix/fwd.gif" : "pix/rew.gif";
+}
+		</script>
+	</head>
+	<body>
+		<img id="Victim" src="pix/fwd.gif"><br>
+		<a href="javascript:Change()">by href="javascript:"</a><br>
+		<a href="#" onclick="Change();return(false);">by href="#"</a>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<!-- http://docs.oracle.com/javase/6/docs/technotes/guides/jweb/deployment_advice.html -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test JRE</title>
+		<script src="http://www.java.com/js/deployJava.js"></script>
+		<script>
+function DoIt()
+{
+	if(window.console && console.log)
+		console.log("typeof deployJava = \"%s\"", typeof deployJava);
+
+	if(typeof deployJava!=="undefined")
+	{
+		if(window.console && console.log)
+			console.log("deployJava.getJREs() = \"%s\"", deployJava.getJREs());
+	}
+}
+		</script>
+	</head>
+	<body onload="DoIt()">
+	</body>
+</html>

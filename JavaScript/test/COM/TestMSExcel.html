@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <title>Test M$ Excel</title>
+<script type="text/javascript">
+<!--
+function TestCOM()
+{
+   var
+     oFS=null,
+     SignatureDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Excel_tst.xls",
+     OutputDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Excel_out.xls",
+     OutputDocDbf="E:\\Soft.src\\JavaScript\\Test\\COM\\Excel_out.dbf",
+     MSExcelExists,
+     OpenOfficeOrgExists,
+     MSExcel=null,
+     Workbooks,
+     Workbook,
+     Sheets,
+     Sheet,
+     i,
+     Mess,
+     Range,
+     MyChart,
+     Cells,
+     Series,
+     Value;
+
+   if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+   {
+      alert("!Scripting.FileSystemObject");
+      return;
+   }
+
+   if(!oFS.FileExists(SignatureDoc))
+   {
+      alert("!FileExists");
+      return;
+   }
+
+   /*
+   try
+   {
+      MSExcel=new ActiveXObject("com.sun.star.ServiceManager");
+      OpenOfficeOrgExists=true;
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+      alert(MSExcel);
+      OpenOfficeOrgExists=false;
+   }
+   */
+
+   MSExcel=null;
+   //alert(1);
+   //MSExcel=GetObject("e:\\Test1.xls","Excel.Application");
+   //alert(2);
+   //
+   // PRB: Cannot Call GetObject from Script in IE to Access Running Object
+   // http://support.microsoft.com/kb/q239470/
+   //
+
+   if(!MSExcel)
+   {
+      try
+      {
+         MSExcel=new ActiveXObject("Excel.Application");
+         MSExcelExists=true;
+      }
+      catch(Exception)
+      {
+         alert(Exception.name+": "+Exception.message);
+         MSExcelExists=false;
+      }
+   }
+
+   if(!MSExcel)
+   {
+      alert("!Excel.Application");
+      return;
+   }
+
+   MSExcel.Visible=true;
+   MSExcel.DisplayAlerts=false;
+
+   Workbooks=MSExcel.Workbooks;
+   Workbook=Workbooks.Add;
+   Sheets=Workbook.Sheets;
+   Sheet=Workbook.ActiveSheet;
+
+   for(i=1; i<=20; ++i)
+   {
+      Mess="A"+i;
+      Range=Sheet.Range(Mess);
+
+      Range.Value=i;
+
+      Mess="B"+i;
+      Range=Sheet.Range(Mess);
+
+      Mess="=SIN(A"+i+")";
+      Range.Formula=Mess;
+
+      Mess="C"+i;
+      Range=Sheet.Range(Mess);
+
+      Mess="=COS(A"+i+")";
+      Range.Formula=Mess;
+
+      Mess="D"+i;
+      Range=Sheet.Range(Mess);
+
+      Mess="=B"+i+"+C"+i;
+      Range.Formula=Mess;
+   }
+
+   Workbook.SaveAs(OutputDocDbf, 11 /* xlDBF4 */);
+
+   MyChart=MSExcel.Charts.Add;
+   //MyChart.ChartType=65;  // xlLineMarkers
+   MyChart.ChartType=4; // xlLine
+
+   Cells=Sheet.Cells;
+   Range=Cells.SpecialCells(11 /*xlCellTypeLastCell*/);
+   Mess="A";
+   Mess="B1:"+String.fromCharCode(Mess.charCodeAt(0)+Range.Column-1 -1 /* last -1 especially 4 'C' */)+Range.Row;
+   Range=Sheet.Range(Mess);
+   MyChart.SetSourceData(Range, 2 /*xlColumns*/);
+
+   MyChart=MyChart.Location(2 /*xlLocationAsObject*/, "Лист1");
+   Series=MyChart.SeriesCollection.NewSeries();
+
+   Value=MyChart.SeriesCollection.Count;
+
+   Mess="A1:A20";
+   Range=Sheet.Range(Mess);
+
+   for(i=Value; i>0; --i)
+   {
+      MyChart.SeriesCollection(i).XValues=Range;
+      switch(i)
+      {
+         case 1 :
+         {
+            MyChart.SeriesCollection(i).Name="sin";
+            break;
+         }
+         case 2 :
+         {
+            MyChart.SeriesCollection(i).Name="cos";
+            break;
+         }
+      }
+   }
+
+   Mess="D1:D20";
+   Range=Sheet.Range(Mess);
+   Series.Values=Range;
+   Series.Name="sin+cos";
+
+   MyChart.HasTitle=true;
+   MyChart.ChartTitle.Characters.Text="Name of Chart";
+   MyChart.Axes(1 /*xlCategory*/, 1 /*xlPrimary*/).HasTitle=true;
+   MyChart.Axes(1 /*xlCategory*/, 1 /*xlPrimary*/).AxisTitle.Characters.Text="Name of Category";
+   MyChart.Axes(2 /*xlValue*/, 1 /*xlPrimary*/).HasTitle=true;
+   MyChart.Axes(2 /*xlValue*/, 1 /*xlPrimary*/).AxisTitle.Characters.Text="Name of Value";
+
+   MyChart.HasLegend=true;
+   MyChart.Legend.Position=-4107; // 0xFFFFEFF5; // xlBottom
+
+/*
+   i=new Array();
+   i[0]=new Array();
+   i[1]=new Array();
+   i[2]=new Array();
+   i[3]=new Array();
+   i[0][0]='[0][0]';
+   i[1][0]='[1][0]';
+   i[2][0]='[2][0]';
+   i[3][0]='[3][0]';
+   Range=Sheet.Range("F1");
+   Range.Value=i.length+"x"+i[0].length;
+   Range=Sheet.Range("F2:F5");
+   Range.Value=i;
+
+   i=new Array();
+   i[0]=new Array('[0][0]','[0][1]','[0][2]','[0][3]');
+   Range=Sheet.Range("K1");
+   Range.Value=i.length+"x"+i[0].length;
+   Range=Sheet.Range("K2:K5");
+   Range.Value=i;
+
+   i=new Array();
+   i[0]='[0]';
+   i[1]='[1]';
+   i[2]='[2]';
+   i[3]='[3]';
+   Range=Sheet.Range("I1:I4");
+   Range.Value=MSExcel.Transpose(i);
+*/
+
+   Workbook.SaveAs(OutputDoc);
+   Workbook.Close;
+
+   MSExcel.Quit();
+
+   alert("oB!!!");
+}
+// -->
+</script>
+  </head>
+  <body onload="TestCOM()">
+  </body>
+</html>

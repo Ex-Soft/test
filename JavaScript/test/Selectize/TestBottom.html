@@ -1,0 +1,149 @@
+﻿<!doctype html>
+<!-- http://selectize.github.io/selectize.js/ -->
+<!-- https://github.com/selectize/selectize.js -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Bottom</title>
+		<link rel="stylesheet" href="../../selectize/css/selectize.css"/>
+		<style>
+.viewPort
+{
+	height: 100%;
+	width: 100%;
+}
+
+.container
+{
+	border: 1px solid;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	width: 100px;
+}
+		</style>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script charset="utf-8" src="../../selectize/js/selectize.js"></script>
+	</head>
+	<body>
+		<div id="divViewPort" class="viewPort">
+			<div id="divContainer" class="container">
+				<div id="divDropdown" class="dropdown" />
+					<label id="labelDd" for="dd">Select</label>
+					<select id="dd" placeholder="Select..."/>
+				</div>
+			</div>
+		</div>
+		<script>
+var options = [];
+
+for(var i = 1; i < 11; ++i)
+	options.push({ id: i, title: i});
+
+$("#dd").selectize({
+	valueField: "id",
+	labelField: "title",
+	options: options,
+	onDropdownOpen: function(dropdown) {
+		var
+			dropdownContent = dropdown.children(".selectize-dropdown-content"),
+			wrapper = dropdown.closest(".selectize-control.single");
+
+		if (window.console && console.log)
+			console.log("onDropdownOpen %o", dropdown);
+	},
+	onInitialize: function(args /* undefined */) {
+		var
+			wrapper = this.$wrapper,
+			wrapperPosition = wrapper.position(),
+			wrapperOffset = wrapper.offset(),
+			wrapperHeight = wrapper.height(),
+			dropdownContent = this.$dropdown_content,
+			maxHeightEmpty = dropdownContent.css("maxheight"),
+			maxHeightOriginal = parseInt(dropdownContent.css("max-height").replace(/[^\d]/,""), 10),
+			availableHeight = jQuery(window).height() - wrapperOffset.top - wrapperHeight,
+			parent = wrapper.closest(".dropdown"),
+			control = this.$control,
+			controlInput = this.$control_input,
+			dropdown = this.$dropdown,
+			input = this.$input;
+
+		if (window.console && console.log)
+		{
+			console.log("wrapperOffset: %o", wrapperOffset);
+			console.log("wrapperHeight: %o", wrapperHeight);
+			console.log("maxHeightOriginal: %i", maxHeightOriginal);
+			console.log("jQuery(window).height(): %i", jQuery(window).height());
+			console.log("availableHeight: %i", availableHeight);
+		}
+
+		if (maxHeightOriginal > availableHeight)
+			dropdownContent.css({ "max-height": availableHeight + "px" });
+
+		wrapper.bind("click", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$wrapper");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		control.bind("click", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$control");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		controlInput.bind("click", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$control_input");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		controlInput.bind("focus", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$control_input focus");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		dropdown.bind("click", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$dropdown");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		dropdownContent.bind("click", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$dropdown_content");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		input.bind("click", { param: "param" }, function(event) {
+			if (window.console && console.log)
+			{
+				console.log("$input");
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+			}
+		});
+
+		this.on("dropdown_open", function(dropdown) {
+			if (window.console && console.log)
+			{
+				console.log("dropdown_open %o", dropdown);
+			}
+		});
+	}
+});
+		</script>
+	</body>
+</html>

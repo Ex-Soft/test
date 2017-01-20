@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.toolbar.Toolbar</title>
+		<!--<link rel="stylesheet" href="http://dev.sencha.com/deploy/ext-4.0.7-gpl/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="http://dev.sencha.com/deploy/ext-4.0.7-gpl/ext-all.js"></script> -->
+		<link rel="stylesheet" href="../../../../../ExtJS/ExtJS4/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.onReady(function() {
+	var combo2 = new Ext.form.ComboBox({
+                name: 'perpage',
+                width: 100,
+                store: new Ext.data.ArrayStore({
+                    fields: ['id'],
+                    data: [
+                        ['15'],
+                        ['25'],
+                        ['50']
+                    ]
+                }),
+                mode: 'local',
+                value: '15',
+
+                listWidth: 190,
+                triggerAction: 'all',
+                displayField: 'id',
+                valueField: 'id',
+                editable: false,
+                forceSelection: true
+            });
+
+	var FooterToolBar = new Ext.Toolbar({
+                height: 122,
+                region: 'south',
+                margin: "1 5 1 1",
+                items: [ { xtype: "tbtext", text: "... 1999-2012" }, " ", combo2 ],
+                renderTo: Ext.getBody()
+            });
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

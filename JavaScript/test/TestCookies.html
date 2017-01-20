@@ -1,0 +1,72 @@
+﻿<html>
+	<head>
+		<title>Test Cookies</title>
+		<script type="text/javascript">
+<!--
+var
+	CookieName="CookieName";
+
+function Load()
+{
+	var
+		CookieValue,
+		Ctrl;
+
+	if((CookieValue=ReadCookie(CookieName))
+		&& (Ctrl=document.getElementById("InputText1")))
+		Ctrl.value=CookieValue;
+}
+
+function Save()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("InputText1"))
+		WriteCookie(CookieName,Ctrl.value);
+}
+
+function ReadCookie(aName)
+{
+	var
+		AllCookies=document.cookie,
+		pos,
+		value=null;
+
+	if(typeof(aName)!="string"
+		|| !aName.length)
+		return(value);
+
+	aName+="=";
+	if((pos=AllCookies.indexOf(aName))!=-1)
+	{
+		value=AllCookies.substring(pos+aName.length);
+		if((pos=value.indexOf(";"))!=-1)
+			value=value.substring(0,pos);  
+	}
+
+	return(value);
+}
+
+function WriteCookie(aName, aValue)
+{
+	var
+		NextYear=new Date();
+
+	if(typeof(aName)!="string"
+		|| !aName.length
+		|| typeof(aValue)!="string"
+		|| !aValue.length)
+		return;
+
+	aName+="=";
+	NextYear.setFullYear(NextYear.getFullYear()+1);
+	document.cookie=aName+aValue+";expires="+NextYear.toGMTString()+";path=/";
+}
+// -->
+		</script>
+	</head>
+	<body onload="Load()">
+		<input type="text" id="InputText1"><input type="button" id="InputButtonSave" value="Save" onclick="Save()"><input type="button" id="InputButtonLoad" value="Load" onclick="Load()">
+	</body>
+</html>

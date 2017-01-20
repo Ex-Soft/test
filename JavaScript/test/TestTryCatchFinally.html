@@ -1,0 +1,261 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test try...catch...finally</title>
+		<script>
+function wException()
+{
+	throw new Error("blah-blah-blah");
+}
+
+function wExceptionTC()
+{
+	try
+	{
+		throw new Error("blah-blah-blah");
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+}
+
+function onLoad()
+{
+	if(window.console && console.clear)
+		console.clear();
+
+	var
+		a=1,
+		b=0,
+		c,
+		i;
+	try
+	{
+		wException();
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("finally");
+	}
+	
+	try
+	{
+		wExceptionTC();
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("finally");
+	}
+
+	try
+	{
+		c = a/b;
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("finally");
+	}
+	
+	try
+	{
+		try
+		{
+			throw new Error("blah-blah-blah");
+		}
+		catch(e)
+		{
+			if(window.console && console.log)
+				console.log("(inner) code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		finally
+		{
+			if(window.console && console.log)
+				console.log("(inner) finally");
+		}
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log("(outer) code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("(outer) finally");
+	}
+
+	try
+	{
+		try
+		{
+			throw new Error("blah-blah-blah");
+		}
+		catch(e)
+		{
+			if(window.console && console.log)
+				console.log("(inner) code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		finally
+		{
+			if(window.console && console.log)
+				console.log("(inner) finally");
+
+			throw new Error("blah-blah-blah from finally");
+		}
+	}
+	catch(e)
+	{
+		if(window.console && console.log)
+			console.log("(outer) code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("(outer) finally");
+	}
+
+	/*
+	try
+	{
+		c = eval("a/d");
+	}
+	catch (e if e instanceof EvalError)
+	{
+		if(window.console && console.log)
+			console.log("EvalError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	catch (e if e instanceof RangeError)
+	{
+		if(window.console && console.log)
+			console.log("RangeError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	catch (e if e instanceof ReferenceError)
+	{
+		if(window.console && console.log)
+			console.log("ReferenceError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	catch (e if e instanceof SyntaxError)
+	{
+		if(window.console && console.log)
+			console.log("SyntaxError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	catch (e if e instanceof TypeError)
+	{
+		if(window.console && console.log)
+			console.log("TypeError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	catch (e if e instanceof URIError)
+	{
+		if(window.console && console.log)
+			console.log("URIError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	catch (e)
+	{
+		if(window.console && console.log)
+			console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("finally");
+	}
+	*/
+	
+	try
+	{
+		c = eval("a/d");
+	}
+	catch (e)
+	{
+		if(e instanceof EvalError)
+		{
+			if(window.console && console.log)
+				console.log("EvalError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		else if(e instanceof RangeError)
+		{
+			if(window.console && console.log)
+				console.log("RangeError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		else if(e instanceof ReferenceError)
+		{
+			if(window.console && console.log)
+			console.log("ReferenceError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		else if(e instanceof SyntaxError)
+		{
+			if(window.console && console.log)
+				console.log("SyntaxError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		else if(e instanceof TypeError)
+		{
+			if(window.console && console.log)
+				console.log("TypeError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		else if(e instanceof URIError)
+		{
+			if(window.console && console.log)
+				console.log("URIError code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		else
+		{
+			if(window.console && console.log)
+				console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+	}
+	finally
+	{
+		if(window.console && console.log)
+			console.log("finally");
+	}
+
+	for(i=0; i<10; ++i)
+	{
+		try
+		{
+			if(i===0)
+				continue;
+
+			if(i===1)
+				break;
+
+			c = a/b;
+		}
+		catch(e)
+		{
+			if(window.console && console.log)
+				console.log("code: %i, name: \"%s\", message: \"%s\"", e.code, e.name, e.message);
+		}
+		finally
+		{
+			if(window.console && console.log)
+				console.log("finally (i = %i)", i);
+		}
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

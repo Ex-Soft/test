@@ -1,0 +1,11 @@
+﻿{
+	"children": [
+		{ "text": "Route", "leaf": true, "entity": "Route" },
+		{ "text": "Menu item 2", "children": [
+			{ "text": "Menu item 2.1", "leaf": true },
+			{ "text": "Menu item 2.2", "leaf": true }
+		] },
+		{ "text": "Store", "leaf": true, "entity": "Store" },
+		{ "text": "Logout", "action": "logout" }
+	]
+}

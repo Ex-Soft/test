@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>Test load JS (main) (M$ IE only)</title>
+		<script type="text/javascript">
+<!--
+var
+	wc=null;
+
+function LoadBySrc(dest)
+{
+	var
+		CtrlLog=document.getElementById("Log");
+
+	CtrlLog.value+="LoadBySrc(\""+dest+"\")\r\n";
+
+	CtrlLog.value+=(("F1inJS1" in this) ? "" : "!")+"\"F1inJS1\" in this\r\n";
+	CtrlLog.value+=(("F1inJS1" in window) ? "" : "!")+"\"F1inJS1\" in window\r\n";
+
+	if(("F1inJS1" in this)
+		|| ("F1inJS1" in window))
+		return;
+
+	var
+		h,
+		s;
+
+	if((h=document.getElementsByTagName(dest))
+		&& h.length>0)
+	{
+		h=h[0];
+		if(s=document.createElement("script"))
+		{
+			s.id="js1";
+			s.type="text/javascript";
+			s.charset="windows-1251";
+			s.src="js1.js";
+			h.appendChild(s);
+
+			CtrlLog.value+=(("F1inJS1" in this) ? "" : "!")+"\"F1inJS1\" in this\r\n";
+			CtrlLog.value+=(("F1inJS1" in window) ? "" : "!")+"\"F1inJS1\" in window\r\n";
+
+			F1inJS1();
+		}
+	}
+}
+
+function LoadBySrcToChild(dest)
+{
+	var
+		CtrlLog=document.getElementById("LogChild");
+
+	CtrlLog.value+="LoadBySrcToChild(\""+dest+"\")\r\n";
+
+	var
+		w,
+		d,
+		h,
+		s;
+
+	if(!(wc=w=window.open("child.html")))
+		return;
+	
+	if((d=w.document)
+		&& (h=d.getElementsByTagName(dest))
+		&& h.length>0)
+	{
+		h=h[0];
+		if(s=d.createElement("script"))
+		{
+			s.id="js1";
+			s.type="text/javascript";
+			s.charset="windows-1251";
+			s.src="js1.js";
+			h.appendChild(s);
+
+			if(s=h.getElementsByTagName("script"))
+			{
+				CtrlLog.value+="script.length="+s.length+"\r\n";
+				for(var i=0; i<s.length; ++i)
+					CtrlLog.value+="script["+i+"].id=\""+s[i].id+"\"\r\n";
+			}
+
+			w.F1inJS1();
+		}
+	}
+}
+
+function RunBySrcFromChild()
+{
+	if(!wc)
+		return;
+
+	if(!("F1inJS1" in wc))
+	{
+		alert("!(\"F1inJS1\" in wc)");
+		return;
+	}
+
+	wc.F1inJS1();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btnLoadBySrcHead" value="Load by src (head)" onclick="LoadBySrc('head')">
+		<input type="button" id="btnLoadBySrcBody" value="Load by src (body)" onclick="LoadBySrc('body')">
+		<input type="button" id="btnRunBySrc" value="Run by src" onclick="F1inJS1()"><br>
+		<textarea id="Log" name="Log" rows="12" cols="80" readonly></textarea>
+		<hr>
+		<input type="button" id="btnLoadBySrcHeadToChild" value="Load by src (head) to child" onclick="LoadBySrcToChild('head')">
+		<input type="button" id="btnLoadBySrcBodyToChild" value="Load by src (body) to child" onclick="LoadBySrcToChild('body')">
+		<input type="button" id="btnRunBySrcFromChild" value="Run by src from child" onclick="RunBySrcFromChild()"><br>
+		<textarea id="LogChild" name="Log" rows="12" cols="80" readonly></textarea>
+	</body>
+</html>

@@ -1,0 +1,5 @@
+Button (HTML)			| URLRoot() & "db/" & Dbid() & "?a=dbpage&pagename=" & URLEncode("TestPage.html") & "&clist=a&rid=" & [Record ID#]
+Button (JS) (simple)	| "javascript:(function() { if (typeof QBU === \"undefined\") { QBU = { rid: " & ToText([Record ID#]) & " }; $.getScript('" & URLRoot() & "db/" & Dbid() & "?a=dbpage&rid=" & ToText([Record ID#]) & "&pagename=" & URLEncode("module.js") & "'); } })()"
+Button (JS) (call API)	| If ( Length(Trim( [FURL] )) = 0, "javascript:(function() { if (typeof QBU === \"undefined\") $.getScript('" & URLRoot() & "db/" & Dbid() & "?a=dbpage&pagename=" & URLEncode("callapi.js") & "').done(function(text, status, jqxhr) { /*if(window.console && console.log) { console.log(\"%o\", arguments); console.log(\"%o\", QBU); }*/ QBU.doQuery(" & ToText([Record ID#]) & ", \"" & URLRoot() & "db/" & Dbid() & "\"); }).fail(function(jqxhr, settings, exception) { if(window.console && console.log) console.log(\"%o\", arguments); }); else QBU.doQuery(" & ToText([Record ID#]) & ", \"" & URLRoot() & "db/" & Dbid() & "\"); })()", ToText( [FURL] ))
+
+https://www.roelvanlisdonk.nl/?p=3952

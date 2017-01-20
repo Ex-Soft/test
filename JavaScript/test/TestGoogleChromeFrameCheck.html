@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<title>Test Google Chrome Frame (Check)</title>
+
+		<!--[if IE]>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+		<style>
+			.chromeFrameInstallDefaultStyle
+			{
+				width: 100%; /* default is 800px */
+				border: 5px solid blue;
+			}
+		</style>
+
+		<script "text/javascript">
+// The conditional ensures that this code will only execute in IE,
+// Therefore we can use the IE-specific attachEvent without worry
+window.attachEvent("onload", function() {
+	CFInstall.check({
+		mode: "inline", // the default
+		node: "prompt"
+	});
+});
+		</script>
+		<![endif]-->
+	</head>
+	<body>
+		<!--[if IE]>
+			<div id="prompt">
+				<!-- if IE without GCF, prompt goes here -->
+			</div>
+		<![endif]-->		
+	</body>
+</html>

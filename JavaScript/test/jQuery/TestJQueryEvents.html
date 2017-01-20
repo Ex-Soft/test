@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test jQuery Events</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	$("*").each(function(index, element) {
+		if(!this.addEventListener)
+			return;
+
+		this.addEventListener("click", function(event) {
+			if(window.console && console.log)
+				console.log("Capture for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+		}, true);
+
+		this.addEventListener("click", function(event) {
+			if(window.console && console.log)
+				console.log("Bubble for %s #%s targed is %s", event.currentTarget.tagName, event.currentTarget.id, event.target.id);
+		});
+	});
+});
+		</script>
+	</head>
+	<body id="bodyId">
+		<div id="divParentId">
+			<div id="divChildId">
+				<span id="spanId">Click me!</span>
+			</div>
+		</div>
+	</body>
+</html>

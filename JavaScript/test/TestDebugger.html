@@ -1,0 +1,22 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Debugger</title>
+		<script>
+function onLoad()
+{
+	var
+		a = 1,
+		b = 2,
+		c = a + b,
+		d = c * b;
+
+	if(window.console && console.log)
+		console.log("%i", d);
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

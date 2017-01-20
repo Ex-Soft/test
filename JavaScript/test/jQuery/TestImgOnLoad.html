@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test &lt;img&gt; onload</title>
+		<!-- <script charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script> -->
+		<!-- <script charset="utf-8" src="http://code.jquery.com/jquery-1.7.2.js"></script> -->
+		<script charset="utf-8" src="../../jQuery/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	var
+		c1 = $("#TestImg"),
+		c2 = c1.one("load", loadCallback),
+		//c2 = c1.bind("load", loadCallback),
+		c3 = c2.attr("src", "http://www.sql.ru/forum/images/smoke.gif");
+
+	c3.each(function(index, item) {
+		var
+			c;
+
+		if(window.console && console.log)
+			console.log("each(function(%o) { ... this = %o, this.complete = %s ... } )", arguments, this, this.complete);
+
+		if(this.complete)
+		{
+			c = $(this);
+			c.trigger("load");
+		}
+	});
+});
+
+function loadCallback() {
+	if(window.console && console.log)
+		console.log("loadCallback(%o)", arguments);
+}
+		</script>
+	</head>
+	<body>
+		<div><img id="TestImg"></div>
+	</body>
+</html>

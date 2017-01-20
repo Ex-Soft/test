@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>clock</title>
+		<script type=text/javascript>
+<!--
+var
+	hInterval=null;
+
+function start()
+{
+	DoIt();
+	hInterval=setInterval("DoIt()",1000);
+}
+
+function DoIt()
+{
+	var
+		Ctrl,
+		d=new Date();
+
+	if(Ctrl=document.getElementById("SpanH"))
+		Ctrl.innerHTML=d.getHours();
+	if(Ctrl=document.getElementById("SpanM"))
+		Ctrl.innerHTML=d.getMinutes();
+	if(Ctrl=document.getElementById("SpanS"))
+		Ctrl.innerHTML=d.getSeconds();
+}
+// -->
+		</script>
+	</head>
+	<body onload="start()">
+		<span id="SpanH"></span>:<span id="SpanM"></span>:<span id="SpanS"></span>
+	</body>
+</html>

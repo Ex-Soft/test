@@ -1,0 +1,340 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Array</title>
+		<!-- <script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script> -->
+		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		a1 = ["a1[0]", "a1[1]", "a1[2]", "a1[3]", "a1[4]"],
+		isarray = Ext.isArray(a1),
+		aa1,
+		aa2,
+		aa,
+		o,
+		i,
+		len;
+
+	if(window.console && console.log)
+		console.log("Ext.Array.each()");
+
+	Ext.each(a1, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	o = { prop1: "prop1", prop2: "prop2", prop3: "prop3" };
+	Ext.each(o, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.from()");
+
+	aa1 = [0, 1, 2, 3, 4];
+	aa2 = Ext.Array.from(aa1);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+	
+	o = { prop1: "prop1", prop2: "prop2", prop3: "prop3" };
+	aa2 = Ext.Array.from(o);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.flatten()");
+
+	aa1 = [ [0, 0], [1, 1], [2, 2], [3, 3], [4, 4] ];
+	aa2 = Ext.Array.flatten(aa1);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	aa1 = [ [ { prop00: "prop00" }, { prop01: "prop01" }], [ { prop10: "prop10" }, { prop11: "prop11" }], [2, 2], [3, 3], [4, 4] ];
+	aa2 = Ext.Array.flatten(aa1);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.difference()");
+
+	aa1 = [ 1, 3, 5 ];
+	aa2 = [ 2, 4, 5 ];
+	aa = Ext.Array.difference(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa1 = [ "1", "3", "5" ];
+	aa2 = [ "2", "4", "5" ];
+	aa = Ext.Array.difference(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa1 = [ { p: 1}, { p: 3}, { p: 5} ];
+	aa2 = [ { p: 2}, { p: 4}, { p: 5} ];
+	aa = Ext.Array.difference(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+	
+	if(window.console && console.log)
+		console.log("Ext.Array.intersect()");
+
+	aa1 = [ 1, 3, 5 ];
+	aa2 = [ 2, 4, 5 ];
+	aa = Ext.Array.intersect(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa1 = [ "1", "3", "5" ];
+	aa2 = [ "2", "4", "5" ];
+	aa = Ext.Array.intersect(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa1 = [ { p: 1}, { p: 3}, { p: 5} ];
+	aa2 = [ { p: 2}, { p: 4}, { p: 5} ];
+	aa = Ext.Array.intersect(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.merge/union()");
+
+	aa1 = [ 1, 3, 5 ];
+	aa2 = [ 2, 4, 5 ];
+	aa = Ext.Array.merge(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa1 = [ "1", "3", "5" ];
+	aa2 = [ "2", "4", "5" ];
+	aa = Ext.Array.merge(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa1 = [ { p: 1}, { p: 3}, { p: 5} ];
+	aa2 = [ { p: 2}, { p: 4}, { p: 5} ];
+	aa = Ext.Array.merge(aa1, aa2);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.unique()");
+
+	a1 = [ 1, 3, 5, 2, 4, 5 ];
+	aa = Ext.Array.unique(a1);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	a1 = [ "1", "3", "5", "2", "4", "5" ];
+	aa = Ext.Array.unique(a1);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	a1 = [ new Date(2012,0,1), new Date(2012,0,3), new Date(2012,0,5), new Date(2012,0,2), new Date(2012,0,4), new Date(2012,0,5) ];
+	aa = Ext.Array.unique(a1);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	a1 = [ { p: 1}, { p: 3}, { p: 5}, { p: 2}, { p: 4}, { p: 5} ];
+	aa = Ext.Array.unique(a1);
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa = Ext.Array.pluck(Ext.query("p"), "className");
+	Ext.each(aa, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", item);
+	});
+
+	aa = [ { p: 1}, { p: 3}, { p: 5}, { p: 2}, { p: 4}, { p: 5} ];
+	result = Ext.Array.each(aa, function(item, index, allItems) {
+		if(item.p == 2)
+			return false;
+	});
+	if(window.console && console.log)
+		console.log("Ext.Array.each(item.p == 2) = %s", result);
+
+	result = Ext.Array.each(aa, function(item, index, allItems) {
+		if(item.p == 9)
+			return false;
+	});
+	if(window.console && console.log)
+		console.log("Ext.Array.each(item.p == 9) = %s", result);
+
+	result = Ext.Array.every(aa, function(item, index, allItems) {
+		return item.p >= 1;
+	});
+	if(window.console && console.log)
+		console.log("Ext.Array.every(item.p >= 1) = %s", result);
+
+	result = Ext.Array.every(aa, function(item, index, allItems) {
+		return item >= 3;
+	});
+	if(window.console && console.log)
+		console.log("Ext.Array.every(item.p >= 3) = %s", result);
+
+	result = Ext.Array.some(aa, function(item, index, allItems) {
+		return item.p >= 3;
+	});
+	if(window.console && console.log)
+		console.log("Ext.Array.some(item.p >= 3) = %s", result);
+
+	result = Ext.Array.some(aa, function(item, index, allItems) {
+		return item >= 9;
+	});
+	if(window.console && console.log)
+		console.log("Ext.Array.some(item.p >= 9) = %s", result);
+
+	if(window.console && console.log)
+		console.log("Ext.Array.toArray()");
+
+	o = { prop1: "prop1", prop2: "prop2", prop3: "prop3" };
+	aa2 = Ext.Array.toArray(o);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	aa1 = [ "One", "Two", "Three", "Four", "Five"];
+	aa2 = Ext.Array.clone(aa1);
+	for(i=0, len=aa2.length; i<len; ++i)
+		aa2[i]=aa2[i].toUpperCase();
+	Ext.each(aa1, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.filter()");
+
+	aa1 = [1, 2, 3, 2, 1];
+	aa2 = Ext.Array.filter(aa1, function(item, index, allItems) {
+		return item==2;
+	});
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	aa1 = [ {prop1: 1, prop2: 11}, {prop1: 2, prop2: 22}, {prop1: 3, prop2: 33}, {prop1: 2, prop2: 22}, {prop1: 1, prop2: 11} ];
+	aa2 = Ext.Array.filter(aa1, function(item, index, allItems) {
+		return item.prop1==2 && item.prop2==22;
+	});
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	aa1 = [1, 4, 5];
+	aa2 = [2, 3];
+	Ext.Array.insert(aa1, 1, aa2);
+	Ext.each(aa1, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.sort()");
+
+	aa1 = [5, 2, 4, 1, 3];
+	aa2 = Ext.Array.sort(aa1);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	aa1 = ["5", "2", "4", "1", "3"];
+	aa2 = Ext.Array.sort(aa1);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+	
+	aa1 = ["Aba", "Abc", "Abb", "Baa", "Aaa"];
+	aa2 = Ext.Array.sort(aa1);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+
+	if(window.console && console.log)
+		console.log("Ext.Array.remove()");
+
+	aa1 = [5, 2, 4, 1, 3];
+	aa2 = Ext.Array.remove(aa1, 4);
+	Ext.each(aa2, function(item, index, allItems) {
+		if(window.console && console.log)
+			console.log("%o", arguments);
+	});
+	
+	TestArguments(0, 1, 2, 3, 4);
+});
+
+function TestArguments() {
+	var
+		args = Ext.Array.toArray(arguments), // [0, 1, 2, 3, 4]
+		args2 = Ext.Array.toArray(arguments, 2); // [2, 3, 4]
+
+	if(window.console && console.log)
+		console.log("Ext.isArray(arguments) = %s", Ext.isArray(arguments));
+}
+		</script>
+	</head>
+	<body>
+		<p class="Class1"></p>
+		<p class="Class2"></p>
+		<p class="Class3"></p>
+	</body>
+</html>

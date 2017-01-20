@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>test func return default</title>
+	</head>
+	<body>
+		<script>
+function functionWOReturn() {
+};
+
+var result = functionWOReturn();
+
+if (window.console && console.log)
+	console.log(result);
+
+function functionWEmptyReturn() {
+	return;
+};
+
+var result = functionWEmptyReturn();
+
+if (window.console && console.log)
+	console.log(result);
+
+		</script>
+	</body>
+</html>

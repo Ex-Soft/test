@@ -1,0 +1,278 @@
+<html>
+  <head>
+    <title>Test OpenOffice.org Writer</title>
+<script type="text/javascript">
+<!--
+function TestCOM()
+{
+   var
+     oFS=null,
+     SignatureDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Word_tst.doc",
+     OutputDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Word_out.doc",
+     MSWordExists,
+     OpenOfficeOrgExists,
+     ServiceManager=null,
+     Desktop=null,
+     Document=null,
+     Text=null,
+     Cursor=null,
+     args=new Array(),
+     Param=null,
+     Bookmarks=null,
+     BookmarkName="MyBookmark",
+     Bookmark=null,
+     Range=null,
+     TestPrint=true,
+     SaveAfterPrint=true, // oB!!!
+     SaveB4Print=false, // oB!!!
+     delay=5000;
+
+   if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+   {
+      alert("!Scripting.FileSystemObject");
+      return;
+   }
+
+   if(!oFS.FileExists(SignatureDoc))
+   {
+      alert("!FileExists");
+      return;
+   }
+
+   try
+   {
+      ServiceManager=new ActiveXObject("Word.Application");
+      MSWordExists=true;
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+      alert("ServiceManger="+ServiceManager);
+      MSWordExists=false;
+   }
+
+   try
+   {
+      ServiceManager=new ActiveXObject("com.sun.star.ServiceManager");
+      OpenOfficeOrgExists=true;
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+      OpenOfficeOrgExists=false;
+   }
+
+   if(!ServiceManager)
+   {
+      alert("!com.sun.star.ServiceManager");
+      return;
+   }
+
+   if(!(Desktop=ServiceManager.createInstance("com.sun.star.frame.Desktop")))
+   {
+      alert("!com.sun.star.frame.Desktop");
+      return;
+   }
+
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="Hidden";
+   Param.Value=false;
+   args[0]=Param;
+
+   Document=Desktop.LoadComponentFromURL("file:///"+SignatureDoc.replace(/\\/g,"/"),"_blank",0,args);
+   //Document=Desktop.LoadComponentFromURL("private:factory/swriter","_blank",0,args);
+   if(!Document)
+   {
+      alert("!Document");
+      return;
+   }
+
+   if(!(Text=Document.getText()))
+   {
+      alert("!Text");
+      return;
+   }
+
+   if(!(Cursor=Text.CreateTextCursor()))
+   {
+      alert("!Cursor");
+      return;
+   }
+
+   Text.insertString(Cursor,"Line# 1\n",false);
+   Text.insertString(Cursor,"Line# 2", false);
+
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="TableName";
+   Param.Value="Table1";
+   args[0]=Param;
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="Columns";
+   Param.Value=2;
+   args[1]=Param;
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="Rows";
+   Param.Value=2;
+   args[2]=Param;
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="Flags";
+   Param.Value=9;
+   args[3]=Param;
+alert("b4");
+   Text.insertTable(Cursor,args);
+alert("after");
+   //Document.storeAsURL("file:///e:/Test__2.sxw",args);
+   //alert("storeAsURL done!!!");
+
+   if(!(Bookmarks=Document.GetBookmarks()))
+   {
+      alert("!Bookmarks");
+      return;
+   }
+
+   if(Bookmarks.HasByName(BookmarkName))
+   {
+      if(!(Bookmark=Bookmarks.GetByName(BookmarkName)))
+      {
+         alert("!Bookmark");
+         return;
+      }
+
+      if(!(Range=Bookmark.GetAnchor()))
+      {
+         alert("!Range");
+         return;
+      }
+
+      Range.SetString("1234567890");
+   }
+
+   if(TestPrint && SaveAfterPrint)
+   {
+      //if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+      //{
+      //  alert("!Param");
+      //  return;
+      //}
+      //Param.Name="Name";
+      //Param.Value="Ned Image Printer";
+      //args[0]=Param;
+
+      //Document.SetPrinter(args);
+
+      args.splice(0,1);
+      if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+      {
+        alert("!Param");
+        return;
+      }
+      Param.Name="CountCopy";
+      Param.Value="3";
+      args[0]=Param;
+
+      if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+      {
+        alert("!Param");
+        return;
+      }
+      Param.Name="Wait";
+      Param.Value=true;
+      args[1]=Param;
+
+      Document.Print(args);
+
+      //RealyDelay(delay);
+   }
+
+   args.splice(0,1);
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="FilterName";
+   Param.Value="MS Word 97";
+   args[0]=Param;
+
+   Document.storeToURL("file:///"+OutputDoc.replace(/\\/g,"/"),args);
+
+   if(TestPrint && SaveB4Print)
+   {
+
+      //if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+      //{
+      //  alert("!Param");
+      //  return;
+      //}
+      //Param.Name="Name";
+      //Param.Value="Ned Image Printer";
+      //args[0]=Param;
+
+      //Document.SetPrinter(args);
+
+      if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+      {
+        alert("!Param");
+        return;
+      }
+      Param.Name="CountCopy";
+      Param.Value="3";
+      args[0]=Param;
+
+      if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+      {
+        alert("!Param");
+        return;
+      }
+      Param.Name="Wait";
+      Param.Value=true;
+      args[1]=Param;
+
+      Document.Print(args);
+
+      //RealyDelay(delay);
+   }
+
+   Document.close(true);
+   Desktop.terminate();
+
+   alert("oB!!!");
+}
+
+function RealyDelay(mSec)
+{
+   var
+     start=new Date(),
+     stop;
+
+   do
+   {
+      stop=new Date();
+   }while(stop.getTime()-start.getTime()<mSec);
+}
+// -->
+</script>
+  </head>
+  <body onload="TestCOM()">
+  </body>
+</html>

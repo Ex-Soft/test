@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test OOP (Class with static)</title>
+		<script>
+function A(x, y) {
+	this.x = x;
+	this.y = y;
+}
+
+A.staticProperty = {
+	prop: "A.staticProperty"
+};
+
+A.staticMethod = function() {
+	if(window.console && console.log)
+		console.log("A.staticMethod()");
+};
+
+A.prototype = {
+	objectProperty: {
+		prop: "objectProperty"
+	},
+	showX: function() {
+		if(window.console && console.log)
+			console.log("x = %s", this.x);
+	},
+	showY: function() {
+		if(window.console && console.log)
+			console.log("y = %s", this.y);
+	}
+}
+
+function OnLoad()
+{
+	var
+		a = new A("blah-blah-blah", "halb-halb-halb"),
+		b = new A("blah-blah-blah", "halb-halb-halb");
+
+	if(window.console && console.log)
+	{
+		console.log("typeof A.staticProperty = \"%s\"", typeof A.staticProperty);
+		console.log("typeof A.staticMethod = \"%s\"", typeof A.staticMethod);
+		console.log("typeof A.objectProperty = \"%s\"", typeof A.objectProperty);
+		
+		console.log("typeof a.staticProperty = \"%s\"", typeof a.staticProperty);
+		console.log("typeof a.staticMethod = \"%s\"", typeof a.staticMethod);
+		console.log("typeof a.objectProperty = \"%s\"", typeof a.objectProperty);
+		
+		console.log("a.hasOwnProperty(\"staticProperty\") = %s", a.hasOwnProperty("staticProperty"));
+		console.log("a.hasOwnProperty(\"objectProperty\") = %s", a.hasOwnProperty("objectProperty"));
+		console.log("a.hasOwnProperty(\"x\") = %s", a.hasOwnProperty("x"));
+		console.log("b.hasOwnProperty(\"x\") = %s", b.hasOwnProperty("x"));
+	}
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

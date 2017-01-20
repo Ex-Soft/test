@@ -1,0 +1,79 @@
+<HTML>
+  <HEAD>
+    <TITLE>Изменяющиеся стили</TITLE>
+    <STYLE>
+      a {text-decoration: none; }
+      #sample {font-weight: normal; font-style: normal; text-decoration: none; }
+    </STYLE>
+    <SCRIPT type=text/javascript>
+    <!--
+var
+  isBold=false,
+  isItalic=false,
+  isUnder=false;
+
+function switchBold()
+{
+   isBold=!isBold;
+   if(isBold)
+   {
+      sample.style.fontWeight="bold";
+      hbold.style.textDecoration="line-through";
+   }
+   else
+   {
+      sample.style.fontWeight="normal";
+      hbold.style.textDecoration="none";
+   }
+}
+
+function switchItalic()
+{
+   isItalic=!isItalic;
+   if(isItalic)
+   {
+      sample.style.fontStyle="italic";
+      hitalic.style.textDecoration="line-through";
+   }
+   else
+   {
+      sample.style.fontStyle="normal";
+      hitalic.style.textDecoration="none";
+   }
+}
+
+function switchUnder()
+{
+   isUnder=!isUnder;
+   if(isUnder)
+   {
+      sample.style.textDecoration="underline";
+      hunder.style.textDecoration="line-through";
+   }
+   else
+   {
+      sample.style.textDecoration="none";
+      hunder.style.textDecoration="none";
+   }
+}
+    // -->
+    </SCRIPT>
+  </HEAD>
+  <BODY>
+    <FORM id=MainForm>
+      <table border="1">
+        <tr>
+          <td valign="top" bgcolor="#ffffe0" width="100">
+            <p><a id="hbold" href="javascript:switchBold()">Полужирный</a></p>
+            <p><a id="hitalic" href="javascript:switchItalic()">Курсив</a></p>
+            <p><a id="hunder" href="javascript:switchUnder()">Подчеркнутый</a></p>
+          </td>
+          <td width="20"></td>
+          <td bgkolor="#ffffe0" width="*">
+            <p id="sample">Здесь вы можете видеть результат щелчков по гиперссылкам.</p>
+          </td>
+        <tr>
+      </table>
+    </FORM>
+  </BODY>
+</HTML>

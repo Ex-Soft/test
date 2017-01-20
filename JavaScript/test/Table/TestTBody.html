@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>Test TBody</title>
+		<script type="text/javascript">
+<!--
+function WTBody(TableId)
+{
+	var
+		Table,
+		TBody,
+		tr,
+		td;
+
+	if(!(Table=document.getElementById(TableId))
+		|| !(TBody=document.createElement("TBODY")))
+		return;
+
+	Table.appendChild(TBody);
+	for(var i=0; i<10; ++i)
+	{
+		if(!(tr=document.createElement("TR"))
+			|| !(td=document.createElement("TD")))
+			continue;
+
+		td.innerHTML="Test (Line# "+i+")";
+		tr.appendChild(td);
+		TBody.appendChild(tr);
+	}
+}
+
+function WOTBody(TableId)
+{
+	var
+		Table,
+		tr,
+		td;
+
+	if(!(Table=document.getElementById(TableId)))
+		return;
+
+	for(var i=0; i<10; ++i)
+	{
+		if(!(tr=document.createElement("TR"))
+			|| !(td=document.createElement("TD")))
+			continue;
+
+		td.innerHTML="Test (Line# "+i+")";
+		tr.appendChild(td);
+		Table.appendChild(tr);
+	}
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+			<table id="TableWTBody" cellspacing="0" cellpadding="0" border="1">
+			</table>
+			<table id="TableWOTBody" cellspacing="0" cellpadding="0" border="1">
+			</table>
+			<input type="button" id="ButtonWTBody" value="WTBody" onclick="WTBody('TableWTBody')">
+			<input type="button" id="ButtonWOTBody" value="WOTBody" onclick="WOTBody('TableWOTBody')">
+		</form>
+	</body>
+</html>

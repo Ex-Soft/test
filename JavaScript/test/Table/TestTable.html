@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Test Table (create)</title>
+		<script type="text/javascript">
+<!--
+function Test()
+{
+	var
+		Table,
+		TBody,
+		tr,
+		td;
+
+	if(!(Table=document.getElementById("TableTest")))
+		return;
+
+	TBody=Table.getElementsByTagName("tbody");
+	if(TBody.length==0)
+		return;
+
+	for(var i=0; i<100; ++i)
+	{
+		if(!(tr=document.createElement("TR"))
+			|| !(td=document.createElement("TD")))
+			continue;
+
+		td.innerHTML="Test (Line# "+i+")";
+		tr.appendChild(td);
+		TBody[0].appendChild(tr);
+	}
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+			<table id="TableTest" style="width: 100%; " cellspacing="0" cellpadding="0" border="1">
+				<tbody>
+				</tbody>
+			</table>
+			<input type="button" id="ButtonTest" value="DoIt!" onclick="Test()">
+		</form>
+	</body>
+</html>

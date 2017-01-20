@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Example: Integration of the TinyMCE WYSIWYG editor into the ExtJS</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/resources/css/ext-all.css"/>
+
+    <!-- GC -->
+    <script type="text/javascript" src="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+    <script type="text/javascript" src="../../../../../../../tinymce/jscripts/tiny_mce/tiny_mce_src.js"></script>
+    <script type="text/javascript" src="TinyMCETextArea.js"></script>
+  
+<style>  
+body {
+    padding:10px;
+}
+p {
+    margin-bottom:15px;
+}
+h1 {
+    font-size:18px;
+    margin-bottom:20px;
+}
+h2 {
+    font-size:14px;
+    color:#333;
+    font-weight:bold;
+    margin:10px 0;
+}
+li {
+  list-style-type:disc;
+  list-style-position:inside;
+}
+
+</style>  
+<script type="text/javascript">
+
+if (typeof console.log == "object" && Function.prototype.bind && console) {
+  ["log","info","warn","error","assert","dir","clear","profile","profileEnd"]
+    .forEach(function (method) {
+      console[method] = this.call(console[method], console);
+    }, Function.prototype.bind);
+}
+
+Ext.require([
+    'Ext.tab.*',
+    'Ext.window.*',
+    'Ext.tip.*',
+    'Ext.layout.container.Border'
+]);
+
+function show_dirties(form)
+{
+  var dirties = "";
+
+  form.getFields().each(function (item, index, length) {
+    if(item.isDirty())
+    {
+      dirties += item.name + '(' + item.getXType() + '): ' +  + ' - current[' + escape(item.getValue()) + '] old[' + escape(item.originalValue) + ']\n';
+    }
+  });
+
+  if(dirties == "") dirties = "No dirty fields";
+  
+  alert(dirties);
+}
+
+var tinyCfg1 = {
+		// General options
+		theme : "advanced",
+
+		skin: "extjs",
+    inlinepopups_skin: "extjs",
+		
+    // Original value is 23, hard coded.
+    // with 23 the editor calculates the height wrong.
+    // With these settings, you can do the fine tuning of the height
+    // by the initialization.
+    theme_advanced_row_height: 27,
+    delta_height: 1,
+    
+    schema: "html5",
+    
+    plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist",
+    
+		// Theme options
+		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "bottom",
+    
+		// Example content CSS (should be your site CSS)
+		content_css : "contents.css",
+
+		save_onsavecallback: function() {
+			if(window.console && console.log)
+				console.log("save_onsavecallback(%o)", arguments);
+		},
+
+		myCustomProperty: "blah-blah-blah"
+	};
+
+var tinyCfg2 = {
+		// General options
+		theme : "advanced",
+		plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist",
+
+		skin: "extjs",
+    inlinepopups_skin: "extjs",
+    
+    // Original value is 23, hard coded.
+    // with 23 the editor calculates the height wrong.
+    // With these settings, you can do the fine tuning of the height
+    // by the initialization.
+    theme_advanced_row_height: 27,
+    delta_height: 0,
+    
+		// Theme options
+		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "bottom",
+
+		// Example content CSS (should be your site CSS)
+		content_css : "contents.css"
+	};
+  
+Ext.onReady(function(){
+    var button = Ext.get('show-btn');
+
+    button.on('click', function(){
+      win = Ext.create('widget.window', {
+          id: 'demowindow',
+          title: 'Window',
+          closable: true,
+          maximizable: true,
+          closeAction: 'destroy',
+          width: 950,
+          height: 500,
+          layout: 'fit',
+          plain: true,
+          modal: true,
+          border: false,
+          bodyBorder: false,
+
+          focusOnToFront: false,
+          toFrontOnShow: false,
+          preventFocusOnActivate: true,
+         
+          buttons: [
+            {
+              text: 'Submit',
+              
+              handler: function() {
+                main_form.getForm().submit({ url: 'process.js', method: 'get', success: function(form, action) { Ext.MessageBox.alert("Information", "Submit done!"); } });
+              }
+            }
+          ],
+          
+          items: main_form = Ext.create('Ext.form.FormPanel', {
+
+            border: false,
+            layout: 'fit',
+            trackResetOnLoad: true,
+            
+            items: Ext.createWidget('tabpanel', {
+              activeTab: 0,
+              
+              deferredRender: false,
+              
+              items: [
+                {
+                    title: 'English',
+                    layout: 'border',
+                    border: false,
+
+                    bodyStyle: 'background-color: transparent;padding: 5px 5px 5px 5px',
+
+                    tbar: [
+                      {
+                        text: 'WYSIWYG / HTML Text',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) ed.toggleEditor();
+                        }
+                      },
+                      {
+                        text: 'Remove',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) ed.removeEditor();
+                        }
+                      },
+                      {
+                        text: 'Toggle ReadOnly',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) 
+                          {
+                            if(ed.readOnly) ed.setReadOnly(false);
+                            else            ed.setReadOnly(true);
+                          }
+                        }
+                      },
+                      {
+                        text: 'Enable / Disable',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) 
+                          {
+                            if(ed.isDisabled()) ed.enable();
+                            else                ed.disable();
+                          }
+                        }
+                      },
+                      {
+                        text: 'Change CSS and Skin',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) 
+                          {
+                            ed.reinitEditor({ 
+                              skin : "o2k7",
+                              skin_variant : "black",
+                              inlinepopups_skin: "clearlooks2",
+                              content_css: 'contents2.css'
+                            });
+                          }
+                        }
+                      },
+                      {
+                        text: 'Show HTML Text',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) 
+                          {
+                            tinymce.triggerSave();
+                            alert(ed.getValue());
+                          }
+                        }
+                      },
+                      {
+                        text: 'Set Some Value',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) 
+                          {
+                            ed.setValue('Some<br>unformated HTML text');
+                          }
+                        }
+                      },
+                      {
+                        text: 'Focus',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          ed.focus();
+                        }
+                      },
+                      {
+                        text: 'Toggle Error',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(!ed.hasActiveError()) ed.setActiveError('There are troubles!');
+                          else                     ed.clearInvalid();
+                          
+                          ed = main_form.getForm().findField('english_title');
+                          if(!ed.hasActiveError()) ed.setActiveError('There are troubles!');
+                          else                     ed.clearInvalid();
+                        }
+                      },
+                      {
+                        text: 'Insert Placeholder',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          ed.storeCurrentSelection();
+                          
+                          Ext.MessageBox.prompt('Name', 'Please enter your name:', function(btn, text) {
+                            // After closing the ExtJS window used for the WYSIWYG popup,
+                            // the ExtJS focuses the previously active window, and it does
+                            // with a delay.
+                            // If we restore the cursor position in the WYSIWYG immediately,
+                            // it is lost upon focusing the previously active window. Thus,
+                            // do it also with a longer delay.
+                            
+                            setTimeout(function () {
+                              if(ed) 
+                              {
+                                ed.restoreCurrentSelection();
+                                if(btn == "ok") ed.insertText('{' + text + '}');
+                                else            ed.focus();
+                              }
+                            }, 300);
+                          });
+                        }
+                      }
+                      /*,
+                      {
+                        text: 'Get Size',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('english');
+                          if(ed) 
+                          {
+                            alert(ed.getWidth() + ':' + ed.getHeight());
+                          }
+                        }
+                      },
+                      {
+                        text: 'Clear Dirtry',
+                        handler: function () {
+                          main_form.getForm().getFields().each(function(field) {
+                            field.resetOriginalValue();
+                          });
+                        }
+                      },
+                      {
+                        text: 'Show Dirty Fields',
+                        handler: function () {
+                          show_dirties(main_form.getForm());
+                        }
+                      }*/
+                    ],
+                    
+                    items: [
+                      {
+                        region: 'north',
+                        xtype: 'form',
+                        border: false,
+                        
+				                defaults: { anchor: '0' },
+
+                        fieldDefaults: {
+                          labelWidth: 168
+                        },
+
+                        defaultType: 'textfield',
+                        
+	                      items: [
+                          {
+                            fieldLabel: 'Title',
+                            name: 'english_title'
+                          }
+                        ]
+                      },
+                      {
+                        region: 'center',
+                        xtype: 'tinymce_textarea',
+                        fieldStyle: 'font-family: Courier New; font-size: 12px;',
+                        
+                        noWysiwyg: false,
+                        tinyMCEConfig: tinyCfg1,
+                        
+                        id: 'english',
+                        name: 'english',
+                        value: 'English Text'
+                      }
+                    ]
+                },{
+                    title: 'German',
+                    layout: 'border',
+                    border: false,
+
+                    bodyStyle: 'background-color: transparent;padding: 5px 5px 5px 5px',
+                    
+                    tbar: [
+                      {
+                        text: 'WYSIWYG / HTML Text',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) ed.toggleEditor();
+                        }
+                      },
+                      {
+                        text: 'Remove',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) ed.removeEditor();
+                        }
+                      },
+                      {
+                        text: 'Toggle ReadOnly',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) 
+                          {
+                            if(ed.readOnly) ed.setReadOnly(false);
+                            else            ed.setReadOnly(true);
+                          }
+                        }
+                      },
+                      {
+                        text: 'Enable / Disable',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) 
+                          {
+                            if(ed.isDisabled()) ed.enable();
+                            else                ed.disable();
+                          }
+                        }
+                      },
+                      {
+                        text: 'Change CSS and Skin',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) 
+                          {
+                            ed.reinitEditor({ 
+                              skin : "o2k7",
+                              skin_variant : "black",
+                              content_css: 'contents2.css'
+                            });
+                          }
+                        }
+                      },
+                      {
+                        text: 'Show HTML Text',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) 
+                          {
+                            tinymce.triggerSave();
+                            alert(ed.getValue());
+                          }
+                        }
+                      },
+                      {
+                        text: 'Set Some Value',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) 
+                          {
+                            ed.setValue('Some<br>unformated HTML text');
+                          }
+                        }
+                      },
+                      {
+                        text: 'Focus',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          ed.focus();
+                        }
+                      },
+                      {
+                        text: 'Toggle Error',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(!ed.hasActiveError()) ed.setActiveError('There are troubles!');
+                          else                     ed.clearInvalid();
+                          
+                          ed = main_form.getForm().findField('german_title');
+                          if(!ed.hasActiveError()) ed.setActiveError('There are troubles!');
+                          else                     ed.clearInvalid();
+                        }
+                      },
+                      {
+                        text: 'Insert Placeholder',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          ed.storeCurrentSelection();
+                          
+                          Ext.MessageBox.prompt('Name', 'Please enter your name:', function(btn, text) {
+                            // After closing the ExtJS window used for the WYSIWYG popup,
+                            // the ExtJS focuses the previously active window, and it does
+                            // with a delay.
+                            // If we restore the cursor position in the WYSIWYG immediately,
+                            // it is lost upon focusing the previously active window. Thus,
+                            // do it also with a longer delay.
+
+                            setTimeout(function () {
+                              if(ed) 
+                              {
+                                ed.restoreCurrentSelection();
+                                if(btn == "ok") ed.insertText('{' + text + '}');
+                                else            ed.focus();
+                              }
+                            }, 300);
+                          });
+                        }
+                      }
+                      /*,
+                      {
+                        text: 'Get Size',
+                        handler: function () {
+                          var ed = main_form.getForm().findField('german');
+                          if(ed) 
+                          {
+                            alert(ed.getWidth() + ':' + ed.getHeight());
+                          }
+                        }
+                      },
+                      {
+                        text: 'Clear Dirtry',
+                        handler: function () {
+                          main_form.getForm().getFields().each(function(field) {
+                            field.resetOriginalValue();
+                          });
+                        }
+                      },
+                      {
+                        text: 'Show Dirty Fields',
+                        handler: function () {
+                          show_dirties(main_form.getForm());
+                        }
+                      }*/
+                    ],
+                    
+                    items: [
+                      {
+                        region: 'north',
+                        xtype: 'form',
+                        border: false,
+                        
+				                defaults: { anchor: '0' },
+
+                        fieldDefaults: {
+                          labelWidth: 168
+                        },
+
+                        defaultType: 'textfield',
+                        
+	                      items: [
+                          {
+                            fieldLabel: 'Title',
+                            name: 'german_title'
+                          }
+                        ]
+                      },
+                      {
+                        region: 'center',
+                        xtype: 'tinymce_textarea',
+                        fieldStyle: 'font-family: Courier New; font-size: 12px;',
+
+                        noWysiwyg: false,
+                        tinyMCEConfig: tinyCfg2,
+                        
+                        id: 'german',
+                        name: 'german',
+                        value: 'German Text'
+                      }
+                    ]
+                }
+              ]
+          })
+        })
+      });
+      win.show();
+    });
+    
+    button = Ext.get('show-form');
+
+    button.on('click', function(){
+      win = Ext.create('widget.window', {
+          id: 'demoform',
+          title: 'Form',
+          closable: true,
+          maximizable: true,
+          closeAction: 'destroy',
+          width: 780,
+          height: 500,
+          layout: 'fit',
+          plain: true,
+          modal: true,
+          border: false,
+          bodyBorder: true,
+          bodyPadding: '5 5 0',
+
+          focusOnToFront: false,
+          toFrontOnShow: false,
+          preventFocusOnActivate: true,
+         
+          buttons: [
+            {
+              text: 'Toggle ReadOnly',
+              handler: function () {
+                var ed = second_form.getForm().findField('message');
+                if(ed) 
+                {
+                  if(ed.readOnly) ed.setReadOnly(false);
+                  else            ed.setReadOnly(true);
+                }
+              }
+            },
+            {
+              text: 'Enable / Disable',
+              handler: function () {
+                var ed = second_form.getForm().findField('message');
+                if(ed) 
+                {
+                  if(ed.isDisabled()) ed.enable();
+                  else                ed.disable();
+                }
+              }
+            },
+            {
+              text: 'WYSIWYG / HTML Text',
+              handler: function () {
+                var ed = second_form.getForm().findField('message');
+                if(ed) ed.toggleEditor();
+              }
+            },
+            {
+              text: 'Submit',
+              
+              handler: function() {
+                var
+                  form = second_form.getForm(),
+                  isDirty = form.isDirty(),
+                  values = form.getFieldValues(true);
+
+                form.submit({ url: 'process.js', method: 'get', success: function(form, action) { Ext.MessageBox.alert("Information", "Submit done!"); } });
+              }
+            }
+          ],
+          
+          items: second_form = Ext.create('Ext.form.FormPanel', {
+          
+            bodyStyle: 'background-color: transparent',
+
+            border: false,
+            trackResetOnLoad: true,
+            autoScroll: true,
+            
+            fieldDefaults: {
+                labelWidth: 75,
+                anchor: '100%'
+            },
+            defaultType: 'textfield',
+            
+            items: [
+              {
+                  fieldLabel: 'Sender',
+                  id: 'sender',
+                  name: 'sender'
+              },{
+                  fieldLabel: 'Receiver',
+                  id: 'receiver',
+                  name: 'receiver'
+              },{
+                  fieldLabel: 'Subject',
+                  id: 'subject',
+                  name: 'subject'
+              },{
+                  height: 'auto',
+                  fieldLabel: 'Message',
+                  anchor: '100% 60%',
+                  xtype: 'tinymce_textarea',
+                  fieldStyle: 'font-family: Courier New; font-size: 12px;',
+                  
+                  noWysiwyg: false,
+                  tinyMCEConfig: tinyCfg1,
+                  value: 'Some Text',
+                  id: 'message',
+                  name: 'message'
+              },{
+                  fieldLabel: 'Others',
+                  id: 'others',
+                  name: 'others'
+              }
+            ]
+          })
+      });
+      win.show();
+    });
+});
+</script>
+</head>
+<body>
+<h2>Example: Integration of the TinyMCE WYSIWYG editor into the ExtJS</h2>
+
+<p>
+Version: 2.1<br/>
+Release date: 21.08.2012<br/>
+ExtJS Version: 4.1.0<br/>
+TinyMCE Version: 3.5.4.1
+</p>
+
+<p>This example demonstrates several issues of integration of the TinyMCE WYSIWYG editor into the ExtJS.</p>
+
+<p>The integration is done by deriving from the Ext.form.field.TextArea.</p>
+
+<p>Following issues are covered:</p>
+
+<ul>
+  <li>Initialization in an initially visible and in an initially invisible tab.</li>
+  <li>Correct place occupation by the initialization in any ExtJS layout.</li>
+  <li>Correct resizing by the resizing of the underlying text area.</li>
+  <li>Activation and deactivation of the WYSIWYG editor. Keeping of the cursor position by switching to the HTML text modus.</li>
+  <li>Enabling and disabling of the WYSIWYG editor control.</li>
+  <li>ReadOnly state support.</li>
+  <li>Changing of WYSIWYG settings and CSS file for the editable contents on the fly.</li>
+  <li>Pre-formatting of the HTML text in visible and invisible modus.</li>
+  <li>Focusing of the WYSIWYG editor control.</li>
+  <li>Marking invalid.</li>
+  <li>Tracking dirty state.</li>
+  <li>Skin "extjs" and the native ExtJS windows for the editor inline popups.</li>
+  <li>Storing and restoring cursor position by inserting of a place holder over a popup window.</li>
+</ul>
+
+<br/>
+
+<input type="button" id="show-btn" value="Show Window"/>
+
+<input type="button" id="show-form" value="Show Form"/>
+
+<br/><br/>
+
+<a href="http://www.point-constructor.com/en/tinyta/" target="_blank" style="font-size:14px;font-weight: bold">Download Sources and Demo</a>
+
+</body>
+</html>

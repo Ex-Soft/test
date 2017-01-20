@@ -1,0 +1,103 @@
+﻿<html>
+	<head>
+		<title>Test ComboBox II</title>
+		<script type="text/javascript">
+<!--
+function Create()
+{
+	var
+		Ctrl,
+		count,
+		i,
+		ComboBox,
+		_Option_,
+		_tr_,
+		_td_;
+
+	if(!(Ctrl=document.getElementById("InputTextCount"))
+		|| isNaN(count=parseInt(Ctrl.value))
+		|| !(Ctrl=document.getElementById("TableBody")))
+		return;
+
+	for(i=Ctrl.rows.length; i>0; --i)
+		Ctrl.deleteRow(0);
+
+	for(i=0; i<count; ++i)
+	{
+		ComboBox=document.createElement("select");
+		ComboBox.id="ComboBox"+i;
+		for(var ii=0; ii<5; ++ii)
+		{
+			_Option_=new Option(ii,ii,false,i%ii==0);
+			ComboBox.options.add(_Option_);
+		}
+		_tr_=Ctrl.insertRow(i);
+		_td_=_tr_.insertCell(0);
+		_td_.appendChild(ComboBox);
+		_td_=_tr_.insertCell(1);
+		_td_.innerHTML="&nbsp;"
+		_td_=_tr_.insertCell(2);
+		_td_.innerHTML="&nbsp;"
+	}
+	if(Ctrl=document.getElementById("TDSelectedIndex"))
+		Ctrl.innerHTML="&nbsp;";
+	if(Ctrl=document.getElementById("TDValue"))
+		Ctrl.innerHTML="&nbsp;";
+}
+
+function _Calc_(BySelectedIndex)
+{
+	var
+		Ctrl,
+		count,
+		start,
+		stop,
+		_value_,
+		elements;
+
+	if(!(Ctrl=document.getElementById("InputTextCount"))
+		|| isNaN(count=parseInt(Ctrl.value)))
+		return;
+
+	start=new Date();
+
+	elements=document.getElementsByTagName("select");
+	for(var i=0, el; el=elements[i]; ++i)
+		_value_ = BySelectedIndex ? el.options[el.selectedIndex].value : el.value;
+
+/*
+	for(var i=0; i<count; ++i)
+	{
+		if(Ctrl=document.getElementById("ComboBox"+i))
+			_value_ = BySelectedIndex ? Ctrl.options[Ctrl.selectedIndex].value : Ctrl.value;
+	}
+*/
+
+	stop=new Date();
+	if(Ctrl=document.getElementById("TD"+(BySelectedIndex ? "SelectedIndex" : "Value")))
+		Ctrl.innerHTML=stop-start;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form id=MainForm>
+			<table border="1">
+				<thead>
+					<tr>
+						<th><input type="button" value="Create" onclick="Create()"></th>
+						<th><input type="button" value="SelectedIndex" onclick="_Calc_(true)"></th>
+						<th><input type="button" value="Value" onclick="_Calc_(false)"></th>
+					</tr>
+					<tr>
+						<th>Count:&nbsp<input type="text" id="InputTextCount" value="10"></th>
+						<th id="TDSelectedIndex">&nbsp;</th>
+						<th id="TDValue">&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody id="TableBody">
+				</tbody>
+			</table>
+		</form>
+	</body>
+</html>

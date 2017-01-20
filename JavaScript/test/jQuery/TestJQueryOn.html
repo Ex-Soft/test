@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test jQuery on</title>
+		<script charset="utf-8" src="../../jQuery/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	var
+		ctrl;
+
+	ctrl=$("p").on("click", function() {
+		alert($(this).text());
+	});
+
+	if(window.console && console.log)
+		console.log("%o", ctrl);
+
+	ctrl.attr("title", "title");
+});
+		</script>
+	</head>
+	<body>
+		<p>Paragraph #1</p>
+		<p>Paragraph #2</p>
+		<p>Paragraph #3</p>
+		<p>Paragraph #4</p>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Test ActiveX</title>
+<script type="text/javascript">
+<!--
+function TestActiveX()
+{
+   var
+     oFS=null;
+
+   try
+   {
+      if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+      {
+         alert("!Scripting.FileSystemObject");
+      }
+      else
+      {
+         if(!oFS.FolderExists("c:\\progra~1"))
+         {
+            alert("!FolderExists");
+         }
+         else
+         {
+            alert("oB!!!");
+         }
+      }
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+   }
+}
+// -->
+</script>
+  </head>
+  <body onload="TestActiveX()">
+  </body>
+</html>

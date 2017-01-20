@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>Test Attributes</title>
+		<script type="text/javascript">
+<!--
+function DoIt(obj)
+{
+	alert(obj.hasAttribute);
+
+	var
+		a=obj.getAttribute("name");
+
+	alert(typeof(a));
+
+	if(!a)
+		alert("!a");
+	else
+		alert("a");
+
+	if(a==null)
+		alert("a==null");
+	else
+		alert("a!=null");
+
+	if(a==undefined)
+		alert("a==undefined");
+	else
+		alert("a!=undefined");
+
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("InputText1")))
+		return;
+
+	Ctrl.setAttribute("value", "10");
+	alert(Ctrl.value);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<h1>Test Attributes</h1>
+		<form>
+			<input type="button" value="DoIt!" onclick="DoIt(this);">
+			<input type="text" id="InputText1" value="0" />
+		</form>
+	</body>
+</html>

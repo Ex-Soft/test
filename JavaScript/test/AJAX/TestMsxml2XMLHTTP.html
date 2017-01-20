@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>Test Msxml2.XMLHTTP</title>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	var
+		progIDs = new Array ("Msxml2.XMLHTTP.6.0", 
+					"Msxml2.XMLHTTP.5.0", 
+					"Msxml2.XMLHTTP.4.0", 
+					"Msxml2.XMLHTTP.3.0", 
+					"Msxml2.XMLHTTP", 
+					"Microsoft.XMLHTTP");
+
+	for(var i=0; i<progIDs.length; ++i)
+	{
+		alert(progIDs[i]);
+
+		var
+			r;
+
+		try
+		{
+			r=new ActiveXObject(progIDs[i]);
+			alert("oB!");
+		}
+		catch(e)
+		{
+			alert(e.name+": "+e.message);
+		}
+
+		r=null;
+	}
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

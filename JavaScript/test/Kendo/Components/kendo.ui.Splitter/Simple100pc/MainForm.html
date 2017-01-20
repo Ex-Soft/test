@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test kendo.ui.Splitter (simple 100%)</title>
+
+		<link rel="stylesheet" href="../../../../../kendo/styles/kendo.common.min.css"/>
+		<link rel="stylesheet" href="../../../../../kendo/styles/kendo.default.min.css"/>
+
+		<style>
+html, body
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.top
+{
+	background-color: blue;
+	height: 50px;
+}
+
+.bottom
+{
+	background-color: aqua;
+	height: calc(100% - 50px);
+}
+
+.bottom form
+{
+	height: 100%;
+	width: 100%;
+}
+
+#splitter div
+{
+	//border: 1px solid black;
+}
+
+.container
+{
+	overflow: visible;
+}
+
+.popUp
+{
+	height: 100px;
+	width: 300px;
+	background-color: red;
+	position: absolute;
+	top: 0;
+	left: -40px;
+	z-index: 10000;
+}
+
+.k-splitter .k-scrollable
+{
+	overflow: inherit;
+	/*overflow: visible;*/
+	/*overflow: initial;*/
+	/*overflow: scroll;*/ /* doesn't work */
+	/*overflow: hidden;*/ /* doesn't work */
+	/*overflow: auto;*/ /* doesn't work */
+}
+		</style>
+		
+		<script charset="utf-8" src="../../../../../jQuery/2/jquery.js"></script>
+		<!--<script charset="utf-8" src="../../../../../kendo/src/js/kendo.web.js"></script>-->
+		<script charset="utf-8" src="../../../../../kendo/js/kendo.web.min.js"></script>
+
+		<script charset="utf-8" src="MainForm.js"></script>
+	</head>
+	<body>
+		<div class="top"></div>
+		<div class="bottom">
+			<form>
+				<div id="splitter" style="height: 100%; width: 100%; ">
+					<div>Pane left</div>
+					<div class="container">
+						Pane right
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<div>
+											<div class="popUp">12345678901234567890</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

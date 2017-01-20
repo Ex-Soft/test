@@ -1,0 +1,53 @@
+﻿<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Dynamic Rows</title>
+		<script type="text/javascript">
+<!--
+function AddRow(tbl)
+{
+    var
+        r,
+        c;
+
+    if(!tbl)
+        return;
+
+    r=tbl.insertRow(tbl.rows.length);
+    c=r.insertCell(0);
+    c.innerHTML="<input type=\"file\" name=\"UploadFile\" style=\"width: 400px; \" />";
+    c=r.insertCell(1);
+    c.innerHTML="<input type=\"button\" value=\"-\" title=\"Удалить файл\" onclick=\"DelRow(document.getElementById(&quot;"+tbl.id+"&quot;),this.parentNode.parentNode.rowIndex)\" style=\"width: 100%; \" />"
+}
+
+function DelRow(tbl, idx)
+{
+    if(!tbl)
+        return;
+
+    tbl.deleteRow(idx);
+}
+//-->
+		</script>
+	</head>
+	<body>
+		<table align="center" cellpadding="0" cellspacing="0" border="1" style="width: 100%; ">
+			<tr>
+				<td>
+					<table id="FilesTable" cellpadding="0" cellspacing="0" border="0" style="width: 100%; ">
+						<tr>
+							<td><input type="file" name="UploadFile" style="width: 400px; " /></td>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<input type="button" value="+" title="Добавить файл" onclick="AddRow(document.getElementById(&#34;FilesTable&#x022;))" style="width: 100%; " />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="Загрузить" /></td>
+			</tr>
+		</table>
+	</body>
+</html>

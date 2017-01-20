@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Class with config</title>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4.2.1/ext-all-debug.js"></script>
+		<script>
+Ext.define("Class", {
+	config: {
+		configProp1: { prop: "defaultConfigProp1" },
+		configProp2: { prop: "defaultConfigProp2" }
+	},
+
+	constructor: function(config) {
+		if(window.console && console.log)
+			console.log("Class.constructor(%o)", arguments);
+
+		config = config || {};
+
+		this.initConfig(config);
+
+		return this;
+	},
+
+	applyConfigProp1: function(val) {
+		if(typeof val === "object")
+			return val;
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		c = Ext.create("Class", { configConfigProp1: { prop: "configConfigProp1" }, configProp2: { prop: "configProp2" } });
+
+	c.setConfigProp1("a");
+
+	if(window.console && console.log)
+		console.log("typeof c.resetConfigProp1 = \"%s\"", typeof c.resetConfigProp1);
+
+	if(typeof c.resetConfigProp1 === "function")
+		c.resetConfigProp1();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

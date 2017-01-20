@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Test position</title>
+<script type="text/javascript">
+<!--
+function OnClick(obj)
+{
+   var
+     tmpStr="",
+     offsetTopAll=obj.offsetTop,
+     offsetLeftAll=obj.offsetLeft,
+     parentObj=obj.offsetParent,
+     frm=document.getElementById("IFrame");
+
+   tmpStr+="offsetTop="+obj.offsetTop;
+   tmpStr+="\nscrollTop="+obj.scrollTop;
+   tmpStr+="\noffsetLeft="+obj.offsetLeft;
+   tmpStr+="\nscrollLeft="+obj.scrollLeft;
+   tmpStr+="\noffsetWidth="+obj.offsetWidth;
+   tmpStr+="\nscrollWidth="+obj.scrollWidth;
+   tmpStr+="\noffsetHeight="+obj.offsetHeight;
+   tmpStr+="\nscrollHeight="+obj.scrollHeight;
+   tmpStr+="\nclientWidth="+obj.clientWidth;
+   tmpStr+="\nclientHeight="+obj.clientHeight;
+   tmpStr+="\n";
+   tmpStr+="\noffsetParent.offsetTop="+obj.offsetParent.offsetTop;
+   tmpStr+="\noffsetParent.offsetLeft="+obj.offsetParent.offsetLeft;
+   tmpStr+="\noffsetParent.offsetWidth="+obj.offsetParent.offsetWidth;
+   tmpStr+="\noffsetParent.offsetHeight="+obj.offsetParent.offsetHeight;
+
+   while(parentObj)
+   {
+      offsetTopAll+=parentObj.offsetTop;
+      offsetLeftAll+=parentObj.offsetLeft;
+      if(!parentObj.offsetParent)
+      {
+         offsetTopAll+=parentObj.offsetTop;
+         offsetLeftAll+=parentObj.offsetLeft;
+      }
+      parentObj=parentObj.offsetParent;
+   }
+
+   tmpStr+="\n";
+   tmpStr+="\noffsetTopAll="+offsetTopAll;
+   tmpStr+="\noffsetLeftAll="+offsetLeftAll;
+   
+   alert(tmpStr);
+
+   if(frm && frm.style.display=="none")
+   {
+      frm.style.display="block";
+      frm.style.top=offsetTopAll+obj.offsetHeight;
+      frm.style.left=offsetLeftAll+obj.offsetWidth;
+      frm.style.verticalAlign="center";
+      window.scrollTo(0,offsetTopAll+obj.offsetHeight);
+      alert(frm.style.top);
+   }
+}
+// -->
+</script>
+  </head>
+<body>
+  <form method="post">
+    <h1>Line# 1</h1>
+    <h1>Line# 2</h1>
+    <h1>Line# 3</h1>
+    <h1>Line# 4</h1>
+    <h1>Line# 5</h1>
+    <h1>Line# 6</h1>
+    <table style="BORDER-RIGHT: aqua 5px solid; BORDER-TOP: aqua 20px solid; BORDER-LEFT: aqua 15px solid; BORDER-BOTTOM: aqua 5px solid; BACKGROUND-COLOR: navy" cellspacing="8">
+      <tr style="BORDER-TOP: fuchsia 2px solid">
+        <td style="BORDER-TOP: green thick solid"><a href="#" id="btnImg" name="btnImg" onclick="OnClick(this); return(false)"><img src="./pix/sm10_eyes.gif" border="10"></a></td>
+      </tr>
+    </table>
+  </form>
+  <IFRAME id="IFrame" style="BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; DISPLAY: none; Z-INDEX: 110; LEFT: 9%; BORDER-LEFT: red 1px solid; WIDTH: 70%; BORDER-BOTTOM: red 1px solid; POSITION: absolute; TOP: 50%; HEIGHT: 160px" name="IFrame" frameBorder="yes" src="./pix/sm10_eyes.gif"></IFRAME>
+</body>
+<html>

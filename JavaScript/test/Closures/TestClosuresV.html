@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<!-- http://habrahabr.ru/post/149526/ -->
+<!-- http://odetocode.com/blogs/scott/archive/2007/07/10/closure-on-javascript-closures.aspx -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Closures V</title>
+		<script>
+var
+	y = 5;
+
+var
+	x = function() {
+		return y;
+};
+
+var
+	z = function(t) {
+		var
+			y = 10;
+
+		return t();
+};
+
+//y = 15;
+
+if(window.console && console.log)
+	console.log(z(x));
+
+function counter(i) {
+	inc = function() {
+		if(window.console && console.log)
+			console.log(++i);
+	};
+
+	dec = function() {
+		if(window.console && console.log)
+			console.log(--i);
+	};
+}
+
+counter(0);
+inc(), inc(), dec();
+
+var
+	my_var = "глобальная";
+
+function my_function() {
+	var
+		my_var = "локальная";
+
+	var
+		some_function = new Function("if(window.console && console.log) console.log(my_var)");
+
+	some_function();
+}
+
+my_function(); // "глобальная"
+
+var
+	foo = 1;
+
+function bar() {
+	if(!foo)
+	{
+		var
+			foo = 10;
+	}
+
+	if(window.console && console.log)
+		console.log(foo);
+};
+
+bar();
+
+var
+	a = 1; 
+
+function b() { 
+	a = 10; 
+	return; 
+	function a() {}; 
+};
+
+b(); 
+if(window.console && console.log)
+	console.log(a);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

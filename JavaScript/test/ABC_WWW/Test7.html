@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Ships</TITLE>
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+function degreesToRadians(degrees)
+{
+   return(degrees*Math.PI/180.0);
+}
+
+function move()
+{
+   var
+     angle=degreesToRadians(this.direction);
+
+   this.x = this.x + this.speed * Math.cos(angle);
+   this.y = this.y + this.speed * Math.sin(angle);
+}
+
+function Ship(x, y, speed, direction)
+{
+   this.x = x;
+   this.y = y;
+   this.speed = speed;
+   this.direction = direction;
+}
+// -->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="WHITE">
+<H1>Ships</H1>
+<SCRIPT TYPE="text/javascript">
+<!--
+  new Ship(0,0,0,0);
+  Ship.prototype.move=move;
+  Ship.prototype.maxSpeed=50;
+
+  var
+    ship1=new Ship(0,0,1,90);
+
+  makeObjectTable("ship1 (originally)",ship1);
+  ship1.move();
+  makeObjectTable("ship1 (after move)",ship1);
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

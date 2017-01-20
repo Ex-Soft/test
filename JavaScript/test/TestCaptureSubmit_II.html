@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Test Capture Submit (II)</title>
+		<script type="text/javascript">
+<!--
+function MySubmit()
+{
+	alert("MySubmit()");
+}
+
+function OnLoad()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("SmthForm"))
+	{
+		Ctrl.OrgSubmit=Ctrl.submit;
+		Ctrl.submit=function(){MySubmit();this.OrgSubmit()};
+	}
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<form id="SmthForm" method="post" onsubmit="alert('<form ...onsubmit...>')">
+			<input type="button" value="Button" onclick="document.getElementById('SmthForm').submit()">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Test Window</TITLE>
+<SCRIPT type=text/javascript>
+<!--
+var
+  IFrameId="IFrame2";
+
+function ShowIFrame()
+{
+   var
+     frame=document.getElementById(IFrameId);
+
+   frame.src="iframe.html";
+   frame.style.display="block";
+}
+// -->
+</SCRIPT>
+  </HEAD>
+  <BODY style="background-color: green; ">
+    <FORM id="MainForm">
+      <div>
+        <iframe id="IFrame1" src="iframe1.html" style="width: 100%; "></iframe>
+      </div>
+      <IFRAME id="IFrame2" style="BORDER-RIGHT: threeddarkshadow 1px solid; BORDER-TOP: buttonhighlight 1px solid; DISPLAY: none; Z-INDEX: 110; LEFT: 29%; BORDER-LEFT: buttonhighlight 1px solid; WIDTH: 70%; BORDER-BOTTOM: threeddarkshadow 1px solid; POSITION: absolute; HEIGHT: 160px" frameBorder="no"></IFRAME>
+      <input type="button" value="Show IFrame" onclick="ShowIFrame()">
+    </FORM>
+  </BODY>
+</HTML>

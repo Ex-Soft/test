@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test jQuery extend</title>
+		<script type="text/javascript" charset="windows-1251" src="../../jQuery/jquery.js"></script>
+		<script type="text/javascript">
+$(document).ready(function() {
+	var
+		target = { a:1, b:2, c:3 },
+		source1 = { c:4, d:5, e:6 },
+		source2 = { e:7, f:8, g:9 };
+
+	if(window.console && console.log)
+		console.log("i=%o", target);
+
+	$.extend(target, source1, source2);
+
+	if(window.console && console.log)
+		console.log("i=%o", target);
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

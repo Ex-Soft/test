@@ -1,0 +1,26 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+  <HEAD>
+    <TITLE>IFrame 2</TITLE>
+<SCRIPT type=text/javascript>
+<!--
+function PrevFrame()
+{
+   self.location.href="iframe1.html?first=1st";
+}
+// -->
+</SCRIPT>
+  </HEAD>
+  <BODY>
+    <FORM id="IFrame2Form">
+      IFrame #2&#x99;<br>
+<script type="text/javascript">
+<!--
+document.write("self.location.href=",self.location.href,"<br>");
+// -->
+</script>
+      <input type="button" value="PrevFrame (by &#34;self.location.href&#x022;)" onclick="PrevFrame()"><br>
+      <a href="iframe1.html?first=1st">(by &quot;&lt;A ...&gt; ... &lt;/A&gt;&quot;)</a>
+    </FORM>
+  </BODY>
+</HTML>

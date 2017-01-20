@@ -1,0 +1,10 @@
+﻿{
+	"children": [
+		{ "text": "NestedList item 1", "leaf": true },
+		{ "text": "NestedList item 2", "children": [
+			{ "text": "NestedList item 2.1", "leaf": true },
+			{ "text": "NestedList item 2.2", "leaf": true }
+		] },
+		{ "text": "NestedList item 3", "leaf": true }
+	]
+}

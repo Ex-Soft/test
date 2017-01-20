@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>Test vars in Frames</title>
+<script type=text/javascript>
+<!--
+alert("From Frame# 2");
+
+var
+  FrameVar;
+
+function SetMainVar()
+{
+   parent.MainFormVar=document.getElementById("MainVarSet").value;
+}
+
+function GetMainVar()
+{
+   document.getElementById("MainVarGet").value=parent.MainFormVar;
+}
+
+function SetSelfVar()
+{
+   FrameVar=document.getElementById("SelfVarSet").value;
+}
+
+function GetSelfVar()
+{
+   document.getElementById("SelfVarGet").value=FrameVar;
+}
+// -->
+</script>
+  </head>
+  <body>
+    <h1>Test vars in Frames</h1>
+    <h2>Frame# 2</h2>
+    <hr>
+<script type=text/javascript>
+<!--
+document.writeln("<h3>parent</h3>");
+if(parent.id!=null)
+  document.writeln(parent.id);
+else
+  document.writeln("parent.id==null");
+document.writeln("<br>");
+
+if(parent.id!=undefined)
+  document.writeln(parent.id);
+else
+  document.writeln("parent.id==undefined");
+document.writeln("<br>");
+
+if(parent.name!=null)
+  document.writeln("parent.name!=null");
+else
+  document.writeln("parent.name==null");
+document.writeln("<br>");
+
+if(parent.name!=undefined)
+  document.writeln("parent.name!=undefined");
+else
+  document.writeln("parent.name==undefined");
+document.writeln("<br>");
+
+if(parent.MainFormVar!=null)
+  document.writeln("parent.MainFormVar!=null");
+else
+  document.writeln("parent.MainFormVar==null");
+document.writeln("<br>");
+
+if(parent.MainFormVar!=undefined)
+  document.writeln("parent.MainFormVar!=undefined");
+else
+  document.writeln("parent.MainFormVar==undefined");
+document.writeln("<br>");
+
+if(parent.frames!=null)
+  document.writeln("parent.frames!=null");
+else
+  document.writeln("parent.frames==null");
+document.writeln("<br>");
+
+if(parent.frames!=undefined)
+  document.writeln("parent.frames!=undefined");
+else
+  document.writeln("parent.frames==undefined");
+document.writeln("<br>");
+
+document.writeln("parent.frames.length=");
+document.writeln(parent.frames.length);
+document.writeln("<br>");
+
+for(var i=0; i<parent.frames.length; ++i)
+{
+   document.writeln("parent.frames[");
+   document.writeln(i);
+   document.writeln("].id=");
+   document.writeln(parent.frames[i].id);
+   document.writeln("&nbsp;");
+   document.writeln("parent.frames[");
+   document.writeln(i);
+   document.writeln("].name=");
+   document.writeln(parent.frames[i].name);
+   document.writeln("<br>");
+}
+
+document.writeln("<hr>");
+
+document.writeln("<h3>top</h3>");
+if(top.id!=null)
+  document.writeln(top.id);
+else
+  document.writeln("top.id==null");
+document.writeln("<br>");
+
+if(top.id!=undefined)
+  document.writeln(top.id);
+else
+  document.writeln("top.id==undefined");
+document.writeln("<br>");
+
+if(top.name!=null)
+  document.writeln("top.name!=null");
+else
+  document.writeln("top.name==null");
+document.writeln("<br>");
+
+if(top.name!=undefined)
+  document.writeln("top.name!=undefined");
+else
+  document.writeln("top.name==undefined");
+document.writeln("<br>");
+
+if(top.MainFormVar!=null)
+  document.writeln("top.MainFormVar!=null");
+else
+  document.writeln("top.MainFormVar==null");
+document.writeln("<br>");
+
+if(top.MainFormVar!=undefined)
+  document.writeln("top.MainFormVar!=undefined");
+else
+  document.writeln("top.MainFormVar==undefined");
+document.writeln("<br>");
+
+if(top.frames!=null)
+  document.writeln("top.frames!=null");
+else
+  document.writeln("top.frames==null");
+document.writeln("<br>");
+
+if(top.frames!=undefined)
+  document.writeln("top.frames!=undefined");
+else
+  document.writeln("top.frames==undefined");
+document.writeln("<br>");
+
+document.writeln("top.frames.length=");
+document.writeln(top.frames.length);
+document.writeln("<br>");
+
+for(var i=0; i<top.frames.length; ++i)
+{
+   document.writeln("top.frames[");
+   document.writeln(i);
+   document.writeln("].id=");
+   document.writeln(top.frames[i].id);
+   document.writeln("&nbsp;");
+   document.writeln("top.frames[");
+   document.writeln(i);
+   document.writeln("].name=");
+   document.writeln(top.frames[i].name);
+   document.writeln("<br>");
+}
+document.writeln("<hr>");
+// -->
+</script>
+    <form>
+      <input id="MainVarSet" type="text"><input id="MainVarButtSet" type="button" value="Set MainVar" onclick="SetMainVar();"><br>
+      <input id="MainVarGet" type="text" readonly><input id="MainVarButtGet" type="button" value="Get MainVar" onclick="GetMainVar();"><br>
+      <input id="SelfVarSet" type="text"><input id="SelfVarButtSet" type="button" value="Set SelfVar" onclick="SetSelfVar();"><br>
+      <input id="SelfVarGet" type="text" readonly><input id="SelfVarButtGet" type="button" value="Get SelfVar" onclick="GetSelfVar();"><br>
+      <input id="CallShowMainFormVarButt" type="button" value="Call parent.ShowMainFormVar()" onclick="parent.ShowMainFormVar();"><br>
+    </form>
+  </body>
+</html>

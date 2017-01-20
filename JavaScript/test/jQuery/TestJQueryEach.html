@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test jQuery each</title>
+		<script type="text/javascript" charset="windows-1251" src="../../jQuery/jquery.js"></script>
+		<script type="text/javascript">
+$(document).ready(function() {
+	var
+		a = [1, 2, 3],
+		i = $.inArray(3, a);
+		o = { param1: 1, param2: 2, param3: 3 };
+
+	$.each(a, function(index, element) {
+		if(window.console && console.log)
+			console.log("index=%d element=%d", index, element);
+	});
+
+	if(window.console && console.log)
+		console.log("i=%d", i);
+
+	$.each(o, function(index, element) {
+		if(window.console && console.log)
+			console.log("index=%d element=%d", index, element);
+	});
+
+	$.each(a, function(index, element) {
+		if(window.console && console.log)
+			console.log("before: index=%d element=%d", index, element);
+
+		if(element==2)
+			return false;
+
+		if(window.console && console.log)
+			console.log("after: index=%d element=%d", index, element);
+	});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

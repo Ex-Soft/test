@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Test Form</title>
+		<script type="text/javascript">
+<!--
+function DoIt()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("TestForm")))
+		return;
+
+	Ctrl=Ctrl.getElementsByTagName("input");
+	for(var i=0; i<Ctrl.length; ++i)
+		alert("id=\""+Ctrl[i].id+"\" type=\""+Ctrl[i].type+"\"");
+
+	if(Ctrl=document.getElementById("TextArea"))
+		Ctrl=Ctrl.value.split("\r\n");
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form id="TestForm">
+			<input type="hidden" id="InputHidden" value="0">
+			<table border="0">
+				<tr>
+					<td><input type="text" id="TextBox" name="TextBox"></td>
+				</tr>
+				<tr>
+					<td><textarea id="TextArea" name="TextArea" rows="10" cols="10"></textarea></td>
+				</tr>
+				<tr>
+					<td>
+						<select id="ComboBox" name="ComboBox">
+							<option value="1">1st</option>
+							<option value="2">2nd</option>
+							<option value="3">3rd</option>
+							<option value="4">4th</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="radio" name="RadioButton" value="RadioButton1">1st
+						<input type="radio" name="RadioButton" value="RadioButton2">2nd
+						<input type="radio" name="RadioButton" value="RadioButton3">3rd
+						<input type="radio" name="RadioButton" value="RadioButton4">4th
+					</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" id="CheckBox" name="CheckBox"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="DoIt!" onclick="DoIt()"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

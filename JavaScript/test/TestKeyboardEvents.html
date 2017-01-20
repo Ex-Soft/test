@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title>Test Keyboard Events</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+function OnKeyUp(e)
+{
+	var
+		Ctrl=null,
+		CtrlName=null;
+
+	e=e?e:event;
+	switch(e.keyCode)
+	{
+		case 37 :
+		{
+			CtrlName="ABack";
+			break;
+		}
+		case 39 :
+		{
+			CtrlName="AForward";
+			break;
+		}
+	}
+	if(CtrlName && (Ctrl=document.getElementById(CtrlName)))
+		Move(Ctrl);
+}
+
+function Move(obj)
+{
+	var
+		Idx=null;
+
+	switch(obj.id)
+	{
+		case "ABack" :
+		{
+			Idx=-1;
+			break;
+		}
+		case "AForward" :
+		{
+			Idx=1;
+			break;
+		}
+	}
+	if(Idx)
+		MoveTo(Idx);
+}
+
+function MoveTo(Idx)
+{
+	alert(Idx);
+}
+
+function OnLoad()
+{
+	var
+		Listener="keyup",
+		Func=OnKeyUp;
+
+	// window: FF+, M$ IE - !!!
+
+	if("attachEvent" in document)
+		document.attachEvent("on"+Listener,Func);
+	else if("addEventListener" in document)
+		document.addEventListener(Listener,Func,false);
+	else
+		eval("document.on"+Listener+"="+Func);
+		//eval("document.on"+Listener+"=OnKeyUp");
+		//document.onkeyup=OnKeyUp;
+}
+
+function FireFire()
+{
+	var
+		fireOnThis=document.getElementById("InputText1"),
+		evObj=null;
+
+	if(window.KeyEvent)
+	{
+		evObj=document.createEvent('KeyEvents');
+		evObj.initKeyEvent('keyup',true,true,window,false,false,false,false,65,0);
+	}
+	else
+	{
+		if("createEvent" in document)
+		{
+			evObj=document.createEvent('UIEvents');
+			evObj.initUIEvent('keyup',true,true,window,1);
+			evObj.keyCode=65;
+		}
+		else
+			alert("!(\"createEvent\" in document)");
+
+		if("createEventObject" in document)
+		{
+			evObj=document.createEventObject();
+			evObj.keyCode=65;
+			fireOnThis.fireEvent("onkeyup",evObj);
+			evObj=null;
+		}
+		else
+			alert("!(\"createEventObject\" in document)");
+	}
+
+	if(evObj)
+		fireOnThis.dispatchEvent(evObj);
+	else
+		alert("!evObj");
+}
+
+function _On_Key_Up_(e)
+{
+	e=e||event;
+	alert(e.keyCode);
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<form>
+			<table border="0">
+				<tr>
+					<td><a id="ABack" href="#" onclick="Move(this);return(false)">&larr;</a></td>
+					<td><a id="AForward" href="#" onclick="Move(this);return(false)">&rarr;</a></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><input type="text" id="InputText1" onkeyup="_On_Key_Up_(event)"></td>
+					<td><input type="button" value="Fire!" onclick="FireFire()"></td>
+				</tr>
+			</table>
+			<br>
+			<hr>
+			document.implementation.hasFeature("Events","2.0")=
+			<script type="text/javascript">
+<!--
+document.write(document.implementation.hasFeature("Events","2.0"));
+// -->
+			</script>
+			<br>
+			document.implementation.hasFeature("Events","3.0")=
+			<script type="text/javascript">
+<!--
+document.write(document.implementation.hasFeature("Events","3.0"));
+// -->
+			</script>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>Test closures II</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+var
+	f;
+
+function outer()
+{
+	var
+		outerVar=10;
+ 
+	var
+		func=function() {
+			var
+				innerVar=5,
+				x;
+
+				x=innerVar+outerVar;
+				alert(x);
+		}
+
+	return func;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" value="outer()" onclick="f=outer()">
+		<input type="button" value="f()" onclick="f()">
+	</body>
+</html>

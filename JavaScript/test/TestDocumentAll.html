@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Test document.all</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("SpanResult"))
+		Ctrl.innerHTML=(!("all" in document) ? "!" : "")+"document.all";
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<span id="SpanResult"></span><br>
+		<script type="text/javascript">
+<!--
+document.write((!("all" in document) ? "!" : "")+"document.all<br>");
+document.write((!document.all ? "!" : "")+"document.all<br>");
+// -->
+		</script>
+	</body>
+</html>

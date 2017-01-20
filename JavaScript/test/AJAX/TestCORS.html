@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test CORS</title>
+		<script>
+function DoIt()
+{
+	var request = new XMLHttpRequest();
+	var params = "action=something";
+	request.open("POST", "http://localhost:1209/data.aspx", true);
+
+	request.onreadystatechange = function() {
+		if (request.readyState === 4)
+		{
+			if (window.console && console.log)
+				console.log("It worked!");
+		}
+	};
+
+	//request.setRequestHeader("Access-Control-Allow-Headers", "*");
+	//request.setRequestHeader("Access-Control-Allow-Headers", "x-requested-with");
+	//request.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");	
+	//request.setRequestHeader("Access-Control-Allow-Origin", "*");
+	
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.setRequestHeader("Content-length", params.length);
+	request.setRequestHeader("Connection", "close");
+	request.send(params);
+}
+
+function DoItII()
+{
+	var
+		xhr = new XMLHttpRequest(),
+		params = {
+			method: "authUser",
+			params: {
+				email: "example@greenlancer.com",
+				password: "reallyStrongPassword12345"
+			}
+		},
+		paramsStr = JSON.stringify(params);
+
+	//xhr.open("GET", "http://www.example2.com/hello.json");
+	//xhr.open("GET", "http://aruner.net/resources/access-control-with-get/");
+	xhr.open("POST", "https://mock-api.greenlancer.com/");
+
+	xhr.withCredentials = true;
+
+	xhr.setRequestHeader("Access-Control-Allow-Headers", "*");
+	xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+	xhr.onload = function(e) {
+		var data = JSON.parse(this.response);
+	}
+
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.setRequestHeader("Content-length", paramsStr.length);
+
+	xhr.send(paramsStr);
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+		<input type="button" value="DoIt! (II)" onclick="DoItII()" />
+	</body>
+</html>

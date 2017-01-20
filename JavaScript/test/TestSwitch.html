@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Test switch</title>
+		<script>
+function DoIt()
+{
+	var
+		o = { propA: "propA" };
+
+	switch(o.propB)
+	{
+		case "propA" : {
+			if(window.console && console.log)
+				console.log("case \"propA\"");
+
+			break;
+		}
+		default : {
+			if(window.console && console.log)
+				console.log("case default");
+		}
+	}
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

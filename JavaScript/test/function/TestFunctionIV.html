@@ -1,0 +1,16 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Function IV</title>
+		<script type="text/javascript">
+function OnLoad(param1, param2, param3)
+{
+	if(window.console && console.log)
+		console.log("arguments.length=%i arguments.callee.length=%i", arguments.length, arguments.callee.length);
+}
+		</script>
+	</head>
+	<body onload="OnLoad(1, 2, 3, 4, 5)">
+	</body>
+</html>

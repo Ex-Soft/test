@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test proxy()</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+function Obj(val)
+{
+	this.val = val;
+
+	this.Foo = function() {
+		if(window.console && console.log)
+			console.log("%s", this.val);
+	}
+}
+
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	var
+		obj1 = new Obj("obj1"),
+		obj2 = new Obj("obj2"),
+		f1 = obj1.Foo,
+		f = $.proxy(obj1.Foo, obj2, "1st", "2nd", "3rd");
+
+	obj1.Foo();
+	obj2.Foo();
+
+	f1.call(obj2, "1st", "2nd", "3rd");
+	f1.apply(obj2, [ "1st", "2nd", "3rd" ]);
+	f();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

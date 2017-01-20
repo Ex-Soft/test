@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<title>&laquo;Test String&raquo;</title>
+		<link rel="stylesheet" type="text/css" href="../../../ExtJS/resources/css/ext-all.css"/>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../../ExtJS/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		longStr,
+		truncatedStr;
+
+	longStr="     012345     ";
+	truncatedStr=longStr.trim();
+	document.write("\""+longStr+"\"","<br/>");
+	document.write("\""+truncatedStr+"\"","<br/>");
+	
+	longStr="123456789012345";
+	truncatedStr=Ext.util.Format.ellipsis(longStr,10);
+	document.write(longStr,"<br/>");
+	document.write(truncatedStr,"<br/>");
+
+	longStr="1234567890";
+	truncatedStr=Ext.util.Format.ellipsis(longStr,10);
+	document.write(longStr,"<br/>");
+	document.write(truncatedStr,"<br/>");
+
+	longStr="12345";
+	truncatedStr=Ext.util.Format.ellipsis(longStr,10);
+	document.write(longStr,"<br/>");
+	document.write(truncatedStr,"<br/>");
+
+	longStr="\\\\ \' \" ' balh-blah-blah ' \" \' ///";
+	truncatedStr=String.format("longStr: \"{0}\"",longStr);
+	//alert(truncatedStr);
+	document.write(longStr,"<br/>");
+	document.write(truncatedStr,"<br/>");
+});
+// -->
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

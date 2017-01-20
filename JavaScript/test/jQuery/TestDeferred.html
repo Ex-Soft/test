@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<!-- http://thomasdavis.github.io/tutorial/jquery-create-your-own-deferred.html -->
+<!-- http://tutorials.jenkov.com/jquery/deferred-objects.html -->
+<!-- https://api.jquery.com/deferred.promise/ -->
+<!-- http://joseoncode.com/2011/09/26/a-walkthrough-jquery-deferred-and-promise/ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Deferred()</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	$("#btnDoIt").bind("click",function(e) {
+		var
+			f = function(arg1, arg2, arg3, arg4) {
+				return $.Deferred(function(deferredObj) {
+					if(window.console && console.log)
+						console.log("%o", arguments);
+
+					deferredObj.resolve("1st", "2nd", "3rd", "4th", arg1, arg2, arg3, arg4);
+				}).promise();
+			};
+
+		f("f(1)", "f(2)", "f(3)", "f(4)").then(function(arg1, arg2, arg3, arg4) {
+			if(window.console && console.log)
+				console.log("then.fnDone(%o)", arguments);
+		},
+		function(arg1, arg2, arg3, arg4) {
+			if(window.console && console.log)
+				console.log("then.fnFail(%o)", arguments);
+		},
+		function(arg1, arg2, arg3, arg4) {
+			if(window.console && console.log)
+				console.log("then.fnProgress(%o)", arguments);
+		});
+
+		var deferred = $.Deferred();
+
+		deferred.resolve("hello world");
+		
+		deferred.done(function(value) {
+			if(window.console && console.log)
+				console.log("deferred.done(%o)", arguments);
+		});
+
+		//deferred.resolve("hello world");
+	});
+});
+		</script>
+	</head>
+	<body>
+		<button id="btnDoIt">DoIt!</button>
+	</body>
+</html>

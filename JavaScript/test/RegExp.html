@@ -1,0 +1,497 @@
+﻿<html>
+  <head>
+    <title>Test RegExp</title>
+    <script src="../js/misc.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <form id="MainForm" name="MainForm">
+<script type="text/javascript">
+<!--
+var
+  Str="1 2 3",
+  AllTrimStr,
+  BeginSpace=/^[\s]+/,
+  EndSpace=/[\s]+$/,
+  AllSpace=/^[\s]+|[\s]+$/,
+  AllSpaceReplace=/^[\s]+|[\s]+$/g,
+  BeginSpaceRegExp=new RegExp("^[\\s]+"),
+  EndSpaceRegExp=new RegExp("[\\s]+$"),
+  AllSpaceRegExp=new RegExp("^[\\s]+|[\\s]+$"),
+  RegEx=/\s/g,
+  Pos,
+  arr,
+  arrarr;
+
+  if(window.console && console.clear)
+    console.clear();
+
+	arr = /.*(?=db)/.exec("https://igornozhenko.quickbase.com/db/bktmrw9ve");
+
+  document.write("Str=\"",Str,"\"","<br>","<br>");
+
+  document.write(BeginSpace.toString(),"<br>");
+  Pos=Str.search(BeginSpace);
+  document.write("Pos=",Pos,"<br>");
+  if(Pos!=-1)
+    document.write("Str content space @ begin","<br>","<br>");
+  else
+    document.write("Str !content space @ begin","<br>","<br>");
+
+  document.write(EndSpace.toString(),"<br>");
+  Pos=Str.search(EndSpace);
+  document.write("Pos=",Pos,"<br>");
+  if(Pos!=-1)
+    document.write("Str content space @ end","<br>","<br>");
+  else
+    document.write("Str !content space @ end","<br>","<br>");
+
+  document.write(AllSpace.toString(),"<br>");
+  Pos=Str.search(AllSpace);
+  document.write("Pos=",Pos,"<br>");
+  if(Pos!=-1)
+    document.write("Str content space @ begin | end","<br>","<br>");
+  else
+    document.write("Str !content space @ begin | end","<br>","<br>");
+
+  AllTrimStr=Str.replace(AllSpaceReplace,"");
+  document.write("AllTrimStr=\"",AllTrimStr,"\"","<br>","<br>");
+
+  document.write("AllTrimStr=\"",AllTrim(Str),"\"","<br>","<br>");
+
+  document.write("Str=\"",Str,"\"","<br>","<br>");
+
+  document.write("RegExp.toString()=",BeginSpaceRegExp.toString(),"<br>");
+  document.write("RegExp.source=",BeginSpaceRegExp.source,"<br>");
+  if((Pos=BeginSpaceRegExp.exec(Str))!=null)
+    document.write("Matched \"",Pos[0],"\" @ position ",Pos.index," next search begins @ position ",Pos.lastIndex,"<br>");
+  else
+    document.write("Str !content space @ begin","<br>");
+
+  if(BeginSpaceRegExp.test(Str))
+    document.write("Str content space @ begin","<br>");
+  else
+    document.write("Str !content space @ begin","<br>");
+  document.write("<br>");
+
+  document.write("RegExp.toString()=",EndSpaceRegExp.toString(),"<br>");
+  document.write("RegExp.source=",EndSpaceRegExp.source,"<br>");
+  if((Pos=EndSpaceRegExp.exec(Str))!=null)
+    document.write("Matched \"",Pos[0],"\" @ position ",Pos.index," next search begins @ position ",Pos.lastIndex,"<br>");
+  else
+    document.write("Str !content space @ end","<br>");
+
+  if(EndSpaceRegExp.test(Str))
+    document.write("Str content space @ end","<br>");
+  else
+    document.write("Str !content space @ end","<br>");
+  document.write("<br>");
+
+  document.write("RegExp.toString()=",AllSpaceRegExp.toString(),"<br>");
+  document.write("RegExp.source=",AllSpaceRegExp.source,"<br>");
+  if((Pos=AllSpaceRegExp.exec(Str))!=null)
+    document.write("Matched \"",Pos[0],"\" @ position ",Pos.index," next search begins @ position ",Pos.lastIndex,"<br>");
+  else
+    document.write("Str !content space @ begin | end","<br>");
+
+  if(AllSpaceRegExp.test(Str))
+    document.write("Str content space @ begin | end","<br>");
+  else
+    document.write("Str !content space @ begin | end","<br>");
+  document.write("<br>");
+
+  document.write("RegExp.toString()=",RegEx.toString(),"<br>");
+  document.write("RegExp.source=",RegEx.source,"<br>");
+  document.write(Str.replace(RegEx,""),"<br>");
+  document.write("<br>");
+
+  Str="   1   2   3   ";
+  Str=Str.replace(/\s\s+/g," ");
+  document.write("Str=\"",Str,"\"","<br>","<br>");
+
+  Str="123456";
+  RegEx=new RegExp("^\\d+$");
+  document.write(Str,"=",RegEx.test(Str),"<br>");
+
+  Str="123456";
+  RegEx=new RegExp("^[-+]?\\d+$");
+  document.write(Str,"=",RegEx.test(Str),"<br>");
+
+  Str="-1234";
+  document.write(Str,"=",RegEx.test(Str),"<br>");
+
+  Str="+1234";
+  document.write(Str,"=",RegEx.test(Str),"<br>");
+
+  Str="123.456";
+  RegEx=new RegExp("\\D{1}");
+  document.write(Str,"=",Str.search(RegEx),"<br>");
+
+  RegEx=new RegExp("[^0-9]{1}");
+  document.write(Str,"=",Str.search(RegEx),"<br>");
+
+  RegEx=new RegExp("\\d+$");
+  document.write("RegExp(\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  RegEx=new RegExp("\\D{1}\\d+$");
+  document.write("RegExp(\\D{1}\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+  
+  RegEx=new RegExp("[\.,-]\\d+$");
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str="123,456";
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str="123-456";
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str="123_456";
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str=".456";
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str=",456";
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str="-456";
+  document.write("RegExp([\\.,-]\\d+$): ",Str,"=",Str.search(RegEx),"<br>");
+
+  Str="   .456   ";
+  document.write("RegExp([\\.,-]): ",Str,"=",Str.search(/[\.,-]/),"<br>");
+
+  Str="   -456   ";
+  document.write("RegExp([\\.,-]): ",Str,"=",Str.search(/[\.,-]/),"<br>");
+  Str="   ,456   ";
+  document.write("RegExp([\\.,-]): ",Str,"=",Str.search(/[\.,-]/),"<br>");
+  Str="   a456   ";
+  document.write("RegExp([\\.,-]): ",Str,"=",Str.search(/[\.,-]/),"<br>");
+
+  document.write("<br>","FindDecimalSeparator(string)","<br>","<hr>");
+
+  Str="123.456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+
+  Str="123,456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+
+  Str="123-456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+
+  Str="-123-456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+
+  Str=".456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+
+  Str=",456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+
+  Str="-456";
+  document.write(Str,"=",FindDecimalSeparator(Str),"<br>");
+  document.write("<hr>");
+
+  document.write("<br>","CheckDecimalSeparator(string)","<br>","<hr>");
+
+  Str="   123,456   ";
+  document.write(Str,"=",CheckDecimalSeparator(Str),"<br>");
+
+  Str="   123-456   ";
+  document.write(Str,"=",CheckDecimalSeparator(Str),"<br>");
+
+  Str="   +123-456   ";
+  document.write(Str,"=",CheckDecimalSeparator(Str),"<br>");
+
+  Str="   -123-456   ";
+  document.write(Str,"=",CheckDecimalSeparator(Str),"<br>");
+  document.write("<hr>");
+
+  Str="   -123-456   ";
+  document.write(Str,"=",Boolean(IsDouble(Str))," (",ToDouble(Str),")","<br>");
+
+  Str="   .456   ";
+  document.write(Str,"=",parseFloat(Str)," (",ToDouble(Str),")","<br>");
+  document.write(Str,"=",Boolean(IsDouble(Str))," (",ToDouble(Str),")","<br>");
+
+  Str="   -0-456   ";
+  document.write(Str,"=",Boolean(IsDouble(Str))," (",ToDouble(Str),")","<br>");
+
+  Str="   -456   ";
+  document.write(Str,"=",Boolean(IsDouble(Str))," (",ToDouble(Str),")","<br>");
+
+  Str="   -0d456   ";
+  document.write(Str,"=",Boolean(IsDouble(Str))," (",ToDouble(Str),")","<br>");
+
+  Str="   -0 456   ";
+  document.write(Str,"=",Boolean(IsDouble(Str))," (",ToDouble(Str),")","<br>");
+
+  document.write("<hr>");
+
+  Str="   .   ";
+  RegEx=/[.]/g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str),"<br>");
+  Str="   /   ";
+  RegEx=/[/]/g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str),"<br>");
+  Str="   \\   ";
+  RegEx=/[\\]/g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str),"<br>");
+  Str="   *   ";
+  RegEx=/[*]/g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str),"<br>");
+  Str="   [   ";
+  RegEx=/[[]/g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str),"<br>");
+
+  document.write("<hr>");
+  Str="<br><span name=\"SpanName1\">SpanName1</span><br><span name=\"SpanName2\">SpanName2</span><br><span name=\"SpanName3\">SpanName3</span><br>";
+  arr=Str.match(/<span.*?>.*?<\/span>/ig);
+  document.write(arr.length,"<br>");
+  for(var i=0; i<arr.length; ++i)
+  {
+     Pos=arr[i].search(/name=\".*\"/i);
+     document.write("Pos=",Pos,"<br>");
+     arrarr=arr[i].match(/>.*?</g);
+     document.write(arrarr.length,"<br>");
+     for(var ii=0; ii<arrarr.length; ++ii)
+        document.write(arrarr[ii].substring(1,arrarr[ii].length-1),"<br>");
+  }
+
+  document.write("<hr>");
+  Str="ad17.bannerbank.ru";
+  RegEx=/ad[0-9]*\./g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+  Str="/ad17.bannerbank.ru";
+  RegEx=/ad[0-9]*\./g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+  Str="ad17.bannerbank.ru";
+  RegEx=/\/ad[0-9]*\./g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+  Str="/ad17.bannerbank.ru";
+  RegEx=/\/ad[0-9]*\./g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+
+  Str="a1 a2 a3 <a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a><a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a> a4 a5 a6";
+  Str=Str.replace(/<a.*?>.*?<\/a>/ig,"REPLACE");
+  document.write(Str,"<br>");
+
+  Str="a1 a2 a3 <a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a><a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a> a4 a5 a6";
+  Str=Str.replace(/<a.*>.*<\/a>/ig,"REPLACE");
+  document.write(Str,"<br>");
+
+  Str="a1 a2 a3 <a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a> a4 a5 a6 <a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a> a7 a8 a9";
+  Str=Str.replace(/<a.*?>.*?<\/a>/ig,"REPLACE");
+  document.write(Str,"<br>");
+
+  Str="a1 a2 a3 <a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a> a4 a5 a6 <a href=\"JavaScript:search('ЛЮБЫЕ-СИМВОЛЫ');\">ЛЮБЫЕ-СИМВОЛЫ</a> a7 a8 a9";
+  Str=Str.replace(/<a.*>.*<\/a>/ig,"REPLACE");
+  document.write(Str,"<br>");
+
+  Str="Скроен колпак не по-колпаковски, надо колпак переколпаковать";
+  Str=Str.replace(/.*колпак/ig,"REPLACE");
+  document.write(Str,"<br>");
+
+  Str="Скроен колпак не по-колпаковски, надо колпак переколпаковать";
+  Str=Str.replace(/.*?колпак/ig,"REPLACE");
+  document.write(Str,"<br>");
+
+  Str=".0";
+  RegEx=/^[-+]?(\d+|\d*\.\d+)$/g;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+
+  Str="[code]code1[/code][code]code2[/code]";
+  RegEx=/\[code].*?\[\/code]/gmi;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+  
+  Str="<font color=\"#ff0000\"><b>Тестовая</b></font> акция# <b>1</b>";
+  AllTrimStr=Str.replace(/<.*?>/ig,"");
+  document.write(Str,"<br/>");
+  document.write(AllTrimStr);
+  document.write("<br/>");
+  
+  Str=">=10";
+  AllTrimStr=Str.replace(/\D/ig,"");
+  document.write(Str,"<br/>");
+  document.write(AllTrimStr);
+  document.write("<br/>");
+
+  Str="Param1=Value1&Param2=Value2&Param3=Value3&ParamN=ValueN";
+  RegEx=/\bParam.*?/i;
+  document.write(RegEx.toString()+".test(\""+Str+"\")="+RegEx.test(Str)," (Pos="+Str.search(RegEx)+")","<br>");
+
+  //Str="<td>blah-blah-blah</td>";
+  //RegEx=/(?<=<td>).*(?=<\/td>)/; doesn't work
+  //arr=RegEx.exec(Str);
+  
+  Str="<html><div class=\"olol\">блаблабла</div><div class=\"olol\">блаблабла</div></html>";
+  //RegEx=/(<div class="olol">)(.*?)(?=<\/div>)/gi;
+  RegEx=/(<div.*?>)(.*?)(?=<\/div>)/gi;
+  Str=Str.replace(RegEx,"$1$2<img src=\"http://www.sql.ru/forum/images/smoke.gif\">");
+  if(window.console && console.log)
+    console.log(Str);
+
+  Str="blah[halb]blah[halb]blah";
+  RegEx=/\[.+?\]/gi;
+  Str=Str.replace(RegEx,"-");
+  if(window.console && console.log)
+    console.log(Str);
+
+  Str="blah[halb]blah[halb]blah";
+  RegEx=new RegExp("\\[.+?\\]","gi");
+  Str=Str.replace(RegEx,"-");
+  if(window.console && console.log)
+    console.log(Str);
+
+  Str="Line# 1\r\nLine# 2\r\nLine# 3";
+  if(arr=Str.match(/^blah-blah-blah$/m))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+  else
+  {
+     if(window.console && console.log)
+       console.log("arr = null");
+  }
+  if(arr=Str.match(/^.*?$/m))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+  Str="Line# 1";
+  if(arr=Str.match(/^.*?$/m))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+
+  Str="en-US";
+  RegEx=/([A-Za-z]+)([^A-Za-z]*[A-Za-z]*)/;
+  if(arr=RegEx.exec(Str))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+  Str=Str.replace(RegEx, "$1");
+  if(window.console && console.log)
+    console.log("%s", Str);
+
+  Str="en-US";
+  RegEx=/([a-z]+)([^a-z]*[a-z]*)/i;
+  if(arr=RegEx.exec(Str))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+  Str=Str.replace(RegEx, "$1");
+  if(window.console && console.log)
+    console.log("%s", Str);
+
+  Str="en-US";
+  RegEx=/[A-Za-z]+(?=[^A-Za-z]*[A-Za-z]*)/;
+  if(arr=Str.match(RegEx))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+
+     Str=arr[0];
+  }
+  if(window.console && console.log)
+    console.log("%s", Str);
+    
+  Str="aaaa, bbb, cc, d";
+  RegEx=/\b([^,]+)\b([,]*)/g;
+  if(arr=Str.match(RegEx))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+  Str=Str.replace(RegEx, "[$1]$2");
+  if(window.console && console.log)
+    console.log("%s", Str);
+
+  Str="field1, [field2], field3, [field4], field5";
+  RegEx=/\[([^\]]*?)\]/g;
+  Str=Str.replace(RegEx, "$1");
+  if(window.console && console.log)
+    console.log("%s", Str);
+
+  Str="field1, field2,\tfield3,\rfield4,\nfield5,\r\nfield6,\n\rfield7";
+  RegEx=/\s/g;
+  Str=Str.replace(RegEx, "");
+  if(window.console && console.log)
+    console.log("\"%s\", len = ", Str, Str.length);
+
+  Str="Ext.define (  \"AAA.BBB.CCC\"  );";
+  RegEx=/(?:Ext.define\s*?\(\s*?")([\w.]+?)(?=")/;
+  if(arr=RegEx.exec(Str))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+
+  Str="Ext.define(\"AAA.BBB.CCC\", { \r\n requires : [ \r \"One\" , \n \"Two\" , \n\r \"Three\" , \r\n \"Four\" \r\n ] \r\n } );"
+  RegEx=/(?:requires\s*?:\s*?\[)((\s*?.*?\s*?)*?)(?=])/m;
+  if(arr=RegEx.exec(Str))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+
+  Str="http://aaa/bbb/ccc";
+  Str=/(\w+?)(?:\/)(?!.*\/)/.exec(Str)[1];
+  if(window.console && console.log)
+    console.log("Str = %s", Str);
+
+  Str="blah-blah-blah_version_";
+  RegEx=/.*?(?=_version_)/;
+  if(arr=Str.match(RegEx))
+  {
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+
+  Str="blah-blah-blah_version_12345";
+  RegEx=/(?:_version_)(.+)/;
+  if(arr=RegEx.exec(Str))
+  {
+     console.log("arr.length = %i", arr.length);
+
+     for(var i=0; i<arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
+
+  Str="0abcdef";
+  RegEx=/(a+?)(b+?)(c+?)/;
+  Str=Str.replace(RegEx, "$1 $$ ($&) $` ($') "); // http://javascript.ru/basic/regular-expression#specsimvoly-v-stroke-zameny
+  if(window.console && console.log)
+    console.log("\"%s\"", Str);
+
+  Str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  RegEx=/[A-E]/i;
+  arr=RegEx.exec(Str);
+  arr=Str.match(RegEx);
+  RegEx=/[A-E]/gi;
+  arr=RegEx.exec(Str);
+  arr=Str.match(RegEx);
+  
+  Str="DOCx";
+  Str="Xls";
+  RegEx=/^(doc|xls|xps)x?$/i;
+  if(window.console && console.log)
+    console.log("%s%s", RegEx.test(Str) ? "" : "!", RegEx.toString());
+// -->
+</script>
+    </form>
+  </body>
+</html>

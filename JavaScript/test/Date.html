@@ -1,0 +1,442 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Date</title>
+		<script src="../js/misc.js"></script>
+		<script src="../js/date.js"></script>
+		<script src="../js/form.js"></script>
+		<script>
+function Check_Date()
+{
+	var
+		tmp;
+
+	CheckValidDate("InputTextY","InputTextM","InputTextD",InvalidColor);
+	tmp=MergeDate("InputTextY","InputTextM","InputTextD");
+	alert(tmp);
+}
+		</script>
+	</head>
+	<body>
+		<form id="MainForm" name="MainForm">
+			<script>
+var
+	d=new Date(),
+	dd,
+	i;
+
+	document.write("d=new Date()","<br>");
+	document.write("typeof(d)=\"",typeof(d),"\"","<br>");
+	if(d instanceof Date)
+		document.write("d instanceof Date=\"true\"");
+	else
+		document.write("d instanceof Date=\"false\"");
+	document.write("<hr>");
+
+	if(typeof d.toJSON === "function")
+		document.write("toJSON()=\"",d.toJSON(),"\"","<hr>");
+
+	document.write(d.toString(),"<br>","getTimezoneOffset()=",d.getTimezoneOffset(),"<hr>");
+
+	document.write("d=new Date(1974,0,5)","<br>");
+	d=new Date(1974,0,5);
+	document.write(d.toString(),"<hr>");
+
+	document.write("d=new Date(2000,11,22)","<br>");
+	d=new Date(2000,11,22);
+	document.write(d.toString(),"<hr>");
+
+	document.write("d=new Date(\"2011-12-31T23:59:59+03:00\")","<br>");
+	d=new Date("2011-12-31T23:59:59+03:00");
+	document.write(d.toString(),"<hr>");
+
+	document.write("d=new Date(\"2011-12-31T23:59:59\")","<br>");
+	d=new Date("2011-12-31T23:59:59");
+	document.write(d.toString(),"<hr>");
+
+	d=new Date();
+	document.write("Date.toGMTString(): ",d.toGMTString(),"<br>");
+	document.write("Date.toUTCString(): ",d.toUTCString(),"<br>");
+	document.write("Date.getTime(): ",d.getTime(),"<br>");
+	document.write("Date.valueOf(): ",d.valueOf(),"<br>");
+	document.write("<hr>");
+
+	i="2012-03-01T00:00:00+05:00";
+	d = new Date(i);
+	document.write("new Date(\"", i, "\") = ", d.toString());
+	document.write("<hr>");
+
+	i="2012-03-01T00:00:00+05:00";
+	d = Date.parse(i);
+	document.write("Date.parse(\"", i, "\") = ", d.toString(), " isNaN()=", isNaN(d));
+	document.write("<hr>");
+
+	d=new Date();
+	d.setHours(0,0,0,0);
+	dd=new Date(d.getTime());
+	document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear()," ",d.toString(),"<br>");
+	document.write(dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear()," ",dd.toString(),"<br>");
+	document.write(d.getTime(),"<br>");
+	document.write(dd.getTime(),"<br>");
+	document.write("d",(d!=dd ? "!" : "="),"=dd","<br>");
+	document.write("d",(d!==dd ? "!" : "=="),"=dd","<br>");
+	document.write("d.getTime()",(d.getTime()!=dd.getTime() ? "!" : "="),"=dd.getTime()","<br>");
+	document.write("d.valueOf()",(d.valueOf()!=dd.valueOf() ? "!" : "="),"=dd.valueOf()","<br>");
+	document.write("(d-dd)",((d-dd)!=0 ? "!" : "="),"=0","<br>");
+	document.write("<hr>");
+
+	d=new Date();
+	d.setUTCHours(0,0,0,0);
+	dd=new Date(d.getTime());
+	document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear()," ",d.toString(),"<br>");
+	document.write(dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear()," ",dd.toString(),"<br>");
+	document.write(d.getTime(),"<br>");
+	document.write(dd.getTime(),"<br>");
+	document.write("d",(d!=dd ? "!" : "="),"=dd","<br>");
+	document.write("d",(d!==dd ? "!" : "=="),"=dd","<br>");
+	document.write("<hr>");
+
+	d=new Date(2011,2,30);
+	dd=new Date(2011,2,30);
+	document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear()," ",d.toString(),"<br>");
+	document.write(dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear()," ",dd.toString(),"<br>");
+	document.write(d.getTime(),"<br>");
+	document.write(dd.getTime(),"<br>");
+	document.write("d",(d!=dd ? "!" : "="),"=dd","<br>");
+	document.write("d",(d!==dd ? "!" : "=="),"=dd","<br>");
+	document.write("d &gt; dd ",d>dd,"<br>");
+	document.write("d &lt; dd ",d<dd,"<br>");
+	document.write("d &gt;= dd ",d>=dd,"<br>");
+	document.write("d &lt;= dd ",d<=dd,"<br>");
+	document.write("d == dd ",d==dd,"<br>");
+	document.write("<hr>");
+
+	dd=d=new Date(2011,2,30);
+	document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear()," ",d.toString(),"<br>");
+	document.write(dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear()," ",dd.toString(),"<br>");
+	document.write(d.getTime(),"<br>");
+	document.write(dd.getTime(),"<br>");
+	document.write("d",(d!=dd ? "!" : "="),"=dd","<br>");
+	document.write("d",(d!==dd ? "!" : "=="),"=dd","<br>");
+	document.write("<hr>");
+	
+  document.write("<h1>","IsLeapYear","</h1>");
+  document.write("<br>","<hr>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(1700);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(1800);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(1900);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(2100);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(1600);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(2000);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(2400);
+  document.write(d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"=\"",IsLeapYear(d.getFullYear()),"\"","<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","IncDay","</h1>");
+  document.write("<hr>");
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\"","<br>");
+  dd=IncDay(d);
+  document.write("dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  dd=IncDay(d,29);
+  document.write("dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  d.setMonth(0);
+  d.setDate(31);
+  d.setFullYear(2399);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\"","<br>");
+  dd=IncDay(d,29);
+  document.write("dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","IncMonth","</h1>");
+  d.setMonth(9);
+  d.setDate(31);
+  d.setFullYear(2005);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\"","<br>");
+  document.write("<hr>");
+  for(i=0; i<26; ++i)
+  {
+     dd=IncMonth(d,i);
+     document.write(i," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  }
+  document.write("<hr>");
+  for(i=0; i<26; ++i)
+  {
+     dd=IncMonth(d,-i);
+     document.write(i," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  }
+  document.write("<hr>");
+
+  document.write("<h1>","IncYear","</h1>");
+  dd=IncYear(d);
+  document.write("dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  dd=IncYear(d,5);
+  document.write("dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\"","<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","CheckDate","</h1>");
+  document.write("CheckDate(2000,0,0)=",CheckDate(2000,0,0),"<br>");
+  document.write("CheckDate(2000,13,0)=",CheckDate(2000,13,0),"<br>");
+  document.write("CheckDate(2000,1,0)=",CheckDate(2000,1,0),"<br>");
+  document.write("CheckDate(2000,1,32)=",CheckDate(2000,1,32),"<br>");
+  document.write("CheckDate(2000,2,28)=",CheckDate(2000,2,28),"<br>");
+  document.write("CheckDate(2000,2,29)=",CheckDate(2000,2,29),"<br>");
+  document.write("CheckDate(2001,2,28)=",CheckDate(2001,2,28),"<br>");
+  document.write("CheckDate(2001,2,29)=",CheckDate(2001,2,29),"<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","CheckDateStrDMY","</h1>");
+  i="0,0,2000";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="0-13-2000";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="0/1/2000";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="32.1.2000";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="28,2-2000";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="29-2/2000";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="28/2.2001";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  i="29.2,2001";
+  document.write("CheckDateStrDMY(\"",i,"\")=",CheckDateStrDMY(i),"<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","FormatDateStrDot","</h1>");
+  i="0,0,2000";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="0-13-2000";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="0/1/2000";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="32.1.2000";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="28,2-2000";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="29-2/2000";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="28/2.2001";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  i="29.2,2001";
+  document.write("FormatDateStrDot(\"",i,"\")=",FormatDateStrDot(i),"<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","DaySpan","</h1>");
+  d.setFullYear(2005,0,1);
+  d.setHours(0,0,0,0);
+
+  dd.setFullYear(2005,0,2);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2005,0,31);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2005,1,1);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2005,11,31);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2006,2,1);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,1);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2008,2,1);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,24);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,25);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,26);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,27);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd=new Date();
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,29);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd=new Date(1175029200000);
+  d=new Date(1104530400000);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,9,28);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," d-dd=",DaySpan(dd,d),"<br>");
+
+  dd.setFullYear(2007,9,29);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+
+  dd.setFullYear(2007,9,30);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaySpan(d,dd),"<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","DaysBetween","</h1>");
+  d.setFullYear(2005,0,1);
+  d.setHours(0,0,0,0);
+
+  dd.setFullYear(2005,0,2);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2005,0,31);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2005,1,1);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2005,11,31);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2006,2,1);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,1);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2008,2,1);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,24);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,25);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,26);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,27);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd=new Date();
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,2,29);  
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd=new Date(1175029200000);
+  d=new Date(1104530400000);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,9,28);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," d-dd=",DaysBetween(dd,d),"<br>");
+
+  dd.setFullYear(2007,9,29);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+
+  dd.setFullYear(2007,9,30);
+  dd.setHours(0,0,0,0);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",DaysBetween(d,dd),"<br>");
+  document.write("<hr>");
+
+  document.write("<h1>","YearsBetween","</h1>");
+  dd.setFullYear(2008);  
+  dd.setMonth(11);
+  dd.setDate(31);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",YearsBetween(d,dd),"<br>");
+
+  dd.setFullYear(2008);  
+  dd.setMonth(7);
+  dd.setDate(31);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",YearsBetween(d,dd),"<br>");
+
+  dd.setFullYear(2009);  
+  dd.setMonth(0);
+  dd.setDate(1);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",YearsBetween(d,dd),"<br>");
+
+  d.setMonth(0);
+  d.setDate(1);
+  d.setFullYear(1997);
+
+  dd.setFullYear(2007);  
+  dd.setMonth(2);
+  dd.setDate(28);
+  document.write("d=\"",d.getDate(),".",d.getMonth()+1,".",d.getFullYear(),"\""," dd=\"",dd.getDate(),".",dd.getMonth()+1,".",dd.getFullYear(),"\""," dd-d=",YearsBetween(d,dd),"<br>");
+  document.write("<hr>");
+
+  d = new Date();
+  dd = null;
+  document.write("d <= null = ", d<=dd, "<br/>", "d > null = ", d>dd);
+  document.write("<hr>");
+			</script>
+			<table border="0">
+				<tr>
+					<td>dd</td>
+					<td>MM</td>
+					<td>yyyy</td>
+				</tr>
+				<tr>
+					<td><input type="text" id="InputTextD"></td>
+					<td><input type="text" id="InputTextM"></td>
+					<td><input type="text" id="InputTextY"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="button" value="Check" onclick="Check_Date()"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

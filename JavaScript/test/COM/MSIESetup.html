@@ -1,0 +1,40 @@
+http://www.articles.org.ru/forum/index.php?showtopic=354
+
+<script LANGUAGE=javascript>
+var footer = "";
+var header = "";
+var margin_bot = "";
+var margin_top = "";
+var margin_left = "";
+var margin_right = "";
+
+sh=new ActiveXObject('WScript.Shell');
+footer=sh.RegRead("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\footer");
+header=sh.RegRead("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\header");
+margin_bot=sh.RegRead("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_bottom");
+margin_top=sh.RegRead("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_top");
+margin_left=sh.RegRead("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_left");
+margin_right=sh.RegRead("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_right");
+
+
+function WriteOur()
+{
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\footer","","REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\header","","REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_bottom","0.2","REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_top","0.2","REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_left","0.25","REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_right","0.25","REG_SZ");
+alert("BeforePrint");
+}
+function Restore()
+{
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\footer",footer,"REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\header",header,"REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_bottom",margin_bot,"REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_top",margin_top,"REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_left",margin_left,"REG_SZ");
+sh.RegWrite("HKCU\\Software\\Microsoft\\Internet Explorer\\PageSetup\\margin_right",margin_right,"REG_SZ");
+
+}
+</SCRIPT>

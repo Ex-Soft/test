@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test onresize</title>
+		<script charset="utf-8" src="../../jQuery/3/jquery.js"></script>
+
+		<!-- https://developer.mozilla.org/en/docs/Web/CSS/resize -->
+		<style>
+.resizable {
+	resize: both;
+	overflow: scroll;
+	border: 1px solid black;
+}
+
+div {
+	height: 300px;
+	width: 300px;
+}
+
+p {
+	height: 200px;
+	width: 200px;
+}
+		</style>
+
+		<script>
+$(document).ready(function() {
+	$(window).resize(OnWindowResize);
+	$(document).resize(OnDocumentResize);
+	$("body").resize(OnBodyResize);
+	$("#resizableDiv").resize(OnDivResize);
+	$("#resizableP").resize(OnPResize);
+});
+
+function OnWindowResize()
+{
+	if (window.console && console.log)
+		console.log("OnWindowResize(%o)", arguments);
+}
+
+function OnDocumentResize()
+{
+	if (window.console && console.log)
+		console.log("OnDocumentResize(%o)", arguments);
+}
+
+function OnBodyResize()
+{
+	if (window.console && console.log)
+		console.log("OnBodyResize(%o)", arguments);
+}
+
+function OnDivResize()
+{
+	if (window.console && console.log)
+		console.log("OnDivResize(%o)", arguments);
+}
+
+function OnPResize()
+{
+	if (window.console && console.log)
+		console.log("OnDocumentResize(%o)", arguments);
+}
+		</script>
+	</head>
+	<body>
+		<div id="resizableDiv" class="resizable">
+			<p id="resizableP" class="resizable">
+				This paragraph is resizable, because the CSS resize property is set to 'both' on this element.
+			</p>
+		</div>
+	</body>
+</html>

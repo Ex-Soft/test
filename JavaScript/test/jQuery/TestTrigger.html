@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<!-- https://davidwalsh.name/dont-trigger-real-event-names -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test trigger()</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	$("#btnVictim").bind("click", function() {
+		if(window.console && console.log)
+			console.log("click(%o)", arguments);
+
+		var
+			t = $(this);
+
+		if(t)
+			;
+	});
+
+	$("#btnClicker").bind("click", function() {
+		var
+			ret = $("#btnVictim").trigger("click", [ "blah-blah-blah" ]);
+
+		if(ret)
+			;
+	});
+});
+
+function loadCallback() {
+	if(window.console && console.log)
+		console.log("loadCallback(%o)", arguments);
+}
+		</script>
+	</head>
+	<body>
+		<button id="btnVictim">Click me!</button>
+		<button id="btnClicker">Click that!</button>
+	</body>
+</html>

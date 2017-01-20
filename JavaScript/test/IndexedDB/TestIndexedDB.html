@@ -1,0 +1,456 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test IndexDB</title>
+		<script>
+var
+	_indexedDB=undefined,
+	_db=undefined,
+	_dbName="TestIndexedDB",
+	_dbVersion=1;
+
+function OnLoad()
+{
+	var
+		ctrl;
+
+	if(ctrl=document.getElementById("windowIndexedDB"))
+		ctrl.innerHTML = window.indexedDB;
+	if(ctrl=document.getElementById("windowWebkitIndexedDB"))
+		ctrl.innerHTML = window.webkitIndexedDB;
+	if(ctrl=document.getElementById("windowMozIndexedDB"))
+		ctrl.innerHTML = window.mozIndexedDB;
+	if(ctrl=document.getElementById("windowMsIndexedDB"))
+		ctrl.innerHTML = window.msIndexedDB;
+}
+
+function InitDB()
+{
+	var
+		d,
+		info = document.getElementById("info");
+
+	if(_indexedDB)
+		return;
+
+	if(!(_indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB))
+	{
+		if(window.console && console.info)
+			console.info("!indexedDB");
+
+		info.innerHTML = "!indexedDB";
+
+		return;
+	}
+	else
+		info.innerHTML = "indexedDB";
+
+	if(window.webkitIndexedDB)
+	{
+		if(!window.IDBRequest)
+			window.IDBRequest = window.webkitIDBRequest;
+
+		if(!window.IDBTransaction)
+			window.IDBTransaction = window.webkitIDBTransaction;
+
+		if(!window.IDBDatabase)
+			window.IDBDatabase = window.webkitIDBDatabase;
+
+		if(!window.IDBKeyRange)
+			window.IDBKeyRange = window.webkitIDBKeyRange;
+	}
+
+	d = Object.getOwnPropertyDescriptor(IDBTransaction, "READ_ONLY");
+	if(window.console && console.log)
+		console.log("IDBTransaction.READ_ONLY = %o", d);
+
+	if(window.console && console.log)
+		console.log("InitDB: successfully");
+}
+
+function OpenDB()
+{
+	if(!_indexedDB)
+		InitDB();
+
+	if(!_indexedDB)
+		return;
+
+	if(_db)
+		return;
+
+	var
+		openDBRequest = _indexedDB.open(_dbName, _dbVersion);
+
+	if(window.console && console.log)
+		console.log("IDBOpenDBRequest.readyState=\"%s\"", openDBRequest.readyState);
+
+	openDBRequest.onsuccess=function(event){
+		if(window.console && console.log)
+		{
+			console.log("IDBOpenDBRequest.onsuccess(%o) this=%o  readyState=\"%s\"", arguments, this, this.readyState);
+			console.log("IDBOpenDBRequest.transaction.mode = \"%s\"", event.target.transaction ? event.target.transaction.mode : "event.target.transaction is null");
+		}
+
+		if(!_db)
+		{
+			_db=event.target.result;
+
+			_db.onversionchange=function(event){
+				if(window.console && console.log)
+					console.log("IDBDatabase.onversionchange(%o)", arguments);
+			};
+			_db.onerror=function(event){
+				if(window.console && console.log)
+					console.log("IDBDatabase.onerror(%o)", arguments);
+			};
+			_db.onabort=function(event){
+				if(window.console && console.log)
+					console.log("IDBDatabase.onabort(%o)", arguments);
+			};
+		}
+	};
+
+	openDBRequest.onupgradeneeded=function(event){
+		if(window.console && console.log)
+		{
+			console.log("IDBOpenDBRequest.onupgradeneeded(%o) IDBVersionChangeEvent.oldVersion=%i IDBVersionChangeEvent.newVersion=%i", arguments, event.oldVersion, event.newVersion);
+			console.log("IDBOpenDBRequest.transaction.mode = \"%s\"", event.target.transaction ? event.target.transaction.mode : "event.target.transaction is null");
+		}
+
+		if(!_db)
+		{
+			_db=event.target.result;
+
+			_db.onversionchange=function(event){
+				if(window.console && console.log)
+					console.log("IDBDatabase.onversionchange(%o)", arguments);
+			};
+			_db.onerror=function(event){
+				if(window.console && console.log)
+					console.log("IDBDatabase.onerror(%o)", arguments);
+			};
+			_db.onabort=function(event){
+				if(window.console && console.log)
+					console.log("IDBDatabase.onabort(%o)", arguments);
+			};
+
+			CreateDB();
+		}
+	};
+
+	openDBRequest.onerror=function(event){
+		if(window.console && console.log)
+			console.log("IDBOpenDBRequest.onerror(%o)", arguments);
+	};
+
+	openDBRequest.onblocked=function(event){
+		if(window.console && console.log)
+			console.log("IDBOpenDBRequest.onblocked(%o)", arguments);
+	};
+}
+
+function CreateDB()
+{
+	if(!_db)
+		return;
+
+	var
+		objectStores = [
+			{ name: "table1", keyPath: "id", autoIncrement: true },
+			{ name: "table2", keyPath: "id", autoIncrement: false },
+			{ name: "table3", keyPath: "id", autoIncrement: false },
+			{ name: "table4", autoIncrement: false }
+		];
+
+	for (var i=0; i<objectStores.length; ++i)
+	{
+		var
+			name = objectStores[i].name,
+			optionalParameters = undefined,
+			createOSrequest;
+
+		if(typeof objectStores[i].keyPath !== "undefined")
+		{
+			if(!optionalParameters)
+				optionalParameters = {};
+
+			optionalParameters.keyPath = objectStores[i].keyPath;
+		}
+
+		if(typeof objectStores[i].autoIncrement !== "undefined")
+		{
+			if(!optionalParameters)
+				optionalParameters = {};
+
+			optionalParameters.autoIncrement = objectStores[i].autoIncrement;
+		}
+
+		try
+		{
+			createOSrequest = _db.createObjectStore(name, optionalParameters);
+			createOSrequest.createIndex("name", "name", { unique: false });
+			createOSrequest.createIndex("email", "email", { unique: true });
+		}
+		catch(e)
+		{
+			if(window.console && console.log)
+				console.log("%s: \"%s\"", e.name, e.message);
+		}
+	}
+}
+
+function PrintDBInfo()
+{
+	if(!_db)
+		return;
+
+	if(window.console && console.log)
+	{
+		console.log("name: \"%s\", version: \"%s\"", _db.name, _db.version);
+
+		for(var i=0, len=_db.objectStoreNames.length; i<len; ++i)
+			console.log("\"%s\"", _db.objectStoreNames.item(i));
+	}
+}
+
+function Add()
+{
+	if(!_db)
+		return;
+
+	var
+		tables = ["table1", "table2", "table3", "table4"],
+		table,
+		transaction=_db.transaction(tables, "readwrite"),
+		objectStore,
+		request;
+
+	transaction.oncomplete = function(event) {
+		if(window.console && console.log)
+			console.log("transaction.oncomplete(%o)", arguments);
+	};
+
+	transaction.onerror = function(event) {
+		if(window.console && console.log)
+			console.log("transaction.onerror(%o)", arguments);
+	};
+
+	for(var i=0, len=tables.length; i<len; ++i)
+	{
+		objectStore = transaction.objectStore(table=tables[i]);
+
+		if(console.time)
+			console.time(table);
+
+		for(var ii=1; ii<=5; ++ii)
+		{
+			switch(table)
+			{
+				case "table1":
+				{
+					request = objectStore.add({ name: "Name# "+ii%2, email: ii });
+					break;
+				}
+				case "table2":
+				{
+					request = objectStore.add({ id: ii, name: "Name# "+ii%2, email: ii });
+					break;
+				}
+				case "table3":
+				{
+					request = objectStore.add({ id: "id"+ii, name: "Name# "+ii%2, email: ii });
+					break;
+				}
+				case "table4":
+				{
+					request = objectStore.add({ name: "Name# "+ii%2, email: ii }, "id"+ii);
+					break;
+				}
+			}
+
+			request.onsuccess = function(event) {
+				if(window.console && console.log)
+					console.log("request.onsuccess(%o)", arguments);
+			};
+		}
+
+		if(console.timeEnd)
+			console.timeEnd(table);
+	}
+}
+
+function Show()
+{
+	var
+		tables = ["table1", "table2", "table3", "table4"],
+		table,
+		transaction = _db.transaction(tables, "readonly"),
+		objectStore,
+		request,
+		id,
+		index,
+		requestGet,
+		requestGetKey,
+		cursor,
+		indexCursor;
+
+	for(var i=0, len=tables.length; i<len; ++i)
+	{
+		objectStore = transaction.objectStore(table=tables[i]);
+
+		objectStore.openCursor().onsuccess = function(event) {
+			cursor = event.target.result;
+
+			if (cursor) {
+				if(window.console && console.log)
+					console.log("cursor: %o", cursor.value);
+
+				cursor.continue();  
+			}
+			else {
+				if(window.console && console.log)
+					console.log("cursor: No more entries!");
+			}
+		};
+
+		switch(table)
+		{
+			case "table1":
+			case "table2":
+			{
+				id = 1;
+				break;
+			}
+			case "table3":
+			case "table4":
+			{
+				id = "id1";
+				break;
+			}
+		}
+
+		request = objectStore.get(id);
+		request.onsuccess = function(event) {
+			if(window.console && console.log)
+				console.log("get().onsuccess %o", event.target.result);
+		};
+		request.onerror = function(event) {
+			if(window.console && console.log)
+				console.log("get().onerror %o", event.target.result);
+		};
+
+		index = objectStore.index("name"),
+		requestGet = index.get("Name# 1"),
+		requestGetKey;
+
+		requestGet.onsuccess = function(event) {
+			if(window.console && console.log)
+				console.log("index.get(): %o %o", event.target.result, requestGet);
+		}
+
+		index.openCursor("Name# 0").onsuccess = function(event) {
+			indexCursor = event.target.result;
+
+			if (indexCursor) {
+				if(window.console && console.log)
+					console.log("indexCursor: %o", indexCursor.value);
+
+				indexCursor.continue();
+			}
+			else {
+				if(window.console && console.log)
+					console.log("indexCursor: No more entries!");
+			}
+		};
+
+		index = objectStore.index("email");
+		requestGetKey = index.getKey(3);
+		requestGetKey.onsuccess = function(event) {
+			if(window.console && console.log)
+				console.log("index.getKey(): %o %o", event.target.result, requestGetKey);
+		}
+	}
+}
+
+function Clear()
+{
+	var
+		tables = ["table1", "table2", "table3", "table4"],
+		transaction = _db.transaction(tables, "readwrite"),
+		objectStore,
+		request;
+
+	for(var i=0, len=tables.length; i<len; ++i)
+	{
+		objectStore = transaction.objectStore(tables[i]);
+		request = objectStore.clear();
+		request.onsuccess = function(event) {
+			if(window.console && console.log)
+				console.log("clear().onsuccess(%o)", arguments);
+		};
+	}
+}
+
+function CloseDB()
+{
+	if(!_db)
+		return;
+
+	_db.close();
+	_db=null;
+}
+
+function DeleteDB()
+{
+	if(!_indexedDB)
+		InitDB();
+
+	if(!_indexedDB)
+		return;
+
+	if(_db)
+		CloseDB();
+
+	if(_db)
+		return;
+
+	var
+		deleteDBRequest = _indexedDB.deleteDatabase(_dbName);
+
+	deleteDBRequest.onsuccess=function(event){
+		if(window.console && console.log)
+			console.log("deleteDatabase.onsuccess(%o)", arguments);
+	};
+	deleteDBRequest.onerror=function(event){
+		if(window.console && console.log)
+			console.log("deleteDatabase.onerror(%o)", arguments);
+	};
+	deleteDBRequest.onblocked=function(event){
+		if(window.console && console.log)
+			console.log("deleteDatabase.onblocked(%o)", arguments);
+	};
+	deleteDBRequest.onupgradeneeded=function(event){
+		if(window.console && console.log)
+			console.log("deleteDatabase.onupgradeneeded(%o)", arguments);
+	};
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		window.indexedDB: &quot;<span id="windowIndexedDB"></span>&quot;<br/>
+		window.webkitIndexedDB: &quot;<span id="windowWebkitIndexedDB"></span>&quot;<br/>
+		window.mozIndexedDB: &quot;<span id="windowMozIndexedDB"></span>&quot;<br/>
+		window.msIndexedDB: &quot;<span id="windowMsIndexedDB"></span>&quot;<br/>
+		<span id="info"></span>
+		<hr/>
+		<input type="button" value="openDB" onclick="OpenDB()" /><br/>
+		<input type="button" value="PrintDBInfo" onclick="PrintDBInfo()" /><br/>
+		<input type="button" value="Add" onclick="Add()" /><br/>
+		<input type="button" value="Show" onclick="Show()" /><br/>
+		<input type="button" value="clear" onclick="Clear()" /><br/>
+		<input type="button" value="close" onclick="CloseDB()" /><br/>
+		<input type="button" value="deleteDB" onclick="DeleteDB()" />
+	</body>
+</html>

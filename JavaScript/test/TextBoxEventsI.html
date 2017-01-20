@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>Test TextBox Events</title>
+		<script type="text/javascript">
+<!--
+function SynchronizeTextBox(src, dest)
+{
+	var
+		CtrlSrc,
+		CtrlDest;
+
+	if(!(CtrlSrc = typeof(src)=="string" ? document.getElementById(src) : src)
+		|| !(CtrlDest = typeof(dest)=="string" ? document.getElementById(dest) : dest))
+		return;
+
+	CtrlDest.value=CtrlSrc.value;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="text" id="TextBoxSrc" name="TextBoxSrc" onkeyup="SynchronizeTextBox('TextBoxSrc','TextBoxDest')">
+		<input type="text" id="TextBoxDest" name="TextBoxDest">
+	</body>
+</html>

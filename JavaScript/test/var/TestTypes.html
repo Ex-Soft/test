@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Types</title>
+		<script>
+var
+	boolStr,
+	boolVar,
+	strStr,
+	intVar,
+	arrayVar,
+	undefinedVar;
+
+var
+	aaa = 1,
+	bbb = 1;
+	
+if(window.console && console.log)
+	console.log(aaa+bbb);
+
+aaa = '1';
+bbb = '1';
+if(window.console && console.log)
+	console.log(aaa+bbb);
+
+aaa = 1;
+bbb = '1';
+if(window.console && console.log)
+	console.log(aaa+bbb);
+
+aaa = '1';
+bbb = 1;
+if(window.console && console.log)
+	console.log(aaa+bbb);
+
+boolStr="true";
+boolVar=Boolean(boolStr);
+document.write("Boolean(\""+boolStr+"\")==",boolVar ? "true" : "false", "<br />");
+boolVar=!!boolStr;
+document.write("!!\""+boolStr+"\"==",boolVar ? "true" : "false", "<br />");
+
+boolStr="True";
+boolVar=Boolean(boolStr);
+document.write("Boolean(\""+boolStr+"\")==",boolVar ? "true" : "false", "<br />");
+boolVar=!!boolStr;
+document.write("!!\""+boolStr+"\"==",boolVar ? "true" : "false", "<br />");
+
+boolStr="tRuE";
+boolVar=Boolean(boolStr);
+document.write("Boolean(\""+boolStr+"\")==",boolVar ? "true" : "false", "<br />");
+boolVar=!!boolStr;
+document.write("!!\""+boolStr+"\"==",boolVar ? "true" : "false", "<br />");
+boolVar = true;
+boolVar &= undefined;
+boolVar = true;
+boolVar &= null;
+boolVar = true;
+boolVar &= true;
+boolVar = false;
+document.write(boolVar, boolVar==false ? "=" : "!", "=false", "<br />");
+document.write(boolVar, boolVar===false ? "=" : "!", "==false", "<br />");
+document.write(boolVar, boolVar==null ? "=" : "!", "=null", "<br />");
+document.write(boolVar, boolVar===null ? "=" : "!", "==null", "<br />");
+document.write(boolVar, boolVar==undefined ? "=" : "!", "=undefined", "<br />");
+document.write(boolVar, boolVar===undefined ? "=" : "!", "==undefined", "<br />");
+
+strStr="886.84MP";
+intVar=parseInt(strStr,10);
+document.write("parseInt(\""+strStr+"\", 10) = "+intVar,"<br />");
+
+intVar=-9223372036854775808;
+document.write("long = -9223372036854775808<br />");
+document.write("long = "+intVar,"<br />");
+
+intVar=9223372036854775807;
+document.write("long = 9223372036854775807<br />");
+document.write("long = "+intVar,"<br />");
+
+intVar=18446744073709551615;
+document.write("ulong = 18446744073709551615<br />");
+document.write("ulong = "+intVar,"<br />");
+
+<!-- http://es5.javascript.ru/x8.html#x8.5 -->
+<!-- http://www.2ality.com/2012/04/number-encoding.html -->
+<!-- http://speakingjs.com/es5/ch11.html -->
+
+intVar=13229323905401835;
+document.write("ulong = 13229323905401835<br />");
+document.write("ulong = "+intVar,"<br />");
+
+strStr="13229323905401835";
+intVar=parseInt(strStr,10);
+document.write("parseInt(\""+strStr+"\", 10) = "+intVar,"<br />");
+
+document.write("Number.isSafeInteger(13229323905401835) = "+Number.isSafeInteger(intVar),"<br />");
+
+intVar = Math.pow(2, 53) - 1;
+strStr = intVar.toString();
+document.write("Number.isSafeInteger(" + strStr + ") = "+Number.isSafeInteger(intVar),"<br />");
+
+intVar = Math.pow(2, 53);
+strStr = intVar.toString();
+document.write("Number.isSafeInteger(" + strStr + ") = "+Number.isSafeInteger(intVar),"<br />");
+
+strStr="blah-blah-blah";
+strStr.sent=false;
+document.write("strStr=\"", strStr, "\"<br/>");
+document.write("strStr.sent=", strStr.sent, "<br/>");
+
+arrayVar = [];
+document.write("typeof arrayVar = \"", typeof arrayVar, "\"", "<br />");
+document.write("arrayVar.constructor ", arrayVar.constructor==Array ? "=" : "!", "= Array", "<br />");
+document.write(arrayVar instanceof Array ? "" : "!", "arrayVar instanceof Array", "<br />");
+document.write(Array.isPrototypeOf(arrayVar) ? "" : "!", "Array.isPrototypeOf(arrayVar)", "<br />");
+document.write(Array.prototype.isPrototypeOf(arrayVar) ? "" : "!", "Array.prototype.isPrototypeOf(arrayVar)", "<br />");
+document.write("Object.prototype.toString(arrayVar) = \"", Object.prototype.toString(arrayVar), "\"", "<br />");
+
+arrayVar = new Array();
+document.write("typeof arrayVar = \"", typeof arrayVar, "\"", "<br />");
+document.write("arrayVar.constructor ", arrayVar.constructor==Array ? "=" : "!", "= Array", "<br />");
+document.write(arrayVar instanceof Array ? "" : "!", "arrayVar instanceof Array", "<br />");
+document.write(Array.isPrototypeOf(arrayVar) ? "" : "!", "Array.isPrototypeOf(arrayVar)", "<br />");
+document.write(Array.prototype.isPrototypeOf(arrayVar) ? "" : "!", "Array.prototype.isPrototypeOf(arrayVar)", "<br />");
+document.write("Object.prototype.toString(arrayVar) = \"", Object.prototype.toString(arrayVar), "\"", "<br />");
+
+undefinedVar = undefined;
+document.write("typeof undefinedVar = \"", typeof undefinedVar, "\"", "<br />");
+document.write(undefinedVar<=10 ? "" : "!", "undefinedVar <= 10", " (", undefinedVar<=10, ")", "<br />");
+document.write(undefinedVar>10 ? "" : "!", "undefinedVar > 10", " (", undefinedVar>10, ")", "<br />");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

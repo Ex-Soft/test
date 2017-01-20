@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<qdbapi>
+	<action>API_GetRecordInfo</action>
+	<errcode>0</errcode>
+	<errtext>No error</errtext>
+	<ticket>8_bkvan6iqs_b2wqbn_ijjy_a_ck77gzhb3q8e8dcq48i26d9yyc9sc7fpk5zwmcatwcfwx25yp2s3gc</ticket>
+	<rid>1</rid>
+	<num_fields>10</num_fields>
+	<update_id>1461834234720</update_id>
+	<field>
+		<fid>6</fid>
+		<name>FText</name>
+		<type>Text</type>
+		<value>Text (rec# 1)</value>
+	</field>
+	<field>
+		<fid>7</fid>
+		<name>Button (HTML)</name>
+		<type>URL</type>
+		<value>https://igornozhenko.quickbase.com/db/bktmrw9ve?a=dbpage&amp;pagename=TestPage.html&amp;clist=a&amp;rid=1</value>
+	</field>
+	<field>
+		<fid>8</fid>
+		<name>Button (JS) (simple)</name>
+		<type>URL</type>
+		<value>javascript:(function() { if (typeof QBU === &quot;undefined&quot;) { QBU = { rid: 1 }; $.getScript(&#039;https://igornozhenko.quickbase.com/db/bktmrw9ve?a=dbpage&amp;rid=1&amp;pagename=module.js&#039;); } })()</value>
+	</field>
+	<field>
+		<fid>9</fid>
+		<name>Button (JS) (call API)</name>
+		<type>URL</type>
+		<value>http://www.google.com/ncr</value>
+	</field>
+	<field>
+		<fid>10</fid>
+		<name>FURL</name>
+		<type>URL</type>
+		<value>http://www.google.com/ncr</value>
+	</field>
+	<field>
+		<fid>1</fid>
+		<name>Date Created</name>
+		<type>Date / Time</type>
+		<value>1461748170645</value>
+		<printable>04-27-2016 02:09 AM</printable>
+	</field>
+	<field>
+		<fid>2</fid>
+		<name>Date Modified</name>
+		<type>Date / Time</type>
+		<value>1461834234720</value>
+		<printable>04-28-2016 02:03 AM</printable>
+	</field>
+	<field>
+		<fid>3</fid>
+		<name>Record ID#</name>
+		<type>Record ID#</type>
+		<value>1</value>
+	</field>
+	<field>
+		<fid>4</fid>
+		<name>Record Owner</name>
+		<type>User</type>
+		<value>inozhenko@yahoo.com</value>
+		<printable>Nozhenko, Igor</printable>
+	</field>
+	<field>
+		<fid>5</fid>
+		<name>Last Modified By</name>
+		<type>User</type>
+		<value>inozhenko@yahoo.com</value>
+		<printable>Nozhenko, Igor</printable>
+	</field>
+</qdbapi>

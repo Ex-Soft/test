@@ -1,0 +1,129 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Mixins</title>
+		<script charset="utf-8" src="../../Sencha/Touch/Touch2.3/touch-2.3.1/sencha-touch-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("TestMixin", {
+	statics: {
+		staticProperty: {
+			staticPropertyMixin: "staticPropertyMixin"
+		}
+	},
+
+	config: {
+		testMixinConfigProp: "testMixinConfigPropDefaultValue"
+	},
+
+	testMixinFunction: function() {
+		if(window.console && console.log)
+			console.log("TestMixin.testMixinFunction()");
+
+		this.setName(this.getName() + " (from TestMixin.testMixinFunction())");
+	}
+});
+
+Ext.define("TestObject1", {
+	statics: {
+		staticProperty: {
+			staticPropertyObject: "staticPropertyObject"
+		}
+	},
+
+	mixins: {
+		testMixin: "TestMixin"
+	},
+
+	name: "undefined",
+	
+	config: {
+		name: "undefinedundefined"
+	},
+
+	constructor: function(config) {
+		this.initConfig(config);
+
+		return this;
+	},
+	
+	foo: function() {
+		this.testMixinFunction();
+	}
+});
+
+Ext.define("TestObject2", {
+	mixins: {
+		testMixin: "TestMixin"
+	},
+
+	name: "undefined",
+	
+	config: {
+		name: "undefinedundefined"
+	},
+
+	constructor: function(config) {
+		this.initConfig(config);
+
+		return this;
+	},
+	
+	foo: function() {
+		this.testMixinFunction();
+	}
+});
+
+Ext.define("TestClassWithMixin", {
+	config: {
+		name: "undefined"
+	},
+
+	constructor: function(config) {
+		this.initConfig(config);
+
+		this.self.mixin("testMixin", TestMixin); // http://www.sencha.com/forum/showthread.php?228652-How-to-add-mixin-dynamically
+		this.mixins.testMixin.constructor.call(this);
+
+		return this;
+	},
+
+	foo: function() {
+		this.testMixinFunction();
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, touch: %s", Ext.versions.core.version, Ext.versions.touch.version);
+
+	var
+		o1 = Ext.create("TestObject1", { name: "TestObject1" }),
+		o2 = Ext.create("TestObject2", { name: "TestObject2", testMixinConfigProp: "testMixinConfigProp2" }),
+		o3 = Ext.create("TestClassWithMixin", { name: "TestClassWithMixin" });
+
+	o1.foo();
+	if(window.console && console.log)
+		console.log("TestObject1.getName() = \"%s\" TestObject1.getTestMixinConfigProp() = \"%s\"", o1.getName(), o1.getTestMixinConfigProp());
+
+	o2.foo();
+	if(window.console && console.log)
+		console.log("TestObject2.getName() = \"%s\" TestObject2.getTestMixinConfigProp() = \"%s\"", o2.getName(), o2.getTestMixinConfigProp());
+
+	o3.foo();
+	if(window.console && console.log)
+		console.log("TestClassWithMixin.getName() = \"%s\" TestClassWithMixin.getTestMixinConfigProp() = \"%s\"", o3.getName(), o3.getTestMixinConfigProp());
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

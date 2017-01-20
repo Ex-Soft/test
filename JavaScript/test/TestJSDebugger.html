@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Test Venkman JavaScript Debugger</title>
+
+<!--
+1. Start Mozilla
+2. В Mozilla File -> Open File... (Ctrl+O) -> TestJSDebugger.html
+3. В Mozilla Tools -> Web Development -> JavaScript Debugger
+4. В JavaScript Debugger в окошке "Loaded scripts" дважды кляцаем на
+TestJSDebugger.html
+5. В JavaScript Debugger в окошке "Source Code" ставим breakpoint'ы на 11-ю и
+17-ю линию
+6. В Mozilla View -> Reload (Ctrl+R)
+7. Enjoy ;)
+
+Далее действуем по правилу великого чешского ученного Буравчика ;)
+-->
+
+<script type="text/javascript">
+<!--
+var
+  MainVar;
+
+function InitVar()
+{
+  MainVar="MainVar";
+}
+
+function Show()
+{
+   var
+     Output=document.getElementById("InfoParagraph");
+
+   if(Output!=null && MainVar!=undefined)
+     Output.innerHTML="<h2>"+MainVar+"</h2>";
+}
+// -->
+</script>
+  </head>
+  <body onload="InitVar()">
+    <h1>Test Venkman JavaScript Debugger</h1>
+    <hr>
+    <p id="InfoParagraph"></p><br>
+    <input type="button" id="btnShow" name="btnShow" onclick="Show()" value="Show">
+  </body>
+</html>

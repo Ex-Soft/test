@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test TextArea</title>
+		<script>
+function DoIt()
+{
+	var
+		from,
+		to,
+		sel,
+		startPos,
+		endPos;
+
+	if(!(from=document.getElementById("InputTextFrom"))
+		|| !(to=document.getElementById("InputTextArea")))
+		return;
+
+	if(window.console && console.log)
+	{
+		console.log("typeof document.selection = \"%s\"", typeof document.selection);
+		console.log("typeof element.selectionStart = \"%s\"", typeof to.selectionStart);
+	}
+
+	if(document.selection && document.selection.createRange)
+	{
+		to.focus();
+
+		if(!(sel=document.selection.createRange()))
+			return;
+
+		sel.text = from.value;
+	}
+	else if(typeof to.selectionStart !== "undefined")
+	{
+		startPos=to.selectionStart;
+		endPos=to.selectionEnd;
+		to.value = to.value.substring(0, startPos) + from.value + to.value.substring(startPos);
+	}
+}
+		</script>
+	</head>
+	<body>
+		<label for="InputTextFrom">From:</label>
+		<input type="text" id="InputTextFrom" value="from" />
+		->
+		<label for="InputTextArea">To:</label>
+		<textarea id="InputTextArea">0123456789</textarea>
+		<input type="button" rows="5" cols="50" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

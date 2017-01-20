@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>Test Radio Button</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+function DoIt(RXGroup)
+{
+    var radioRXGroup = document.getElementsByName(RXGroup);
+    for (var RowR = 0; RowR < radioRXGroup.length; RowR++)
+    {
+       if(radioRXGroup[RowR].checked)
+       {
+          alert('Name = ' + radioRXGroup[RowR].name + ' Number = ' + RowR + ' ID = ' + radioRXGroup[RowR].id + ' Value = ' +  radioRXGroup[RowR].value);
+          break;
+       }
+    }
+}
+
+function Show(obj)
+{
+	alert(obj.value);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+        		<table border="1">
+				<tr>
+					<td>
+						<input type="radio" name="R23" id = "R1" value = "11111" onclick="Show(this)">111
+						<input type="radio" name="R23" id = "R2" value = "22222" onclick="Show(this)">222
+						<input type="radio" name="R23" id = "R3" value = "33333" onclick="Show(this)">333
+					</td>
+					<td><input type="button" id="btn1" value="DoIt!" onclick="DoIt('R23')"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

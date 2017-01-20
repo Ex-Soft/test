@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>test for</title>
+		<script>
+function onLoad()
+{
+	var
+		arr;
+
+	for(var i=0, len=(arr=createArray()).length; i<len; ++i)
+		if(window.console && console.log)
+			console.log("%i", arr[i]);
+
+	if(window.console && console.log)
+		console.log("done");
+}
+
+function createArray()
+{
+	var
+		arr = [0,1,2];
+
+	return arr;
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

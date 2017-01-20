@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test onload (III)</title>
+		<script>
+function Log(msg)
+{
+	if(window.console && console.log)
+		console.log(msg);
+}
+
+function onLoadWindow()
+{
+	Log("window.onload");
+}
+
+if(window.addEventListener)
+	window.addEventListener("load", onLoadWindow, false);
+else if(window.attachEvent)
+	window.attachEvent("onload", onLoadWindow);
+else
+	window.onload=onLoadWindow;
+		</script>
+		<script charset="utf-8" src="TestOnLoadIV.js" onload="Log('script.onload')"></script>
+	</head>
+	<body onload="Log('body.onload')">
+		<img src="http://www.sql.ru/forum/images/smoke.gif" onload="Log('img.onload')">
+	</body>
+</html>

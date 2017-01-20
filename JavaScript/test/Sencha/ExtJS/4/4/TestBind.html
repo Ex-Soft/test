@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test bind</title>
+		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		object1 = {
+			property1: "property1 (object1)",
+			method1: function() {
+				if(window.console && console.log)
+					console.log("%s (%o)", this.property1, arguments);
+			}
+		},
+		object2 = {
+			property1: "property1 (object2)"
+		},
+		// Function.bind() // Implemented in JavaScript 1.8.5
+		object2Method1JS185 = object1.method1.bind(object2),
+		object2Method1JS185_ = object1.method1.bind(object2, "_additional_", "_arguments_"),
+		// Ext.Function.bind()
+		object2Method1ExtBind = Ext.Function.bind(object1.method1, object2),
+		object2Method1ExtBind_ = Ext.Function.bind(object1.method1, object2, ["_additional_", "_arguments_"]),
+		object2Method1ExtBind__ = Ext.Function.bind(object1.method1, object2, ["_additional_", "_arguments_"], true),
+		object2Method1ExtBind___ = Ext.Function.bind(object1.method1, object2, ["_additional_", "_arguments_"], 1),
+		// Ext.Function.pass()
+		originalFunction = function() {
+			if(window.console && console.log)
+				console.log("originalFunction(%o)", arguments);
+		},
+		functionExtPass = Ext.Function.pass(originalFunction, ["_additional_", "_arguments_"]),
+		object2Method1ExtPass = Ext.Function.pass(object1.method1, ["_additional_", "_arguments_"], object2),
+		funcs = [];
+
+	object1.method1();
+
+	if(window.console && console.log)
+		console.log("Function.bind() (Implemented in JavaScript 1.8.5)");
+
+	object2Method1JS185();
+	object2Method1JS185("original", "arguments");
+	object2Method1JS185_();
+	object2Method1JS185_("original", "arguments");
+	
+	if(window.console && console.log)
+		console.log("Ext.Function.bind()");
+
+	object2Method1ExtBind();
+	object2Method1ExtBind("original", "arguments");
+	object2Method1ExtBind_();
+	object2Method1ExtBind_("original", "arguments");
+	object2Method1ExtBind__();
+	object2Method1ExtBind__("original", "arguments");
+	object2Method1ExtBind___();
+	object2Method1ExtBind___("original", "arguments");
+
+	if(window.console && console.log)
+		console.log("Ext.Function.pass()");
+
+	functionExtPass();
+	functionExtPass("original", "arguments");
+	object2Method1ExtPass();
+	object2Method1ExtPass("original", "arguments");
+
+	for(var i=0; i<3; ++i)
+		funcs[i] = Ext.Function.bind(function(i) {
+			if(window.console && console.log)
+				console.log("funcs[%i]", i);
+		}, this, [i], true);
+
+	for(var ii=0; ii<3; ++ii)
+		funcs[ii]();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<html>
+  <head>
+    <title>Test window.open()</title>
+<script type="text/javascript">
+<!--
+function Set()
+{
+   var
+     NextYear=new Date();
+
+   NextYear.setFullYear(NextYear.getFullYear()+1);
+   document.cookie="TopMarginCivil="+document.getElementById("InputSetCookies").value+";expires="+NextYear.toGMTString();
+   document.getElementById("InputSetCookies").value="oB!";
+}
+
+function Get()
+{
+   var
+     allcookies=document.cookie,
+     Signature="TopMarginCivil=",
+     pos,
+     value;
+
+   if((pos=allcookies.indexOf(Signature))!=-1)
+   {
+     value=allcookies.substring(Signature.length+pos);
+     if((pos=value.indexOf(";"))!=-1)
+       value=value.substring(0,pos);  
+     document.getElementById("InputGetCookies").value=value;
+   }
+}
+
+function Clear()
+{
+   var
+     PrevYear=new Date();
+
+   PrevYear.setFullYear(PrevYear.getFullYear()-1);
+   document.cookie="TopMarginCivil=;expires="+PrevYear.toGMTString();
+   document.getElementById("InputClearCookies").value="oB!";
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form>
+      Set Cookies&nbsp;<input type="text" id="InputSetCookies" name="InputSetCookies">&nbsp;<input type="button" onclick="Set()" value="Set"><br>
+      Get Cookies&nbsp;<input type="text" id="InputGetCookies" name="InputGetCookies">&nbsp;<input type="button" onclick="Get()" value="Get"><br>
+      Clear Cookies&nbsp;<input type="text" id="InputClearCookies" name="InputClearCookies">&nbsp;<input type="button" onclick="Clear()" value="Clear"><br>
+    </form>
+  </body>
+</html>

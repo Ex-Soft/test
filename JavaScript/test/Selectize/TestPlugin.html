@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- http://selectize.github.io/selectize.js/ -->
+<!-- https://github.com/selectize/selectize.js -->
+<!-- https://github.com/selectize/selectize.js/blob/master/docs/plugins.md -->
+<!-- https://github.com/selectize/selectize.js/tree/master/src/plugins -->
+<!-- https://github.com/brianreavis/microplugin.js -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test plugin</title>
+		<link rel="stylesheet" href="../../selectize/css/selectize.css"/>
+		<style>
+.viewPort
+{
+	height: 100%;
+	width: 100%;
+}
+
+.container
+{
+	border: 1px solid;
+	position: absolute;
+	top: 400px;
+	left: 100px;
+	width: 100px;
+}
+		</style>
+		<!-- <script charset="utf-8" src="../../jQuery/1/jquery.js"></script> -->
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script charset="utf-8" src="../../selectize/js/selectize.js"></script>
+		<script charset="utf-8" src="TestPlugin.js"></script>
+		<script charset="utf-8" src="selectize-open-up-plugin.js"></script>
+	</head>
+	<body>
+		<div id="divViewPort" class="viewPort">
+			<div id="divContainer" class="container">
+				<div id="divDropdown" class="dropdown" />
+					<label id="labelDd" for="dd">Select</label>
+					<select id="dd" placeholder="Select..."/>
+				</div>
+			</div>
+		</div>
+		<script>
+var options = [];
+
+for(var i = 1; i < 11; ++i)
+	options.push({ id: i, title: i});
+
+$("#dd").selectize({
+	valueField: "id",
+	labelField: "title",
+	options: options,
+	plugins: [/*"test_plugin"*/"open_up"]
+});
+		</script>
+	</body>
+</html>

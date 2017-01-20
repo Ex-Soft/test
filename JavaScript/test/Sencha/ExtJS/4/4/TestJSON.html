@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test JSON</title>
+		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1/ext-all-debug.js"></script>
+		<script>
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		str,
+		o;
+
+	o = Ext.JSON.decode(str);
+	if(window.console && console.log)
+		console.log("%o", o);
+
+	str = null;
+	o = Ext.JSON.decode(str);
+	if(window.console && console.log)
+		console.log("%o", o);
+
+	str = "";
+	o = Ext.JSON.decode(str, true);
+	if(window.console && console.log)
+		console.log("%o", o);
+
+	str = "{ f: function() { if(window.console && console.log) console.log(\"this=%o, arguments=%o\", this, arguments) } }";
+	o = Ext.JSON.decode(str);
+	o.f("blah-blah-blah");
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

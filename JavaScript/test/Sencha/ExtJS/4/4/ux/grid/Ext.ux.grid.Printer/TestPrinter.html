@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<!-- https://github.com/loiane/extjs4-ux-gridprinter/archives/master -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.ux.grid.Printer</title>
+		<link rel="stylesheet" href="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1/resources/css/ext-all.css"/>
+
+		<link rel="stylesheet" href="resources/example.css"/>
+
+		<script charset="utf-8" src="../../../../../../../ExtJS/ExtJS4/ExtJS4.1.1/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.require([
+	"Ext.ux.grid.Printer"
+]);
+
+Ext.define("TestModel", {
+	extend: "Ext.data.Model",
+	idProperty: "id",
+	fields: [
+		{ name: "id", type: "int" },
+		"name"
+	]
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		store = Ext.create("Ext.data.ArrayStore", {
+			model: "TestModel",
+			data: [
+				[ 1, "Иванов Иван Иванович" ],
+				[ 2, "Петров Петр Петрови" ],
+				[ 3, "Сидоров Сидор Сидорович" ],
+				[ 4, "Васильев Василий Василиевич" ]
+			]
+		}),
+		grid = Ext.create("Ext.grid.Panel", {
+			store: store,
+			columns: [
+				{ dataIndex: "id", header: "id" },
+				{ dataIndex: "name", header: "name", flex: 1 },
+			],
+			dockedItems: [{
+				xtype: "toolbar",
+				dock: "top",
+				items: [{
+					text: "Print",
+					iconCls: "icon-print",
+					handler: function(btn, e) {
+						Ext.ux.grid.Printer.printAutomatically = false;
+						Ext.ux.grid.Printer.print(grid);
+					}
+				}]
+			}],
+			renderTo: Ext.getBody()
+		});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

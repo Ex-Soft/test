@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <title>Test OpenOffice.org Calc</title>
+<script type="text/javascript">
+<!--
+function TestCOM()
+{
+   var
+     oFS=null,
+     SignatureDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Excel_tst.xls",
+     OutputDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Excel_out.xls",
+     MSExcelExists,
+     OpenOfficeOrgExists,
+     ServiceManager=null,
+     Desktop=null,
+     Document=null,
+     args=new Array(),
+     Sheets=null,
+     Sheet;
+
+   if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+   {
+      alert("!Scripting.FileSystemObject");
+      return;
+   }
+
+   if(!oFS.FileExists(SignatureDoc))
+   {
+      alert("!FileExists");
+      return;
+   }
+
+   try
+   {
+      ServiceManager=new ActiveXObject("Excel.Application");
+      MSExcelExists=true;
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+      alert("ServiceManger="+ServiceManager);
+      MSExcelExists=false;
+   }
+
+   try
+   {
+      ServiceManager=new ActiveXObject("com.sun.star.ServiceManager");
+      OpenOfficeOrgExists=true;
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+      OpenOfficeOrgExists=false;
+   }
+
+   if(!ServiceManager)
+   {
+      alert("!com.sun.star.ServiceManager");
+      return;
+   }
+
+   if(!(Desktop=ServiceManager.createInstance("com.sun.star.frame.Desktop")))
+   {
+      alert("!com.sun.star.frame.Desktop");
+      return;
+   }
+
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="Hidden";
+   Param.Value=false;
+   args[0]=Param;
+
+   Document=Desktop.LoadComponentFromURL("file:///"+SignatureDoc.replace(/\\/g,"/"),"_blank",0,args);
+   //Document=Desktop.LoadComponentFromURL("private:factory/scalc","_blank",0,args);
+   if(!Document)
+   {
+      alert("!Document");
+      return;
+   }
+
+   alert("Document.SpellOnLine="+Document.SpellOnLine);
+
+   if(!(Sheets=Document.getSheets()))
+   {
+      alert("!Sheets");
+      return;
+   }
+
+   alert("Sheets.count="+Sheets.count);
+
+   if(!(Sheet=Sheets.getByIndex(2)))
+   {
+      alert("!Sheet");
+      return;
+   }
+
+   //alert("Sheet.getIndex()="+Sheet.getIndex());
+   alert("Sheet.getName()="+Sheet.getName());
+
+   args.splice(0,1);
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="FilterName";
+   Param.Value="MS Excel 97";
+   args[0]=Param;
+
+   if(!(Param=ServiceManager.Bridge_GetStruct("com.sun.star.beans.PropertyValue")))
+   {
+      alert("!Param");
+      return;
+   }
+   Param.Name="Overwrite";
+   Param.Value=true;
+   args[1]=Param;
+
+   Document.storeToURL("file:///"+OutputDoc.replace(/\\/g,"/"),args);
+   Document.close(true);
+   Desktop.terminate();
+
+   alert("oB!!!");
+}
+// -->
+</script>
+  </head>
+  <body onload="TestCOM()">
+  </body>
+</html>

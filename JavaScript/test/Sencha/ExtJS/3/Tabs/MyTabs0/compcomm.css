@@ -1,0 +1,35 @@
+/** vim: ts=4:sw=4:nu:fdc=4:nospell
+ *
+ * CSS File for Component Communication Application
+ *
+ * @author    Ing.Jozef Sakáloš
+ * @copyright (c) 2008, by Ing. Jozef Sakáloš
+ * @date      10. April 2008
+ * @version   $Id: compcomm.css 163 2008-04-10 23:30:42Z jozo $
+ *
+ * @license compcomm.css is licensed under the terms of the Open Source
+ * LGPL 3.0 license. Commercial use is permitted to the extent that the 
+ * code/component(s) do NOT become part of another Open Source or Commercially
+ * licensed development library or toolkit without explicit permission.
+ * 
+ * License details: http://www.gnu.org/licenses/lgpl.html
+ */
+ 
+#ct {
+	margin:10px;
+	font-family:Verdana, Arial, sans-serif;
+	font-size:13px;
+}
+.examplelink {
+	display:block;
+	padding:3px;
+	text-decoration:none;
+}
+.examplelink:hover {
+	text-decoration:none;
+	background: yellow;
+}
+.link-panel .x-panel-body {
+	padding:4px;
+}
+/* eof */

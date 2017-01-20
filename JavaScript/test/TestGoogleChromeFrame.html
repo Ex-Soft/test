@@ -1,0 +1,18 @@
+﻿<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<title>Test Google Chrome Frame</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	if(window.console && console.log)
+		console.log("%sbtoa", !window.btoa ? "!" : "");
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

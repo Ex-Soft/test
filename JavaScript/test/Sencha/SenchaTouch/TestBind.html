@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test bind</title>
+		<script charset="utf-8" src="../../Sencha/Touch/Touch2.3/touch-2.3.1/sencha-touch-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("TypeI", {
+	mixins: ['Ext.mixin.Bindable'],
+
+	fooI: function() {
+		if(window.console && console.log)
+			console.log("fooI(%o)", arguments);
+	},
+
+	fooIWRF: function() {
+		if(window.console && console.log)
+			console.log("fooIWRF(%o)", arguments);
+
+		return false;
+	},
+
+	fooIPD: function() {
+		if(window.console && console.log)
+			console.log("fooIPD(%o)", arguments);
+	},
+
+	fooIPDEA: function() {
+		if(window.console && console.log)
+			console.log("fooIPDEA(%o)", arguments);
+	}
+});
+
+Ext.define("TypeII", {
+	mixins: ['Ext.mixin.Bindable'],
+
+	fooII: function() {
+		if(window.console && console.log)
+			console.log("fooII(%o)", arguments);
+	},
+
+	fooIIWRF: function() {
+		if(window.console && console.log)
+			console.log("fooIIWRF(%o)", arguments);
+
+		return false;
+	},
+
+	fooIIPD: function() {
+		if(window.console && console.log)
+			console.log("fooIIPD(%o)", arguments);
+	},
+
+	fooIIPDEA: function() {
+		if(window.console && console.log)
+			console.log("fooIIPDEA(%o)", arguments);
+	}
+});
+
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, touch: %s", Ext.versions.core.version, Ext.versions.touch.version);
+
+	var
+		otI = Ext.create("TypeI"),
+		otII = Ext.create("TypeII");
+
+	otI.bind(otII, "fooII", "fooI");
+	otI.bind(otII, "fooIIWRF", "fooIWRF");
+	otI.bind(otII, "fooIIPD", "fooIPD", true);
+	otI.bind(otII, "fooIIPDEA", "fooIPDEA", false, [ "extraParam" ]);
+
+	otII.fooII("param"); // fooI [ "param", [ "param" ] ] -> fooII [ "param" ]
+	otII.fooIIWRF("param"); // fooIWRF
+	otII.fooIIPD("param"); // nothing
+	otII.fooIIPDEA("param"); // fooIPDEA [ "param", [ "param" ], "extraParam" ] -> fooIIPDEA [ "param" ]
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

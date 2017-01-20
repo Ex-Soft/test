@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Compare</title>
+		<script>
+function DoIt()
+{
+	var
+		s1="SmthValue",
+		s2="SmthValue",
+		o1={ p: "SmthValue" },
+		o2={ p: "SmthValue" },
+		u,
+		n=null,
+		i1=1,
+		i2="1";
+
+	if(window.console && console.log)
+	{
+		console.log("s1%s=s2", s1==s2 ? "=" : "!");
+		console.log("s1%s==s2", s1===s2 ? "=" : "!");
+		console.log("o1%s=o2", o1==o2 ? "=" : "!");
+		console.log("o1%s==o2", o1===o2 ? "=" : "!");
+		console.log("o1%s=o1", o1==o1 ? "=" : "!");
+		console.log("o1%s==o1", o1===o1 ? "=" : "!");
+		console.log("o1.p%s=o2.p", o1.p==o2.p ? "=" : "!");
+		console.log("o1.p%s==o2.p", o1.p===o2.p ? "=" : "!");
+		console.log("u%s=undefined", u==undefined ? "=" : "!");
+		console.log("u%s==undefined", u===undefined ? "=" : "!");
+		console.log("typeof(u)%s=\"undefined\"", typeof(u)=="undefined" ? "=" : "!");
+		console.log("typeof(u)%s==\"undefined\"", typeof(u)==="undefined" ? "=" : "!");
+		console.log("u%s=n", u==n ? "=" : "!");
+		console.log("u%s==n", u===n ? "=" : "!");
+		console.log("i1 (1) %s= i2 (\"1\")", i1==i2 ? "=" : "!");
+		console.log("i1 (1) %s== i2 (\"1\")", i1===i2 ? "=" : "!");
+	}
+}
+		</script>
+	</head>
+	<body onload="DoIt()">
+	</body>
+</html>

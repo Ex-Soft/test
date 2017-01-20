@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<style media="screen">
+			.noPrint{ display: block; }
+		</style>
+		<style media="print">
+			.noPrint{ display: none; }
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td class="noPrint">noPrint</td>
+			</tr>
+			<tr>
+				<td>yesPrint</td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Print" class="noPrint" onclick="print();"></td>
+			</tr>
+		</table>
+	</body>
+</html>

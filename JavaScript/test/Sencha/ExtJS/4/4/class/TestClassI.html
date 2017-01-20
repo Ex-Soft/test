@@ -1,0 +1,197 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Class I</title>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4.2.1/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("BaseClass1", {
+	baseClassProp: "undefined",
+
+	constructor: function(val) {
+		if(window.console && console.log)
+			console.log("BaseClass1.constructor(%o)", arguments);
+
+		if(val)
+			this.baseClassProp=val;
+	},
+
+	baseClassFoo: function() {
+		if(window.console && console.log)
+			console.log("BaseClass1.baseClassFoo()");
+	},
+
+	Foo: function() {
+		if(window.console && console.log)
+			console.log("BaseClass1.Foo()");
+	}
+});
+
+Ext.define("DerivedClass1", {
+	extend: "BaseClass1",
+	
+	derivedClassProp: "undefined",
+
+	constructor: function(derivedVal, baseVal) {
+		if(window.console && console.log)
+			console.log("DerivedClass1.constructor(%o)", arguments);
+
+		if(baseVal)
+			this.superclass.constructor(baseVal);
+
+		if(derivedVal)
+			this.derivedClassProp=derivedVal;
+	},
+
+	derivedClassFoo: function() {
+		if(window.console && console.log)
+			console.log("DerivedClass1.derivedClassFoo()");
+	},
+
+	Foo: function() {
+		this.callParent();
+
+		if(window.console && console.log)
+			console.log("DerivedClass1.Foo()");
+	}
+});
+
+Ext.define("BaseClass2", {
+	baseClassProp: "undefined",
+
+	config: {
+		baseClassProp: "undefinedundefined"
+	},
+
+	constructor: function(config) {
+		this.initConfig(config);
+
+		return this;
+	},
+
+	baseClassFoo: function() {
+		if(window.console && console.log)
+			console.log("BaseClass2.baseClassFoo()");
+	},
+
+	Foo: function() {
+		if(window.console && console.log)
+			console.log("BaseClass2.Foo()");
+	}
+});
+
+Ext.define("DerivedClass2", {
+	extend: "BaseClass2",
+	
+	derivedClassProp: "undefined",
+
+	config: {
+		derivedClassProp: "undefinedundefined"
+	},
+
+	constructor: function(config) {
+		this.initConfig(config);
+
+		return this;
+	},
+
+	derivedClassFoo: function() {
+		if(window.console && console.log)
+			console.log("DerivedClass2.derivedClassFoo()");
+	},
+
+	Foo: function() {
+		this.callParent();
+
+		if(window.console && console.log)
+			console.log("DerivedClass2.Foo()");
+	}
+});
+
+Ext.define("BaseClass3", {
+	constructor: function(val) {
+		if(window.console && console.log)
+			console.log("BaseClass3.constructor(%o)", arguments);
+
+		if(val)
+			this.val=val;
+	},
+
+	Foo1: function() {
+		if(window.console && console.log)
+			console.log("BaseClass3.Foo1() %o", this);
+	},
+
+	Foo2: function() {
+		if(window.console && console.log)
+			console.log("BaseClass3.Foo2() %o", this);
+	}
+});
+
+Ext.define("DerivedClass3", {
+	extend: "BaseClass3",
+
+	Foo1: function() {
+		if(window.console && console.log)
+			console.log("DerivedClass3.Foo1() %o", this);
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		baseClass10 = new BaseClass1("baseClass10"),
+		baseClass11 = Ext.create("BaseClass1", "baseClass11"),
+		baseClass12 = Ext.create("BaseClass1", "baseClass12"),
+		baseClass21 = Ext.create("BaseClass2", {}),
+		baseClass22 = Ext.create("BaseClass2", { baseClassProp: "baseClass22" }),
+		derivedClass11 = Ext.create("DerivedClass1", "derivedClass11", "baseClass11"),
+		derivedClass12 = Ext.create("DerivedClass1", "derivedClass12"),
+		derivedClass21 = Ext.create("DerivedClass2", {}),
+		derivedClass22 = Ext.create("DerivedClass2", { baseClassProp: "baseClass22FromDerivedClass22", derivedClassProp: "derivedClass22" }),
+		baseClass3 = Ext.create("BaseClass3", "baseClass3"),
+		derivedClass3 = Ext.create("DerivedClass3", "derivedClass3");
+
+	if(window.console && console.log)
+	{
+		console.log("%s", baseClass11.baseClassProp);
+		console.log("%s", baseClass12.baseClassProp);
+		console.log("%s", baseClass21.baseClassProp);
+		console.log("%s", baseClass22.baseClassProp);
+		console.log("%s %s", derivedClass11.baseClassProp, derivedClass11.derivedClassProp);
+		console.log("%s %s", derivedClass21.baseClassProp, derivedClass21.derivedClassProp);
+		console.log("%s %s", derivedClass22.baseClassProp, derivedClass22.derivedClassProp);
+	}
+
+	baseClass11.baseClassFoo();
+	baseClass12.baseClassFoo();
+	baseClass21.baseClassFoo();
+	baseClass22.baseClassFoo();
+	derivedClass11.baseClassFoo();
+	derivedClass11.derivedClassFoo();
+
+	baseClass11.Foo();
+	derivedClass11.Foo();
+	baseClass21.Foo();
+	derivedClass21.Foo();
+
+	baseClass3.Foo1();
+	baseClass3.Foo2();
+	derivedClass3.Foo1();
+	derivedClass3.Foo2();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>Load HTML</title>
+		<script type="text/javascript">
+<!--
+var
+	req,
+	console;
+
+function initXMLHTTPRequest()
+{
+	var
+		xRequest=null;
+
+	if(window.XMLHttpRequest)
+		xRequest=new XMLHttpRequest();
+	else if(window.ActiveXObject)
+	{
+		try
+		{
+			xRequest=new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xRequest=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				alert(e.name+": "+e.message);
+			}
+		}
+	}
+
+	return(xRequest);
+}
+
+function DoIt(url, params, HttpMethod)
+{
+	if(req=initXMLHTTPRequest())
+	{
+		var
+			FileName,
+			pos;
+
+		if(url.indexOf("http")==-1)
+		{
+			FileName=document.location.href;
+			if((pos=FileName.lastIndexOf("/"))!=-1)
+				FileName=FileName.substr(0,pos+1)+url;
+		}
+		else
+			FileName=url;
+
+		if(!HttpMethod)
+			HttpMethod="GET";
+		req.onreadystatechange=function(){if(req.readyState==4) CallbackFunction(req.responseXML,req.responseText);};
+		req.open(HttpMethod,FileName,true);
+		req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		//req.setRequestHeader("CONTENT-TYPE","text/html; codepage=windows-1251;");
+		//req.overrideMimeType("text/xml");
+		req.send(params);
+	}
+}
+
+function CallbackFunction(doc, txt)
+{
+	var
+		Ctrl;
+
+	for(var i=0; i<doc.childNodes.length; ++i)
+		Ctrl=doc.childNodes[i];
+
+	Ctrl=doc.getElementsByTagName("body")[0];
+
+	if(Ctrl)
+		document.getElementById("result").appendChild(Ctrl.cloneNode(true));
+}
+
+function toConsole(data)
+{
+	if(!console)
+		console=document.getElementById("console");
+
+	if(console)
+	{
+		var
+			newline=document.createElement("div"),
+			txt;
+
+		console.appendChild(newline);
+		txt=document.createTextNode(data);
+		newline.appendChild(txt);
+	}
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" value="Load HTML" onclick="DoIt('test.html')"><input type="button" value="Load HTML" onclick="DoIt('http://localhost/JavaScript/Test/AJAX/test.html')">
+		<div id="console"></div>
+		<div id="result"></div>
+	</body>
+</html>

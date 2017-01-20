@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test jQuery bind</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	var
+		ctrl;
+
+	(ctrl=$("#inputButton1")).bind("click", function() {
+		if(window.console && console.log)
+			console.log("inputButton1");
+	});
+
+	(ctrl=$(".inputButton2")).bind("click", function() {
+		if(window.console && console.log)
+			console.log("inputButton2");
+	});
+
+	$("#inputButton3").bind("click", f1);
+	$("#inputButton4").bind("click", {param1: 1, param2: 2}, f2);
+
+	$("#inputText1, #inputText2").bind("focusout", function(event) {
+		var
+			sender = $(event.target),
+			val = sender.val(),
+			promotionTypeByJQuery = sender.data("promotion-type"),
+			promotionTypeByPureJS = event.target.dataset ? event.target.dataset.promotionType : undefined;
+
+		if(window.console && console.log)
+			console.log("val=\"%s\" promotionTypeByJQuery=%i promotionTypeByPureJS=\"%s\"", val, promotionTypeByJQuery, promotionTypeByPureJS);
+	});
+});
+
+function f1(event)
+{
+	if(window.console && console.log)
+		console.log("arguments.length=%d", arguments.length);
+}
+
+function f2(event)
+{
+	if(window.console && console.log)
+		console.log("arguments.length=%d, event.data=%o", arguments.length, event.data);
+	if(window.console && console.dir)
+		console.dir(event.data);
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="inputButton1" value="inputButton1" />
+		<input type="button" id="inputButton2" value="inputButton2" class="inputButton2" />
+		<input type="button" id="inputButton3" value="inputButton3" />
+		<input type="button" id="inputButton4" value="inputButton4" />
+		<hr/>
+		<input type="text" id="inputText1" value="inputText1" data-promotion-type="1" />
+		<input type="text" id="inputText2" value="inputText2" data-promotion-type="2" />
+	</body>
+</html>

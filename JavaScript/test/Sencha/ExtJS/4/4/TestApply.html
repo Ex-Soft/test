@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Apply</title>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4.2.1/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		o1,
+		o2,
+		or;
+
+	o2={p2: "o2.property# 2", p4: "o2.property# 4", p5: "o2.property# 5"};
+	or=Ext.apply(o1,o2);
+	if(window.console && console.log)
+		console.log("%o", o1);
+
+	o1=null;
+	o2={p2: "o2.property# 2", p4: "o2.property# 4", p5: "o2.property# 5"};
+	or=Ext.apply(o1,o2);
+	if(window.console && console.log)
+		console.log("%o", o1);
+
+	o1={};
+	o2={p2: "o2.property# 2", p4: "o2.property# 4", p5: "o2.property# 5"};
+	or=Ext.apply(o1,o2);
+	if(window.console && console.log)
+		console.log("%o", o1);
+
+	o1={p1: "o1.property# 1", p3: "o1.property# 3", p5: "o1.property# 5"};
+	o2={p2: "o2.property# 2", p4: "o2.property# 4", p5: "o2.property# 5"};
+	or=Ext.apply(o1,o2);
+	if(window.console && console.log)
+		console.log("%o", o1);
+
+	o1={p1: "o1.property# 1", p3: "o1.property# 3", p5: "o1.property# 5"};
+	o2={p2: "o2.property# 2", p4: "o2.property# 4", p5: "o2.property# 5"};
+	or=Ext.applyIf(o1,o2);
+	if(window.console && console.log)
+		console.log("%o", o1);
+
+	o1={p1: "o1.property# 1", p3: "o1.property# 3", p5: "o1.property# 5"};
+	or=Ext.apply(o1);
+	if(window.console && console.log)
+		console.log("%o", o1);
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

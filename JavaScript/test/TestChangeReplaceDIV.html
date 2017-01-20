@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test Change && Replace DIV</title>
+		<script type="text/javascript">
+<!--
+function DoIt()
+{
+	var
+		d2,
+		d3;
+
+	if(!(d2=document.getElementById("Div2"))
+		|| !(d3=document.getElementById("Div3")))
+		return;
+
+	d2.parentNode.insertBefore(d3.parentNode.removeChild(d3),d2);
+
+	if(!(d2=document.getElementById("Div1"))
+		|| !(d3=document.getElementById("Div4")))
+		return;
+
+	d2.parentNode.replaceChild(d3,d2);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<div id="Div1">Div1</div>
+		<div id="Div2">Div2</div>
+		<div id="Div3">Div3</div>
+		<div id="Div4">Div4</div>
+		<input type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

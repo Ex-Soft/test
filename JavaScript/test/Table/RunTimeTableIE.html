@@ -1,0 +1,107 @@
+<html>
+ <basefont size=3 color=red face="Arial">
+ <head>
+  <title>Это название документа !!!</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+ </head>
+ <body bgcolor=#728456 text=black link=blue vlink=#00FF00 alink=red>
+   Динамически созданная таблица
+   <TABLE ID="oTable" BORDER BGCOLOR="lightslategray">
+   <TBODY ID="oTBody0"></TBODY>
+   <TBODY ID="oTBody1"></TBODY>
+   </TABLE>
+
+<SCRIPT LANGUAGE="JScript">
+// Declare variables and create the header, footer, and caption.
+var oTHead = oTable.createTHead();
+var oTFoot = oTable.createTFoot();
+var oCaption = oTable.createCaption();
+var oRow, oCell;
+var i, j;
+
+// Declare stock data that would normally be retrieved from a stock Web site.
+var heading = new Array;
+
+heading[0] = "Stock symbol";
+heading[1] = "High";
+heading[2] = "Low";
+heading[3] = "Close";
+
+var stock = new Array;
+
+stock["0,0"] = "ABCD";
+stock["0,1"] = "88.625";
+stock["0,2"] = "85.50";
+stock["0,3"] = "85.81";
+
+stock["1,0"] = "EFGH";
+stock["1,1"] = "102.75";
+stock["1,2"] = "97.50";
+stock["1,3"] = "100.063";
+
+stock["2,0"] = "IJKL";
+stock["2,1"] = "56.125";
+stock["2,2"] = "54.50";
+stock["2,3"] = "55.688";
+
+stock["3,0"] = "MNOP";
+stock["3,1"] = "71.75";
+stock["3,2"] = "69.00";
+stock["3,3"] = "69.00";
+
+// Insert a row into the header.
+oRow = oTHead.insertRow();
+oTHead.bgColor = "lightskyblue";
+
+// Insert cells into the header row.
+for (i=0; i<4; i++)
+{
+  oCell = oRow.insertCell();
+  oCell.align = "center";
+  oCell.style.fontWeight = "bold";
+  oCell.innerText = heading[i];
+}
+
+// Insert rows and cells into the first body.
+for (i=0; i<2; i++)
+{
+  oRow = oTBody0.insertRow();
+  for (j=0; j<4; j++)
+  {
+    oCell = oRow.insertCell();
+	oCell.innerText = stock[i + "," + j];
+  }
+}
+
+// Set the background color of the first body.
+oTBody0.bgColor = "lemonchiffon";
+
+// Insert rows and cells into the second body.
+for (i=2; i<4; i++)
+{
+  oRow = oTBody1.insertRow();
+  for (j=0; j<4; j++)
+  {
+    oCell = oRow.insertCell();
+	oCell.innerText = stock[i + "," + j];
+  }
+}
+
+// Set the background color of the second body.
+oTBody1.bgColor = "goldenrod";
+
+// Insert rows and cells into the footer row.
+oRow = oTFoot.insertRow();
+oCell = oRow.insertCell();
+oCell.innerText = "Quotes are for example only.";
+oCell.colSpan = "4";
+oCell.bgColor = "lightskyblue";
+
+// Set the innerText of the caption and position it at the bottom of the table.
+oCaption.innerText = "Created using Table Object Model."
+oCaption.style.fontSize = "10";
+oCaption.align = "bottom";
+
+</SCRIPT>
+ </body>
+</html>

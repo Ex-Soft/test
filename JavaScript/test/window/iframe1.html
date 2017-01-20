@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+  <HEAD>
+    <TITLE>IFrame 1</TITLE>
+<SCRIPT type=text/javascript>
+<!--
+
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      if(field=="makeObjectTable")
+        continue;
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+function NextFrame()
+{
+   self.location.href="iframe2.html";
+}
+
+function Parse()
+{
+   var
+     args=new Object(),
+     query=location.search.substring(1),
+     pairs=query.split(","),
+     pos,
+     argname,
+     value;
+
+   for(var i=0; i<pairs.length; ++i)
+   {
+      pos=pairs[i].indexOf("=");
+      if(pos==-1)
+        continue;
+      argname=pairs[i].substring(0,pos);
+      value=pairs[i].substring(pos+1);
+      args[argname]=unescape(value);
+      //args[argname]=decodeURIComponent(value);
+   }
+
+   value=""
+   for(key in args)
+     value+="["+key+"]=&quot;"+args[key]+"&quot;";
+
+   document.getElementById("ParamsInfo").innerHTML=value;
+}
+// -->
+</SCRIPT>
+  </HEAD>
+  <BODY onload="Parse()">
+    <FORM id="IFrame1Form">
+      IFrame #1&#x99;<br>
+<script type="text/javascript">
+<!--
+document.write("self.location.href=",self.location.href,"<br>");
+// -->
+</script>
+      Parameter(s):
+      <p id="ParamsInfo"></p>
+      <input type="button" value="NextFrame (by &#34;self.location.href&#x022;)" onclick="NextFrame()"><br>
+      <a href="iframe2.html">(by &quot;&lt;A ...&gt; ... &lt;/A&gt;&quot;)</a>
+<script type="text/javascript">
+<!--
+makeObjectTable("self.location",self.location);
+// -->
+</script>
+
+    </FORM>
+  </BODY>
+</HTML>

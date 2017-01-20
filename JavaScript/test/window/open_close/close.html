@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<title>close</title>
+	</head>
+	<body>
+		<form>
+			<input type="button" id="btnClose" value="close" onclick="if(opener)window.close();else window.location.href='http://google.com/'">
+			<input type="button" id="btnReload" value="reload" onclick="if(opener)opener.location.reload();">
+		</form>
+	</body>
+</html>

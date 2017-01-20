@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Test M$ Word</title>
+<script type="text/javascript">
+<!--
+function TestCOM()
+{
+   var
+     oFS=null,
+     SignatureDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Word_tst.doc",
+     OutputDoc="E:\\Soft.src\\JavaScript\\Test\\COM\\Word_out.doc",
+     MSWordExists,
+     OpenOfficeOrgExists,
+     MSWord=null,
+     Document=null,
+     Bookmarks=null,
+     wdGoToBookmark=-1, // 0xFFFFFFFF
+     wdGoToFirst=1,
+     wdGoToAbsolute=1,
+     BookmarkName="MyBookmark",
+     TEST_BOOKMARK_BY_BOOKMARKS_COLLECTION=false,
+     Bookmark;
+
+   if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+   {
+      alert("!Scripting.FileSystemObject");
+      return;
+   }
+
+   if(!oFS.FileExists(SignatureDoc))
+   {
+      alert("!FileExists");
+      return;
+   }
+
+   try
+   {
+      MSWord=new ActiveXObject("com.sun.star.ServiceManager");
+      OpenOfficeOrgExists=true;
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+      alert(MSWord);
+      OpenOfficeOrgExists=false;
+   }
+
+   MSWord=null;
+   //alert(1);
+   //MSWord=GetObject("e:\\Test1.doc","Word.Application");
+   //alert(2);
+   //
+   // PRB: Cannot Call GetObject from Script in IE to Access Running Object
+   // http://support.microsoft.com/kb/q239470/
+   //
+
+   if(!MSWord)
+   {
+      try
+      {
+         MSWord=new ActiveXObject("Word.Application");
+         MSWordExists=true;
+      }
+      catch(Exception)
+      {
+         alert(Exception.name+": "+Exception.message);
+         MSWordExists=false;
+      }
+   }
+
+   if(!MSWord)
+   {
+      alert("!Word.Application");
+      return;
+   }
+
+   MSWord.Visible=true;
+
+   if(!(Document=MSWord.Documents.Open(SignatureDoc)))
+   {
+      alert("!Document");
+      return;
+   }
+
+   Document.PageSetup.TopMargin=MSWord.CentimetersToPoints(10);
+
+   if(!(Bookmarks=Document.Bookmarks))
+   {
+      alert("!Bookmarks");
+      return;
+   }
+
+   //alert("Bookmarks.Count="+Bookmarks.Count);
+   if(Bookmarks.Exists(BookmarkName))
+   {
+      if(TEST_BOOKMARK_BY_BOOKMARKS_COLLECTION)
+      {
+         Bookmark=Bookmarks.Item(BookmarkName);
+         // ||
+         //Bookmark=Bookmarks.Item(1);
+         Bookmark.Select();
+      }
+      else
+      {
+         MSWord.Selection.GoTo(/*What*/ wdGoToBookmark, /*Which*/ 0 /*wdGoToFirst*/, /*Count*/ 0, /*Name*/ BookmarkName);
+      }
+
+      MSWord.Selection.TypeText(document.getElementById("Input1").value);
+      //MSWord.Selection.InlineShapes.AddPicture("F:\\My_Doc\\avatara.gif",false,true);
+   }
+   
+   MSWord.ActiveDocument.SaveAs(OutputDoc);
+   MSWord.ActiveDocument.PrintOut(false,0,0,"","","",0,3);
+   MSWord.ActiveDocument.Close();
+   MSWord.Quit();
+
+   alert("oB!!!");
+}
+// -->
+</script>
+  </head>
+  <body onload="TestCOM()">
+    <form>
+      <input type="text" id="Input1" value="123456789">
+    </form>
+  </body>
+</html>

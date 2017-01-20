@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" >
+<head>
+    <title></title>
+           <link rel="stylesheet" type="text/css" href="../../../../ExtJS/resources/css/ext-all.css"/>
+       
+        <style type="text/css">
+            .icon-new-tab
+        {
+                background:url(img/add2.png) 0 no-repeat !important;
+        }
+        .icon-tab
+        {
+                background:url(img/star-yellow.png) 0 no-repeat !important;
+        }      
+        </style>
+       
+   <script type="text/javascript" src="../../../../ExtJS/adapter/ext/ext-base.js"></script>
+   <script type="text/javascript" src="../../../../ExtJS/ext-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+
+// Adding tabs dynamically.
+
+            Ext.BLANK_IMAGE_URL = '../../../../ExtJS/resources/images/default/s.gif';
+
+Ext.onReady(function() {
+
+    var tabs = new Ext.TabPanel({
+        renderTo: 'tabs',
+        resizeTabs: true,
+        minTabWidth: 115,
+        tabWidth: 135,
+        enableTabScroll: true,
+        width: 500,
+        height: 250,
+        defaults: { autoScroll: true }
+    });
+
+    // Create some tabs.
+    var index = 0;
+    while (index < 3) {
+        addTab(index);
+        index++;
+    }
+
+    function addTab(index) {
+       
+        var tab = tabs.add({
+            title: 'New Tab ' + (index),
+            iconCls: 'icon-tab',
+            bodyStyle:'padding: 5px',
+            html: 'Tab Body ' + (index) + '<br/><br/>',
+            closable: true
+        });
+       
+        tab.show();
+    }
+
+    var btn = new Ext.Button({
+        text: 'Add a tab',
+        handler: addTab,
+        iconCls: 'icon-new-tab'
+    })
+   
+    btn.render('button');
+   
+});
+   
+    </script>
+</head>
+<body style="padding: 20px">
+   <div id="button"></div><br /><br />
+   <div id="tabs"></div>
+</body>
+</html>

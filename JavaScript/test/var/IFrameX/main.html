@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>Main Form</title>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	var
+		frm;
+
+	if(!(frm=document.getElementById("IFrame1")))
+		return;
+
+	frm.contentWindow.document.getElementById("InputTextVictim").value="From Main Form";
+	frm.contentWindow.document.getElementById("ButtonVictim").click();
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<iframe id="IFrame1" src="iframe1.html"></iframe>
+	</body>
+</html>

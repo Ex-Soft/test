@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>Load XML</title>
+		<script type="text/javascript">
+<!--
+var
+	req,
+	console,
+	NSIXml=[];
+
+function initXMLHTTPRequest()
+{
+	var
+		xRequest=null;
+
+	if(window.XMLHttpRequest)
+		xRequest=new XMLHttpRequest();
+	else if(window.ActiveXObject)
+	{
+		try
+		{
+			xRequest=new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xRequest=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				alert(e.name+": "+e.message);
+			}
+		}
+	}
+
+	return(xRequest);
+}
+
+function DoIt(url, params, HttpMethod)
+{
+	if(req=initXMLHTTPRequest())
+	{
+		var
+			FileName,
+			pos;
+
+		if(url.indexOf("http")==-1)
+		{
+			FileName=document.location.href;
+			if((pos=FileName.lastIndexOf("/"))!=-1)
+				FileName=FileName.substr(0,pos+1)+url;
+		}
+		else
+			FileName=url;
+
+		if(!HttpMethod)
+			HttpMethod="GET";
+		req.onreadystatechange=function(){if(req.readyState==4) CallbackFunction(req.responseXML,req.responseText);};
+		req.open(HttpMethod,FileName,true);
+		req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		//req.setRequestHeader("CONTENT-TYPE","text/html; codepage=windows-1251;");
+		//req.overrideMimeType("text/xml");
+		req.send(params);
+	}
+}
+
+function CallbackFunction(doc, txt)
+{
+	var
+		NSIXmlDataRoot=doc.getElementsByTagName("NSIXmlData"),
+		NSIXmlDataItems,
+		i;
+
+	if(NSIXmlDataRoot.length==0)
+	{
+		alert(NSIXmlDataRoot.length);
+		//NSIXmlDataRoot=new ActiveXObject("Msxml2.DOMDocument.3.0");
+		NSIXmlDataRoot=new ActiveXObject("Microsoft.XMLDOM");
+		NSIXmlDataRoot.async=false;
+		NSIXmlDataRoot.loadXML(txt);
+		if(NSIXmlDataRoot.parseError.errorCode)
+		{
+			alert(NSIXmlDataRoot.parseError.errorCode);
+			return;
+		}
+
+		NSIXmlDataRoot=NSIXmlDataRoot.getElementsByTagName("NSIXmlData");
+	}
+
+	NSIXmlDataItems=NSIXmlDataRoot[0].getElementsByTagName("NSIXml");
+
+	for(i=0; i<NSIXmlDataItems.length; ++i)
+		NSIXml[parseInt(NSIXmlDataItems[i].getAttribute("Index"),10)]=NSIXmlDataItems[i].getAttribute("Value");
+
+	for(i=0; i<NSIXml.length; ++i)
+		if(NSIXml[i])
+			toConsole(NSIXml[i]);
+}
+
+function toConsole(data)
+{
+	if(!console)
+		console=document.getElementById("console");
+
+	if(console)
+	{
+		var
+			newline=document.createElement("div"),
+			txt;
+
+		console.appendChild(newline);
+		txt=document.createTextNode(data);
+		newline.appendChild(txt);
+	}
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" value="Load XML" onclick="DoIt('data.xml')"><input type="button" value="Load XML" onclick="DoIt('http://localhost/data.xml')">
+		<div id="console"></div>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Images (resize) &copy</TITLE>
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function image(url, width, height)
+{
+   return('<IMG SRC="' + url + '"' +
+              ' WIDTH=' + width +
+              ' HEIGHT=' + height + '>');
+}
+
+function image1(width)
+{
+   return(image("pix/2337226.gif",width,Math.round(width*1.323)));
+}
+
+function image2(width)
+{
+   return(image("pix/7501.gif",width,Math.round(width*1.155)));
+}
+// -->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="WHITE">
+<HR>
+<SCRIPT TYPE="text/javascript">
+<!--
+  var
+    imageWidth = window.innerWidth/4,
+    fontSize = Math.min(7,Math.round(window.innerWidth/100));
+
+  document.writeln
+   ('<TABLE>\n' +
+    '  <TR><TD>' + image1(imageWidth) + '\n' +
+    '      <TH><FONT SIZE=' + fontSize + '>\n' +
+    '          "Doubtless God <I>could</I> have made\n' +
+    '          a better berry, but doubtless He\n' +
+    '          never did."</FONT>\n' +
+    '      <TD>' + image2(imageWidth) + '\n' +
+    '</TABLE>');
+// -->
+</SCRIPT>
+<HR>
+Bla-bla-bla
+</BODY>
+</HTML>

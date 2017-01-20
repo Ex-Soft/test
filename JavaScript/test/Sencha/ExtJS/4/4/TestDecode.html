@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Decode</title>
+		<!-- <script charset="utf-8" src="http://dev.sencha.com/deploy/ext-4.1.0-gpl/ext-all.js"></script> -->
+		<script charset="utf-8" src="../../../ExtJS/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.onReady(function() {
+	var
+		tmpStr="{\"FBool\":true,\"FString\":\"string\",\"FInt\":1,\"FFloat\":1.1,\"FDouble\":11.11,\"FDecimal\":111.111,\"FDateTime1\":\"\/Date(1326443637436)\/\",\"FDateTime2\":\"\/Date(1326943637436)\/\"}",
+		//tmpStr="[1,2,3,",
+		o1,
+		usePreReplace=false,
+		a=[[ "str", 1, 1.1, true, new Date() ]],
+		s1=Ext.encode(a),
+		o2;
+
+	if(usePreReplace)
+		tmpStr=tmpStr.replace(/\"\/Date\((-?\d+)\)\/\"/g,"new Date($1)");
+
+	try
+	{
+		o1=Ext.decode(tmpStr);
+
+		if(!usePreReplace)
+		{
+			o1.FDateTime1 = Ext.Date.parse(o1.FDateTime1, "MS");
+			o1.FDateTime2 = Ext.Date.parse(o1.FDateTime2, "MS");
+		}
+
+		o2=Ext.decode(s1);
+		
+		if(window.console && console.dir)
+		{
+			console.dir(o1);
+			console.log(s1);
+			console.dir(o2);
+		}
+
+		tmpStr = "{ method: function(a, b) { if(window.console && console.log) console.log(\"object.method a = %s, b = %s, arguments=%o\", a, b, arguments); } }";
+		o1 = Ext.JSON.decode(tmpStr);
+		console.dir(o1);
+		if(typeof o1.method === "function")
+			o1.method(1, 2);
+	}
+	catch(err)
+	{
+		if(window.console && console.log)
+			console.log("%s Can't decode \"%s\" : %s", err.name, tmpStr, err.message);
+	}
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

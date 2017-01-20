@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Login Page</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	var
+		lastLoginCookieName = "lastLoginDouble",
+		readCookie = function(name) {
+			var
+				allCookies=document.cookie,
+				pos,
+				value=null;
+
+			if(typeof(name) !== "string"
+				|| !name.length)
+				return(value);
+
+			name+="=";
+			if((pos=allCookies.indexOf(name)) != -1)
+			{
+				value = allCookies.substring(pos + name.length);
+				if((pos=value.indexOf(";")) != -1)
+					value=value.substring(0,pos);
+			}
+
+			return(value);
+		},
+		writeCookie = function(name, value) {
+			var
+				nextYear = new Date().getFullYear() + 1;
+
+			if(typeof(name) !== "string"
+				|| !name.length
+				|| typeof(value) !== "string"
+				|| !value.length)
+				return;
+
+			document.cookie = name + "=" + value + ";expires=" + nextYear.toGMTString() + ";path=/";
+		},
+		inpLogin = $("#inpLogin");
+	
+	inpLogin.bind("change", function(e){
+		writeCookie(lastLoginCookieName, e.target.value);
+	});
+	
+	inpLogin.val(readCookie(lastLoginCookieName));
+});
+		</script>
+	</head>
+	<body>
+		<form>
+			<label for="inpLogin">Login:</label><input type="text" id="inpLogin"/><br/>
+			<label for="inpPassword">Password:</label><input type="password" id="inpPassword"/><br/>
+			<input type="submit" value="Submit"/>
+		</form>
+	</body>
+</html>

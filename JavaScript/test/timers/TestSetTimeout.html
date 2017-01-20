@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test setTimeout()</title>
+		<script>
+var
+	timeoutID;
+
+function DoIt()
+{
+	var
+		ctrl,
+		millisec;
+
+	if(!(ctrl=document.getElementById("inputMillisec"))
+		|| isNaN(millisec=parseInt(ctrl.value, 10)))
+		return;
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("b4 set() %s", new Date().toString());
+
+	timeoutID = setTimeout(DoSmth, millisec);
+}
+
+function DoSmth()
+{
+	if(window.console && console.log)
+		console.log("DoSmth() %s", new Date().toString());
+
+	Clr();
+}
+
+function Clr()
+{
+	if(window.console && console.log)
+		console.log("Clr() %s", new Date().toString());
+
+	clearTimeout(timeoutID);
+}
+
+function Watch()
+{
+	if(window.console && console.log)
+		console.log("typeof timeoutID = \"%s\", timeoutID = %i", typeof timeoutID, timeoutID);
+}
+		</script>
+	</head>
+	<body>
+		<label>Timeout: <input type="text" id="inputMillisec" value="5000" placeholder="5000" required autofocus pattern="\d" /> (msec)</label>
+		<input type="button" value="set()" onclick="DoIt()" /><input type="button" value="clear()" onclick="Clr()" /><input type="button" value="watch" onclick="Watch()" />
+	</body>
+</html>

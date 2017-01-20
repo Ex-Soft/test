@@ -1,0 +1,222 @@
+<html>
+  <head>
+    <title>Any Test</title>
+<script type="text/javascript">
+<!--
+var
+  ComboBox1Val=new Array(),
+  ComboBox2Val=new Array();
+  Risk=new Array(),
+  InputRiskSignature="Risk",
+  CountFixedRows=0;
+
+  ComboBox1Val[0]={Value:0,Text:"Choice# 0"};
+  ComboBox1Val[1]={Value:1,Text:"Choice# 1"};
+  ComboBox1Val[2]={Value:2,Text:"Choice# 2"};
+  ComboBox1Val[10]={Value:10,Text:"Choice# 10"};
+
+  ComboBox2Val[0]=new Array();
+  ComboBox2Val[0][0]={Value:0,Text:"Choice# 0 0"};
+  ComboBox2Val[0][1]={Value:1,Text:"Choice# 0 1"};
+  ComboBox2Val[0][2]={Value:2,Text:"Choice# 0 2"};
+  ComboBox2Val[0][10]={Value:10,Text:"Choice# 0 10"};
+  ComboBox2Val[1]=new Array();
+  ComboBox2Val[1][0]={Value:0,Text:"Choice# 1 0"};
+  ComboBox2Val[1][1]={Value:1,Text:"Choice# 1 1"};
+  ComboBox2Val[1][2]={Value:2,Text:"Choice# 1 2"};
+  ComboBox2Val[1][10]={Value:10,Text:"Choice# 1 10"};
+  ComboBox2Val[2]=new Array();
+  ComboBox2Val[2][0]={Value:0,Text:"Choice# 2 0"};
+  ComboBox2Val[2][1]={Value:1,Text:"Choice# 2 1"};
+  ComboBox2Val[2][2]={Value:2,Text:"Choice# 2 2"};
+  ComboBox2Val[2][10]={Value:10,Text:"Choice# 2 10"};
+  ComboBox2Val[10]=new Array();
+  ComboBox2Val[10][0]={Value:0,Text:"Choice# 10 0"};
+  ComboBox2Val[10][1]={Value:1,Text:"Choice# 10 1"};
+  ComboBox2Val[10][2]={Value:2,Text:"Choice# 10 2"};
+  ComboBox2Val[10][10]={Value:10,Text:"Choice# 10 10"};
+
+  Risk[0]=new Array();
+  Risk[0][0]=new Array();
+  Risk[0][0][0]={Def:1.5,Min:1,Max:2};
+  Risk[0][0][1]={Def:2.5,Min:2,Max:3};
+  Risk[0][0][2]={Def:3.5,Min:3,Max:4};
+  Risk[0][1]=new Array();
+  Risk[0][1][0]={Def:4.5,Min:4,Max:5};
+  Risk[0][1][1]={Def:5.5,Min:5,Max:6};
+  Risk[0][1][2]={Def:6.5,Min:6,Max:7};
+
+function PrepareForm()
+{
+   var
+     Ctrl,
+     opt;
+
+   if(!(Ctrl=document.getElementById("ComboBox1")))
+     return;
+
+   for(var i=0; i<ComboBox1Val.length; ++i)
+   {
+      if(ComboBox1Val[i]==undefined)
+        continue;
+      opt=new Option(ComboBox1Val[i].Text,ComboBox1Val[i].Value);
+      Ctrl.options.add(opt,Ctrl.options.length);
+   }
+
+   AnyChange(Ctrl);
+}
+
+function AnyChange(obj)
+{
+   switch(obj.id)
+   {
+     case "ComboBox1" :
+     {
+        var
+          Ctrl;
+
+        if((Ctrl=document.getElementById("ComboBox1"))
+          && ComboBox1Val[Ctrl.options[Ctrl.selectedIndex].value])
+          Ctrl.title=ComboBox1Val[Ctrl.options[Ctrl.selectedIndex].value].Text;
+
+        FillComboBox2();
+        break;
+     }
+     case "ComboBox2" :
+     {
+        FillTable();
+        break;
+     }
+   }
+}
+
+function FillComboBox2()
+{
+   var
+     ComboBox1,
+     ComboBox1Idx,
+     Ctrl,
+     opt,
+     i;
+
+   if(!(ComboBox1=document.getElementById("ComboBox1"))
+      || ComboBox1.options.length==0
+      || ComboBox1.options[ComboBox1.selectedIndex].value.replace(/\s/g,"").length==0
+      || !(Ctrl=document.getElementById("ComboBox2")))
+     return;
+
+   
+   ComboBox1Idx=parseInt(ComboBox1.options[ComboBox1.selectedIndex].value,10);
+   if(ComboBox2Val[ComboBox1Idx]==undefined)
+     return;
+
+   for(i=Ctrl.options.length; i>0; --i)
+      Ctrl.remove(0);
+
+   for(i=0; i<ComboBox2Val[ComboBox1Idx].length; ++i)
+   {
+      if(ComboBox2Val[ComboBox1Idx][i]==undefined)
+        continue;
+      opt=new Option(ComboBox2Val[ComboBox1Idx][i].Text,ComboBox2Val[ComboBox1Idx][i].Value);
+      opt.title=ComboBox2Val[ComboBox1Idx][i].Text;
+      Ctrl.options.add(opt,Ctrl.options.length);
+   }
+
+   AnyChange(Ctrl);
+}
+
+function FillTable()
+{
+   var
+     ComboBox1,
+     ComboBox1Idx,
+     Ctrl,
+     ComboBox2,
+     ComboBox2Idx;
+
+   if(!(ComboBox1=document.getElementById("ComboBox1"))
+      || ComboBox1.options.length==0
+      || ComboBox1.options[ComboBox1.selectedIndex].value.replace(/\s/g,"").length==0
+      || !(ComboBox2=document.getElementById("ComboBox2"))
+      || ComboBox2.options.length==0
+      || ComboBox2.options[ComboBox2.selectedIndex].value.replace(/\s/g,"").length==0
+      || !(Ctrl=document.getElementById("TableRisk")))
+     return;
+
+   ComboBox1Idx=parseInt(ComboBox1.options[ComboBox1.selectedIndex].value,10);
+   ComboBox2Idx=parseInt(ComboBox2.options[ComboBox2.selectedIndex].value,10);
+
+   if(Risk[ComboBox1Idx]==undefined
+      || Risk[ComboBox1Idx][ComboBox2Idx]==undefined)
+     return;
+
+   ClearTable(Ctrl,CountFixedRows);
+   if(!(Ctrl=TableBody(Ctrl)))
+     return;
+
+   for(var i=0; i<Risk[ComboBox1Idx][ComboBox2Idx].length; ++i)
+      TableAdd(Ctrl,Risk[ComboBox1Idx][ComboBox2Idx][i].Def,Risk[ComboBox1Idx][ComboBox2Idx][i].Min,Risk[ComboBox1Idx][ComboBox2Idx][i].Max);
+}
+
+function TableAdd(aTableBody, Def, Min, Max)
+{
+   var
+     oRow,
+     oCell,
+     row,
+     Ctrl;
+
+   if(!(oRow=aTableBody.insertRow(aTableBody.rows.length)))
+     return;
+
+   row=aTableBody.rows.length;
+
+   if(!(oCell=oRow.insertCell(0)))
+     return;
+   oCell.innerHTML="<input type=\"text\" id=\""+InputRiskSignature+(row-CountFixedRows)+"\" name=\""+InputRiskSignature+(row-CountFixedRows)+"\" value=\""+Def+"\" style=\"width: 100%; \">";
+   if(Ctrl=document.getElementById(InputRiskSignature+(row-CountFixedRows)))
+   {
+      Ctrl.Min=Min;
+      Ctrl.Max=Max;
+   }
+}
+
+function TableBody(aTableId)
+{
+   var
+     oTableBody=null,
+     oTable = typeof(aTableId)=="string" ? document.getElementById(aTableId) : aTableId;
+
+   if(oTable==null || oTable==undefined)
+     return(oTableBody);
+  
+   for(var i=0; i<oTable.childNodes.length; ++i)
+      if(oTable.childNodes[i].nodeType==1 && oTable.childNodes[i].nodeName.toLowerCase()=="tbody")
+        {
+           oTableBody=oTable.childNodes[i];
+           break;
+        }
+        
+   return(oTableBody);
+}
+
+function ClearTable(aTableId, aFixedRows)
+{
+   var
+     oTBody;
+
+   if(oTBody=TableBody(aTableId))
+     for(var i=oTBody.rows.length-aFixedRows; i>0; --i)
+        oTBody.deleteRow(aFixedRows);
+}
+// -->
+</script>
+  </head>
+  <body onload="PrepareForm()">
+    <form>
+      <select id="ComboBox1" name="ComboBox1" onchange="AnyChange(this)"></select>
+      <select id="ComboBox2" name="ComboBox2" onchange="AnyChange(this)"></select>
+      <table id="TableRisk" name="TableRisk"><tbody></tbody></table>
+    </form>
+  </body>
+</html>

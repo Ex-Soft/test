@@ -1,0 +1,271 @@
+<html>
+	<head>
+		<title>Test Events</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<style>
+.CSSTable
+{
+	border-color: Teal;
+	border-style: solid;
+	border-width: 5px;
+	background-color: Yellow;
+	width: 100%
+}
+
+.CSSTr
+{
+	border-color: Navy;
+	border-style: solid;
+	border-width: 5px;
+	background-color: Lime
+}
+
+.CSSTd
+{
+	border-color: BlueViolet;
+	border-style: solid;
+	border-width: 5px;
+	background-color: DeepSkyBlue
+}
+		</style>
+		<script type="text/javascript">
+<!--
+function OnClick(e)
+{
+	var
+		obj,
+		Ctrl,
+		tmpStr="";
+
+	alert("typeof(event)=\""+typeof(e)+"\"");
+
+	if(!e)
+		e=window.event;
+
+	if("currentTarget" in e)
+		e.currentTarget.style.borderColor="red";
+
+	if("srcElement" in e)
+		e.srcElement.style.borderColor="red";
+
+	if("type" in e)
+		tmpStr+="event.type=\""+e.type+"\"\r\n";
+	if("target" in e)
+		tmpStr+="event.target=\""+e.target+"\"\r\n";
+	if("currentTarget" in e)
+		tmpStr+="event.currentTarget=\""+e.currentTarget+"\"\r\n";
+	if("originalTarget" in e)
+		tmpStr+="event.originalTarget=\""+e.originalTarget+"\"\r\n";
+	if("explicitOriginalTarget" in e)
+		tmpStr+="event.explicitOriginalTarget=\""+e.explicitOriginalTarget+"\"\r\n";
+	if("rangeParent" in e)
+		tmpStr+="event.rangeParent=\""+e.rangeParent+"\"\r\n";
+	if("rangeOffset" in e)
+		tmpStr+="event.rangeOffset=\""+e.rangeOffset+"\"\r\n";
+	if("eventPhase" in e)
+		tmpStr+="event.eventPhase=\""+e.eventPhase+"\"\r\n";
+	if("timeStamp" in e)
+		tmpStr+="event.timeStamp=\""+e.timeStamp+"\"\r\n";
+	if("bubbles" in e)
+		tmpStr+="event.bubbles=\""+e.bubbles+"\"\r\n";
+	if("cancelable" in e)
+		tmpStr+="event.cancelable=\""+e.cancelable+"\"\r\n";
+	if(e.view)
+		tmpStr+="event.view=\""+e.view+"\"\r\n";
+	if("detail" in e)
+		tmpStr+="event.detail=\""+e.detail+"\"\r\n";
+	if("button" in e)
+		tmpStr+="event.button=\""+e.button+"\"\r\n";
+	if("altKey" in e)
+		tmpStr+="event.altKey=\""+e.altKey+"\"\r\n";
+	if("ctrlKey" in e)
+		tmpStr+="event.ctrlKey=\""+e.ctrlKey+"\"\r\n";
+	if("metaKey" in e)
+		tmpStr+="event.metaKey=\""+e.metaKey+"\"\r\n";
+	if("shiftKey" in e)
+		tmpStr+="event.shiftKey=\""+e.shiftKey+"\"\r\n";
+	if("clientX" in e)
+		tmpStr+="event.clientX=\""+e.clientX+"\"\r\n";
+	if("clientY" in e)
+		tmpStr+="event.clientY=\""+e.clientY+"\"\r\n";
+	if("screenX" in e)
+		tmpStr+="event.screenX=\""+e.screenX+"\"\r\n";
+	if("screenY" in e)
+		tmpStr+="event.screenY=\""+e.screenY+"\"\r\n";
+	if("relatedTarget" in e)
+		tmpStr+="event.relatedTarget=\""+e.relatedTarget+"\"\r\n";
+	if("srcElement" in e)
+		tmpStr+="event.srcElement=\""+e.srcElement+"\"\r\n";
+	if("offsetX" in e)
+		tmpStr+="event.offsetX=\""+e.offsetX+"\"\r\n";
+	if("offsetY" in e)
+		tmpStr+="event.offsetY=\""+e.offsetY+"\"\r\n";
+	if("keyCode" in e)
+		tmpStr+="event.keyCode=\""+e.keyCode+"\"\r\n";
+	if("fromElement" in e)
+		tmpStr+="event.fromElement=\""+e.fromElement+"\"\r\n";
+	if("toElement" in e)
+		tmpStr+="event.toElement=\""+e.toElement+"\"\r\n";
+	if("cancelBubble" in e)
+		tmpStr+="event.cancelBubble=\""+e.cancelBubble+"\"\r\n";
+	if("returnValue" in e)
+		tmpStr+="event.returnValue=\""+e.returnValue+"\"\r\n";
+	if("layerX" in e)
+		tmpStr+="event.layerX=\""+e.layerX+"\"\r\n";
+	if("layerY" in e)
+		tmpStr+="event.layerY=\""+e.layerY+"\"\r\n";
+	if("pageX" in e)
+		tmpStr+="event.pageX=\""+e.pageX+"\"\r\n";
+	if("pageY" in e)
+		tmpStr+="event.pageY=\""+e.pageY+"\"\r\n";
+	if("which" in e)
+		tmpStr+="event.which=\""+e.which+"\"\r\n";
+	if("isTrusted" in e)
+		tmpStr+="event.isTrusted=\""+e.isTrusted+"\"\r\n";
+	if("isChar" in e)
+		tmpStr+="event.isChar=\""+e.isChar+"\"\r\n";
+
+	alert(tmpStr);
+
+	tmpStr="";
+	if("target" in e)
+		tmpStr+="event.target.tagName=\""+e.target.tagName+"\"\r\n";
+	if("currentTarget" in e)
+		tmpStr+="event.currentTarget.tagName=\""+e.currentTarget.tagName+"\"\r\n";
+	if("originalTarget" in e)
+		tmpStr+="event.originalTarget.tagName=\""+e.originalTarget.tagName+"\"\r\n";
+	if("explicitOriginalTarget" in e)
+		tmpStr+="event.explicitOriginalTarget.tagName=\""+e.explicitOriginalTarget.tagName+"\"\r\n";
+	if("srcElement" in e)
+		tmpStr+="event.srcElement.tagName=\""+e.srcElement.tagName+"\"\r\n";
+	if(("relatedTarget" in e) && e.relatedTarget)
+		tmpStr+="event.relatedTarget.tagName=\""+e.relatedTarget.tagName+"\"\r\n";
+	if(("fromElement" in e) && e.fromElement)
+		tmpStr+="event.fromElement.tagName=\""+e.fromElement.tagName+"\"\r\n";
+	if(("toElement" in e) && e.toElement)
+		tmpStr+="event.toElement.tagName=\""+e.toElement.tagName+"\"\r\n";
+
+	alert(tmpStr);
+
+	if("currentTarget" in e)
+		e.currentTarget.style.borderColor="";
+
+	if("srcElement" in e)
+		e.srcElement.style.borderColor="";
+
+	if((Ctrl=document.getElementById("CheckBoxIsPropagationBubble"))
+		&& !Ctrl.checked)
+	{
+		if(e.stopPropagation)
+			e.stopPropagation();
+		else
+			e.cancelBubble=true;
+	}
+}
+
+function OnLoad()
+{
+	var
+		Ctrl,
+		Listener="click",
+		Func=OnClick;
+
+	for(var i=0; i<3; ++i)
+	{
+		if(!(Ctrl=document.getElementById("TDWithEvent"+i)))
+			continue;
+
+		if("attachEvent" in Ctrl)
+			Ctrl.attachEvent("on"+Listener,Func);
+		else if("addEventListener" in Ctrl)
+			Ctrl.addEventListener(Listener,Func,false);
+		else
+			eval("Ctrl.on"+Listener+"="+Func);
+			//eval("Ctrl.on"+Listener+"=OnClick");
+			//Ctrl.onclick=OnClick;
+	}
+/*
+	if(Ctrl=document.getElementById("InputText1"))
+	{
+		if("attachEvent" in Ctrl)
+			Ctrl.setAttribute("onclick",function(){alert('clicked')});
+		else if("addEventListener" in Ctrl)
+			Ctrl.setAttribute("onclick","alert('clicked')");
+	}
+*/
+	if(Ctrl=document.getElementById("InputText1"))
+	{
+		if("attachEvent" in Ctrl)
+			Ctrl.attachEvent("onclick",function(){alert('clicked')});
+		else if("addEventListener" in Ctrl)
+			Ctrl.addEventListener("click",function(){alert('clicked')},false);
+		else
+			Ctrl.onclick=function(){alert('clicked')};
+	}
+
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<form>
+	        	<table border="0">
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>Propagation/Bubble&nbsp;<input type="checkbox" id="CheckBoxIsPropagationBubble"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table cellspacing="10" cellpadding="25" onclick="OnClick(event);" class="CSSTable">
+							<tr onclick="OnClick(event);" class="CSSTr">
+								<td onclick="OnClick(event);" class="CSSTd">onclick="OnClick(event);"</td>
+								<td id="TDWithEvent0" class="CSSTd">addEventListener/attachEvent</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table cellspacing="10" cellpadding="25" class="CSSTable">
+							<tr class="CSSTr">
+								<td onclick="OnClick();" class="CSSTd">onclick="OnClick();"</td>
+								<td onclick="OnClick(event);" class="CSSTd">onclick="OnClick(event);"</td>
+								<td id="TDWithEvent1" class="CSSTd">addEventListener/attachEvent</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<div onclick="OnClick(event);" class="CSSTable">
+				<div onclick="OnClick(event);" class="CSSTr">
+					<div onclick="OnClick();" class="CSSTd">
+						onclick="OnClick();"
+					</div>
+				</div>
+			</div>
+			<br>
+			<div onclick="OnClick(event);" class="CSSTable">
+				<div onclick="OnClick(event);" class="CSSTr">
+					<div onclick="OnClick(event);" class="CSSTd">
+						onclick="OnClick(event);"
+					</div>
+				</div>
+			</div>
+			<br>
+			<div onclick="OnClick(event);" class="CSSTable">
+				<div onclick="OnClick(event);" class="CSSTr">
+					<div id="TDWithEvent2" class="CSSTd">
+						addEventListener/attachEvent
+					</div>
+				</div>
+			</div>
+			<input type="text" id="InputText1"><br />
+			<input type="button" id="InputButton1" value="Button" onclick="OnClick(event);">
+		</form>
+	</body>
+</html>

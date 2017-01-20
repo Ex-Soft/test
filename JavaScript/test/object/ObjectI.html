@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Object I</title>
+    <script>
+var
+  tmpObject=new Object(),
+  tmpObject2,
+  tmpStr;
+
+tmpObject2 = { name: "name", Name: "Name" };
+
+document.write("toString.call(undefined) = \"", toString.call(undefined), "\"<br/>");
+document.write("toString.call(null) = \"", toString.call(null), "\"<br/>");
+document.write("<hr/>");
+
+tmpStr="tmpObject.Required";
+if(!tmpObject.Required)
+  tmpStr="!"+tmpStr;
+document.write(tmpStr,"<br>");
+document.write(typeof(tmpObject.Required),"<br>");
+
+tmpStr="(\"Required\" in tmpObject)";
+if(!("Required" in tmpObject))
+  tmpStr="!"+tmpStr;
+document.write(tmpStr,"<br>");
+document.write(typeof(tmpObject.Required),"<br>");
+
+tmpObject.Required=true;
+tmpStr="(\"Required\" in tmpObject)";
+if(!("Required" in tmpObject))
+  tmpStr="!"+tmpStr;
+document.write(tmpStr,"<br>");
+document.write(typeof(tmpObject.Required),"<br>");
+
+if("Required" in tmpObject)
+  delete tmpObject.Required;
+tmpStr="(\"Required\" in tmpObject)";
+if(!("Required" in tmpObject))
+  tmpStr="!"+tmpStr;
+document.write(tmpStr,"<br>");
+document.write(typeof(tmpObject.Required),"<br>");
+
+document.write("<hr>");
+tmpObject2={Id:1,BD:"05.01.1974",Doc:new Array({Id:10,Name:"паспорт"},{Id:20,Name:"права"})};
+document.write("tmpObject2.Id=",tmpObject2.Id,"<br>");
+document.write("tmpObject2.BD=",tmpObject2.BD,"<br>");
+document.write(typeof(tmpObject2.Doc),"<br>");
+if(tmpObject2.Doc instanceof Array)
+  document.write("tmpObject2.Doc instanceof Array","<br>");
+document.write("tmpObject2.Doc.length=",tmpObject2.Doc.length,"<br>");
+for(var i=0; i<tmpObject2.Doc.length; ++i)
+{
+   document.write("tmpObject2.Doc[",i,"].Id=",tmpObject2.Doc[i].Id,"<br>");
+   document.write("tmpObject2.Doc[",i,"].Name=",tmpObject2.Doc[i].Name,"<br>");
+}
+
+document.write("<hr>");
+document.write(tmpObject2.toString(),"<br/>");
+
+tmpObject = {
+  p1: "p1Value",
+  p2: "p2Value",
+  foo: function() {
+  	if(window.console && console.log)
+  		console.log("foo(%o)", arguments);
+
+  	document.write(this["p1"],"<br/>");
+  	
+  	this.p1 = arguments[0];
+  }
+};
+
+document.write("<hr>");
+document.write(tmpObject["p1"],"<br/>");
+document.write(tmpObject["p2"],"<br/>");
+document.write(tmpObject["p3"],"<br/>");
+tmpObject["foo"].call(tmpObject, 1, 2, 3);
+document.write(tmpObject["p1"],"<br/>");
+tmpObject["foo"].apply(tmpObject, [11, 22, 33]);
+document.write(tmpObject["p1"],"<br/>");
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

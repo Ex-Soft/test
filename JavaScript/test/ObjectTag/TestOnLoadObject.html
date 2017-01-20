@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Test OnLoad (&lt;object&gt;)</title>
+		<script>
+function Add()
+{
+	var
+		ctrl,
+		evnt="load",
+		func=OnLoad;
+
+	if(!(ctrl=document.createElement("object")))
+		return;
+
+	ctrl.id="object2";
+	ctrl.type="application/pdf";
+	ctrl.data="TestPdf2.pdf";
+	ctrl.width="500";
+	ctrl.height="500";
+
+	if(ctrl.addEventListener)
+		ctrl.addEventListener(evnt, func, false);
+	else if(ctrl.attachEvent)
+		ctrl.attachEvent("on"+evnt, func)
+	else
+		eval("ctrl.on"+evnt+"="+func);
+
+	document.body.appendChild(ctrl);
+}
+
+function OnLoad(obj)
+{
+	if(window.console && console.log)
+		console.log("OnLoad(%o)", obj);
+}
+		</script>
+	</head>
+	<body id="bodyId" onload="OnLoad(this)">
+		<object id="object1" type="application/pdf" data="TestPdf1.pdf" width="500" height="500" onload="OnLoad(this)">
+			<p>It appears you don't have a PDF plugin for this browser. No biggie... you can <a href="TestPdf1.pdf">click here to download the PDF file.</a></p>
+		</object>
+		<input type="button" value="Add" onclick="Add()" /><br/>
+	</body>
+</html>

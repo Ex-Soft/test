@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script type="text/javascript">
+<!--
+function tst(e)
+{
+	if(e.keyCode==13)
+		return;
+
+	alert('halo');
+}
+
+function tst2(e)
+{
+  document.getElementById('u').focus();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="text" id="u" onkeyup="tst(event)">
+		<input type="button" id="g" onclick="tst2(event)" value="test">
+	</body>
+</html>

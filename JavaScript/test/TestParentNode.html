@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Test parentNode</title>
+		<style type="text/css">
+.DivClass
+{
+	color: red;
+}
+		</style>
+		<script type="text/javascript">
+<!--
+function DoIt(e)
+{
+	var
+		Ctrl;
+
+	e = e ? e : window.event;
+	Ctrl = e.target ? e.target : e.srcElement;
+	alert(Ctrl.parentNode.className);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<div id="SmthDiv" class="DivClass">
+			<input type="text" id="InputText1" onkeyup="DoIt(event)">
+		</div>
+	</body>
+<html>

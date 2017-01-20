@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test jQuery Ajax</title>
+		<!--script charset="utf-8" src="../../jQuery/2/jquery.js"></script-->
+		<script charset="utf-8" src="../../jQuery/1/jquery.js"></script>
+		<script>
+function DoIt()
+{
+	$.ajax({
+		async: true,
+		//url: "http://localhost/ServiceI/ServiceI.asmx/DoSmthWithTestClassSimpleII",
+		url: "http://localhost:1209/data.aspx",
+		crossDomain: true,
+		method: "POST",
+		type: "POST",
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		headers: {
+			Custom: "Custom",
+			"Accept-Charset": "UTF-8"
+			,"Access-Control-Allow-Headers": "*"
+		},
+		xhrFields: {
+			withCredentials: true
+		},
+		data: "{ \"taskId\": 999, \"user\": \"user\" }",
+		username: "nozhenko",
+		password: "",
+		statusCode: {
+			401 : function(){
+				if(window.console && console.log)
+					console.log("arguments.length=%d", arguments.length);
+			},
+			404 : function(){
+				if(window.console && console.log)
+					console.log("arguments.length=%d", arguments.length);
+			}
+		},
+		success: function(data, textStatus, jqXHR){
+			if(data){
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			if(jqXHR){
+			}
+		}
+	});
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

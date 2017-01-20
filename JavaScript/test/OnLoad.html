@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Test FOCUS()</title>
+<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("Text2")))
+		alert("Unknown CtrlId");
+	else
+		Ctrl.focus();
+}
+// -->
+</script>
+  </head>
+  <body onload="OnLoad()">
+    <form>
+	<input type="text" id="Text1">
+	<input type="text" id="Text2">
+    </form>
+  </body>
+</html>

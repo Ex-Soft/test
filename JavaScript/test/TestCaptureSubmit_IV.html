@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Test Capture Submit (IV)</title>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("SmthForm"))
+	{
+		Ctrl.oldsubmit=Ctrl.submit;
+		Ctrl.submit=function(){this.onsubmit();this.oldsubmit();};
+	}
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<form id="SmthForm" method="post" onsubmit="alert('<form ...onsubmit...>')">
+			<input type="text" id="InputText"><br>
+			<input type="button" id="InputButton" value="Button" onclick="document.getElementById('SmthForm').submit()"><br>
+			<input type="submit" id="InputSubmit" value="Submit"><br>
+			<input type="button" id="InputButton" value="Button" onclick="document.getElementById('InputSubmit').click()"><br>
+		</form>
+	</body>
+</html>

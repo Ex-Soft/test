@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script>
+var
+	UseGetTime=true,
+	time0=UseGetTime?(new Date()).getTime():new Date(),
+	time3;
+
+window.onload=function(){time3=UseGetTime?(new Date()).getTime():new Date(); alert("onload")};
+		</script>
+	</head>
+	<body>
+		<script>
+var
+	time1=UseGetTime?(new Date()).getTime():new Date();
+		</script>
+		<input type=button onclick="alert(time0); alert(time1); alert(time2); alert(time3);">
+		<img src="http://www.emmawatsonofficial.com/content/images/gallery/roll-01.jpg">
+		<script>
+var
+	time2=UseGetTime?(new Date()).getTime():new Date();
+		</script>
+	</body>
+</html>

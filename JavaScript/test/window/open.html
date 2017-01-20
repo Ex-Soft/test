@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Test window.open()</title>
+<script type="text/javascript">
+<!--
+function Func()
+{
+	alert("onunload");
+}
+
+function wOpen()
+{
+   var
+     w=window.open("","Page"+1,"location=no,menubar=yes,scrollbars=yes,height="+screen.availHeight/2+"px,width="+screen.availWidth/2+"px"),
+     d=w.document,
+     str;
+
+   if("attachEvent" in w)
+     w.attachEvent("onunload",Func);
+   else if("addEventListener" in w)
+     w.addEventListener("unload",Func,false);
+   else
+     w.onunload=Func;
+
+  d.open();
+  d.write("<h1>","Test","</h1>");
+  d.write("<hr>");
+  d.write("window.name='",w.name,"'","<br>");
+
+  d.write("<hr>");
+  str = "window.opener"+(w.opener!=null ? ".location.href='"+w.opener.location.href+"'" : "==null");
+  d.write(str,"<br>");
+  str = "window.opener"+(w.opener!=null ? ".id='"+w.opener.id+"'" : "==null");
+  d.write(str,"<br>");
+  str = "window.opener"+(w.opener!=null ? ".name='"+w.opener.name+"'" : "==null");
+  d.write(str,"<br>");
+
+  d.write("<hr>");
+  str = "window.parent"+(w.parent!=null ? ".location.href='"+w.parent.location.href+"'" : "==null");
+  d.write(str,"<br>");
+  str = "window.parent"+(w.parent!=null ? ".id='"+w.parent.id+"'" : "==null");
+  d.write(str,"<br>");
+  str = "window.parent"+(w.parent!=null ? ".name='"+w.parent.name+"'" : "==null");
+  d.write(str,"<br>");
+
+  d.write("<hr>");
+  d.write("d.title='",d.title,"'","<br>");
+  d.title=w.name;
+  d.write("d.title='",d.title,"'","<br>");
+  d.close();
+
+  w.opener.document.getElementById("TextBox1").value=d.title;
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="TextBox1">
+      <input type="button" onclick="wOpen()" value="Open">
+    </form>
+  </body>
+</html>

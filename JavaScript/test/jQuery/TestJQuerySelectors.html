@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test jQuery selectors</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<style>
+.class1
+{
+	width: 500px;
+	font-weight: bold;
+}
+
+.class2
+{
+	width: 500px;
+	color: red;
+}
+		</style>
+		<script>
+$(document).ready(function() {
+	$("#buttonClass1").bind("click", function() { Set(this.value) });
+	$("#buttonClass2").bind("click", function() { Set(this.value) } );
+	$("#buttonClass1Class2").bind("click", function() { Set(this.value) } );
+});
+
+function Set(classSelector)
+{
+	var
+		cb = $("#inputCheckBox");
+		ctrl;
+
+	if (window.console && console.log)
+	{
+		console.log("%o", cb);
+		console.log("%o", cb[0]);
+	}
+
+	if (cb)
+	{
+		if (cb.length) cb[0].checked = true;
+		//cb.prop("checked", true);
+		//cb.attr("checked", true);
+	}
+
+	$("#buttonClass1").bind("click", function() { Set(this.value) });
+	$("#buttonClass2").bind("click", function() { Set(this.value) } );
+	$("#buttonClass1Class2").bind("click", function() { Set(this.value) } );
+
+	if((ctrl=$(classSelector))
+		&& ctrl.length>0)
+		ctrl.val(new Date());
+}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="inputText1" value="class1" class="class1" /><input type="button" id="buttonClass1" value=".class1" /><br/>
+		<input type="text" id="inputText1" value="class2" class="class2" /><input type="button" id="buttonClass2" value=".class2" /><br/>
+		<input type="text" id="inputText1" value="class1 class2" class="class1 class2" /><input type="button" id="buttonClass1Class2" value=".class1.class2" /><br/>
+		<input type="checkbox" id="inputCheckBox"/>
+	</body>
+</html>

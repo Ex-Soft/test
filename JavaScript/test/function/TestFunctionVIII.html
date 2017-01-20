@@ -1,0 +1,21 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Function VIII</title>
+		<script type="text/javascript">
+function f(param1)
+{
+	if(window.console && console.log)
+		console.log("arguments.length = %i (param1 = %s)", arguments.length, param1);
+}
+
+function OnLoad()
+{
+	f.apply(this, [1, 2, 3]);
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

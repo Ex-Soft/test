@@ -1,0 +1,106 @@
+﻿{
+	actions: [{
+		id: "Save",
+		text: "Save",
+		iconCls: "btn-save",
+		handler: "handlerSave"
+	}],
+
+	dockedItems: [{
+		xtype: "toolbar",
+		dock: "top",
+		items: [{
+			orderId: 0,
+			text: "TopDfmButton"
+		},
+		{
+			text: "TopDfmTestPanelMenu1",
+			menuId: "TopTestPanelMenu1",
+			menu: [{
+				orderId: 0,
+				text: "TopDfmTestPanelMenu1Button1"
+			}, {
+				orderId: 3,
+				actionId: "Save"
+			}, {
+				orderId: 5,
+				text: "TopDfmTestPanelMenu1Menu1",
+				menu: [{
+					text: "TopDfmTestPanelMenu1Menu1Button1"
+				}, {
+					actionId: "Save"
+				}]
+			}]
+		},
+		{
+			text: "TopDfmMenu1",
+			menuId: "TopDfmMenu1",
+			menu: [{
+				text: "TopDfmMenu1Button1",
+			}, {
+				actionId: "Save"
+			}, {
+				text: "TopDfmMenu1Menu1",
+				menuId: "TopDfmMenu1Menu1",
+				menu: [{
+					text: "TopDfmMenu1Menu1Button1"
+				}, {
+					actionId: "Save"
+				}]
+			}]
+		},
+		"-",
+		"->",
+		{
+			actionId: "Save"
+		}]
+	}, {
+		xtype: "toolbar",
+		dock: "bottom",
+		items: [{
+			text: "BottomDfmButton"
+		}]
+	}, {
+		xtype: "toolbar",
+		dock: "left",
+		items: [{
+			text: "LeftDfmButton"
+		}]
+	}, {
+		xtype: "toolbar",
+		dock: "right",
+		items: [{
+			text: "RightDfmButton"
+		}]
+	}, {
+		xtype: "toolbar",
+		dock: "bottom",
+		ui: "footer",
+		items: [{
+			text: "BottomFooterDfmButton"
+		}]
+	}],
+
+	items: [{
+		xtype: "fieldset",
+		title: "FieldSet",
+		collapsible: true,
+		layout: "column",
+		defaults: {
+			labelAlign: "right"
+		},
+		items: [{
+			columnWidth: 0.7,
+			xtype: "textfield",
+			customName: "TextBox1",
+			fieldLabel: "TextBox1",
+			value: "TextBox1"
+		}, {
+			columnWidth: 0.3,
+			xtype: "datefield",
+			customName: "Date1",
+			fieldLabel: "Date1",
+			value: new Date()
+		}]
+	}]
+}

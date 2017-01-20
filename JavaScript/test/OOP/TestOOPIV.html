@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test OOP (IV)</title>
+		<script type="text/javascript">
+function Animal(name) {
+	this.name = name;
+	this.canWalk = true;
+	this.movemove = function(n) {
+		this.distance = n;
+		if(window.console && console.log)
+			console.log(this.distance);
+	}
+}
+
+Animal.prototype.move = function(n) {
+	this.distance = n;
+	if(window.console && console.log)
+		console.log(this.distance);
+}
+
+function Rabbit(name) {
+	this.name = name;
+}
+
+function Hamster()
+{
+}
+
+Hamster.prototype = {
+	food: [],
+	found: function(something) {
+		this.food.push(something)
+	}
+}
+
+function HamsterII()
+{
+	this.food = [];
+}
+
+HamsterII.prototype = {
+	food: [],
+	found: function(something) {
+		this.food.push(something)
+	}
+}
+
+function OnLoad()
+{
+	var
+		animal = new Animal("скотинка");
+
+	Rabbit.prototype = animal;
+
+	if(window.console && console.log)
+		console.log("animal instanceof Animal = %s", animal instanceof Animal); // true
+
+	var
+		big = new Rabbit("Chuk"),
+		small = new Rabbit("Gek")
+
+	if(window.console && console.log)
+	{
+		console.log("big.name = %s", big.name); // Chuk
+		console.log("small.name = %s", small.name); // Gek
+		console.log("big.canWalk = %s", big.canWalk); // true
+		console.log("small.canWalk = %s", small.canWalk); // true
+
+		if (big.__proto__)
+			console.log("big.__proto__.name = %s", big.__proto__.name); // скотинка
+	}
+	
+	animal.canWalk = false;
+	if(window.console && console.log)
+	{
+		console.log("animal.canWalk = %s", animal.canWalk); // false
+		console.log("big.canWalk = %s", big.canWalk); // false
+		console.log("small.canWalk = %s", small.canWalk); // false
+	}
+
+	animal.canWalk = false;
+	big.canWalk = true;
+	if(window.console && console.log)
+	{
+		console.log("animal.canWalk = %s", animal.canWalk); // false
+		console.log("big.canWalk = %s", big.canWalk); // true
+		console.log("small.canWalk = %s", small.canWalk); // false
+	}
+	
+	animal.move(3);
+	big.movemove(4);
+
+	speedy = new Hamster();
+	lazy = new Hamster();
+
+	speedy.found("apple");
+	speedy.found("orange");
+	
+	if(window.console && console.log)
+	{
+		console.log("speedy.food.length = %i", speedy.food.length); // 2
+		console.log("lazy.food.length = %i", lazy.food.length); // 2!!!???
+	}
+
+	speedyII = new HamsterII();
+	lazyII = new HamsterII();
+
+	speedyII.found("apple");
+	speedyII.found("orange");
+	
+	if(window.console && console.log)
+	{
+		console.log("speedyII.food.length = %i", speedyII.food.length); // 2
+		console.log("lazyII.food.length = %i", lazyII.food.length); // 2!!!???
+	}
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

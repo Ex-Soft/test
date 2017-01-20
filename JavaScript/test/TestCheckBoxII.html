@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>Test CheckBox II</title>
+		<script type="text/javascript">
+<!--
+function DoIt(obj)
+{
+	var
+		Ctrl,
+		Ctrls;
+
+	if(!obj.checked
+		|| !(Ctrl=document.getElementById("CheckBoxGroup1"))
+		|| !(Ctrls=Ctrl.getElementsByTagName("input")))
+		return;
+
+	for(var i=0; i<Ctrls.length; ++i)
+		if(Ctrls[i]!=obj
+			&& Ctrls[i].checked)
+			Ctrls[i].checked=false;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form id="MainForm" method="post">
+			<fieldset id="CheckBoxGroup1"><legend> Smth CheckBox Group </legend>
+				<input type="checkbox" id="CheckBox1" onclick="DoIt(this)">
+				<input type="checkbox" id="CheckBox2" onclick="DoIt(this)">
+				<input type="checkbox" id="CheckBox3" onclick="DoIt(this)">
+			</fieldset>
+		</form>
+	</body>
+</html>

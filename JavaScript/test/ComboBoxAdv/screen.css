@@ -1,0 +1,471 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #FFFFFF;
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	color: black;
+}
+
+a {
+	color: #78673A;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a.menu {
+	font-size: 12px;
+	text-align: center;
+	background: url('../img/menu_bg.gif') no-repeat;
+}
+
+a.menuHit {
+	font-size: 12px;
+	text-align: center;
+	background: url('../img/menu_bg_hit.gif') no-repeat;
+}
+
+input, textarea, select {
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	border-right: 1px solid silver;
+	border-bottom: 1px solid silver;
+	padding: 1px;
+	width: 450px;
+}
+
+textarea {
+	width: 600px;
+	height: 180px;
+}
+
+.submit {
+	font-family: verdana, arial, sans-serif;
+	width: 100px;
+	font-size: 10px;
+	height: 20px;
+	border-left: 1px solid silver;
+	border-top: 1px solid silver;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	margin-top: 7px;
+}
+
+p {
+	text-align: justify;
+	margin-bottom: 7px;
+}
+
+h1, #menu ul li a, h2 {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+h1 {
+	width: 770px;
+	height: 60px;
+}
+
+h1.v0 {
+	background: url('../img/header0.jpg') no-repeat;
+}
+
+h1.v1 {
+	background: url('../img/header1.jpg') no-repeat;
+}
+
+h2 {
+	width: 400px;
+	height: 22px;
+	background: url('../img/topic_bg.gif') repeat-x;
+	margin-bottom: 10px;
+	color: #78673A;
+	font-size: 16px;
+	text-indent: 10px;
+}
+
+h3 {
+	font-size: 13px;
+}
+
+h4 {
+	font-size: 11px;
+}
+
+h1 span, #Buttons li a span, #Cmade span {
+	display: none;
+	overflow: hidden;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#sitemap {
+	margin-left: 15px;
+	list-style-type: square;
+}
+
+#sitemap li {
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+#sitemap ul {
+	margin-left: 25px;
+	list-style-type: circle;
+}
+
+#sitemap ul li {
+	font-weight: normal;
+}
+
+small {
+	font-size: 9px;
+	font-weight: normal;
+}
+
+#container {
+	width: 770px;
+	min-height: 100%;
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	margin-left: -385px;
+	background: url('../img/footer.jpg') no-repeat bottom;
+}
+
+#menu {
+	width: 770px;
+	height: 40px;
+	background: url('../img/menu.jpg') no-repeat;
+}
+
+#menu ul {
+	margin-left: 170px;
+}
+
+#menu ul li {
+	display: block;
+	float: left;
+}
+
+#menu ul li a {
+	display: block;
+	float: left;
+	width: 98px;
+	height: 23px;
+	padding-top: 5px;
+}
+
+#footer{
+	position: absolute;
+	bottom: 0px;
+	left: 50%;
+	margin-left: -385px;
+	width: 770px;
+	height: 28px;
+	background: url('../img/footer_bg.jpg') no-repeat;
+	clear: both;
+}
+
+#submenu {
+	float: left;
+	width: 118px;
+	background: url('../img/submenu.jpg') no-repeat;
+	margin-bottom: 40px;
+	min-height: 270px;
+}
+
+#submenu ul {
+	width: 109px;
+	margin: 20px 9px 10px 0px;
+}
+
+#submenu ul li {
+	margin-bottom: 5px;
+}
+
+.typeName {
+	display: block;
+	width: 103px;
+	padding: 2px;
+	font-weight: bold;
+}
+
+.typeSub {
+	padding-left: 5px;
+}
+
+#main {
+	min-height: 370px;
+	float: right;
+	width: 652px;
+	margin-bottom: 40px;
+	background: url('../img/main_bg.gif') repeat-y;
+}
+
+#column1 {
+	float: left;
+	width: 310px;
+	margin: 0px 0px 10px 10px;
+	text-align: center;
+}
+
+#column1 img {
+	vertical-align: middle;
+	margin-bottom: 3px;
+}
+
+#column2 {
+	float: right;
+	width: 322px;
+	margin: 0px 0px 10px 10px;
+}
+
+/*		BUTTONS		*/
+
+#buttonsPlace {
+	/* Nurodzius position: absolute; div'ui, viskas pasislepia
+	   veikia tik tada, kai yra place'intas virs visu elementu
+	   todel pozicija nurodoma child elementui, kad veiktu savo vietoje
+	*/
+}
+
+#Buttons {
+	position: absolute;
+	top: 25px;
+	right: 35px;
+}
+
+#Buttons li {
+	display: inline;
+}
+
+#Buttons li a {
+	display: block;
+	height: 27px;
+	width: 39px;
+	float: left;
+	background-repeat: no-repeat;
+}
+
+#Buttons #Bduk a { padding-top: 8px; height: 19px; }
+#Buttons #Bhome a { background-image: url('../img/b_home.gif'); }
+#Buttons #Bmail a { background-image: url('../img/b_mail.gif'); }
+#Buttons #Bsitemap a { background-image: url('../img/b_sitemap.gif'); }
+
+#footer ul {
+	margin-top: 8px;
+}
+
+#Ccopy {
+	float: left;
+	margin-left: 10px;
+	color: #78673A;
+}
+
+#Cmade {
+	float: right;
+	margin-right: 10px;
+	color: #78673A;
+}
+
+#Cmade img {
+	vertical-align: bottom;
+	margin-left: 10px;
+}
+
+#calcMenu {
+	float: left;
+	width: 150px;
+	margin-right: 10px;
+}
+
+#calcMenu ul li {
+	margin-top: 5px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#calcInputs {
+	width: 272px;
+	float: left;
+}
+
+#calcPaaiskinimai p {
+	text-align: justify;
+	width: 100%;
+}
+
+#calcInputs label {
+	width: 210px;
+	float: left;
+}
+
+#calcInputs input {
+	width: 50px;
+	float: right;
+	text-align: center;
+}
+
+#calcInputs select {
+	width: 130px;
+	float: right;
+	text-align: left;
+	overflow: visible;
+}
+
+#calcInputs .calcAllInputs {
+	display: none;
+	padding-top: 5px;
+	clear: both;
+}
+
+#calctable input {
+	width: 50px;
+	padding: 1px;
+	text-align: center;
+}
+
+#calctable select {
+	font-family: verdana, tahoma, sans-serif;
+	font-size: 10px;
+	width: 100px;
+}
+
+#calctable option {
+	text-indent: 5px;
+	padding: 0px 5px;
+}
+
+.checkbox {
+	width: auto;
+	border: none;
+}
+
+.tips {
+	color: #78673A;
+	border-left: 2px solid #78673A;
+	padding: 2px 5px;
+}
+
+#tooltip {
+	display: none;
+	position: absolute;
+	z-index: 7;
+	border: 1px solid black;
+	padding: 3px;
+	background-color: #DEDEDE;
+}
+
+#tooltip2 {
+	display: none;
+	position: absolute;
+	z-index: 7;
+	border: 1px solid #78673A;
+	width: 200px;
+	text-align: justify;
+	font-size: 10px;
+	padding: 3px;
+	background-color: #FFFFFF;
+}
+
+#bigfoto {
+	border: 1px solid black;
+	margin-bottom: 5px;
+}
+
+.thumb {
+	border: 1px solid #78673A;
+}
+
+#langPlace {
+	/* Nurodzius position: absolute; div'ui, viskas pasislepia
+	   veikia tik tada, kai yra place'intas virs visu elementu
+	   todel pozicija nurodoma child elementui, kad veiktu savo vietoje
+	*/
+}
+
+#Lang {
+	position: absolute;
+	top: 7px;
+	right: 40px;
+}
+
+#Lang li {
+	display: inline;
+	float: left;
+	color: #78673A;
+	padding: 2px;
+}
+
+#Lang li a {
+
+}
+
+.select_div {
+	float: right;
+}
+
+.select_select {
+	display: none;
+}
+
+.select_box {
+	width: 100px;
+	border: 1px solid silver;
+	cursor: pointer;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 3px 2px 2px 2px;
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
+.select_dropdown {
+	width: 100px;
+	position: absolute;
+	visibility: hidden;
+	background-color: #EFEFEF;
+	z-index: 9;
+}
+
+.select_dropdown a {
+	display: block;
+	padding: 1px 2px;
+	text-decoration: none;
+	color: black;
+	white-space: nowrap;
+	overflow: hidden;
+	background-color: #EFEFEF;
+	width: 100%;
+	border-left: 1px solid silver;
+	border-right: 1px solid silver;
+}
+
+.selOpt_first {
+	border-top: 1px solid silver;
+}
+
+.selOpt_last {
+	border-bottom: 1px solid silver;
+}
+
+.select_dropdown a:hover {
+	background-color: silver;
+	text-decoration: none;
+}

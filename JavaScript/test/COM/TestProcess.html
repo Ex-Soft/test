@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<script type="text/javascript">
+<!--
+function Button1_onclick()
+{
+	var
+		locator=new ActiveXObject("WbemScripting.SWbemLocator"),
+		service=locator.ConnectServer("."),
+		properties=service.ExecQuery("SELECT * FROM Win32_Process"),
+		e=new Enumerator(properties);
+
+	document.write("<table border=1>");
+	for(; !e.atEnd(); e.moveNext())
+	{
+		var
+			p=e.item();
+
+		document.write("<tr>");
+		document.write("<td>"+p.Name+"</td>");
+		document.write("<td>"+p.ExecutablePath+"</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+//-->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="Button1" value="Зафигачить" onclick="Button1_onclick()">
+	</body>
+</html>

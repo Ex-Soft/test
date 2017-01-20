@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Test Div</title>
+    <LINK href="common.css" rel="stylesheet">
+    <script src="form.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+function Test()
+{
+   var
+     d=document.getElementById("divT"),
+     r=CheckEmptyDivCheckBox(d),
+     l=document.getElementById("Color");
+
+   d.style.backgroundColor = r ? "rgb(255, 191, 191)" : "";
+   l.innerHTML=d.style.backgroundColor;
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form id="MainForm" name="MainForm">
+      <table class="TableGroupBox" style="WIDTH: 100%" cellSpacing="10" cellPadding="10" border="10">
+        <tr>
+          <td>Test</td>
+        </tr>
+        <tr>
+          <td>
+            <fieldset><legend>&nbsp;Legend&nbsp;</legend>
+              <div id="divT" name="divT">
+                <table class="GroupBox" style="WIDTH: 100%" cellSpacing="5" cellPadding="5" border="5">
+                  <tr>
+                    <td>Col# 1</td>
+                    <td>Col# 2</td>
+                    <td>Col# 3</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" name="CheckBox1" id="CheckBox1">&nbsp;CheckBox1<br></td>
+                    <td><input type="checkbox" name="CheckBox2" id="CheckBox2">&nbsp;CheckBox2<br></td>
+                    <td><input type="checkbox" name="CheckBox3" id="CheckBox3">&nbsp;CheckBox3<br></td>
+                  </tr>
+                </table>
+              </div> 
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="T1" name="T1">
+              <tr>
+                <td>Test</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="T2" name="T2">
+              <tr>
+                <td>Test</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <td>Test</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <input type="button" onclick="Test()" value="Test">&nbsp;<label id="Color" name="Color"></label>
+    </form>
+  </body>
+</html>

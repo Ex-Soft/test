@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>Test Submit</title>
+		<script type="text/javascript">
+<!--
+function test(e)
+{
+	e=e||window.event;
+
+	var
+		tmp=e.target||e.srcElement;
+
+	alert(tmp);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form id="MainForm" onsubmit="test(event);return(true);" method="post">
+			<input type="submit" name="aaa" value="a1">
+			<input type="submit" name="aaa" value="a2">
+			<input type="submit" name="aaa" value="a3">
+		</form>
+	</body>
+</html>

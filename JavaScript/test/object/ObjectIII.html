@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Object (III)</title>
+		<script>
+function OnLoad()
+{
+	if(window.console && console.clear)
+		console.clear();
+
+	var
+		propName,
+		arr = [{
+			prop1: "#11",
+			prop2: "#21",
+			prop3: 13
+		}, {
+			prop1: "#12"
+		}, {
+			prop1: "#13",
+			prop2: "#23"
+		}],
+		result;
+
+	propName = "prop2";
+	for(var i=0, len=arr.length; i<len; ++i)
+		if(arr[i][propName])
+			if(window.console && console.log)
+				console.log("%s", arr[i][propName]);
+
+	propName = "prop3";
+	result = arr[0][propName] < 100
+	if(window.console && console.log)
+		console.log(result);
+
+	propName = "prop4";
+	result = arr[0][propName] < 100;
+	if(window.console && console.log)
+		console.log(result);
+
+	result = arr[0];
+	delete result["prop3"];
+	if(window.console && console.log)
+		console.log("%o", result);
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

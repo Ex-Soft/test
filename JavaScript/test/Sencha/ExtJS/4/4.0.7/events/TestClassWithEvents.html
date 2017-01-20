@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test class with events</title>
+		<!-- <script charset="utf-8" src="http://dev.sencha.com/deploy/ext-4.0.7-gpl/ext-all-debug.js"></script> -->
+		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ExtJS4.0.7/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("TestClass", {
+	singleton: true,
+
+	mixins: {
+		observable: "Ext.util.Observable"
+	},
+
+	constructor: function(config) {
+		this.addEvents("testevent");
+		this.addListener("testevent", this.onTestEvent, this);
+	},
+
+	onTestEvent: function() {
+		if(window.console && console.log)
+			console.log("TestClass.onTestEvent(%o)", arguments);
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	TestClass.fireEvent("testevent", { eventName: "TestEvent" });
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

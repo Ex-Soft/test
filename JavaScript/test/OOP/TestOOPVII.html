@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test OOP (VII)</title>
+		<script type="text/javascript">
+function A(x, y) {
+	this.b = "b (A)";
+	this.x = x;
+	this.y = y;
+}
+
+A.prototype = {
+	a: "a (prototype)",
+	b: "b (prototype)",
+	showA: function() {
+		if(window.console && console.log)
+			console.log("a = %s", this.a);
+	},
+	showB: function() {
+		if(window.console && console.log)
+			console.log("b = %s", this.b);
+	},
+	showX: function() {
+		if(window.console && console.log)
+			console.log("x = %s", this.x);
+	},
+	showY: function() {
+		if(window.console && console.log)
+			console.log("y = %s", this.y);
+	}
+}
+
+function OnLoad()
+{
+	var
+		a = new A("blah-blah-blah", "halb-halb-halb"),
+		aII = new A("blah-blah-blah", "halb-halb-halb");
+
+	a.showX();
+	a.showY();
+	
+	A.prototype.showZ = function() {
+		if(window.console && console.log)
+			console.log("{x: %s, y: %s}", this.x, this.y);
+	}
+	
+	a.showZ();
+	
+	a.showA();
+	a.showB();
+	
+	aII.a = "a (aII)";
+	aII.showA();
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

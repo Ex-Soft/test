@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test OOP (V)</title>
+		<script type="text/javascript">
+function Animal(name) {
+	this.name = name;
+	this.canWalk = true;
+	this.animalMethodPrivate = function() {
+		if(window.console && console.log)
+			console.log("animalMethodPrivate()");
+	};
+}
+
+Animal.prototype.animalMethodPublic = function() {
+	if(window.console && console.log)
+		console.log("animalMethodPublic()");
+}
+
+function Rabbit(name) {
+	this.name = name;
+	this.rabbitMethodPrivate = function() {
+		if(window.console && console.log)
+			console.log("rabbitMethodPrivate()");
+	};
+}
+
+function extend(Child, Parent) {
+	var
+		F = function() { };
+
+	F.prototype = Parent.prototype;
+	Child.prototype = new F();
+	Child.prototype.constructor = Child;
+	Child.superclass = Parent.prototype;
+}
+
+extend(Rabbit, Animal);
+
+Rabbit.prototype.rabbitMethodPublic = function() {
+	if(window.console && console.log)
+		console.log("rabbitMethodPublic()");
+}
+
+function DoIt()
+{
+	var
+		animal = new Animal("скотинка"),
+		big = new Rabbit("Chuk");
+		
+	animal.animalMethodPrivate();
+	animal.animalMethodPublic();
+	//big.animalMethodPrivate(); // error
+	big.animalMethodPublic();
+	big.rabbitMethodPrivate();
+	big.rabbitMethodPublic();
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()">
+	</body>
+</html>

@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test OOP (VIII)</title>
+		<script type="text/javascript">
+function A(x, y) {
+	this.e = {};
+	this.x = x;
+	this.y = y;
+}
+
+A.prototype = {
+	showA: function() {
+		if(window.console && console.log)
+			console.log("a = %s", this.a);
+	},
+	showB: function() {
+		if(window.console && console.log)
+			console.log("b = %s", this.b);
+	},
+	showX: function() {
+		if(window.console && console.log)
+			console.log("x = %s", this.x);
+	},
+	showY: function() {
+		if(window.console && console.log)
+			console.log("y = %s", this.y);
+	}
+}
+
+function B(a) {
+	this.a = a;
+}
+
+B.prototype = new A();
+B.prototype.swap = function() {
+	var
+		tmp = this.x;
+
+	this.x = this.y;
+	this.y = tmp;
+}
+
+function C(b) {
+	this.b = b;
+}
+
+C.prototype = new A;
+
+function OnLoad()
+{
+	var
+		a = new A("blah-blah-blah", "halb-halb-halb"),
+		b = new B("b"),
+		c = new C("c"),
+		o = new Object();
+
+	b.showA();
+	c.showB();
+
+	if(window.console && console.log)
+		console.log("OnLoad.prototype = %o, OnLoad.prototype.constructor = %o", OnLoad.prototype, OnLoad.prototype.constructor);
+
+	if(window.console && console.log)
+	{
+		console.log("a.hasOwnProperty(\"x\") = %s", a.hasOwnProperty("x"));
+		console.log("b.hasOwnProperty(\"x\") = %s", b.hasOwnProperty("x"));
+		console.log("c.hasOwnProperty(\"x\") = %s", c.hasOwnProperty("x"));
+
+		console.log("a.propertyIsEnumerable(\"e\") = %s", a.propertyIsEnumerable("e"));
+
+		console.log("a.isPrototypeOf(b) = %s", a.isPrototypeOf(b));
+		console.log("A.prototype.isPrototypeOf(b) = %s", A.prototype.isPrototypeOf(b));
+		console.log("a.isPrototypeOf(B.prototype) = %s", a.isPrototypeOf(B.prototype));
+		console.log("a.isPrototypeOf(c) = %s", a.isPrototypeOf(c));
+		console.log("A.prototype.isPrototypeOf(c) = %s", A.prototype.isPrototypeOf(c));
+		console.log("a.isPrototypeOf(C.prototype) = %s", a.isPrototypeOf(C.prototype));
+		console.log("b.isPrototypeOf(a) = %s", b.isPrototypeOf(a));
+		console.log("c.isPrototypeOf(c) = %s", c.isPrototypeOf(a));
+	}
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<html>
+	<head>
+		<title>Test window.focus()</title>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	setTimeout("DoIt()",5000);
+}
+
+function DoIt()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("tmpSpan"))
+		Ctrl.innerHTML="oB!";
+
+	window.focus();
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<h1>Test window.focus()</h1>
+		<span id="tmpSpan"></span>
+	</body>
+</html>

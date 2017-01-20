@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Ships</TITLE>
+
+<SCRIPT TYPE="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+function Ship(x, y, speed, direction)
+{
+   this.x = x;
+   this.y = y;
+   this.speed = speed;
+   this.direction = direction;
+}
+
+function ShipAdv(x, y, speed, direction)
+{
+   this.x = x || 25;
+   this.y = y || 25;
+   this.speed = speed || 10;
+   this.direction = direction || 90;
+}
+
+function SuperShip(x, y, speed, direction, color)
+{
+   this.base = Ship;
+   this.base(x,y,speed,direction);
+   this.color=color || "black";
+}
+
+SuperShip.prototype=new Ship;
+
+// -->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="WHITE">
+<H1>Ships</H1>
+<SCRIPT TYPE="text/javascript">
+<!--
+var
+  ship1=new Ship(0,0,1,90),
+  ship2=new ShipAdv(),
+  sship=new SuperShip(0,1,2,93);
+
+  makeObjectTable("ship1",ship1);
+  makeObjectTable("ship2",ship2);
+  makeObjectTable("sship",sship);
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Test Capture Submit (I)</title>
+		<script type="text/javascript">
+<!--
+var
+	OrgSubmit;
+
+function MySubmit()
+{
+	alert(typeof(OrgSubmit));
+	if(OrgSubmit.call)
+		OrgSubmit.call(document.getElementById('SmthForm'));
+	else
+		OrgSubmit();
+}
+
+function OnLoad()
+{
+	var
+		Ctrl;
+
+	if(Ctrl=document.getElementById("SmthForm"))
+	{
+		OrgSubmit=Ctrl.submit;
+		Ctrl.submit=MySubmit;
+	}
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<form id="SmthForm" method="post" onsubmit="alert('<form ...onsubmit...>')">
+			<input type="button" value="Button" onclick="document.getElementById('SmthForm').submit()">
+		</form>
+	</body>
+</html>

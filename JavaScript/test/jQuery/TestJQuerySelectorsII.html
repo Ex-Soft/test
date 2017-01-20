@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test jQuery selectors (II)</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<style>
+.class1
+{
+	font-weight: bold;
+}
+
+.class2
+{
+	color: red;
+}
+
+.class3
+{
+	background-color: green;
+}
+
+.class4eq
+{
+	text-decoration: underline;
+}
+		</style>
+		<script>
+$(document).ready(function() {
+	var
+		el = $(".class3"),
+		closest = el.closest(".class1"),
+		parent = el.parent(".class2"),
+		parents = el.parents(".class1"),
+		p2 = $(".class4eq:eq(2)"),
+		p4 = $(".class4eq:eq(4)"),
+		pMustBeEmpty = $(".test_Wrong_ClassName");
+
+	if (window.console && console.log)
+	{
+		console.log("el: %o", el);
+		console.log("closest: %o", closest);
+		console.log("parent: %o", parent);
+		console.log("parents: %o", parents);
+		console.log("p2: %o", p2);
+		console.log("p2: \"%s\"", p2.html());
+		console.log("p4: %o", p4);
+		console.log("p4: \"%s\"", p4.html());
+		console.log("pMustBeEmpty.length = %i", pMustBeEmpty.length);
+	}
+});
+		</script>
+	</head>
+	<body>
+		<div class="class1">
+			<div class="class2">
+				<div class="class3">
+					1
+				</div>
+			</div>
+		</div>
+		<p class="class4eq">&lt;p&gt; #0</p>
+		<p class="class4eq">&lt;p&gt; #1</p>
+		<p class="class4eq">&lt;p&gt; #2</p>
+		<p class="class4eq">&lt;p&gt; #3</p>
+		<p class="class4eq">&lt;p&gt; #4</p>
+		<p class="testWrongClassName">&lt;p&gt;</p>
+	</body>
+</html>

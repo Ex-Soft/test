@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+	<head>
+		<title>IFrame# 1</title>
+		<script type="text/javascript" charset="windows-1251" src="IFrame1.js"></script>
+		<script type="text/javascript">
+<!--
+function FunctionInIFrame(message)
+{
+	alert(message);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+			<h1>IFRAME# 1</h1><hr>
+			<input type="button" id="FrameFormButtonCallFunction" value="Call Function" onclick="FunctionInIFrame('From IFrame')"><br>
+			<input type="button" id="FrameFormButtonCallExternFunction" value="Call Extern Function" onclick="ExternFunctionInIFrame('From IFrame')"><br>
+		</form>
+	</body>
+</html>

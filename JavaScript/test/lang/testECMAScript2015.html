@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<!-- https://github.com/DrkSephy/es6-cheatsheet -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test ECMAScript 2015</title>
+		<script>
+function onLoad()
+{
+	TestDefaultParameter(1);
+	TestRestParameter(1, 2, 3, 4, 5);
+	TestStringInterpolation();
+
+	var
+		x = 1,
+		y = 2,
+		o = {x, y};
+
+	if(window.console && console.log)
+		console.log("o = %o", o);
+
+	var
+		[ a, , c ] = [ 1, 2, 3 ];
+
+	if(window.console && console.log)
+		console.log("a = %i, c = %i", a, c);
+
+	[ a, c ] = [ c, a ]
+	if(window.console && console.log)
+		console.log("a = %i, c = %i", a, c);
+
+	var { o1, o2, o3 } = { o1: 1, o2: 2, o3: 3 };
+	if(window.console && console.log)
+		console.log("o1 = %i, o2 = %i, o3 = %i", o1, o2, o3);
+}
+
+function TestDefaultParameter(x, y = 2, z = 3)
+{
+	if(window.console && console.log)
+		console.log("x = %i, y = %i, z = %i", x, y, z);
+}
+
+function TestRestParameter(x, y, ...a)
+{
+	if(window.console && console.log)
+		console.log(a);
+
+	var p = [ "a", "b", "c" ];
+	var x = [ 1, 2, ...p ];
+
+	if(window.console && console.log)
+		console.log(x);
+
+	var s = "abcd";
+	var c = [...s];
+
+	if(window.console && console.log)
+		console.log(c);
+}
+
+function TestStringInterpolation()
+{
+	var
+		name = "Name",
+		age = 16,
+		s = `Hello ${name} ${age * 3}`;
+
+	if(window.console && console.log)
+		console.log(s);
+
+	s = String.raw`Line #1\nLine #2${2+3}`;
+	if(window.console && console.log)
+		console.log(s);
+
+	s = String.raw`Line #1\nLine #2${name}`;
+	if(window.console && console.log)
+		console.log(s);
+
+	s = String.raw({raw: "test"}, "1st", "2nd");
+	if(window.console && console.log)
+		console.log(s);
+}
+
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

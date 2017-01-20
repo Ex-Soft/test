@@ -1,0 +1,32 @@
+<HTML>
+  <HEAD>
+    <TITLE>Test inner && outer</TITLE>
+  </HEAD>
+  <BODY>
+    <FORM id=MainForm>
+      <P id="par1">Это элемент&nbsp;<B>1</B></P>
+      <SCRIPT type=text/javascript>
+      <!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+alert(document.getElementById("par1").innerHTML);
+alert(document.getElementById("par1").outerHTML);
+alert(document.getElementById("par1").innerText);
+alert(document.getElementById("par1").outerText);
+makeObjectTable("par1",document.getElementById("par1"));
+      // -->
+      </SCRIPT>
+    </FORM>
+  </BODY>
+</HTML>

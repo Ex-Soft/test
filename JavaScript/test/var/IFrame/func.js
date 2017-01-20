@@ -1,0 +1,4 @@
+function ShowVariable()
+{
+   alert(aVar);
+}

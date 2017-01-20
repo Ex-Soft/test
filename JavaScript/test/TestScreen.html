@@ -1,0 +1,37 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> -->
+<html>
+	<head>
+		<title>Test Screen</title>
+		<script type="text/javascript">
+<!--
+function OnLoad()
+{
+	document.write("screen.width=",screen.width,"<br />");
+	document.write("screen.height=",screen.height,"<br />");
+	document.write("screen.availWidth=",screen.availWidth,"<br />");
+	document.write("screen.availHeight=",screen.availHeight,"<br />");
+	document.write("<hr />");
+	document.write("window.outerWidth=",window.outerWidth,"<br />");
+	document.write("window.outerHeigh=",window.outerHeight,"<br />");
+	document.write("window.screenX=",window.screenX,"<br />");
+	document.write("window.screenY=",window.screenY,"<br />");
+	document.write("window.innerWidth=",window.innerWidth,"<br />");
+	document.write("window.innerHeigh=",window.innerHeight,"<br />");
+	document.write("<hr />");
+	document.write("window.screenLeft=",window.screenLeft," (window.screenX)<br />");
+	document.write("window.screenTop=",window.screenTop," (window.screenY)<br />");
+	document.write("document.documentElement.clientWidth=",document.documentElement.clientWidth," (window.innerWidth)<br />");
+	document.write("document.documentElement.clientHeight=",document.documentElement.clientHeight," (window.innerHeight)<br />");
+	document.write("document.body.clientWidth=",document.body.clientWidth," (window.innerWidth)<br />");
+	document.write("document.body.clientHeight=",document.body.clientHeight," (window.innerHeight)<br />");
+	document.write("<hr />");
+	document.write(window.innerWidth ? window.innerWidth : (document.documentElement && document.documentElement.clientWidth ? document.documentElement.clientWidth : (document.body.clientWidth ? document.body.clientWidth : "unknown")), "<br />");
+	document.write(window.innerHeight ? window.innerHeight : (document.documentElement && document.documentElement.clientHeight ? document.documentElement.clientHeight : (document.body.clientHeight ? document.body.clientHeight : "unknown")), "<br />");
+}
+// -->
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

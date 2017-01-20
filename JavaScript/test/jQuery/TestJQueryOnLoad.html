@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test jQuery onload</title>
+		<script type="text/javascript" charset="windows-1251" src="../../jQuery/jquery.js"></script>
+		<script type="text/javascript">
+$(document).ready(function() {
+	if(window.console && console.log)
+		console.log("$(document).ready(function() { ... } )");
+});
+
+jQuery(function() {
+	if(window.console && console.log)
+		console.log("jQuery(function() { ... } )");
+});
+
+$(function() {
+	if(window.console && console.log)
+		console.log("$(function() { ... } )");
+});
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+$(document).ready(function() {
+	if(window.console && console.log)
+		console.log("$(document).ready(function() { ... } )");
+});
+
+jQuery(function() {
+	if(window.console && console.log)
+		console.log("jQuery(function() { ... } )");
+});
+
+$(function() {
+	if(window.console && console.log)
+		console.log("$(function() { ... } )");
+});
+		</script>
+	</body>
+</html>

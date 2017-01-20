@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>Test Click</title>
+		<script type="text/javascript">
+<!--
+function _OnClick_()
+{
+	alert("_OnClick_");
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="ButtonVictim" name="ButtonVictim" value="ButtonVictim" onclick="_OnClick_()">&nbsp;<input type="button" id="ButtonVictimClick" name="ButtonVictimClick" value="ButtonVictimClick" onclick="document.getElementById('ButtonVictim').click()"><br>
+		<a id="AnchorVictim" href="#" onclick="_OnClick_()">AnchorVictim</a>&nbsp;<input type="button" id="AnchorVictimClick" name="AnchorVictimClick" value="AnchorVictimClick" onclick="document.getElementById('AnchorVictim').click()">
+	</body>
+</html>

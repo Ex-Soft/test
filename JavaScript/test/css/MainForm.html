@@ -1,0 +1,231 @@
+<html>
+	<head>
+		<title>MainForm</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="styleadd.css" type="text/css">
+<script type="text/javascript">
+<!--
+function Show()
+{
+   var
+     tmpStr="",
+     field,i;
+
+   if(document.styleSheets.length)
+   {
+      tmpStr+="document.styleSheets.length=";
+      tmpStr+=document.styleSheets.length;
+      tmpStr+="<br>";
+   }
+
+   tmpStr+="<br>";
+   tmpStr+="document.styleSheets[0]";
+   tmpStr+="<br>";
+   for(field in document.styleSheets[0])
+   {
+      tmpStr+=field;
+      tmpStr+="<br>";
+   }
+   tmpStr+="<br>";
+
+   if(document.styleSheets[0].type) //IE
+   {
+      tmpStr+="document.styleSheets[0].type=";
+      tmpStr+=document.styleSheets[0].type;
+      tmpStr+="<br>";
+   }
+
+   if(document.styleSheets[0].cssText) //IE
+   {
+      tmpStr+="document.styleSheets[0].cssText=";
+      tmpStr+=document.styleSheets[0].cssText;
+      tmpStr+="<br>";
+   }
+
+   if(document.styleSheets[0].rules) //IE
+   {
+      tmpStr+="document.styleSheets[0].rules.length=";
+      tmpStr+=document.styleSheets[0].rules.length;
+      tmpStr+="<br>";
+
+      tmpStr+="<br>";
+      tmpStr+="document.styleSheets[0].rules[0]";
+      tmpStr+="<br>";
+      for(field in document.styleSheets[0].rules[0])
+      {
+         tmpStr+=field;
+         tmpStr+="<br>";
+      }
+      tmpStr+="<br>";
+
+      tmpStr+="document.styleSheets[0].rules[0].style";
+      tmpStr+="<br>";
+      for(field in document.styleSheets[0].rules[0].style)
+      {
+         tmpStr+=field;
+         tmpStr+="<br>";
+      }
+      tmpStr+="<br>";
+
+      for(i=0; i<document.styleSheets[0].rules.length; ++i)
+      {
+         tmpStr+="document.styleSheets[0].rules[i].selectorText=";
+         tmpStr+=document.styleSheets[0].rules[i].selectorText;
+         tmpStr+="<br>";
+
+         tmpStr+="document.styleSheets[0].rules[i].style.backgroundColor=";
+         tmpStr+=document.styleSheets[0].rules[i].style.backgroundColor;
+         tmpStr+="<br>";
+      }
+   }
+
+   if(document.styleSheets[0].cssRules)
+   {
+      tmpStr+="document.styleSheets[0].cssRules.length=";
+      tmpStr+=document.styleSheets[0].cssRules.length;
+      tmpStr+="<br>";
+
+      for(i=0; i<document.styleSheets[0].cssRules.length; ++i)
+      {
+         tmpStr+="document.styleSheets[0].cssRules[i].cssText=";
+         tmpStr+=document.styleSheets[0].cssRules[i].cssText;
+         tmpStr+="<br>";
+
+         tmpStr+="document.styleSheets[0].cssRules[i].selectorText=";
+         tmpStr+=document.styleSheets[0].cssRules[i].selectorText;
+         tmpStr+="<br>";
+
+         tmpStr+="document.styleSheets[0].cssRules[i].style.getPropertyValue(\"background-color\")=";
+         tmpStr+=document.styleSheets[0].cssRules[i].style.getPropertyValue("background-color");
+         tmpStr+="<br>";
+
+         tmpStr+="document.styleSheets[0].cssRules[i].style.getPropertyCSSValue(\"background-color\")=";
+         tmpStr+=document.styleSheets[0].cssRules[i].style.getPropertyCSSValue("background-color");
+         tmpStr+="<br>";
+
+         tmpStr+="document.styleSheets[0].cssRules[i].style.getPropertyCSSValue(\"backgroundColor\")=";
+         tmpStr+=document.styleSheets[0].cssRules[i].style.getPropertyCSSValue("backgroundColor");
+         tmpStr+="<br>";
+      }
+   }
+
+   document.getElementById("Info").innerHTML=tmpStr;
+}
+
+function SetbackgroundColor1()
+{
+   var
+     BackgroundColor=document.getElementById("backgroundColorTextBox1"),
+     TextBox=document.getElementById("TextBox1");
+
+   TextBox.style.backgroundColor=BackgroundColor.value;
+   TextBox.title="RunTimeLine# 1\nRunTimeLine# 2";
+}
+
+function ResetbackgroundColor1()
+{
+   var
+     TextBox=document.getElementById("TextBox1");
+
+   TextBox.style.backgroundColor="";
+}
+
+function SetbackgroundColor2()
+{
+   var
+     BackgroundColor=document.getElementById("backgroundColorTextBox2"),
+     TextBox=document.getElementById("TextBox2");
+
+   TextBox.style.backgroundColor=BackgroundColor.value;
+}
+
+function ResetbackgroundColor2()
+{
+   var
+     TextBox=document.getElementById("TextBox2");
+
+   TextBox.style.backgroundColor="";
+}
+
+function SetbackgroundColor3()
+{
+   var
+     BackgroundColor=document.getElementById("backgroundColorTextBox3"),
+     TextBox=document.getElementById("TextBox3");
+
+   TextBox.style.backgroundColor=BackgroundColor.value;
+}
+
+function ResetbackgroundColor3()
+{
+   var
+     TextBox=document.getElementById("TextBox3");
+
+   TextBox.style.backgroundColor="";
+}
+
+function SetbackgroundColor4()
+{
+   var
+     BackgroundColor=document.getElementById("backgroundColorTextBox4"),
+     TextBox=document.getElementById("TextBox4");
+
+   TextBox.style.backgroundColor=BackgroundColor.value;
+}
+
+function ResetbackgroundColor4()
+{
+   var
+     TextBox=document.getElementById("TextBox4");
+
+   TextBox.style.backgroundColor="";
+}
+
+function SetbackgroundColor5()
+{
+   var
+     TextBox=document.getElementById("TextBox5");
+
+   TextBox.className="withClassInvalid";
+}
+
+function ResetbackgroundColor5()
+{
+   var
+     TextBox=document.getElementById("TextBox5");
+
+   TextBox.className="withClass";
+}
+// -->
+</script>
+	</head>
+	<body>
+		<form id="MainForm" method="post">
+			<h1>elements[i].style.backgroundColor</h1>
+			<hr>
+			<input type="text" id="TextBox1" name="TextBox1" style="background-color: red; " title="DesignTimeLine# 1&#x0A;DesignTimeLine# 2&#x0A;Attention!!! Achtung!!! For fucking M$ IE only!!!">&nbsp;backgroundColor&nbsp;<input type="text" id="backgroundColorTextBox1" name="backgroundColorTextBox1">&nbsp;<input id="btnSetbackgroundColor1" name="btnSetbackgroundColor1" onclick="SetbackgroundColor1()" type="button" value="Set backgroundColor">&nbsp;<input id="btnResetbackgroundColor1" name="btnResetbackgroundColor1" onclick="ResetbackgroundColor1()" type="button" value="Reset backgroundColor"><br>
+			<input class="withClass" type="text" id="TextBox2" name="TextBox2" title="withClass">&nbsp;backgroundColor&nbsp;<input type="text" id="backgroundColorTextBox2" name="backgroundColorTextBox2">&nbsp;<input id="btnSetbackgroundColor2" name="btnSetbackgroundColor2" onclick="SetbackgroundColor2()" type="button" value="Set backgroundColor">&nbsp;<input id="btnResetbackgroundColor2" name="btnResetbackgroundColor2" onclick="ResetbackgroundColor2()" type="button" value="Reset backgroundColor"><br>
+			<input class="StandaloneClass" type="text" id="TextBox3" name="TextBox3">&nbsp;backgroundColor&nbsp;<input type="text" id="backgroundColorTextBox3" name="backgroundColorTextBox3">&nbsp;<input id="btnSetbackgroundColor3" name="btnSetbackgroundColor3" onclick="SetbackgroundColor3()" type="button" value="Set backgroundColor">&nbsp;<input id="btnResetbackgroundColor3" name="btnResetbackgroundColor3" onclick="ResetbackgroundColor3()" type="button" value="Reset backgroundColor"><br>
+			<input type="text" id="TextBox4" name="TextBox4">&nbsp;backgroundColor&nbsp;<input type="text" id="backgroundColorTextBox4" name="backgroundColorTextBox4">&nbsp;<input id="btnSetbackgroundColor4" name="btnSetbackgroundColor4" onclick="SetbackgroundColor4()" type="button" value="Set backgroundColor">&nbsp;<input id="btnResetbackgroundColor4" name="btnResetbackgroundColor4" onclick="ResetbackgroundColor4()" type="button" value="Reset backgroundColor">
+			<hr>
+			<br>
+			<h1>elements[i].className</h1>
+			<hr>
+			<input class="withClass" type="text" id="TextBox5" name="TextBox5">&nbsp;<input id="btnSetbackgroundColor5" name="btnSetbackgroundColor5" onclick="SetbackgroundColor5()" type="button" value="Set backgroundColor">&nbsp;<input id="btnResetbackgroundColor5" name="btnResetbackgroundColor5" onclick="ResetbackgroundColor5()" type="button" value="Reset backgroundColor"><br>
+			<hr>
+			<input class="Class1 Class2 Class3" type="text" id="TextBox6" name="TextBox6" value="Test many css-class">
+			<hr>
+			<br>
+			<select id="DDL1" name="DDL1">
+				<option value=" "> </option>
+				<option value=1>1st</option>
+				<option value=2>2nd</option>
+				<option value=3>3rd</option>
+				<option value=4>4th</option>
+			</select>
+                        <input id="btnShow" onclick="Show()" type="button" value="Show" name="btnShow"><br>
+			<input id="btnSubmit" name="btnSubmit" value="Submit" type="submit"><br>
+                        <p id="Info" name="Info"></p>
+		</form>
+	</body>
+</HTML>

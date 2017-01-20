@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Get/Set</title>
+		<script>
+function OnLoad()
+{
+	var
+		o = {};
+
+	Object.defineProperty(o, "_p", {
+		configurable: true,
+		//enumerable: true,
+		enumerable: false,
+		value: "default value of _p",
+		writable: true
+	});
+
+	Object.defineProperty(o, "p", {
+		enumerable: true,
+		get: function() {
+			if(window.console && console.log)
+				console.log("get()");
+
+			return this._p
+		},
+		set: function(value) {
+			if(window.console && console.log)
+				console.log("set(\"%s\")", value);
+
+			this._p = value;
+		}
+	});
+
+	if(window.console && console.log)
+		console.log("o.p = \"%s\"", o.p);
+
+	o.p = "blah-blah-blah";
+
+	if(window.console && console.log)
+		console.log("o.p = \"%s\"", o.p);
+}
+		</script>
+	</head>
+	<body onload="OnLoad();">
+	</body>
+</html>
+

@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test &lt;TABLE&gt; (V)</title>
+		<style>
+.classTable
+{
+	color: red;
+}
+
+.classTBody
+{
+	color: green;
+}
+
+.classRow
+{
+	color: blue;
+}
+
+.classCell
+{
+	color: teal;
+}
+		</style>
+		<script>
+function OnClick(btn)
+{
+	if(!document.getElementsByClassName || !btn)
+		return;
+
+	var
+		els = document.getElementsByClassName(btn.value),
+		el = els.length > 0 ? els[0] : null;
+
+	if(el)
+		;
+}
+		</script>
+	</head>
+	<body>
+		<table class="classTable">
+			<tbody class="classTBody">
+				<tr class="classRow">
+					<td class="classCell">Cell 1</td>
+				</tr>
+			</tbody>
+		<table>
+		<input type="button" value="classCell" onclick="OnClick(this)" />
+	</body>
+</html>

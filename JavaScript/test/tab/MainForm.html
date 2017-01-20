@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>Test Tabs</title>
+    <link href="../../js/tab.winclassic.css" rel="stylesheet">
+    <script type="text/javascript" src="../../js/tabpane.js"></script>
+<script type="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.write("<H2>" + name + "</H2>");
+   document.write("<TABLE BORDER=1>\n" +
+                  "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      if(field=="makeObjectTable")
+        continue;
+      document.write("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   document.writeln("</TABLE");
+}
+
+function TabSet()
+{
+   var
+     TabNoInput,
+     TabNo;
+
+   if(TabNoInput=document.getElementById("inpTabIdx"))
+   {
+      TabNo=parseInt(TabNoInput.value);
+      if(!isNaN(TabNo) && TabNo>=0 && TabNo<tp.pages.length)
+        tp.pages[TabNo].select();
+   }
+}
+// -->
+</script>
+  </head>
+  <body onload="alert('onload(MainForm)')">
+    <form id="MainForm" name="MainForm">
+<!--      <DIV class="tab-pane" id="tabPanel"> -->
+<!--      <DIV class="tab-pane" id="tabPanel" width="100%" height="25%"> -->
+<!--      <DIV class="tab-pane" id="tabPanel" style="width: 100%; height: 25%; "> -->
+      <DIV class="tab-pane" id="tabPanel">
+<script type="text/javascript">
+<!--
+tp=new WebFXTabPane(document.getElementById("tabPanel"));
+// -->
+</script>
+        <!--TAB1-->
+        <DIV class="tab-page" id="tabPage1">
+          <H2 class="tab">Tab# 1</H2>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage1"));
+// -->
+</script>
+          <IFRAME id="TAB1" style="BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; BORDER-LEFT: 0px solid; WIDTH: 100%; BORDER-BOTTOM: 0px solid; HEIGHT: 100%" src="iframe1.html"></IFRAME>
+        </DIV>
+        <!--TAB2-->
+        <DIV class="tab-page" id="tabPage2">
+          <H2 class="tab">Tab# 2</H2>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage2"));
+// -->
+</script>
+          <IFRAME id="TAB2" style="BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; BORDER-LEFT: 0px solid; WIDTH: 100%; BORDER-BOTTOM: 0px solid; HEIGHT: 100%" src="iframe2.html"></IFRAME>
+        </DIV>
+        <!--TAB3-->
+        <DIV class="tab-page" id="tabPage3">
+          <H2 class="tab">Tab# 3</H2>
+<script type="text/javascript">
+<!--
+tp.addTabPage(document.getElementById("tabPage3"));
+// -->
+</script>
+          <h1>Tab# 3</h1>
+          Tab# 3
+        </DIV>
+<script type="text/javascript">
+<!--
+setupAllTabs();
+// -->
+</script>
+      </DIV>
+      Tab#&nbsp;<input id="inpTabIdx" type="text" name="inpTabIdx">&nbsp;
+      <input id="btnTabSet" onclick="TabSet()" type="button" value="Select Tab" name="btnTabSet"><br>
+<script type="text/javascript">
+<!--
+makeObjectTable("tp",tp);
+makeObjectTable("tp.pages[0]",tp.pages[0]);
+// -->
+</script>
+    </form>
+  </body>
+</HTML>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="windows-1251"/>
+		<title>TextBox Events</title>
+		<script>
+var
+  OutputCtrl=null,
+  TextBox1Value,
+  TextBox2Value,
+  TextBox3Value,
+  CtrlTextBoxShowValue1=null,
+  CtrlTextBoxShowValue2=null,
+  CtrlTextBoxShowValue3=null;
+
+function OnKeyDown(obj)
+{
+   var
+     tmpStr="OnKeyDown("+obj.id+") value='"+obj.value+"'";
+
+   if(OutputCtrl || (OutputCtrl=document.getElementById("Log")))
+     OutputCtrl.value+=tmpStr+"\r\n";
+
+   switch(obj.id)
+   {
+      case "TextBox1" :
+      {
+         TextBox1Value=obj.value;
+         
+         break;
+      }
+      case "TextBox2" :
+      {
+         TextBox2Value=obj.value;
+         
+         break;
+      }
+      case "TextBox3" :
+      {
+         TextBox3Value=obj.value;
+         
+         break;
+      }
+   }
+}
+
+function OnKeyUp(obj)
+{
+   var
+     tmpStr="OnKeyUp("+obj.id+") value='"+obj.value+"'";
+
+   if(OutputCtrl || (OutputCtrl=document.getElementById("Log")))
+     OutputCtrl.value+=tmpStr+"\r\n";
+
+   switch(obj.id)
+   {
+      case "TextBox1" :
+      {
+         TextBox1Value=obj.value;
+         
+         break;
+      }
+      case "TextBox2" :
+      {
+         TextBox2Value=obj.value;
+         
+         break;
+      }
+      case "TextBox3" :
+      {
+         TextBox3Value=obj.value;
+         
+         break;
+      }
+   }
+}
+
+function OnKeyPress(obj)
+{
+   var
+     tmpStr="OnKeyPress("+obj.id+") value='"+obj.value+"'";
+
+   if(OutputCtrl || (OutputCtrl=document.getElementById("Log")))
+     OutputCtrl.value+=tmpStr+"\r\n";
+
+   switch(obj.id)
+   {
+      case "TextBox1" :
+      {
+         TextBox1Value=obj.value;
+         
+         break;
+      }
+      case "TextBox2" :
+      {
+         TextBox2Value=obj.value;
+         
+         break;
+      }
+      case "TextBox3" :
+      {
+         TextBox3Value=obj.value;
+         
+         break;
+      }
+   }
+}
+
+function OnChange(obj)
+{
+   var
+     tmpStr="OnChange("+obj.id+") value='"+obj.value+"'";
+
+   if(OutputCtrl || (OutputCtrl=document.getElementById("Log")))
+     OutputCtrl.value+=tmpStr+"\r\n";
+
+   switch(obj.id)
+   {
+      case "TextBox1" :
+      {
+         TextBox1Value=obj.value;
+         
+         break;
+      }
+      case "TextBox2" :
+      {
+         TextBox2Value=obj.value;
+         
+         break;
+      }
+      case "TextBox3" :
+      {
+         TextBox3Value=obj.value;
+         
+         break;
+      }
+   }
+}
+
+function OnPropertyChange(e)
+{
+   var
+     id=e.srcElement.id,
+     value=e.srcElement.value,
+     tmpStr="OnPropertyChange("+id+") value='"+value+"'";
+
+   if(OutputCtrl || (OutputCtrl=document.getElementById("Log")))
+     OutputCtrl.value+=tmpStr+"\r\n";
+
+   switch(id)
+   {
+      case "TextBox1" :
+      {
+         TextBox1Value=value;
+         
+         break;
+      }
+      case "TextBox2" :
+      {
+         TextBox2Value=value;
+         
+         break;
+      }
+      case "TextBox3" :
+      {
+         TextBox3Value=value;
+         
+         break;
+      }
+   }
+
+   if(e.stopPropagation)
+     e.stopPropagation();
+   else
+     e.cancelBubble=true;
+}
+
+function OnInput(e)
+{
+   var
+     id=e.originalTarget.id,
+     value=e.originalTarget.value,
+     tmpStr="OnInput("+id+") value='"+value+"'";
+
+   if(OutputCtrl || (OutputCtrl=document.getElementById("Log")))
+     OutputCtrl.value+=tmpStr+"\r\n";
+
+   switch(id)
+   {
+      case "TextBox1" :
+      {
+         TextBox1Value=value;
+         
+         break;
+      }
+      case "TextBox2" :
+      {
+         TextBox2Value=value;
+         
+         break;
+      }
+      case "TextBox3" :
+      {
+         TextBox3Value=value;
+         
+         break;
+      }
+   }
+
+   if(e.stopPropagation)
+     e.stopPropagation();
+   else
+     e.cancelBubble=true;
+}
+
+function ShowValue(btn)
+{
+   switch(btn.id)
+   {
+      case "btnShowValue1" :
+      {
+         if(!CtrlTextBoxShowValue1 && !(CtrlTextBoxShowValue1=document.getElementById("TextBoxShowValue1")))
+           return;
+
+         CtrlTextBoxShowValue1.value=TextBox1Value;
+
+         break;
+      }
+      case "btnShowValue2" :
+      {
+         if(!CtrlTextBoxShowValue2 && !(CtrlTextBoxShowValue2=document.getElementById("TextBoxShowValue2")))
+           return;
+
+         CtrlTextBoxShowValue2.value=TextBox2Value;
+
+         break;
+      }
+      case "btnShowValue3" :
+      {
+         if(!CtrlTextBoxShowValue3 && !(CtrlTextBoxShowValue3=document.getElementById("TextBoxShowValue3")))
+           return;
+
+         CtrlTextBoxShowValue3.value=TextBox3Value;
+
+         break;
+      }
+   }
+}
+
+function OnPageLoad()
+{
+	var
+		Ctrl,
+		EventName="onpropertychange";
+
+	for(var i=1; i<=3; ++i)
+	{
+		if(Ctrl=document.getElementById("TextBox"+i))
+		{
+			if(EventName in Ctrl)
+			{
+				if(i==1)
+					alert(EventName);
+
+				if("attachEvent" in Ctrl)
+					Ctrl.attachEvent(EventName,OnPropertyChange);
+			}
+			else
+				if(i==1)
+					alert("!"+EventName);
+
+		}
+	}
+
+	EventName="oninput";
+	for(var i=1; i<=3; ++i)
+	{
+		if(Ctrl=document.getElementById("TextBox"+i))
+		{
+			if(EventName in Ctrl)
+			{
+				if(i==1)
+					alert(EventName);
+
+				if("attachEvent" in Ctrl)
+					Ctrl.attachEvent(EventName, OnInput);
+				else if("addEventListener" in Ctrl)
+					Ctrl.addEventListener("input", OnInput, false);
+				else
+					Ctrl.oninput = OnInput;
+			}
+			else
+				if(i==1)
+					alert("!"+EventName);
+		}
+	}
+}
+		</script>
+	</head>
+  <body onload="OnPageLoad()">
+    <form id="MainForm" method="post">
+      <table border="0">
+        <tr>
+          <td>OnKeyDown+OnKeyPress+OnKeyUp+OnChange</td>
+          <td><input type="text" id="TextBox1" name="TextBox1" onkeydown="OnKeyDown(this)" onkeypress="OnKeyPress(this)" onkeyup="OnKeyUp(this)" onchange="OnChange(this)"></td>
+          <td><input type="button" id="btnShowValue1" name="btnShowValue1" value="Show Value" onclick="ShowValue(this)"></td>
+          <td><input type="text" id="TextBoxShowValue1" name="TextBoxShowValue1" readonly></td>
+        </tr>
+        <tr>
+          <td>OnKeyDown+OnKeyPress+OnKeyUp+OnChange</td>
+          <td><input type="text" id="TextBox2" name="TextBox2" onkeydown="OnKeyDown(this)" onkeypress="OnKeyPress(this)" onkeyup="OnKeyUp(this)" onchange="OnChange(this)"> <!-- autocomplete="off" --> </td>
+          <td><input type="button" id="btnShowValue2" name="btnShowValue2" value="Show Value" onclick="ShowValue(this)"></td>
+          <td><input type="text" id="TextBoxShowValue2" name="TextBoxShowValue2" readonly></td>
+        </tr>
+        <tr>
+          <td>OnKeyUp+OnChange</td>
+          <td><input type="text" id="TextBox3" name="TextBox3" onkeyup="OnKeyUp(this)" onchange="OnChange(this)"></td>
+          <td><input type="button" id="btnShowValue3" name="btnShowValue3" value="Show Value" onclick="ShowValue(this)"></td>
+          <td><input type="text" id="TextBoxShowValue3" name="TextBoxShowValue3" readonly></td>
+        </tr>
+      </table>
+      <textarea id="Log" name="Log" rows="18" cols="80" readonly></textarea>
+    </form>
+  </body>
+</html>

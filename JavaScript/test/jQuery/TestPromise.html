@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<!-- http://thomasdavis.github.io/tutorial/jquery-create-your-own-deferred.html -->
+<!-- http://tutorials.jenkov.com/jquery/deferred-objects.html -->
+<!-- https://api.jquery.com/deferred.promise/ -->
+<!-- http://joseoncode.com/2011/09/26/a-walkthrough-jquery-deferred-and-promise/ -->
+<!-- http://code.tutsplus.com/tutorials/wrangle-async-tasks-with-jquery-promises--net-24135 !!! -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Promise()</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+function asyncEvent() {
+	var dfd = jQuery.Deferred();
+
+	// Resolve after a random interval
+	setTimeout(function() {
+		dfd.resolve( "hurray" );
+	}, Math.floor( 400 + Math.random() * 2000 ) );
+
+	// Reject after a random interval
+	setTimeout(function() {
+		dfd.reject( "sorry" );
+	}, Math.floor( 400 + Math.random() * 2000 ) );
+
+	// Show a "working..." message every half-second
+	setTimeout(function working() {
+		if ( dfd.state() === "pending" ) {
+			dfd.notify( "working... " );
+			setTimeout( working, 500 );
+		}
+	}, 1 );
+
+	// Return the Promise so caller can't change the Deferred
+	return dfd.promise();
+}
+
+$.when( asyncEvent() ).then(
+	function( status ) {
+		if(window.console && console.log)
+			console.log( status + ", things are going well" );
+	},
+	function( status ) {
+		if(window.console && console.log)
+			console.log( status + ", you fail this time" );
+	},
+	function( status ) {
+		$( "body" ).append( status );
+	}
+);
+
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	$("#btnDoIt").bind("click", function(e) {
+		// Existing object
+		var obj = {
+			hello: function( name ) {
+				if(window.console && console.log)
+					console.log( "Hello " + name );
+			}
+		},
+		// Create a Deferred
+		defer = $.Deferred();
+
+		// Set object as a promise
+		defer.promise( obj );
+
+		// Resolve the deferred
+		defer.resolve( "John" );
+
+		// Use the object as a Promise
+		obj.done(function( name ) {
+			obj.hello( name ); // Will alert "Hello John"
+		}).hello( "Karl" ); // Will alert "Hello Karl"
+	});
+});
+		</script>
+	</head>
+	<body>
+		<button id="btnDoIt">DoIt!</button>
+	</body>
+</html>

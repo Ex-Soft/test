@@ -1,0 +1,104 @@
+﻿<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Array2Tree</title>
+		<script>
+function DoIt()
+{
+	var
+		a = [
+			{ id: 1, folder_id: 7, desktop_id: 1, is_folder: 0, caption: "Navigation shortcut# 1.1.1", m3_treepath: "7/1" },
+			{ id: 2, folder_id: 8, desktop_id: 1, is_folder: 0, caption: "Navigation shortcut# 1.2.1", m3_treepath: "8/2" },
+			{ id: 3, folder_id: null, desktop_id: 1, is_folder: 0, caption: "Navigation shortcut# 1.3", m3_treepath: "3" },
+			{ id: 4, folder_id: 9, desktop_id: 2, is_folder: 0, caption: "Navigation shortcut# 2.1.1", m3_treepath: "9/4" },
+			{ id: 6, folder_id: null, desktop_id: 2, is_folder: 0, caption: "Navigation shortcut# 2.3", m3_treepath: "6" },
+			{ id: 5, folder_id: 10, desktop_id: 2, is_folder: 0, caption: "Navigation shortcut# 2.2.1", m3_treepath: "10/5" },
+			{ id: 7, folder_id: null, desktop_id: 1, is_folder: 1, caption: "Folder# 1.1", m3_treepath: "7" },
+			{ id: 8, folder_id: null, desktop_id: 1, is_folder: 1, caption: "Folder# 1.2", m3_treepath: "8" },
+			{ id: 9, folder_id: null, desktop_id:2, is_folder: 1, caption: "Folder# 2.1", m3_treepath: "9" },
+			{ id: 10, folder_id: null, desktop_id: 2, is_folder: 1, caption: "Folder# 2.2", m3_treepath: "10" }
+		];
+
+	ArrayToTreeRootNode(a);
+}
+
+function findParent(parentNode, treepath)
+{
+	if(!treepath
+		|| !treepath.length)
+		return parentNode;
+
+	var
+		pathSeparator = "/",
+		nodes = treepath.split(pathSeparator),
+		id = parseInt(nodes[0], 10),
+		parent=null;
+
+	if(!(parent=findChild(parentNode, id)))
+		parentNode.children.push(parent = { id: id });
+
+	return (nodes = nodes.slice(1).join(pathSeparator)).length>0 ? findParent(parent, nodes) : parent;
+}
+
+function findChild(parentNode, id)
+{
+	var
+		child = null,
+		i,
+		len;
+
+	if(!parentNode.children)
+		parentNode.children=[];
+
+	for(i=0, len=parentNode.children.length; i<len; ++i)
+		if(parentNode.children[i].id==id)
+		{
+			child=parentNode.children[i];
+			break;
+		}
+
+	return child;
+}
+
+function addChild(parent, childData)
+{
+	var
+		child;
+
+	if(child=findChild(parent, childData.id))
+	{
+		child.folder_id = childData.folder_id;
+		child.desktop_id = childData.desktop_id;
+		child.is_folder = childData.is_folder;
+		child.caption = childData.caption;
+		child.m3_treepath = childData.m3_treepath;
+	}
+	else
+		parent.children.push(childData);
+}
+
+function ArrayToTreeRootNode(data)
+{
+	var
+		root = {};
+
+	for(var i=0; i<data.length; ++i)
+	{
+		var
+			pathSeparator = "/",
+			row = data[i],
+			treepath = row.m3_treepath.split(pathSeparator),
+			parent = findParent(root, treepath.slice(0,-1).join(pathSeparator));
+
+		addChild(parent, row);
+	}
+
+	return root;
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

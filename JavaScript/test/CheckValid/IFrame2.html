@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+  <HEAD>
+		<title>IFrame1</title>
+		<script type="text/javascript" src="../../js/misc.js"></script>
+		<script src="../../js/form.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var
+  CheckElement=new Array(),
+  InvalidColor="rgb(255,191,191)";
+
+CheckElement[0]={Id:"IFrame2TextBox1",Required:true,typeofStore:"int"};
+CheckElement[1]={Id:"IFrame2TextBox3",Required:true,typeofStore:"double"};
+
+function TestSubmit()
+{
+   var
+     result,
+     str="IFrame2Form.onsubmit";
+
+   alert(str);
+   result=top.CheckForm(top,InvalidColor,'IFrame2Form');
+   alert(str+"="+result);
+   return(result);
+}
+// -->
+</script>
+</HEAD>
+	<body onload="PrepareForm()">
+		<form id="IFrame2Form" name="IFrame2Form" method="post" onsubmit="return(TestSubmit())">
+			<input type="text" id="IFrame2TextBox1" name="IFrame2TextBox1"><br>
+			<input type="text" id="IFrame2TextBox2" name="IFrame2TextBox2"><br>
+			<input type="text" id="IFrame2TextBox3" name="IFrame2TextBox3"><br>
+			<input type="submit" id="IFrame2BtnSubmit" name="IFrame2BtnSubmit" style="width: 0px; height: 0px; " value="" onclick="alert('IFrame2BtnSubmit.onclick')">
+		</form>
+	</body>
+</HTML>

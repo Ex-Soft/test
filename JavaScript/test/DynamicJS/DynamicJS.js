@@ -1,0 +1,4 @@
+function DoIt()
+{
+	alert("DoIt!");
+}

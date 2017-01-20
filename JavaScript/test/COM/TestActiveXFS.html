@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Test ActiveX (Scripting.FileSystemObject)</title>
+<script type="text/javascript">
+<!--
+function TestActiveX()
+{
+   var
+     oFS=null,
+     f=null;
+
+   try
+   {
+      if(!(oFS=new ActiveXObject("Scripting.FileSystemObject")))
+      {
+         alert("!Scripting.FileSystemObject");
+      }
+      else
+      {
+         if(!(f=oFS.OpenTextFile("c:\\boot.ini",1,false)))
+         {
+            alert("!OpenTextFile()");
+         }
+         else
+         {
+            while(!f.atendofstream)
+              document.write(f.readline(),"<br>");
+            f.close();
+         }
+      }
+   }
+   catch(Exception)
+   {
+      alert(Exception.name+": "+Exception.message);
+   }
+}
+// -->
+</script>
+  </head>
+  <body onload="TestActiveX()">
+  </body>
+</html>

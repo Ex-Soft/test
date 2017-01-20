@@ -1,0 +1,195 @@
+﻿<!doctype html>
+<!-- http://www.sql.ru/forum/actualthread.aspx?tid=924772 -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Test localStore</title>
+		<style>
+td, th {
+	font-family: monospace;
+	padding: 4px;
+	background-color: #ccc;
+}
+
+#items_table {
+	border: 1px dotted blue;
+	padding: 6px;
+	margin-top: 12px;
+	margin-right: 50%;
+}
+
+#items_table h2 {
+	font-size: 18px;
+	margin-top: 0px;
+	font-family: sans-serif;
+}
+
+label {
+	vertical-align: top;
+}
+		</style>
+		<script>
+function SetItem()
+{
+	var
+		n,
+		v;
+
+	if(!window.localStorage
+		|| !(n=document.getElementById("inputName"))
+		|| !(v=document.getElementById("inputValue")))
+		return;
+
+	if(window.console && console.log)
+	{
+		console.log("v.value "+(v.value==undefined ? "=" : "!")+"= undefined");
+		console.log("v.value "+(v.value===undefined ? "=" : "!")+"== undefined");
+		console.log("v.value "+(v.value==null ? "=" : "!")+"= null");
+		console.log("v.value "+(v.value===null ? "=" : "!")+"== null");
+		console.log("v.value "+(v.value=="" ? "=" : "!")+"= \"\"");
+		console.log("v.value "+(v.value==="" ? "=" : "!")+"== \"\"");
+		console.log("v.value.length = "+v.value.length);
+	}
+	
+	localStorage.setItem(n.value, v.value);
+}
+
+function SetEmptyItem()
+{
+	if(!window.localStorage)
+		return;
+
+	localStorage.setItem("EmptyItem", "");
+}
+
+function GetItem()
+{
+	var
+		n,
+		v,
+		vStr;
+
+	if(!window.localStorage
+		|| !(n=document.getElementById("inputName"))
+		|| !(v=document.getElementById("inputValue")))
+		return;
+
+	vStr=localStorage.getItem(n.value); /* if doesn't exist returns null */
+	v.value = vStr === undefined ? "undefined" : (vStr===null ? "null" : vStr);
+}
+
+function RemoveItem()
+{
+	var
+		n;
+
+	if(!window.localStorage
+		|| !(n=document.getElementById("inputName")))
+		return;
+
+	localStorage.removeItem(n.value);
+}
+
+function Clear()
+{
+	if(!window.localStorage)
+		return;
+
+	localStorage.clear();
+}
+
+function Key()
+{
+	var
+		iStr,
+		i,
+		k;
+
+	if(!window.localStorage
+		|| !(iStr=document.getElementById("inputIndex"))
+		|| isNaN(i=parseInt(iStr.value, 10))
+		|| i<0
+		|| i>=localStorage.length
+		|| !(k=document.getElementById("inputKey")))
+		return;
+
+	k.value=localStorage.key(i);
+}
+
+function List()
+{
+	var
+		p,
+		key = "",
+		pairs = "<tr><th>Name</th><th>Value</th></tr>\n";
+
+	if(!window.localStorage
+		|| !(p=document.getElementById("pairs")))
+		return;
+
+	for (var i=0; i<localStorage.length; i++)
+	{
+		key = localStorage.key(i);
+		pairs += "<tr><td>"+key+"</td>\n<td>"+localStorage.getItem(key)+"</td></tr>\n";
+	}
+
+	if (pairs == "<tr><th>Name</th><th>Value</th></tr>\n")
+		pairs += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+	p.innerHTML = pairs;
+}
+
+function TestQuota()
+{
+	if(!window.localStorage)
+		return;
+
+	if(window.console && console.clear)
+		console.clear();
+
+	var
+		str="",
+		i,
+		maxLen = 500000,
+		maxVar = 1000;
+
+	for(i=0; i<maxLen; ++i)
+		str+="a";
+
+	for(i=0; i<maxVar; ++i)
+	{
+		try
+		{
+			localStorage.setItem("key"+i, str);
+		}
+		catch(e)
+		{
+			if(window.console && console.log)
+				console.log("code: %i name: \"%s\" message: \"%s\"", e.code, e.name, e.message);
+			/*
+				FF code: 1014 name: "NS_ERROR_DOM_QUOTA_REACHED" message: "Persistent storage maximum size reached"
+				GC code: 22 name: "QUOTA_EXCEEDED_ERR" message: "QUOTA_EXCEEDED_ERR: DOM Exception 22"
+				Opera code: 22 name: "DOMException" message: "QUOTA_EXCEEDED_ERR"
+			*/
+		}
+	}
+}
+		</script>
+	</head>
+	<body onload="List()">
+		<label>Name: <input type="text" id="inputName" placeholder="name" required autofocus /></label>
+		<label for="inputValue">Value: </label><input type="text" id="inputValue" placeholder="value" />
+		<input type="button" value="Set" onclick="SetItem()" />
+		<input type="button" value="Get" onclick="GetItem()" />
+		<input type="button" value="Remove" onclick="RemoveItem()" />
+		<input type="button" value="Set Empty" onclick="SetEmptyItem()" />
+		<input type="button" value="Test Quota" onclick="TestQuota()" /><br />
+		<label>Index: <input type="text" id="inputIndex" placeholder="index" /></label>
+		<label for="inputKey">Value: </label><input type="text" id="inputKey" placeholder="key" />
+		<input type="button" value="Key" onclick="Key()" /><br />
+		<div id="items_table">
+			<input type="button" value="List" onclick="List()" /><input type="button" value="Clear" onclick="Clear()" />
+			<h2>Items</h2>
+			<table id="pairs"></table>
+		</div>
+	</body>
+</html>

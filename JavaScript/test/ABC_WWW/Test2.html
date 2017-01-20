@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Extracting Document Info with JavaScript</TITLE>
+</HEAD>
+<BODY BGCOLOR="WHITE">
+<H1>Extracting Document Info with JavaScript</H1>
+<HR>
+<SCRIPT TYPE="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+function referringPage()
+{
+   if(document.referrer.length==0)
+     {
+        return("<I>none</I>");
+     }
+   else
+     {
+        return(document.referrer);
+     }
+}
+
+document.writeln
+  ("Document Info:\n" +
+   "<UL>\n" +
+   "  <LI><B>URL:</B> " + document.location + "\n" +
+   "  <LI><B>Modification Date:</B> " + "\n" +
+          document.lastModified + "\n" +
+   "  <LI><B>Title:</B> " + document.title + "\n" +
+   "  <LI><B>Referring page:</B> " + referringPage() + "\n" +
+   "</UL>");
+
+document.writeln
+  ("Browser Info:" + "\n" +
+   "<UL>" + "\n" +
+   "  <LI><B>appCodeName:</B> " + navigator.appCodeName + "\n" +
+   "  <LI><B>appName:</B> " + navigator.appName + "\n" +
+   "  <LI><B>appVersion:</B> " + navigator.appVersion + "\n" +
+   "  <LI><B>cookieEnabled:</B> " + navigator.cookieEnabled + "\n" +
+   "  <LI><B>language:</B> " + navigator.language + "\n" +
+   "  <LI><B>platform:</B> " + navigator.platform + "\n" +
+   "  <LI><B>systemLanguage:</B> " + navigator.systemLanguage + "\n" +
+   "  <LI><B>userAgent:</B> " + navigator.userAgent + "\n" +
+   "  <LI><B>userLanguage:</B> " + navigator.userLanguage + "\n" +
+   "</UL>");
+
+makeObjectTable("navigator",navigator);
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

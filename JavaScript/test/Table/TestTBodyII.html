@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Test TBody (II)</title>
+		<script type="text/javascript">
+<!--
+function Show()
+{
+	var
+		Ctrl;
+
+	if(!(Ctrl=document.getElementById("TestTable")))
+		return;
+
+	alert(Ctrl.rows.length);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<table id="TestTable" border=1 cellpadding=4 rules="groups">
+			<caption>Table Groups
+			<thead>
+				<tr><th>Header of Col&nbsp;&#35;1<th>Header of Col&nbsp;#2
+			<tbody>
+				<tr><td>Group&nbsp;#1<td>Group&nbsp;#1
+				<tr><td>Group&nbsp;#1<td>Group&nbsp;#1
+			<tbody align="right">
+				<tr><td>Group&nbsp;#2<td>Group&nbsp;#2
+				<tr><td>Group&nbsp;#2<td>Group&nbsp;#2
+			<tfoot align="center">
+				<tr><td colspan=2>Footer
+		</table>
+		<input type="button" id="ButtonShow" value="Show" onclick="Show()">
+	</body>
+</html>

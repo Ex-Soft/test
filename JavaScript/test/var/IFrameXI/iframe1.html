@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>IFrame1</title>
+		<script type="text/javascript">
+<!--
+function CreateArray()
+{
+	var
+		arr=new Array(1,2,3);
+
+	window.parent.foo(arr);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="Button1" value="[1, 2, 3]" onclick="window.parent.foo([1,2,3])">
+		<input type="button" id="Button2" value="new Array(1,2,3)" onclick="window.parent.foo(new Array(1,2,3))">
+		<input type="button" id="Button3" value="CreateArray()" onclick="CreateArray()">
+		<input type="button" id="Button4" value="new window.parent.Array(1,2,3)" onclick="window.parent.foo(new window.parent.Array(1,2,3))">
+	</body>
+</html>

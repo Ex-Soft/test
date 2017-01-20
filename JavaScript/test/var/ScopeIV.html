@@ -1,0 +1,175 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<title>Test scope IV</title>
+		<script type="text/javascript">
+var
+	i = 4,
+	j = 5,
+	k = 7,
+	fn = function(){
+		var
+			i = 6;
+
+		k = 8; //notice no var in front so this reassigns global k to 8!
+		document.write(i+"<br />"); //6
+		document.write(j+"<br />"); //5
+		document.write(k+"-1","<br />"); //8-1
+		x = 1; //we just created or overwrote the global variable x
+	};
+
+fn();
+document.write(k+"-2","<br />"); //8-2 (notice this is not 7-2)
+document.write("<hr />");
+
+function foo() {
+	var
+		i=123;
+
+	document.write("(b4 4) i="+i+"<br />");
+	for(var i=0; i<3; i++)
+	{
+		document.write("(in 4) i="+i+"<br />");
+	}
+	document.write("(after 4) i="+i+"<br />");
+}
+
+foo();
+document.write("<hr />");
+
+var
+	testvar = "window property";
+
+var
+	o1 = {testvar: "1", fun: function(){document.write("o1: "+this.testvar+"<<"+"<br />");}},
+	o2 = {testvar: "2", fun: function(){document.write("o2: "+this.testvar+"<br />");}};
+
+o1.fun(); //"1"
+o2.fun(); //"2"
+o1.fun.call(o2); //"2"
+document.write("<hr />");
+
+var
+	o3 = {
+		testvar: "3",
+		testvar2: "3**",
+		fun:function(){
+			document.write("o3: "+this.testvar+"<br />"); // "obj3"
+			document.write("o3: "+this.testvar2+"<br />"); // "obj3"
+
+			var
+				inner = function(){
+					document.write("o3-inner: "+this.testvar+"<br />"); //"window property"
+					document.write("o3-inner: "+this.testvar2+"<br />"); //undefined
+				};
+			inner();
+		}
+	};
+
+o3.fun();
+document.write("<hr />");
+
+var obj = {
+	// for better console.log(this) output
+	toString:function(){ return "in scope of obj";},
+	func: function(){
+		// this function is a direct member of "object"
+		//console.log(this);
+		document.write(this,"<br />");
+
+		var
+			innerFunc = function(){
+				// this function is not a direct member of an object, it
+				// is a variable in another function
+				//console.log(this);
+				document.write(this,"<br />");
+			};
+
+		innerFunc();
+	}
+};
+obj.func();
+// outputs "in scope of obj"
+// outputs "Window something"
+
+obj.func.call(window);
+// outputs "Window something"
+// outputs "Window something"
+document.write("<hr />");
+
+var obj2 = {
+	// for better console.log(this) output
+	toString:function(){ return "in scope of obj";},
+	func: function(){
+		// this function is a direct member of "object"
+		//console.log(this);
+		document.write(this,"<br />");
+
+		var
+			innerFunc = function(){
+				// this function is not a direct member of an object, it
+				// is a variable in another function
+				//console.log(this);
+				document.write(this,"<br />");
+			};
+
+		innerFunc.call(this);
+	}
+};
+obj2.func();
+// outputs "in scope of obj"
+// outputs "in scope of obj"
+document.write("<hr />");
+
+function showInt(int) {
+	document.write(int,"<br />");
+}
+
+var
+	myObject = {
+		value: 1,
+		obj: { val: 2 }
+	},
+	myOtherObject = {
+		// This property refers to (points to) the same Number object
+		anotherValue: myObject.value,
+		anotherObj: myObject.obj
+	};
+
+showInt(myObject.value);
+showInt(myOtherObject.anotherValue);
+showInt(myObject.obj.val);
+showInt(myOtherObject.anotherObj.val);
+
+myObject.value=3;
+myObject.obj.val=4;
+showInt(myObject.value);
+showInt(myOtherObject.anotherValue);
+showInt(myObject.obj.val);
+showInt(myOtherObject.anotherObj.val);
+
+document.write("<hr />");
+
+function callAFunction(fn) {
+    //inside callAFunction, there is no way of knowing
+    //what to use as the "this" for executing this function.
+    //all you get is a reference to a Function object
+    fn.call(/* this */ /* <the "this" object to use. What should we use?>*/);
+}
+ 
+var
+	myObject = {
+		fn: function(){
+			document.write(1,"<br />");
+		}
+	},
+	myOtherObject = {
+    		fn: myObject.fn // This property refers to (points to) the same Function object
+	};
+ 
+callAFunction(myObject.fn);
+		</script>
+	</head>
+<body>
+</body>
+</html>

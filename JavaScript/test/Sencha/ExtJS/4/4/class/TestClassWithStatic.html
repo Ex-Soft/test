@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Class with static</title>
+		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script>
+Ext.define("Class", {
+	statics: {
+		staticProperty: { prop: "prop" },
+		
+		staticMethod: function() {
+			if(window.console && console.log)
+			{
+				console.log("Class.staticMethod(%o)", arguments);
+				console.log("this.staticProperty = %o", this.staticProperty);
+				console.log("this.outerProperty = %o", this.outerProperty);
+				console.log("this.innerProperty = %o", this.innerProperty);
+			}
+
+			//foo(); // foo is not defined
+			//this.foo(); // this.foo is not defined
+		}
+	},
+
+	outerProperty: { prop: "prop" },
+
+	constructor: function(val) {
+		if(window.console && console.log)
+			console.log("Class.constructor(%o)", arguments);
+
+		this.innerProperty = { prop: "prop" };
+
+		this.foo();
+
+		return this;
+	},
+
+	foo: function() {
+		if(window.console && console.log)
+			console.log("Class.foo(%o) %o", arguments, this);
+	},
+
+	staticMethodCaller: function() {
+		Class.staticMethod();
+	},
+	
+	destroy: function() {
+		if(window.console && console.log)
+			console.log("Class.destroy(%o)", arguments);
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		c1 = Ext.create("Class", "class1"),
+		c2 = new Class("class2");
+
+	if(window.console && console.log)
+	{
+		console.log("Class.staticProperty = \"%o\"", Class.staticProperty);
+		console.log("c1.staticProperty = \"%o\"", c1.staticProperty);
+		console.log("c2.staticProperty = \"%o\"", c2.staticProperty);
+	}
+	Class.staticProperty.prop = "Class.staticProperty";
+	if(window.console && console.log)
+	{
+		console.log("Class.staticProperty = \"%o\"", Class.staticProperty);
+		console.log("c1.staticProperty = \"%o\"", c1.staticProperty);
+		console.log("c2.staticProperty = \"%o\"", c2.staticProperty);
+	}
+	
+	if(window.console && console.log)
+	{
+		console.log("Class.outerProperty = \"%o\"", Class.outerProperty);
+		console.log("c1.outerProperty = \"%o\"", c1.outerProperty);
+		console.log("c2.outerProperty = \"%o\"", c2.outerProperty);
+	}
+	c1.outerProperty.prop = "c1.outerProperty";
+	if(window.console && console.log)
+	{
+		console.log("Class.outerProperty = \"%o\"", Class.outerProperty);
+		console.log("c1.outerProperty = \"%o\"", c1.outerProperty);
+		console.log("c2.outerProperty = \"%o\"", c2.outerProperty);
+	}
+
+	if(window.console && console.log)
+	{
+		console.log("Class.innerProperty = \"%o\"", Class.innerProperty);
+		console.log("c1.innerProperty = \"%o\"", c1.innerProperty);
+		console.log("c2.innerProperty = \"%o\"", c2.innerProperty);
+	}
+	c1.innerProperty.prop = "c1.innerProperty";
+	if(window.console && console.log)
+	{
+		console.log("Class.innerProperty = \"%o\"", Class.innerProperty);
+		console.log("c1.innerProperty = \"%o\"", c1.innerProperty);
+		console.log("c2.innerProperty = \"%o\"", c2.innerProperty);
+	}
+
+	if(window.console && console.log)
+	{
+		console.log("typeof Class.staticMethod =\"%s\"", typeof Class.staticMethod);
+		console.log("typeof c1.staticMethod =\"%s\"", typeof c1.staticMethod);
+		console.log("typeof c2.staticMethod =\"%s\"", typeof c2.staticMethod);
+	}
+	Class.staticMethod();
+	c1.foo();
+	c2.foo();
+	c1.staticMethodCaller();
+	c2.staticMethodCaller();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>&laquo;Test Class (ABC)&raquo;</title>
+		<script charset="utf-8" src="../../../Sencha/Touch/Touch2.3/touch-2.3.1/sencha-touch-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("BaseClass1", {
+	baseClassProp: "undefinedBaseClass1",
+
+	constructor: function(val) {
+		if(window.console && console.log)
+			console.log("BaseClass1.constructor(%o)", arguments);
+
+		if(val)
+			this.baseClassProp=val;
+	},
+
+	baseClassFoo: function() {
+		if(window.console && console.log)
+			console.log("BaseClass1.baseClassFoo()");
+	},
+
+	Foo: function() {
+		if(window.console && console.log)
+			console.log("BaseClass1.Foo()");
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, touch: %s", Ext.versions.core.version, Ext.versions.touch.version);
+
+	var
+		baseClass11 = Ext.create("BaseClass1", "baseClass11"),
+		baseClass12 = Ext.create("BaseClass1", "baseClass12");
+
+	if(window.console && console.log)
+	{
+		console.log("%s", baseClass11.baseClassProp);
+		console.log("%s", baseClass12.baseClassProp);
+	}
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

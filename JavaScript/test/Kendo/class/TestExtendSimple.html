@@ -1,0 +1,132 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test extend (simple)</title>
+		<script charset="utf-8" src="../../../jQuery/2/jquery.js"></script>
+		<script charset="utf-8" src="../../../kendo/src/js/kendo.web.js"></script>
+		<script>
+$(document).ready(function () {
+	if (window.console && console.clear)
+		console.clear();
+
+	if (window.console && console.log)
+	{
+		console.log("jquery: %s", $.fn.jquery);
+		console.log("kendo: %s", kendo.version);
+	}
+
+	var
+		kendo_Class = kendo.Class.toString(),
+		kendo_Class_extend = kendo.Class.extend.toString(),
+		BaseClass = kendo.Class.extend({
+			baseClassProp: "undefined",
+
+			init: function(baseClassProp) {
+				if(baseClassProp)
+					this.baseClassProp = baseClassProp;
+			},
+
+			baseClassFoo: function() {
+				if(window.console && console.log)
+					console.log("BaseClass.baseClassFoo()");
+			},
+
+			Foo: function() {
+				if(window.console && console.log)
+					console.log("BaseClass.Foo()");
+			},
+
+			Foo1: function() {
+				if(window.console && console.log)
+					console.log("BaseClass.Foo1() %o", this);
+			},
+
+			Foo2: function() {
+				if(window.console && console.log)
+					console.log("BaseClass.Foo2() %o", this);
+			}
+		});
+
+	var
+		DerivedClass = BaseClass.extend({
+			derivedClassProp: "undefined",
+
+			init: function(baseClassProp, derivedClassProp) {
+				if(baseClassProp)
+					BaseClass.fn.init.call(this, baseClassProp);
+
+				if(derivedClassProp)
+					this.derivedClassProp = derivedClassProp;
+			},
+
+			derivedClassFoo: function() {
+				if(window.console && console.log)
+					console.log("DerivedClass.derivedClassFoo()");
+			},
+
+			Foo: function() {
+				BaseClass.fn.Foo();
+
+				if(window.console && console.log)
+					console.log("DerivedClass.Foo()");
+			},
+
+			Foo1: function() {
+				if(window.console && console.log)
+					console.log("DerivedClass.Foo1() %o", this);
+			}
+		});
+
+
+	var
+		baseClass1 = new BaseClass(),
+		baseClass2 = new BaseClass("baseClass2"),
+		derivedClass1 = new DerivedClass(),
+		derivedClass2 = new DerivedClass("baseClassFromDerivedClass2", "derivedClass2");
+
+	if(window.console && console.log)
+	{
+		console.log("%s", baseClass1.baseClassProp);
+		console.log("%s", baseClass2.baseClassProp);
+
+		console.log("%s %s", derivedClass1.baseClassProp, derivedClass1.derivedClassProp);
+		console.log("%s %s", derivedClass2.baseClassProp, derivedClass2.derivedClassProp);
+	}
+
+	baseClass1.baseClassFoo();
+	baseClass1.Foo();
+	baseClass2.baseClassFoo();
+	baseClass2.Foo();
+
+	derivedClass1.baseClassFoo();
+	derivedClass1.derivedClassFoo();
+	derivedClass1.Foo();
+
+	baseClass1.Foo1();
+	derivedClass1.Foo1();
+});
+
+/*
+function (e){
+	var
+		t,
+		n,
+		i = function(){},
+		r = this,
+		o = e && e.init ? e.init : function() { r.apply(this, arguments) };
+
+	i.prototype = r.prototype,
+	n = o.fn = o.prototype = new i;
+
+	for(t in e)
+		n[t] = typeof e[t]!==Dt || e[t] instanceof Array || null===e[t] ? e[t] : pt(!0, {}, i.prototype[t], e[t]);
+
+	return n.constructor=o, o.extend=r.extend, o
+}
+*/
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

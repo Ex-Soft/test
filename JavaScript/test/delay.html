@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>Test delay</title>
+<script type="text/javascript">
+<!--
+var
+  count=0,
+  handler;
+
+function launcher()
+{
+   handler=setInterval("UseDalay()",250);
+}
+
+function UseDalay()
+{
+   var
+     val=document.getElementById("number");
+
+   if(!count)
+     val.value="";
+
+   val.value+=" "+(count++);
+   if(count>5)
+   {
+      clearInterval(handler);
+      alert('finished');
+   }
+   return true;
+}
+
+function Func2()
+{
+   var
+     val=document.getElementById("number2");
+
+   if(!count)
+     val.value="";
+
+   val.value+=" "+(count++);
+   if(count>5)
+   {
+      clearInterval(handler);
+      alert('finished');
+   }
+   return true;
+}
+
+function Func3(arg1, arg2, arg3, arg4, arg5)
+{
+   var
+     val=document.getElementById("number3");
+
+   if(!count)
+     val.value="arguments.length="+arguments.length;
+
+   val.value+=" "+(count++);
+   if(count>5)
+   {
+      clearInterval(handler);
+      alert('finished');
+   }
+   return true;
+}
+// -->
+</script>
+  </head>
+  <body>
+<script type="text/javascript">
+<!--
+alert('1');
+window.setTimeout("alert('2')",2500);
+alert('3');
+// -->
+</script>
+    <form>
+      <input type="text" name="number" id="number">
+      <input type="button" value="Test setInterval(&quot;FunctionName()&quot;, delay)" onClick="count=0;launcher();"><br>
+      <input type="text" name="number2" id="number2">
+      <input type="button" value="Test setInterval(FunctionName, delay)" onClick="count=0;handler=setInterval(Func2,250);"><br>
+      <input type="text" name="number3" id="number3">
+      <input type="button" value="Test setInterval(FunctionName, delay[, param1, param2, ...])" onClick="count=0;handler=setInterval(Func3,250,1,2,3,4,5);">&nbsp;<font size=-2><b><u>Attention!!! Achtung!!!</u></b> Fucking M$IE <i>iTimerID = window.setInterval(vCode, iMilliSeconds [, sLanguage])</i></u></b></font><br>
+    </form>
+  </body>
+<html>

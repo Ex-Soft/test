@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Form Focus (create)</title>
+		<link rel="stylesheet" href="../../../../../../ExtJS/ExtJS4.1.1/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../ExtJS/ExtJS4.1.1/ext-all-debug.js"></script>
+		<script>
+Ext.define("TestText", {
+	extend: "Ext.form.field.Text",
+	alias: "widget.testtext",
+
+	initComponent: function() {
+		this.callParent(arguments);
+	},
+
+	render: function(component, eOpts) {
+		if(window.console && console.log)
+			console.log("TestText.render(%o)", arguments);
+
+		this.callParent(arguments);
+	},
+
+	afterRender: function(component, eOpts) {
+		if(window.console && console.log)
+			console.log("TestText.afterRender(%o)", arguments);
+
+		this.callParent(arguments);
+
+		//component.focus(true);
+	}
+});
+
+Ext.define("TestForm", {
+	extend: "Ext.form.Panel",
+	alias: "widget.testform",
+
+	initComponent: function() {
+		this.frame = true;
+
+		this.testText = Ext.create("TestText",{
+			value: "blah-blah-blah"
+			, anchor: "100%"
+		});
+
+		this.dockedItems = [{
+			xtype: "toolbar",
+			dock: "top",
+			items: [{
+				text: "Button"
+			}]
+		}];
+
+		this.items = [this.testText];
+
+		//this.addListener("afterlayout", this.afterLayout, this);
+		this.callParent(arguments);
+	}/*,
+
+	render: function(component, eOpts) {
+		if(window.console && console.log)
+			console.log("TestForm.render(%o)", arguments);
+
+		this.callParent(arguments);
+	},
+
+	afterRender: function(component, eOpts) {
+		if(window.console && console.log)
+			console.log("TestForm.afterRender(%o)", arguments);
+
+		//this.testText.focus(true);
+		this.callParent(arguments);
+		//this.testText.focus(true);
+	},
+
+	afterComponentLayout: function(width, height, isSetSize, layoutOwner) {
+		if(window.console && console.log)
+			console.log("TestForm.afterComponentLayout(%o)", arguments);
+
+		this.callParent(arguments);
+		//this.testText.focus(true);
+	},
+
+	afterLayout: function(form, layout, eOpts) {
+		if(window.console && console.log)
+			console.log("TestForm.afterlayout(%o)", arguments);
+
+		//this.testText.focus(true);
+	}*/
+});
+
+Ext.define("TestWindow", {
+	extend: "Ext.window.Window",
+	alias: "widget.testwindow",
+
+	initComponent: function() {
+		this.border = 0;
+		this.layout = "fit";
+
+		/*this.items = [{
+			xtype: "testform"
+		}];*/
+
+		this.callParent(arguments);
+	},
+
+	render: function(component, eOpts) {
+		if(window.console && console.log)
+			console.log("TestWindow.render(%o)", arguments);
+
+		this.callParent(arguments);
+	},
+
+	afterRender: function(component, eOpts) {
+		if(window.console && console.log)
+			console.log("TestWindow.afterRender(%o)", arguments);
+
+		this.callParent(arguments);
+	}
+});
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	Ext.create("TestWindow", {
+		title: "Test",
+		items: [Ext.create("TestForm",{
+			listeners: {
+				afterlayout: function(form, layout, eOpts) {
+					if(window.console && console.log)
+						console.log("TestForm.afterlayoutII(%o)", arguments);
+
+					form.testText.focus(true, 50);
+				}
+			}
+		})]
+		, height: undefined
+		, width: undefined
+	}).show();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

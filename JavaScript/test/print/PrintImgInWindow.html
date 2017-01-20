@@ -1,0 +1,19 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test print image in window</title>
+		<script>
+function onLoad()
+{
+	var
+		w = window.open("../pix/xpfirewall.jpg");
+
+	if(w && w.print)
+		w.print();
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

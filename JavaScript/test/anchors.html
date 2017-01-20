@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Test anchors</title>
+<script type="text/javascript">
+<!--
+function ShowAlt(imgId)
+{
+   var
+     img=document.getElementById(imgId);
+
+   if(img!=null)
+   {
+      if(img!=undefined)
+      {
+         if("alt" in img)
+           alert("\"alt\" in img");
+         else
+           alert("\"alt\" not in img");
+         if(img.alt)
+           alert(img.alt);
+         else
+           alert("!img.alt");
+      }
+      else
+        alert("img==undefined");
+   }
+   else
+     alert("img==null");
+}
+
+function ImgLoad(imgId)
+{
+   alert("Complete");
+
+   var
+     img=document.getElementById(imgId);
+
+   if(img!=null)
+   {
+      if(img!=undefined)
+      {
+         if(img.alt)
+           img.alt="alt==hint";
+         else
+           alert("!img.alt");
+      }
+      else
+        alert("img==undefined");
+   }
+   else
+     alert("img==null");
+}
+
+function ImgLoadError(imgId)
+{
+   alert(imgId+' load error!!!');
+}
+
+function ChangeHREF()
+{
+   window.location.href="javascript:alert('a')";
+}
+
+function AnchorClick(param)
+{
+	alert(param);
+}
+// -->
+</script>
+  </head>
+<body>
+  <a href="http://google.com" onclick="return(confirm('R U sure?'));">google.com</a><br />
+  <a id="A1" href="javascript:alert(this.id)">test this</a><br />
+  <a href="#" onclick="alert('href=\x22#\x22')">href="#"</a><br>
+  <a href="javascript:alert('href=\x22javascript:\x22')">href="javascript:"</a><br>
+  <a href="#" onclick="ShowAlt('Img1')"><img id="Img1" name="Img1" src="./pix/sm10_eyes.gif" alt="string if image was not found" onload="ImgLoad('Img1')" onerror="ImgLoadError('Img1')"></a><br>
+  <a href="#" onclick="ShowAlt('Img2')"><img id="Img2" name="Img2" src="./pix/sm10_eyes.gif" alt="string if image was not found" border=0></a><br>
+  <input type="image" id="btnImg3" name="btnImg3" src="./pix/sm10_eyes.gif" border="10" onclick="alert('input type=\x22image\x22')">
+  <input type="image" id="btnImg4" name="btnImg4" src="./pix/sm10_eyes.gif" border="10" onclick="alert('input type=\x22image\x22');return(false);"><br>
+  <a onclick="alert('without href')">without href</a>
+  <a onclick="alert('without href (disabled)')" disabled="disabled">without href (disabled)</a>
+  <a>without href</a>
+  <br>
+  <a id="AGoogle" href="http://google.com/">google.com</a>&nbsp;<a href="#" onclick="document.getElementById('AGoogle').onclick()">onclick()</a>&nbsp;<a href="#" onclick="document.getElementById('AGoogle').click()">click()</a><br>
+  <input type="button" value="window.location.href=&quot;javascript:alert('a')&quot;" onclick="ChangeHREF()">
+</body>
+<html>

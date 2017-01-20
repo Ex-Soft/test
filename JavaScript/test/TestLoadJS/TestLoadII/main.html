@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>Test load JS</title>
+		<script type="text/javascript">
+<!--
+function LoadBySrc(dest)
+{
+	var
+		CtrlLog=document.getElementById("Log");
+
+	CtrlLog.value+="LoadBySrc(\""+dest+"\")\r\n";
+
+	CtrlLog.value+=(("F1inJS1" in this) ? "" : "!")+"\"F1inJS1\" in this\r\n";
+	CtrlLog.value+=(("F1inJS1" in window) ? "" : "!")+"\"F1inJS1\" in window\r\n";
+
+	if(("F1inJS1" in this)
+		|| ("F1inJS1" in window))
+		return;
+
+	var
+		h,
+		s;
+
+	if((h=document.getElementsByTagName(dest))
+		&& h.length>0)
+	{
+		h=h[0];
+		if(s=document.createElement("script"))
+		{
+			s.id="js1";
+			s.type="text/javascript";
+			s.charset="windows-1251";
+
+			if("attachEvent" in s)
+				s.attachEvent("onload",OnLoad);
+			else if("addEventListener" in s)
+				s.addEventListener("load",OnLoad,false);
+			else
+				s.onload=OnLoad;
+			if("onreadystatechange" in s)
+				s.onreadystatechange=function(){if(this.readyState=="complete") OnLoad()};
+
+			s.src="js1.js";
+			h.appendChild(s);
+
+			CtrlLog.value+=(("F1inJS1" in this) ? "" : "!")+"\"F1inJS1\" in this\r\n";
+			CtrlLog.value+=(("F1inJS1" in window) ? "" : "!")+"\"F1inJS1\" in window\r\n";
+		}
+	}
+}
+
+function OnLoad()
+{
+	var
+		CtrlLog=document.getElementById("Log");
+
+	CtrlLog.value+="script OnLoad ("+(("F1inJS1" in this) ? "" : "!")+"\"F1inJS1\" in this)\r\n";
+	CtrlLog.value+="script OnLoad ("+(("F1inJS1" in window) ? "" : "!")+"\"F1inJS1\" in window)\r\n";
+
+	F1inJS1();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btnLoadBySrcHead" value="Load by src (head)" onclick="LoadBySrc('head')">
+		<textarea id="Log" name="Log" rows="12" cols="80" readonly></textarea>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>google search</title>
+		<script type="text/javascript">
+<!--
+var
+	w=null;
+
+function OnClick()
+{
+	if(!(w=open("")))
+		return;
+
+	if("addEventListener" in w)
+	{
+		alert("addEventListener");
+		w.addEventListener("load",WindowOnLoad,false);
+	}
+	else if("attachEvent" in w)
+	{
+		alert("attachEvent")
+		w.attachEvent("onload",WindowOnLoad);
+	}
+	else
+	{
+		alert("!");
+		w.onload=WindowOnLoad;
+	}
+
+	w.location.href="http://google.com/";
+}
+
+function WindowOnLoad()
+{
+	alert("WindowOnLoad");
+}
+
+function OnClick2()
+{
+	var
+		Ctrls;
+
+	if(!w)
+		return;
+
+	if((Ctrls=w.document.getElementsByName("q"))
+		&& Ctrls.length>0)
+		Ctrls[0].value="12345";
+
+	if((Ctrls=w.contentWindow.document.getElementsByName("f"))
+		&& Ctrls.length>0)
+		Ctrls[0].submit();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="OnClick()">
+		<input type="button" value="DoIt! II" onclick="OnClick2()">
+	</body>
+</html>

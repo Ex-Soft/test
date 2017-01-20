@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Country>
+  <total>3</total>
+  <success>true</success>
+  <row>
+    <id>en</id>
+  </row>
+  <row>
+    <id>ru</id>
+  </row>
+  <row>
+    <id>ua</id>
+  </row>
+</Country>

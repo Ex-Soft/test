@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Test Events IV</title>
+		<script type="text/javascript">
+<!--
+function OnClick(e,obj)
+{
+	if(!e)
+		e=window.event;
+
+	alert(obj.id);
+
+	if((Ctrl=document.getElementById("CheckBoxIsPropagationBubble"))
+		&& !Ctrl.checked)
+	{
+		if(e.stopPropagation)
+			e.stopPropagation();
+		else
+			e.cancelBubble=true;
+	}
+}
+// -->
+		</script>
+	</head>
+	<body>
+		Propagation/Bubble&nbsp;<input type="checkbox" id="CheckBoxIsPropagationBubble">
+		<hr>
+		<table id="TableId" onclick="OnClick(event,this)" border="1">
+			<tr id="TrId" onclick="OnClick(event,this)">
+				<td id="TdId" onclick="OnClick(event,this)">
+					<input type="button" id="InputButton" value="Button" onclick="OnClick(event,this)">
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

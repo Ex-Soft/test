@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test dialog</title>
+		<link rel="stylesheet" href="../../../jQuery-ui/jquery-ui.css">
+		<script charset="utf-8" src="../../../jQuery/2/jquery.js"></script>
+		<script charset="utf-8" src="../../../jQuery-ui/jquery-ui.js"></script>
+		<script>
+$(document).ready(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("%s", $.fn.jquery);
+
+	var
+		dialog = function(msg) {
+			var
+				dfd = $.Deferred(),
+				divCssClass = "dialog",
+				div = $("." + divCssClass);
+
+			if (!div || div.length === 0)
+				div = $("<div>", { class: divCssClass }).appendTo("body");
+
+			div.html("<p>" + msg + "</p>").dialog({
+				title: "Confirm",
+				width: 450,
+				resizable: false,
+				modal: true,
+				/*buttons: {
+					"Yes": function(e) {
+						dfd.resolve("Yes");
+						$(this).dialog("close");
+					},
+					"Cancel": function(e) {
+						dfd.reject("Cancel");
+						$(this).dialog("close");
+					}
+				}*/
+				buttons: [{
+					text: "Yes",
+					icons: {
+						primary: "ui-icon-heart"
+					},
+					click: function(e) {
+						dfd.resolve("Yes");
+						$(this).dialog("close");
+					}
+				}, {
+					text: "Cancel",
+					icons: {
+						primary: "ui-icon-heart"
+					},
+					click: function(e) {
+						dfd.reject("Cancel");
+						$(this).dialog("close");
+					}
+					, showText: false
+				}],
+				close: function() {
+					if (window.console && console.log)
+						console.log("close(%o) dfd.state()=\"%s\"", arguments, dfd.state());
+
+					if (dfd.state() === "pending")
+						dfd.reject("Cancel");
+				}
+			});
+
+			return dfd.promise();
+		};
+
+	$.when(dialog("Are U sure?"))
+		.then(function() {
+			if (window.console && console.log)
+				console.log("then(%o)", arguments);
+		})
+		.fail(function() {
+			if (window.console && console.log)
+				console.log("fail(%o)", arguments);
+		});
+
+	if (window.console && console.log)
+		console.log("end.");
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

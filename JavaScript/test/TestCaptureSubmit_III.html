@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Test Capture Submit (III)</title>
+		<script type="text/javascript">
+<!--
+function MySubmit()
+{
+	alert("MySubmit()");
+}
+
+function init()
+{
+	var
+		f=document.getElementById("fform");
+
+	f.nativeSubmit=f.submit;
+
+	f.submit=function ()
+	{
+		if(!this.onsubmit || this.onsubmit())
+			this.nativeSubmit();
+	}
+
+	f.onsubmit=function()
+	{
+		MySubmit.call(this);
+		return true;
+	}
+}
+
+onload=init;
+
+// -->
+		</script>
+	</head>
+	<body>
+		<form action="http://www.google.com" name="fform" id="fform">
+			<input type="text" name="ftext" value="ASDQWE" />
+			<input type="submit" name="fsubmit" id="fsubmit" />
+		</form>
+		<a href="#" onclick="document.getElementById('fform').submit();">MySubmit</a>
+		<a href="#" onclick="document.getElementById('fsubmit').click();">MyClick</a>
+	</body>
+</html>

@@ -1,0 +1,384 @@
+<html>
+	<head>
+		<title>Test Print (MainForm)</title>
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="pragma" content="no-cache">
+		<script type="text/javascript">
+<!--
+function Print2HTML(aInputDocument)
+{
+	var
+		OutputCtrlsRelations=new Array(),
+		OutputCtrls,
+		OutputValue,
+		InputCtrls,
+		OutputRow,
+		OutputTablesValues=new Array(),
+		OutputCtrlId,
+		InputRowCtrls,
+		tBody,
+		NewRow,
+		i,
+		ii;
+
+	OutputCtrlsRelations["FIO"]={InputId: "FIOFIO", InTable: true};
+	OutputCtrlsRelations["DR"]={InputId: "DRDR", InTable: true};
+
+	OutputCtrlsRelations["SpanId"]={InputId: "SpanIdSpanId", InTable: false};
+	OutputCtrlsRelations["SpanName"]={InputId: "SpanNameSpanName", InTable: false};
+	OutputCtrlsRelations["InputTextId"]={InputId: "InputTextIdInputTextId", InTable: false};
+	OutputCtrlsRelations["InputTextName"]={InputId: "InputTextNameInputTextName", InTable: false};
+	OutputCtrlsRelations["SelectId"]={InputId: "SelectIdSelectId", InTable: false};
+	OutputCtrlsRelations["SelectName"]={InputId: "SelectNameSelectName", InTable: false};
+
+	for(OutputCtrlId in OutputCtrlsRelations)
+	{
+		OutputCtrls=GetCtrlsByIdName(document,OutputCtrlId,"span");
+		for(i=0; i<OutputCtrls.length; ++i)
+		{
+			if(OutputCtrlsRelations[OutputCtrlId].InTable)
+			{
+				if(OutputCtrlsRelations[OutputCtrlId].className
+					&& OutputCtrls[i].className!=OutputCtrlsRelations[OutputCtrlId].className)
+					continue;
+
+				if(OutputRow=GetParentRow(OutputCtrls[i]))
+				{
+					if(!OutputTablesValues[OutputCtrlId])
+						OutputTablesValues[OutputCtrlId]={IsOutput: false, Values: new Array()};
+					OutputTablesValues[OutputCtrlId].Values[OutputRow.rowIndex]=GetCtrlValue(OutputCtrls[i]);
+				}
+			}
+			else
+			{
+				OutputValue=GetCtrlValue(OutputCtrls[i]);
+				InputCtrls=GetCtrlsByIdName(aInputDocument,OutputCtrlsRelations[OutputCtrlId].InputId);
+				for(ii=0; ii<InputCtrls.length; ++ii)
+					InputCtrls[ii].innerHTML=OutputValue;
+			}
+		}
+	}
+
+	for(OutputCtrlId in OutputTablesValues)
+	{
+		if(OutputTablesValues[OutputCtrlId].IsOutput)
+			continue;
+
+		InputCtrls=GetCtrlsByIdName(aInputDocument,OutputCtrlsRelations[OutputCtrlId].InputId,"span");
+		if(!InputCtrls.length)
+			continue;
+
+		if(OutputRow=GetParentRow(InputCtrls[0]))
+		{
+			tBody=OutputRow.parentNode;
+
+			InputRowCtrls=GetRowCtrls(OutputRow,OutputCtrlsRelations);
+			if(!InputRowCtrls.length)
+				continue;
+
+			for(i=0; i<OutputTablesValues[OutputCtrlId].Values.length; ++i)
+			{
+				if(!OutputTablesValues[OutputCtrlId].Values[i])
+					continue;
+
+				NewRow=OutputRow.cloneNode(true);
+
+				for(ii=0; ii<InputRowCtrls.length; ++ii)
+				{
+					InputCtrls=RowGetElementsByName(NewRow,"span",InputRowCtrls[ii].InputId);
+					for(var iii=0; iii<InputCtrls.length; ++iii)
+						InputCtrls[iii].innerHTML=OutputTablesValues[InputRowCtrls[ii].OutputCtrlId].Values[i];
+
+					if(!OutputTablesValues[InputRowCtrls[ii].OutputCtrlId].IsOutput)
+						OutputTablesValues[InputRowCtrls[ii].OutputCtrlId].IsOutput=true;
+				}
+
+				tBody.appendChild(NewRow);
+			}
+		}
+	}
+}
+
+function OpenHTMLDocTemplate(aTemplateURL)
+{
+	window.open(aTemplateURL,"Result","location=no,menubar=yes,scrollbars=yes,status=yes,resizable=1");
+}
+
+function GetCtrlsByIdName(aDocument, aCtrlId, aTag)
+{
+	var
+		Ctrl,
+		Ctrls=new Array(),
+		CtrlsByTag;
+
+	if(Ctrl=aDocument.getElementById(aCtrlId))
+		Ctrls[0]=Ctrl;
+	else
+	{
+		if(aDocument.all)
+		{
+			if(aTag)
+			{
+				CtrlsByTag=aDocument.getElementsByTagName(aTag);
+				for(var i=0; i<CtrlsByTag.length; ++i)
+					if(CtrlsByTag[i].name==aCtrlId
+						|| CtrlsByTag[i].getAttribute("name")==aCtrlId)
+					Ctrls.push(CtrlsByTag[i]);
+			}
+		}
+		else
+			Ctrls=aDocument.getElementsByName(aCtrlId);
+	}
+
+	return(Ctrls);
+}
+
+function GetCtrlValue(aCtrl)
+{
+	var
+		OutputValue="";
+
+	switch(aCtrl.nodeName.toLowerCase())
+	{
+		case "span" :
+		{
+			OutputValue=aCtrl.innerHTML;
+			break;
+		}
+		default :
+		{
+			switch(aCtrl.type.toLowerCase())
+			{
+				case "text" :
+				case "textarea" :
+				{
+					OutputValue=aCtrl.value;
+					break;
+				}
+				case "select-one" :
+				{
+					OutputValue = aCtrl.options.length ? aCtrl.options[aCtrl.selectedIndex].text : "";
+					break;
+				}
+			}
+		}
+	}
+
+	return(OutputValue);
+}
+
+function GetParentCell(obj)
+{
+	var
+		Cell=null,
+		tmpObj=obj;
+
+	do
+	{
+		if(tmpObj.nodeType==1 && tmpObj.nodeName.toLowerCase()=="td")
+		{
+			Cell=tmpObj;
+			break;
+		}
+	}while(tmpObj=tmpObj.parentNode);
+
+	return(Cell);
+}
+
+function GetParentRow(obj)
+{
+	var
+		Cell;
+
+	return((Cell=GetParentCell(obj)) ? Cell.parentNode : Cell);
+}
+
+function GetRowCtrls(aRow,aOutputCtrlsRelations)
+{
+	var
+		OutputArray=new Array(),
+		Spans,
+		re;
+
+	for(var i=0; i<aRow.cells.length; ++i)
+	{
+		Spans=aRow.cells[i].innerHTML.match(/<span.*?>/ig);
+		if(Spans.length==0)
+			continue;
+
+		for(var OutputCtrlId in aOutputCtrlsRelations)
+		{
+			if(!aOutputCtrlsRelations[OutputCtrlId].InTable)
+				continue;
+
+			re=new RegExp("name=\""+aOutputCtrlsRelations[OutputCtrlId].InputId+"\"","i");
+			for(var ii=0; ii<Spans.length; ++ii)
+				if(Spans[ii].search(re)!=-1)
+					OutputArray.push({OutputCtrlId:OutputCtrlId, InputId:aOutputCtrlsRelations[OutputCtrlId].InputId});
+		}
+	}
+	return(OutputArray);
+}
+
+function RowGetElementsByName(aRow,aTag,aName)
+{
+	var
+		OutputArray=new Array(),
+		CtrlsByTag=aRow.getElementsByTagName(aTag);
+
+	for(var i=0; i<CtrlsByTag.length; ++i)
+		if(CtrlsByTag[i].name==aName
+			|| CtrlsByTag[i].getAttribute("name")==aName)
+		OutputArray.push(CtrlsByTag[i]);
+
+	return(OutputArray);
+}
+/*
+function RowGetElementsByName(aRow,aTag,aName)
+{
+	var
+		OutputArray=new Array(),
+		reCtrl=new RegExp("<"+aTag+".*?>.*?</"+aTag+">","ig"),
+		reName=new RegExp("name=\""+aName+"\""),
+		reInnerHTML=new RegExp(">.*?<","g"),
+		Ctrls,
+		iHs,
+		CtrlsByTag,
+		iH;
+
+	for(var i=0; i<aRow.cells.length; ++i)
+	{
+		Ctrls=aRow.cells[i].innerHTML.match(reCtrl);
+		if(Ctrls.length==0)
+			continue;
+
+		for(var ii=0; ii<Ctrls.length; ++ii)
+		{
+			if(Ctrls[ii].search(reName)==-1)
+				continue;
+
+			iHs=Ctrls[ii].match(reInnerHTML);
+			if(!iHs.length)
+				continue;
+
+			CtrlsByTag=aRow.cells[i].getElementsByTagName(aTag);
+			for(var j=0; j<iHs.length; ++j)
+			{
+				iH=iHs[j].substring(1,iHs[j].length-1);
+				for(var jj=0; jj<CtrlsByTag.length; ++jj)
+					if(iH==CtrlsByTag[jj].innerHTML)
+						OutputArray.push(CtrlsByTag[jj]);
+			}
+		}
+	}
+
+	return(OutputArray);
+}
+*/
+function RowGetElementsByClassName(aRow,aTag,aClassName)
+{
+	var
+		OutputArray=new Array(),
+		CtrlsByTag;
+
+	for(var i=0; i<aRow.cells.length; ++i)
+	{
+		CtrlsByTag=aRow.cells[i].getElementsByTagName(aTag);
+		for(var ii=0; ii<CtrlsByTag.length; ++ii)
+			if(CtrlsByTag[ii].className.substring(0,aClassName.length)==aClassName)
+				OutputArray.push(CtrlsByTag[ii]);
+	}
+
+	return(OutputArray);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form>
+			<table style="width: 100%; " cellspacing="0" cellpadding="0" border="1">
+				<tr>
+					<td align="center">Ф. И. О.</td>
+					<td align="center">ДР</td>
+				</tr>
+				<tr>
+					<td align="left"><span name="FIO" class="FIO">Иванов Иван Иванович</span></td>
+					<td align="center"><span name="DR" class="DR">01.01.1913</span></td>
+				</tr>
+				<tr>
+					<td align="left"><span name="FIO" class="FIO">Сидоров Сидор Сидорович</span></td>
+					<td align="center"><span name="DR" class="DR">01.01.1937</span></td>
+				</tr>
+				<tr>
+					<td align="left"><span name="FIO" class="FIO">Петров Петр Петрович</span></td>
+					<td align="center"><span name="DR" class="DR">01.01.1953</span></td>
+				</tr>
+			</table>
+			<table style="width: 100%; " cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td><span id="SpanId">SpanId</span></td>
+				<tr>
+				<tr>
+					<td><span name="SpanName">SpanName (#1)</span></td>
+				<tr>
+				<tr>
+					<td><span name="SpanName">SpanName (#2)</span></td>
+				<tr>
+				<tr>
+					<td><span name="SpanName">SpanName (#3)</span></td>
+				<tr>
+				<tr>
+					<td><input type="text" id="InputTextId" value="InputTextId" style="width: 100%; "></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="InputTextName" value="InputTextName (#1)" style="width: 100%; "></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="InputTextName" value="InputTextName (#2)" style="width: 100%; "></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="InputTextName" value="InputTextName (#3)" style="width: 100%; "></td>
+				</tr>
+				<tr>
+					<td>
+						<select id="SelectId">
+							<option value="1">SelectId 1st</option>
+							<option value="2">SelectId 2nd</option>
+							<option value="3">SelectId 3rd</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="SelectName">
+							<option value="1">SelectName (#1) 1st</option>
+							<option value="2">SelectName (#1) 2nd</option>
+							<option value="3">SelectName (#1) 3rd</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="SelectName">
+							<option value="1">SelectName (#2) 1st</option>
+							<option value="2">SelectName (#2) 2nd</option>
+							<option value="3">SelectName (#2) 3rd</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="SelectName">
+							<option value="1">SelectName (#3) 1st</option>
+							<option value="2">SelectName (#3) 2nd</option>
+							<option value="3">SelectName (#3) 3rd</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="button" id="ButtonDoIt" value="DoIt!" onclick="OpenHTMLDocTemplate('template.html')"></tr>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

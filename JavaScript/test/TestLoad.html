@@ -1,0 +1,12 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Load</title>
+	</head>
+	<body>
+		<img id="imgVictim1" src="pix/sm10_eyes.gif" onclick="this.src='pix/cal.gif'" /><img id="imgVictim2" src="pix/sm10_eyes.gif" onclick="this.src='pix/cal.gif?'+(new Date().getTime())" /><br /><br />
+		<input type="button" value="img.src" onclick="document.getElementById('imgVictim1').src='pix/sm10_eyes.gif'" /><input type="button" value="img.src" onclick="document.getElementById('imgVictim2').src='pix/sm10_eyes.gif?'+(new Date().getTime())" /><br />
+		<input type="button" value="location.href" onclick="location.href=location.href" />
+	</body>
+</html>

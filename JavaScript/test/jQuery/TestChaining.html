@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test chaining</title>
+		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script>
+$(document).ready(function() {
+	$.fn["f1"] = function()
+	{
+		if(window.console && console.log)
+			console.log("f1(%o)", arguments);
+
+		var t = $(this);
+
+		return this;
+	}
+
+	$.fn["f2"] = function()
+	{
+		if(window.console && console.log)
+			console.log("f2(%o)", arguments);
+
+		return "f2()";
+	}
+
+	var
+		tmp;
+
+
+	tmp = $("#testDIV");
+	tmp = $("#testDIV").f1();
+	tmp = $("#testDIV").f1().f2();
+
+	if(tmp)
+		;
+});
+		</script>
+	</head>
+	<body>
+		<div id="testDIV"></div>
+	</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Test JavaScript Array</TITLE>
+</HEAD>
+<BODY>
+<H1>Test JavaScript Array</H1>
+<SCRIPT TYPE="text/javascript">
+<!--
+var
+  arr=new Array(),
+  victim=new Array(),
+  i,
+  j,
+  k,
+  maxI=3,
+  maxJ=5,
+  maxK=5,
+  map=new Array();
+
+document.write("<hr>");
+if(!arr.length)
+	document.write("!arr.length","<br>");
+else
+	document.write("arr.length","<br>");
+if(arr.length)
+	document.write("arr.length","<br>");
+else
+	document.write("!arr.length","<br>");
+document.write("arr.length="+arr.length,"<br>");
+
+document.write("<hr>");
+if(arr[10]==undefined)
+	document.write("arr[10]==undefined","<br>");
+if(arr[10]==null)
+	document.write("arr[10]==null","<br>");
+if(!arr[10])
+	document.write("!arr[10]","<br>");
+if(!(i=arr[10]))
+	document.write("!(i=arr[10])","<br>");
+
+
+for(i=0; i<maxI; ++i)
+{ 
+   arr[i]=new Array();
+
+   for(j=0; j<maxJ; ++j)
+   {
+      arr[i][j]=new Array();
+
+      for(k=0; k<maxK; ++k)
+         arr[i][j][k]="["+i.toString()+"]["+j.toString()+"]["+k.toString()+"]";
+   }
+}
+
+document.write("<hr>");
+for(obj in arr)
+   document.write(obj,"<br>")
+document.write("<HR>");
+for(i=0; i<maxI; ++i)
+{
+   for(j=0; j<maxJ; ++j)
+   {
+      for(k=0; k<maxK; ++k)
+      {
+         document.write("["+i.toString()+"]["+j.toString()+"]["+k.toString()+"]=");
+         document.write(arr[i][j][k]);
+         document.write("&nbsp;");
+      }
+      document.write("<br>");
+   }
+   document.write("<br>");
+}
+document.write("<HR>");
+
+victim[0]=0;
+victim[1]=1;
+victim[2]=2;
+victim[3]=3;
+victim[4]=4;
+
+for(i=0; i<victim.length; ++i)
+   document.write("victim[",i,"]=",victim[i],"<br>");
+document.write("<br>");
+
+delete victim[2];
+for(i=0; i<victim.length; ++i)
+   document.write("victim[",i,"]=",victim[i],"<br>");
+document.write("<br>");
+
+victim.splice(2,1);
+for(i=0; i<victim.length; ++i)
+   document.write("victim[",i,"]=",victim[i],"<br>");
+document.write("<hr>");
+
+for(i=victim.length-1; i>=0; --i)
+	if(victim[i]==1)
+	{
+		victim.splice(i,1);
+		break;
+	}
+for(i=0; i<victim.length; ++i)
+   document.write("victim[",i,"]=",victim[i],"<br>");
+document.write("<hr>");
+
+map["first"]=1;
+map["second"]=2;
+map["third"]=3;
+if(!map["fourth"])
+	map["fourth"]=4;
+for(i in map)
+	document.write("map[\"",i,"\"]=",map[i],"<br>");
+document.write("<hr>");
+// -->
+</SCRIPT>
+</BODY>
+</HTML>

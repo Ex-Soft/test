@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="windows-1251"/>
+		<title>Test charset (йцукен)</title>
+		<script>
+function initXMLHTTPRequest()
+{
+	var
+		xRequest=null;
+
+	if(window.XMLHttpRequest)
+		xRequest=new XMLHttpRequest();
+	else if(window.ActiveXObject)
+	{
+		try
+		{
+			xRequest=new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xRequest=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				alert(e.name+": "+e.message);
+			}
+		}
+	}
+
+	return(xRequest);
+}
+
+function DoIt()
+{
+	var
+		r,
+		fn,
+		o;
+
+	if(!(r=initXMLHTTPRequest()))
+		return;
+
+	fn = document.getElementById("rUtf8").checked ? "dataUtf8.txt" : "data1251.txt";
+	r.open("GET",fn,false);
+	r.send(null);
+	if(r.status==200)
+	{
+		alert(r.responseText);
+		document.getElementById("xhrResponseText").innerHTML=r.responseText;
+		if((o=eval("("+r.responseText+")"))
+			&& window.JSON)
+			document.getElementById("objectToString").innerHTML=JSON.stringify(o);
+	}
+	r=null;
+}
+		</script>
+	</head>
+	<body>
+		<label for="rUtf8">utf-8</label><input type="radio" id="rUtf8" name="rCharset" checked="checked" />
+		<label for="r1251">windows-1251</label><input type="radio" id="r1251" name="rCharset" />
+		<input type="button" value="DoIt!" onclick="DoIt()" /><br />
+		Response: <span id="xhrResponseText"></span><br />
+		Object: <span id="objectToString"></span><br />
+	</body>
+</html>

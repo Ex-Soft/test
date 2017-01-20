@@ -1,0 +1,12 @@
+﻿<div class="container" data-ng-controller="SimpleController">
+	<h3>View 1<h3>
+	<label>id: <input type="text" data-ng-model="filterById" /></label>
+	<ul>
+		<li data-ng-repeat="name in namesObj | filter:filterById | orderBy: 'value'">{ id: '{{ name.id }}', value: '{{ name.value }}' }</li>
+	</ul>
+	<hr/>
+	<label>id: <input type="text" data-ng-model="newObj.id" /></label>
+	<label>value: <input type="text" data-ng-model="newObj.value" /></label>
+	<button data-ng-click="addNewObj()">Add new obj</button>
+	<a href="#/view2">View 2</a>
+</div>

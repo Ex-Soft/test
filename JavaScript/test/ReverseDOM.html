@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>Reverse</title>
+<script type="text/javascript">
+<!--
+function reverse(n)
+{
+   var
+     kids=n.childNodes,
+     numkids=kids.length,
+     c;
+
+   for(var i=numkids-1; i>=0; --i)
+   {
+      c=n.removeChild(kids[i]);
+      n.appendChild(c);
+   }
+}
+// -->
+</script>
+  </head>
+  <body>
+    <p>paragraph #1
+    <p>paragraph #2
+    <p>paragraph #3
+    <p>
+    <button onclick="reverse(document.body);">Click me to reverse</button>
+  </body>
+</html>

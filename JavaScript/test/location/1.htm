@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="windows-1251" />
+		<title>Test document location</title>
+		<script>
+function DoShow()
+{
+	if(window.console)
+	{
+		if(console.clear)
+			console.clear();
+
+		if(console.log)
+		{
+			console.log("typeof window.location=\"%s\", window.location=\"%o\"", typeof window.location, window.location);
+			console.log("window.location.hash=\"%s\"", window.location.hash);
+			console.log("window.location.host=\"%s\"", window.location.host);
+			console.log("window.location.hostname=\"%s\"", window.location.hostname);
+			console.log("window.location.href=\"%s\"", window.location.href);
+			console.log("window.location.pathname=\"%s\"", window.location.pathname);
+			console.log("typeof window.location.port=\"%s\", window.location.port=\"%o\"", typeof window.location.port, window.location.port);
+			console.log("window.location.protocol=\"%s\"", window.location.protocol);
+			console.log("window.location.search=\"%s\"", window.location.search);
+
+			console.log("typeof document.location=\"%s\", document.location=\"%o\"", typeof document.location, document.location);
+			console.log("document.location.hash=\"%s\"", document.location.hash);
+			console.log("document.location.host=\"%s\"", document.location.host);
+			console.log("document.location.hostname=\"%s\"", document.location.hostname);
+			console.log("document.location.href=\"%s\"", document.location.href);
+			console.log("document.location.pathname=\"%s\"", document.location.pathname);
+			console.log("typeof document.location.port=\"%s\", document.location.port=\"%o\"", typeof document.location.port, document.location.port);
+			console.log("document.location.protocol=\"%s\"", document.location.protocol);
+			console.log("document.location.search=\"%s\"", document.location.search);
+			console.log("document.URL=\"%s\"", document.URL);
+			console.log("document.baseURI=\"%s\"", document.baseURI);
+			console.log("document.domain=\"%s\"", document.domain);
+			console.log("document.documentURI=\"%s\"", document.documentURI);
+		}
+	}
+}
+		</script>
+	</head>
+	<body>
+		<form>
+			<input type="button" id="btnShow" name="btnShow" value="Show" onclick="DoShow()"><br>
+			<iframe src="2.htm"></iframe>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Test DOM II</title>
+		<script type="text/javascript">
+<!--
+function DoIt(obj)
+{
+	var
+		Ctrl;
+
+	if(Ctrl=obj.previousSibling)
+		alert("previousSibling: "+Ctrl.id);
+
+	if(Ctrl=obj.nextSibling)
+		alert("nextSibling: "+Ctrl.id);
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="button" id="InputButton1" value="1" onclick="DoIt(this)"><input type="button" id="InputButton2" value="2" onclick="DoIt(this)"><input type="button" id="InputButton3" value="3" onclick="DoIt(this)">
+		<input type="button" id="InputButton4" value="4" onclick="DoIt(this)">
+		<input type="button" id="InputButton5" value="5" onclick="DoIt(this)">
+		<input type="button" id="InputButton6" value="6" onclick="DoIt(this)">
+	</body>
+</html>

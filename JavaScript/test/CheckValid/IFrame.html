@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+  <HEAD>
+		<title>IFrameStandalone</title>
+		<script type="text/javascript" src="../../js/misc.js"></script>
+		<script src="../../js/form.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var
+  CheckElement=new Array(),
+  InvalidColor="rgb(255,191,191)",
+  f,
+  OldOnSubmit;
+
+CheckElement[0]={Id:"IFrameStandaloneTextBox1",Required:true,typeofStore:"int"};
+CheckElement[1]={Id:"IFrameStandaloneTextBox3",Required:true,typeofStore:"double"};
+
+function TestSubmit()
+{
+   var
+     result,
+     str="IFrameStandaloneForm.onsubmit";
+
+   alert(str);
+   result=top.CheckForm(top,InvalidColor,'IFrameStandaloneForm');
+   alert(str+"="+result);
+   return(result);
+}
+
+function NewOnSubmit(aStr)
+{
+   alert("IFrameStandaloneForm.NewOnSubmit("+aStr+")");
+}
+// -->
+</script>
+</HEAD>
+	<body onload="PrepareForm(); f=document.getElementById('IFrameStandaloneForm'); OldOnSubmit=f.onsubmit; f.onsubmit=function(){NewOnSubmit('b4');OldOnSubmit();NewOnSubmit('after')}">
+		<form id="IFrameStandaloneForm" name="IFrameStandaloneForm" method="post" onsubmit="return(TestSubmit())">
+			<input type="text" id="IFrameStandaloneTextBox1" name="IFrameStandaloneTextBox1"><br>
+			<input type="text" id="IFrameStandaloneTextBox2" name="IFrameStandaloneTextBox2"><br>
+			<input type="text" id="IFrameStandaloneTextBox3" name="IFrameStandaloneTextBox3"><br>
+			<input type="submit" id="IFrameStandaloneBtnSubmit" name="IFrameStandaloneBtnSubmit" style="width: 0px; height: 0px; " value="" onclick="alert('IFrameStandaloneBtnSubmit.onclick')">
+		</form>
+	</body>
+</HTML>

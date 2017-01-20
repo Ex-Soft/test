@@ -1,0 +1,7 @@
+input { background-color: blue}
+input.withClass { background-color: green}
+input.withClassInvalid { background-color: red}
+.StandaloneClass { background-color: aqua}
+.Class1 { color: white}
+.Class2 { background-color: blue}
+.Class3 { font-weight: bold}

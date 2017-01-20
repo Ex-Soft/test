@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<!-- https://developer.mozilla.org/en/DOM/window.btoa -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test Base64</title>
+		<script type="text/javascript">
+function DoIt()
+{
+	var
+		inpt,
+		outpt,
+		outoutpt;
+
+	if(!(inpt=document.getElementById("inpt"))
+		|| !(outpt=document.getElementById("outpt"))
+		|| !(outoutpt=document.getElementById("outoutpt")))
+		return;
+
+	outpt.value = window.btoa ? window.btoa(inpt.value) : "!window.btoa";
+	outoutpt.value = window.atob ? window.atob(outpt.value) : "!window.atob";
+}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="inpt" value="Hello, world">
+		<input type="text" id="outpt">
+		<input type="text" id="outoutpt">
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+	</body>
+</html>

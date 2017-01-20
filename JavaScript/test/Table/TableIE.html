@@ -1,0 +1,26 @@
+﻿<HTML>
+  <HEAD>
+    <TITLE>Test Param by Reference</TITLE>
+  </HEAD>
+  <BODY>
+    <FORM id=MainForm>
+      <table id="table1" border="2">
+        <tr>
+          <td>[0][0]</td><td>[0][1]</td>
+        </tr>
+        <tr>
+          <td>[1][0]</td><td>[1][1]</td>
+        </tr>
+      </table>
+      <SCRIPT type=text/javascript>
+      <!--
+new_row=document.getElementById("table1").insertRow(1);
+new_cell1=new_row.insertCell(0);
+new_cell1.innerText="new cell [0]";
+new_cell2=new_row.insertCell(1);
+new_cell2.innerText="new cell [1]";
+      // -->
+      </SCRIPT>
+    </FORM>
+  </BODY>
+</HTML>

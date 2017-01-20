@@ -1,0 +1,53 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Get/Set II</title>
+		<script>
+function A(value)
+{
+	this.property_value = value;
+}
+
+A.prototype = {
+	get property() {
+		if(window.console && console.log)
+			console.log("A.prototype.get()");
+
+		return this.property_value + this.property_value;
+	},
+	set property(v) {
+		if(window.console && console.log)
+			console.log("A.prototype.set(\"%s\")", v);
+
+			this.property_value=v;
+	}
+}
+
+function OnLoad()
+{
+	var
+		o=new A(),
+		v=o.property="test";
+
+	if(window.console && console.log)
+	{
+		console.log("b4");
+		console.log("o: \"%s\", v: \"%s\"", o.property, v);
+	}
+
+	var
+		tmp = eval("o.property=\"blah-blah-blah\"");
+
+	if(window.console && console.log)
+	{
+		console.log("o: \"%s\", tmp: \"%s\"", o.property, tmp);
+	}
+
+	var
+		
+}
+		</script>
+	</head>
+	<body onload="OnLoad();">
+	</body>
+</html>

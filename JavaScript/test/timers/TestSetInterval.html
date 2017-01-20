@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test setInterval()</title>
+		<script>
+var
+	id;
+
+function DoIt()
+{
+	var
+		ctrl,
+		millisec;
+
+	if(!(ctrl=document.getElementById("inputMillisec"))
+		|| isNaN(millisec=parseInt(ctrl.value, 10)))
+		return;
+
+	if(window.console && console.log)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("b4 set() %s", new Date().toString());
+
+	id = setInterval(DoSmth, millisec);
+}
+
+function DoSmth()
+{
+	if(window.console && console.log)
+		console.log("DoSmth() %s", new Date().toString());
+}
+
+function Clr()
+{
+	if(window.console && console.log)
+		console.log("Clr() %s", new Date().toString());
+
+	clearInterval(id);
+}
+		</script>
+	</head>
+	<body>
+		<label>Timeout: <input type="text" id="inputMillisec" value="5000" placeholder="5000" required autofocus pattern="\d" /> (msec)</label>
+		<input type="button" value="set()" onclick="DoIt()" /><input type="button" value="clear()" onclick="Clr()" />
+	</body>
+</html>

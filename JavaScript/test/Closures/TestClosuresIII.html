@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Test closures III</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script type="text/javascript">
+<!--
+var
+	f1;
+
+function InitF1(param)
+{
+	var
+		f=function(param){
+			var
+				v;
+
+			if(param)
+				v=param;
+
+			alert(v);
+		};
+
+	return f;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<input type="text" id="Input1"><input type="button" value="InitF1()" onclick="f1=InitF1(document.getElementById('Input1').value)"><br/>
+		<input type="button" value="get f1()" onclick="f1()">
+	</body>
+</html>

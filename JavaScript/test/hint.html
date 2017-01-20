@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+		<title>Hint</title>
+		<style type="text/css">
+a.tt
+{
+}
+
+a.tt span
+{
+	color: #578867;
+	border-bottom: 1px solid #0080c0;
+	display:none;/*собственно прячем тултип - пока мышь не наведена*/
+}
+
+a.tt:hover
+{
+	position:relative;/*Ставим точку отсчета для тултипа внутрь данной ссылки*/
+	z-index:23;/*это нужно что бы тултип показывался поверх этой и других ссылок*/
+	size: 10px;
+}
+
+a.tt:hover span
+{
+	text-decoration: none;
+	display:block;/*показываем тултип при наведении*/
+	position:absolute;
+	top:-10px;
+	left:40px;/*три строки для позиции тултипа относительно левого верхнего угла ссылки*/
+	z-index:22;/*мне 22 + см. выше*/
+	background:#fafafa;
+	border: solid 1px #bbb;/*фон, что бы было видно тултип*/
+}
+		</style>
+		<script type="text/javascript">
+<!--
+function ImgLoad(img, url)
+{
+	if(img.src!=url)
+		img.src=url;
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<a href="#" onmouseover="ImgLoad(document.getElementById('img1'),'http://sql.ru/forum/images/exclamation.gif')" class="tt">ссылка<span><img id="img1" />Картинко, плюс описание</span></a><br />
+	</body>
+</html>
