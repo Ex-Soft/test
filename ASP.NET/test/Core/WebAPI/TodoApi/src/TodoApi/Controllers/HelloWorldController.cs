@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TodoApi.Controllers
 {
-    [Route("api/helloworld")]
+    [Route("api/[controller]")]
     public class HelloWorldController : Controller
     {
         [HttpGet]

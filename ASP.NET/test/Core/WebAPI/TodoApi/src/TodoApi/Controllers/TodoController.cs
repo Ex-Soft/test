@@ -6,7 +6,7 @@ using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
-    [Route("api/todo")]
+    [Route("api/[controller]")]
     public class TodoController : Controller
     {
         public ITodoRepository TodoItems { get; set; }
