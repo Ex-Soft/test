@@ -26,8 +26,8 @@ namespace TestMarshal
         {
             // Create a point struct.
             Point p;
-            p.x = 1;
-            p.y = 1;
+            p.x = 0x7fffeeee;
+            p.y = 0x7aaabbbb;
 
             Console.WriteLine("The value of first point is " + p.x + " and " + p.y + ".");
 
@@ -49,6 +49,8 @@ namespace TestMarshal
 
                 Console.WriteLine("The value of new point is " + anotherP.x + " and " + anotherP.y + ".");
 
+                int tmpInt = Marshal.ReadInt32(pnt);
+                long tmpLong = Marshal.ReadInt64(pnt);
             }
             finally
             {
