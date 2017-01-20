@@ -1,3 +1,6 @@
 .sencha
 build
 ext
+.sass-cache
+touch
+
