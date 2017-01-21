@@ -1,0 +1,49 @@
+(*=============================================================
+ *
+ *  Copyright (C) 1999-2002 Soft Variant Company.
+ *  All Rights Reserved.
+ *
+ *  Freeware TICQSocket Delphi component PAK for using
+ *  ICQ_Socket.dll library v2.2
+ *
+ *  Author: Evgeny Golovin.
+ *  E-Mail: softvariant@narod.ru
+ *  Homepage: http://softvariant.narod.ru/icq_socket/index.htm
+ *
+ **************************************************************)
+package icqsocket_d6;
+
+{$R *.res}
+{$R '..\ICQSocket.dcr'}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl;
+
+contains
+  ICQSocket in '..\ICQSocket.pas',
+  ICQ_Socket_pas in '..\..\ICQ_Socket_pas.pas',
+  ICQ_Type_pas in '..\..\ICQ_Type_pas.pas';
+
+end.

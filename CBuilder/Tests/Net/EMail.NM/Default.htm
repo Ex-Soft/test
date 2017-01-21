@@ -1,0 +1,517 @@
+196
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<meta name="description" content="Скачать сборку Miranda IM, скины, смайлы, плагины для Miranda IM" />
+<meta name="keywords" content="Miranda IM, скачать, с
+54 
+кины, смайлы, смайлики, красивые" />
+<meta name="author" content="Stark" />
+<title>
+
+46 
+Скачать Miranda IM, красивые смайлы и очень красивые скины для Миранды
+44 
+</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+2  
+<s
+50 
+cript language="javascript" type="text/javascript" src="prototype.js"></script>
+
+2  
+<s
+190
+cript language="javascript">
+function over(n_id, id)
+{
+var i = $(n_id + '_1');
+var i_1 = $(n_id + '_2');
+var i_2 = $(n_id + '_3');
+var i_3 = $(n_id + '_4');
+var i_4 = $(n_id + '_5');
+
+var t = $(n_id + "_text");
+
+var s = "img/star_o_small.gif";
+if(id == 1){ i.src = s; t.innerHTML = "Фигня"}
+if(id == 2){ i.src = s;  i_1.src = s; t.innerHTML = "Нормальный"}
+if(id == 3){ i.src = s;  i_1.src = s; i_2.s
+190
+rc = s; t.innerHTML = "Неплохо"}
+if(id == 4){ i.src = s;  i_1.src = s; i_2.src = s; i_3.src = s; t.innerHTML = "Красивый"}
+if(id == 5){ i.src = s;  i_1.src = s; i_2.src = s; i_3.src = s; i_4.src = s; t.innerHTML = "Супер!"}
+}
+function out(n_id, id)
+{
+var i = $(n_id + '_1');
+var i_1 = $(n_id + '_2');
+var i_2 = $(n_id + '_3');
+var i_3 = $(n_id + '_4');
+var i_4 = $(n_id + '_5');
+
+var t = $(n_id + "_t
+191
+ext");
+
+var s = "img/star_e_small.gif";
+
+t.innerHTML = "<br>";
+if(id == 1){ i.src = s; }
+if(id == 2){ i.src = s;  i_1.src = s;}
+if(id == 3){ i.src = s;  i_1.src = s; i_2.src = s;}
+if(id == 4){ i.src = s;  i_1.src = s; i_2.src = s; i_3.src = s;}
+if(id == 5){ i.src = s;  i_1.src = s; i_2.src = s; i_3.src = s; i_4.src = s;}
+}
+ 
+function ajaxCall(v, i)
+{
+var url = 'ajax.php';
+var pars = 'vot=' + v + '&
+19c
+id=' + i;
+var myAjax = new Ajax.Updater(i + '_d', url, {method: 'get', parameters: pars});
+}
+</script>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" class="bgmain"><table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top"><table width="780" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td colspan="3" rowspan
+c6 
+="2" class="loginbg"><img src="images/spacer.gif" alt="spacer" height="15"/></td>
+<td colspan="4" style="font-size:9px; color:#afafaf; padding-top:3px;">Большой архив смайлов, скинов и плагинов для 
+2  
+<s
+1a3
+trong>Miranda IM</strong></td>
+<td><img src="images/spacer.gif" width="1" height="25" alt="1" /></td>
+</tr>
+<tr>
+<td colspan="4" rowspan="2">&nbsp;</td>
+<td><img src="images/spacer.gif" width="1" height="15" alt="1" /></td>
+</tr>
+<tr>
+<td colspan="3"><img src="images/top_logo.gif" alt="logo" width="368" height="83" border="0" alt="Miranda IM" title="Miranda IM"/>
+</td>
+<td><img src="images/spacer.gif" width="1" heig
+1a1
+ht="83" alt="1" /></td>
+</tr>
+<tr>
+<td class="navt1"><a href="" style="font-size: 12px; font-weight: bold; color:#FFFFFF;">Главная</a></td>
+<td class="navt2"><a href=/forum style="	font-size: 12px; font-weight: bold; color: #FFFFFF;">Форум</a></td>
+<td colspan="2" class="navt3"><a href=?category=1&skins_for_miranda style="	font-size: 12px; font-weight: bold; color: #FFFFFF;">Скины</a></td>
+<td class="navt4"><a hre
+19c
+f=?category=2&smiles_for_miranda style="font-size: 12px; font-weight: bold; color: #FFFFFF;">Смайлы</a></td>
+<td class="navt5"><a href=?category=3&plugins_for_miranda style="font-size: 12px; font-weight: bold; color: #FFFFFF;">Плагины</a></td>
+<td class="navt6"><a href=?id=85 style="	font-size: 12px; font-weight: bold; color: #FFFFFF;">Скачать Miranda</a></td>
+<td><img src="images/spacer.gif" width="1" height
+19f
+="41" alt="1" /></td>
+</tr>
+<tr>
+<td colspan="7" valign="top" class="mcbg">
+<img src="images/header_11.gif" width="779" height="24" alt="header" />
+<table width="100%" border="0" cellspacing="8" cellpadding="0">
+<tr>
+<td width="152" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="leftcolheader">Главное меню </td></tr>
+<tr>
+<td class="navoff" onmouseover="this.classNam
+d2 
+e='navon'" onmouseout="this.className='navoff'">
+<a href="/index.php">Главная</a>
+</td>
+</tr>
+<tr>
+<td class="navoff" onmouseover="this.className='navon'" onmouseout="this.className='navoff'">
+<a href="/forum">
+2  
+<s
+105
+trong>Форум</strong></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="navoff" onmouseover="this.className='navon'" onmouseout="this.className='navoff'">
+                        <a href="?id=85">
+2  
+<s
+141
+trong style="color: #FFFFFF;">Скачать Miranda IM</strong></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="navoff" onmouseover="this.className='navon'" onmouseout="this.className='navoff'">
+                        <a href="?category=1&skins_for_miranda">
+2  
+<s
+129
+trong>Скины для Miranda</strong></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="navoff" onmouseover="this.className='navon'" onmouseout="this.className='navoff'">
+                        <a href="?category=2&smiles_for_miranda">
+2  
+<s
+137
+trong>Смайлы для Miranda</strong></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="navoff" onmouseover="this.className='navon'" onmouseout="this.className='navoff'">
+                        <a href="?category=3&plugins_for_miranda">Плагины для 
+2  
+<s
+19c
+trong>Miranda</strong></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="navoff" onmouseover="this.className='navon'" onmouseout="this.className='navoff'">
+                        <a href="?do=subscribe">Рассылка сайта</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="navoff" onm
+77 
+ouseover="this.className='navon'" onmouseout="this.className='navoff'">
+                        <a href="?do=send_icq">
+2  
+<s
+19c
+trong>Отправить сообщ. ICQ</strong></a>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                  
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="leftcolheader">Статистика сайта </td>
+                    </tr>
+                    <tr>
+                      <t
+13f
+d class="lcolbg">
+
+					  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left: 4px;">
+                        <tr>
+                          <td align=center>
+                           Категории:<br>
+                           <a href="?category=1"><b>Скины / Skins:</b> (
+2  
+77
+54 
+)</a><br>
+                           <a href="?category=2"><b>Смайлы / Smiles:</b> (
+2  
+17
+56 
+)</a><br>
+                           <a href="?category=3"><b>Плагины / Plugins:</b> (
+1  
+8
+58 
+)</a><br>
+                            <br>Самые популярные:
+                            
+41 
+<div align=left style='width: 100%; text-transform: capitalize;'>
+37 
+1. <a href=index.php?id=85><b>miranda(1426)</b></a><br>
+3b 
+2. <a href=index.php?id=48><b>shark-smiles(493)</b></a><br>
+37 
+3. <a href=index.php?id=21><b>inspirat(397)</b></a><br>
+3e 
+4. <a href=index.php?id=50><b>advanced-smiles(336)</b></a><br>
+33 
+5. <a href=index.php?id=93><b>tran(288)</b></a><br>
+3b 
+6. <a href=index.php?id=49><b>black-smiles(286)</b></a><br>
+32 
+7. <a href=index.php?id=69><b>neo(257)</b></a><br>
+36 
+8. <a href=index.php?id=52><b>szandor(248)</b></a><br>
+36 
+9. <a href=index.php?id=57><b>viranda(229)</b></a><br>
+35 
+10. <a href=index.php?id=80><b>avant(204)</b></a><br>
+6  
+</div>
+a  
+</div><br>
+1f 
+Всего загрузок: <b>9894</b><br>
+17 
+Скинов: <b>7996</b><br>
+14 
+Смайлов: <b>1898</b>
+19c
+                          </td>
+                        </tr>
+                      </table>
+
+
+                     </td>
+                    </tr>
+                    <tr>
+                      <td><img src="images/bottom_col_foot.gif" alt="footer" width="152" height="7" /></td>
+                    </tr>
+                  </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          
+11f
+          <tr>
+                      <td class="leftcolheader">Ссылки</td>
+                    </tr>
+                    <tr>
+                      <td class="lcolbg">
+
+					  <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align=center><br>
+
+1a2
+<a title="Vostok Fun" href="http://vfun.ho.com.ua" target="_blank"><img alt="Vostok Fun"  src="http://vfun.ho.com.ua/banner.gif" border="0"></a><br>
+<a href=http://miranda-im.org target=_blank title="Official Miranda IM site">Оф. сайт Miranda-IM</a><br>
+<a href=http://lemnews.com/miranda target=_blank title="Lemnews Miranda IM">Miranda IM Lemnews</a><br>
+    </td>
+  </tr>
+</table>
+
+</td>
+ </tr>
+   <tr>
+    <td><img
+19d
+ src="images/bottom_col_foot.gif" alt="footer" width="152" height="7" /></td>    </tr></table>
+
+
+                  
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+     <td class="leftcolheader">Счетчики </td>
+   </tr>
+   <tr>
+     <td class="lcolbg">
+
+ <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align=center><br>
+     <!-- MyCounter -->
+
+2  
+<s
+79 
+cript language="JavaScript" type="text/javascript"><!--
+var j=0,d=document,s=screen,h='mycounter.com.ua/'
+//--></script>
+
+2  
+<s
+4c 
+cript language="JavaScript1.1" type="text/javascript"><!--
+j=1//--></script>
+2  
+<s
+4c 
+cript language="JavaScript1.2" type="text/javascript"><!--
+j=2//--></script>
+2  
+<s
+4c 
+cript language="JavaScript1.3" type="text/javascript"><!--
+j=3//--></script>
+2  
+<s
+193
+cript language="JavaScript" type="text/javascript"><!--
+d.cookie="s=1;path=/";d.write('<a href="http://'+h+
+'stats/?id=8532" target=_blank><img src="http://get.'+
+h+'counter.php?id=8532&w='+escape(window.location.href)+
+((typeof(s)=='undefined')?'':'&s='+s.width+'x'+s.height+'x'+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+
+(d.referrer?'&r='+escape(d.referrer):'')+
+(d.cookie?'&c=1':'')+'&j='+j+(navigat
+1762
+or.javaEnabled()?'&e=1':'')+
+'" alt="MyCounter - Ваш счётчик (посетителей и хитов сегодня)" border="0" width="88" height="31" /></a>')
+//--></script><noscript><a target="_blank"
+href="http://mycounter.com.ua/stats/?id=8532"><img
+src="http://get.mycounter.com.ua/counter.php?id=8532" border="0"
+width="88" height="21" alt="MyCounter - Ваш счётчик (посетителей и хитов сегодня)" /></a></noscript>
+<!-- End MyCounter code --><br><br>
+<!-- bigmir)net TOP 100 --><a href="http://www.bigmir.net/" target=_blank onClick='img = new Image();img.src="http://www.bigmir.net/?cl=125414";' ><script language="javascript"><!--
+bmQ='<img src=http://c.bigmir.net/?s125414&t14'
+bmD=document
+bmD.cookie="b=b"
+if(bmD.cookie)bmQ+='&c1'
+//--></script><script language="javascript1.2"><!-- 
+bmS=screen;bmQ+='&d'+(bmS.colorDepth?bmS.colorDepth:bmS.pixelDepth)+"&r"+bmS.width;
+//--></script><script language="javascript"><!--
+bmF = bmD.referrer.slice(7);
+((bmI=bmF.indexOf('/'))!=-1)?(bmF=bmF.substring(0,bmI)):(bmI=bmF.length);
+if(bmF!=window.location.href.substring(7,7+bmI))bmQ+='&f'+escape(bmD.referrer);
+bmD.write(bmQ+" border=0 width=88 height=63 alt='bigmir TOP100'>");
+//--></script></a><br><br>
+<!-- рейтинг Ualink -->
+<script language="javascript">
+java="1.0";
+java1=""+"&refer="+escape(document.referrer)+"&page="+
+escape(window.location.href);
+document.cookie="astratop=1; path=/"; java1+="&c="+(document.cookie?"yes":"now");
+</script>
+<script language="javascript1.1">java="1.1";java1+="&java="+(navigator.javaEnabled()?"yes":"now")</script>
+<script language="javascript1.2">java="1.2";
+java1+="&razresh="+screen.width+'x'+screen.height+"&cvet="+
+(((navigator.appName.substring(0,3)=="Mic"))?
+screen.colorDepth:screen.pixelDepth)</script><script language="javascript1.3">java="1.3"</script>
+<script language="javascript">java1+="&jscript="+java;
+document.write("<a href='http://ualink.info/' target='_top'><img "+
+" src='http://ualink.info/img.php?id=50&"+java1+"&' border=0 width=88 height=31 alt='UALINK - Рейтинг интернет ресурсов'></a>")</script>
+<noscript><a href=http://ualink.info/ target=_top><img src="http://ualink.info/img.php?id=50" border=0 width="88" height="31" alt="UALINK - Рейтинг интернет ресурсов"></a></noscript>
+<!-- /рейтинг Ualink -->
+    </td>
+  </tr>
+</table>
+
+</td>
+ </tr>
+   <tr>
+    <td><img src="images/bottom_col_foot.gif" alt="footer" width="152" height="7" /></td>    </tr></table>
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>  
+    <td class="leftcolheader">Реклама </td>
+     </tr>
+      <tr>
+      <td class="lcolbg">
+
+					  <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align=center><br>
+
+    </td>
+  </tr>
+</table>
+
+</td>
+ </tr>
+   <tr>
+    <td><img src="images/bottom_col_foot.gif" alt="footer" width="152" height="7" /></td>    </tr></table></td>
+
+
+
+</td>
+                <td valign="top"><div align="center">
+<iframe width=468 height=60 leftMargin=0 topMargin=0 frameborder=0 scrolling=no src="http://halyava.in.ua/countphp.php"></iframe>
+               <br>
+                  <script language="javascript">
+function go()
+{
+  var uin = document.getElementById("uin").value;
+  var img = document.getElementById("img");
+  if(uin == "") img.src = "images/spacer.gif";
+  else img.src = "http://web.icq.com/whitepages/online?icq="+ uin +"&img=5";
+}
+
+</script>
+<table border="0" align="center" cellpadding="0" cellspacing="0" width=95%>
+<tr>
+<td>
+<table width=100% border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td class="header_left">&nbsp;</td>
+<td class="header_center"><a href="http://miranda.org.ua/?do=send_icq" style="color: #C9CDCB">Отправка сообщений на номер ICQ онлайн</a></td>
+<td class="header_right">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="99.2%" border="0" align="center" cellpadding="0" cellspacing="0" class="cent">
+<tr>
+<td valign=top align=left style="padding-left:10px;"><br>
+<br><br><div style="width: 95%;">
+
+<div align=center style="margin-left: 20px;"><form method=post>
+Номер получателя: <br><input type=text name=uin size=10 style="font-family: Tahoma; font-size: 10px; font-weight: bold;" id=uin value=""><img src="images/spacer.gif" id="img"><br>
+Текст сообщения: <br><textarea onClick="go()" name=content cols=50 rows=7 style="font-family: Tahoma; font-size: 11px;"></textarea><br>
+<input type=submit value="Отправить">
+</form></div>
+ </div> 
+          </td>
+         </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table width=100% border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="footer_left">&nbsp;</td>
+            <td class="footer_center">&nbsp;</td>
+            <td class="footer_right">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+ </table><br>
+&nbsp;
+<br>
+             <div align="right">Время генерации страницы: 0.03198 сек.&nbsp;
+            запросов к БД: 6</div>
+                </td>
+              </tr>
+            </table>			  
+			<table width="775" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="crbg"><div align="right"><a href="mailto:starkk@ukr.net">Обратная связь</a> </div></td>
+              </tr>
+            </table>
+			</td>
+		<td>
+			<img src="images/spacer.gif" width="1" height="24" alt="" /></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/spacer.gif" width="131" height="1" alt="" /></td>
+		<td>
+			<img src="images/spacer.gif" width="131" height="1" alt="" /></td>
+		<td>
+			<img src="images/spacer.gif" width="106" height="1" alt="" /></td>
+		<td>
+			<img src="images/spacer.gif" width="23" height="1" alt="" /></td>
+		<td>
+			<img src="images/spacer.gif" width="131" height="1" alt="" /></td>
+		<td>
+			<img src="images/spacer.gif" width="130" height="1" alt="" /></td>
+		<td>
+			<img src="images/spacer.gif" width="127" height="1" alt="" /></td>
+		<td></td>
+	</tr>
+</table>          </td>
+      </tr>
+      
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>
+0
+

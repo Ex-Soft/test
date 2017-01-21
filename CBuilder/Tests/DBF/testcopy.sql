@@ -1,0 +1,1 @@
+insert into "D:\My_Doc\CBuilder\Tests\DBF\testcopy.db" select DDay_S, DMonth_S, DYear_S from "D:\My_Doc\CBuilder\Tests\DBF\test.db" order by DYear_S, DMonth_S, DDay_S

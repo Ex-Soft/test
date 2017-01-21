@@ -1,0 +1,1 @@
+select DDay_N, DMonth_N, DYear_N from "D:\My_Doc\CBuilder\Tests\DBF\test.db" order by DYear_N, DMonth_N, DDay_N

@@ -1,0 +1,155 @@
+йцукенгшщзхъ
+фывапролджэ
+ячсмитьбю.
+
+Lotus
+Header
+--------------------
+
+To: test@usbi.com.ua
+Subject: _USI_System_
+MIME-Version: 1.0
+X-Mailer: Lotus Notes Release 6.0 September 26, 2002
+Message-ID: <OF4C1511CD.CBD94A82-ONC2256DD4.0024065F-C2256DD4.00241B7F@usbi.com.ua>
+From: nozhenko@usbi.com.ua
+Date: Tue, 4 Nov 2003 08:34:23 +0200
+X-MIMETrack: Serialize by POP3 Server on usi/USIL/UA(Release 6.0.1|February 07, 2003) at
+ 04.11.2003 08:35:17
+Content-Type: multipart/mixed; boundary="=_mixed 00241B7CC2256DD4_="
+
+
+RawBody
+--------------------
+
+--=_mixed 00241B7CC2256DD4_=
+Content-Type: text/plain; charset="KOI8-R"
+Content-Transfer-Encoding: base64
+
+8NL51/zUISEhDQoNCkNVDQpXUlQsIElnb3INCg0KbWFpbHRvOm5vemhlbmtvQHVzYmkuY29tLnVh
+DQo=
+--=_mixed 00241B7CC2256DD4_=
+Content-Type: text/plain; name="attach.txt"
+Content-Disposition: attachment; filename="attach.txt"
+Content-Transfer-Encoding: base64
+
+YXR0YWNoLnR4dA0KYXR0YWNoLnR4dA0KYXR0YWNoLnR4dA0KYXR0YWNoLnR4dA0KYXR0YWNoLnR4
+dA0KYXR0YWNoLnR4dA0KYXR0YWNoLnR4dA==
+--=_mixed 00241B7CC2256DD4_=
+Content-Type: application/octet-stream; name="=?KOI8-R?B?wdTUwd4u1MjU?="
+Content-Disposition: attachment; filename="=?KOI8-R?B?wdTUwd4u1MjU?="
+Content-Transfer-Encoding: base64
+
+4PLy4Pcu8vXyDQrg8vLg9y7y9fINCuDy8uD3LvL18g0K4PLy4Pcu8vXyDQrg8vLg9y7y9fI=
+--=_mixed 00241B7CC2256DD4_=--
+
+Body
+--------------------
+
+8NL51/zUISEhDQoNCkNVDQpXUlQsIElnb3INCg0KbWFpbHRvOm5vemhlbmtvQHVzYmkuY29tLnVh
+DQo=
+
+File "attach.txt" extracted
+
+File "=?KOI8-R?B?wdTUwd4u1MjU?=" extracted
+
+Attachment
+--------------------
+
+attach.txt
+=?KOI8-R?B?wdTUwd4u1MjU?=
+
+Yahoo
+Header
+--------------------
+
+Received: from relay.ukrsotsbank.com ([192.168.1.3])
+          by usi.usbi.com.ua (Lotus Domino Release 6.0.1)
+          with ESMTP id 2003110408345906-1411 ;
+          Tue, 4 Nov 2003 08:34:59 +0200 
+Received: from web41004.mail.yahoo.com (web41004.mail.yahoo.com [66.218.93.3])
+	by relay.ukrsotsbank.com (8.12.9p2/8.12.8) with SMTP id hA46XrmG011757
+	for <test@usbi.com.ua>; Tue, 4 Nov 2003 08:33:57 +0200 (EET)
+	(envelope-from inozhenko@yahoo.com)
+Message-ID: <20031104063406.1092.qmail@web41004.mail.yahoo.com>
+Received: from [212.40.36.90] by web41004.mail.yahoo.com via HTTP; Mon, 03 Nov 2003 22:34:06 PST
+Date: Mon, 3 Nov 2003 22:34:06 -0800 (PST)
+From: Igor Nozhenko <inozhenko@yahoo.com>
+Subject: _USI_System_
+To: test@usbi.com.ua
+MIME-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on usi/USIL/UA(Release 6.0.1|February 07, 2003) at
+ 04.11.2003 08:34:59,
+	Serialize by POP3 Server on usi/USIL/UA(Release 6.0.1|February 07, 2003) at
+ 04.11.2003 08:35:17
+Content-Type: multipart/mixed; boundary="0-1293564604-1067927646=:216"
+
+
+RawBody
+--------------------
+
+--0-1293564604-1067927646=:216
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Id: 
+
+Test POP3 (with attachment)
+
+=====
+CU
+WRT,
+Igor
+
+mailto:inozhenko@yahoo.com
+
+__________________________________
+Do you Yahoo!?
+Protect your identity with Yahoo! Mail AddressGuard
+http://antispam.yahoo.com/whatsnewfree
+--0-1293564604-1067927646=:216
+Content-Type: text/plain; name="attach.txt"
+Content-Disposition: inline; filename="attach.txt"
+Content-Description: attach.txt
+
+attach.txt
+attach.txt
+attach.txt
+attach.txt
+attach.txt
+attach.txt
+attach.txt
+--0-1293564604-1067927646=:216
+Content-Type: application/octet-stream; name="аттач.тхт"
+Content-Disposition: attachment; filename="аттач.тхт"
+Content-Description: аттач.тхт
+Content-Transfer-Encoding: base64
+
+4PLy4Pcu8vXyDQrg8vLg9y7y9fINCuDy8uD3LvL18g0K4PLy4Pcu8vXyDQrg8vLg9y7y9fI=
+
+--0-1293564604-1067927646=:216--
+
+Body
+--------------------
+
+Test POP3 (with attachment)
+
+=====
+CU
+WRT,
+Igor
+
+mailto:inozhenko@yahoo.com
+
+__________________________________
+Do you Yahoo!?
+Protect your identity with Yahoo! Mail AddressGuard
+http://antispam.yahoo.com/whatsnewfree
+
+File "attach_1.txt" extracted
+
+File "аттач.тхт" extracted
+
+Attachment
+--------------------
+
+attach_1.txt
+аттач.тхт

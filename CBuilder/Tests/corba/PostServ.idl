@@ -1,0 +1,11 @@
+module PostModule
+{
+   interface Post
+   {
+      exception CapacityExceeded
+      {
+         long max;
+      };
+      long GetText(in string text,in string name);
+   };
+};

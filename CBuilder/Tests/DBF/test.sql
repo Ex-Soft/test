@@ -1,0 +1,1 @@
+select cast(DDay as integer), cast(DMonth as integer), cast(DYear as integer) from "D:\My_Doc\CBuilder\Tests\DBF\test.db" order by 3,2,1

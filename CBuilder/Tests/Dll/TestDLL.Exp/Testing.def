@@ -1,0 +1,6 @@
+LIBRARY     TESTING.DLL
+
+EXPORTS
+    _FileFunction                  @1   ; _FileFunction
+    _VoidFunction                  @2   ; _VoidFunction
+    ___CPPdebugHook                @3   ; ___CPPdebugHook
