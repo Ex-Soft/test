@@ -53,8 +53,6 @@ project.lock.json
 # eclipse
 .settings/
 
-FakesAssemblies/
-
 ipch
 _ReSharper*
 *.sdf
