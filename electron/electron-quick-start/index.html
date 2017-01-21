@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script charset="utf-8" src="dll.js"></script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+    <hr/>
+    <h1>Addons</h1>
+    <input type="button" value="SayHello()" onclick="SayHello()" />
+    <hr/>
+    <input type="button" value="GetNCLButtonDblClk()" onclick="GetNCLButtonDblClk()" /><span id="spanGetNCLButtonDblClk"></span><br>
+    <input type="button" value="GetNCRButtonDblClk()" onclick="GetNCRButtonDblClk()" /><span id="spanGetNCRButtonDblClk"></span><br>
+    <input type="button" value="GetRButtonDblClk()" onclick="GetRButtonDblClk()" /><span id="spanGetRButtonDblClk"></span><br>
+    <input type="button" value="GetLButtonDblClk()" onclick="GetLButtonDblClk()" /><span id="spanGetLButtonDblClk"></span>
+    <hr/>
+    <a href="otherPage.html">other page</a>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
