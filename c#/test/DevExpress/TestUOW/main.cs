@@ -1,8 +1,8 @@
 ﻿//#define TEST_DUPLICATES
 #define TEST_UOW_EVENTS
-//#define TEST_NESTED_UOW
-//#define TEST_NESTED_UOW_2
-//#define TEST_NESTED_UOW_WITH_NEW
+#define TEST_NESTED_UOW
+#define TEST_NESTED_UOW_2
+#define TEST_NESTED_UOW_WITH_NEW
 
 using System;
 using System.Collections.Generic;

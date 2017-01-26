@@ -59,15 +59,26 @@
     <Compile Include="BarForm.Designer.cs">
       <DependentUpon>BarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomCalendarControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomDateNavigator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Db\TestDE.cs" />
+    <Compile Include="Db\TestDetail.cs" />
+    <Compile Include="Db\TestMaster.cs" />
     <Compile Include="GridFormI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GridFormI.Designer.cs">
       <DependentUpon>GridFormI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GridFormMasterDetailI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GridFormMasterDetailI.Designer.cs">
+      <DependentUpon>GridFormMasterDetailI.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -83,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GridFormI.resx">
       <DependentUpon>GridFormI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridFormMasterDetailI.resx">
+      <DependentUpon>GridFormMasterDetailI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

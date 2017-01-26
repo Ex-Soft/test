@@ -68,6 +68,12 @@ namespace TestDE16WinApp
             barEditItem3.EditValue = DateTime.Now;
 
             barEditItem1.EditValueChanged += BarEditItem_EditValueChanged;
+
+            var now = DateTime.Now;
+            //calendarControl.StartDate = new DateTime(1900, now.Month, 1);
+            //calendarControl.SetSelection(new DateTime(1900, now.Month, now.Day));
+            //calendarControl.TodayDate = new DateTime(1900, now.Month, now.Day);
+            calendarControl.DateTime = new DateTime(1900, now.Month, now.Day);
         }
 
         private void BarEditItem_EditValueChanged(object sender, EventArgs e)
@@ -244,6 +250,14 @@ namespace TestDE16WinApp
         private static IEnumerable<DateTime> Range(DateTime startDate, DateTime endDate)
         {
             return Enumerable.Range(0, (int) (endDate - startDate).TotalDays + 1).Select(x => startDate.AddDays(x));
-        } 
+        }
+
+        private void simpleButtonMasterDetail_Click(object sender, EventArgs e)
+        {
+            using (var form = new GridFormMasterDetailI())
+            {
+                form.ShowDialog(this);
+            }
+        }
     }
 }

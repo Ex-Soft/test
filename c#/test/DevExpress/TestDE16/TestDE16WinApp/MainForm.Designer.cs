@@ -36,24 +36,8 @@
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageGridInWindow = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonGridInWindow = new DevExpress.XtraEditors.SimpleButton();
-            this.xtraTabPageDateNavigator = new DevExpress.XtraTab.XtraTabPage();
-            this.simpleButtonGetDateNavigatorSelects = new DevExpress.XtraEditors.SimpleButton();
-            this.customDateNavigator2 = new TestDE16WinApp.CustomDateNavigator();
-            this.dateNavigator6 = new DevExpress.XtraScheduler.DateNavigator();
-            this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
-            this.dateNavigator5 = new DevExpress.XtraScheduler.DateNavigator();
-            this.dateNavigator4 = new DevExpress.XtraScheduler.DateNavigator();
-            this.dateNavigator3 = new DevExpress.XtraScheduler.DateNavigator();
-            this.dateNavigator2 = new DevExpress.XtraScheduler.DateNavigator();
-            this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
-            this.xtraTabPageCalendarControl = new DevExpress.XtraTab.XtraTabPage();
-            this.calendarControl = new DevExpress.XtraEditors.Controls.CalendarControl();
-            this.xtraTabPageSchedulerControl = new DevExpress.XtraTab.XtraTabPage();
-            this.customDateNavigator1 = new TestDE16WinApp.CustomDateNavigator();
-            this.xtraTabPageBarInWindow = new DevExpress.XtraTab.XtraTabPage();
-            this.simpleButtonBarInWindow = new DevExpress.XtraEditors.SimpleButton();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.xtraTabPageDateEdit = new DevExpress.XtraTab.XtraTabPage();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
@@ -71,13 +55,41 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.xtraTabPageDateEdit = new DevExpress.XtraTab.XtraTabPage();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.xtraTabPageDateNavigator = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonGetDateNavigatorSelects = new DevExpress.XtraEditors.SimpleButton();
+            this.customDateNavigator2 = new TestDE16WinApp.CustomDateNavigator();
+            this.dateNavigator6 = new DevExpress.XtraScheduler.DateNavigator();
+            this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
+            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
+            this.dateNavigator5 = new DevExpress.XtraScheduler.DateNavigator();
+            this.dateNavigator4 = new DevExpress.XtraScheduler.DateNavigator();
+            this.dateNavigator3 = new DevExpress.XtraScheduler.DateNavigator();
+            this.dateNavigator2 = new DevExpress.XtraScheduler.DateNavigator();
+            this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
+            this.xtraTabPageCalendarControl = new DevExpress.XtraTab.XtraTabPage();
+            this.calendarControl = new DevExpress.XtraEditors.Controls.CalendarControl();
+            this.customCalendarControl1 = new TestDE16WinApp.CustomCalendarControl();
+            this.xtraTabPageSchedulerControl = new DevExpress.XtraTab.XtraTabPage();
+            this.customDateNavigator1 = new TestDE16WinApp.CustomDateNavigator();
+            this.xtraTabPageBarInWindow = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonBarInWindow = new DevExpress.XtraEditors.SimpleButton();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButtonMasterDetail = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
             this.xtraTabPageGridInWindow.SuspendLayout();
+            this.xtraTabPageDateEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageDateNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2.CalendarTimeProperties)).BeginInit();
@@ -97,21 +109,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageCalendarControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.calendarControl.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customCalendarControl1.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageSchedulerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageBarInWindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
-            this.xtraTabPageDateEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFill
@@ -141,6 +144,7 @@
             // 
             // xtraTabPageGridInWindow
             // 
+            this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonMasterDetail);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonGridInWindow);
             this.xtraTabPageGridInWindow.Name = "xtraTabPageGridInWindow";
             this.xtraTabPageGridInWindow.Size = new System.Drawing.Size(1111, 517);
@@ -154,6 +158,191 @@
             this.simpleButtonGridInWindow.TabIndex = 0;
             this.simpleButtonGridInWindow.Text = "DoIt!";
             this.simpleButtonGridInWindow.Click += new System.EventHandler(this.SimpleButtonGridInWindow_Click);
+            // 
+            // xtraTabPageDateEdit
+            // 
+            this.xtraTabPageDateEdit.Controls.Add(this.dateEdit1);
+            this.xtraTabPageDateEdit.Name = "xtraTabPageDateEdit";
+            this.xtraTabPageDateEdit.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageDateEdit.Text = "DateEdit";
+            // 
+            // dateEdit1
+            // 
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(40, 30);
+            this.dateEdit1.MenuManager = this.barManager;
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
+            this.dateEdit1.TabIndex = 0;
+            // 
+            // barManager
+            // 
+            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1,
+            this.bar2,
+            this.bar3});
+            this.barManager.DockControls.Add(this.barDockControlTop);
+            this.barManager.DockControls.Add(this.barDockControlBottom);
+            this.barManager.DockControls.Add(this.barDockControlLeft);
+            this.barManager.DockControls.Add(this.barDockControlRight);
+            this.barManager.Form = this;
+            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barStaticItem1,
+            this.barEditItem1,
+            this.barStaticItem2,
+            this.barEditItem2,
+            this.barStaticItem3,
+            this.barEditItem3});
+            this.barManager.MainMenu = this.bar2;
+            this.barManager.MaxItemId = 6;
+            this.barManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemDateEdit1,
+            this.repositoryItemDateEdit2,
+            this.repositoryItemDateEdit3});
+            this.barManager.StatusBar = this.bar3;
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 1;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem3, "", false, true, true, 85)});
+            this.bar1.Text = "Tools";
+            // 
+            // barStaticItem3
+            // 
+            this.barStaticItem3.Caption = "barStaticItem3";
+            this.barStaticItem3.Id = 4;
+            this.barStaticItem3.Name = "barStaticItem3";
+            this.barStaticItem3.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barEditItem3
+            // 
+            this.barEditItem3.Caption = "barEditItem3";
+            this.barEditItem3.Edit = this.repositoryItemDateEdit3;
+            this.barEditItem3.Id = 5;
+            this.barEditItem3.Name = "barEditItem3";
+            // 
+            // repositoryItemDateEdit3
+            // 
+            this.repositoryItemDateEdit3.AutoHeight = false;
+            this.repositoryItemDateEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit3.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit3.Name = "repositoryItemDateEdit3";
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Main menu";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem1, "", false, true, true, 85),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem2, "", false, true, true, 85)});
+            this.bar2.OptionsBar.MultiLine = true;
+            this.bar2.OptionsBar.UseWholeRow = true;
+            this.bar2.Text = "Main menu";
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "barStaticItem1";
+            this.barStaticItem1.Id = 0;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barEditItem1
+            // 
+            this.barEditItem1.Caption = "barEditItem1";
+            this.barEditItem1.Edit = this.repositoryItemDateEdit1;
+            this.barEditItem1.Id = 1;
+            this.barEditItem1.Name = "barEditItem1";
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // barStaticItem2
+            // 
+            this.barStaticItem2.Caption = "barStaticItem2";
+            this.barStaticItem2.Id = 2;
+            this.barStaticItem2.Name = "barStaticItem2";
+            this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barEditItem2
+            // 
+            this.barEditItem2.Caption = "barEditItem2";
+            this.barEditItem2.Edit = this.repositoryItemDateEdit2;
+            this.barEditItem2.Id = 3;
+            this.barEditItem2.Name = "barEditItem2";
+            // 
+            // repositoryItemDateEdit2
+            // 
+            this.repositoryItemDateEdit2.AutoHeight = false;
+            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Status bar";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(1121, 49);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 648);
+            this.barDockControlBottom.Manager = this.barManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1121, 23);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 49);
+            this.barDockControlLeft.Manager = this.barManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 599);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1121, 49);
+            this.barDockControlRight.Manager = this.barManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 599);
             // 
             // xtraTabPageDateNavigator
             // 
@@ -322,6 +511,7 @@
             // xtraTabPageCalendarControl
             // 
             this.xtraTabPageCalendarControl.Controls.Add(this.calendarControl);
+            this.xtraTabPageCalendarControl.Controls.Add(this.customCalendarControl1);
             this.xtraTabPageCalendarControl.Name = "xtraTabPageCalendarControl";
             this.xtraTabPageCalendarControl.Size = new System.Drawing.Size(1111, 517);
             this.xtraTabPageCalendarControl.Text = "CalendarControl";
@@ -333,10 +523,23 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.calendarControl.DateTime = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
             this.calendarControl.EditValue = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
-            this.calendarControl.Location = new System.Drawing.Point(52, 119);
+            this.calendarControl.Location = new System.Drawing.Point(8, 8);
             this.calendarControl.Name = "calendarControl";
-            this.calendarControl.Size = new System.Drawing.Size(233, 227);
+            this.calendarControl.Size = new System.Drawing.Size(260, 227);
             this.calendarControl.TabIndex = 0;
+            // 
+            // customCalendarControl1
+            // 
+            this.customCalendarControl1.AllowAnimatedContentChange = true;
+            this.customCalendarControl1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customCalendarControl1.DateTime = new System.DateTime(2017, 1, 19, 0, 0, 0, 0);
+            this.customCalendarControl1.EditValue = new System.DateTime(2017, 1, 19, 0, 0, 0, 0);
+            this.customCalendarControl1.Location = new System.Drawing.Point(272, 8);
+            this.customCalendarControl1.Name = "customCalendarControl1";
+            this.customCalendarControl1.Size = new System.Drawing.Size(239, 227);
+            this.customCalendarControl1.TabIndex = 1;
+            this.customCalendarControl1.TodayDate = new System.DateTime(2017, 1, 15, 0, 0, 0, 0);
             // 
             // xtraTabPageSchedulerControl
             // 
@@ -387,190 +590,14 @@
             this.pnlBottom.Size = new System.Drawing.Size(1121, 50);
             this.pnlBottom.TabIndex = 1;
             // 
-            // barManager
+            // simpleButtonMasterDetail
             // 
-            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar1,
-            this.bar2,
-            this.bar3});
-            this.barManager.DockControls.Add(this.barDockControlTop);
-            this.barManager.DockControls.Add(this.barDockControlBottom);
-            this.barManager.DockControls.Add(this.barDockControlLeft);
-            this.barManager.DockControls.Add(this.barDockControlRight);
-            this.barManager.Form = this;
-            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barStaticItem1,
-            this.barEditItem1,
-            this.barStaticItem2,
-            this.barEditItem2,
-            this.barStaticItem3,
-            this.barEditItem3});
-            this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 6;
-            this.barManager.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemDateEdit1,
-            this.repositoryItemDateEdit2,
-            this.repositoryItemDateEdit3});
-            this.barManager.StatusBar = this.bar3;
-            // 
-            // bar1
-            // 
-            this.bar1.BarName = "Tools";
-            this.bar1.DockCol = 0;
-            this.bar1.DockRow = 1;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem3),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem3, "", false, true, true, 85)});
-            this.bar1.Text = "Tools";
-            // 
-            // barStaticItem3
-            // 
-            this.barStaticItem3.Caption = "barStaticItem3";
-            this.barStaticItem3.Id = 4;
-            this.barStaticItem3.Name = "barStaticItem3";
-            this.barStaticItem3.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // barEditItem3
-            // 
-            this.barEditItem3.Caption = "barEditItem3";
-            this.barEditItem3.Edit = this.repositoryItemDateEdit3;
-            this.barEditItem3.Id = 5;
-            this.barEditItem3.Name = "barEditItem3";
-            // 
-            // repositoryItemDateEdit3
-            // 
-            this.repositoryItemDateEdit3.AutoHeight = false;
-            this.repositoryItemDateEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit3.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit3.Name = "repositoryItemDateEdit3";
-            // 
-            // bar2
-            // 
-            this.bar2.BarName = "Main menu";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem1, "", false, true, true, 85),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, this.barEditItem2, "", false, true, true, 85)});
-            this.bar2.OptionsBar.MultiLine = true;
-            this.bar2.OptionsBar.UseWholeRow = true;
-            this.bar2.Text = "Main menu";
-            // 
-            // barStaticItem1
-            // 
-            this.barStaticItem1.Caption = "barStaticItem1";
-            this.barStaticItem1.Id = 0;
-            this.barStaticItem1.Name = "barStaticItem1";
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // barEditItem1
-            // 
-            this.barEditItem1.Caption = "barEditItem1";
-            this.barEditItem1.Edit = this.repositoryItemDateEdit1;
-            this.barEditItem1.Id = 1;
-            this.barEditItem1.Name = "barEditItem1";
-            // 
-            // repositoryItemDateEdit1
-            // 
-            this.repositoryItemDateEdit1.AutoHeight = false;
-            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
-            // 
-            // barStaticItem2
-            // 
-            this.barStaticItem2.Caption = "barStaticItem2";
-            this.barStaticItem2.Id = 2;
-            this.barStaticItem2.Name = "barStaticItem2";
-            this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // barEditItem2
-            // 
-            this.barEditItem2.Caption = "barEditItem2";
-            this.barEditItem2.Edit = this.repositoryItemDateEdit2;
-            this.barEditItem2.Id = 3;
-            this.barEditItem2.Name = "barEditItem2";
-            // 
-            // repositoryItemDateEdit2
-            // 
-            this.repositoryItemDateEdit2.AutoHeight = false;
-            this.repositoryItemDateEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
-            // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(1121, 49);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 648);
-            this.barDockControlBottom.Manager = this.barManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1121, 23);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 49);
-            this.barDockControlLeft.Manager = this.barManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 599);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1121, 49);
-            this.barDockControlRight.Manager = this.barManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 599);
-            // 
-            // xtraTabPageDateEdit
-            // 
-            this.xtraTabPageDateEdit.Controls.Add(this.dateEdit1);
-            this.xtraTabPageDateEdit.Name = "xtraTabPageDateEdit";
-            this.xtraTabPageDateEdit.Size = new System.Drawing.Size(1111, 517);
-            this.xtraTabPageDateEdit.Text = "DateEdit";
-            // 
-            // dateEdit1
-            // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(40, 30);
-            this.dateEdit1.MenuManager = this.barManager;
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit1.TabIndex = 0;
+            this.simpleButtonMasterDetail.Location = new System.Drawing.Point(132, 25);
+            this.simpleButtonMasterDetail.Name = "simpleButtonMasterDetail";
+            this.simpleButtonMasterDetail.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonMasterDetail.TabIndex = 1;
+            this.simpleButtonMasterDetail.Text = "Master-Detail";
+            this.simpleButtonMasterDetail.Click += new System.EventHandler(this.simpleButtonMasterDetail_Click);
             // 
             // MainForm
             // 
@@ -592,6 +619,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
             this.xtraTabControl.ResumeLayout(false);
             this.xtraTabPageGridInWindow.ResumeLayout(false);
+            this.xtraTabPageDateEdit.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             this.xtraTabPageDateNavigator.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2)).EndInit();
@@ -612,21 +649,12 @@
             this.xtraTabPageCalendarControl.ResumeLayout(false);
             this.xtraTabPageCalendarControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.calendarControl.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customCalendarControl1.CalendarTimeProperties)).EndInit();
             this.xtraTabPageSchedulerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1)).EndInit();
             this.xtraTabPageBarInWindow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
-            this.xtraTabPageDateEdit.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -643,6 +671,7 @@
         private DevExpress.XtraScheduler.DateNavigator dateNavigator1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageCalendarControl;
         private DevExpress.XtraEditors.Controls.CalendarControl calendarControl;
+        private TestDE16WinApp.CustomCalendarControl customCalendarControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageSchedulerControl;
         private DevExpress.XtraScheduler.SchedulerControl schedulerControl1;
         private DevExpress.XtraScheduler.SchedulerStorage schedulerStorage;
@@ -675,6 +704,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButtonGetDateNavigatorSelects;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageDateEdit;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonMasterDetail;
     }
 }
 
