@@ -74,6 +74,11 @@ namespace TestDE16WinApp
             //calendarControl.SetSelection(new DateTime(1900, now.Month, now.Day));
             //calendarControl.TodayDate = new DateTime(1900, now.Month, now.Day);
             calendarControl.DateTime = new DateTime(1900, now.Month, now.Day);
+
+            dateNavigator7.ShowWeekNumbers = false;
+            dateNavigator7.ShowTodayButton = false;
+            dateNavigator7.ShowHeader = false;
+            dateNavigator7.ShowMonthHeaders = false;
         }
 
         private void BarEditItem_EditValueChanged(object sender, EventArgs e)

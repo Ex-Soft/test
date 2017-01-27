@@ -35,6 +35,7 @@
             this.pnlFill = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageGridInWindow = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonMasterDetail = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonGridInWindow = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPageDateEdit = new DevExpress.XtraTab.XtraTabPage();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
@@ -56,6 +57,8 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.xtraTabPageDateNavigator = new DevExpress.XtraTab.XtraTabPage();
+            this.customDateNavigatorWithPainters1 = new TestDE16WinApp.CustomDateNavigatorWithPainters();
+            this.dateNavigator7 = new DevExpress.XtraScheduler.DateNavigator();
             this.simpleButtonGetDateNavigatorSelects = new DevExpress.XtraEditors.SimpleButton();
             this.customDateNavigator2 = new TestDE16WinApp.CustomDateNavigator();
             this.dateNavigator6 = new DevExpress.XtraScheduler.DateNavigator();
@@ -74,7 +77,6 @@
             this.xtraTabPageBarInWindow = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonBarInWindow = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonMasterDetail = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -91,6 +93,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageDateNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator6)).BeginInit();
@@ -123,7 +129,7 @@
             this.pnlFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFill.Location = new System.Drawing.Point(0, 49);
             this.pnlFill.Name = "pnlFill";
-            this.pnlFill.Size = new System.Drawing.Size(1121, 549);
+            this.pnlFill.Size = new System.Drawing.Size(1456, 612);
             this.pnlFill.TabIndex = 0;
             // 
             // xtraTabControl
@@ -132,7 +138,7 @@
             this.xtraTabControl.Location = new System.Drawing.Point(2, 2);
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPageGridInWindow;
-            this.xtraTabControl.Size = new System.Drawing.Size(1117, 545);
+            this.xtraTabControl.Size = new System.Drawing.Size(1452, 608);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageGridInWindow,
@@ -147,8 +153,17 @@
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonMasterDetail);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonGridInWindow);
             this.xtraTabPageGridInWindow.Name = "xtraTabPageGridInWindow";
-            this.xtraTabPageGridInWindow.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageGridInWindow.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageGridInWindow.Text = "Grid in Window";
+            // 
+            // simpleButtonMasterDetail
+            // 
+            this.simpleButtonMasterDetail.Location = new System.Drawing.Point(132, 25);
+            this.simpleButtonMasterDetail.Name = "simpleButtonMasterDetail";
+            this.simpleButtonMasterDetail.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonMasterDetail.TabIndex = 1;
+            this.simpleButtonMasterDetail.Text = "Master-Detail";
+            this.simpleButtonMasterDetail.Click += new System.EventHandler(this.simpleButtonMasterDetail_Click);
             // 
             // simpleButtonGridInWindow
             // 
@@ -163,7 +178,7 @@
             // 
             this.xtraTabPageDateEdit.Controls.Add(this.dateEdit1);
             this.xtraTabPageDateEdit.Name = "xtraTabPageDateEdit";
-            this.xtraTabPageDateEdit.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageDateEdit.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageDateEdit.Text = "DateEdit";
             // 
             // dateEdit1
@@ -318,15 +333,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(1121, 49);
+            this.barDockControlTop.Size = new System.Drawing.Size(1456, 49);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 648);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 711);
             this.barDockControlBottom.Manager = this.barManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1121, 23);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1456, 23);
             // 
             // barDockControlLeft
             // 
@@ -334,18 +349,20 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 49);
             this.barDockControlLeft.Manager = this.barManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 599);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 662);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1121, 49);
+            this.barDockControlRight.Location = new System.Drawing.Point(1456, 49);
             this.barDockControlRight.Manager = this.barManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 599);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 662);
             // 
             // xtraTabPageDateNavigator
             // 
+            this.xtraTabPageDateNavigator.Controls.Add(this.customDateNavigatorWithPainters1);
+            this.xtraTabPageDateNavigator.Controls.Add(this.dateNavigator7);
             this.xtraTabPageDateNavigator.Controls.Add(this.simpleButtonGetDateNavigatorSelects);
             this.xtraTabPageDateNavigator.Controls.Add(this.customDateNavigator2);
             this.xtraTabPageDateNavigator.Controls.Add(this.dateNavigator6);
@@ -355,8 +372,36 @@
             this.xtraTabPageDateNavigator.Controls.Add(this.dateNavigator2);
             this.xtraTabPageDateNavigator.Controls.Add(this.dateNavigator1);
             this.xtraTabPageDateNavigator.Name = "xtraTabPageDateNavigator";
-            this.xtraTabPageDateNavigator.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageDateNavigator.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageDateNavigator.Text = "DateNavigator";
+            // 
+            // customDateNavigatorWithPainters1
+            // 
+            this.customDateNavigatorWithPainters1.AllowAnimatedContentChange = true;
+            this.customDateNavigatorWithPainters1.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.customDateNavigatorWithPainters1.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
+            this.customDateNavigatorWithPainters1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customDateNavigatorWithPainters1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.customDateNavigatorWithPainters1.FirstDayOfWeek = System.DayOfWeek.Monday;
+            this.customDateNavigatorWithPainters1.Location = new System.Drawing.Point(968, 279);
+            this.customDateNavigatorWithPainters1.Name = "customDateNavigatorWithPainters1";
+            this.customDateNavigatorWithPainters1.Size = new System.Drawing.Size(144, 115);
+            this.customDateNavigatorWithPainters1.TabIndex = 9;
+            // 
+            // dateNavigator7
+            // 
+            this.dateNavigator7.AllowAnimatedContentChange = true;
+            this.dateNavigator7.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.dateNavigator7.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
+            this.dateNavigator7.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNavigator7.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dateNavigator7.FirstDayOfWeek = System.DayOfWeek.Monday;
+            this.dateNavigator7.Location = new System.Drawing.Point(968, 8);
+            this.dateNavigator7.Name = "dateNavigator7";
+            this.dateNavigator7.Size = new System.Drawing.Size(220, 243);
+            this.dateNavigator7.TabIndex = 8;
             // 
             // simpleButtonGetDateNavigatorSelects
             // 
@@ -513,7 +558,7 @@
             this.xtraTabPageCalendarControl.Controls.Add(this.calendarControl);
             this.xtraTabPageCalendarControl.Controls.Add(this.customCalendarControl1);
             this.xtraTabPageCalendarControl.Name = "xtraTabPageCalendarControl";
-            this.xtraTabPageCalendarControl.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageCalendarControl.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageCalendarControl.Text = "CalendarControl";
             // 
             // calendarControl
@@ -525,7 +570,7 @@
             this.calendarControl.EditValue = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
             this.calendarControl.Location = new System.Drawing.Point(8, 8);
             this.calendarControl.Name = "calendarControl";
-            this.calendarControl.Size = new System.Drawing.Size(260, 227);
+            this.calendarControl.Size = new System.Drawing.Size(233, 227);
             this.calendarControl.TabIndex = 0;
             // 
             // customCalendarControl1
@@ -546,7 +591,7 @@
             this.xtraTabPageSchedulerControl.Controls.Add(this.customDateNavigator1);
             this.xtraTabPageSchedulerControl.Controls.Add(this.schedulerControl1);
             this.xtraTabPageSchedulerControl.Name = "xtraTabPageSchedulerControl";
-            this.xtraTabPageSchedulerControl.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageSchedulerControl.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageSchedulerControl.Text = "SchedulerControl";
             // 
             // customDateNavigator1
@@ -570,7 +615,7 @@
             // 
             this.xtraTabPageBarInWindow.Controls.Add(this.simpleButtonBarInWindow);
             this.xtraTabPageBarInWindow.Name = "xtraTabPageBarInWindow";
-            this.xtraTabPageBarInWindow.Size = new System.Drawing.Size(1111, 517);
+            this.xtraTabPageBarInWindow.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageBarInWindow.Text = "Bar in Window";
             // 
             // simpleButtonBarInWindow
@@ -585,25 +630,16 @@
             // pnlBottom
             // 
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 598);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 661);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1121, 50);
+            this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
-            // 
-            // simpleButtonMasterDetail
-            // 
-            this.simpleButtonMasterDetail.Location = new System.Drawing.Point(132, 25);
-            this.simpleButtonMasterDetail.Name = "simpleButtonMasterDetail";
-            this.simpleButtonMasterDetail.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonMasterDetail.TabIndex = 1;
-            this.simpleButtonMasterDetail.Text = "Master-Detail";
-            this.simpleButtonMasterDetail.Click += new System.EventHandler(this.simpleButtonMasterDetail_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 671);
+            this.ClientSize = new System.Drawing.Size(1456, 734);
             this.Controls.Add(this.pnlFill);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.barDockControlLeft);
@@ -630,6 +666,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             this.xtraTabPageDateNavigator.ResumeLayout(false);
+            this.xtraTabPageDateNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator6.CalendarTimeProperties)).EndInit();
@@ -705,6 +746,8 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageDateEdit;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private DevExpress.XtraEditors.SimpleButton simpleButtonMasterDetail;
+        private DevExpress.XtraScheduler.DateNavigator dateNavigator7;
+        private TestDE16WinApp.CustomDateNavigatorWithPainters customDateNavigatorWithPainters1;
     }
 }
 

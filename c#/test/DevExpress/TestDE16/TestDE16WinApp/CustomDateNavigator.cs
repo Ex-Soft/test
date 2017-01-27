@@ -4,7 +4,6 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraScheduler;
-using DevExpress.XtraScheduler.Drawing;
 
 namespace TestDE16WinApp
 {
