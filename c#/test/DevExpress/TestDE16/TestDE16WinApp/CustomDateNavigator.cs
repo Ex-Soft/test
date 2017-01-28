@@ -4,6 +4,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraScheduler;
+using DevExpress.XtraScheduler.Drawing;
 
 namespace TestDE16WinApp
 {
@@ -63,6 +64,11 @@ namespace TestDE16WinApp
 
         protected override CalendarObjectViewInfo CreateCalendar(int index)
         {
+            //DateNavigatorInfoArgs navigatorInfoArgs = !this.Calendar.PrintNavigator ? new DateNavigatorInfoArgs(this.Calendar) : (DateNavigatorInfoArgs)new DateNavigatorPrintInfoArgs(this.Calendar);
+            //navigatorInfoArgs.ShowHeader = this.ShowCalendarHeader(index);
+            //navigatorInfoArgs.View = this.Calendar.View;
+            //return (CalendarObjectViewInfo)navigatorInfoArgs;
+
             return base.CreateCalendar(index);
         }
     }

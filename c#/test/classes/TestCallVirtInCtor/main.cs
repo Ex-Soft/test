@@ -2,7 +2,8 @@
 //#define FROM_EL
 //#define FROM_EL_1 // http://blogs.msdn.com/b/ericlippert/archive/2008/02/18/why-do-initializers-run-in-the-opposite-order-as-constructors-part-one.aspx
 //#define FROM_EL_2 // http://blogs.msdn.com/b/ericlippert/archive/2008/02/18/why-do-initializers-run-in-the-opposite-order-as-constructors-part-two.aspx
-#define FROM_SO
+//#define FROM_SO
+#define FROM_DE
 
 using System;
 #if FROM_EL && FROM_EL_2
@@ -11,6 +12,80 @@ using System;
 
 namespace TestCallVirtInCtor
 {
+	#if FROM_DE
+		public class Base
+		{
+		    private int _baseFiled;
+
+		    private int _basePropertyHolder;
+
+		    public int BaseProperty
+		    {
+		        get
+		        {
+                    System.Diagnostics.Debug.WriteLine("Base.get_BaseProperty()");
+		            return _basePropertyHolder;
+		        }
+		        set
+		        {
+                    System.Diagnostics.Debug.WriteLine($"Base.set_BaseProperty({value})");
+		            if (_basePropertyHolder != value)
+		                _basePropertyHolder = value;
+		        }
+		    }
+
+			public Base()
+			{
+				System.Diagnostics.Debug.WriteLine("Base.Base()");
+				Init();
+			}
+
+			protected virtual void Init()
+			{
+				System.Diagnostics.Debug.WriteLine("Base.Init()");
+
+			    _baseFiled = int.MaxValue;
+			    BaseProperty = int.MaxValue;
+			}
+		}
+
+		public class Derived : Base
+		{
+            private int _derivedFiled;
+
+            private int _derivedPropertyHolder;
+
+   		    public int DerivedProperty
+        {
+		        get
+		        {
+                    System.Diagnostics.Debug.WriteLine("Derived.get_DerivedProperty()");
+		            return _derivedPropertyHolder;
+		        }
+		        set
+		        {
+                    System.Diagnostics.Debug.WriteLine($"Derived.set_DerivedProperty({value})");
+		            if (_derivedPropertyHolder != value)
+                        _derivedPropertyHolder = value;
+		        }
+		    }
+
+			public Derived()
+			{
+				System.Diagnostics.Debug.WriteLine("Derived.Derived()");
+			}
+
+			protected override void Init()
+			{
+				base.Init();
+
+				System.Diagnostics.Debug.WriteLine("Derived.Init()");
+			    _derivedFiled = int.MaxValue;
+			    DerivedProperty = int.MaxValue;
+			}
+		}
+	#endif
+
     #if FROM_MSDN
         public class BadlyConstructedType
         {
@@ -180,6 +255,10 @@ namespace TestCallVirtInCtor
     {
         static void Main(string[] args)
         {
+			#if FROM_DE
+				Derived derived = new Derived();
+			#endif
+
             #if FROM_MSDN
                 DerivedType derivedInstance = new DerivedType();
                 Console.WriteLine();
