@@ -1,0 +1,692 @@
+dbcc traceon(3604, 302, 310)
+go
+
+dbcc traceoff(3604, 302, 310)
+go
+
+use master
+go
+
+create database testdb
+go
+
+use testdb
+go
+
+create table Staff
+(ID smallint constraint NotNullConstraintId not null constraint pkStaff primary key,
+Name varchar(50) null,
+Salary money null)
+go
+
+insert into staff (ID, Name, Salary) values (1, 'Ленин Владимир Ильич', 10000)
+insert into staff (ID, Name, Salary) values (2, 'Сталин Иосиф Виссарионович', 300)
+insert into staff (ID, Name, Salary) values (3, 'Хрущев Никита Сергеевич', 5000)
+insert into staff (ID, Name, Salary) values (4, 'Брежнев Леонид Ильич', 1500)
+insert into staff (ID, Name, Salary) values (5, 'Иванов Иван Иванович', 3000)
+insert into staff (ID, Name, Salary) values (6, 'Петров Петр Петрович', 5000)
+insert into staff (ID, Name, Salary) values (7, 'Сидоров Сидор Сидорович', 1500)
+insert into staff (ID, Name, Salary) values (8, 'Васильев Василий Василиевич', 3000)
+commit
+
+/*
+select Name, Salary
+from Staff S
+where (select count(distinct Salary)
+       from Staff
+       where Salary > S.Salary
+      ) < 5
+order by Salary desc
+*/
+
+create table TestTypes
+(FBinary binary(2) null,
+ FBit bit,
+ FChar char(10) null,
+ FDate date null,
+ /* FDaten daten null, */
+ FDatetime datetime null,
+ FDecimal_4_0 decimal(4,0) null,
+ FDecimal_4_2 decimal(4,2) null,
+ FDecimal_10_0 decimal(10,0) null,
+ FDecimal_10_6 decimal(10,6) null,
+ FDecimal_18_0 decimal(18,0) null,
+ FDecimal_18_2 decimal(18,2) null,
+ FDoublePrecision double precision null,
+ FFloat float null,
+ FImage image null,
+ FInt int null,
+ FMoney money null,
+ FNchar nchar(10) null,
+ FNumeric_4_0 numeric(4,0) null,
+ FNumeric_4_2 numeric(4,2) null, 
+ FNumeric_10_0 numeric(10,0) null,
+ FNumeric_10_6 numeric(10,6) null,
+ FNumeric_18_0 numeric(18,0) null,
+ FNumeric_18_2 numeric(18,2) null,
+ FNvarchar nvarchar(10) null,
+ FReal real null,
+ FSmalldatetime smalldatetime null,
+ FSmallint smallint null,
+ FSmallmoney smallmoney null,
+ FSysname sysname null,
+ FText text null,
+ FTime time null,
+/* FTimen timen null, */
+ FTimestamp timestamp null,
+ FTinyint tinyint null,
+ FUnichar unichar(10) null,
+ FUnivarchar univarchar(10) null,
+ FVarbinary varbinary(2) null,
+ FVarchar varchar(10) null
+)
+go
+
+update TestTypes
+set FChar='ЁёҐґІіЇїЄє'
+update TestTypes
+set FDate=getdate()
+update TestTypes
+set FDateTime=getdate()
+update TestTypes
+set FDecimal_18_2=9999999999999999.99
+update TestTypes
+set FDoublePrecision=999999999999999.9999
+update TestTypes
+set FFloat=999999999999999.9999
+update TestTypes
+set FInt=999999999
+update TestTypes
+set FMoney=99999999999999.99
+update TestTypes
+set FNChar='ЁёҐґІіЇїЄє'
+update TestTypes
+set FNumeric_18_2=9999999999999999.99
+update TestTypes
+set FNvarchar='ЁёҐґІіЇїЄє'
+update TestTypes
+set FReal=999999999999999.9999
+update TestTypes
+set FSmalldatetime=getdate()
+update TestTypes
+set FSmallint=9999
+update TestTypes
+set FSmallmoney=99999.99
+update TestTypes
+set FTime=getdate()
+update TestTypes
+set FTinyint=99
+update TestTypes
+set FUnichar='ЁёҐґІіЇїЄє'
+update TestTypes
+set FUnivarchar='ЁёҐґІіЇїЄє'
+update TestTypes
+set FVarchar='ЁёҐґІіЇїЄє'
+update TestTypes
+set FDecimal_4_0=9999
+update TestTypes
+set FDecimal_4_2=99.99
+update TestTypes
+set FDecimal_10_6=9999.999999
+update TestTypes
+set FNumeric_10_6=9999.999999
+update TestTypes
+set FText='ЁёҐґІіЇїЄє'
+update TestTypes
+set FSysName='ЁёҐґІіЇїЄє'
+
+
+create procedure sp_TestTypes 
+  @FDecimal_4_0 decimal(4,0),
+  @FDecimal_4_2 decimal(4,2),
+  @FDecimal_5_0 decimal(5,0),
+  @FDecimal_5_2 decimal(5,2),
+  @FDecimal_8_0 decimal(8,0),
+  @FDecimal_8_2 decimal(8,2),
+  @FDecimal_9_0 decimal(9,0),
+  @FDecimal_9_2 decimal(9,2),
+  @FDecimal_10_0 decimal(10,0),
+  @FDecimal_10_2 decimal(10,2),
+  @FDecimal_18_0 decimal(18,0),
+  @FDecimal_18_2 decimal(18,2),
+  @FNumeric_4_0 numeric(4,0),
+  @FNumeric_4_2 numeric(4,2),
+  @FNumeric_5_0 numeric(5,0),
+  @FNumeric_5_2 numeric(5,2),
+  @FNumeric_8_0 numeric(8,0),
+  @FNumeric_8_2 numeric(8,2),
+  @FNumeric_9_0 numeric(9,0),
+  @FNumeric_9_2 numeric(9,2),
+  @FNumeric_10_0 numeric(10,0),
+  @FNumeric_10_2 numeric(10,2),
+  @FNumeric_18_0 numeric(18,0),
+  @FNumeric_18_2 numeric(18,2),
+  @FMoney money,
+  @FDecimal_4_0_out decimal(4,0) output,
+  @FDecimal_4_2_out decimal(4,2) output,
+  @FDecimal_5_0_out decimal(5,0) output,
+  @FDecimal_5_2_out decimal(5,2) output,
+  @FDecimal_8_0_out decimal(8,0) output,
+  @FDecimal_8_2_out decimal(8,2) output,
+  @FDecimal_9_0_out decimal(9,0) output,
+  @FDecimal_9_2_out decimal(9,2) output,
+  @FDecimal_10_0_out decimal(10,0) output,
+  @FDecimal_10_2_out decimal(10,2) output,
+  @FDecimal_18_0_out decimal(18,0) output,
+  @FDecimal_18_2_out decimal(18,2) output,
+  @FNumeric_4_0_out numeric(4,0) output,
+  @FNumeric_4_2_out numeric(4,2) output,
+  @FNumeric_5_0_out numeric(5,0) output,
+  @FNumeric_5_2_out numeric(5,2) output,
+  @FNumeric_8_0_out numeric(8,0) output,
+  @FNumeric_8_2_out numeric(8,2) output,
+  @FNumeric_9_0_out numeric(9,0) output,
+  @FNumeric_9_2_out numeric(9,2) output,
+  @FNumeric_10_0_out numeric(10,0) output,
+  @FNumeric_10_2_out numeric(10,2) output,
+  @FNumeric_18_0_out numeric(18,0) output,
+  @FNumeric_18_2_out numeric(18,2) output,
+  @FMoney_out money output
+as 
+begin
+  declare
+    @RetVal int
+
+  select @FDecimal_4_0_out = @FDecimal_4_0
+  select @FDecimal_4_2_out = @FDecimal_4_2
+  select @FDecimal_5_0_out = @FDecimal_5_0
+  select @FDecimal_5_2_out = @FDecimal_5_2
+  select @FDecimal_8_0_out = @FDecimal_8_0
+  select @FDecimal_8_2_out = @FDecimal_8_2
+  select @FDecimal_9_0_out = @FDecimal_9_0
+  select @FDecimal_9_2_out = @FDecimal_9_2
+  select @FDecimal_10_0_out = @FDecimal_10_0
+  select @FDecimal_10_2_out = @FDecimal_10_2
+  select @FDecimal_18_0_out = @FDecimal_18_0
+  select @FDecimal_18_2_out = @FDecimal_18_2
+  select @FNumeric_4_0_out = @FNumeric_4_0
+  select @FNumeric_4_2_out = @FNumeric_4_2
+  select @FNumeric_5_0_out = @FNumeric_5_0
+  select @FNumeric_5_2_out = @FNumeric_5_2
+  select @FNumeric_8_0_out = @FNumeric_8_0
+  select @FNumeric_8_2_out = @FNumeric_8_2
+  select @FNumeric_9_0_out = @FNumeric_9_0
+  select @FNumeric_9_2_out = @FNumeric_9_2
+  select @FNumeric_10_0_out = @FNumeric_10_0
+  select @FNumeric_10_2_out = @FNumeric_10_2
+  select @FNumeric_18_0_out = @FNumeric_18_0
+  select @FNumeric_18_2_out = @FNumeric_18_2
+  select @FMoney_out = @FMoney
+
+  select @RetVal=65535 
+ 
+  return(@RetVal)
+end
+
+create procedure sp_TestTypes_Decimal_4_0
+  @FDecimal_4_0 decimal(4,0),
+  @FDecimal_4_0_out decimal(4,0) output
+as 
+begin
+  declare
+    @RetVal int
+
+  select @FDecimal_4_0_out = @FDecimal_4_0
+
+  select @RetVal=65535 
+ 
+  return(@RetVal)
+end
+
+create procedure sp_TestTypes_Decimal_4_2
+  @FDecimal_4_2 decimal(4,2),
+  @FDecimal_4_2_out decimal(4,2) output
+as 
+begin
+  declare
+    @RetVal int
+
+  select @FDecimal_4_2_out = @FDecimal_4_2
+
+  select @RetVal=65535 
+ 
+  return(@RetVal)
+end
+
+create procedure sp_TestTypes_Numeric_4_0
+  @FNumeric_4_0 numeric(4,0),
+  @FNumeric_4_0_out numeric(4,0) output
+as 
+begin
+  declare
+    @RetVal int
+
+  select @FNumeric_4_0_out = @FNumeric_4_0
+
+  select @RetVal=65535 
+ 
+  return(@RetVal)
+end
+
+create procedure sp_TestTypes_Numeric_4_2
+  @FNumeric_4_2 numeric(4,2),
+  @FNumeric_4_2_out numeric(4,2) output
+as 
+begin
+  declare
+    @RetVal int
+
+  select @FNumeric_4_2_out = @FNumeric_4_2
+
+  select @RetVal=65535 
+ 
+  return(@RetVal)
+end
+
+create procedure sp_TestTypes_Numeric_4_2_T
+  @FNumeric_4_2 numeric(4,2),
+  @FNumeric_4_2_out numeric(4,2) output
+as 
+begin
+  declare
+    @RetVal int
+
+  update TestTypes set FNumeric_4_2 = @FNumeric_4_2
+  if @@rowcount!=0
+    begin
+      select @FNumeric_4_2_out = FNumeric_4_2 from TestTypes where FNumeric_4_2=@FNumeric_4_2
+      select @RetVal=65535
+    end
+  else
+    begin
+      select @RetVal=-100
+    end
+
+  return(@RetVal)
+end
+
+create procedure sp_TestTypes_Money
+  @FMoney money,
+  @FMoney_out money output
+as 
+begin
+  declare
+    @RetVal int
+
+  select @FMoney_out = @FMoney
+
+  select @RetVal=65535 
+ 
+  return(@RetVal)
+end
+
+create procedure mathtutor
+  @mult1 int,
+  @mult2 int,
+  @result int output
+as
+  declare
+    @RetVal int
+
+  select @result=@mult1 * @mult2
+  select @RetVal=@result
+
+  return(@RetVal)
+
+declare
+@mult1 int,
+@mult2 int,
+@result int,
+@RetVal int
+
+select @mult1=5
+select @mult2=5
+execute @RetVal=mathtutor @mult1, @mult2, @result
+select @Retval,@result
+
+
+declare @m2 int
+declare @res int
+declare @ret int
+select @m1=5
+select @m2=5
+declare @str varchar(255)
+select @str="mathtutor "+ @m1 + ", "+ @m2 + ", "+@res
+exec (@str)
+
+create table TestIdentity
+(Id numeric(2,0) identity,
+ Value varchar(255),
+ constraint pkTestIdentity primary key (Id)
+) with identity_gap=20
+
+select
+   id,
+  case
+    when substring(name,1,1)="С" then substring(name,1,3)
+    else name
+  end
+from staff
+
+create table T1
+(Id numeric(2,0) identity,
+ Value varchar(255),
+ constraint pkT1 primary key (Id)
+) with identity_gap=20
+go
+
+insert into T1 (Value) values ("1_T1")
+insert into T1 (Value) values ("2_T2")
+insert into T1 (Value) values ("3_T3")
+insert into T1 (Value) values ("4_T4")
+insert into T1 (Value) values ("5_T5")
+commit
+
+create table T2
+(Id numeric(2,0) identity,
+ Value varchar(255),
+ constraint pkT2 primary key (Id)
+) with identity_gap=20
+go
+
+set identity_insert T2 on
+insert into T2 (Id,Value) values (1,"1_T2")
+insert into T2 (Id,Value) values (3,"3_T2")
+insert into T2 (Id,Value) values (5,"5_T2")
+set identity_insert T2 off
+commit
+
+create table T3
+(Id numeric(2,0) identity,
+ Value varchar(255),
+ constraint pkT3 primary key (Id)
+) with identity_gap=20
+go
+
+set identity_insert T3 on
+insert into T3 (Id,Value) values (2,"2_T3")
+insert into T3 (Id,Value) values (4,"4_T3")
+set identity_insert T3 off
+commit
+
+if exists (select 1
+            from  sysobjects
+            where  id = object_id('TestTmpTable')
+            and    type = 'P')
+   drop procedure TestTmpTable
+go 
+create procedure TestTmpTable
+as
+begin
+  create table #TmpTable(
+    Id numeric(2,0) not null,
+    ValueT1 varchar(255) null,
+    ValueT2 varchar(255) null,
+    ValueT3 varchar(255) null
+  )
+
+  insert into #TmpTable
+    (Id, ValueT1)
+  select 
+    Id, Value
+  from T1
+
+  update #TmpTable
+  set
+    ValueT2=T2.Value
+  from
+    #TmpTable T1,
+    T2
+  where
+    T1.Id=T2.Id
+
+  update #TmpTable
+  set
+    ValueT3=T3.Value
+  from
+    #TmpTable T1,
+    T3
+  where
+    T1.Id=T3.Id
+
+  select *
+  from #TmpTable
+  order by Id
+end
+go
+
+begin
+declare @cient_name varchar(30)
+declare @mask varchar(50)
+--select @cient_name = 'Авер?н'
+
+if (@cient_name is null)
+select @mask = '%'
+else
+select @mask = '%'+@cient_name+'%'
+
+select *
+from CLIENT_PARAM
+where client_type_id = 2
+and client_name like @mask
+end
+
+Нет, я имела ввиду isnull(Seria,'') = isull(@Seria,''), ну или что-то подобное.
+
+select
+T1.CURRENCY_EXCHANGE_ID as CurrencyExchangeId,
+T1.CURRENCY_RATE_DATE as CurrencyRateDate,
+T1.CURRENCY_CODE_INT as CurrencyCodeInt,
+T1.CURRENCY_RATE as CurrencyRate,
+T1.RECORD_STATE as RecordState,
+T1.USER_ID as UserId,
+T1.RECORD_MODIFY as RecordModify,
+T2.CURRENCY_CODE_CHAR as CurrencyCodeChar,
+T2.CURRENCY_NAME as CurrencyName,
+T2.CURRENCY_EXCHANGE_SCALE as CurrencyExchangeScale
+from
+CURRENCY_EXCHANGE_RATE T1
+left outer join CURRENCY T2 on (T1.CURRENCY_CODE_INT=T2.CURRENCY_CODE_INT) and (T2.RECORD_STATE=100)
+where
+(T1.CURRENCY_EXCHANGE_ID=10)
+Правильно: выборка идет из T1 и к ней по on (T1.CURRENCY_CODE_INT=T2.CURRENCY_CODE_INT) and (T2.RECORD_STATE=100) цепляется T2
+
+select
+T1.CURRENCY_EXCHANGE_ID as CurrencyExchangeId,
+T1.CURRENCY_RATE_DATE as CurrencyRateDate,
+T1.CURRENCY_CODE_INT as CurrencyCodeInt,
+T1.CURRENCY_RATE as CurrencyRate,
+T1.RECORD_STATE as RecordState,
+T1.USER_ID as UserId,
+T1.RECORD_MODIFY as RecordModify,
+T2.CURRENCY_CODE_CHAR as CurrencyCodeChar,
+T2.CURRENCY_NAME as CurrencyName,
+T2.CURRENCY_EXCHANGE_SCALE as CurrencyExchangeScale
+from
+CURRENCY_EXCHANGE_RATE T1
+left outer join CURRENCY T2 on (T1.CURRENCY_CODE_INT=T2.CURRENCY_CODE_INT)
+where
+(T1.CURRENCY_EXCHANGE_ID=10)
+and (T2.RECORD_STATE=100)
+Неправильно: выборка идет из T1 и T2 по on (T1.CURRENCY_CODE_INT=T2.CURRENCY_CODE_INT) а затем накладывается where (T1.CURRENCY_EXCHANGE_ID=10) and (T2.RECORD_STATE=100)
+
+select salary from staff main where 1< (select count(*) from staff where salary=main.salary) order by salary
+
+
+dbcc traceon(3604)
+go
+
+sp__active
+sp__lock2
+sp__proc_blocked
+sp__wholocks null, 'f'
+sp_lock
+
+select * from master..sysprocesses
+select * from master..syslocks
+select * from master..spt_values
+
+dbcc sqltext(19)
+go
+
+if not exists (select 1
+            from  sysobjects
+            where  id = object_id('INSURANCE_PRODUCT_FK')
+            and    type = 'RI')
+alter table OBJECT_INSURANCE_CONTRACT add constraint INSURANCE_PRODUCT_FK FOREIGN KEY (INSURANCE_PRODUCT_ID) REFERENCES INSURANCE_PRODUCT(INSURANCE_PRODUCT_ID)
+go
+
+select name
+from  sysindexes
+where  id = object_id('Staff')
+
+drop procedure UpdateWTIDS
+go
+
+create procedure UpdateWTIDS 
+  @TABLE_ID int, 
+  @VALUE_ID numeric(18,0), 
+  @TABLE_NAME D_SYSNAME, 
+  @SLEEP char(8)=null,
+  @WITH_TRANSACTION tinyint=null
+as 
+begin 
+ 
+  declare
+    @ReturnValue int,
+    @tmpStr varchar(1024) 
+ 
+  set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') started @ '||convert(varchar(64),getdate(),109) 
+  print @tmpStr 
+
+  if @WITH_TRANSACTION is not null
+    begin
+    end
+
+  if exists (select 1 
+             from IDS 
+             where 
+               TABLE_ID=@TABLE_ID) 
+    begin 
+      set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') UPDATE started @ '||convert(varchar(64),getdate(),109) 
+      print @tmpStr 
+ 
+      update 
+        IDS 
+      set 
+        VALUE_ID=@VALUE_ID, 
+        TABLE_NAME=@TABLE_NAME 
+      where 
+        TABLE_ID=@TABLE_ID 
+ 
+      set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') UPDATE finished @ '||convert(varchar(64),getdate(),109) 
+      print @tmpStr 
+    end 
+  else 
+    begin 
+      set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') INSERT started @ '||convert(varchar(64),getdate(),109) 
+      print @tmpStr 
+ 
+      insert into IDS 
+      (TABLE_ID, VALUE_ID, TABLE_NAME) 
+      values 
+      (@TABLE_ID, @VALUE_ID, @TABLE_NAME) 
+ 
+      set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') INSERT finished @ '||convert(varchar(64),getdate(),109) 
+      print @tmpStr 
+    end 
+  if @SLEEP is not null 
+    begin 
+      set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') WAITFOR started @ '||convert(varchar(64),getdate(),109) 
+      print @tmpStr 
+ 
+      waitfor delay @SLEEP 
+ 
+      set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') WAITFOR finished @ '||convert(varchar(64),getdate(),109) 
+      print @tmpStr 
+    end 
+ 
+  set @tmpStr='UpdateIDS (@@spid='||convert(varchar(64),@@spid)||') finished @ '||convert(varchar(64),getdate(),109) 
+  print @tmpStr 
+end
+
+select
+M.*,
+D.*
+from
+MasterTable M
+left outer join DetailsTable D on (D.IdMaster=M.Id) and (D.Id=2)
+Выбираются ВСЕ записи из MasterTable и заполняются только те, которые попадают под on (D.IdMaster=M.Id) and (D.Id=2) - остальные NULL
+9 records
+
+select
+M.*,
+D.*
+from
+MasterTable M
+left outer join DetailsTable D on (D.IdMaster=M.Id)
+where
+(D.Id=2)
+Выбираются ВСЕ записи из MasterTable и заполняются только те, которые попадают под on (D.IdMaster=M.Id) - остальные NULL
+Потом нахлопывается where (D.Id=2)
+2 records
+
+select
+S.StudentID,
+S.PredmetId,
+(select count(*) from Student S1 where (S1.StudentID=S.StudentId) and (S1.PredmetID=S.PredmetId) and (S1.Status='ЯВ')) as StatusYAVKA,
+(select count(*) from Student S2 where (S2.StudentID=S.StudentId) and (S2.PredmetID=S.PredmetId) and (S2.Status='НЯ')) as StatusNEYAVKA
+from
+Student S
+group by S.StudentID, S.PredmetId
+
+select *
+from Insurant i left outer join (
+                                   NaturPerson n full join JuridPerson j
+                                   on (n.CentId=j.CentId) and
+                                      (n.InstId=j.InstId) and
+                                      (n.NodeId=j.NodeId) and
+                                      (n.PersonId=j.PersonId)
+                                  )
+on (
+    (i.CentId=j.CentId) and
+    (i.InstId=j.InstId) and
+    (i.NodeId=j.NodeId) and
+    (i.PersonId=j.PersonId)
+   )
+   or
+   (
+    (i.CentId=n.CentId) and
+    (i.InstId=n.InstId) and
+    (i.NodeId=n.NodeId) and
+    (i.PersonId=n.PersonId)
+   )
+order by i.CentId,i.InstId,i.NodeId,i.PersonId
+
+select
+m.Id,
+det_l_I.IdMaster,
+det_l_I.Id,
+det_l_II.*
+from
+MasterTable m
+left outer join DetailsTable det_l_I on (det_l_I.IdMaster=m.Id)
+left outer join DetailsDetailsTable det_l_II on (det_l_II.IdMaster=det_l_I.IdMaster) and (det_l_II.IdDetailsLevelI=det_l_I.Id)
+
+select
+m.Id,
+det_l_I.IdMaster,
+det_l_I.Id,
+det_l_II.*
+from
+MasterTable m
+left outer join DetailsTable det_l_I on (det_l_I.IdMaster=m.Id)
+left outer join DetailsDetailsTable det_l_II on (det_l_II.IdMaster=m.Id) and (det_l_II.IdDetailsLevelI=det_l_I.Id)
+
+update
+UMaster
+set
+RelationId=R.SmthId
+from
+UMaster M
+join URelation R on (R.RelationId=M.RelationId)
