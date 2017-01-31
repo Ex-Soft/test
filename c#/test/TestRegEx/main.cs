@@ -1,4 +1,4 @@
-﻿#define TEST_XML
+﻿//#define TEST_XML
 
 using System;
 using System.Text;
@@ -52,6 +52,12 @@ namespace TestRegEx
                         tmpString = r.Replace(srcString, string.Empty);
                 }
             #endif
+
+            srcString = "<PreBuildEvent>\r\n    </PreBuildEvent>";
+            r = new Regex("<PreBuildEvent>\\s*\\u000d\\u000a\\s*</PreBuildEvent>");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
 
             srcString = "<Object><Object></Object></Object><Object><Object></Object></Object><Object></Object><Object></Object>";
             //srcString = "<Object></Object><Object></Object><Object></Object><Object></Object>";

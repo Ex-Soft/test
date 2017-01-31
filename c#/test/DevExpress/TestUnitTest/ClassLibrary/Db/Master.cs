@@ -2,11 +2,11 @@
 
 namespace ClassLibrary.Db
 {
-    [Persistent("Enums")]
-    public class Enums : XPBaseObject
+    [Persistent("Master")]
+    public class Master : XPBaseObject
     {
         private int _id;
-        private string _codeKey;
+        private string _name;
 
         [Key(true)]
         [Persistent("Id")]
@@ -16,14 +16,14 @@ namespace ClassLibrary.Db
             set { SetPropertyValue("Id", ref _id, value); }
         }
 
-        [Persistent("CodeKey")]
-        public string CodeKey
+        [Persistent("Name")]
+        public string Name
         {
-            get { return _codeKey; }
-            set { SetPropertyValue("CodeKey", ref _codeKey, value); }
+            get { return _name; }
+            set { SetPropertyValue("Name", ref _name, value); }
         }
 
-        public Enums(Session session) : base(session)
+        public Master(Session session) : base(session)
         {}
     }
 }
