@@ -22,6 +22,13 @@ namespace Derived
             // Cannot access protected property 'ProtectedIntProperty' here
             //Debug.WriteLine($"ProtectedIntProperty = {derived.ProtectedIntProperty}");
 
+            // Error CS0122  'Base.InternalIntProperty' is inaccessible due to its protection level Base
+            // Cannot access internal property 'InternalIntProperty' here
+            //derived.InternalIntProperty = 1;
+            // Error CS0122  'Base.InternalIntProperty' is inaccessible due to its protection level Base
+            // Cannot access internal property 'InternalIntProperty' here
+            //Debug.WriteLine($"ProtectedIntProperty = {derived.InternalIntProperty}");
+
             // Error CS0122  'Base.ProtectedVirtualIntProperty' is inaccessible due to its protection level Base
             // Cannot access protected property 'ProtectedVirtualIntProperty' here
             //derived.ProtectedVirtualIntProperty = 1;
@@ -50,6 +57,11 @@ namespace Derived
             // The property 'Base.PublicIntPropertyProtectedSet' cannot be used in this context because the set accessor is inaccessible
             //derived.PublicIntPropertyProtectedSet = 1;
             Debug.WriteLine($"PublicIntPropertyProtectedSet = {derived.PublicIntPropertyProtectedSet}");
+
+            // Error CS0272  The property or indexer 'Base.PublicIntPropertyInternalSet' cannot be used in this context because the set accessor is inaccessible
+            // The property 'Base.PublicIntPropertyInternalSet' cannot be used in this context because the set accessor is inaccessible
+            //derived.PublicIntPropertyInternalSet = 1;
+            Debug.WriteLine($"PublicIntPropertyInternalSet = {derived.PublicIntPropertyInternalSet}");
 
             // Error CS0272  The property or indexer 'Base.PublicIntPropertyProtectedInternalSet' cannot be used in this context because the set accessor is inaccessible
             // The property 'Base.PublicIntPropertyProtectedInternalSet' cannot be used in this context because the set accessor is inaccessible

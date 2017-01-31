@@ -4,15 +4,23 @@
     {
         private int
             _privateIntProperty,
+
             _protectedIntProperty,
-            _protectedVirtualIntProperty,
+            _internalIntProperty,
             _protectedInternalIntProperty,
+
+            _protectedVirtualIntProperty,
+            _internalVirtualIntProperty,
             _protectedInternalVirtualIntProperty,
+
             _publicIntProperty,
             _publicIntPropertyProtectedSet,
+            _publicIntPropertyInternalSet,
             _publicIntPropertyProtectedInternalSet,
+
             _publicVirtualIntProperty,
             _publicVirtualIntPropertyProtectedSet,
+            _publicVirtualIntPropertyInternalSet,
             _publicVirtualIntPropertyProtectedInternalSet;
 
         private int PrivateIntProperty
@@ -45,18 +53,18 @@
             }
         }
 
-        protected virtual int ProtectedVirtualIntProperty
+        internal int InternalIntProperty
         {
             get
             {
-                System.Diagnostics.Debug.WriteLine("Base.Base.get_ProtectedVirtualIntProperty()");
-                return _protectedVirtualIntProperty;
+                System.Diagnostics.Debug.WriteLine("Base.Base.get_InternalIntProperty()");
+                return _internalIntProperty;
             }
             set
             {
-                System.Diagnostics.Debug.WriteLine("Base.Base.set_ProtectedVirtualIntProperty()");
-                if (_protectedVirtualIntProperty != value)
-                    _protectedVirtualIntProperty = value;
+                System.Diagnostics.Debug.WriteLine("Base.Base.set_InternalIntProperty()");
+                if (_internalIntProperty != value)
+                    _internalIntProperty = value;
             }
         }
 
@@ -72,6 +80,36 @@
                 System.Diagnostics.Debug.WriteLine("Base.Base.set_ProtectedInternalIntProperty()");
                 if (_protectedInternalIntProperty != value)
                     _protectedInternalIntProperty = value;
+            }
+        }
+
+        protected virtual int ProtectedVirtualIntProperty
+        {
+            get
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.get_ProtectedVirtualIntProperty()");
+                return _protectedVirtualIntProperty;
+            }
+            set
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.set_ProtectedVirtualIntProperty()");
+                if (_protectedVirtualIntProperty != value)
+                    _protectedVirtualIntProperty = value;
+            }
+        }
+
+        internal virtual int InternalVirtualIntProperty
+        {
+            get
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.get_InternalVirtualIntProperty()");
+                return _internalVirtualIntProperty;
+            }
+            set
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.set_InternalVirtualIntProperty()");
+                if (_internalVirtualIntProperty != value)
+                    _internalVirtualIntProperty = value;
             }
         }
 
@@ -120,6 +158,21 @@
             }
         }
 
+        public int PublicIntPropertyInternalSet
+        {
+            get
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.get_PublicIntPropertyInternalSet()");
+                return _publicIntPropertyInternalSet;
+            }
+            internal set
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.set_PublicIntPropertyInternalSet()");
+                if (_publicIntPropertyInternalSet != value)
+                    _publicIntPropertyInternalSet = value;
+            }
+        }
+
         public int PublicIntPropertyProtectedInternalSet
         {
             get
@@ -165,6 +218,21 @@
             }
         }
 
+        public virtual int PublicVirtualIntPropertyInternalSet
+        {
+            get
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.get_PublicVirtualIntPropertyInternalSet()");
+                return _publicVirtualIntPropertyInternalSet;
+            }
+            internal set
+            {
+                System.Diagnostics.Debug.WriteLine("Base.Base.set_PublicVirtualIntPropertyInternalSet()");
+                if (_publicVirtualIntPropertyInternalSet != value)
+                    _publicVirtualIntPropertyInternalSet = value;
+            }
+        }
+
         public virtual int PublicVirtualIntPropertyProtectedInternalSet
         {
             get
@@ -183,15 +251,23 @@
         private void PrivateMethod()
         {
             PrivateIntProperty = 1;
+
             ProtectedIntProperty = 1;
-            ProtectedVirtualIntProperty = 1;
+            InternalIntProperty = 1;
             ProtectedInternalIntProperty = 1;
+
+            ProtectedVirtualIntProperty = 1;
+            InternalVirtualIntProperty = 1;
             ProtectedInternalVirtualIntProperty = 1;
+
             PublicIntProperty = 1;
             PublicIntPropertyProtectedSet = 1;
+            PublicIntPropertyInternalSet = 1;
             PublicIntPropertyProtectedInternalSet = 1;
+
             PublicVirtualIntProperty = 1;
             PublicVirtualIntPropertyProtectedSet = 1;
+            PublicVirtualIntPropertyInternalSet = 1;
             PublicVirtualIntPropertyProtectedInternalSet = 1;
 
             System.Diagnostics.Debug.WriteLine("Base.Base.PrivateMethod()");
@@ -200,32 +276,73 @@
         protected virtual void ProtectedMethod()
         {
             PrivateIntProperty = 1;
+
             ProtectedIntProperty = 1;
-            ProtectedVirtualIntProperty = 1;
+            InternalIntProperty = 1;
             ProtectedInternalIntProperty = 1;
+
+            ProtectedVirtualIntProperty = 1;
+            InternalVirtualIntProperty = 1;
             ProtectedInternalVirtualIntProperty = 1;
+
             PublicIntProperty = 1;
             PublicIntPropertyProtectedSet = 1;
+            PublicIntPropertyInternalSet = 1;
             PublicIntPropertyProtectedInternalSet = 1;
+
             PublicVirtualIntProperty = 1;
             PublicVirtualIntPropertyProtectedSet = 1;
+            PublicVirtualIntPropertyInternalSet = 1;
             PublicVirtualIntPropertyProtectedInternalSet = 1;
 
             System.Diagnostics.Debug.WriteLine("Base.Base.ProtectedMethod()");
         }
 
+        internal virtual void InternalMethod()
+        {
+            PrivateIntProperty = 1;
+
+            ProtectedIntProperty = 1;
+            InternalIntProperty = 1;
+            ProtectedInternalIntProperty = 1;
+
+            ProtectedVirtualIntProperty = 1;
+            InternalVirtualIntProperty = 1;
+            ProtectedInternalVirtualIntProperty = 1;
+
+            PublicIntProperty = 1;
+            PublicIntPropertyProtectedSet = 1;
+            PublicIntPropertyInternalSet = 1;
+            PublicIntPropertyProtectedInternalSet = 1;
+
+            PublicVirtualIntProperty = 1;
+            PublicVirtualIntPropertyProtectedSet = 1;
+            PublicVirtualIntPropertyInternalSet = 1;
+            PublicVirtualIntPropertyProtectedInternalSet = 1;
+
+            System.Diagnostics.Debug.WriteLine("Base.Base.InternalMethod()");
+        }
+
         protected internal virtual void ProtectedInternalMethod()
         {
             PrivateIntProperty = 1;
+
             ProtectedIntProperty = 1;
-            ProtectedVirtualIntProperty = 1;
+            InternalIntProperty = 1;
             ProtectedInternalIntProperty = 1;
+
+            ProtectedVirtualIntProperty = 1;
+            InternalVirtualIntProperty = 1;
             ProtectedInternalVirtualIntProperty = 1;
+
             PublicIntProperty = 1;
             PublicIntPropertyProtectedSet = 1;
+            PublicIntPropertyInternalSet = 1;
             PublicIntPropertyProtectedInternalSet = 1;
+
             PublicVirtualIntProperty = 1;
             PublicVirtualIntPropertyProtectedSet = 1;
+            PublicVirtualIntPropertyInternalSet = 1;
             PublicVirtualIntPropertyProtectedInternalSet = 1;
 
             System.Diagnostics.Debug.WriteLine("Base.Base.ProtectedInternalMethod()");
@@ -234,15 +351,23 @@
         public virtual void PublicMethod()
         {
             PrivateIntProperty = 1;
+
             ProtectedIntProperty = 1;
-            ProtectedVirtualIntProperty = 1;
+            InternalIntProperty = 1;
             ProtectedInternalIntProperty = 1;
+
+            ProtectedVirtualIntProperty = 1;
+            InternalVirtualIntProperty = 1;
             ProtectedInternalVirtualIntProperty = 1;
+
             PublicIntProperty = 1;
             PublicIntPropertyProtectedSet = 1;
+            PublicIntPropertyInternalSet = 1;
             PublicIntPropertyProtectedInternalSet = 1;
+
             PublicVirtualIntProperty = 1;
             PublicVirtualIntPropertyProtectedSet = 1;
+            PublicVirtualIntPropertyInternalSet = 1;
             PublicVirtualIntPropertyProtectedInternalSet = 1;
 
             System.Diagnostics.Debug.WriteLine("Base.Base.PublicMethod()");

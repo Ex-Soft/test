@@ -76,7 +76,10 @@
             this.customDateNavigator1 = new TestDE16WinApp.CustomDateNavigator();
             this.xtraTabPageBarInWindow = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonBarInWindow = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPageCommonControls = new DevExpress.XtraTab.XtraTabPage();
+            this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButtonGetCheckedListBoxInfo = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -120,6 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageBarInWindow.SuspendLayout();
+            this.xtraTabPageCommonControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,7 +151,8 @@
             this.xtraTabPageDateNavigator,
             this.xtraTabPageCalendarControl,
             this.xtraTabPageSchedulerControl,
-            this.xtraTabPageBarInWindow});
+            this.xtraTabPageBarInWindow,
+            this.xtraTabPageCommonControls});
             // 
             // xtraTabPageGridInWindow
             // 
@@ -378,16 +384,26 @@
             // customDateNavigatorWithPainters1
             // 
             this.customDateNavigatorWithPainters1.AllowAnimatedContentChange = true;
+            this.customDateNavigatorWithPainters1.AutoSize = true;
             this.customDateNavigatorWithPainters1.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.customDateNavigatorWithPainters1.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
+            this.customDateNavigatorWithPainters1.CalendarHorizontalIndent = 0;
             this.customDateNavigatorWithPainters1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customDateNavigatorWithPainters1.CalendarVerticalIndent = 0;
+            this.customDateNavigatorWithPainters1.CellPadding = new System.Windows.Forms.Padding(0);
             this.customDateNavigatorWithPainters1.Cursor = System.Windows.Forms.Cursors.Default;
             this.customDateNavigatorWithPainters1.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.customDateNavigatorWithPainters1.Location = new System.Drawing.Point(968, 279);
+            this.customDateNavigatorWithPainters1.MonthHeaderPadding = new System.Windows.Forms.Padding(-12);
             this.customDateNavigatorWithPainters1.Name = "customDateNavigatorWithPainters1";
-            this.customDateNavigatorWithPainters1.Size = new System.Drawing.Size(144, 115);
+            this.customDateNavigatorWithPainters1.ShowFooter = false;
+            this.customDateNavigatorWithPainters1.ShowHeader = false;
+            this.customDateNavigatorWithPainters1.ShowMonthHeaders = false;
+            this.customDateNavigatorWithPainters1.ShowWeekNumbers = false;
+            this.customDateNavigatorWithPainters1.Size = new System.Drawing.Size(127, 132);
             this.customDateNavigatorWithPainters1.TabIndex = 9;
+            this.customDateNavigatorWithPainters1.WeekDayAbbreviationLength = 1;
             // 
             // dateNavigator7
             // 
@@ -570,7 +586,7 @@
             this.calendarControl.EditValue = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
             this.calendarControl.Location = new System.Drawing.Point(8, 8);
             this.calendarControl.Name = "calendarControl";
-            this.calendarControl.Size = new System.Drawing.Size(233, 227);
+            this.calendarControl.Size = new System.Drawing.Size(241, 227);
             this.calendarControl.TabIndex = 0;
             // 
             // customCalendarControl1
@@ -627,6 +643,22 @@
             this.simpleButtonBarInWindow.Text = "DoIt!";
             this.simpleButtonBarInWindow.Click += new System.EventHandler(this.simpleButtonBarInWindow_Click);
             // 
+            // xtraTabPageCommonControls
+            // 
+            this.xtraTabPageCommonControls.Controls.Add(this.simpleButtonGetCheckedListBoxInfo);
+            this.xtraTabPageCommonControls.Controls.Add(this.checkedListBoxControl1);
+            this.xtraTabPageCommonControls.Name = "xtraTabPageCommonControls";
+            this.xtraTabPageCommonControls.Size = new System.Drawing.Size(1446, 580);
+            this.xtraTabPageCommonControls.Text = "Common Controls";
+            // 
+            // checkedListBoxControl1
+            // 
+            this.checkedListBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.checkedListBoxControl1.Location = new System.Drawing.Point(23, 16);
+            this.checkedListBoxControl1.Name = "checkedListBoxControl1";
+            this.checkedListBoxControl1.Size = new System.Drawing.Size(120, 95);
+            this.checkedListBoxControl1.TabIndex = 0;
+            // 
             // pnlBottom
             // 
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -634,6 +666,15 @@
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
+            // 
+            // simpleButtonGetCheckedListBoxInfo
+            // 
+            this.simpleButtonGetCheckedListBoxInfo.Location = new System.Drawing.Point(161, 16);
+            this.simpleButtonGetCheckedListBoxInfo.Name = "simpleButtonGetCheckedListBoxInfo";
+            this.simpleButtonGetCheckedListBoxInfo.Size = new System.Drawing.Size(148, 23);
+            this.simpleButtonGetCheckedListBoxInfo.TabIndex = 1;
+            this.simpleButtonGetCheckedListBoxInfo.Text = "Get CheckedListBox Info";
+            this.simpleButtonGetCheckedListBoxInfo.Click += new System.EventHandler(this.simpleButtonGetCheckedListBoxInfo_Click);
             // 
             // MainForm
             // 
@@ -695,6 +736,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1)).EndInit();
             this.xtraTabPageBarInWindow.ResumeLayout(false);
+            this.xtraTabPageCommonControls.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -748,6 +791,9 @@
         private DevExpress.XtraEditors.SimpleButton simpleButtonMasterDetail;
         private DevExpress.XtraScheduler.DateNavigator dateNavigator7;
         private TestDE16WinApp.CustomDateNavigatorWithPainters customDateNavigatorWithPainters1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageCommonControls;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonGetCheckedListBoxInfo;
     }
 }
 

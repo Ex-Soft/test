@@ -22,15 +22,21 @@ namespace Base
             // Cannot access protected property 'ProtectedIntProperty' here
             //Debug.WriteLine($"ProtectedIntProperty = {derived.ProtectedIntProperty}");
 
+            derived.InternalIntProperty = 1;
+            Debug.WriteLine($"InternalIntProperty = {derived.InternalIntProperty}");
+
+            derived.ProtectedInternalIntProperty = 1;
+            Debug.WriteLine($"ProtectedInternalIntProperty = {derived.ProtectedInternalIntProperty}");
+
             // Error CS0122  'Base.ProtectedVirtualIntProperty' is inaccessible due to its protection level Base
             // Cannot access protected property 'ProtectedVirtualIntProperty' here
             //derived.ProtectedVirtualIntProperty = 1;
             // Error CS0122  'Base.ProtectedVirtualIntProperty' is inaccessible due to its protection level Base
             // Cannot access protected property 'ProtectedVirtualIntProperty' here
             //Debug.WriteLine($"ProtectedVirtualIntProperty = {derived.ProtectedVirtualIntProperty}");
-            
-            derived.ProtectedInternalIntProperty = 1;
-            Debug.WriteLine($"ProtectedInternalIntProperty = {derived.ProtectedInternalIntProperty}");
+
+            derived.InternalVirtualIntProperty = 1;
+            Debug.WriteLine($"InternalVirtualIntProperty = {derived.InternalVirtualIntProperty}");
 
             derived.ProtectedInternalVirtualIntProperty = 1;
             Debug.WriteLine($"ProtectedInternalVirtualIntProperty = {derived.ProtectedInternalVirtualIntProperty}");
@@ -43,6 +49,9 @@ namespace Base
             //derived.PublicIntPropertyProtectedSet = 1;
             Debug.WriteLine($"PublicIntPropertyProtectedSet = {derived.PublicIntPropertyProtectedSet}");
 
+            derived.PublicIntPropertyInternalSet = 1;
+            Debug.WriteLine($"PublicIntPropertyInternalSet = {derived.PublicIntPropertyInternalSet}");
+
             derived.PublicIntPropertyProtectedInternalSet = 1;
             Debug.WriteLine($"PublicIntPropertyProtectedInternalSet = {derived.PublicIntPropertyProtectedInternalSet}");
 
@@ -53,6 +62,9 @@ namespace Base
             // The property 'Base.PublicVirtualIntPropertyProtectedSet' cannot be used in this context because the set accessor is inaccessible
             //derived.PublicVirtualIntPropertyProtectedSet = 1;
             Debug.WriteLine($"PublicVirtualIntPropertyProtectedSet = {derived.PublicVirtualIntPropertyProtectedSet}");
+
+            derived.PublicVirtualIntPropertyInternalSet = 1;
+            Debug.WriteLine($"PublicVirtualIntPropertyInternalSet = {derived.PublicVirtualIntPropertyInternalSet}");
 
             derived.PublicVirtualIntPropertyProtectedInternalSet = 1;
             Debug.WriteLine($"PublicVirtualIntPropertyProtectedInternalSet = {derived.PublicVirtualIntPropertyProtectedInternalSet}");

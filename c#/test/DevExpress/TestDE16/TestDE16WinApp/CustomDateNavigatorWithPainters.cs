@@ -54,8 +54,8 @@ namespace TestDE16WinApp
             CellPadding = new Padding(0);
             MonthHeaderPadding = new Padding(-12);
             AutoSize = true;
-            ShowHeader = true;
-            ShowMonthHeaders = true;
+            ShowHeader = false;
+            ShowMonthHeaders = false;
             ShowWeekNumbers = false;
             ShowFooter = false;
             WeekDayAbbreviationLength = 1;

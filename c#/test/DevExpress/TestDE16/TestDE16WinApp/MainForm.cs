@@ -79,6 +79,24 @@ namespace TestDE16WinApp
             dateNavigator7.ShowTodayButton = false;
             dateNavigator7.ShowHeader = false;
             dateNavigator7.ShowMonthHeaders = false;
+
+            //checkedListBoxControl1.AllowGrayed = true;
+            checkedListBoxControl1.CheckOnClick = true;
+            checkedListBoxControl1.Items.AddRange(new[]
+            {
+                new CheckedListBoxItem("January", false),
+                new CheckedListBoxItem("February", false),
+                new CheckedListBoxItem("March", true),
+                new CheckedListBoxItem("April", false),
+                new CheckedListBoxItem("May", false),
+                new CheckedListBoxItem("June", true),
+                new CheckedListBoxItem("July", true),
+                new CheckedListBoxItem("August", false),
+                new CheckedListBoxItem("September", false),
+                new CheckedListBoxItem("October", false),
+                new CheckedListBoxItem("November", false),
+                new CheckedListBoxItem("December", false)
+            });
         }
 
         private void BarEditItem_EditValueChanged(object sender, EventArgs e)
@@ -263,6 +281,12 @@ namespace TestDE16WinApp
             {
                 form.ShowDialog(this);
             }
+        }
+
+        private void simpleButtonGetCheckedListBoxInfo_Click(object sender, EventArgs e)
+        {
+            var checkedIndices = checkedListBoxControl1.CheckedIndices.OfType<int>().ToArray();
+            var checkedItems = checkedListBoxControl1.CheckedItems.OfType<CheckedListBoxItem>().ToArray();
         }
     }
 }
