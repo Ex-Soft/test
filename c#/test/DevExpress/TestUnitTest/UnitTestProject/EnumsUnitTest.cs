@@ -1,9 +1,9 @@
 ﻿//#define USE_TESTINITIALIZE
 
-using ClassLibrary.Db;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ClassLibrary.Db;
 
 namespace UnitTestProject
 {
