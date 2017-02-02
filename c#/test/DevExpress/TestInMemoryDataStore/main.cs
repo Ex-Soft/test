@@ -27,16 +27,14 @@ namespace TestInMemoryDataStore
 		                entity1.Value = "Entity1";
 		                entity1.Entity3Derived1.AddRange(new[] {new Entity3Derived1(unitOfWork), new Entity3Derived1(unitOfWork)});
 		                for (var i = 0; i < entity1.Entity3Derived1.Count; ++i)
-		                    ((Entity3Derived1) entity1.Entity3Derived1[i]).Value =
-		                        $"Entity3Derived1 #{i + 1} (\"{entity1.Value}\")";
+		                    ((Entity3Derived1) entity1.Entity3Derived1[i]).Value = $"Entity3Derived1 #{i + 1} (\"{entity1.Value}\")";
 
 		                var entity2 = new Entity2(unitOfWork);
 		                entity2.Id = 2;
 		                entity2.Value = "Entity2";
 		                entity2.Entity3Derived2.AddRange(new[] {new Entity3Derived2(unitOfWork), new Entity3Derived2(unitOfWork)});
 		                for (var i = 0; i < entity2.Entity3Derived2.Count; ++i)
-		                    ((Entity3Derived2) entity2.Entity3Derived2[i]).Value =
-		                        $"Entity3Derived2 #{i + 1} (\"{entity2.Value}\")";
+		                    ((Entity3Derived2) entity2.Entity3Derived2[i]).Value = $"Entity3Derived2 #{i + 1} (\"{entity2.Value}\")";
 
 		                unitOfWork.CommitChanges();
 
@@ -46,8 +44,7 @@ namespace TestInMemoryDataStore
 		                    var entity3Derived2 = entity as Entity3Derived2;
 		                    var elementId = entity3Derived1?.Element.Id ?? entity3Derived2?.Element.Id;
 		                    var elementValue = entity3Derived1?.Element.Value ?? entity3Derived2?.Element.Value;
-		                    Debug.WriteLine(
-		                        $"Id:{entity.Id}, Value:{entity.Value}, Element.Id:{elementId?.ToString() ?? "NULL"}, Element.Value:{elementValue ?? "NULL"}");
+		                    Debug.WriteLine($"Id:{entity.Id}, Value:{entity.Value}, Element.Id:{elementId?.ToString() ?? "NULL"}, Element.Value:{elementValue ?? "NULL"}");
 		                }
 		            }
                 #endif
