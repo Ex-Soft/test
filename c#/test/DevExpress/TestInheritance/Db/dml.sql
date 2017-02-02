@@ -1,3 +1,11 @@
+select
+	*
+from
+	Entity3 entity3
+	join XPObjectType xpObjectType on xpObjectType.OID = entity3.ObjectType
+	left join Entity1 entity1 on entity1.Id = entity3.ElementId
+	left join Entity2 entity2 on entity2.Id = entity3.ElementId
+
 select * from XPObjectType order by OID
 select * from XPObjectType where AssemblyName = N'TestInheritance'
 

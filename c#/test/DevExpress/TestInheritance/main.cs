@@ -6,6 +6,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
 using TestInheritance.Db;
@@ -20,9 +21,37 @@ namespace TestInheritance
             {
                 DevExpress.Xpo.Metadata.ReflectionClassInfo.SuppressSuspiciousMemberInheritanceCheck = true;
 
-                XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("i-nozhenko", "sa", "123", "testdb");
+                XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
                 //XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("NOZHENKO-I-XP\\SQLEXPRESS", "testdb");
-                
+
+                using (var unitOfWork = new UnitOfWork())
+                {
+                    var entity1 = new Entity1(unitOfWork);
+                    entity1.Id = 1;
+                    entity1.Value = "Entity1";
+                    entity1.Entity3Derived1.AddRange(new[] { new Entity3Derived1(unitOfWork), new Entity3Derived1(unitOfWork) });
+                    for (var i = 0; i < entity1.Entity3Derived1.Count; ++i)
+                        ((Entity3Derived1)entity1.Entity3Derived1[i]).Value = $"Entity3Derived1 #{i + 1} (\"{entity1.Value}\")";
+
+                    var entity2 = new Entity2(unitOfWork);
+                    entity2.Id = 2;
+                    entity2.Value = "Entity2";
+                    entity2.Entity3Derived2.AddRange(new[] { new Entity3Derived2(unitOfWork), new Entity3Derived2(unitOfWork) });
+                    for (var i = 0; i < entity2.Entity3Derived2.Count; ++i)
+                        ((Entity3Derived2)entity2.Entity3Derived2[i]).Value = $"Entity3Derived2 #{i + 1} (\"{entity2.Value}\")";
+
+                    unitOfWork.CommitChanges();
+
+                    foreach (var entity in new XPCollection<Entity3Base>(unitOfWork).OrderBy(item => item.Id))
+                    {
+                        var entity3Derived1 = entity as Entity3Derived1;
+                        var entity3Derived2 = entity as Entity3Derived2;
+                        var elementId = entity3Derived1?.Element.Id ?? entity3Derived2?.Element.Id;
+                        var elementValue = entity3Derived1?.Element.Value ?? entity3Derived2?.Element.Value;
+                        Debug.WriteLine($"Id:{entity.Id}, Value:{entity.Value}, Element.Id:{elementId?.ToString() ?? "NULL"}, Element.Value:{elementValue ?? "NULL"}");
+                    }
+                }
+
                 using (var session = new Session())
                 {
 					#if TEST_INHERITANCE

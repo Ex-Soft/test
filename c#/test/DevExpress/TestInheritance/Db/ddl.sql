@@ -1,6 +1,60 @@
 ﻿use testdb
 go
 
+if object_id(N'Entity3', N'u') is not null
+  drop table Entity3
+go
+
+if object_id(N'Entity2', N'u') is not null
+  drop table Entity2
+go
+
+if object_id(N'Entity1', N'u') is not null
+  drop table Entity1
+go
+
+create table Entity1
+(
+   Id int not null constraint pkEntity1 primary key,
+   Value varchar(255) null
+)
+go
+
+create table Entity2
+(
+   Id int not null constraint pkEntity2 primary key,
+   Value varchar(255) null
+)
+go
+
+create table Entity3
+(
+   Id int not null identity constraint pkEntity3 primary key,
+   Value varchar(255) null,
+   ElementId int null
+)
+go
+
+if exists (select 1 from sys.foreign_keys where parent_object_id = object_id(N'Entity3', N'u') and object_id = object_id(N'fk_Entity1_Entity3', N'f'))
+	alter table Entity3 drop constraint fk_Entity1_Entity3
+go
+
+alter table Entity3 with nocheck add constraint fk_Entity1_Entity3 foreign key(ElementId) references Entity1 (Id)
+go
+
+alter table Entity3 nocheck constraint fk_Entity1_Entity3
+go
+
+if exists (select 1 from sys.foreign_keys where parent_object_id = object_id(N'Entity3', N'u') and object_id = object_id(N'fk_Entity2_Entity3', N'f'))
+	alter table Entity3 drop constraint fk_Entity2_Entity3
+go
+
+alter table Entity3 with nocheck add constraint fk_Entity2_Entity3 foreign key(ElementId) references Entity2 (Id)
+go
+
+alter table Entity3 nocheck constraint fk_Entity2_Entity3
+go
+
 if object_id(N'TestDETableLeft', N'u') is not null
   drop table TestDETableLeft
 go
