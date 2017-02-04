@@ -22,19 +22,18 @@ namespace TestInheritance
                 DevExpress.Xpo.Metadata.ReflectionClassInfo.SuppressSuspiciousMemberInheritanceCheck = true;
 
                 XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
-                //XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("NOZHENKO-I-XP\\SQLEXPRESS", "testdb");
 
                 using (var unitOfWork = new UnitOfWork())
                 {
                     var entity1 = new Entity1(unitOfWork);
-                    entity1.Id = 1;
+                    entity1.Id = (int)unitOfWork.ExecuteScalar("select max(Id) + 1 from Entity1");
                     entity1.Value = "Entity1";
                     entity1.Entity3Derived1.AddRange(new[] { new Entity3Derived1(unitOfWork), new Entity3Derived1(unitOfWork) });
                     for (var i = 0; i < entity1.Entity3Derived1.Count; ++i)
                         ((Entity3Derived1)entity1.Entity3Derived1[i]).Value = $"Entity3Derived1 #{i + 1} (\"{entity1.Value}\")";
 
                     var entity2 = new Entity2(unitOfWork);
-                    entity2.Id = 2;
+                    entity2.Id = (int)unitOfWork.ExecuteScalar("select max(Id) + 1 from Entity2");
                     entity2.Value = "Entity2";
                     entity2.Entity3Derived2.AddRange(new[] { new Entity3Derived2(unitOfWork), new Entity3Derived2(unitOfWork) });
                     for (var i = 0; i < entity2.Entity3Derived2.Count; ++i)

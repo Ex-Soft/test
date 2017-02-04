@@ -1,4 +1,5 @@
-﻿//#define TEST_LockingException
+﻿#define TEST_LINQ
+//#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
@@ -83,6 +84,58 @@ namespace TestXPO
 
 	            XPCollection
 		            xpCollection;
+
+                #if TEST_LINQ
+                    var dep = from s in session.Query<Staff>() where s.Dep == 2 select s;
+                    //var expected1 = (from s in session.Query<Staff>() select s).ToList();
+                    var expected1 = (from s in session.Query<Staff>() where dep.Contains(s) select s).ToList();
+                    expected1 = session.Query<Staff>().Where(s => dep.Contains(s)).ToList();
+                    expected1 = session.Query<Staff>().Intersect(dep).ToList();
+                    expected1 = dep.Intersect(session.Query<Staff>()).ToList();
+
+                    var detail = session.Query<TestMaster>().Where(m => m.Id == 1).SelectMany(m => m.Details);
+                    // select * from "dbo"."TestDetail" N0 where (N0."GCRecord" is null and exists(select * from "dbo"."TestDetail" N1 where (N1."GCRecord" is null and (N1."IdMaster" = @p0) and not (N1."IdMaster" is null) and (N1."Id" = N0."Id"))))
+
+                    //var detail = session.Query<TestMaster>().Where(m => m.Id == 1).SelectMany(m => m.Details).ToList();
+                    // select * from "dbo"."TestDetail" N0 where (N0."GCRecord" is null and N0."Id" in (@p0,@p1,@p2))
+
+                    //var detail = from itemOfMaster in session.Query<TestMaster>() where itemOfMaster.Id == 1 from itemOfDetail in itemOfMaster.Details select itemOfDetail; // throw new NotSupportedException(Res.GetString("LinqToXpo_X0WithSoManyParametersIsNotSupported"), "SelectMany")
+
+                    var expected2 = (from d in session.Query<TestDetail>() where detail.Contains(d) select d).ToList();
+                    expected2 = session.Query<TestDetail>().Where(d => detail.Contains(d)).ToList();
+                    expected2 = session.Query<TestDetail>().Intersect(detail).ToList();
+                    expected2 = detail.Intersect(session.Query<TestDetail>()).ToList();
+
+                    var entityB = (from b in session.Query<EntityB>()
+                        where b.Id == 10
+                        select b).First();
+
+                    var queryableEntitiesA = from c in session.Query<EntityC>()
+                        where c.EntityB.Id == entityB.Id
+                        select c.EntityA;
+
+                    var listEntitiesA = (from c in session.Query<EntityC>()
+                        where c.EntityB.Id == entityB.Id
+                        select c.EntityA).ToList();
+
+                    var queryableExpected = (from a in session.Query<EntityA>()
+                        where queryableEntitiesA.Contains(a.Main)
+                        select a.Id).ToList();
+/*
+exec sp_executesql N'select N0."Id" from "dbo"."EntityA" N0
+where exists(select * from "dbo"."EntityC" N1 where((N1."EntityBId" = @p0) and(N1."Id" = N0."MainId")))',N'@p0 int',@p0=10
+
+exec sp_executesql N'select N0."Id" from "dbo"."EntityA" N0
+where exists(select * from "dbo"."EntityC" N1 where((N1."EntityBId" = @p0) and(N1."EntityAId" = N0."MainId")))',N'@p0 int',@p0=10
+*/
+                    var listExpected = (from a in session.Query<EntityA>()
+                        where listEntitiesA.Contains(a.Main)
+                        select a.Id).ToList();
+/*
+exec sp_executesql N'select N0."Id" from "dbo"."EntityA" N0
+where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
+*/
+                #endif
 
                 #if TEST_LockingException
                     try

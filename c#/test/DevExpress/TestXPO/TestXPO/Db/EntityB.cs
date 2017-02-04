@@ -1,9 +1,9 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestInMemoryDataStore.Db
+namespace TestXPO.Db
 {
-    [Persistent("Entity1")]
-    public class Entity1 : XPBaseObject
+    [Persistent("EntityB")]
+    public class EntityB : XPBaseObject
     {
         int _id;
         string _value;
@@ -16,6 +16,9 @@ namespace TestInMemoryDataStore.Db
             set { SetPropertyValue("Id", ref _id, value); }
         }
 
+        [Association("EntityB-EntityC")]
+        public XPCollection<EntityC> EntityC => GetCollection<EntityC>("EntityC");
+
         [Persistent("Value")]
         public string Value
         {
@@ -23,10 +26,7 @@ namespace TestInMemoryDataStore.Db
             set { SetPropertyValue("Value", ref _value, value); }
         }
 
-        [Association("Entity1-Entity3Derived1", typeof(Entity3Derived1))]
-        public XPCollection Entity3Derived1 => GetCollection("Entity3Derived1");
-
-        public Entity1(Session session) : base(session)
+        public EntityB(Session session) : base(session)
         {}
     }
 }

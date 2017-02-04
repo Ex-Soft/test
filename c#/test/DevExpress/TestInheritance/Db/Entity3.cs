@@ -33,7 +33,7 @@ namespace TestInheritance.Db
         private Entity1 _element;
 
         [Persistent("ElementId")]
-        [Association("Entity1-Entity3Derived1", typeof(Entity1)), NoForeignKey]
+        [Association("Entity1-Entity3Derived1", typeof(Entity1))/*, NoForeignKey*/]
         public Entity1 Element
         {
             get { return _element; }
@@ -50,7 +50,7 @@ namespace TestInheritance.Db
         private Entity2 _element;
 
         [Persistent("ElementId")]
-        [Association("Entity2-Entity3Derived2", typeof(Entity2)), NoForeignKey]
+        [Association("Entity2-Entity3Derived2", typeof(Entity2))/*, NoForeignKey*/]
         public Entity2 Element
         {
             get { return _element; }

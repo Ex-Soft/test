@@ -235,7 +235,21 @@ namespace TestIEnumerable
     {
         static void Main()
         {
-			List<A> listOfA = new List<A>
+            List<int>
+                listOfInt = new List<int> { 1, 2, 3, 4, 5 },
+                listOfIntII = new List<int> { 2, 3 },
+                listOfIntIII;
+
+            listOfIntIII = (from i in listOfInt
+                            where
+                                listOfIntII.Contains(i)
+                            select i).ToList();
+
+            listOfIntIII = listOfInt.Where(i => listOfIntII.Contains(i)).ToList();
+            listOfIntIII = listOfInt.Intersect(listOfIntII).ToList();
+            listOfIntIII = listOfIntII.Intersect(listOfInt).ToList();
+
+            List<A> listOfA = new List<A>
 			{
 				new A { FA = 1, FB = true },
 				new A { FA = 1, FB = true },
@@ -677,10 +691,8 @@ namespace TestIEnumerable
             if(tmpA==default(A))
                 Console.WriteLine("default(A)");
 
-            List<int>
-                tmpListOfIntII = new List<int>(/*new int[] { -1, 0, 1}*/);
-
-            tmpIntsIII = tmpListOfIntII.ToArray();
+            listOfIntII = new List<int>(/*new int[] { -1, 0, 1}*/);
+            tmpIntsIII = listOfIntII.ToArray();
             tmpBool = tmpIntsIII.All(i => i>0);
             tmpBool = tmpIntsIII.Any(i => i==0);
             tmpBool = listOfA.All(i => i.FB);
@@ -709,8 +721,7 @@ namespace TestIEnumerable
             listOfB.Add(new B(listOfA));
             listOfB.Add(new B(listOfA));
 
-            List<int>
-                listOfInt = listOfB.SelectMany(i => i.LA).Where(i => i.FC).Select(i => i.FA).ToList();
+            listOfInt = listOfB.SelectMany(i => i.LA).Where(i => i.FC).Select(i => i.FA).ToList();
 
             var tmp = listOfB.SelectMany(i => i.LA).Select(ii => ii.FA);
 
@@ -732,6 +743,8 @@ namespace TestIEnumerable
                           };
 
             tmpListOfA = listOfA.Where(r => r.FC).ToList();
+
+            var itemsOfA = from itemOfC in listOfC where itemOfC.FI == 1 from itemOfA in itemOfC.LA select itemOfA;
 
             DateTime
                 tmpDateTimeI = new DateTime(2017, 1, 1),

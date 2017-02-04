@@ -58,6 +58,24 @@ namespace LambdaVsQuery
         }
     }
 
+    class D
+    {
+        public int FI { get; set; }
+        public List<C> LC { get; set; }
+
+        public D() : this(default(int), new List<C>())
+        {}
+
+        public D(D obj) : this(obj.FI, obj.LC)
+        {}
+
+        public D(int fi, List<C> lc)
+        {
+            FI = fi;
+            LC = lc;
+        }
+    }
+
     public class GenericEqualityComparer<T> : IEqualityComparer<T>
     {
         private readonly Func<T, T, bool> _compareFunc;
@@ -126,7 +144,29 @@ namespace LambdaVsQuery
 	{
 		static void Main(string[] args)
 		{
-			int[]
+		    var listOfC = new List<C>
+		    {
+                new C { FA = 1, FB = true, FC = true },
+                new C { FA = 2, FB = true, FC = false },
+                new C { FA = 3, FB = false, FC = true },
+                new C { FA = 4, FB = false, FC = false }
+            };
+
+		    var listOfD = new List<D>
+		    {
+                new D(1, listOfC),
+                new D(2, listOfC),
+                new D(3, listOfC)
+            };
+
+		    var selectManyByQuerySyntax = from itemOfD in listOfD
+		        where itemOfD.FI == 1
+		        from itemOfC in itemOfD.LC
+		        select itemOfC;
+
+		    var selectManyByLambdaSyntax = listOfD.Where(itemOfD => itemOfD.FI == 1).SelectMany(itemOfD => itemOfD.LC);
+
+            int[]
 				tmpIntsI = { 1, 3, 5 },
 				tmpIntsII = { 2, 4, 5 },
                 tmpIntsIII;

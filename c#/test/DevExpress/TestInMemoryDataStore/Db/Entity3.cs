@@ -5,12 +5,12 @@ namespace TestInMemoryDataStore.Db
     [Persistent("Entity3")]
     public class Entity3Base : XPBaseObject
     {
-        long _id;
+        int _id;
         string _value;
 
         [Key(true)]
         [Persistent("Id")]
-        public long Id
+        public int Id
         {
             get { return _id; }
             set { SetPropertyValue("Id", ref _id, value); }
@@ -32,7 +32,7 @@ namespace TestInMemoryDataStore.Db
     {
         private Entity1 _element;
 
-        [Persistent("idElement")]
+        [Persistent("ElementId")]
         [Association("Entity1-Entity3Derived1", typeof(Entity1)), NoForeignKey]
         public Entity1 Element
         {
@@ -49,7 +49,7 @@ namespace TestInMemoryDataStore.Db
     {
         private Entity2 _element;
 
-        [Persistent("idElement")]
+        [Persistent("ElementId")]
         [Association("Entity2-Entity3Derived2", typeof(Entity2)), NoForeignKey]
         public Entity2 Element
         {

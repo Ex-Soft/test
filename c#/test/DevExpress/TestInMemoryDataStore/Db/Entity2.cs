@@ -5,12 +5,12 @@ namespace TestInMemoryDataStore.Db
     [Persistent("Entity2")]
     public class Entity2 : XPBaseObject
     {
-        long _id;
+        int _id;
         string _value;
 
         [Key]
         [Persistent("Id")]
-        public long Id
+        public int Id
         {
             get { return _id; }
             set { SetPropertyValue("Id", ref _id, value); }

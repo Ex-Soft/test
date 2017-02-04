@@ -56,6 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Db\EntityA.cs" />
+    <Compile Include="Db\EntityB.cs" />
+    <Compile Include="Db\EntityC.cs" />
+    <Compile Include="Db\Staff.cs" />
     <Compile Include="Db\TestDE.cs" />
     <Compile Include="Db\TestDetail.cs" />
     <Compile Include="Db\TestDetailWOFK.cs" />
@@ -68,6 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Db\ddl.sql" />
+    <Content Include="Db\dml.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
