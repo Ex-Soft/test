@@ -193,7 +193,7 @@ namespace TestDE16WinApp
 
         private void SimpleButtonGridInWindow_Click(object sender, EventArgs e)
         {
-            using (var form = new GridFormI())
+            using (var form = new GridForm1())
             {
                 form.ShowDialog(this);
             }
@@ -287,6 +287,14 @@ namespace TestDE16WinApp
         {
             var checkedIndices = checkedListBoxControl1.CheckedIndices.OfType<int>().ToArray();
             var checkedItems = checkedListBoxControl1.CheckedItems.OfType<CheckedListBoxItem>().ToArray();
+        }
+
+        private void simpleButtonHint_Click(object sender, EventArgs e)
+        {
+            using (var form = new GridForm2())
+            {
+                form.ShowDialog(this);
+            }
         }
     }
 }

@@ -77,9 +77,10 @@
             this.xtraTabPageBarInWindow = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonBarInWindow = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPageCommonControls = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonGetCheckedListBoxInfo = new DevExpress.XtraEditors.SimpleButton();
             this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonGetCheckedListBoxInfo = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonHint = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -156,6 +157,7 @@
             // 
             // xtraTabPageGridInWindow
             // 
+            this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonHint);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonMasterDetail);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonGridInWindow);
             this.xtraTabPageGridInWindow.Name = "xtraTabPageGridInWindow";
@@ -586,7 +588,7 @@
             this.calendarControl.EditValue = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
             this.calendarControl.Location = new System.Drawing.Point(8, 8);
             this.calendarControl.Name = "calendarControl";
-            this.calendarControl.Size = new System.Drawing.Size(241, 227);
+            this.calendarControl.Size = new System.Drawing.Size(247, 227);
             this.calendarControl.TabIndex = 0;
             // 
             // customCalendarControl1
@@ -651,6 +653,15 @@
             this.xtraTabPageCommonControls.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageCommonControls.Text = "Common Controls";
             // 
+            // simpleButtonGetCheckedListBoxInfo
+            // 
+            this.simpleButtonGetCheckedListBoxInfo.Location = new System.Drawing.Point(161, 16);
+            this.simpleButtonGetCheckedListBoxInfo.Name = "simpleButtonGetCheckedListBoxInfo";
+            this.simpleButtonGetCheckedListBoxInfo.Size = new System.Drawing.Size(148, 23);
+            this.simpleButtonGetCheckedListBoxInfo.TabIndex = 1;
+            this.simpleButtonGetCheckedListBoxInfo.Text = "Get CheckedListBox Info";
+            this.simpleButtonGetCheckedListBoxInfo.Click += new System.EventHandler(this.simpleButtonGetCheckedListBoxInfo_Click);
+            // 
             // checkedListBoxControl1
             // 
             this.checkedListBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -667,14 +678,14 @@
             this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
             // 
-            // simpleButtonGetCheckedListBoxInfo
+            // simpleButtonHint
             // 
-            this.simpleButtonGetCheckedListBoxInfo.Location = new System.Drawing.Point(161, 16);
-            this.simpleButtonGetCheckedListBoxInfo.Name = "simpleButtonGetCheckedListBoxInfo";
-            this.simpleButtonGetCheckedListBoxInfo.Size = new System.Drawing.Size(148, 23);
-            this.simpleButtonGetCheckedListBoxInfo.TabIndex = 1;
-            this.simpleButtonGetCheckedListBoxInfo.Text = "Get CheckedListBox Info";
-            this.simpleButtonGetCheckedListBoxInfo.Click += new System.EventHandler(this.simpleButtonGetCheckedListBoxInfo_Click);
+            this.simpleButtonHint.Location = new System.Drawing.Point(223, 25);
+            this.simpleButtonHint.Name = "simpleButtonHint";
+            this.simpleButtonHint.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonHint.TabIndex = 2;
+            this.simpleButtonHint.Text = "Hint";
+            this.simpleButtonHint.Click += new System.EventHandler(this.simpleButtonHint_Click);
             // 
             // MainForm
             // 
@@ -794,6 +805,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageCommonControls;
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButtonGetCheckedListBoxInfo;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonHint;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿#define TEST_ADD
+﻿#define TEST_COLLECTION_FROM_COLLECTION
+//#define TEST_ADD
 //#define TEST_LIFECYCLE
 //#define TEST_CREATE
 //#define TEST_LOAD
@@ -9,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
@@ -22,8 +24,7 @@ namespace TestCollection
     {
         static void Main(string[] args)
         {
-            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("i-nozhenko", "sa", "123", "testdb");
-            //XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("NOZHENKO-I-XP\\SQLEXPRESS", "testdb");
+            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
 
             Session
                 sessionI = new Session(),
@@ -60,6 +61,67 @@ namespace TestCollection
             XPClassInfo
                 testMasterClassInfo = sessionI.GetClassInfo<TestMaster>(),
                 testDetailClassInfo = sessionI.GetClassInfo<TestDetail>();
+
+            Victim
+                tmpVictim;
+
+            #if TEST_COLLECTION_FROM_COLLECTION
+                var baseCollection = new XPCollection<Victim>(sessionI);
+                foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+
+                var falseCollection = new XPCollection(baseCollection, new BinaryOperator(new OperandProperty("FBit"), new OperandValue(false), BinaryOperatorType.Equal));
+                foreach(Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+
+                var trueCollection = new XPCollection(baseCollection, new BinaryOperator(new OperandProperty("FBit"), new OperandValue(true), BinaryOperatorType.Equal));
+                foreach(Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+
+                if ((tmpVictim = ((IBindingList)falseCollection).AddNew() as Victim) != null)
+                {
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.FBit = false;
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.Save();
+                    baseCollection.Reload();
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                }
+                if ((tmpVictim = ((IBindingList)falseCollection).AddNew() as Victim) != null)
+                {
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.FBit = true;
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.Save();
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in falseCollection) Debug.WriteLine($"falseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                }
+
+                if ((tmpVictim = ((IBindingList)trueCollection).AddNew() as Victim) != null)
+                {
+                    foreach (var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.FBit = true;
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach(Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.Save();
+                    foreach (var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                }
+                if ((tmpVictim = ((IBindingList)trueCollection).AddNew() as Victim) != null)
+                {
+                    foreach (var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach (Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.FBit = false;
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach(Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    tmpVictim.Save();
+                    foreach(var item in baseCollection) Debug.WriteLine($"baseCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                    foreach(Victim item in trueCollection) Debug.WriteLine($"trueCollection id:{item.Id} f_int:{item.FInt} f_bit:{item.FBit}");
+                }
+            #endif
 
             #if TEST_LIFECYCLE
                 using (unitOfWorkI = new UnitOfWork())

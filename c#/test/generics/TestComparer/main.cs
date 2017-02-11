@@ -22,7 +22,7 @@ namespace TestComparer
 
         public override string ToString()
         {
-            return string.Format("{{ x: {0}, y: {1} }}", X, Y);
+            return $"{{ x: {X}, y: {Y} }}";
         }
 
         public static IEqualityComparer<A> GetEqualityComparer()
@@ -65,7 +65,7 @@ namespace TestComparer
 
         public override string ToString()
         {
-            return string.Format("{{ x: {0}, y: {1}, z: {2} }}", X, Y, Z);
+            return $"{{ x: {X}, y: {Y}, z: {Z} }}";
         }
 
         public new static IEqualityComparer<B> GetEqualityComparer()

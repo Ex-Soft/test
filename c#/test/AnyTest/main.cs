@@ -1,4 +1,5 @@
-﻿//#define TEST_BIT_CONVERTER
+﻿//#define TEST_EQUALS
+//#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
@@ -9,7 +10,7 @@
 //#define TEST_GUID
 //#define TEST_REFERENCE_EQUALS
 //#define TEST_DEFAULT
-#define TEST_SYSTEM_OBJECT
+//#define TEST_SYSTEM_OBJECT
 //#define TEST_COLOR
 //#define TEST_FILE
 //#define TEST_CLONE
@@ -38,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-//#define TEST_PATH
+#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -306,6 +307,21 @@ namespace AnyTest
 
 			if (currentDirectory.IndexOf("bin", StringComparison.Ordinal) != -1)
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
+
+            #if TEST_EQUALS
+                tmpInt = 1;
+                tmpLong = 1L;
+                tmpObject = tmpInt;
+                tmpObjectII = tmpLong;
+                tmpBool = tmpInt.Equals(tmpLong); // false
+                tmpBool = tmpInt.Equals(tmpObjectII); // false
+                tmpBool = tmpObject.Equals(tmpLong); // false
+                tmpBool = tmpObject.Equals(tmpObjectII); // false
+                tmpBool = tmpLong.Equals(tmpInt); // true
+                tmpBool = tmpLong.Equals(tmpObject); // false
+                tmpBool = tmpObjectII.Equals(tmpInt); // false
+                tmpBool = tmpObjectII.Equals(tmpObject); // false
+            #endif
 
             #if TEST_BIT_CONVERTER
                 tmpInt = 361439624;
@@ -1610,6 +1626,7 @@ namespace AnyTest
                 Console.WriteLine(string.Equals(tmpString, tmpStringII, StringComparison.InvariantCultureIgnoreCase) ? "string.Equals" : "!string.Equals"); // string.Equals
                 tmpString = Path.GetFileName("c:\\aaa\\bbb"); // bbb
                 tmpString = Path.GetFileName("c:\\aaa\\bbb\\"); // ""
+                tmpString = Path.GetFullPath("..\\..\\app.config"); // "D:\\soft.src\\c#\\test\\AnyTest\\app.config"
                 tmpString = Path.GetDirectoryName("\\\\i-nozhenko\\exchange\\PhotoReports\\TestImageI.jpg"); // \\i-nozhenko\exchange\PhotoReports
                 tmpString = Path.GetPathRoot("\\\\i-nozhenko\\exchange\\PhotoReports\\TestImageI.jpg"); // \\i-nozhenko\exchange
                 tmpString = Path.GetFullPath("\\\\i-nozhenko\\exchange\\PhotoReports\\TestImageI.jpg"); // \\i-nozhenko\exchange\PhotoReports\TestImageI.jpg
