@@ -36,10 +36,10 @@
     <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
       <ItemGroup>
         <Reference Include="DevExpress.Data.v16.2">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v16.2.dll</HintPath>
+          <HintPath>..\DevExpress.asm\DevExpress.Data.v16.2.dll</HintPath>
         </Reference>
         <Reference Include="DevExpress.Xpo.v16.2">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v16.2.dll</HintPath>
+          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v16.2.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
