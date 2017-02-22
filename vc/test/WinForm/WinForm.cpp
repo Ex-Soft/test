@@ -38,6 +38,27 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_WINFORM);
 
+	HKL currentThreadKeyboardLayout = GetKeyboardLayout(0);
+
+	WORD
+		primaryLanguageID = LOWORD(currentThreadKeyboardLayout),
+		subLanguageID = HIWORD(currentThreadKeyboardLayout);
+	
+	LANGID
+		systemDefaultUILanguage = GetSystemDefaultUILanguage(),
+		userDefaultUILanguage = GetUserDefaultUILanguage();
+
+	primaryLanguageID = LOWORD(systemDefaultUILanguage);
+	subLanguageID = HIWORD(systemDefaultUILanguage);
+	primaryLanguageID = LOWORD(userDefaultUILanguage);
+	subLanguageID = HIWORD(userDefaultUILanguage);
+
+	TCHAR keyboardLayoutName[KL_NAMELENGTH];
+	if (!GetKeyboardLayoutName(keyboardLayoutName))
+	{
+		DWORD errorNo = GetLastError();
+	}
+
 	// Main message loop:
 	while (GetMessage(&msg, NULL, 0, 0)) 
 	{
