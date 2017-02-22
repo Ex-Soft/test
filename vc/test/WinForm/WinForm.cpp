@@ -48,10 +48,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		systemDefaultUILanguage = GetSystemDefaultUILanguage(),
 		userDefaultUILanguage = GetUserDefaultUILanguage();
 
-	primaryLanguageID = LOWORD(systemDefaultUILanguage);
-	subLanguageID = HIWORD(systemDefaultUILanguage);
-	primaryLanguageID = LOWORD(userDefaultUILanguage);
-	subLanguageID = HIWORD(userDefaultUILanguage);
+	primaryLanguageID = PRIMARYLANGID(systemDefaultUILanguage);
+	subLanguageID = SUBLANGID(systemDefaultUILanguage);
+	primaryLanguageID = PRIMARYLANGID(userDefaultUILanguage);
+	subLanguageID = SUBLANGID(userDefaultUILanguage);
 
 	TCHAR keyboardLayoutName[KL_NAMELENGTH];
 	if (!GetKeyboardLayoutName(keyboardLayoutName))
