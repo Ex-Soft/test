@@ -32,14 +32,14 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-//#define TEST_NULLABLE_TYPES
+#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-#define TEST_PATH
+//#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -254,8 +254,8 @@ namespace AnyTest
 				tmpDateTimeI;
 
             DateTime?
-                tmpDateTimeNullable,
-                tmpDateTimeNullableII;
+                tmpDateTimeNullable1,
+                tmpDateTimeNullable2;
 
             DateTimeOffset
                 tmpDateTimeOffset;
@@ -1050,13 +1050,16 @@ namespace AnyTest
 			#endif
 
 			#if TEST_ENUM
-				tmpStrings=Enum.GetNames(typeof(TestEnum));
+				tmpStrings = Enum.GetNames(typeof(TestEnum));
 
 				TestEnum
 					TestEnum;
 
-				foreach(string str in tmpStrings)
-					TestEnum=(TestEnum)Enum.Parse(typeof(TestEnum),str);
+				foreach(var str in tmpStrings)
+                {
+					TestEnum = (TestEnum)Enum.Parse(typeof(TestEnum), str);
+                    tmpInt = (int)TestEnum;
+                }
 
 				TestEnum = (TestEnum)13;
                 Console.WriteLine("TestEnum=\"{0}\" TestEnum.ToString()=\"{1}\"", TestEnum, TestEnum.ToString());
@@ -1323,38 +1326,42 @@ namespace AnyTest
 				tmpInt = (i_nullable ?? 0) + tmpTmpInt;
 				tmpObject = tmpTmpInt + i_nullable;
 
-				DateTime?
-					NullableDateTime1,
-					NullableDateTime2;
+				tmpDateTimeNullable1 = null;
+				tmpObject = tmpDateTimeNullable1;
+				//tmpDateTime = (DateTime)tmpObject; // System.NullReferenceException
+
+				tmpDateTimeNullable1 = DateTime.Now;
+				tmpObject = tmpDateTimeNullable1;
+				tmpDateTime = (DateTime)tmpObject;
 
                 tmpObject = null;
-                NullableDateTime1 = tmpObject as DateTime?;
-                tmpDateTime = NullableDateTime1.HasValue ? NullableDateTime1.Value : new DateTime(2014, 3, 11);
-                tmpDateTimeI = NullableDateTime1 ?? new DateTime(2014, 3, 12);
+                tmpDateTimeNullable1 = tmpObject as DateTime?;
+				tmpDateTime = tmpDateTimeNullable1.HasValue ? tmpDateTimeNullable1.Value : new DateTime(2014, 3, 11);
+				tmpDateTimeI = tmpDateTimeNullable1 ?? new DateTime(2014, 3, 12);
 
                 tmpObject = new DateTime(2014, 3, 13);
-                NullableDateTime1 = tmpObject as DateTime?;
-                tmpDateTime = NullableDateTime1.HasValue ? NullableDateTime1.Value : new DateTime(2014, 3, 11);
-                tmpDateTimeI = NullableDateTime1 ?? new DateTime(2014, 3, 12);
+				tmpDateTimeNullable1 = tmpObject as DateTime?;
+				tmpDateTime = tmpDateTimeNullable1.HasValue ? tmpDateTimeNullable1.Value : new DateTime(2014, 3, 11);
+				tmpDateTimeI = tmpDateTimeNullable1 ?? new DateTime(2014, 3, 12);
 
-				NullableDateTime1 = null;
-				NullableDateTime2 = null;
-				Console.WriteLine("NullableDateTime1==NullableDateTime2: {0}", NullableDateTime1 == NullableDateTime2);
-                tmpString = string.Format("{0:D}", NullableDateTime1);
-                tmpString = string.Format("{0:d}", NullableDateTime1);
+				tmpDateTimeNullable1 = null;
+				tmpDateTimeNullable2 = null;
+				Console.WriteLine("tmpDateTimeNullable1==tmpDateTimeNullable2: {0}", tmpDateTimeNullable1 == tmpDateTimeNullable2);
+				tmpString = string.Format("{0:D}", tmpDateTimeNullable1);
+				tmpString = string.Format("{0:d}", tmpDateTimeNullable1);
 
-				NullableDateTime1 = null;
-				NullableDateTime2 = DateTime.Now;
-				Console.WriteLine("NullableDateTime1==NullableDateTime2: {0}", NullableDateTime1 == NullableDateTime2);
+				tmpDateTimeNullable1 = null;
+				tmpDateTimeNullable2 = DateTime.Now;
+				Console.WriteLine("tmpDateTimeNullable1==tmpDateTimeNullable2: {0}", tmpDateTimeNullable1 == tmpDateTimeNullable2);
 
-				NullableDateTime1 = DateTime.Now;
-				NullableDateTime2 = null;
-				Console.WriteLine("NullableDateTime1==NullableDateTime2: {0}", NullableDateTime1 == NullableDateTime2);
-                tmpString = string.Format("{0:D}", NullableDateTime1);
-                tmpString = string.Format("{0:d}", NullableDateTime1);
+				tmpDateTimeNullable1 = DateTime.Now;
+				tmpDateTimeNullable2 = null;
+				Console.WriteLine("tmpDateTimeNullable1==tmpDateTimeNullable2: {0}", tmpDateTimeNullable1 == tmpDateTimeNullable2);
+				tmpString = string.Format("{0:D}", tmpDateTimeNullable1);
+				tmpString = string.Format("{0:d}", tmpDateTimeNullable1);
 
-				NullableDateTime1 = NullableDateTime2 = DateTime.Now;
-				Console.WriteLine("NullableDateTime1==NullableDateTime2: {0}", NullableDateTime1 == NullableDateTime2);
+				tmpDateTimeNullable1 = tmpDateTimeNullable2 = DateTime.Now;
+				Console.WriteLine("tmpDateTimeNullable1==tmpDateTimeNullable2: {0}", tmpDateTimeNullable1 == tmpDateTimeNullable2);
 			#endif
 
 			#if TEST_CONVERT

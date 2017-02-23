@@ -26,6 +26,17 @@ namespace TestAttributesInheritance
     }
 
     [AttributeUsage(AttributeTargets.Property)]
+    public class OverridedAttribute : Attribute
+    {
+        public string SmthValue { get; private set; }
+
+        public OverridedAttribute(string smthValue)
+        {
+            SmthValue = smthValue;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
     public class AttributeForBaseClass : Attribute
     {
     }
@@ -40,11 +51,12 @@ namespace TestAttributesInheritance
         private string _stringField;
 
         [SingleBaseAttribute("Base")]
+        [OverridedAttribute("Base")]
         [AttributeForBaseClass]
         public virtual string StringAutoProperty { get; set; }
 
-        [AttributeForBaseClass]
         [SingleBaseAttribute("Base")]
+        [AttributeForBaseClass]
         public virtual string StringProperty
         {
             get { return GetStringField(); }
@@ -80,11 +92,12 @@ namespace TestAttributesInheritance
     class Derived : Base
     {
         [SingleBaseAttribute("Derived")]
+        [OverridedAttribute("Derived")]
         [AttributeForDerivedClass]
         public override string StringAutoProperty { get; set; }
 
-        [AttributeForDerivedClass]
         [SingleDerivedAttribute("Derived", "Derived")]
+        [AttributeForDerivedClass]
         public override string StringProperty
         {
             get { return GetStringField(); }
@@ -120,14 +133,14 @@ namespace TestAttributesInheritance
             var b = new Base("BaseStringAutoProperty", "BaseStringProperty");
             Console.WriteLine(b);
 
-            ShowPropertyAttributes(b.GetType(), "StringAutoProperty");
-            ShowPropertyAttributes(b.GetType(), "StringProperty");
-            Console.WriteLine();
-
             var d = new Derived("DerivedStringAutoProperty", "DerivedStringProperty");
             Console.WriteLine(d);
 
+            ShowPropertyAttributes(b.GetType(), "StringAutoProperty");
             ShowPropertyAttributes(d.GetType(), "StringAutoProperty");
+            Console.WriteLine();
+
+            ShowPropertyAttributes(b.GetType(), "StringProperty");
             ShowPropertyAttributes(d.GetType(), "StringProperty");
             Console.WriteLine();
         }
@@ -141,7 +154,7 @@ namespace TestAttributesInheritance
             Console.WriteLine(new string('-', 60));
 
             foreach(var attribute in Attribute.GetCustomAttributes(pi))
-                Console.WriteLine("Type: \"{0}\" Attribute.Type: \"{1}\"{2}", type.Name, attribute.GetType().Name, attribute is SingleBaseAttribute ? string.Format(" SmthBaseValue: \"{0}\"", ((SingleBaseAttribute)attribute).SmthBaseValue) : string.Empty);
+                Console.WriteLine("Type: \"{0}\" Attribute.Type: \"{1}\"{2}", type.Name, attribute.GetType().Name, attribute is SingleBaseAttribute ? string.Format(" SmthBaseValue: \"{0}\"", ((SingleBaseAttribute)attribute).SmthBaseValue) : (attribute is OverridedAttribute ? string.Format(" SmthValue: \"{0}\"", ((OverridedAttribute)attribute).SmthValue) : string.Empty));
             Console.WriteLine();
 
             var attributeForBaseClass = Attribute.GetCustomAttribute(pi, typeof(AttributeForBaseClass)) as AttributeForBaseClass;

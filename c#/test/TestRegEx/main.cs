@@ -53,6 +53,26 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "/SuP:pOrT:";
+            //r = new Regex("^[\\-/](.+:)"); // "/SuP:pOrT:"
+            r = new Regex("^[\\-/](.+?:)"); // "/SuP:"
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+
+            srcString = "/SuPpOrT";
+            r = new Regex("^[\\-/]([^:]+)(?=$)");
+            match = r.Match(srcString);
+            if (match.Success)
+            {
+                if (match.Groups.Count == 2)
+                {
+                    tmpString = match.Groups[0].Value;
+                    tmpStringII = match.Groups[1].Value;
+                }
+                tmpString = r.Replace(srcString, string.Empty);
+            }
+
             srcString = "<PreBuildEvent>\r\n    </PreBuildEvent>";
             r = new Regex("<PreBuildEvent>\\s*\\u000d\\u000a\\s*</PreBuildEvent>");
             match = r.Match(srcString);

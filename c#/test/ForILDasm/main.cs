@@ -4,8 +4,13 @@
     {
         static void Main(string[] args)
         {
-            string str = "aaa";
-            Foo(str);
+            object
+                a = new object(),
+                b = new object();
+
+            var result = ReferenceEquals(a, b);
+            /*string str = "aaa";
+            Foo(str);*/
             /*decimal
                 decimalVictimI = 1.123456789010000m,
                 decimalVictimII = 1.12345678901m;
@@ -15,9 +20,9 @@
                 decimalVictimIIStr = decimalVictimII.ToString();*/
         }
 
-        static void Foo(string str)
+        /*static void Foo(string str)
         {
             
-        }
+        }*/
     }
 }
