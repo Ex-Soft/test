@@ -1,6 +1,14 @@
 select
 	*
 from
+	TableForTestInheritanceWithVinaigretteField t
+	left join TableForTestInheritanceForVinaigretteFieldA tA on tA.Id = t.VinaigretteField
+	left join TableForTestInheritanceForVinaigretteFieldB tB on tB.Id = t.VinaigretteField
+	join XPObjectType xpObjectType on xpObjectType.OID = t.ObjectType
+
+select
+	*
+from
 	Entity3 entity3
 	join XPObjectType xpObjectType on xpObjectType.OID = entity3.ObjectType
 	left join Entity1 entity1 on entity1.Id = entity3.ElementId

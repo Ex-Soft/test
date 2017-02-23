@@ -1,6 +1,60 @@
 ﻿use testdb
 go
 
+if object_id(N'TableForTestInheritanceWithVinaigretteField', N'u') is not null
+	drop table TableForTestInheritanceWithVinaigretteField
+go
+
+if object_id(N'TableForTestInheritanceForVinaigretteFieldB', N'u') is not null
+	drop table TableForTestInheritanceForVinaigretteFieldB
+go
+
+if object_id(N'TableForTestInheritanceForVinaigretteFieldA', N'u') is not null
+	drop table TableForTestInheritanceForVinaigretteFieldA
+go
+
+create table TableForTestInheritanceForVinaigretteFieldB
+(
+	Id int not null constraint pkTableForTestInheritanceForVinaigretteFieldB primary key,
+	Value varchar(255) null
+)
+go
+
+create table TableForTestInheritanceForVinaigretteFieldA
+(
+	Id int not null constraint pkTableForTestInheritanceForVinaigretteFieldA primary key,
+	Value varchar(255) null
+)
+go
+
+create table TableForTestInheritanceWithVinaigretteField
+(
+	Id int not null constraint pkTableForTestInheritanceWithVinaigretteField primary key,
+	Value varchar(255) null,
+	VinaigretteField int null
+)
+go
+
+if exists (select 1 from sys.foreign_keys where parent_object_id = object_id(N'TableForTestInheritanceWithVinaigretteField', N'u') and object_id = object_id(N'fk_TableForTestInheritanceWithVinaigretteField _A', N'f'))
+	alter table TableForTestInheritanceWithVinaigretteField drop constraint fk_TableForTestInheritanceWithVinaigretteField_A
+go
+
+alter table TableForTestInheritanceWithVinaigretteField with nocheck add constraint fk_TableForTestInheritanceWithVinaigretteField_A foreign key(VinaigretteField) references TableForTestInheritanceForVinaigretteFieldA (Id)
+go
+
+alter table TableForTestInheritanceWithVinaigretteField nocheck constraint fk_TableForTestInheritanceWithVinaigretteField_A
+go
+
+if exists (select 1 from sys.foreign_keys where parent_object_id = object_id(N'TableForTestInheritanceWithVinaigretteField', N'u') and object_id = object_id(N'fk_TableForTestInheritanceWithVinaigretteField _B', N'f'))
+	alter table TableForTestInheritanceWithVinaigretteField drop constraint fk_TableForTestInheritanceWithVinaigretteField_B
+go
+
+alter table TableForTestInheritanceWithVinaigretteField with nocheck add constraint fk_TableForTestInheritanceWithVinaigretteField_B foreign key(VinaigretteField) references TableForTestInheritanceForVinaigretteFieldB (Id)
+go
+
+alter table TableForTestInheritanceWithVinaigretteField nocheck constraint fk_TableForTestInheritanceWithVinaigretteField_B
+go
+
 if object_id(N'Entity3', N'u') is not null
   drop table Entity3
 go

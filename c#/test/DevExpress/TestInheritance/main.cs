@@ -1,4 +1,6 @@
-﻿#define TEST_INHERITANCE
+﻿#define TEST_AGGREGATED
+//#define TEST_NO_FOREIGN_KEY
+#define TEST_INHERITANCE
 //#define SHOW_ATTRIBUTES
 //#define TEST_SINGLE_TABLE
 //#define TEST_OWN_TABLE
@@ -23,37 +25,87 @@ namespace TestInheritance
 
                 XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
 
-                using (var unitOfWork = new UnitOfWork())
-                {
-                    var entity1 = new Entity1(unitOfWork);
-                    entity1.Id = (int)unitOfWork.ExecuteScalar("select max(Id) + 1 from Entity1");
-                    entity1.Value = "Entity1";
-                    entity1.Entity3Derived1.AddRange(new[] { new Entity3Derived1(unitOfWork), new Entity3Derived1(unitOfWork) });
-                    for (var i = 0; i < entity1.Entity3Derived1.Count; ++i)
-                        ((Entity3Derived1)entity1.Entity3Derived1[i]).Value = $"Entity3Derived1 #{i + 1} (\"{entity1.Value}\")";
+                object tmpObject;
 
-                    var entity2 = new Entity2(unitOfWork);
-                    entity2.Id = (int)unitOfWork.ExecuteScalar("select max(Id) + 1 from Entity2");
-                    entity2.Value = "Entity2";
-                    entity2.Entity3Derived2.AddRange(new[] { new Entity3Derived2(unitOfWork), new Entity3Derived2(unitOfWork) });
-                    for (var i = 0; i < entity2.Entity3Derived2.Count; ++i)
-                        ((Entity3Derived2)entity2.Entity3Derived2[i]).Value = $"Entity3Derived2 #{i + 1} (\"{entity2.Value}\")";
-
-                    unitOfWork.CommitChanges();
-
-                    foreach (var entity in new XPCollection<Entity3Base>(unitOfWork).OrderBy(item => item.Id))
+                #if TEST_NO_FOREIGN_KEY
+                    using (var unitOfWork = new UnitOfWork())
                     {
-                        var entity3Derived1 = entity as Entity3Derived1;
-                        var entity3Derived2 = entity as Entity3Derived2;
-                        var elementId = entity3Derived1?.Element.Id ?? entity3Derived2?.Element.Id;
-                        var elementValue = entity3Derived1?.Element.Value ?? entity3Derived2?.Element.Value;
-                        Debug.WriteLine($"Id:{entity.Id}, Value:{entity.Value}, Element.Id:{elementId?.ToString() ?? "NULL"}, Element.Value:{elementValue ?? "NULL"}");
+                        var entity1 = new Entity1(unitOfWork);
+                        entity1.Id = (int)unitOfWork.ExecuteScalar("select max(Id) + 1 from Entity1");
+                        entity1.Value = "Entity1";
+                        entity1.Entity3Derived1.AddRange(new[] { new Entity3Derived1(unitOfWork), new Entity3Derived1(unitOfWork) });
+                        for (var i = 0; i < entity1.Entity3Derived1.Count; ++i)
+                            ((Entity3Derived1)entity1.Entity3Derived1[i]).Value = $"Entity3Derived1 #{i + 1} (\"{entity1.Value}\")";
+
+                        var entity2 = new Entity2(unitOfWork);
+                        entity2.Id = (int)unitOfWork.ExecuteScalar("select max(Id) + 1 from Entity2");
+                        entity2.Value = "Entity2";
+                        entity2.Entity3Derived2.AddRange(new[] { new Entity3Derived2(unitOfWork), new Entity3Derived2(unitOfWork) });
+                        for (var i = 0; i < entity2.Entity3Derived2.Count; ++i)
+                            ((Entity3Derived2)entity2.Entity3Derived2[i]).Value = $"Entity3Derived2 #{i + 1} (\"{entity2.Value}\")";
+
+                        unitOfWork.CommitChanges();
+
+                        foreach (var entity in new XPCollection<Entity3Base>(unitOfWork).OrderBy(item => item.Id))
+                        {
+                            var entity3Derived1 = entity as Entity3Derived1;
+                            var entity3Derived2 = entity as Entity3Derived2;
+                            var elementId = entity3Derived1?.Element.Id ?? entity3Derived2?.Element.Id;
+                            var elementValue = entity3Derived1?.Element.Value ?? entity3Derived2?.Element.Value;
+                            Debug.WriteLine($"Id:{entity.Id}, Value:{entity.Value}, Element.Id:{elementId?.ToString() ?? "NULL"}, Element.Value:{elementValue ?? "NULL"}");
+                        }
                     }
-                }
+                #endif
 
                 using (var session = new Session())
                 {
 					#if TEST_INHERITANCE
+                        var twA = new TableForTestInheritanceWithVinaigretteFieldA(session);
+                        twA.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceWithVinaigretteField")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
+                        twA.VinaigretteField = new TableForTestInheritanceForVinaigretteFieldA(session);
+                        twA.VinaigretteField.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceForVinaigretteFieldA")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 10;
+                        twA.Value = $"{twA.Id} -> A({twA.VinaigretteField.Id})";
+                        twA.VinaigretteField.Value = $"-> {twA.Id}";
+                        twA.Save();
+                        session.Save(twA);
+
+                        var twB = new TableForTestInheritanceWithVinaigretteFieldB(session);
+                        twB.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceWithVinaigretteField")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
+                        twB.VinaigretteField = new TableForTestInheritanceForVinaigretteFieldB(session);
+                        twB.VinaigretteField.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceForVinaigretteFieldB")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 100;
+                        twB.Value = $"{twB.Id} -> B({twB.VinaigretteField.Id})";
+                        twB.VinaigretteField.Value = $"-> {twB.Id}";
+                        twB.Save();
+                        session.Save(twB);
+
+                        #if TEST_AGGREGATED
+                            var tfA = new TableForTestInheritanceForVinaigretteFieldA(session);
+                            tfA.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceForVinaigretteFieldA")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 10;
+                            twA = new TableForTestInheritanceWithVinaigretteFieldA(session);
+                            twA.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceWithVinaigretteField")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
+                            twA.Value = $"{twA.Id} -> A({tfA.Id})";
+                            tfA.Value = $"-> {twA.Id}";
+                            tfA.VinaigretteField.Add(twA);
+                            tfA.Save();
+                            twA.Reload();
+                            twA.Value += " " + twA.Value;
+                            tfA.Save();
+                            twA.Reload();
+
+                            var tfB = new TableForTestInheritanceForVinaigretteFieldB(session);
+                            tfB.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceForVinaigretteFieldB")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 100;
+                            twB = new TableForTestInheritanceWithVinaigretteFieldB(session);
+                            twB.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from TableForTestInheritanceWithVinaigretteField")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
+                            twB.Value = $"{twB.Id} -> B({tfB.Id})";
+                            tfB.Value = $"-> {twB.Id}";
+                            tfB.VinaigretteField.Add(twB);
+                            tfB.Save();
+                            twB.Reload();
+                            twB.Value += " " + twB.Value;
+                            tfB.Save();
+                            twB.Reload();
+                        #endif
+
                         StuSKU
                             sku;
 
