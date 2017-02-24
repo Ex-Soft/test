@@ -27,9 +27,9 @@ namespace TestInheritance.Db
         }
 
         [Association("TestMaster-TestDetail", typeof(TestDEDetailTableWithInheritanceLite))]
-        public XPCollection /*<TestDEDetailTableWithInheritanceLite>*/ Details
+        public XPCollection<TestDEDetailTableWithInheritanceLite> Details
         {
-            get { return GetCollection/*<TestDEDetailTableWithInheritanceLite>*/("Details"); }
+            get { return GetCollection<TestDEDetailTableWithInheritanceLite>("Details"); }
         }
     }
     
@@ -49,9 +49,9 @@ namespace TestInheritance.Db
         }
 
         [Association("TestMaster-TestDetail", typeof(TestDEDetailTableWithInheritance))]
-        public new XPCollection/*<TestDEDetailTableWithInheritance>*/ Details
+        public new XPCollection<TestDEDetailTableWithInheritance> Details
         {
-            get { return GetCollection/*<TestDEDetailTableWithInheritance>*/("Details"); }
+            get { return GetCollection<TestDEDetailTableWithInheritance>("Details"); }
         }
     }
 }

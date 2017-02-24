@@ -67,8 +67,8 @@ namespace TestInheritance.Db
             set { SetPropertyValue("Value", ref _value, value); }
         }
 
-        //[Persistent("idMaster")]
-        //[Association("TestMaster-TestDetail")]
+        // [Persistent("idMaster")] // not needed - inherited
+        // [Association("TestMaster-TestDetail")] // not needed - inherited
         public new TestDEMasterTableWithInheritance Master
         {
             get { return _master as TestDEMasterTableWithInheritance; }

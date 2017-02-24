@@ -15,7 +15,7 @@ from
 	left join Entity2 entity2 on entity2.Id = entity3.ElementId
 
 select * from XPObjectType order by OID
-select * from XPObjectType where AssemblyName = N'TestInheritance'
+select * from XPObjectType where AssemblyName = N'TestInheritance' order by TypeName
 
 --set identity_insert XPObjectType on
 --insert into XPObjectType (OID, TypeName, AssemblyName) values (9, N'TestInheritance.Db.TestDEMasterTableWithInheritanceLite', N'TestInheritance')
@@ -32,6 +32,8 @@ select
 from
 	TestDEMasterTableWithInheritance [master]
 	join TestDEDetailTableWithInheritance [detail] on [detail].idMaster = [master].id
+	--join XPObjectType xpObjectTypeMaster on xpObjectTypeMaster.OID = [master].ObjectType
+	--join XPObjectType xpObjectTypeDetail on xpObjectTypeDetail.OID = [detail].ObjectType
 order by [master].id, [detail].id
 
 --update TestDEMasterTableWithInheritance set ObjectType = 9 where ID = 1

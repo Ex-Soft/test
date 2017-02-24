@@ -1,8 +1,8 @@
 ﻿#define TEST_AGGREGATED
 //#define TEST_NO_FOREIGN_KEY
-#define TEST_INHERITANCE
+//#define TEST_INHERITANCE
 //#define SHOW_ATTRIBUTES
-//#define TEST_SINGLE_TABLE
+#define TEST_SINGLE_TABLE
 //#define TEST_OWN_TABLE
 
 using System;
@@ -205,14 +205,47 @@ namespace TestInheritance
 
                     #if TEST_SINGLE_TABLE
                         #if SHOW_ATTRIBUTES
-                            var ci = session.GetClassInfo<TestDEDetailTableWithInheritanceLite>();
-                            var mi = ci.GetMember("Master");
+                            var ci = session.GetClassInfo<TestDEMasterTableWithInheritanceLite>();
+
+                            foreach (var m in ci.OwnMembers)
+                                // _id, _valueLite, Id, ValueLite, Details
+                                Console.WriteLine(m.Name);
+
+                            AssociationAttribute associationAttribute;
+
+                            var mi = ci.GetMember("Details");
+                            foreach (var attribute in mi.Attributes)
+                            {
+                                if ((associationAttribute = attribute as AssociationAttribute) != null)
+                                    // AssociationAttribute: Name = "TestMaster-TestDetail" ElementTypeName ="TestInheritance.Db.TestDEDetailTableWithInheritanceLite"
+                                    Console.WriteLine("{0}: Name = \"{1}\" ElementTypeName =\"{2}\"", attribute.GetType().Name, associationAttribute.Name, associationAttribute.ElementTypeName);
+                            }
+
+                            ci = session.GetClassInfo<TestDEMasterTableWithInheritance>();
+
+                            foreach (var m in ci.OwnMembers)
+                                // _value, Value
+                                Console.WriteLine(m.Name);
+
+                            mi = ci.GetMember("Details");
+                            foreach (var attribute in mi.Attributes)
+                            {
+                                if ((associationAttribute = attribute as AssociationAttribute) != null)
+                                    // AssociationAttribute: Name = "TestMaster-TestDetail" ElementTypeName ="TestInheritance.Db.TestDEDetailTableWithInheritanceLite"
+                                    Console.WriteLine("{0}: Name = \"{1}\" ElementTypeName =\"{2}\"", attribute.GetType().Name, associationAttribute.Name, associationAttribute.ElementTypeName);
+                            }
+
+                            var tmpType = typeof(TestDEMasterTableWithInheritance);
+                            var rmi = tmpType.GetMember("Details", BindingFlags.Public | BindingFlags.Instance);
+
+                            ci = session.GetClassInfo<TestDEDetailTableWithInheritanceLite>();
+                            mi = ci.GetMember("Master");
                             foreach (var attribute in mi.Attributes)
                             {
                                 if (attribute is PersistentAttribute)
                                     Console.WriteLine("{0}: MapTo = \"{1}\"", attribute.GetType().Name, (attribute as PersistentAttribute).MapTo);
-                                if (attribute is AssociationAttribute)
-                                    Console.WriteLine("{0}: Name = \"{1}\"", attribute.GetType().Name, (attribute as AssociationAttribute).Name);
+                                if ((associationAttribute = attribute as AssociationAttribute) != null)
+                                    Console.WriteLine("{0}: Name = \"{1}\" ElementTypeName =\"{2}\"", attribute.GetType().Name, associationAttribute.Name, associationAttribute.ElementTypeName);
                             }
 
                             ci = session.GetClassInfo<TestDEDetailTableWithInheritance>();
@@ -221,36 +254,9 @@ namespace TestInheritance
                             {
                                 if (attribute is PersistentAttribute)
                                     Console.WriteLine("{0}: MapTo = \"{1}\"", attribute.GetType().Name, (attribute as PersistentAttribute).MapTo);
-                                if (attribute is AssociationAttribute)
-                                    Console.WriteLine("{0}: Name = \"{1}\"", attribute.GetType().Name, (attribute as AssociationAttribute).Name);
+                                if ((associationAttribute = attribute as AssociationAttribute) != null)
+                                    Console.WriteLine("{0}: Name = \"{1}\" ElementTypeName =\"{2}\"", attribute.GetType().Name, associationAttribute.Name, associationAttribute.ElementTypeName);
                             }
-
-                            ci = session.GetClassInfo<TestDEMasterTableWithInheritanceLite>();
-
-                            foreach (var m in ci.OwnMembers)
-                                Console.WriteLine(m.Name);
-
-                            mi = ci.GetMember("Details");
-                            foreach (var attribute in mi.Attributes)
-                            {
-                                if (attribute is AssociationAttribute)
-                                    Console.WriteLine("{0}: Name = \"{1}\"", attribute.GetType().Name, (attribute as AssociationAttribute).Name);
-                            }
-
-                            ci = session.GetClassInfo<TestDEMasterTableWithInheritance>();
-
-                            foreach (var m in ci.OwnMembers)
-                                Console.WriteLine(m.Name);
-
-                            mi = ci.GetMember("Details");
-                            foreach (var attribute in mi.Attributes)
-                            {
-                                if (attribute is AssociationAttribute)
-                                    Console.WriteLine("{0}: Name = \"{1}\"", attribute.GetType().Name, (attribute as AssociationAttribute).Name);
-                            }
-
-                            var tmpType = typeof (TestDEMasterTableWithInheritance);
-                            var rmi = tmpType.GetMember("Details", BindingFlags.Public | BindingFlags.Instance);
                         #endif
 
                         Console.WriteLine("TestDEMasterTableWithInheritanceLite.IsAssignableFrom(TestDEMasterTableWithInheritance) (TestDEMasterTableWithInheritanceLite->TestDEMasterTableWithInheritance): {0}", typeof(TestDEMasterTableWithInheritanceLite).IsAssignableFrom(typeof(TestDEMasterTableWithInheritance))); // true
@@ -261,7 +267,7 @@ namespace TestInheritance
                         TestDEMasterTableWithInheritance master;
                         TestDEDetailTableWithInheritance detail;
 
-                        int key = 1;
+                        int key = (tmpObject = session.ExecuteScalar("select min(id) from TestDEMasterTableWithInheritance")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
 
                         if ((masterLite = session.GetObjectByKey<TestDEMasterTableWithInheritanceLite>(key)) == null)
                         {
@@ -298,20 +304,23 @@ namespace TestInheritance
                             master.Value = "Value (from master) by edit";
                         }
 
-                        detail =new TestDEDetailTableWithInheritance(session);
+                        detail = new TestDEDetailTableWithInheritance(session);
                         detail.ValueLite = "ValueLite (from detail) by new ()";
                         detail.Value = "Value (from detail) by new ()";
+
                         detail.Master = master;
+                        // equ
                         //master.Details.Add(detail);
+
                         master.Save();
 
                         Console.WriteLine();
                         if((masterLite = session.GetObjectByKey<TestDEMasterTableWithInheritanceLite>(key)) != null)
                         {
-                            Console.WriteLine("masterLite {{id: {0}, valueLite: \"{1}\"}}", masterLite.Id, masterLite.ValueLite);
+                            Console.WriteLine("{2} {{id: {0}, valueLite: \"{1}\"}}", masterLite.Id, masterLite.ValueLite, masterLite.GetType());
                             Console.WriteLine("Details");
-                            /*foreach (var _detail_ in masterLite.Details)
-                                Console.WriteLine("id: {0}, valueLite: \"{1}\"", _detail_.Id, _detail_.ValueLite);*/
+                            foreach (var _detail_ in masterLite.Details)
+                                Console.WriteLine("{2} {{id: {0}, valueLite: \"{1}\"}}", _detail_.Id, _detail_.ValueLite, _detail_.GetType());
                         }
                     #endif
 
