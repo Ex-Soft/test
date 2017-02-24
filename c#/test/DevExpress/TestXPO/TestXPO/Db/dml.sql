@@ -1,4 +1,22 @@
-﻿delete from EntityA
+﻿delete from TestDetailWOFK
+delete from TestMasterWOFK
+go
+
+insert into TestMasterWOFK (Id, Val) values (1, N'1')
+insert into TestDetailWOFK (Id, IdMaster, Val) values (1, 2, N'2.2')
+go
+
+select * from TestMasterWOFK
+select * from TestDetailWOFK
+
+select
+	*
+from
+	TestMasterWOFK [master]
+	left join TestDetailWOFK [detail] on [detail].IdMaster = [master].Id
+order by [master].Id, [detail].Id
+
+delete from EntityA
 go
 
 insert into EntityA (Id, MainId, Value) values (1, 1, N'1')

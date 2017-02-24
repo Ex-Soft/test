@@ -1,11 +1,11 @@
-﻿#define TEST_LINQ
+﻿//#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
-//#define TEST_LOAD_REFERENCE
+#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
 //#define TEST_LIFECYCLE
 //#define TEST_OBJECT_SET

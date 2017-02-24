@@ -1,4 +1,33 @@
-﻿if object_id(N'EntityC', N'u') is not null
+﻿if object_id(N'TestDetailWOFK', N'u') is not null
+	drop table TestDetailWOFK
+go
+
+if object_id(N'TestMasterWOFK', N'u') is not null
+	drop table TestMasterWOFK
+go
+
+create table TestMasterWOFK
+(
+	Id int not null constraint pkTestMasterWOFK primary key,
+	Val nvarchar(255) null
+)
+go
+
+create table TestDetailWOFK
+(
+	Id int not null constraint pkTestDetailWOFK primary key,
+	IdMaster int null,
+	Val nvarchar(255) null
+)
+go
+
+alter table TestDetailWOFK with nocheck add constraint fkTestMasterWOFKTestDetailWOFK foreign key (IdMaster) references TestMasterWOFK (Id)
+go
+
+alter table TestDetailWOFK nocheck constraint fkTestMasterWOFKTestDetailWOFK
+go
+
+if object_id(N'EntityC', N'u') is not null
 	drop table EntityC
 go
 
