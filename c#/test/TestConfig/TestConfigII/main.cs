@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Configuration;
 
 namespace TestConfigII
@@ -9,17 +8,21 @@ namespace TestConfigII
 		static void Main(string[] args)
 		{
 			Hashtable
-				SingleTagSection = (Hashtable)ConfigurationManager.GetSection("SingleTagSection");
+				singleTagSection = (Hashtable)ConfigurationManager.GetSection("SingleTagSection"),
+                globalization = (Hashtable)ConfigurationManager.GetSection("globalization");
 
-			string
-				Value;
+            string
+				value;
 
-			if (SingleTagSection != null)
+			if (singleTagSection != null)
 			{
-				if (!string.IsNullOrEmpty(Value = (string)SingleTagSection["STSparam1key_"]))
+				if (!string.IsNullOrEmpty(value = (string)singleTagSection["STSparam1key_"]))
 				{
 				}
 			}
+
+		    if (globalization != null)
+		        value = (string)globalization["culture"];
 		}
 	}
 }

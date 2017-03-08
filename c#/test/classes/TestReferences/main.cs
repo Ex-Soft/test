@@ -34,6 +34,10 @@
             iTest = null;
 
             outer.Inner.Foo();
+
+            var tmpInner = outer.Inner;
+            outer.Inner = new Inner();
+            outer.Inner.F = 69;
         }
     }
 }

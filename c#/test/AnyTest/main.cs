@@ -32,14 +32,14 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-#define TEST_NULLABLE_TYPES
+//#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-//#define TEST_PATH
+#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -1411,7 +1411,31 @@ namespace AnyTest
 
 				try
 				{
-					tmpString = DateTime.Now.ToString("o");
+                    var dateTimeFormatInfo = new DateTimeFormatInfo
+                    {
+                        ShortDatePattern = "yyyy~dd~MM",
+                        LongDatePattern = "yyyy~dd~MM H:mm:ss",
+                        ShortTimePattern = "H:mm",
+                        LongTimePattern = "H:mm:ss"
+                        ,DateSeparator = "~"
+                    };
+
+                    tmpString = "2016~29~02";
+				    tmpDateTime = Convert.ToDateTime(tmpString, dateTimeFormatInfo);
+                    tmpString = "29.02.2016";
+				    tmpDateTime = Convert.ToDateTime(tmpString, dateTimeFormatInfo);
+				    
+				    try
+				    {
+                        tmpString = "29~02~2016";
+				        tmpDateTime = Convert.ToDateTime(tmpString, dateTimeFormatInfo);
+				    }
+                    catch (Exception eException)
+                    {
+                        Console.WriteLine("Unable to convert \"{2}\" to a DateTime. ({0}: {1})", eException.GetType().FullName, eException.Message, tmpString);
+                    }
+
+				    tmpString = DateTime.Now.ToString("o");
 					tmpDateTime = Convert.ToDateTime(tmpString);
 
 					tmpDateTime = DateTime.Now;
@@ -1647,7 +1671,16 @@ namespace AnyTest
                 tmpStringII = Path.GetExtension(tmpString); // ""
                 tmpString = Path.GetFileName("89.249.23.82:88/api/image/TestImageI.jpg"); // TestImageI.jpg
                 tmpString = Path.GetFileNameWithoutExtension("http://89.249.23.82:88/api/image/TestImageI.jpg"); // TestImageI
-                tmpString = Path.GetPathRoot("http://89.249.23.82:88/api/image/TestImageI.jpg"); // ""
+
+                try
+                {
+                    tmpString = Path.GetPathRoot("http://89.249.23.82:88/api/image/TestImageI.jpg"); // ""
+                }
+                catch (ArgumentException eException)
+                {
+                    Console.WriteLine("{0}: \"{1}\"", eException.GetType().Name, eException.Message); // "Путь имеет недопустимую форму."
+                }
+
                 tmpString = Path.GetExtension("http://st-drive.systtech.ru\\photo_201_140919134552001.jpg"); // ".jpg"
 
                 var tmpChars = Path.GetInvalidFileNameChars();
@@ -1681,6 +1714,7 @@ namespace AnyTest
 
                 try
                 {
+                    tmpStrings = Directory.GetFiles(currentDirectory, "*.*", SearchOption.AllDirectories);
                     //tmpString = "c:\\System Volume Information"; // Directory.Exists DirectoryInfo.Exists DirectoryInfo.GetAccessControl()->UnauthorizedAccessException DirectoryInfo.GetAccessControl(AccessControlSections.All)->PrivilegeNotHeldException
                     //tmpString = "c:\\Windows\\System32\\Drivers\\ets"; // !Directory.Exists !DirectoryInfo.Exists
                     //tmpString = "d:\\test     "; // Directory.Exists DirectoryInfo.Exists DirectoryInfo.GetAccessControl()->UnauthorizedAccessException DirectoryInfo.GetAccessControl(AccessControlSections.All)->PrivilegeNotHeldException

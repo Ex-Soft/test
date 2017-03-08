@@ -53,6 +53,33 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "<Reference Include=\"DevExpress.Data.v16.2, Version = 16.2.5.0, Culture = neutral, PublicKeyToken = b88d1754d700e49a, processorArchitecture = MSIL\">";
+            r = new Regex("(?<=DevExpress\\..+?\\.v\\d+\\.\\d+.*?,\\s*Version\\s*=\\s*)\\d+\\.\\d+\\.\\d+\\.\\d+(?=[,])");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+
+            r = new Regex("(?<=DevExpress\\..+?\\.v)\\d+\\.\\d+(?=[.,\"])");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "<Reference Include=\"DevExpress.Data.v16.2\">";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "<Reference Include=\"DevExpress.Map.v16.2.Core, Version = 16.2.5.0, Culture = neutral, PublicKeyToken = b88d1754d700e49a, processorArchitecture = MSIL\">";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "..\\..\\..\\Common\\bin\\DevExpress\\DevExpress.Data.v16.2.dll";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "..\\..\\..\\Common\\bin\\DevExpress\\DevExpress.Map.v16.2.Core.dll";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+
             srcString = "/SuP:pOrT:";
             //r = new Regex("^[\\-/](.+:)"); // "/SuP:pOrT:"
             r = new Regex("^[\\-/](.+?:)"); // "/SuP:"
