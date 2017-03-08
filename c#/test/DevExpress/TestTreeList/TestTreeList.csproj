@@ -32,28 +32,41 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <Choose>
+    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
+      <ItemGroup>
+        <Reference Include="DevExpress.Data.v16.2">
+          <HintPath>..\DevExpress.asm\DevExpress.Data.v16.2.dll</HintPath>
+        </Reference>
+        <Reference Include="DevExpress.DataAccess.v16.2">
+          <HintPath>..\DevExpress.asm\DevExpress.DataAccess.v16.2.dll</HintPath>
+        </Reference>
+        <Reference Include="DevExpress.Xpo.v16.2">
+          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v16.2.dll</HintPath>
+        </Reference>
+        <Reference Include="DevExpress.Utils.v16.2">
+          <HintPath>..\DevExpress.asm\DevExpress.Utils.v16.2.dll</HintPath>
+        </Reference>
+        <Reference Include="DevExpress.XtraEditors.v16.2">
+          <HintPath>..\DevExpress.asm\DevExpress.XtraEditors.v16.2.dll</HintPath>
+        </Reference>
+        <Reference Include="DevExpress.XtraTreeList.v16.2">
+          <HintPath>..\DevExpress.asm\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Utils.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 14.2\Components\Bin\Framework\DevExpress.Data.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.DataAccess.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 14.2\Components\Bin\Framework\DevExpress.Utils.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 14.2\Components\Bin\Framework\DevExpress.Xpo.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 14.2\Components\Bin\Framework\DevExpress.XtraEditors.v14.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 14.2\Components\Bin\Framework\DevExpress.XtraTreeList.v14.2.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />

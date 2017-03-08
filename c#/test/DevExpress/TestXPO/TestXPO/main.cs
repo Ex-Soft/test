@@ -1,11 +1,13 @@
-﻿//#define TEST_LINQ
+﻿#define TEST_LINQ_TO_XPO
+#define TEST_SELECT_DATA
+//#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
-#define TEST_LOAD_REFERENCE
+//#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
 //#define TEST_LIFECYCLE
 //#define TEST_OBJECT_SET
@@ -15,6 +17,7 @@
 using System;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
@@ -84,6 +87,46 @@ namespace TestXPO
 
 	            XPCollection
 		            xpCollection;
+
+                #if TEST_LINQ_TO_XPO
+                    var xpQueryTestDetail = new XPQuery<TestDetail>(session);
+                    var masterIds = xpQueryTestDetail.Where(item => item.Master.Id == 1).Select(item => item.Master.Id).Distinct().ToArray();
+                #endif
+
+                #if TEST_SELECT_DATA
+                    var properties = new CriteriaOperatorCollection { new OperandProperty("Id"), new OperandProperty("Salary") };
+                    var criteria = new OperandProperty("Dep") == new OperandValue(1);
+                    var resultOfSelectData = session.SelectData(
+                        session.GetClassInfo<Staff>(),
+                        properties,
+                        criteria,
+                        false, 0, null);
+
+                    ShowResultOfSelectData(resultOfSelectData, properties);
+
+                    properties = new CriteriaOperatorCollection { new OperandProperty("Master.Id") };
+                    criteria = new OperandProperty("Master.Id") == new OperandValue(1);
+                    resultOfSelectData = session.SelectData(
+                        session.GetClassInfo<TestDetail>(),
+                        properties,
+                        criteria,
+                        false, 0, null);
+
+                    ShowResultOfSelectData(resultOfSelectData, properties);
+
+                    properties = new CriteriaOperatorCollection { new OperandProperty("Master.Id") };
+                    criteria = new OperandProperty("Master.Id") == new OperandValue(1);
+                    var groupProperties = new CriteriaOperatorCollection { new OperandProperty("Master.Id") };
+                    resultOfSelectData = session.SelectData(
+                        session.GetClassInfo<TestDetail>(),
+                        properties,
+                        criteria,
+                        groupProperties,
+                        null,
+                        false, 0, null);
+
+                    ShowResultOfSelectData(resultOfSelectData, properties);
+                #endif
 
                 #if TEST_LINQ
                     var dep = from s in session.Query<Staff>() where s.Dep == 2 select s;
@@ -721,6 +764,23 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
             System.Diagnostics.Debug.WriteLine("Session: AfterBeginTrackingChanges()");
         }
 
+        #endif
+
+        #if TEST_SELECT_DATA
+            private static void ShowResultOfSelectData(IEnumerable<object[]> resultOfSelectData, CriteriaOperatorCollection properties)
+            {
+                foreach (object[] item in resultOfSelectData)
+                {
+                    var tmpString = string.Empty;
+                    for (var i = 0; i < item.Length; ++i)
+                    {
+                        if (!string.IsNullOrWhiteSpace(tmpString))
+                            tmpString += " ";
+
+                        tmpString += $"\"{(i < properties.Count ? ((OperandProperty)properties[i]).PropertyName : string.Empty)}\"={item[i]}";
+                    }
+                }
+            }
         #endif
     }
 }
