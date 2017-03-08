@@ -71,3 +71,4 @@ _ReSharper*
 *.dat
 ReadMe.*
 UpgradeLog.htm
+.sqlplan
