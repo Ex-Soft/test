@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -48,10 +50,16 @@ namespace TestTreeList
             foreach (TreeListNode node in treeList.Selection)
             {
                 TableWithHierarchy record = treeList.GetDataRecordByNode(node) as TableWithHierarchy;
-                System.Diagnostics.Debug.WriteLine($"Id = {record?.Id.ToString() ?? "NULL"}");
+                Debug.WriteLine($"Id = {record?.Id.ToString() ?? "NULL"}");
+
+                if (treeList.Selection.Contains(node))
+                    Debug.WriteLine($"treeList.Selection.Contains({node})");
+
+                if (treeList.Selection.Contains(node, new TreeListNodeEqualityComparer()))
+                    Debug.WriteLine($"treeList.Selection.Contains({node})");
             }
         }
-
+        
         #region CheckBox in column header https://www.devexpress.com/Support/Center/Example/Details/E1327
 
         RepositoryItemCheckEdit checkEdit;
@@ -172,5 +180,24 @@ namespace TestTreeList
         }
 
         #endregion
+    }
+
+    public class TreeListNodeEqualityComparer : IEqualityComparer<TreeListNode>
+    {
+        public bool Equals(TreeListNode x, TreeListNode y)
+        {
+            if (ReferenceEquals(x, y))
+                return true;
+
+            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+                return false;
+
+            return x.Id == y.Id;
+        }
+
+        public int GetHashCode(TreeListNode obj)
+        {
+            return obj.Id.GetHashCode();
+        }
     }
 }

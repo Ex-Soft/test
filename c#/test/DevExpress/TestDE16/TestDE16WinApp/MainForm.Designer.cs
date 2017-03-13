@@ -1,4 +1,6 @@
-﻿namespace TestDE16WinApp
+﻿using DevExpress.Utils;
+
+namespace TestDE16WinApp
 {
     partial class MainForm
     {
@@ -35,6 +37,7 @@
             this.pnlFill = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageGridInWindow = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonHint = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonMasterDetail = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonGridInWindow = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPageDateEdit = new DevExpress.XtraTab.XtraTabPage();
@@ -80,7 +83,7 @@
             this.simpleButtonGetCheckedListBoxInfo = new DevExpress.XtraEditors.SimpleButton();
             this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonHint = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonFilter = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -141,7 +144,9 @@
             // xtraTabControl
             // 
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl.Location = new System.Drawing.Point(2, 2);
+            this.xtraTabControl.MultiLine = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPageGridInWindow;
             this.xtraTabControl.Size = new System.Drawing.Size(1452, 608);
@@ -157,12 +162,22 @@
             // 
             // xtraTabPageGridInWindow
             // 
+            this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonFilter);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonHint);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonMasterDetail);
             this.xtraTabPageGridInWindow.Controls.Add(this.simpleButtonGridInWindow);
             this.xtraTabPageGridInWindow.Name = "xtraTabPageGridInWindow";
             this.xtraTabPageGridInWindow.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageGridInWindow.Text = "Grid in Window";
+            // 
+            // simpleButtonHint
+            // 
+            this.simpleButtonHint.Location = new System.Drawing.Point(223, 25);
+            this.simpleButtonHint.Name = "simpleButtonHint";
+            this.simpleButtonHint.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonHint.TabIndex = 2;
+            this.simpleButtonHint.Text = "Hint";
+            this.simpleButtonHint.Click += new System.EventHandler(this.simpleButtonHint_Click);
             // 
             // simpleButtonMasterDetail
             // 
@@ -588,7 +603,7 @@
             this.calendarControl.EditValue = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
             this.calendarControl.Location = new System.Drawing.Point(8, 8);
             this.calendarControl.Name = "calendarControl";
-            this.calendarControl.Size = new System.Drawing.Size(247, 227);
+            this.calendarControl.Size = new System.Drawing.Size(225, 227);
             this.calendarControl.TabIndex = 0;
             // 
             // customCalendarControl1
@@ -600,7 +615,7 @@
             this.customCalendarControl1.EditValue = new System.DateTime(2017, 1, 19, 0, 0, 0, 0);
             this.customCalendarControl1.Location = new System.Drawing.Point(272, 8);
             this.customCalendarControl1.Name = "customCalendarControl1";
-            this.customCalendarControl1.Size = new System.Drawing.Size(239, 227);
+            this.customCalendarControl1.Size = new System.Drawing.Size(225, 227);
             this.customCalendarControl1.TabIndex = 1;
             this.customCalendarControl1.TodayDate = new System.DateTime(2017, 1, 15, 0, 0, 0, 0);
             // 
@@ -678,14 +693,14 @@
             this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
             // 
-            // simpleButtonHint
+            // simpleButtonFilter
             // 
-            this.simpleButtonHint.Location = new System.Drawing.Point(223, 25);
-            this.simpleButtonHint.Name = "simpleButtonHint";
-            this.simpleButtonHint.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonHint.TabIndex = 2;
-            this.simpleButtonHint.Text = "Hint";
-            this.simpleButtonHint.Click += new System.EventHandler(this.simpleButtonHint_Click);
+            this.simpleButtonFilter.Location = new System.Drawing.Point(318, 25);
+            this.simpleButtonFilter.Name = "simpleButtonFilter";
+            this.simpleButtonFilter.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonFilter.TabIndex = 3;
+            this.simpleButtonFilter.Text = "Filter";
+            this.simpleButtonFilter.Click += new System.EventHandler(this.simpleButtonFilter_Click);
             // 
             // MainForm
             // 
@@ -806,6 +821,7 @@
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButtonGetCheckedListBoxInfo;
         private DevExpress.XtraEditors.SimpleButton simpleButtonHint;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonFilter;
     }
 }
 

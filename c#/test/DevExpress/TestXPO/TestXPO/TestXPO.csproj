@@ -45,8 +45,8 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -65,6 +65,9 @@
     <Compile Include="Db\TestDetailWOFK.cs" />
     <Compile Include="Db\TestMaster.cs" />
     <Compile Include="Db\TestMasterWOFK.cs" />
+    <Compile Include="Db\TestTable4TestPIVOTList.cs" />
+    <Compile Include="Db\TestTable4TestPIVOTProduct.cs" />
+    <Compile Include="Db\TestTable4TestPIVOTStore.cs" />
     <Compile Include="Db\TestTable4Types.cs" />
     <Compile Include="Db\TestTableWOIdentity.cs" />
     <Compile Include="main.cs" />

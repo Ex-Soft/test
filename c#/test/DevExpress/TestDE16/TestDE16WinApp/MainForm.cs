@@ -296,5 +296,13 @@ namespace TestDE16WinApp
                 form.ShowDialog(this);
             }
         }
+
+        private void simpleButtonFilter_Click(object sender, EventArgs e)
+        {
+            using (var form = new GridForm3())
+            {
+                form.ShowDialog(this);
+            }
+        }
     }
 }

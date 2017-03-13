@@ -1,5 +1,6 @@
-﻿#define TEST_LINQ_TO_XPO
-#define TEST_SELECT_DATA
+﻿#define TEST_DELAYED_PROPERTY
+//#define TEST_LINQ_TO_XPO
+//#define TEST_SELECT_DATA
 //#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
@@ -87,6 +88,13 @@ namespace TestXPO
 
 	            XPCollection
 		            xpCollection;
+
+                #if TEST_DELAYED_PROPERTY
+                    var testTable4TestPIVOTList = session.GetObjectByKey<TestTable4TestPIVOTList>(1);
+                    Debug.WriteLine($"{{Id={testTable4TestPIVOTList.Id}, Product.Id={testTable4TestPIVOTList.Product.Id}, Store.Id={testTable4TestPIVOTList.Store.Id}, Cnt={testTable4TestPIVOTList.Cnt}}}");
+                    testTable4TestPIVOTList = session.GetObjectByKey<TestTable4TestPIVOTList>(8);
+                    Debug.WriteLine($"{{Id={testTable4TestPIVOTList.Id}, Product.Id={testTable4TestPIVOTList.Product.Id}, Store.Id={testTable4TestPIVOTList.Store.Id}, Cnt={testTable4TestPIVOTList.Cnt}}}");
+                #endif
 
                 #if TEST_LINQ_TO_XPO
                     var xpQueryTestDetail = new XPQuery<TestDetail>(session);

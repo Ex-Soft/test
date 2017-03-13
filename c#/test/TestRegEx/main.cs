@@ -53,6 +53,16 @@ namespace TestRegEx
                 }
             #endif
 
+            r = new Regex("(?<=\\))\\\\d\\+\\\\\\.\\\\d\\+(?=\\()");
+            srcString = "(?<=DevExpress\\..+?\\.v\\d+\\.\\d+.*?,\\s*Version\\s*=\\s*)\\d+\\.\\d+\\.\\d+\\.\\d+(?=[,])";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "(?<=DevExpress\\..+?\\.v)\\d+\\.\\d+(?=[.,\"])";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+
             srcString = "<Reference Include=\"DevExpress.Data.v16.2, Version = 16.2.5.0, Culture = neutral, PublicKeyToken = b88d1754d700e49a, processorArchitecture = MSIL\">";
             r = new Regex("(?<=DevExpress\\..+?\\.v\\d+\\.\\d+.*?,\\s*Version\\s*=\\s*)\\d+\\.\\d+\\.\\d+\\.\\d+(?=[,])");
             match = r.Match(srcString);

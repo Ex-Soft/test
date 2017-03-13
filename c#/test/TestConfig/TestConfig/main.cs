@@ -14,6 +14,13 @@ namespace TestConfig
     {
         static void Main(string[] args)
         {
+            FileExtension fileExtensionsSection;
+            if ((fileExtensionsSection = ConfigurationManager.GetSection(FileExtension.SectionName) as FileExtension) != null)
+            {
+                foreach (ItemElement item in fileExtensionsSection.Items)
+                    Console.WriteLine("{{value=\"{0}\"}}", item.Value);
+            }
+            
             var querySection = ConfigurationManager.GetSection(QuerySection.SectionName) as QuerySection;
 
             if (querySection != null)
