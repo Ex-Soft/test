@@ -53,6 +53,16 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "FilePacket.ExternalFiles"; //.ExternalFiles
+            r = new Regex("([^.]+)(?:\\.*[^.]*)");
+            match = r.Match(srcString);
+            if (match.Success)
+                if (match.Groups.Count == 2)
+                {
+                    tmpString = match.Groups[0].Value;
+                    tmpStringII = match.Groups[1].Value;
+                }
+
             r = new Regex("(?<=\\))\\\\d\\+\\\\\\.\\\\d\\+(?=\\()");
             srcString = "(?<=DevExpress\\..+?\\.v\\d+\\.\\d+.*?,\\s*Version\\s*=\\s*)\\d+\\.\\d+\\.\\d+\\.\\d+(?=[,])";
             match = r.Match(srcString);
