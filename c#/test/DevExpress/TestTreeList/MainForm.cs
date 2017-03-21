@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraTreeList;
@@ -22,8 +23,11 @@ namespace TestTreeList
 
             //treeList.OptionsBehavior.Editable = false;
 
-            //treeList.OptionsBehavior.EnableFiltering = true;
+            treeList.OptionsBehavior.EnableFiltering = true;
+            //treeList.OptionsFilter.ShowAllValuesInFilterPopup = false;
             //treeList.OptionsFilter.FilterMode = FilterMode.Smart;
+
+            colMaterializedPath.OptionsFilter.ShowBlanksFilterItems = DefaultBoolean.True;
 
             treeList.OptionsFind.AllowFindPanel = true;
             treeList.OptionsFind.FindMode = FindMode.Always;

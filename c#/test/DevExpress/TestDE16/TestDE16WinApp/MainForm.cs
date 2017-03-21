@@ -304,5 +304,13 @@ namespace TestDE16WinApp
                 form.ShowDialog(this);
             }
         }
+
+        private void simpleButtonTabControlInWindow1_Click(object sender, EventArgs e)
+        {
+            using (var form = new TabControlForm1())
+            {
+                form.ShowDialog(this);
+            }
+        }
     }
 }

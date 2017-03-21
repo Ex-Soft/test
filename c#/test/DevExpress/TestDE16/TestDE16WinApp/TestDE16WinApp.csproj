@@ -119,6 +119,12 @@
     </Compile>
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabControlForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TabControlForm1.Designer.cs">
+      <DependentUpon>TabControlForm1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="BarForm.resx">
       <DependentUpon>BarForm.cs</DependentUpon>
@@ -149,6 +155,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TabControlForm1.resx">
+      <DependentUpon>TabControlForm1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

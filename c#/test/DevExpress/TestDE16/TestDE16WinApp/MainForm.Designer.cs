@@ -30,19 +30,19 @@ namespace TestDE16WinApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler3 = new DevExpress.XtraScheduler.TimeRuler();
             this.pnlFill = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageGridInWindow = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonFilter = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonHint = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonMasterDetail = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonGridInWindow = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPageDateEdit = new DevExpress.XtraTab.XtraTabPage();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager = new DevExpress.XtraBars.BarManager();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
             this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
@@ -66,7 +66,7 @@ namespace TestDE16WinApp
             this.customDateNavigator2 = new TestDE16WinApp.CustomDateNavigator();
             this.dateNavigator6 = new DevExpress.XtraScheduler.DateNavigator();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
+            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage();
             this.dateNavigator5 = new DevExpress.XtraScheduler.DateNavigator();
             this.dateNavigator4 = new DevExpress.XtraScheduler.DateNavigator();
             this.dateNavigator3 = new DevExpress.XtraScheduler.DateNavigator();
@@ -83,7 +83,8 @@ namespace TestDE16WinApp
             this.simpleButtonGetCheckedListBoxInfo = new DevExpress.XtraEditors.SimpleButton();
             this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonFilter = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPageTabControlInWindow = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonTabControlInWindow1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -130,6 +131,7 @@ namespace TestDE16WinApp
             this.xtraTabPageCommonControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
+            this.xtraTabPageTabControlInWindow.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFill
@@ -158,7 +160,8 @@ namespace TestDE16WinApp
             this.xtraTabPageCalendarControl,
             this.xtraTabPageSchedulerControl,
             this.xtraTabPageBarInWindow,
-            this.xtraTabPageCommonControls});
+            this.xtraTabPageCommonControls,
+            this.xtraTabPageTabControlInWindow});
             // 
             // xtraTabPageGridInWindow
             // 
@@ -169,6 +172,15 @@ namespace TestDE16WinApp
             this.xtraTabPageGridInWindow.Name = "xtraTabPageGridInWindow";
             this.xtraTabPageGridInWindow.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageGridInWindow.Text = "Grid in Window";
+            // 
+            // simpleButtonFilter
+            // 
+            this.simpleButtonFilter.Location = new System.Drawing.Point(318, 25);
+            this.simpleButtonFilter.Name = "simpleButtonFilter";
+            this.simpleButtonFilter.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonFilter.TabIndex = 3;
+            this.simpleButtonFilter.Text = "Filter";
+            this.simpleButtonFilter.Click += new System.EventHandler(this.simpleButtonFilter_Click);
             // 
             // simpleButtonHint
             // 
@@ -693,14 +705,21 @@ namespace TestDE16WinApp
             this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
             // 
-            // simpleButtonFilter
+            // xtraTabPageTabControlInWindow
             // 
-            this.simpleButtonFilter.Location = new System.Drawing.Point(318, 25);
-            this.simpleButtonFilter.Name = "simpleButtonFilter";
-            this.simpleButtonFilter.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonFilter.TabIndex = 3;
-            this.simpleButtonFilter.Text = "Filter";
-            this.simpleButtonFilter.Click += new System.EventHandler(this.simpleButtonFilter_Click);
+            this.xtraTabPageTabControlInWindow.Controls.Add(this.simpleButtonTabControlInWindow1);
+            this.xtraTabPageTabControlInWindow.Name = "xtraTabPageTabControlInWindow";
+            this.xtraTabPageTabControlInWindow.Size = new System.Drawing.Size(1446, 580);
+            this.xtraTabPageTabControlInWindow.Text = "TabControl in Window";
+            // 
+            // simpleButtonTabControlInWindow1
+            // 
+            this.simpleButtonTabControlInWindow1.Location = new System.Drawing.Point(9, 17);
+            this.simpleButtonTabControlInWindow1.Name = "simpleButtonTabControlInWindow1";
+            this.simpleButtonTabControlInWindow1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonTabControlInWindow1.TabIndex = 1;
+            this.simpleButtonTabControlInWindow1.Text = "1";
+            this.simpleButtonTabControlInWindow1.Click += new System.EventHandler(this.simpleButtonTabControlInWindow1_Click);
             // 
             // MainForm
             // 
@@ -765,6 +784,7 @@ namespace TestDE16WinApp
             this.xtraTabPageCommonControls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
+            this.xtraTabPageTabControlInWindow.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,6 +842,8 @@ namespace TestDE16WinApp
         private DevExpress.XtraEditors.SimpleButton simpleButtonGetCheckedListBoxInfo;
         private DevExpress.XtraEditors.SimpleButton simpleButtonHint;
         private DevExpress.XtraEditors.SimpleButton simpleButtonFilter;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageTabControlInWindow;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonTabControlInWindow1;
     }
 }
 

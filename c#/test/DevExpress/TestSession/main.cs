@@ -1,4 +1,5 @@
-﻿#define TEST_GET
+﻿#define TEST_DELETE_REFERENCE_OBJECT
+//#define TEST_GET
 //#define TEST_EXCEPTION_IN_ONSAVING
 //#define TEST_EXCEPTION_IN_ONSAVING_IN_TRANSACTION
 //#define TEST_TRANSACTION
@@ -34,6 +35,17 @@ namespace TestSession
             Table4TestTransaction
                 forTestTransaction = null;
 
+            TestMaster
+                testMaster1;
+
+            TestDetail
+                testDetail1;
+
+            bool
+                isNewObject,
+                isObjectToSave;
+
+
             #if TEST_DISPOSE
                 try
                 {
@@ -48,6 +60,26 @@ namespace TestSession
 
             Session
                 session = new Session();
+
+            #if TEST_DELETE_REFERENCE_OBJECT
+                session.BeginTransaction();
+                testMaster1 = new TestMaster(session);
+                testMaster1.Name = "Master (deleted)";
+                testDetail1 = new TestDetail(session);
+                testDetail1.Name = "Detail";
+                testDetail1.Master = testMaster1;
+                testMaster1.Save();
+
+                isNewObject = session.IsNewObject(testMaster1);
+                isObjectToSave = session.IsObjectToSave(testMaster1);
+                session.RemoveFromSaveList(testMaster1);
+                isNewObject = session.IsNewObject(testMaster1);
+                isObjectToSave = session.IsObjectToSave(testMaster1);
+                isNewObject = session.IsNewObject(testDetail1.Master);
+                isObjectToSave = session.IsObjectToSave(testDetail1.Master);
+
+                session.RollbackTransaction();
+            #endif
 
 			#if TEST_GET
 				var testMaster = session.GetObjectByKey(typeof(TestMaster), 55L);
@@ -173,10 +205,6 @@ namespace TestSession
             tmpInt = tmpTestMaster.Details.Count;
 
             #if TEST_IS_NEW_AND_IS_TO_SAVE
-                bool
-                    isNewObject,
-                    isObjectToSave;
-
                 session.BeginTransaction();
                 tmpTestMaster = new TestMaster(session) { Name = string.Format("Test {0}", DateTime.Now.Ticks)};
                 isNewObject = session.IsNewObject(tmpTestMaster);
