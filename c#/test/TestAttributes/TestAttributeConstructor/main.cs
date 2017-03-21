@@ -28,15 +28,48 @@ namespace TestAttributeConstructor
         }
     }
 
+    public class CustomAttributeII : Attribute
+    {
+        protected string _stringValue;
+
+        public virtual string StringValue
+        {
+            get
+            {
+                System.Diagnostics.Debug.WriteLine("CustomAttributeII.get_StringValue()");
+                return _stringValue;
+            }
+            set
+            {
+                System.Diagnostics.Debug.WriteLine($"CustomAttributeII.set_StringValue({value})");
+                _stringValue = value;
+            }
+        }
+
+        public CustomAttributeII() : this("DefaultStringValue")
+        {
+            System.Diagnostics.Debug.WriteLine("CustomAttributeII.ctor()");
+        }
+
+        public CustomAttributeII(string stringValue)
+        {
+            System.Diagnostics.Debug.WriteLine($"CustomAttributeII.ctor({stringValue})");
+            _stringValue = stringValue;
+        }
+    }
+
     public class ClassWithAttributes
     {
         [CustomAttribute]
+        [CustomAttributeII]
         public string FStringI { get; set; }
 
         [CustomAttribute("valueI")]
+        [CustomAttributeII("customAttributeIIValueII")]
         public string FStringII { get; set; }
 
         [CustomAttribute("valueI","valueII")]
+        [CustomAttributeII(StringValue = "customAttributeIIValueIII")]
         public string FStringIII { get; set; }
     }
 
@@ -47,7 +80,9 @@ namespace TestAttributeConstructor
             var victim = new ClassWithAttributes();
 
             ShowPropertyAttributes(typeof(ClassWithAttributes), "FStringI");
+            System.Diagnostics.Debug.WriteLine(new string('-', 10));
             ShowPropertyAttributes(typeof(ClassWithAttributes), "FStringII");
+            System.Diagnostics.Debug.WriteLine(new string('-', 10));
             ShowPropertyAttributes(typeof(ClassWithAttributes), "FStringIII");
         }
 
