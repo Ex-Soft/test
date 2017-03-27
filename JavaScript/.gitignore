@@ -18,7 +18,7 @@ Sencha/**
 tinymce/**
 UnitTesting/**
 YUI/**
-WebAssembly
+emsdk
 
 *_out.dbf
 *_out.xls
@@ -28,3 +28,5 @@ WebAssembly
 
 bootstrap.js
 bootstrap.css
+
+*.wasm
