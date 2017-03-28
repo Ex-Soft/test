@@ -82,9 +82,11 @@ namespace TestDE16WinApp
             this.xtraTabPageCommonControls = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonGetCheckedListBoxInfo = new DevExpress.XtraEditors.SimpleButton();
             this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabPageTabControlInWindow = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonTabControlInWindow1 = new DevExpress.XtraEditors.SimpleButton();
+            this.xtraTabPageValidation = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonValidateInWindow1 = new DevExpress.XtraEditors.SimpleButton();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -130,8 +132,9 @@ namespace TestDE16WinApp
             this.xtraTabPageBarInWindow.SuspendLayout();
             this.xtraTabPageCommonControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.xtraTabPageTabControlInWindow.SuspendLayout();
+            this.xtraTabPageValidation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFill
@@ -161,7 +164,8 @@ namespace TestDE16WinApp
             this.xtraTabPageSchedulerControl,
             this.xtraTabPageBarInWindow,
             this.xtraTabPageCommonControls,
-            this.xtraTabPageTabControlInWindow});
+            this.xtraTabPageTabControlInWindow,
+            this.xtraTabPageValidation});
             // 
             // xtraTabPageGridInWindow
             // 
@@ -697,14 +701,6 @@ namespace TestDE16WinApp
             this.checkedListBoxControl1.Size = new System.Drawing.Size(120, 95);
             this.checkedListBoxControl1.TabIndex = 0;
             // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 661);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
-            this.pnlBottom.TabIndex = 1;
-            // 
             // xtraTabPageTabControlInWindow
             // 
             this.xtraTabPageTabControlInWindow.Controls.Add(this.simpleButtonTabControlInWindow1);
@@ -714,12 +710,36 @@ namespace TestDE16WinApp
             // 
             // simpleButtonTabControlInWindow1
             // 
-            this.simpleButtonTabControlInWindow1.Location = new System.Drawing.Point(9, 17);
+            this.simpleButtonTabControlInWindow1.Location = new System.Drawing.Point(8, 8);
             this.simpleButtonTabControlInWindow1.Name = "simpleButtonTabControlInWindow1";
             this.simpleButtonTabControlInWindow1.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonTabControlInWindow1.TabIndex = 1;
             this.simpleButtonTabControlInWindow1.Text = "1";
             this.simpleButtonTabControlInWindow1.Click += new System.EventHandler(this.simpleButtonTabControlInWindow1_Click);
+            // 
+            // xtraTabPageValidation
+            // 
+            this.xtraTabPageValidation.Controls.Add(this.simpleButtonValidateInWindow1);
+            this.xtraTabPageValidation.Name = "xtraTabPageValidation";
+            this.xtraTabPageValidation.Size = new System.Drawing.Size(1446, 580);
+            this.xtraTabPageValidation.Text = "Validation";
+            // 
+            // simpleButtonValidateInWindow1
+            // 
+            this.simpleButtonValidateInWindow1.Location = new System.Drawing.Point(8, 8);
+            this.simpleButtonValidateInWindow1.Name = "simpleButtonValidateInWindow1";
+            this.simpleButtonValidateInWindow1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonValidateInWindow1.TabIndex = 2;
+            this.simpleButtonValidateInWindow1.Text = "1";
+            this.simpleButtonValidateInWindow1.Click += new System.EventHandler(this.simpleButtonValidateInWindow1_Click);
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 661);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
+            this.pnlBottom.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -783,8 +803,9 @@ namespace TestDE16WinApp
             this.xtraTabPageBarInWindow.ResumeLayout(false);
             this.xtraTabPageCommonControls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.xtraTabPageTabControlInWindow.ResumeLayout(false);
+            this.xtraTabPageValidation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -844,6 +865,8 @@ namespace TestDE16WinApp
         private DevExpress.XtraEditors.SimpleButton simpleButtonFilter;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageTabControlInWindow;
         private DevExpress.XtraEditors.SimpleButton simpleButtonTabControlInWindow1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageValidation;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonValidateInWindow1;
     }
 }
 

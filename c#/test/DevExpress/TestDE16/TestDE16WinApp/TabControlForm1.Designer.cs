@@ -45,9 +45,9 @@
             this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
-            this.simpleButtonReset = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonDoIt = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonReset = new DevExpress.XtraEditors.SimpleButton();
+            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -111,7 +111,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.labelControl2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(274, 179);
+            this.xtraTabPage2.Size = new System.Drawing.Size(671, 179);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // labelControl2
@@ -126,7 +126,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.labelControl3);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(274, 179);
+            this.xtraTabPage3.Size = new System.Drawing.Size(671, 179);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
             // labelControl3
@@ -141,7 +141,7 @@
             // 
             this.xtraTabPage4.Controls.Add(this.labelControl4);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(274, 179);
+            this.xtraTabPage4.Size = new System.Drawing.Size(671, 179);
             this.xtraTabPage4.Text = "xtraTabPage4";
             // 
             // labelControl4
@@ -156,7 +156,7 @@
             // 
             this.xtraTabPage5.Controls.Add(this.labelControl5);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(274, 179);
+            this.xtraTabPage5.Size = new System.Drawing.Size(671, 179);
             this.xtraTabPage5.Text = "xtraTabPage5";
             // 
             // labelControl5
@@ -171,7 +171,7 @@
             // 
             this.xtraTabPage6.Controls.Add(this.labelControl6);
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(274, 179);
+            this.xtraTabPage6.Size = new System.Drawing.Size(671, 179);
             this.xtraTabPage6.Text = "xtraTabPage6";
             // 
             // labelControl6
@@ -186,7 +186,7 @@
             // 
             this.xtraTabPage7.Controls.Add(this.labelControl7);
             this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(274, 179);
+            this.xtraTabPage7.Size = new System.Drawing.Size(671, 179);
             this.xtraTabPage7.Text = "xtraTabPage7";
             // 
             // labelControl7
@@ -208,10 +208,28 @@
             this.pnlBottom.Size = new System.Drawing.Size(681, 50);
             this.pnlBottom.TabIndex = 1;
             // 
+            // simpleButtonDoIt
+            // 
+            this.simpleButtonDoIt.Location = new System.Drawing.Point(310, 12);
+            this.simpleButtonDoIt.Name = "simpleButtonDoIt";
+            this.simpleButtonDoIt.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonDoIt.TabIndex = 2;
+            this.simpleButtonDoIt.Text = "DoIt!";
+            this.simpleButtonDoIt.Click += new System.EventHandler(this.simpleButtonDoIt_Click);
+            // 
+            // simpleButtonReset
+            // 
+            this.simpleButtonReset.Location = new System.Drawing.Point(210, 12);
+            this.simpleButtonReset.Name = "simpleButtonReset";
+            this.simpleButtonReset.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonReset.TabIndex = 1;
+            this.simpleButtonReset.Text = "Reset";
+            this.simpleButtonReset.Click += new System.EventHandler(this.simpleButtonReset_Click);
+            // 
             // radioGroup1
             // 
             this.radioGroup1.EditValue = "Changing";
-            this.radioGroup1.Location = new System.Drawing.Point(13, 7);
+            this.radioGroup1.Location = new System.Drawing.Point(8, 8);
             this.radioGroup1.Name = "radioGroup1";
             this.radioGroup1.Properties.Columns = 2;
             this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -219,24 +237,6 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("Changed", "Changed", true, "Changed")});
             this.radioGroup1.Size = new System.Drawing.Size(191, 31);
             this.radioGroup1.TabIndex = 0;
-            // 
-            // simpleButtonReset
-            // 
-            this.simpleButtonReset.Location = new System.Drawing.Point(231, 7);
-            this.simpleButtonReset.Name = "simpleButtonReset";
-            this.simpleButtonReset.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonReset.TabIndex = 1;
-            this.simpleButtonReset.Text = "Reset";
-            this.simpleButtonReset.Click += new System.EventHandler(this.simpleButtonReset_Click);
-            // 
-            // simpleButtonDoIt
-            // 
-            this.simpleButtonDoIt.Location = new System.Drawing.Point(312, 11);
-            this.simpleButtonDoIt.Name = "simpleButtonDoIt";
-            this.simpleButtonDoIt.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonDoIt.TabIndex = 2;
-            this.simpleButtonDoIt.Text = "DoIt!";
-            this.simpleButtonDoIt.Click += new System.EventHandler(this.simpleButtonDoIt_Click);
             // 
             // TabControlForm1
             // 
