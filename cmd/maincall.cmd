@@ -5,7 +5,7 @@ set mainbatvar=mainbatvarvalue
 echo main.cmd before
 echo mainbatvar = %mainbatvar%
 echo.
-child.cmd
+call child.cmd
 echo.
 echo main.cmd after
 echo mainbatvar = %mainbatvar%

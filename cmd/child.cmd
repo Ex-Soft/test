@@ -1,10 +1,12 @@
 @echo off
 
-echo child.cmd
+echo child.cmd starting...
 
-echo %mainbatvar%
-set mainbatvar=mainbatvarfromchild
-echo %mainbatvar%
+echo mainbatvar = %mainbatvar%
+set mainbatvar=mainbatvarfromchildvalue
+echo mainbatvar = %mainbatvar%
 
-set childbatvar=childbatvar
-echo %childbatvar%
+set childbatvar=childbatvarvalue
+echo childbatvar = %childbatvar%
+
+echo child.cmd finished
