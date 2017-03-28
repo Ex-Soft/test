@@ -1,8 +1,8 @@
-﻿#define TEST_COLLECTION_FROM_COLLECTION
+﻿//#define TEST_COLLECTION_FROM_COLLECTION
 //#define TEST_ADD
 //#define TEST_LIFECYCLE
 //#define TEST_CREATE
-//#define TEST_LOAD
+#define TEST_LOAD
 //#define TEST_SET
 //#define TEST_REMOVE
 //#define TEST_MODIFY
@@ -212,6 +212,10 @@ namespace TestCollection
             #endif
 
             #if TEST_LOAD
+                xpCollectionI = new XPCollection(sessionI, testMasterClassInfo);
+                xpCollectionI.Load();
+                xpCollectionI.Reload();
+
                 var listOfTestMaster = sessionI.GetObjects(testMasterClassInfo, new BinaryOperator("Name", "TEST An item with the same key has already been added 1:1", BinaryOperatorType.Equal), null, 0, 0, true, true).OfType<TestMaster>().ToList();
 
                 if (listOfTestMaster.Count > 0)

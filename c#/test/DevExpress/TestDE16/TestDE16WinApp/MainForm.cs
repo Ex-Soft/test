@@ -312,5 +312,13 @@ namespace TestDE16WinApp
                 form.ShowDialog(this);
             }
         }
+
+        private void simpleButtonValidateInWindow1_Click(object sender, EventArgs e)
+        {
+            using (var form = new ValidationForm1())
+            {
+                form.ShowDialog(this);
+            }
+        }
     }
 }

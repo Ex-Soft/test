@@ -87,6 +87,7 @@
     <Compile Include="Db\TestDE.cs" />
     <Compile Include="Db\TestDetail.cs" />
     <Compile Include="Db\TestMaster.cs" />
+    <Compile Include="Db\TestValidate.cs" />
     <Compile Include="GridForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +127,12 @@
       <DependentUpon>TabControlForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <Compile Include="ValidationForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidationForm1.Designer.cs">
+      <DependentUpon>ValidationForm1.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BarForm.resx">
       <DependentUpon>BarForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +164,9 @@
     </Compile>
     <EmbeddedResource Include="TabControlForm1.resx">
       <DependentUpon>TabControlForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidationForm1.resx">
+      <DependentUpon>ValidationForm1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
