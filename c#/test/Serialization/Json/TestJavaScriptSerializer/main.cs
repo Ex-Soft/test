@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 using TestJson.Common;
@@ -24,8 +26,10 @@ namespace TestJavaScriptSerializer
                     FDouble = 11.11,
                     FDecimal = 111.111m,
                     FDateTime = DateTime.Now,
-                    FArrayInts = new int[] { 1, 2, 3, 4, 5 },
-                    FListInts = new List<int>(new int[] { 11, 22, 33, 44, 55 }),
+                    FObject = new { FA = 1, FB = 2 },
+                    FArrayBytes = new byte[] { 1, 2, 3, 4, 5 },
+                    FArrayInts = new[] { 1, 2, 3, 4, 5 },
+                    FListInts = new List<int>(new[] { 11, 22, 33, 44, 55 }),
                     FArrayTestObjects = new TestObject[] {
                         new TestObject() { FInt=1 },
                         new TestObject() { FInt=2 },
@@ -42,13 +46,17 @@ namespace TestJavaScriptSerializer
             string
                 currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
-            currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
+            if (currentDirectory.IndexOf("bin") != -1)
+                currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
 
             string
                 outputFileName,
                 tmpString = javaScriptSerializer.Serialize(testObject4Serialize);
 
             Console.WriteLine(tmpString);
+
+            var hashAlgorithm = new SHA512Managed();
+            var hash = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(tmpString));
 
             if (File.Exists(outputFileName = currentDirectory + "output.json"))
                 File.Delete(outputFileName);
