@@ -18,6 +18,13 @@ namespace DEUpdater
             var fileNames = GetFiles(appConfig.SourceDirectory, "*.*", SearchOption.AllDirectories);
             foreach (var fileName in fileNames)
             {
+                string path;
+
+                if ((path = Path.GetDirectoryName(fileName)).Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}")
+                    || path.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}")
+                    || path.Contains($"{Path.DirectorySeparatorChar}.vs{Path.DirectorySeparatorChar}"))
+                    continue;
+
                 WriteLine(fileName);
 
                 string content;
