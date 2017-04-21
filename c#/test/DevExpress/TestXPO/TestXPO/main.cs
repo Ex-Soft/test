@@ -1,11 +1,11 @@
-﻿#define TEST_DELAYED_PROPERTY
+﻿//#define TEST_DELAYED_PROPERTY
 //#define TEST_LINQ_TO_XPO
 //#define TEST_SELECT_DATA
 //#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
-//#define TEST_CRITERIA
+#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
@@ -267,10 +267,15 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     {
                     }
 
-					criteria = CriteriaOperator.Parse("Details[Name == ?]", "1.1");
+                    criteria = CriteriaOperator.Parse("Details[Name == ?]", "1.1");
 					var resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
 					foreach (TestMaster item in resultOfTestCriteria)
 						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+
+                    criteria = CriteriaOperator.Parse("Details[StartsWith(Name, ?)].Count > 1", "1");
+                    resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
+                    foreach (TestMaster item in resultOfTestCriteria)
+                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
 					criteria = CriteriaOperator.Parse("Details.Sum(Master.Id) = ?", 12);
 					resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);

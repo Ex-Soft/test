@@ -16,7 +16,7 @@ namespace ExcelDataReader
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
 
             string
-                fileName = Path.Combine(currentDirectory, "test1.xls");
+                fileName = Path.Combine(currentDirectory, "test2.xls");
 
             if (!File.Exists(fileName))
                 return;

@@ -99,6 +99,30 @@ namespace TestIEnumerable
         }
     }
 
+    class D
+    {
+        public string PString { get; set; }
+        public int PInt { get; set; }
+        public bool PBool1 { get; set; }
+        public bool PBool2 { get; set; }
+        public List<D> LD { get; set; }
+
+        public D() : this(default(string), default(int), default(bool), default(bool), new List<D>())
+        {}
+
+        public D(D obj) : this(obj.PString, obj.PInt, obj.PBool1, obj.PBool2, obj.LD)
+        {}
+
+        public D(string aString, int aInt, bool aBool1, bool aBool2, List<D> aLD)
+        {
+            PString = aString;
+            PInt = aInt;
+            PBool1 = aBool1;
+            PBool2 = aBool2;
+            LD = aLD;
+        }
+    }
+
     class AA
     {
         public int FAA { get; set; }
@@ -235,6 +259,18 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfD = new List<D>
+            {
+                new D { PString = "[1]", PInt = 1, LD = new List<D> { new D { PString = "[1][1]", PInt = 11, LD = new List<D> { new D { PString = "[1][1][1]", PInt = 111, PBool1 = false, PBool2 = false }, new D { PString = "[1][1][2]", PInt = 112, PBool1 = false, PBool2 = true }, new D { PString = "[1][1][3]", PInt = 113, PBool1 = true, PBool2 = false }, new D { PString = "[1][1][4]", PInt = 114, PBool1 = true, PBool2 = true } } }, new D { PString = "[1][2]", PInt = 12 }, new D { PString = "[1][3]", PInt = 13 } } },
+                new D { PString = "[2]", PInt = 2, LD = new List<D> { new D { PString = "[2][1]", PInt = 21, LD = new List<D> { new D { PString = "[2][1][1]", PInt = 211, PBool1 = false, PBool2 = false }, new D { PString = "[2][1][2]", PInt = 212, PBool1 = false, PBool2 = false }, new D { PString = "[2][1][3]", PInt = 213, PBool1 = false, PBool2 = false }, new D { PString = "[2][1][4]", PInt = 214, PBool1 = false, PBool2 = false } } }, new D { PString = "[2][2]", PInt = 22 }, new D { PString = "[2][3]", PInt = 23 } } },
+                new D { PString = "[3]", PInt = 3, LD = new List<D> { new D { PString = "[3][1]", PInt = 31, LD = new List<D> { new D { PString = "[3][1][1]", PInt = 311, PBool1 = false, PBool2 = false }, new D { PString = "[3][1][2]", PInt = 312, PBool1 = false, PBool2 = true }, new D { PString = "[3][1][3]", PInt = 313, PBool1 = true, PBool2 = false }, new D { PString = "[3][1][4]", PInt = 314, PBool1 = true, PBool2 = true } } }, new D { PString = "[3][2]", PInt = 32 }, new D { PString = "[3][3]", PInt = 33 } } },
+                new D { PString = "[4]", PInt = 4, LD = new List<D> { new D { PString = "[4][1]", PInt = 41, LD = new List<D> { new D { PString = "[4][1][1]", PInt = 411, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][2]", PInt = 412, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][3]", PInt = 413, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][4]", PInt = 414, PBool1 = false, PBool2 = false } } }, new D { PString = "[4][2]", PInt = 42 }, new D { PString = "[4][3]", PInt = 43 } } }
+            };
+
+            var test0 = listOfD.SelectMany(level1 => level1.LD).SelectMany(level2 => level2.LD).ToList();
+            var test1 = listOfD.Where(level1 => level1.LD.Any(level2 => level2.LD.Any(level3 => level3.PBool2))).ToList();
+            var test2 = listOfD.Where(level1 => level1.LD.SelectMany(level2 => level2.LD).Any(level3 => level3.PBool2)).ToList();
+
             List<int>
                 listOfInt = new List<int> { 1, 2, 3, 4, 5 },
                 listOfIntII = new List<int> { 2, 3 },
@@ -300,7 +336,11 @@ namespace TestIEnumerable
                 { 5, new List<A> { new A { FA = 1 }, new A { FA = 2 }, new A { FA = 2 } } },
                 { 6, new List<A> { new A { FA = 1 }, new A { FA = 1 }, new A { FA = 2 }, new A { FA = 2 } } }
             };
-            
+
+            var _doubles = dictionaryIntListOfA.SelectMany(item => item.Value).GroupBy(item => new { item.FA, item.FB }).Where(g => g.Count() > 1).SelectMany(g => g).ToList();
+            foreach (var dd in _doubles)
+                Console.WriteLine(dd);
+
             var _equalsValues = dictionaryIntListOfA[4].GroupBy(a => a.FA).Where(g => g.Count() > 1).Select(g => g.ToList());
 
             foreach (List<A> _tmpA_ in _equalsValues)
