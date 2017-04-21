@@ -1,4 +1,4 @@
-﻿#define TEST_DELAYED_PROPERTY
+﻿//#define TEST_DELAYED_PROPERTY
 //#define TEST_LINQ_TO_XPO
 //#define TEST_SELECT_DATA
 //#define TEST_LINQ
@@ -10,7 +10,7 @@
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
-//#define TEST_LIFECYCLE
+#define TEST_LIFECYCLE
 //#define TEST_OBJECT_SET
 //#define TEST_CUSTOM_SESSION
 //#define TEST_SESSION_TRANSACTION
@@ -64,6 +64,7 @@ namespace TestXPO
                 //throw new LockingException();
 
                 XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
+                //XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("(localdb)\\MSSQLLocalDB", "testdb");
 
                 Session
                     session = new
@@ -406,7 +407,8 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
 						session.BeginTransaction();
 					#endif
 
-                    testDE = session.GetObjectByKey<TestDE>(1L); //new TestDE(session);
+                    //testDE = session.GetObjectByKey<TestDE>(1L);
+                    testDE = new TestDE(session);
 
                     AddEventsListeners(testDE);
 

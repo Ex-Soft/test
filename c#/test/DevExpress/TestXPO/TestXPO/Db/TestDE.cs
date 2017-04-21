@@ -73,7 +73,7 @@ namespace TestXPO.Db
 
         public override string ToString()
         {
-            return string.Format("{{ id: {0}, f1: {1}, f2: {2}, f3: {3} }}", id, f1.HasValue ? f1.Value.ToString() : "NULL", f2.HasValue ? f2.Value.ToString() : "NULL", f3.HasValue ? f3.Value.ToString() : "NULL");
+            return $"{{ id: {id}, f1: {f1?.ToString() ?? "NULL"}, f2: {f2?.ToString() ?? "NULL"}, f3: {f3?.ToString() ?? "NULL"} }}";
         }
 
 	    protected override void OnSaving()
@@ -87,5 +87,11 @@ namespace TestXPO.Db
 			System.Diagnostics.Debug.WriteLine("XPBaseObject: OnSaved");
 		    base.OnSaved();
 	    }
+
+        public override void AfterConstruction()
+        {
+            System.Diagnostics.Debug.WriteLine("XPBaseObject: AfterConstruction");
+            base.AfterConstruction();
+        }
     }
 }
