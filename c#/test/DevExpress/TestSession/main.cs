@@ -1,8 +1,8 @@
-﻿#define TEST_DELETE_REFERENCE_OBJECT
+﻿//#define TEST_DELETE_REFERENCE_OBJECT
 //#define TEST_GET
 //#define TEST_EXCEPTION_IN_ONSAVING
 //#define TEST_EXCEPTION_IN_ONSAVING_IN_TRANSACTION
-//#define TEST_TRANSACTION
+#define TEST_TRANSACTION
 //#define TEST_DISPOSE
 //#define TEST_IS_NEW_AND_IS_TO_SAVE
 
@@ -126,10 +126,17 @@ namespace TestSession
 
                 try
                 {
+                    if ((forTestTransaction = session.GetObjectByKey<Table4TestTransaction>(3L)) == null)
+                        forTestTransaction = new Table4TestTransaction(session);
+
+                    var tmpDateTime = DateTime.Now;
+                    forTestTransaction.Value = string.Format("update {0}:{1}:{2}.{3}", tmpDateTime.Hour, tmpDateTime.Minute, tmpDateTime.Second, tmpDateTime.Millisecond);
+                    forTestTransaction.Save();
+
                     session.BeginTransaction();
 
-                    var forTestTransaction = session.GetObjectByKey<Table4TestTransaction>(1L);
-                    var tmpDateTime = DateTime.Now;
+                    forTestTransaction = session.GetObjectByKey<Table4TestTransaction>(1L);
+                    tmpDateTime = DateTime.Now;
                     forTestTransaction.Value = string.Format("update {0}:{1}:{2}.{3}", tmpDateTime.Hour, tmpDateTime.Minute, tmpDateTime.Second, tmpDateTime.Millisecond);
                     forTestTransaction.Save();
 

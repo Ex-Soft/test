@@ -26,7 +26,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
+#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -39,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-#define TEST_PATH
+//#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -1050,28 +1050,28 @@ namespace AnyTest
 			#endif
 
 			#if TEST_ENUM
+                tmpObject = Enum.Parse(typeof(TestEnum), "1", true);
+                tmpObject = Enum.Parse(typeof(TestEnum), "Second", true);
+                tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
+
+                TestEnum testEnum;
+
 				tmpStrings = Enum.GetNames(typeof(TestEnum));
-
-				TestEnum
-					TestEnum;
-
 				foreach(var str in tmpStrings)
                 {
-					TestEnum = (TestEnum)Enum.Parse(typeof(TestEnum), str);
-                    tmpInt = (int)TestEnum;
+					testEnum = (TestEnum)Enum.Parse(typeof(TestEnum), str);
+                    tmpInt = (int)testEnum;
                 }
 
-				TestEnum = (TestEnum)13;
-                Console.WriteLine("TestEnum=\"{0}\" TestEnum.ToString()=\"{1}\"", TestEnum, TestEnum.ToString());
-				TestEnum = (TestEnum)14;
-				Console.WriteLine("{0}{1}{2}", TestEnum.ToString(), TestEnum > TestEnum.Fifteen ? ">" : "<=", TestEnum.Fifteen.ToString());
+				testEnum = (TestEnum)13;
+                Console.WriteLine("TestEnum=\"{0}\" TestEnum.ToString()=\"{1}\"", testEnum, testEnum.ToString());
+				testEnum = (TestEnum)14;
+				Console.WriteLine("{0}{1}{2}", testEnum.ToString(), testEnum > TestEnum.Fifteen ? ">" : "<=", TestEnum.Fifteen.ToString());
 
                 Console.WriteLine((double)SmthEnum.Second);
                 Console.WriteLine((int)TestEnum.Zero);
 
-                SmthEnum
-                    smthEnum;
-
+                SmthEnum smthEnum;
                 smthEnum = (SmthEnum)Enum.Parse(typeof(SmthEnum), "First");
                 smthEnum = (SmthEnum)0L;
 			#endif

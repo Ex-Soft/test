@@ -53,6 +53,12 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "<Compile Include=\"FileName.cs\"/>";
+            r = new Regex("<Compile.+?Include.*?=.*?\"FileName\\.cs\".*?/{0,1}>");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+
             srcString = "FilePacket.ExternalFiles"; //.ExternalFiles
             r = new Regex("([^.]+)(?:\\.*[^.]*)");
             match = r.Match(srcString);

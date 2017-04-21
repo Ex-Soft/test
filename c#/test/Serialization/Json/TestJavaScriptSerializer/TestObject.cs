@@ -20,6 +20,8 @@ namespace TestJson.Common
         public double FDouble { get; set; }
         public decimal FDecimal { get; set; }
         public DateTime FDateTime { get; set; }
+        public object FObject { get; set; }
+        public byte[] FArrayBytes { get; set; }
         public int[] FArrayInts { get; set; }
         public List<int> FListInts { get; set; }
         public TestObject[] FArrayTestObjects { get; set; }

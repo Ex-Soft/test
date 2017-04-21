@@ -19,6 +19,8 @@ namespace TestJsonNET
                     FDouble = 11.11,
                     FDecimal = 111.111m,
                     FDateTime = DateTime.Now,
+                    FObject = new { FA = 1, FB = 2 },
+                    FArrayBytes = new byte[] { 1, 2, 3, 4, 5 },
                     FArrayInts = new int[] { 1, 2, 3, 4, 5 },
                     FListInts = new List<int>(new int[] { 11, 22, 33, 44, 55 }),
                     FArrayTestObjects = new TestObject[] {
@@ -38,7 +40,8 @@ namespace TestJsonNET
             string
                 currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
-            currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
+            if (currentDirectory.IndexOf("bin") != -1)
+                currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
 
             string
                 outputFileName,

@@ -1,4 +1,4 @@
-﻿#define TEST_EXCEPTION_IN_ONSAVING
+﻿//#define TEST_EXCEPTION_IN_ONSAVING
 
 using System;
 using DevExpress.Xpo;
