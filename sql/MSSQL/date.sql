@@ -206,3 +206,9 @@ set @start = getdate()
 set @finish = dateadd(microsecond, 13, @start)
 set @diff = datediff(microsecond, @start, @finish)
 print @diff
+
+------------------------------------------------------------
+
+print eomonth(getdate(), -1)
+print eomonth(getdate())
+print eomonth(getdate(), 1)
