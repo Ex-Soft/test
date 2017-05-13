@@ -1,4 +1,5 @@
 ﻿// http://blog.nwcadence.com/shims-and-stubs-and-the-microsoft-fakes-framework/
+// https://msdn.microsoft.com/en-us/library/hh549175(v=vs.110).aspx
 
 using System;
 using System.Fakes;

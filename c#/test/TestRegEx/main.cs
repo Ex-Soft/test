@@ -53,6 +53,20 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "{\"o\":{\"p1\":\"p1\",\"io\":{\"p1\":\"p1\"},\"p2\":\"p2\"},\"p1\":\"p1\"}";
+            r = new Regex("(?<=\"o\"\\s*:\\s*\\{).*?(?=})");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = match.Value;
+            r = new Regex("(?<=\"p1\"\\s*:\\s*\").*?(?=\")");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = match.Value;
+            r = new Regex("(?<=\"o\":)[^{}]*(((?'Open'\\{)[^{}]*)+((?'Close-Open'\\})[^{}]*)+)*(?(Open)(?!))(,|})");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = match.Value;
+
             srcString = "<Compile Include=\"FileName.cs\"/>";
             r = new Regex("<Compile.+?Include.*?=.*?\"FileName\\.cs\".*?/{0,1}>");
             match = r.Match(srcString);

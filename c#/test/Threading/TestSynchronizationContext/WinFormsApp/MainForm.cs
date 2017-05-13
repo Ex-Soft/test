@@ -1,7 +1,8 @@
-﻿// https://www.codeproject.com/Articles/31971/Understanding-SynchronizationContext-Part-I
-// https://habrahabr.ru/post/232169/
+﻿#define ERROR_HANDLING
+//#define THROW_EXCEPTION
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
@@ -55,7 +56,22 @@ namespace WinFormsApp
                 // use the ui context to execute the UpdateUI method,
                 // this insure that the UpdateUI method will run on the UI thread.
 
-                uiContext.Post(UpdateUI, "line " + i.ToString());
+                #if ERROR_HANDLING
+                    try
+                    {
+                        uiContext.Send(UpdateUI, "line " + i.ToString());
+                    }
+                    catch (InvalidAsynchronousStateException e)
+                    {
+                        Debug.WriteLine(string.Format("InvalidAsynchronousStateException: \"{0}\"", e.Message));
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.Message);
+                    }
+                #else
+                    uiContext.Post(UpdateUI, "line " + i.ToString());
+                #endif
             }
         }
 
@@ -64,10 +80,14 @@ namespace WinFormsApp
         /// </summary>
         private void UpdateUI(object state)
         {
-            int id = Thread.CurrentThread.ManagedThreadId;
-            Trace.WriteLine("UpdateUI thread:" + id);
-            string text = state as string;
-            mListBox.Items.Add(text);
+            #if THROW_EXCEPTION
+                throw new Exception("Boom");
+            #else
+                int id = Thread.CurrentThread.ManagedThreadId;
+                Trace.WriteLine("UpdateUI thread:" + id);
+                string text = state as string;
+                mListBox.Items.Add(text);
+            #endif
         }
     }
 }

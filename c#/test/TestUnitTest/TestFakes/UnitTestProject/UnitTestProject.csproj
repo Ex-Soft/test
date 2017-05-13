@@ -35,8 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClassLibrary.Fakes">
-      <HintPath>FakesAssemblies\ClassLibrary.Fakes.dll</HintPath>
+    <Reference Include="ClassLibrary1.Fakes">
+      <HintPath>FakesAssemblies\ClassLibrary1.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="ClassLibrary2.Fakes">
+      <HintPath>FakesAssemblies\ClassLibrary2.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,13 +67,18 @@
   <ItemGroup>
     <Compile Include="BankAccountTest.cs" />
     <Compile Include="FileSystemTest.cs" />
+    <Compile Include="Library2Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Y2KBugTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
       <Project>{513037e9-77ca-47af-a419-96da4cc9d3a3}</Project>
-      <Name>ClassLibrary</Name>
+      <Name>ClassLibrary1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.csproj">
+      <Project>{65a6e6a1-10ec-4a60-b3d6-e991cfad8897}</Project>
+      <Name>ClassLibrary2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +88,10 @@
     <Fakes Include="Fakes\mscorlib.fakes" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\ClassLibrary.fakes" />
+    <Fakes Include="Fakes\ClassLibrary1.fakes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Fakes Include="Fakes\ClassLibrary2.fakes" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

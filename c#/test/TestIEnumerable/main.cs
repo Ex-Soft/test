@@ -267,6 +267,21 @@ namespace TestIEnumerable
                 new D { PString = "[4]", PInt = 4, LD = new List<D> { new D { PString = "[4][1]", PInt = 41, LD = new List<D> { new D { PString = "[4][1][1]", PInt = 411, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][2]", PInt = 412, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][3]", PInt = 413, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][4]", PInt = 414, PBool1 = false, PBool2 = false } } }, new D { PString = "[4][2]", PInt = 42 }, new D { PString = "[4][3]", PInt = 43 } } }
             };
 
+            listOfD = new List<D>
+            {
+                new D { PString = "q", PInt = 10 },
+                new D { PString = "я", PInt = 10 },
+                new D { PString = "й", PInt = 2 },
+                new D { PString = "f", PInt = 3 }
+            };
+
+            foreach (var item in listOfD.OfType<D>().OrderBy(i => i.PInt).ThenBy(i => i.PString))
+                Debug.WriteLine($"{{PInt:{item.PInt}, PString:\"{item.PString}\"}}");
+            //foreach (var item in listOfD.OfType<D>().OrderBy(i => new {i.PInt, i.PString})) // System.ArgumentException "По крайней мере в одном объекте должен быть реализован интерфейс IComparable."
+            //    Debug.WriteLine($"{{PInt:{item.PInt}, PString:\"{item.PString}\"}}");
+            foreach (var item in listOfD.OfType<D>().OrderBy(i => i.PInt.ToString() + i.PString ))
+                Debug.WriteLine($"{{PInt:{item.PInt}, PString:\"{item.PString}\"}}");
+
             var test0 = listOfD.SelectMany(level1 => level1.LD).SelectMany(level2 => level2.LD).ToList();
             var test1 = listOfD.Where(level1 => level1.LD.Any(level2 => level2.LD.Any(level3 => level3.PBool2))).ToList();
             var test2 = listOfD.Where(level1 => level1.LD.SelectMany(level2 => level2.LD).Any(level3 => level3.PBool2)).ToList();

@@ -5,7 +5,7 @@
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
-#define TEST_CRITERIA
+//#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
@@ -412,8 +412,8 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
 						session.BeginTransaction();
 					#endif
 
-                    //testDE = session.GetObjectByKey<TestDE>(1L);
-                    testDE = new TestDE(session);
+                    testDE = session.GetObjectByKey<TestDE>(1L);
+                    //testDE = new TestDE(session);
 
                     AddEventsListeners(testDE);
 

@@ -1,8 +1,9 @@
-﻿//#define TEST_COLLECTION_FROM_COLLECTION
+﻿#define TEST_SORTING
+//#define TEST_COLLECTION_FROM_COLLECTION
 //#define TEST_ADD
 //#define TEST_LIFECYCLE
 //#define TEST_CREATE
-#define TEST_LOAD
+//#define TEST_LOAD
 //#define TEST_SET
 //#define TEST_REMOVE
 //#define TEST_MODIFY
@@ -64,6 +65,17 @@ namespace TestCollection
 
             Victim
                 tmpVictim;
+
+            #if TEST_SORTING
+                xpCollectionI = new XPCollection(sessionI, typeof(Staff), null, new SortProperty("Dep", SortingDirection.Ascending), new SortProperty("Name", SortingDirection.Ascending));
+                foreach(var item in xpCollectionI.OfType<Staff>())
+                    Debug.WriteLine($"{{Dep:{item.Dep}, Name:\"{item.Name}\"}}");
+
+                xpCollectionII = new XPCollection(sessionI, typeof(Staff));
+                xpCollectionII.Sorting = new SortingCollection { new SortProperty("Dep", SortingDirection.Ascending), new SortProperty("Name", SortingDirection.Ascending) };
+                foreach(var item in xpCollectionII.OfType<Staff>())
+                    Debug.WriteLine($"{{Dep:{item.Dep}, Name:\"{item.Name}\"}}");
+            #endif
 
             #if TEST_COLLECTION_FROM_COLLECTION
                 var baseCollection = new XPCollection<Victim>(sessionI);
