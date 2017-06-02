@@ -5,12 +5,12 @@
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
-//#define TEST_CRITERIA
+#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
-#define TEST_LIFECYCLE
+//#define TEST_LIFECYCLE
 //#define TEST_OBJECT_SET
 //#define TEST_CUSTOM_SESSION
 //#define TEST_SESSION_TRANSACTION
@@ -89,6 +89,9 @@ namespace TestXPO
 
 	            XPCollection
 		            xpCollection;
+
+                ICollection
+                    iCollection;
 
                 #if TEST_DELAYED_PROPERTY
                     var testTable4TestPIVOTList = session.GetObjectByKey<TestTable4TestPIVOTList>(1);
@@ -239,6 +242,24 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                         criteria,
                         criteriaII;
 
+                    iCollection = session.GetObjectsByKey(session.GetClassInfo<TestDetail>(), new[] {1L, 3L}, false);
+                    iCollection = session.GetObjectsByKey(session.GetClassInfo<TestDetail>(), new[] {1L, 2L, 3L}, false);
+
+                    criteria = new InOperator("Master.Id", new[] { 1L, 3L });
+                    xpCollection = new XPCollection(typeof(TestDetail), criteria);
+                    foreach (TestDetail item in xpCollection)
+                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+
+                    criteria = new InOperator("Master.Id", new[] { 1L, 2L, 3L });
+                    xpCollection = new XPCollection(typeof(TestDetail), criteria);
+                    foreach (TestDetail item in xpCollection)
+                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+
+                    criteria = new InOperator("Master", new[] {1L, 2L, 3L});
+                    xpCollection = new XPCollection(typeof(TestDetail), criteria);
+                    foreach (TestDetail item in xpCollection)
+                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+
                     criteria = new BinaryOperator(new OperandProperty("Id"), new OperandValue(1), BinaryOperatorType.Equal);
                     criteriaII = new BinaryOperator(new OperandProperty("Id"), new OperandValue(1), BinaryOperatorType.Equal);
                     Debug.WriteLine(string.Format("criteria {0}= criteriaII", criteria == criteriaII ? "=" : "!")); // criteria != criteriaII
@@ -269,18 +290,18 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     }
 
                     criteria = CriteriaOperator.Parse("Details[Name == ?]", "1.1");
-					var resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
-					foreach (TestMaster item in resultOfTestCriteria)
+					xpCollection = new XPCollection(typeof(TestMaster), criteria);
+					foreach (TestMaster item in xpCollection)
 						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
                     criteria = CriteriaOperator.Parse("Details[StartsWith(Name, ?)].Count > 1", "1");
-                    resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
-                    foreach (TestMaster item in resultOfTestCriteria)
+                    xpCollection = new XPCollection(typeof(TestMaster), criteria);
+                    foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
 					criteria = CriteriaOperator.Parse("Details.Sum(Master.Id) = ?", 12);
-					resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
-					foreach (TestMaster item in resultOfTestCriteria)
+					xpCollection = new XPCollection(typeof(TestMaster), criteria);
+					foreach (TestMaster item in xpCollection)
 						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
 					//criteria = CriteriaOperator.Parse("Details.Single() is not null");
@@ -289,22 +310,22 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
 					//	Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
 					criteria = CriteriaOperator.Parse("Details.Single([Name]) = ?", "1.1");
-					resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
-					foreach (TestMaster item in resultOfTestCriteria)
+					xpCollection = new XPCollection(typeof(TestMaster), criteria);
+					foreach (TestMaster item in xpCollection)
 						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
 					criteria = CriteriaOperator.Parse("Id = ?", 12);
-					resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
-					foreach (TestMaster item in resultOfTestCriteria)
+					xpCollection = new XPCollection(typeof(TestMaster), criteria);
+					foreach (TestMaster item in xpCollection)
 						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
 					criteria = CriteriaOperator.Parse("Id = ?", 12);
-					resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
-					foreach (TestMaster item in resultOfTestCriteria)
+					xpCollection = new XPCollection(typeof(TestMaster), criteria);
+					foreach (TestMaster item in xpCollection)
 						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
-					resultOfTestCriteria = new XPCollection(typeof(TestDetail));
-					foreach (TestDetail item in resultOfTestCriteria)
+					xpCollection = new XPCollection(typeof(TestDetail));
+					foreach (TestDetail item in xpCollection)
 						Console.WriteLine("{{Id: {0}, Name: \"{2}\", Master.Id: {1}}}", item.Id, item.Name, item.Master.Id);
 
 					var res = (from _testMaster_ in new XPQuery<TestMaster>(session)

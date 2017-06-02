@@ -38,11 +38,15 @@ namespace WinFormsApp2
             }
             catch (TargetInvocationException eTargetInvocationException)
             {
-                Debug.WriteLine(eTargetInvocationException.Message);
+                Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
             }
             catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
             {
                 Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+            }
+            catch (InvalidOperationException eInvalidOperationException)
+            {
+                Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
             }
             catch (Exception eException)
             {
@@ -70,11 +74,15 @@ namespace WinFormsApp2
             }
             catch (TargetInvocationException eTargetInvocationException)
             {
-                Debug.WriteLine(eTargetInvocationException.Message);
+                Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
             }
             catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
             {
                 Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+            }
+            catch (InvalidOperationException eInvalidOperationException)
+            {
+                Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
             }
             catch (Exception eException)
             {
@@ -92,8 +100,7 @@ namespace WinFormsApp2
             {
                 Parallel.ForEach(_listBoxs, (listBox, state, arg3) =>
                 {
-                    var msg =
-                        $"Parallel.ForEach(Thread:{Thread.CurrentThread.ManagedThreadId}, listBox.Name:\"{listBox.Name}\")";
+                    var msg = $"Parallel.ForEach(Thread:{Thread.CurrentThread.ManagedThreadId}, listBox.Name:\"{listBox.Name}\")";
                     Debug.WriteLine(msg);
 
                     try
@@ -102,7 +109,7 @@ namespace WinFormsApp2
                     }
                     catch (TargetInvocationException eTargetInvocationException)
                     {
-                        Debug.WriteLine(eTargetInvocationException.Message);
+                        Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
                     }
                     catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
                     {
@@ -122,7 +129,7 @@ namespace WinFormsApp2
             }
             catch (TargetInvocationException eTargetInvocationException)
             {
-                Debug.WriteLine(eTargetInvocationException.Message);
+                Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
             }
             catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
             {
@@ -153,7 +160,7 @@ namespace WinFormsApp2
                     }
                     catch (TargetInvocationException eTargetInvocationException)
                     {
-                        Debug.WriteLine(eTargetInvocationException.Message);
+                        Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
                     }
                     catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
                     {
@@ -173,7 +180,7 @@ namespace WinFormsApp2
             }
             catch (TargetInvocationException eTargetInvocationException)
             {
-                Debug.WriteLine(eTargetInvocationException.Message);
+                Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
             }
             catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
             {
