@@ -1,4 +1,5 @@
-﻿#define ANY_TEST
+﻿#define TEST_DATE_TYPES
+//#define ANY_TEST
 //#define Determining_SET_Options_for_Current_Session // https://www.mssqltips.com/sqlservertip/1415/determining-set-options-for-a-current-session-in-sql-server/
 //#define TEST_COLUMN_TYPES_BY_SP
 //#define TEST_COLUMN_TYPES
@@ -122,7 +123,7 @@ namespace MSSQLSQL
                         //ConnectionString = "Server=ore-report-test.cloudapp.net,56550;Database=ReportServer;User ID=oredba;Password=ORE2015!";
 				        //ConnectionString = "Server=air\\inst5;Database=SunEdge_Default;User ID=sa;Password=password";
                         //ConnectionString = "Server=test-robot-6.systtech.ru;Database=region_16_weekly_AUTOTEST-VM3_192.168.2.43;User ID=sa;Password=123456";
-                        ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123";
+                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123";
                         //ConnectionString = "Server=i-nozhenko;Database=ch;User ID=sa;Password=123;Timeout=300";
                         //ConnectionString = "Server=i-nozhenko;Database=ch;User ID=sa;Password=123;ConnectTimeout=300";
                         //ConnectionString = "Server=i-nozhenko;Database=ch;User ID=sa;Password=123;Connection Timeout=300";
@@ -130,7 +131,7 @@ namespace MSSQLSQL
                         //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
                         //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
                         //ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
-						//ConnectionString = "Server=NOZHENKO-I-XP\\SQLEXPRESS;database=testdb;Integrated Security=SSPI";
+						ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensions;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensionsav;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=fobos_web;Initial Catalog=CMS_Connect;User Id=sa;Pwd=developer";
@@ -213,6 +214,39 @@ namespace MSSQLSQL
                     #endif
 
 					conn.Open();
+
+                    #if TEST_DATE_TYPES
+                        if (cmd == null)
+							cmd = conn.CreateCommand();
+
+						cmd.CommandType = CommandType.Text;
+						cmd.Parameters.Clear();
+						cmd.Parameters.Add("@Id", SqlDbType.Int).Value = 1;
+                        cmd.Parameters.Add("@FDate", SqlDbType.Date).Value = new DateTime(2017, 1, 5, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FDateTime", SqlDbType.DateTime).Value = new DateTime(2017, 1, 5, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FDateTime2", SqlDbType.DateTime2).Value = new DateTime(2017, 1, 5, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FSmallDateTime", SqlDbType.SmallDateTime).Value = new DateTime(2017, 1, 5, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime0", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime1", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime2", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime3", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime4", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime5", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime6", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FTime7", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
+                        cmd.Parameters.Add("@FDateTimeOffset", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset0", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset1", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset2", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset3", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset4", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset5", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset6", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset7", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.CommandText = "update TestTable4Date set FDate = @FDate, FDateTime = @FDateTime, FDateTime2 = @FDateTime2, FSmallDateTime = @FSmallDateTime, FTime = @FTime, FTime0 = @FTime0, FTime1 = @FTime1, FTime2 = @FTime2, FTime3 = @FTime3, FTime4 = @FTime4, FTime5 = @FTime5, FTime6 = @FTime6, FTime7 = @FTime7, FDateTimeOffset = @FDateTimeOffset, FDateTimeOffset0 = @FDateTimeOffset0, FDateTimeOffset1 = @FDateTimeOffset1, FDateTimeOffset2 = @FDateTimeOffset2, FDateTimeOffset3 = @FDateTimeOffset3, FDateTimeOffset4 = @FDateTimeOffset4, FDateTimeOffset5 = @FDateTimeOffset5, FDateTimeOffset6 = @FDateTimeOffset6, FDateTimeOffset7 = @FDateTimeOffset7 where Id = @Id";
+						tmpObject = cmd.ExecuteScalar();
+                    #endif
 
                     #if ANY_TEST
    				        const long UpdateInterval = 10000L;
@@ -889,7 +923,7 @@ from
 							cmd = conn.CreateCommand();
 
 						cmd.CommandType = CommandType.StoredProcedure;
-				        cmd.CommandText = "sp_dev_GetDistributorsIds"; //"TestProcedureWParameters";
+				        cmd.CommandText = "SaveToTestTable4Date"; //"TestProcedureWParameters";
 						SqlCommandBuilder.DeriveParameters(cmd);
 						Console.WriteLine(cmd.CommandText);
 						for (int ii = 0; ii < cmd.Parameters.Count; ++ii)
