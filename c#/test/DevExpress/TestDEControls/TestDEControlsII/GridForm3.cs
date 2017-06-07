@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using DevExpress.Xpo;
 using DevExpress.XtraEditors;
+using TestDEControlsII.Db;
 
 namespace TestDEControlsII
 {
@@ -8,7 +10,11 @@ namespace TestDEControlsII
         public GridForm3()
         {
             InitializeComponent();
-            gridControl.DataSource = CreateData();
+
+            //gridControl.DataSource = CreateData();
+            gridControl.DataSource = new XPServerCollectionSource(unitOfWork, unitOfWork.GetClassInfo<TableWithHugeData>());
+
+            //gridView.OptionsFilter.ColumnFilterPopupMaxRecordsCount = 10;
         }
 
         private static IEnumerable<string> CreateData()
