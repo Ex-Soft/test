@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define TEST_CLASS_WITH_OBJECT_PROPERTY
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -9,55 +10,78 @@ namespace TestJsonNET
     {
         static void Main(string[] args)
         {
-            TestObject
-                testObject4Serialize = new TestObject()
-                {
-                    FBool = true,
-                    FString = "string\\string\\string",
-                    FInt = 1,
-                    FFloat = 1.1f,
-                    FDouble = 11.11,
-                    FDecimal = 111.111m,
-                    FDateTime = DateTime.Now,
-                    FObject = new { FA = 1, FB = 2 },
-                    FArrayBytes = new byte[] { 1, 2, 3, 4, 5 },
-                    FArrayInts = new int[] { 1, 2, 3, 4, 5 },
-                    FListInts = new List<int>(new int[] { 11, 22, 33, 44, 55 }),
-                    FArrayTestObjects = new TestObject[] {
-                        new TestObject() { FInt=1 },
-                        new TestObject() { FInt=2 },
-                        new TestObject() { FInt=3 }
-                    },
-                    FListTestObjects = new List<TestObject>(new TestObject[] {
-                        new TestObject() { FInt=11, FTestEnum = TestEnum.First },
-                        new TestObject() { FInt=22, FTestEnum = TestEnum.Second },
-                        new TestObject() { FInt=33, FTestEnum = TestEnum.Third }
-                    }),
-                    FTestEnum = TestEnum.Second,
-                    FGenderEnum = GenderEnum.Male
-                };
-
             string
-                currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                tmpString;
 
-            if (currentDirectory.IndexOf("bin") != -1)
-                currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
+            try
+            {
+                #if TEST_CLASS_WITH_OBJECT_PROPERTY
+                    var raw = "{\"Code\":20002,\"Data\":28147497734082}";
+                    var classWithObjectProperty = JsonConvert.DeserializeObject<ClassWithObjectProperty>(raw);
+                    tmpString = JsonConvert.SerializeObject(classWithObjectProperty);
+                    raw = "{\"Code\":20004,\"Data\":null}";
+                    classWithObjectProperty = JsonConvert.DeserializeObject<ClassWithObjectProperty>(raw);
+                    tmpString = JsonConvert.SerializeObject(classWithObjectProperty);
+                #endif
 
-            string
-                outputFileName,
+                TestObject
+                    testObject4Serialize = new TestObject()
+                    {
+                        FBool = true,
+                        FString = "string\\string\\string",
+                        FInt = 1,
+                        FFloat = 1.1f,
+                        FDouble = 11.11,
+                        FDecimal = 111.111m,
+                        FDateTime = DateTime.Now,
+                        FObject = new {FA = 1, FB = 2},
+                        FArrayBytes = new byte[] {1, 2, 3, 4, 5},
+                        FArrayInts = new int[] {1, 2, 3, 4, 5},
+                        FListInts = new List<int>(new int[] {11, 22, 33, 44, 55}),
+                        FArrayTestObjects = new TestObject[]
+                        {
+                            new TestObject() {FInt = 1},
+                            new TestObject() {FInt = 2},
+                            new TestObject() {FInt = 3}
+                        },
+                        FListTestObjects = new List<TestObject>(new TestObject[]
+                        {
+                            new TestObject() {FInt = 11, FTestEnum = TestEnum.First},
+                            new TestObject() {FInt = 22, FTestEnum = TestEnum.Second},
+                            new TestObject() {FInt = 33, FTestEnum = TestEnum.Third}
+                        }),
+                        FTestEnum = TestEnum.Second,
+                        FGenderEnum = GenderEnum.Male
+                    };
+
+                string
+                    currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+                if (currentDirectory.IndexOf("bin") != -1)
+                    currentDirectory = currentDirectory.Substring(0,
+                        currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
+
+                string
+                    outputFileName;
+
                 tmpString = JsonConvert.SerializeObject(testObject4Serialize);
 
-            Console.WriteLine(tmpString);
+                Console.WriteLine(tmpString);
 
-            if (File.Exists(outputFileName = currentDirectory + "output.json"))
-                File.Delete(outputFileName);
+                if (File.Exists(outputFileName = currentDirectory + "output.json"))
+                    File.Delete(outputFileName);
 
-            File.WriteAllText(outputFileName, tmpString);
+                File.WriteAllText(outputFileName, tmpString);
 
-            TestObject
-                testObject4Deserialize = JsonConvert.DeserializeObject<TestObject>(tmpString);
+                TestObject
+                    testObject4Deserialize = JsonConvert.DeserializeObject<TestObject>(tmpString);
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
+            catch (Exception eException)
+            {
+                Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
         }
     }
 }
