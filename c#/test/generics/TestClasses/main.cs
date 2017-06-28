@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TestClasses
 {
@@ -27,6 +28,16 @@ namespace TestClasses
         public Container(T obj) : this()
         {
             container.Add(obj);
+        }
+
+        public List<T> GetList()
+        {
+            return container;
+        }
+
+        public static implicit operator List<object>(Container<T> originalContainer)
+        {
+            return originalContainer.GetList().Cast<object>().ToList();
         }
     }
 
@@ -56,6 +67,9 @@ namespace TestClasses
             Container<A>
                 cA1 = new Container<A>(),
                 cA2 = new Container<A>(a);
+
+            List<object>
+                listOfObjects = cA2;
 
             Container<BA>
                 cBA = new Container<BA>();
