@@ -1,5 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using DevExpress.Utils.Drawing;
+using DevExpress.XtraEditors.Calendar;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.ViewInfo;
@@ -55,6 +59,31 @@ namespace TestDEControlsII
         {
             base.OnAfterUpdateViewInfo();
         }
+
+        protected override CalendarViewInfoBase CalendarViewInfo
+        {
+            get { return base.CalendarViewInfo; }
+        }
+
+        public override CalendarView CalendarView
+        {
+            get { return base.CalendarView; }
+            set { base.CalendarView = value; }
+        }
+
+        public void SetHoliday(DateTime date)
+        {
+            if (ViewInfo?.Calendars == null || ViewInfo.Calendars.Count == 0)
+                return;
+
+            var calendar0 = ViewInfo.Calendars[0];
+            var calendar = ViewInfo.Calendar;
+            var cell = calendar0.GetCellByDate(date);
+            if (cell != null)
+                cell.Holiday = true;
+
+            LayoutChanged();
+        }
     }
 
     public class CustomDateNavigatorViewInfo : DateNavigatorViewInfo
@@ -70,6 +99,21 @@ namespace TestDEControlsII
             //return (CalendarObjectViewInfo)navigatorInfoArgs;
 
             return base.CreateCalendar(index);
+        }
+        
+        protected override ObjectState CalcObjectState()
+        {
+            return base.CalcObjectState();
+        }
+
+        protected override bool UpdateObjectStateCore()
+        {
+            return base.UpdateObjectStateCore();
+        }
+
+        protected override void CalcHitInfo(CalendarHitInfo hitInfo)
+        {
+            base.CalcHitInfo(hitInfo);
         }
     }
 

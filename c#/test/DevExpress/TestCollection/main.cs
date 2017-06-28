@@ -1,4 +1,5 @@
-﻿#define TEST_SORTING
+﻿#define TEST_GENERICS
+//#define TEST_SORTING
 //#define TEST_COLLECTION_FROM_COLLECTION
 //#define TEST_ADD
 //#define TEST_LIFECYCLE
@@ -13,6 +14,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
@@ -23,6 +26,11 @@ namespace TestCollection
 {
     class Program
     {
+        private static MethodInfo enumerableOfTypeInfo = Enumerable.FirstOrDefault<MemberInfo>((IEnumerable<MemberInfo>)typeof(Enumerable).GetMember("OfType", BindingFlags.Static | BindingFlags.Public)) as MethodInfo;
+        private static MethodInfo queryableOfTypeInfo = Enumerable.FirstOrDefault<MemberInfo>((IEnumerable<MemberInfo>)typeof(Queryable).GetMember("OfType", BindingFlags.Static | BindingFlags.Public)) as MethodInfo;
+        private static MethodInfo enumerableDistinctInfo = Enumerable.First<MemberInfo>((IEnumerable<MemberInfo>)typeof(Enumerable).GetMember("Distinct", BindingFlags.Static | BindingFlags.Public)) as MethodInfo;
+        private static MethodInfo queryableDistinctInfo = Enumerable.First<MemberInfo>((IEnumerable<MemberInfo>)typeof(Queryable).GetMember("Distinct", BindingFlags.Static | BindingFlags.Public)) as MethodInfo;
+
         static void Main(string[] args)
         {
             XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
@@ -61,10 +69,42 @@ namespace TestCollection
 
             XPClassInfo
                 testMasterClassInfo = sessionI.GetClassInfo<TestMaster>(),
-                testDetailClassInfo = sessionI.GetClassInfo<TestDetail>();
+                testDetailClassInfo = sessionI.GetClassInfo<TestDetail>(),
+                staffClassInfo = sessionI.GetClassInfo<Staff>();
 
             Victim
                 tmpVictim;
+
+            #if TEST_GENERICS
+                xpCollectionI = new XPCollection(sessionI, typeof(Staff));
+                //var xpCollectionStaff = xpCollectionI as XPCollection<Staff>;
+
+                Type genericXPCollectionStaff = typeof(XPCollection<>).MakeGenericType(staffClassInfo.ClassType);
+                var xpCollectionStaff = Activator.CreateInstance(genericXPCollectionStaff, sessionI);
+                //var xpCollectionStaff = new XPCollection<Staff>(sessionI);
+
+                Type type1 = xpCollectionI.GetType();
+                Type elementType = typeof(object);
+                Type type2 = typeof(IEnumerable<>).MakeGenericType(elementType);
+                Type type3 = typeof(IQueryable<>).MakeGenericType(elementType);
+                bool flag = type2.IsAssignableFrom(type1); // IEnumerable<> false
+                flag = type3.IsAssignableFrom(type1); // IQueryable<> false
+                MethodInfo method1 = (flag ? queryableDistinctInfo : enumerableDistinctInfo).MakeGenericMethod(elementType);
+                MethodInfo method2 = (flag ? queryableOfTypeInfo : enumerableOfTypeInfo).MakeGenericMethod(elementType);
+                ParameterExpression parameterExpression = Expression.Parameter(typeof(object), "dataSource");
+                UnaryExpression unaryExpression = Expression.Convert((Expression)parameterExpression, flag ? type3 : type2);
+                var expr = Expression.Lambda<Func<object, object>>((Expression)(true ? Expression.Call(method1, (Expression)unaryExpression) : Expression.Call(method1, (Expression)Expression.Call(method2, (Expression)unaryExpression))), new ParameterExpression[1]
+                {
+                    parameterExpression
+                });
+                var func = expr.Compile();
+                //var result = func(xpCollectionI);
+
+                type1 = xpCollectionStaff.GetType();
+                flag = type2.IsAssignableFrom(type1); // IEnumerable<> true
+                flag = type3.IsAssignableFrom(type1); // IQueryable<> false
+                var result = func(xpCollectionStaff);
+            #endif
 
             #if TEST_SORTING
                 xpCollectionI = new XPCollection(sessionI, typeof(Staff), null, new SortProperty("Dep", SortingDirection.Ascending), new SortProperty("Name", SortingDirection.Ascending));
