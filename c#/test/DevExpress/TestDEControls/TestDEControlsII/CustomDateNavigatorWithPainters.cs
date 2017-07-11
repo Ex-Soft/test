@@ -130,5 +130,10 @@ namespace TestDEControlsII
         {
             //base.DrawWeekdaysAbbreviationSeparator(e);
         }
+
+        protected override void DrawDayCell(CalendarControlObjectInfoArgs e, CalendarCellViewInfo cell)
+        {
+            base.DrawDayCell(e, cell);
+        }
     }
 }

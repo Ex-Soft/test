@@ -97,6 +97,31 @@ namespace TestDEControlsII
                 new CheckedListBoxItem("November", false),
                 new CheckedListBoxItem("December", false)
             });
+
+            customDateNavigator3.CustomDrawDayNumberCell += CustomDateNavigator3OnCustomDrawDayNumberCell;
+        }
+
+        private void CustomDateNavigator3OnCustomDrawDayNumberCell(object sender, CustomDrawDayNumberCellEventArgs e)
+        {
+            DateNavigator dateNavigator;
+            if ((dateNavigator = sender as DateNavigator) == null)
+                return;
+
+            if (e.Date.DayOfWeek != DayOfWeek.Thursday && e.Date.DayOfWeek != DayOfWeek.Friday)
+                return;
+
+            //e.Style.ForeColor = Color.Red;
+            //e.ViewInfo.Holiday = true;
+            e.Handled = true;
+
+            if (e.Date.DayOfWeek == DayOfWeek.Thursday)
+            {
+                e.ViewInfo.IsHighlighted = true;
+                return;
+            }
+
+            Brush chosenBrush = Brushes.IndianRed;
+            e.Graphics.DrawString(e.Date.Day.ToString(), e.Style.Font, chosenBrush, e.Bounds);
         }
 
         private void BarEditItem_EditValueChanged(object sender, EventArgs e)
@@ -319,6 +344,11 @@ namespace TestDEControlsII
             {
                 form.ShowDialog(this);
             }
+        }
+
+        private void simpleButtonSetHoliday_Click(object sender, EventArgs e)
+        {
+            customDateNavigator3.SetHoliday(new DateTime(2017, 1, 2));
         }
     }
 }

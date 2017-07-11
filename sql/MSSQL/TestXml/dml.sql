@@ -1,3 +1,5 @@
+// https://www.codeproject.com/Articles/1189488/FOR-XML-Basics-RAW-Mode-of
+
 declare
   @x xml
 

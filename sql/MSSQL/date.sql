@@ -2,14 +2,40 @@ declare
   @t_date date,
   @t_datetime datetime,
   @t_datetime2 datetime2,
+  @t_smalldatetime smalldatetime,
   @t_datetimeoffset datetimeoffset,
-  @t_smalldatetime smalldatetime
+  @t_datetimeoffset2 datetimeoffset
 
 set @t_date=getdate()
 set @t_datetime=getdate()
 set @t_datetime2=getdate()
-set @t_datetimeoffset=getdate()
 set @t_smalldatetime=getdate()
+set @t_datetimeoffset=getdate()
+
+set @t_datetimeoffset = N'20170101 01:13:13.456 +01:00'
+set @t_datetimeoffset2 = N'20170101 02:13:13.456 +02:00'
+select @t_datetimeoffset, @t_datetimeoffset2
+if @t_datetimeoffset = @t_datetimeoffset2
+	print N'oB!'
+else
+	print N'Tampax'
+
+set @t_datetimeoffset = N'20170326 02:13:13.456 +02:00'
+set @t_datetimeoffset2 = N'20170326 01:13:13.456 +01:00'
+select @t_datetimeoffset, @t_datetimeoffset2
+
+if @t_datetimeoffset = @t_datetimeoffset2
+	print N'oB!'
+else
+	print N'Tampax'
+
+set @t_datetimeoffset2 = N'20170326 00:13:13.456 +00:00'
+select @t_datetimeoffset, @t_datetimeoffset2
+
+if @t_datetimeoffset = @t_datetimeoffset2
+	print N'oB!'
+else
+	print N'Tampax'
 
 select
   @t_date,

@@ -111,6 +111,8 @@
     <Compile Include="CustomDateNavigatorWithPainters.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Db\TableWithHierarchy.cs" />
+    <Compile Include="Db\TableWithHugeData.cs" />
     <Compile Include="Db\TestDE.cs" />
     <Compile Include="Db\TestDetail.cs" />
     <Compile Include="Db\TestMaster.cs" />

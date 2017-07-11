@@ -30,6 +30,7 @@ namespace TestDEControlsII
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler3 = new DevExpress.XtraScheduler.TimeRuler();
@@ -42,7 +43,7 @@ namespace TestDEControlsII
             this.simpleButtonGridInWindow = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPageDateEdit = new DevExpress.XtraTab.XtraTabPage();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.barManager = new DevExpress.XtraBars.BarManager();
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
             this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
@@ -60,13 +61,14 @@ namespace TestDEControlsII
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.xtraTabPageDateNavigator = new DevExpress.XtraTab.XtraTabPage();
+            this.customDateNavigator3 = new TestDEControlsII.CustomDateNavigator();
             this.customDateNavigatorWithPainters1 = new TestDEControlsII.CustomDateNavigatorWithPainters();
             this.dateNavigator7 = new DevExpress.XtraScheduler.DateNavigator();
             this.simpleButtonGetDateNavigatorSelects = new DevExpress.XtraEditors.SimpleButton();
             this.customDateNavigator2 = new TestDEControlsII.CustomDateNavigator();
             this.dateNavigator6 = new DevExpress.XtraScheduler.DateNavigator();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage();
+            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             this.dateNavigator5 = new DevExpress.XtraScheduler.DateNavigator();
             this.dateNavigator4 = new DevExpress.XtraScheduler.DateNavigator();
             this.dateNavigator3 = new DevExpress.XtraScheduler.DateNavigator();
@@ -87,6 +89,7 @@ namespace TestDEControlsII
             this.xtraTabPageValidation = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonValidateInWindow1 = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButtonSetHoliday = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -103,6 +106,8 @@ namespace TestDEControlsII
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageDateNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7)).BeginInit();
@@ -275,7 +280,6 @@ namespace TestDEControlsII
             this.barStaticItem3.Caption = "barStaticItem3";
             this.barStaticItem3.Id = 4;
             this.barStaticItem3.Name = "barStaticItem3";
-            this.barStaticItem3.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barEditItem3
             // 
@@ -313,7 +317,6 @@ namespace TestDEControlsII
             this.barStaticItem1.Caption = "barStaticItem1";
             this.barStaticItem1.Id = 0;
             this.barStaticItem1.Name = "barStaticItem1";
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barEditItem1
             // 
@@ -336,7 +339,6 @@ namespace TestDEControlsII
             this.barStaticItem2.Caption = "barStaticItem2";
             this.barStaticItem2.Id = 2;
             this.barStaticItem2.Name = "barStaticItem2";
-            this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barEditItem2
             // 
@@ -400,6 +402,8 @@ namespace TestDEControlsII
             // 
             // xtraTabPageDateNavigator
             // 
+            this.xtraTabPageDateNavigator.Controls.Add(this.simpleButtonSetHoliday);
+            this.xtraTabPageDateNavigator.Controls.Add(this.customDateNavigator3);
             this.xtraTabPageDateNavigator.Controls.Add(this.customDateNavigatorWithPainters1);
             this.xtraTabPageDateNavigator.Controls.Add(this.dateNavigator7);
             this.xtraTabPageDateNavigator.Controls.Add(this.simpleButtonGetDateNavigatorSelects);
@@ -414,9 +418,23 @@ namespace TestDEControlsII
             this.xtraTabPageDateNavigator.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageDateNavigator.Text = "DateNavigator";
             // 
+            // customDateNavigator3
+            // 
+            this.customDateNavigator3.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.customDateNavigator3.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
+            this.customDateNavigator3.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.customDateNavigator3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.customDateNavigator3.DateTime = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
+            this.customDateNavigator3.EditValue = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
+            this.customDateNavigator3.FirstDayOfWeek = System.DayOfWeek.Monday;
+            this.customDateNavigator3.Location = new System.Drawing.Point(1117, 279);
+            this.customDateNavigator3.Name = "customDateNavigator3";
+            this.customDateNavigator3.Size = new System.Drawing.Size(220, 243);
+            this.customDateNavigator3.TabIndex = 10;
+            // 
             // customDateNavigatorWithPainters1
             // 
-            this.customDateNavigatorWithPainters1.AllowAnimatedContentChange = true;
             this.customDateNavigatorWithPainters1.AutoSize = true;
             this.customDateNavigatorWithPainters1.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.customDateNavigatorWithPainters1.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
@@ -440,7 +458,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator7
             // 
-            this.dateNavigator7.AllowAnimatedContentChange = true;
             this.dateNavigator7.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator7.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator7.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -463,7 +480,6 @@ namespace TestDEControlsII
             // 
             // customDateNavigator2
             // 
-            this.customDateNavigator2.AllowAnimatedContentChange = true;
             this.customDateNavigator2.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.customDateNavigator2.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.customDateNavigator2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -479,7 +495,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator6
             // 
-            this.dateNavigator6.AllowAnimatedContentChange = true;
             this.dateNavigator6.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator6.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator6.CalendarAppearance.DayCellSpecialHighlighted.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -518,7 +533,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator5
             // 
-            this.dateNavigator5.AllowAnimatedContentChange = true;
             this.dateNavigator5.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator5.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator5.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -535,7 +549,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator4
             // 
-            this.dateNavigator4.AllowAnimatedContentChange = true;
             this.dateNavigator4.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator4.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator4.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -552,7 +565,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator3
             // 
-            this.dateNavigator3.AllowAnimatedContentChange = true;
             this.dateNavigator3.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator3.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator3.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -569,7 +581,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator2
             // 
-            this.dateNavigator2.AllowAnimatedContentChange = true;
             this.dateNavigator2.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator2.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -586,7 +597,6 @@ namespace TestDEControlsII
             // 
             // dateNavigator1
             // 
-            this.dateNavigator1.AllowAnimatedContentChange = true;
             this.dateNavigator1.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.dateNavigator1.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.dateNavigator1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -612,7 +622,6 @@ namespace TestDEControlsII
             // 
             // calendarControl
             // 
-            this.calendarControl.AllowAnimatedContentChange = true;
             this.calendarControl.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.calendarControl.DateTime = new System.DateTime(2017, 1, 6, 0, 0, 0, 0);
@@ -624,7 +633,6 @@ namespace TestDEControlsII
             // 
             // customCalendarControl1
             // 
-            this.customCalendarControl1.AllowAnimatedContentChange = true;
             this.customCalendarControl1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.customCalendarControl1.DateTime = new System.DateTime(2017, 1, 19, 0, 0, 0, 0);
@@ -645,7 +653,6 @@ namespace TestDEControlsII
             // 
             // customDateNavigator1
             // 
-            this.customDateNavigator1.AllowAnimatedContentChange = true;
             this.customDateNavigator1.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.customDateNavigator1.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
             this.customDateNavigator1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -741,6 +748,15 @@ namespace TestDEControlsII
             this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
             // 
+            // simpleButtonSetHoliday
+            // 
+            this.simpleButtonSetHoliday.Location = new System.Drawing.Point(77, 331);
+            this.simpleButtonSetHoliday.Name = "simpleButtonSetHoliday";
+            this.simpleButtonSetHoliday.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonSetHoliday.TabIndex = 11;
+            this.simpleButtonSetHoliday.Text = "Set Holiday";
+            this.simpleButtonSetHoliday.Click += new System.EventHandler(this.simpleButtonSetHoliday_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -773,6 +789,8 @@ namespace TestDEControlsII
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
             this.xtraTabPageDateNavigator.ResumeLayout(false);
             this.xtraTabPageDateNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7.CalendarTimeProperties)).EndInit();
@@ -867,6 +885,8 @@ namespace TestDEControlsII
         private DevExpress.XtraEditors.SimpleButton simpleButtonTabControlInWindow1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageValidation;
         private DevExpress.XtraEditors.SimpleButton simpleButtonValidateInWindow1;
+        private CustomDateNavigator customDateNavigator3;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonSetHoliday;
     }
 }
 

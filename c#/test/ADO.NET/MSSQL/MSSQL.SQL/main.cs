@@ -111,6 +111,10 @@ namespace MSSQLSQL
 		    decimal
 		        tmpDecimal;
 
+		    DateTimeOffset
+		        dateTimeOffset,
+		        dateTimeOffset2;
+
 			try
 			{
 				try
@@ -130,8 +134,8 @@ namespace MSSQLSQL
                         //ConnectionString = "Server=.;Database=ch;User ID=test_login;Password=12==3";
                         //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
                         //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
-                        //ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
-						ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
+                        ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
+						//ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensions;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensionsav;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=fobos_web;Initial Catalog=CMS_Connect;User Id=sa;Pwd=developer";
@@ -235,7 +239,7 @@ namespace MSSQLSQL
                         cmd.Parameters.Add("@FTime5", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
                         cmd.Parameters.Add("@FTime6", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
                         cmd.Parameters.Add("@FTime7", SqlDbType.Time).Value = new TimeSpan(0, 21, 13, 13, 456);
-                        cmd.Parameters.Add("@FDateTimeOffset", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 3, 26, 2, 13, 13, 456, new TimeSpan(0, 120, 0));
                         cmd.Parameters.Add("@FDateTimeOffset0", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
                         cmd.Parameters.Add("@FDateTimeOffset1", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
                         cmd.Parameters.Add("@FDateTimeOffset2", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
@@ -243,9 +247,23 @@ namespace MSSQLSQL
                         cmd.Parameters.Add("@FDateTimeOffset4", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
                         cmd.Parameters.Add("@FDateTimeOffset5", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
                         cmd.Parameters.Add("@FDateTimeOffset6", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
-                        cmd.Parameters.Add("@FDateTimeOffset7", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 1, 5, 21, 13, 13, 456, new TimeSpan(0, 120, 0));
+                        cmd.Parameters.Add("@FDateTimeOffset7", SqlDbType.DateTimeOffset).Value = new DateTimeOffset(2017, 3, 26, 1, 13, 13, 456, new TimeSpan(0, 60, 0));
                         cmd.CommandText = "update TestTable4Date set FDate = @FDate, FDateTime = @FDateTime, FDateTime2 = @FDateTime2, FSmallDateTime = @FSmallDateTime, FTime = @FTime, FTime0 = @FTime0, FTime1 = @FTime1, FTime2 = @FTime2, FTime3 = @FTime3, FTime4 = @FTime4, FTime5 = @FTime5, FTime6 = @FTime6, FTime7 = @FTime7, FDateTimeOffset = @FDateTimeOffset, FDateTimeOffset0 = @FDateTimeOffset0, FDateTimeOffset1 = @FDateTimeOffset1, FDateTimeOffset2 = @FDateTimeOffset2, FDateTimeOffset3 = @FDateTimeOffset3, FDateTimeOffset4 = @FDateTimeOffset4, FDateTimeOffset5 = @FDateTimeOffset5, FDateTimeOffset6 = @FDateTimeOffset6, FDateTimeOffset7 = @FDateTimeOffset7 where Id = @Id";
 						tmpObject = cmd.ExecuteScalar();
+
+						cmd.Parameters.Clear();
+						cmd.Parameters.Add("@Id", SqlDbType.Int).Value = 1;
+                        cmd.CommandText = "select FDateTimeOffset from TestTable4Date where Id = @Id";
+                        tmpObject = cmd.ExecuteScalar();
+                        dateTimeOffset = tmpObject != null && !Convert.IsDBNull(tmpObject) ? (DateTimeOffset)tmpObject : new DateTimeOffset();
+
+                        cmd.CommandText = "select FDateTimeOffset7 from TestTable4Date where Id = @Id";
+                        tmpObject = cmd.ExecuteScalar();
+                        dateTimeOffset2 = tmpObject != null && !Convert.IsDBNull(tmpObject) ? (DateTimeOffset)tmpObject : new DateTimeOffset();
+
+                        Console.WriteLine($"dateTimeOffset {(dateTimeOffset == dateTimeOffset2 ? "=" : "!")}= dateTimeOffset2"); // ==
+				        Console.WriteLine($"dateTimeOffset.Equals(dateTimeOffset2) = {dateTimeOffset.Equals(dateTimeOffset2)}"); // True
+                        Console.WriteLine($"dateTimeOffset.EqualsExact(dateTimeOffset2) = {dateTimeOffset.EqualsExact(dateTimeOffset2)}"); // False
                     #endif
 
                     #if ANY_TEST
