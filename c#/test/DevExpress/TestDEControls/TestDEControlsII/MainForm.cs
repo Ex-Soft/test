@@ -330,6 +330,14 @@ namespace TestDEControlsII
             }
         }
 
+        private void simpleButtonFilterCustom_Click(object sender, EventArgs e)
+        {
+            using (var form = new CustomGridForm1())
+            {
+                form.ShowDialog(this);
+            }
+        }
+
         private void simpleButtonTabControlInWindow1_Click(object sender, EventArgs e)
         {
             using (var form = new TabControlForm1())
