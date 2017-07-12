@@ -12,6 +12,14 @@ namespace TestXPO.Db
         long
             _id;
 
+        string
+            _fVarChar,
+            _fNVarChar;
+
+        DateTime?
+            _fDate,
+            _fDateTime;
+
         XmlDocument
             _doc;
 
@@ -26,6 +34,30 @@ namespace TestXPO.Db
         {
             get { return _id; }
             set { SetPropertyValue("Id", ref _id, value); }
+        }
+
+        public string FVarChar
+        {
+            get { return _fVarChar; }
+            set { SetPropertyValue("FVarChar", ref _fVarChar, value); }
+        }
+
+        public string FNVarChar
+        {
+            get { return _fNVarChar; }
+            set { SetPropertyValue("FNVarChar", ref _fNVarChar, value); }
+        }
+
+        public DateTime? FDate
+        {
+            get { return _fDate; }
+            set { SetPropertyValue("FDate", ref _fDate, value); }
+        }
+
+        public DateTime? FDateTime
+        {
+            get { return _fDateTime; }
+            set { SetPropertyValue("FDateTime", ref _fDateTime, value); }
         }
 
         [Persistent("FXml")]

@@ -4,9 +4,9 @@
 
 //#define TEST_DUPLICATES
 //#define TEST_MEMBER_EXPRESSION
-//#define TEST_PARSE
+#define TEST_PARSE
 //#define TEST_CREATE_ACCESSOR
-#define TEST_CLOSURE
+//#define TEST_CLOSURE
 //#define ANY_TEST
 
 using System;

@@ -99,6 +99,20 @@ namespace TestDEControlsII
             });
 
             customDateNavigator3.CustomDrawDayNumberCell += CustomDateNavigator3OnCustomDrawDayNumberCell;
+
+            DateTime
+                start = DateTime.Now.Date.AddDays(-2),
+                end = DateTime.Now.Date.AddDays(/*2*/25);
+
+            TimeSpan
+                duration = end - start;
+
+            //dateNavigator8.SchedulerControl.LimitInterval = new TimeInterval(start, end);
+            //dateNavigator8.SchedulerControl.LimitInterval = new TimeInterval(start, duration);
+            
+            dateNavigator8.SchedulerControl.LimitInterval.Start = start;
+            dateNavigator8.SchedulerControl.LimitInterval.End = end;
+            dateNavigator8.SchedulerControl.LimitInterval.AllDay = true;
         }
 
         private void CustomDateNavigator3OnCustomDrawDayNumberCell(object sender, CustomDrawDayNumberCellEventArgs e)

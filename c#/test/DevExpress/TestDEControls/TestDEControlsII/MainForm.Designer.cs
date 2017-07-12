@@ -34,6 +34,9 @@ namespace TestDEControlsII
             DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler3 = new DevExpress.XtraScheduler.TimeRuler();
+            DevExpress.XtraScheduler.TimeRuler timeRuler4 = new DevExpress.XtraScheduler.TimeRuler();
+            DevExpress.XtraScheduler.TimeRuler timeRuler5 = new DevExpress.XtraScheduler.TimeRuler();
+            DevExpress.XtraScheduler.TimeRuler timeRuler6 = new DevExpress.XtraScheduler.TimeRuler();
             this.pnlFill = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageGridInWindow = new DevExpress.XtraTab.XtraTabPage();
@@ -61,14 +64,15 @@ namespace TestDEControlsII
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.xtraTabPageDateNavigator = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButtonSetHoliday = new DevExpress.XtraEditors.SimpleButton();
             this.customDateNavigator3 = new TestDEControlsII.CustomDateNavigator();
+            this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
+            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             this.customDateNavigatorWithPainters1 = new TestDEControlsII.CustomDateNavigatorWithPainters();
             this.dateNavigator7 = new DevExpress.XtraScheduler.DateNavigator();
             this.simpleButtonGetDateNavigatorSelects = new DevExpress.XtraEditors.SimpleButton();
             this.customDateNavigator2 = new TestDEControlsII.CustomDateNavigator();
             this.dateNavigator6 = new DevExpress.XtraScheduler.DateNavigator();
-            this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             this.dateNavigator5 = new DevExpress.XtraScheduler.DateNavigator();
             this.dateNavigator4 = new DevExpress.XtraScheduler.DateNavigator();
             this.dateNavigator3 = new DevExpress.XtraScheduler.DateNavigator();
@@ -78,6 +82,8 @@ namespace TestDEControlsII
             this.calendarControl = new DevExpress.XtraEditors.Controls.CalendarControl();
             this.customCalendarControl1 = new TestDEControlsII.CustomCalendarControl();
             this.xtraTabPageSchedulerControl = new DevExpress.XtraTab.XtraTabPage();
+            this.schedulerControl2 = new DevExpress.XtraScheduler.SchedulerControl();
+            this.dateNavigator8 = new DevExpress.XtraScheduler.DateNavigator();
             this.customDateNavigator1 = new TestDEControlsII.CustomDateNavigator();
             this.xtraTabPageBarInWindow = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonBarInWindow = new DevExpress.XtraEditors.SimpleButton();
@@ -89,7 +95,6 @@ namespace TestDEControlsII
             this.xtraTabPageValidation = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButtonValidateInWindow1 = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonSetHoliday = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).BeginInit();
             this.pnlFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -108,6 +113,8 @@ namespace TestDEControlsII
             this.xtraTabPageDateNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7)).BeginInit();
@@ -116,8 +123,6 @@ namespace TestDEControlsII
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator6.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator5.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator4)).BeginInit();
@@ -132,6 +137,9 @@ namespace TestDEControlsII
             ((System.ComponentModel.ISupportInitialize)(this.calendarControl.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customCalendarControl1.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageSchedulerControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator8.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1.CalendarTimeProperties)).BeginInit();
             this.xtraTabPageBarInWindow.SuspendLayout();
@@ -418,6 +426,15 @@ namespace TestDEControlsII
             this.xtraTabPageDateNavigator.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageDateNavigator.Text = "DateNavigator";
             // 
+            // simpleButtonSetHoliday
+            // 
+            this.simpleButtonSetHoliday.Location = new System.Drawing.Point(77, 331);
+            this.simpleButtonSetHoliday.Name = "simpleButtonSetHoliday";
+            this.simpleButtonSetHoliday.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonSetHoliday.TabIndex = 11;
+            this.simpleButtonSetHoliday.Text = "Set Holiday";
+            this.simpleButtonSetHoliday.Click += new System.EventHandler(this.simpleButtonSetHoliday_Click);
+            // 
             // customDateNavigator3
             // 
             this.customDateNavigator3.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
@@ -430,8 +447,26 @@ namespace TestDEControlsII
             this.customDateNavigator3.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.customDateNavigator3.Location = new System.Drawing.Point(1117, 279);
             this.customDateNavigator3.Name = "customDateNavigator3";
+            this.customDateNavigator3.SchedulerControl = this.schedulerControl1;
             this.customDateNavigator3.Size = new System.Drawing.Size(220, 243);
             this.customDateNavigator3.TabIndex = 10;
+            // 
+            // schedulerControl1
+            // 
+            this.schedulerControl1.DataStorage = this.schedulerStorage;
+            this.schedulerControl1.Location = new System.Drawing.Point(71, 40);
+            this.schedulerControl1.MenuManager = this.barManager;
+            this.schedulerControl1.Name = "schedulerControl1";
+            this.schedulerControl1.Size = new System.Drawing.Size(400, 200);
+            this.schedulerControl1.Start = new System.DateTime(2016, 12, 29, 0, 0, 0, 0);
+            this.schedulerControl1.TabIndex = 0;
+            this.schedulerControl1.Text = "schedulerControl";
+            this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler1);
+            this.schedulerControl1.Views.FullWeekView.Enabled = true;
+            this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler2);
+            this.schedulerControl1.Views.WeekView.Enabled = false;
+            this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
+            this.schedulerControl1.CustomDrawDayHeader += new DevExpress.XtraScheduler.CustomDrawObjectEventHandler(this.schedulerControl1_CustomDrawDayHeader);
             // 
             // customDateNavigatorWithPainters1
             // 
@@ -448,6 +483,7 @@ namespace TestDEControlsII
             this.customDateNavigatorWithPainters1.Location = new System.Drawing.Point(968, 279);
             this.customDateNavigatorWithPainters1.MonthHeaderPadding = new System.Windows.Forms.Padding(-12);
             this.customDateNavigatorWithPainters1.Name = "customDateNavigatorWithPainters1";
+            this.customDateNavigatorWithPainters1.SchedulerControl = this.schedulerControl1;
             this.customDateNavigatorWithPainters1.ShowFooter = false;
             this.customDateNavigatorWithPainters1.ShowHeader = false;
             this.customDateNavigatorWithPainters1.ShowMonthHeaders = false;
@@ -466,6 +502,7 @@ namespace TestDEControlsII
             this.dateNavigator7.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.dateNavigator7.Location = new System.Drawing.Point(968, 8);
             this.dateNavigator7.Name = "dateNavigator7";
+            this.dateNavigator7.SchedulerControl = this.schedulerControl1;
             this.dateNavigator7.Size = new System.Drawing.Size(220, 243);
             this.dateNavigator7.TabIndex = 8;
             // 
@@ -490,6 +527,7 @@ namespace TestDEControlsII
             this.customDateNavigator2.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.customDateNavigator2.Location = new System.Drawing.Point(728, 279);
             this.customDateNavigator2.Name = "customDateNavigator2";
+            this.customDateNavigator2.SchedulerControl = this.schedulerControl1;
             this.customDateNavigator2.Size = new System.Drawing.Size(220, 243);
             this.customDateNavigator2.TabIndex = 6;
             // 
@@ -514,22 +552,6 @@ namespace TestDEControlsII
             this.dateNavigator6.SelectionMode = DevExpress.XtraEditors.Repository.CalendarSelectionMode.Single;
             this.dateNavigator6.Size = new System.Drawing.Size(220, 243);
             this.dateNavigator6.TabIndex = 3;
-            // 
-            // schedulerControl1
-            // 
-            this.schedulerControl1.DataStorage = this.schedulerStorage;
-            this.schedulerControl1.Location = new System.Drawing.Point(71, 40);
-            this.schedulerControl1.Name = "schedulerControl1";
-            this.schedulerControl1.Size = new System.Drawing.Size(400, 200);
-            this.schedulerControl1.Start = new System.DateTime(2016, 12, 29, 0, 0, 0, 0);
-            this.schedulerControl1.TabIndex = 0;
-            this.schedulerControl1.Text = "schedulerControl";
-            this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler1);
-            this.schedulerControl1.Views.FullWeekView.Enabled = true;
-            this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler2);
-            this.schedulerControl1.Views.WeekView.Enabled = false;
-            this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
-            this.schedulerControl1.CustomDrawDayHeader += new DevExpress.XtraScheduler.CustomDrawObjectEventHandler(this.schedulerControl1_CustomDrawDayHeader);
             // 
             // dateNavigator5
             // 
@@ -607,6 +629,7 @@ namespace TestDEControlsII
             this.dateNavigator1.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.dateNavigator1.Location = new System.Drawing.Point(8, 8);
             this.dateNavigator1.Name = "dateNavigator1";
+            this.dateNavigator1.SchedulerControl = this.schedulerControl1;
             this.dateNavigator1.Size = new System.Drawing.Size(220, 243);
             this.dateNavigator1.TabIndex = 0;
             this.dateNavigator1.CustomDrawDayNumberCell += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.dateNavigator_CustomDrawDayNumberCell);
@@ -645,11 +668,50 @@ namespace TestDEControlsII
             // 
             // xtraTabPageSchedulerControl
             // 
+            this.xtraTabPageSchedulerControl.Controls.Add(this.schedulerControl2);
+            this.xtraTabPageSchedulerControl.Controls.Add(this.dateNavigator8);
             this.xtraTabPageSchedulerControl.Controls.Add(this.customDateNavigator1);
             this.xtraTabPageSchedulerControl.Controls.Add(this.schedulerControl1);
             this.xtraTabPageSchedulerControl.Name = "xtraTabPageSchedulerControl";
             this.xtraTabPageSchedulerControl.Size = new System.Drawing.Size(1446, 580);
             this.xtraTabPageSchedulerControl.Text = "SchedulerControl";
+            // 
+            // schedulerControl2
+            // 
+            this.schedulerControl2.DataStorage = this.schedulerStorage;
+            this.schedulerControl2.Location = new System.Drawing.Point(71, 303);
+            this.schedulerControl2.Name = "schedulerControl2";
+            this.schedulerControl2.Size = new System.Drawing.Size(400, 200);
+            this.schedulerControl2.Start = new System.DateTime(2017, 6, 15, 0, 0, 0, 0);
+            this.schedulerControl2.TabIndex = 9;
+            this.schedulerControl2.Text = "schedulerControl";
+            this.schedulerControl2.Views.DayView.TimeRulers.Add(timeRuler4);
+            this.schedulerControl2.Views.FullWeekView.Enabled = true;
+            this.schedulerControl2.Views.FullWeekView.TimeRulers.Add(timeRuler5);
+            this.schedulerControl2.Views.WeekView.Enabled = false;
+            this.schedulerControl2.Views.WorkWeekView.TimeRulers.Add(timeRuler6);
+            // 
+            // dateNavigator8
+            // 
+            this.dateNavigator8.AllowClickInactiveDays = false;
+            this.dateNavigator8.CalendarAppearance.DayCellSpecial.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.dateNavigator8.CalendarAppearance.DayCellSpecial.Options.UseFont = true;
+            this.dateNavigator8.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNavigator8.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dateNavigator8.FirstDayOfWeek = System.DayOfWeek.Monday;
+            this.dateNavigator8.InactiveDaysVisibility = DevExpress.XtraEditors.Controls.CalendarInactiveDaysVisibility.Hidden;
+            this.dateNavigator8.Location = new System.Drawing.Point(530, 303);
+            this.dateNavigator8.Name = "dateNavigator8";
+            this.dateNavigator8.SchedulerControl = this.schedulerControl2;
+            this.dateNavigator8.ShowFooter = false;
+            this.dateNavigator8.ShowMonthHeaders = false;
+            this.dateNavigator8.ShowMonthNavigationButtons = DevExpress.Utils.DefaultBoolean.False;
+            this.dateNavigator8.ShowTodayButton = false;
+            this.dateNavigator8.ShowWeekNumbers = false;
+            this.dateNavigator8.ShowYearNavigationButtons = DevExpress.Utils.DefaultBoolean.False;
+            this.dateNavigator8.Size = new System.Drawing.Size(213, 243);
+            this.dateNavigator8.TabIndex = 8;
             // 
             // customDateNavigator1
             // 
@@ -748,15 +810,6 @@ namespace TestDEControlsII
             this.pnlBottom.Size = new System.Drawing.Size(1456, 50);
             this.pnlBottom.TabIndex = 1;
             // 
-            // simpleButtonSetHoliday
-            // 
-            this.simpleButtonSetHoliday.Location = new System.Drawing.Point(77, 331);
-            this.simpleButtonSetHoliday.Name = "simpleButtonSetHoliday";
-            this.simpleButtonSetHoliday.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonSetHoliday.TabIndex = 11;
-            this.simpleButtonSetHoliday.Text = "Set Holiday";
-            this.simpleButtonSetHoliday.Click += new System.EventHandler(this.simpleButtonSetHoliday_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -791,6 +844,8 @@ namespace TestDEControlsII
             this.xtraTabPageDateNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigatorWithPainters1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator7.CalendarTimeProperties)).EndInit();
@@ -799,8 +854,6 @@ namespace TestDEControlsII
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator6.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator5.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator4.CalendarTimeProperties)).EndInit();
@@ -816,6 +869,9 @@ namespace TestDEControlsII
             ((System.ComponentModel.ISupportInitialize)(this.calendarControl.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customCalendarControl1.CalendarTimeProperties)).EndInit();
             this.xtraTabPageSchedulerControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator8.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateNavigator8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customDateNavigator1)).EndInit();
             this.xtraTabPageBarInWindow.ResumeLayout(false);
@@ -887,6 +943,8 @@ namespace TestDEControlsII
         private DevExpress.XtraEditors.SimpleButton simpleButtonValidateInWindow1;
         private CustomDateNavigator customDateNavigator3;
         private DevExpress.XtraEditors.SimpleButton simpleButtonSetHoliday;
+        private DevExpress.XtraScheduler.SchedulerControl schedulerControl2;
+        private DevExpress.XtraScheduler.DateNavigator dateNavigator8;
     }
 }
 

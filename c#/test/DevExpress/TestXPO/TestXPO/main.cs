@@ -242,6 +242,16 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                         criteria,
                         criteriaII;
 
+                    criteria = CriteriaOperator.Parse("Len(FNVarChar) != 0");
+                    xpCollection = new XPCollection(typeof(TestTable4Types), criteria);
+                    foreach (TestDetail item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
+
+                    criteria = CriteriaOperator.Parse("Len(IsNull(FNVarChar, '')) != 0");
+                    xpCollection = new XPCollection(typeof(TestTable4Types), criteria);
+                    foreach (TestDetail item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
+
                     iCollection = session.GetObjectsByKey(session.GetClassInfo<TestDetail>(), new[] {1L, 3L}, false);
                     iCollection = session.GetObjectsByKey(session.GetClassInfo<TestDetail>(), new[] {1L, 2L, 3L}, false);
 
