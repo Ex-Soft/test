@@ -1,8 +1,15 @@
-﻿//#define INVALID_CAST_EXCEPTION
-#define PREVENT_INVALID_CAST_EXCEPTION
+﻿#define INVALID_CAST_EXCEPTION
+//#define INVALID_CAST_EXCEPTION_DATA_TABLE
+//#define PREVENT_INVALID_CAST_EXCEPTION
 
 using System.Collections.Generic;
-using System.Data;
+
+#if INVALID_CAST_EXCEPTION_DATA_TABLE
+    using System.Data;
+#else
+    using System.Collections;
+#endif
+
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
@@ -22,7 +29,11 @@ namespace TestDEControlsII
             InitializeComponent();
 
             #if INVALID_CAST_EXCEPTION
-                gridControl.DataSource = CreateDataTable();
+                #if INVALID_CAST_EXCEPTION_DATA_TABLE
+                    gridControl.DataSource = CreateDataTable();
+                #else
+                    gridControl.DataSource = CreateCollection();
+                #endif
             #else
                 gridControl.DataSource = CreateData();                
             #endif
@@ -61,26 +72,38 @@ namespace TestDEControlsII
             return result;
         }
 
-        private static DataTable CreateDataTable()
-        {
-            var result = new DataTable();
-
-            var tmpDataColumn = result.Columns.Add(ValueMemberFieldName, typeof(int));
-            tmpDataColumn.AllowDBNull = false;
-            tmpDataColumn.Unique = true;
-
-            result.Columns.Add(DisplayMemberFieldName, typeof(string));
-
-            for (var i = 0; i < 26; ++i)
+        #if INVALID_CAST_EXCEPTION_DATA_TABLE
+            private static DataTable CreateDataTable()
             {
-                var dataRow = result.NewRow();
-                dataRow[ValueMemberFieldName] = i;
-                dataRow[DisplayMemberFieldName] = new string((char)(i + 0x41), 1);
-                result.Rows.Add(dataRow);
-            }
+                var result = new DataTable();
 
-            return result;
-        }
+                var tmpDataColumn = result.Columns.Add(ValueMemberFieldName, typeof(int));
+                tmpDataColumn.AllowDBNull = false;
+                tmpDataColumn.Unique = true;
+
+                result.Columns.Add(DisplayMemberFieldName, typeof(string));
+
+                for (var i = 0; i < 26; ++i)
+                {
+                    var dataRow = result.NewRow();
+                    dataRow[ValueMemberFieldName] = i;
+                    dataRow[DisplayMemberFieldName] = new string((char)(i + 0x41), 1);
+                    result.Rows.Add(dataRow);
+                }
+
+                return result;
+            }
+        #else
+            private static ArrayList CreateCollection()
+            {
+                var result = new ArrayList();
+
+                for (var i = 0; i < 26; ++i)
+                    result.Add(new Data(i, new string((char)(i + 0x41), 1)));
+
+                return result;
+            }
+        #endif
     }
 
     class Data
