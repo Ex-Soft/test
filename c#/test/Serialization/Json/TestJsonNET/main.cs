@@ -1,8 +1,11 @@
-﻿#define TEST_CLASS_WITH_OBJECT_PROPERTY
+﻿//#define TEST_CLASS_WITH_OBJECT_PROPERTY
+#define TEST_DATE
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace TestJsonNET
 {
@@ -15,6 +18,21 @@ namespace TestJsonNET
 
             try
             {
+                #if TEST_DATE
+                    // http://www.newtonsoft.com/json/help/html/DatesInJSON.htm
+
+                    ClassWithDates classWithDates = new ClassWithDates { FDateOnly = new DateTime(2016, 2, 29), FDateTime = new DateTime(2016, 2, 29, 23, 53, 38), FDateTimeOffset = new DateTimeOffset(2016, 2, 29, 23, 53, 38, new TimeSpan(0, 3, 0)) };
+                    tmpString = JsonConvert.SerializeObject(classWithDates); // {"FDateOnly":"2016-02-29T00:00:00", "FDateTime":"2016-02-29T23:53:38", "FDateTimeOffset":"2016-02-29T23:53:38+00:03"}
+                    var classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+
+                    JsonSerializerSettings microsoftDateFormatSettings = new JsonSerializerSettings { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat };
+                    tmpString = JsonConvert.SerializeObject(classWithDates, microsoftDateFormatSettings); // {"FDateOnly":"\/Date(1456696800000+0200)\/", "FDateTime":"\/Date(1456782818000+0200)\/", "FDateTimeOffset":"\/Date(1456789838000+0003)\/"}
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+
+                    tmpString = JsonConvert.SerializeObject(classWithDates, new JavaScriptDateTimeConverter()); // {"FDateOnly":new Date(1456696800000), "FDateTime":new Date(1456782818000), "FDateTimeOffset":new Date(1456789838000)}
+                    //classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+                #endif
+
                 #if TEST_CLASS_WITH_OBJECT_PROPERTY
                     var raw = "{\"Code\":20002,\"Data\":28147497734082}";
                     var classWithObjectProperty = JsonConvert.DeserializeObject<ClassWithObjectProperty>(raw);

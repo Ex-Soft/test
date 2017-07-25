@@ -267,6 +267,18 @@ namespace TestIEnumerable
                 new D { PString = "[4]", PInt = 4, LD = new List<D> { new D { PString = "[4][1]", PInt = 41, LD = new List<D> { new D { PString = "[4][1][1]", PInt = 411, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][2]", PInt = 412, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][3]", PInt = 413, PBool1 = false, PBool2 = false }, new D { PString = "[4][1][4]", PInt = 414, PBool1 = false, PBool2 = false } } }, new D { PString = "[4][2]", PInt = 42 }, new D { PString = "[4][3]", PInt = 43 } } }
             };
 
+            var subListOfD = listOfD.Where(outer => outer.LD.All(inner => inner.PInt != 11) && outer.LD.All(inner => inner.PInt != 41)).ToList();
+
+            subListOfD = (from outer in listOfD
+                let inner = outer.LD
+                where inner.All(item => item.PInt != 11) && inner.All(item => item.PInt != 41)
+                select outer).ToList();
+
+            subListOfD = listOfD
+                .Select(outer => new { outer, outer.LD})
+                .Where(tmpAkaLet => tmpAkaLet.LD.All(inner => inner.PInt != 11) && tmpAkaLet.LD.All(inner => inner.PInt != 41)).Select(tmpAkaLet => tmpAkaLet.outer).ToList();
+
+
             listOfD = new List<D>
             {
                 new D { PString = "q", PInt = 10 },

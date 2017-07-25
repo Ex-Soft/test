@@ -51,6 +51,8 @@ namespace TestSemaphoreSlim
             Task.WaitAll(tasks);
 
             Console.WriteLine("Main thread exits.");
+
+            Console.ReadLine();
         }
     }
 }
