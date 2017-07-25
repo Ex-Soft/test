@@ -7,6 +7,7 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using TestDEControlsII.Db;
+using ColumnFilterPopupMode = DevExpress.XtraGrid.Columns.ColumnFilterPopupMode;
 
 namespace TestDEControlsII
 {
@@ -16,21 +17,22 @@ namespace TestDEControlsII
         {
             InitializeComponent();
 
-            //gridControl.DataSource = CreateData();
+            gridControl.DataSource = CreateData();
             //gridControl.DataSource = CreateDataTable();
             //gridControl.DataSource = new XPServerCollectionSource(unitOfWork, unitOfWork.GetClassInfo<TableWithHugeData>());
             //gridControl.DataSource = new XPCollection(unitOfWork, unitOfWork.GetClassInfo<TableWithHugeData>());
-            gridControl.DataSource = new XPCollection(unitOfWork, unitOfWork.GetClassInfo<TableWithHierarchy>());
+            //gridControl.DataSource = new XPCollection(unitOfWork, unitOfWork.GetClassInfo<TableWithHierarchy>());
             //gridControl.DataSource = new XPCollection<TableWithHierarchy>(unitOfWork);
 
             //gridView.OptionsFilter.ColumnFilterPopupMaxRecordsCount = 10;
+            gridView.OptionsFilter.ColumnFilterPopupMode = ColumnFilterPopupMode.Classic;
             //gridView.OptionsCustomization.AllowFilter = false;
 
             //gridView.PopulateColumns();
 
             string
-                valueMemberFieldName = "Parent!",
-                //valueMemberFieldName = "Id",
+                //valueMemberFieldName = "Parent!",
+                valueMemberFieldName = "Id",
                 displayMemberFieldName = "Val";
 
             GridColumn gridColumn;

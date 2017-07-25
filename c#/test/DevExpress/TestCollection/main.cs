@@ -46,6 +46,9 @@ namespace TestCollection
                 xpCollectionI,
                 xpCollectionII;
 
+            XPCollection<Staff>
+                xpCollectionStaff;
+
             CriteriaOperator
                 criteria;
 
@@ -77,11 +80,29 @@ namespace TestCollection
 
             #if TEST_GENERICS
                 xpCollectionI = new XPCollection(sessionI, typeof(Staff));
-                //var xpCollectionStaff = xpCollectionI as XPCollection<Staff>;
+                //xpCollectionStaff = xpCollectionI as XPCollection<Staff>; // Error CS0039 Cannot convert type 'DevExpress.Xpo.XPCollection' to 'DevExpress.Xpo.XPCollection<TestCollection.Db.Staff>' via a reference conversion, boxing conversion, unboxing conversion, wrapping conversion, or null type conversion
+
 
                 Type genericXPCollectionStaff = typeof(XPCollection<>).MakeGenericType(staffClassInfo.ClassType);
-                var xpCollectionStaff = Activator.CreateInstance(genericXPCollectionStaff, sessionI);
-                //var xpCollectionStaff = new XPCollection<Staff>(sessionI);
+                xpCollectionStaff = Activator.CreateInstance(genericXPCollectionStaff, sessionI) as XPCollection<Staff>;
+                xpCollectionStaff = new XPCollection<Staff>(sessionI);
+
+                genericXPCollectionStaff = xpCollectionStaff.GetType();
+                if (genericXPCollectionStaff.IsGenericType)
+                {
+                    var genericTypeDefinition = genericXPCollectionStaff.GetGenericTypeDefinition();
+                    if (genericTypeDefinition == typeof(XPCollection<>))
+                    {
+                        Type type = genericXPCollectionStaff.GetGenericArguments()[0];
+                        //type = genericXPCollectionStaff.GetProperty("Item").PropertyType;
+                        type = genericXPCollectionStaff.GetTypeInfo().GenericTypeArguments[0];
+                    }
+
+                    var xpBaseCollection = (XPBaseCollection)xpCollectionStaff;
+                }
+
+                var customCollectionStaff = new CustomCollection<Staff>(sessionI);
+                var customCollection = (XPBaseCollection)customCollectionStaff;
 
                 Type type1 = xpCollectionI.GetType();
                 Type elementType = typeof(object);

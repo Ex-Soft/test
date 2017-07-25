@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 using DevExpress.Utils.About;
+using DevExpress.XtraEditors;
 
 namespace TestDEControlsII
 {
@@ -21,6 +22,9 @@ namespace TestDEControlsII
                 fieldInfo.SetValue(null, true);
 
             #endregion
+
+
+            WindowsFormsSettings.ColumnFilterPopupMode = ColumnFilterPopupMode.Classic;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
