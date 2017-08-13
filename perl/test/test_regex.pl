@@ -99,3 +99,23 @@ print "\$\& = $&\n"; #.625
 print "\$\' = $'\n";
 print "\n";
 
+$TestStr="<html><title>test</title><body><div class=\"olol\">блаблабла</div><div class=\"olol\">блаблабла</div></body></html>";
+$TestStr=~s/(?<=<div class="olol">).*?(?=<\/div>)/$&<img src=\"http:\/\/www.sql.ru\/forum\/images\/smoke.gif\">/gi;
+print "\$\` = $`\n";
+print "\$1 = $1\n";
+print "\$\& = $&\n";
+print "\$\' = $'\n";
+print $TestStr;
+print "\n";
+print "\n";
+
+$TestStr="<html><title>test</title><body><div class=\"olol\">блаблабла</div><div class=\"olol\">блаблабла</div></body></html>";
+$TestStr=~s/(<div.*?>)(.*?)(?=<\/div>)/$1$2<img src=\"http:\/\/www.sql.ru\/forum\/images\/smoke.gif\">/gi;
+print "\$\` = $`\n";
+print "\$1 = $1\n";
+print "\$2 = $2\n";
+print "\$\& = $&\n";
+print "\$\' = $'\n";
+print $TestStr;
+print "\n";
+

@@ -37,6 +37,11 @@ bld/
 [Oo]bj/
 *.lock.json
 project.lock.json
+*.a
+*.o
+*.so
+result
+rezult
 
 # Visual Studo 2015 cache/options directory
 .vs/
@@ -74,3 +79,5 @@ _ReSharper*
 ReadMe.*
 UpgradeLog.htm
 .sqlplan
+.cpp~
+makefile~

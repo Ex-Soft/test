@@ -1,0 +1,5 @@
+#!/bin/bash
+
+javac -classpath .:/usr/lib/openoffice.org/ure/share/java/ridl.jar:/usr/lib/openoffice.org/ure/share/java/jurt.jar:/usr/lib/openoffice.org/ure/share/java/juh.jar:/usr/lib/openoffice.org/share/java/java_uno.jar:/usr/lib/openoffice.org/share/java/unoloader.jar TestWriter.java
+#javac -classpath .:/usr/lib/openoffice.org/ure/share/java/ridl.jar:/usr/lib/openoffice.org/ure/share/java/jurt.jar:/usr/lib/openoffice.org3/program/juh.jar:/usr/lib/openoffice.org/share/java/java_uno.jar:/usr/lib/openoffice.org/share/java/unoloader.jar TestWriter.java
+

@@ -1,0 +1,34 @@
+#!/usr/bin/lua
+
+print("Hello, World!")
+
+print("Who A U User(1) Admin(2)?")
+while true do
+	local line=io.read()
+	print(line)
+	if line=="1" then
+		print("U R user")
+		break
+	end
+	if line=="2" then
+		print("U R Admin")
+		print("U'r password:")
+		local pwd=io.read()
+		if pwd=="123" then
+			print("U've logged in successfully as admin")
+		else
+			print("U R wrong!!!")
+		end
+		break
+	end
+	if line=="" then
+		print("line==\"\"")
+		break
+	end
+	if line==nil then
+		print("line==nil")
+		break
+	end
+	print("Try again")
+end
+

@@ -1,0 +1,40 @@
+use test;
+
+delete from tov;
+
+insert into tov (ID, CNT) values (1, 10);
+insert into tov (ID, CNT) values (100, 10);
+insert into tov (ID, CNT) values (101, 10);
+insert into tov (ID, CNT) values (102, 10);
+insert into tov (ID, CNT) values (103, 10);
+insert into tov (ID, CNT) values (2, 200);
+insert into tov (ID, CNT) values (3, 3000);
+insert into tov (ID, CNT) values (1, 20);
+insert into tov (ID, CNT) values (2, 400);
+insert into tov (ID, CNT) values (3, 6000);
+insert into tov (ID, CNT) values (4, 5000);
+insert into tov (ID, CNT) values (5, 110);
+insert into tov (ID, CNT) values (2, 4400);
+insert into tov (ID, CNT) values (3,  500);
+insert into tov (ID, CNT) values (7, 2500);
+insert into tov (ID, CNT) values (7, 3500);
+insert into tov (ID, CNT) values (7, 1500);
+insert into tov (ID, CNT) values (7, 1000);
+insert into tov (ID, CNT) values (7, 1000);
+insert into tov (ID, CNT) values (8, 2400);
+insert into tov (ID, CNT) values (8, 2400);
+insert into tov (ID, CNT) values (8, 2400);
+insert into tov (ID, CNT) values (8, 2300);
+insert into tov (ID, CNT) values (10, 3400);
+insert into tov (ID, CNT) values (10, 6100);
+insert into tov (ID, CNT) values (11, 5800);
+insert into tov (ID, CNT) values (11, 3700);
+insert into tov (ID, CNT) values (12, 9500);
+insert into tov (ID, CNT) values (13, 9500);
+insert into tov (ID, CNT) values (14, 9500);
+insert into tov (ID, CNT) values (15, 9500);
+insert into tov (ID, CNT) values (16, 9500);
+insert into tov (ID, CNT) values (17, 9500);
+insert into tov (ID, CNT) values (18, 9500);
+insert into tov (ID, CNT) values (19, 9500);
+
