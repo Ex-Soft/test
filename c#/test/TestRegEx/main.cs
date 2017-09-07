@@ -388,6 +388,24 @@ namespace TestRegEx
             if (match.Success)
                 tmpString = r.Replace(srcString, " ").Trim();
 
+            srcString = " < \t \r \r\n \n \n\r Line#1 \r\n \n\r \r \n  \t \r \r\n \n \n\r Line#2 \r\n \n\r \r \n  \t \r \r\n \n \n\r Line#3 \r\n \n\r \r \n > ";
+            r = new Regex(tmpStringII = "^\\s*<.+>\\s*$"); // false
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "").Trim();
+            r = new Regex(tmpStringII, RegexOptions.Singleline); // true
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "").Trim();
+            r = new Regex(tmpStringII = "(?<=^\\s*<).+(?=>\\s*$)");  // false
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "").Trim();
+            r = new Regex(tmpStringII, RegexOptions.Singleline); // true
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "").Trim();
+
             r = new Regex("(?<=password\\s*?=\\s*?').*?(?='\\s*?(;|$))");
             match = r.Match(srcString);
             if (match.Success)

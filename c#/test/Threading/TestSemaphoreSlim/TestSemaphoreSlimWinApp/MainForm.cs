@@ -15,23 +15,26 @@ namespace TestSemaphoreSlimWinApp
             InitializeComponent();
         }
 
-        private bool GetArgs(out int taskMaxCount, out int delay, out int semaphoreSlimInitialCount, out int semaphoreSlimMaxCount)
+        private bool GetArgs(out int taskMaxCount, out int taskDelay, out int semaphoreSlimInitialCount, out int semaphoreSlimMaxCount, out int semaphoreSlimDelay)
         {
-            delay = semaphoreSlimInitialCount = semaphoreSlimMaxCount = 0;
+            taskDelay = semaphoreSlimInitialCount = semaphoreSlimMaxCount = semaphoreSlimDelay = 0;
 
             return int.TryParse(textBoxTaskMaxCount.Text, out taskMaxCount)
-                   && int.TryParse(textBoxDelay.Text, out delay)
+                   && int.TryParse(textBoxTaskDelay.Text, out taskDelay)
                    && int.TryParse(textBoxSemaphoreSlimInitialCount.Text, out semaphoreSlimInitialCount)
-                   && int.TryParse(textBoxSemaphoreSlimMaxCount.Text, out semaphoreSlimMaxCount);
+                   && int.TryParse(textBoxSemaphoreSlimMaxCount.Text, out semaphoreSlimMaxCount)
+                   && int.TryParse(textBoxBoxSemaphoreSlimDelay.Text, out semaphoreSlimDelay);
         }
 
         private void buttonDoIt_Click(object sender, EventArgs e)
         {
-            int taskMaxCount, delay, semaphoreSlimInitialCount, semaphoreSlimMaxCount;
-            if (!GetArgs(out taskMaxCount, out delay, out semaphoreSlimInitialCount, out semaphoreSlimMaxCount))
+            int taskMaxCount, taslDelay, semaphoreSlimInitialCount, semaphoreSlimMaxCount, semaphoreSlimDelay;
+            if (!GetArgs(out taskMaxCount, out taslDelay, out semaphoreSlimInitialCount, out semaphoreSlimMaxCount, out semaphoreSlimDelay))
                 return;
 
-            AddToListBoxCallback($"{MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId}) start...");
+            var msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} {MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId}) start...";
+            Debug.WriteLine(msg);
+            AddToListBoxCallback(msg);
 
             var uiContext = SynchronizationContext.Current;
             var taskList = new List<Task>();
@@ -39,48 +42,70 @@ namespace TestSemaphoreSlimWinApp
 
             try
             {
+                msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} Tasks will be starting...";
+                Debug.WriteLine(msg);
+                AddToListBoxCallback(msg);
+
                 for (var i = 0; i < taskMaxCount; ++i)
-                    taskList.Add(Task.Run(() => Foo(delay, uiContext, slim)));
+                    taskList.Add(Task.Run(() => Foo(taslDelay, uiContext, slim)));
 
                 if (semaphoreSlimInitialCount == 0)
                 {
-                    Thread.Sleep(5000);
+                    msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} slim.Release() b4";
+                    Debug.WriteLine(msg);
+                    AddToListBoxCallback(msg);
+
+                    Thread.Sleep(semaphoreSlimDelay);
                     slim.Release(semaphoreSlimMaxCount);
+
+                    msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} slim.Release() after";
+                    Debug.WriteLine(msg);
+                    AddToListBoxCallback(msg);
                 }
 
                 Task.WaitAll(taskList.ToArray());
+
+                msg = $"{DateTime.Now.ToString("HH: mm: ss.fffffff")} All tasks have been finished";
+                Debug.WriteLine(msg);
+                AddToListBoxCallback(msg);
             }
             finally
             {
                 slim.Dispose();
-                AddToListBoxCallback($"{MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId}) finally -> slim.Dispose()");
+                msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} {MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId}) finally -> slim.Dispose()";
+                Debug.WriteLine(msg);
+                AddToListBoxCallback(msg);
             }
 
-            AddToListBoxCallback($"{MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId}) finished");
+            msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} {MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId}) finished";
+            Debug.WriteLine(msg);
+            AddToListBoxCallback(msg);
         }
 
         private void Foo(int delay, SynchronizationContext uiContext, SemaphoreSlim slim)
         {
-            var msg = $"Thread {Thread.CurrentThread.ManagedThreadId} Task {Task.CurrentId} begins and waits for the semaphore.";
+            var msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} Thread {Thread.CurrentThread.ManagedThreadId} Task {Task.CurrentId} begins and waits for the semaphore.";
+            Debug.WriteLine(msg);
             uiContext.Post(AddToListBoxCallback, msg);
 
             slim.Wait();
 
-            msg = $"Thread {Thread.CurrentThread.ManagedThreadId} Task {Task.CurrentId} enters the semaphore.";
+            msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} Thread {Thread.CurrentThread.ManagedThreadId} Task {Task.CurrentId} enters the semaphore.";
+            Debug.WriteLine(msg);
             uiContext.Post(AddToListBoxCallback, msg);
 
             Thread.Sleep(delay);
             //Task.Delay(delay);
 
-            msg = $"Thread {Thread.CurrentThread.ManagedThreadId} Task {Task.CurrentId} releases the semaphore; previous count: {slim.Release()}.";
+            msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} Thread {Thread.CurrentThread.ManagedThreadId} Task {Task.CurrentId} releases the semaphore; previous count: {slim.Release()}.";
+            Debug.WriteLine(msg);
             uiContext.Post(AddToListBoxCallback, msg);
         }
 
         private void AddToListBoxCallback(object state)
         {
             var paramMsg = state as string;
-            var msg = $"{MethodBase.GetCurrentMethod().Name}({(!string.IsNullOrWhiteSpace(paramMsg) ? paramMsg : "IsNullOrWhiteSpace")}, Thread:{Thread.CurrentThread.ManagedThreadId})";
-            Debug.WriteLine(msg);
+            var msg = $"{DateTime.Now.ToString("HH:mm:ss.fffffff")} {MethodBase.GetCurrentMethod().Name}({(!string.IsNullOrWhiteSpace(paramMsg) ? paramMsg : "IsNullOrWhiteSpace")}, Thread:{Thread.CurrentThread.ManagedThreadId})";
 
             listBoxLog.Items.Add(msg);
         }

@@ -1,9 +1,10 @@
-﻿//#define THROW_EXCEPTION
+﻿#define THROW_EXCEPTION
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -205,6 +206,13 @@ namespace WinFormsApp2
                 Debug.WriteLine(msg);
 
                 param.ListBox?.Items.Add(msg);
+
+                Form form;
+                if (param.ListBox == null || (form = param.ListBox.FindForm()) == null)
+                    return;
+
+                var listBoxes = new List<ListBox>(GetControl<ListBox>(form));
+                param.ListBox?.Items.Add(listBoxes.Aggregate(string.Empty, (str, control) => { if (!string.IsNullOrWhiteSpace(str)) str += ", "; return str + control.Name; }));
             #endif
         }
 

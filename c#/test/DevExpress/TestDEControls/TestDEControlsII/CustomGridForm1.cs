@@ -1,5 +1,5 @@
 ﻿#define INVALID_CAST_EXCEPTION
-//#define INVALID_CAST_EXCEPTION_DATA_TABLE
+#define INVALID_CAST_EXCEPTION_DATA_TABLE
 //#define PREVENT_INVALID_CAST_EXCEPTION
 
 using System.Collections.Generic;
@@ -62,12 +62,14 @@ namespace TestDEControlsII
             }
         }
 
-        private static IEnumerable<Data> CreateData()
+        public static IEnumerable<Data> CreateData()
         {
             var result = new List<Data>();
 
             for (var i = 0; i < 26; ++i)
                 result.Add(new Data(i, new string((char)(i + 0x41), 1)));
+
+            result.Add(new Data(201707245844801, "Infinity"));
 
             return result;
         }
@@ -106,12 +108,12 @@ namespace TestDEControlsII
         #endif
     }
 
-    class Data
+    public class Data
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Val { get; set; }
 
-        public Data(int id = 0, string val = "")
+        public Data(long id = 0, string val = "")
         {
             Id = id;
             Val = val;

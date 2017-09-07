@@ -24,8 +24,10 @@ namespace TestLayout
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainFormEdit());
+            //Application.Run(new MainForm());
+            //Application.Run(new MainFormEdit());
             //Application.Run(new MainFormEditWSplitControl());
+            Application.Run(new MainFormEditWSplitControl2());
             //Application.Run(new TestInheritedForm());
             //Application.Run(new TestInheritedFormFromMainFormWToolBar());
             //Application.Run(new TestInheritedFormWGroupControls());

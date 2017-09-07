@@ -5,18 +5,48 @@
 using System;
 using System.Collections.Generic;
 
+// Using static
+using static System.Console;
+using static System.Linq.Enumerable;
+
 namespace cs6
 {
+    // Auto-property enhancements
     class Customer
     {
+        private int _fInt;
+
+        public int FInt
+        {
+            get { return _fInt; }
+            set { _fInt = value * 2; }
+        }
+
+        // Initializers for auto-properties
         public string First { get; set; } = "Jane";
+
+        // Getter-only auto-properties
         public string Last { get; } = "Doe";
+
+        // Expression bodies on property-like function members
+        public string FullName => $"{First} {Last}";
+
+        // Extension methods
+        public void Print() => WriteLine(FullName);
     }
 
     class Program
     {
         static void Main(string[] args)
         {
+            var range = Range(5, 17);
+            //var odd = Where(range, i => i % 2 == 1); // Error, not in scope
+            var even = range.Where(i => i % 2 == 0); // Ok
+
+            // nameof expressions
+            WriteLine(nameof(Customer.FullName));
+
+            // Null-conditional operators
             string tmpString = null;
             int? tmpIntNullable = tmpString?.Length;
             int tmpInt = tmpString?.Length ?? -1;
@@ -25,6 +55,7 @@ namespace cs6
             tmpIntNullable = tmpString?.Length;
             tmpInt = tmpString?.Length ?? -1;
 
+            // Index initializers
             var numbers = new Dictionary<int, string>
             {
                 [7] = "seven",
@@ -32,10 +63,42 @@ namespace cs6
                 [13] = "thirteen"
             };
 
+            // String interpolation
             var tmpCustomer = new Customer();
             tmpString = $"{tmpCustomer.First} {tmpCustomer.Last}"; // equ tmpString = string.Format("{1} {0}", tmpCustomer.First, tmpCustomer.Last);
 
             NameOf_UsingNameofExpressionInArgumentNullException();
+
+            // Exception filters
+            try
+            {
+                throw new Exception("Test Exception filters");
+            }
+            catch (Exception e) when (IsMyException(e))
+            {
+                WriteLine(e.Message);
+            }
+
+            // Await in catch and finally blocks
+            /*Resource res = null;
+            try
+            {
+                res = await Resource.OpenAsync(…);       // You could do this.
+
+            }
+            catch (ResourceException e)
+            {
+                await Resource.LogAsync(res, e);         // Now you can do this …
+            }
+            finally
+            {
+                if (res != null) await res.CloseAsync(); // … and this.
+            }*/
+        }
+
+        private static bool IsMyException(Exception e)
+        {
+            return e.Message == "Test Exception filters";
         }
 
         /*public static string Truncate(string value, int length)

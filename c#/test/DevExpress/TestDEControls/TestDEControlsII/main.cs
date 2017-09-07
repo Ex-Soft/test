@@ -24,7 +24,7 @@ namespace TestDEControlsII
             #endregion
 
 
-            WindowsFormsSettings.ColumnFilterPopupMode = ColumnFilterPopupMode.Classic;
+            // WindowsFormsSettings.ColumnFilterPopupMode = ColumnFilterPopupMode.Classic;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

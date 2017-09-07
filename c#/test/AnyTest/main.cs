@@ -26,14 +26,14 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-#define TEST_ENUM
+//#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
 //#define TEST_NULLABLE_TYPES
-//#define TEST_CONVERT
+#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
 //#define TEST_INDEX_OF
@@ -1392,15 +1392,25 @@ namespace AnyTest
 					Console.WriteLine("Unable to convert DBNull.Value to a String. ({0}: {1})", eException.GetType().FullName, eException.Message);
 				}
 
+                tmpObject = DBNull.Value;
+                try
+                {
+                    tmpDateTime = Convert.ToDateTime(tmpObject);
+                }
+                catch (InvalidCastException eException)
+                {
+                    Console.WriteLine("Unable to convert DBNull.Value to a DateTime. ({0}: {1})", eException.GetType().FullName, eException.Message);
+                }
+
                 #region ToBoolen
-   				try { tmpBool = Convert.ToBoolean(tmpString = null); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }     // oB!
-				try { tmpBool = Convert.ToBoolean(tmpString = ""); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }       // FormatException
-                try { tmpBool = Convert.ToBoolean(tmpString = "0"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
-                try { tmpBool = Convert.ToBoolean(tmpString = "1"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
-                try { tmpBool = Convert.ToBoolean(tmpString = "true"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
-                try { tmpBool = Convert.ToBoolean(tmpString = "false"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
-                try { tmpBool = Convert.ToBoolean(tmpString = "TrUe"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
-                try { tmpBool = Convert.ToBoolean(tmpString = "FaLsE"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = null); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }     // oB!
+				    try { tmpBool = Convert.ToBoolean(tmpString = ""); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }       // FormatException
+                    try { tmpBool = Convert.ToBoolean(tmpString = "0"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
+                    try { tmpBool = Convert.ToBoolean(tmpString = "1"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
+                    try { tmpBool = Convert.ToBoolean(tmpString = "true"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = "false"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = "TrUe"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = "FaLsE"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
                 #endregion
 
                 tmpInt = int.MinValue;
