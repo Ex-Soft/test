@@ -42,6 +42,7 @@ namespace TestWindow
             this.buttonShowModal = new System.Windows.Forms.Button();
             this.tabPageLog = new System.Windows.Forms.TabPage();
             this.listBoxLog = new System.Windows.Forms.ListBox();
+            this.buttonTestModal = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tabPageLog.SuspendLayout();
@@ -60,6 +61,7 @@ namespace TestWindow
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.buttonTestModal);
             this.tabPageMain.Controls.Add(this.buttonDoIt);
             this.tabPageMain.Controls.Add(this.checkBoxModal);
             this.tabPageMain.Controls.Add(this.checkBoxKeyPreview);
@@ -162,6 +164,16 @@ namespace TestWindow
             this.listBoxLog.Size = new System.Drawing.Size(891, 241);
             this.listBoxLog.TabIndex = 0;
             // 
+            // buttonTestModal
+            // 
+            this.buttonTestModal.Location = new System.Drawing.Point(309, 7);
+            this.buttonTestModal.Name = "buttonTestModal";
+            this.buttonTestModal.Size = new System.Drawing.Size(75, 23);
+            this.buttonTestModal.TabIndex = 5;
+            this.buttonTestModal.Text = "Test Modal";
+            this.buttonTestModal.UseVisualStyleBackColor = true;
+            this.buttonTestModal.Click += new System.EventHandler(this.ButtonTestModalClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,6 +213,7 @@ namespace TestWindow
         private CheckBox checkBoxKeyPreview;
         private CheckBox checkBoxModal;
         private Button buttonDoIt;
+        private Button buttonTestModal;
     }
 }
 

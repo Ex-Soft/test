@@ -29,7 +29,7 @@ namespace TestDEControlsII
             //gridControl.DataSource = new XPCollection<TableWithHierarchy>(unitOfWork);
 
             //gridView.OptionsFilter.ColumnFilterPopupMaxRecordsCount = 10;
-            gridView.OptionsFilter.ColumnFilterPopupMode = DevExpress.XtraGrid.Columns.ColumnFilterPopupMode.Classic;
+            //gridView.OptionsFilter.ColumnFilterPopupMode = DevExpress.XtraGrid.Columns.ColumnFilterPopupMode.Classic;
             //gridView.OptionsCustomization.AllowFilter = false;
 
             // https://www.devexpress.com/Support/Center/Question/Details/Q422943/xtragrid-remove-grouping-tab-disable-editing-row-multi-select

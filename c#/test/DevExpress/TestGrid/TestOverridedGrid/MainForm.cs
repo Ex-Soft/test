@@ -60,6 +60,9 @@ namespace TestOverridedGrid
             gridControl.DataSource = DataSource;
 
             //gridView.OptionsSelection.UseIndicatorForSelection = false;
+
+            InitializeComponentWithFilter();
+            InitializeComponentWithValidation();
         }
 
         public

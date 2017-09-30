@@ -8,6 +8,13 @@ using System.Xml.Linq;
 
 namespace TestIEnumerable
 {
+    class ClassWithNullable
+    {
+        public int Id { get; set; }
+        public DateTime? FDateTime1 { get; set; }
+        public DateTime? FDateTime2 { get; set; }
+    }
+
     class City
     {
         public string CityCode;
@@ -259,6 +266,26 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfClassWithNullable = new List<ClassWithNullable>
+            {
+                new ClassWithNullable {Id = 1},
+                new ClassWithNullable {Id = 2, FDateTime1 = new DateTime(1974, 1, 5)},
+                new ClassWithNullable {Id = 2, FDateTime2 = new DateTime(2000, 11, 22)},
+                new ClassWithNullable {Id = 2, FDateTime1 = new DateTime(1974, 1, 5), FDateTime2 = new DateTime(2000, 11, 22)}
+            };
+
+            var classWithNullable = new ClassWithNullable();
+            var resultFromListOfClassWithNullable = listOfClassWithNullable.Where(item => item.FDateTime1 == classWithNullable.FDateTime1 && item.FDateTime2 == classWithNullable.FDateTime2).ToList();
+
+            classWithNullable = new ClassWithNullable {FDateTime1 = new DateTime(1974, 1, 5)};
+            resultFromListOfClassWithNullable = listOfClassWithNullable.Where(item => item.FDateTime1 == classWithNullable.FDateTime1 && item.FDateTime2 == classWithNullable.FDateTime2).ToList();
+
+            classWithNullable = new ClassWithNullable {FDateTime2 = new DateTime(2000, 11, 22)};
+            resultFromListOfClassWithNullable = listOfClassWithNullable.Where(item => item.FDateTime1 == classWithNullable.FDateTime1 && item.FDateTime2 == classWithNullable.FDateTime2).ToList();
+
+            classWithNullable = new ClassWithNullable {FDateTime1 = new DateTime(1974, 1, 5), FDateTime2 = new DateTime(2000, 11, 22)};
+            resultFromListOfClassWithNullable = listOfClassWithNullable.Where(item => item.FDateTime1 == classWithNullable.FDateTime1 && item.FDateTime2 == classWithNullable.FDateTime2).ToList();
+
             var listOfD = new List<D>
             {
                 new D { PString = "[1]", PInt = 1, LD = new List<D> { new D { PString = "[1][1]", PInt = 11, LD = new List<D> { new D { PString = "[1][1][1]", PInt = 111, PBool1 = false, PBool2 = false }, new D { PString = "[1][1][2]", PInt = 112, PBool1 = false, PBool2 = true }, new D { PString = "[1][1][3]", PInt = 113, PBool1 = true, PBool2 = false }, new D { PString = "[1][1][4]", PInt = 114, PBool1 = true, PBool2 = true } } }, new D { PString = "[1][2]", PInt = 12 }, new D { PString = "[1][3]", PInt = 13 } } },

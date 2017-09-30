@@ -133,6 +133,18 @@ namespace TestWindow
         {
         }
 
+        private void ButtonTestModalClick(object sender, EventArgs e)
+        {
+            DialogResult result;
+
+            using (var modalForm = new ModalForm())
+            {
+                result = modalForm.ShowDialog(this);
+            }
+
+            WriteToLog(result.ToString());
+        }
+
         /*
 MainForm: Closing
 MainForm: FormClosing

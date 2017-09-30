@@ -1,4 +1,4 @@
-﻿#define THROW_EXCEPTION
+﻿//#define THROW_EXCEPTION
 
 using System;
 using System.Collections.Generic;
@@ -16,11 +16,18 @@ namespace WinFormsApp2
     {
         private readonly List<ListBox> _listBoxs;
 
+        private string Victim { get; } = "blah-blah-blah";
+
+        private ChildForm _childForm;
+        private ChildFormModal _childFormModal;
+
         public MainForm()
         {
             InitializeComponent();
 
             _listBoxs = new List<ListBox>(GetControl<ListBox>(this));
+            _childForm = null;
+            _childFormModal = null;
         }
 
         private void buttonInvoke_Click(object sender, EventArgs e)
@@ -66,6 +73,8 @@ namespace WinFormsApp2
                     listBox.Invoke(new MethodInvoker(() => listBox.Items.Add(msg)));
                 else
                     listBox.Items.Add(msg);
+
+                Debug.WriteLine(Victim);
             }
             catch (AggregateException eAggregateException)
             {
@@ -107,6 +116,13 @@ namespace WinFormsApp2
                     try
                     {
                         uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(listBox, msg));
+                        Debug.WriteLine(Victim);
+                    }
+                    catch (AggregateException eAggregateException)
+                    {
+                        Debug.WriteLine("AggregateException");
+                        for (var j = 0; j < eAggregateException.InnerExceptions.Count; j++)
+                            Debug.WriteLine($"\t{eAggregateException.InnerExceptions[j]}");
                     }
                     catch (TargetInvocationException eTargetInvocationException)
                     {
@@ -115,6 +131,10 @@ namespace WinFormsApp2
                     catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
                     {
                         Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+                    }
+                    catch (InvalidOperationException eInvalidOperationException)
+                    {
+                        Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
                     }
                     catch (Exception eException)
                     {
@@ -135,6 +155,10 @@ namespace WinFormsApp2
             catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
             {
                 Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+            }
+            catch (InvalidOperationException eInvalidOperationException)
+            {
+                Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
             }
             catch (Exception eException)
             {
@@ -158,6 +182,81 @@ namespace WinFormsApp2
                     try
                     {
                         uiContext.Send(AddToListBoxCallback, new AddToListBoxParam(listBox, msg));
+                        Debug.WriteLine(Victim);
+                    }
+                    catch (AggregateException eAggregateException)
+                    {
+                        Debug.WriteLine("AggregateException");
+                        for (var j = 0; j < eAggregateException.InnerExceptions.Count; j++)
+                            Debug.WriteLine($"\t{eAggregateException.InnerExceptions[j]}");
+                    }
+                    catch (TargetInvocationException eTargetInvocationException)
+                    {
+                        Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
+                    }
+                    catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
+                    {
+                        Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+                    }
+                    catch (InvalidOperationException eInvalidOperationException)
+                    {
+                        Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
+                    }
+                    catch (Exception eException)
+                    {
+                        Debug.WriteLine(eException.Message);
+                    }
+                });
+            }
+            catch (AggregateException eAggregateException)
+            {
+                Debug.WriteLine("AggregateException");
+                for (var j = 0; j < eAggregateException.InnerExceptions.Count; j++)
+                    Debug.WriteLine($"\t{eAggregateException.InnerExceptions[j]}");
+            }
+            catch (TargetInvocationException eTargetInvocationException)
+            {
+                Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
+            }
+            catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
+            {
+                Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+            }
+            catch (InvalidOperationException eInvalidOperationException)
+            {
+                Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
+            }
+            catch (Exception eException)
+            {
+                Debug.WriteLine(eException.Message);
+            }
+        }
+
+        private void buttonWithOptions_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}(Thread:{Thread.CurrentThread.ManagedThreadId})");
+
+            try
+            {
+                var options = new ParallelOptions();
+                options.TaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+
+                Parallel.ForEach(_listBoxs, options, (listBox, state, arg3) =>
+                {
+                    var msg = $"Parallel.ForEach(Thread:{Thread.CurrentThread.ManagedThreadId}, listBox.Name:\"{listBox.Name}\")";
+                    Debug.WriteLine(msg);
+
+                    try
+                    {
+                        listBox.Items.Add(msg);
+                        AddToListBoxCallback(new AddToListBoxParam(listBox, msg));
+                        Debug.WriteLine(Victim);
+                    }
+                    catch (AggregateException eAggregateException)
+                    {
+                        Debug.WriteLine("AggregateException");
+                        for (var j = 0; j < eAggregateException.InnerExceptions.Count; j++)
+                            Debug.WriteLine($"\t{eAggregateException.InnerExceptions[j]}");
                     }
                     catch (TargetInvocationException eTargetInvocationException)
                     {
@@ -187,13 +286,37 @@ namespace WinFormsApp2
             {
                 Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
             }
+            catch (InvalidOperationException eInvalidOperationException)
+            {
+                Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
+            }
             catch (Exception eException)
             {
                 Debug.WriteLine(eException.Message);
             }
         }
 
-        private static void AddToListBoxCallback(object state)
+        private void buttonShow_Click(object sender, EventArgs e)
+        {
+            _childForm = new ChildForm(this);
+            _childForm.Show(this);
+        }
+
+        private void buttonShowModal_Click(object sender, EventArgs e)
+        {
+            if (_childFormModal == null)
+                _childFormModal = new ChildFormModal(this);
+
+            var result = _childFormModal.ShowDialog(this);
+            AddToListBoxCallback(new AddToListBoxParam(listBox11, $"result = {result}"));
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            _listBoxs.ForEach(item => item.Items.Clear());
+        }
+
+        public static void AddToListBoxCallback(object state)
         {
             #if THROW_EXCEPTION
                 throw new Exception("Boom");
@@ -216,7 +339,7 @@ namespace WinFormsApp2
             #endif
         }
 
-        private static IEnumerable<T> GetControl<T>(Control control) where T : class
+        public static IEnumerable<T> GetControl<T>(Control control) where T : class
         {
             var list = new List<T>();
 
