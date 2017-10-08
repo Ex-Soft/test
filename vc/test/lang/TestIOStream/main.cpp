@@ -19,6 +19,24 @@ int main(int argc, char **argv)
 	std::streampos
 		pos;
 
+	/*
+	// http://www.cplusplus.com/forum/beginner/45543/
+	std::cout << "Enter Text: ";
+	std::cin >> str;
+	result = std::cin.sync();
+	std::cin.ignore();
+	result = std::cin.sync();
+	std::cout << "Enter Number: ";
+	std::cin >> b;
+	std::cout << "Enter Another Number: ";
+	std::cin >> c;
+	result = std::cin.sync();
+	std::cin.ignore();
+	result = std::cin.sync();
+	std::cout << "You Entered: " << str << ", " << b << ", " << c << std::endl;
+	std::cin.clear();
+	*/
+
 	if (!(std::cin >> b))
 	{
 		std::cout << "wrong value" << std::endl;
