@@ -11,6 +11,11 @@ using static System.Linq.Enumerable;
 
 namespace cs6
 {
+    public class ClassWithListOfString
+    {
+        public List<string> ListOfString { get; set; }
+    }
+
     // Auto-property enhancements
     class Customer
     {
@@ -39,6 +44,10 @@ namespace cs6
     {
         static void Main(string[] args)
         {
+            var classWithListOfString = new ClassWithListOfString();
+            foreach (var str in classWithListOfString?.ListOfString)
+                System.Diagnostics.Debug.WriteLine(str);
+
             var range = Range(5, 17);
             //var odd = Where(range, i => i % 2 == 1); // Error, not in scope
             var even = range.Where(i => i % 2 == 0); // Ok

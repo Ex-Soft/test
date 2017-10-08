@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace Equality
 {
+    public class SimpleClass
+    {
+        public int FInt { get; set; }
+    }
+
     public class TestClassIComparableFull : IComparable
     {
         public int FieldInt;
@@ -158,6 +163,17 @@ namespace Equality
     {
         static void Main(string[] args)
         {
+            SimpleClass
+                simpleClassLeft = new SimpleClass {FInt = 13},
+                simpleClassRight = simpleClassLeft;
+
+            Debug.WriteLine($"simpleClassLeft {(simpleClassLeft == simpleClassRight ? "=" : "!") }= simpleClassRight");
+            Debug.WriteLine($"{(simpleClassLeft.Equals(simpleClassRight) ? string.Empty : "!") }simpleClassLeft.Equals(simpleClassRight)");
+
+            simpleClassRight = new SimpleClass {FInt = 13};
+            Debug.WriteLine($"simpleClassLeft {(simpleClassLeft == simpleClassRight ? "=" : "!") }= simpleClassRight");
+            Debug.WriteLine($"{(simpleClassLeft.Equals(simpleClassRight) ? string.Empty : "!") }simpleClassLeft.Equals(simpleClassRight)");
+
             TestClassIComparableFull
                 left = new TestClassIComparableFull(13),
                 right = new TestClassIComparableFull(left);
