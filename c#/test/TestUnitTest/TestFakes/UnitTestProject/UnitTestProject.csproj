@@ -69,6 +69,8 @@
     <Compile Include="FileSystemTest.cs" />
     <Compile Include="Library2Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestPrivateObject.cs" />
+    <Compile Include="TestTestContext.cs" />
     <Compile Include="Y2KBugTest.cs" />
   </ItemGroup>
   <ItemGroup>
