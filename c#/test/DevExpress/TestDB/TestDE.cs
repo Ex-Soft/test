@@ -2,10 +2,10 @@
 using DevExpress.Xpo;
 using DevExpress.XtraEditors.DXErrorProvider;
 
-namespace TestUOW.Db
+namespace TestDB
 {
     [Persistent("TestDE")]
-    class TestDE : XPCustomObject, IDXDataErrorInfo
+    public class TestDE : XPCustomObject, IDXDataErrorInfo
     {
         long
             _id;
@@ -16,8 +16,7 @@ namespace TestUOW.Db
             _f3;
 
         public TestDE(Session session) : base(session)
-        {
-        }
+        {}
 
         public TestDE(Session session, int? f1=null, int? f2=null, int? f3=null) : base(session)
         {
@@ -76,16 +75,16 @@ namespace TestUOW.Db
             return string.Format("{{ id: {0}, f1: {1}, f2: {2}, f3: {3} }}", id, f1.HasValue ? f1.Value.ToString() : "NULL", f2.HasValue ? f2.Value.ToString() : "NULL", f3.HasValue ? f3.Value.ToString() : "NULL");
         }
 
-		protected override void OnSaving()
-		{
+	    protected override void OnSaving()
+	    {
 			System.Diagnostics.Debug.WriteLine("XPBaseObject: OnSaving");
-			base.OnSaving();
-		}
+		    base.OnSaving();
+	    }
 
-		protected override void OnSaved()
-		{
+	    protected override void OnSaved()
+	    {
 			System.Diagnostics.Debug.WriteLine("XPBaseObject: OnSaved");
-			base.OnSaved();
-		}
-	}
+		    base.OnSaved();
+	    }
+    }
 }

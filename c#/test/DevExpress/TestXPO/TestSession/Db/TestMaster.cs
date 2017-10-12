@@ -2,21 +2,18 @@
 using DevExpress.Xpo;
 using DevExpress.XtraEditors.DXErrorProvider;
 
-namespace TestUOW.Db
+namespace TestSession.Db
 {
-    [Persistent("TestDetail")]
-    class TestDetail : XPCustomObject, IDXDataErrorInfo
+    [Persistent("TestMaster")]
+    class TestMaster : XPCustomObject, IDXDataErrorInfo
     {
         long
             _id;
 
-        TestMaster
-            _master;
-
         string
             _val;
 
-        public TestDetail(Session session) : base(session)
+        public TestMaster(Session session) : base(session)
         {
         }
 
@@ -28,22 +25,19 @@ namespace TestUOW.Db
             get { return _id; }
             set { SetPropertyValue("Id", ref _id, value); }
         }
-        
-        [Persistent("IdMaster")]
-        [Association("TestMaster-TestDetail")]
-        [DisplayName("_Master_")]
-        public TestMaster Master
-        {
-            get { return _master; }
-            set { SetPropertyValue("Master", ref _master, value); }
-        }
-        
+
         [Persistent("Val")]
         [DisplayName("Val")]
         public string Name
         {
             get { return _val; }
             set { SetPropertyValue("Val", ref _val, value); }
+        }
+
+        [Association("TestMaster-TestDetail")]
+        public XPCollection<TestDetail> Details
+        {
+            get { return GetCollection<TestDetail>("Details"); }
         }
 
         public void GetPropertyError(string propertyName, ErrorInfo info)

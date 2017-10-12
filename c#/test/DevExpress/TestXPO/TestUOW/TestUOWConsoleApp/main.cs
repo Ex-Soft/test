@@ -1,6 +1,6 @@
 ﻿//#define TEST_DUPLICATES
-#define TEST_UOW_EVENTS
-//#define TEST_NESTED_UOW
+//#define TEST_UOW_EVENTS
+#define TEST_NESTED_UOW
 //#define TEST_NESTED_UOW_2
 //#define TEST_NESTED_UOW_WITH_NEW
 
@@ -10,7 +10,7 @@ using System.Linq;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
-using TestUOW.Db;
+using TestDB;
 
 namespace TestUOW
 {
