@@ -1,4 +1,7 @@
-﻿using DevExpress.Utils.Filtering.Internal;
+﻿#define CHECK_ID
+
+using System.Diagnostics;
+using DevExpress.Utils.Filtering.Internal;
 
 namespace TestOverridedGrid
 {
@@ -6,7 +9,13 @@ namespace TestOverridedGrid
     {
         public override string GetLocalizedString(FilterUIElementLocalizerStringId id)
         {
-            return base.GetLocalizedString(id);
+            var result = base.GetLocalizedString(id);
+
+            #if CHECK_ID
+                Debug.WriteLine($"FilterUIElementLocalizer.{System.Reflection.MethodBase.GetCurrentMethod().Name}.{id}={result}");
+            #endif
+
+            return result;
         }
     }
 }

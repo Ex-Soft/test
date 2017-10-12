@@ -53,17 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomFilterUIElementLocalizer.cs" />
+    <Compile Include="CustomGridLocalizer.cs" />
     <Compile Include="CustomGridViewWithFilter.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomGridViewWithValidation.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Db\Staff.cs" />
-    <Compile Include="Db\TestDE.cs" />
-    <Compile Include="Db\TestDetail.cs" />
-    <Compile Include="Db\TestMaster.cs" />
-    <Compile Include="Db\TestTable4Types.cs" />
+    <Compile Include="CustomLocalizer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TestDB\TestDB.csproj">
+      <Project>{b75a7089-be4a-4976-aa4e-f4670b591027}</Project>
+      <Name>TestDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestInheritance.Db
+namespace TestDB.TestInheritance
 {
     [Persistent("TestDETableRight")]
     class Right : Center

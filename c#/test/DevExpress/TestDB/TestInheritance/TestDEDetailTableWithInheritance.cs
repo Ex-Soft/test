@@ -2,7 +2,7 @@
 
 using DevExpress.Xpo;
 
-namespace TestInheritance.Db
+namespace TestDB.TestInheritance
 {
     [Persistent("TestDEDetailTableWithInheritance")]
     public class TestDEDetailTableWithInheritanceLite : XPBaseObject
@@ -30,7 +30,7 @@ namespace TestInheritance.Db
         }
 
         [Persistent("idMaster")]
-        [Association("TestMaster-TestDetail")]
+        [Association("TestMasterTableWithInheritanceLite-TestDetailTableWithInheritanceLite")]
         public TestDEMasterTableWithInheritanceLite Master
         {
             get { return _master; }
@@ -68,7 +68,7 @@ namespace TestInheritance.Db
         }
 
         // [Persistent("idMaster")] // not needed - inherited
-        // [Association("TestMaster-TestDetail")] // not needed - inherited
+        // [Association("TestMasterTableWithInheritanceLite-TestDetailTableWithInheritanceLite")] // not needed - inherited
         public new TestDEMasterTableWithInheritance Master
         {
             get { return _master as TestDEMasterTableWithInheritance; }

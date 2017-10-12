@@ -1,7 +1,7 @@
 ﻿using System;
 using DevExpress.Xpo;
 
-namespace TestOverridedGrid.Db
+namespace TestDB
 {
     [Persistent("Staff")]
     public class Staff : XPCustomObject

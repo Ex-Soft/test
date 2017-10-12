@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,9 +59,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Staff.cs" />
     <Compile Include="TestDE.cs" />
     <Compile Include="TestDetail.cs" />
+    <Compile Include="TestInheritance\Center.cs" />
+    <Compile Include="TestInheritance\Entity1.cs" />
+    <Compile Include="TestInheritance\Entity2.cs" />
+    <Compile Include="TestInheritance\Entity3.cs" />
+    <Compile Include="TestInheritance\ForTestInheritanceI.cs" />
+    <Compile Include="TestInheritance\ForTestInheritanceII.cs" />
+    <Compile Include="TestInheritance\Reference.cs" />
+    <Compile Include="TestInheritance\StuSKU.cs" />
+    <Compile Include="TestInheritance\StuSKUCompetitor.cs" />
+    <Compile Include="TestInheritance\TableForTestInheritanceWithVinaigretteField.cs" />
+    <Compile Include="TestInheritance\TableLeft.cs" />
+    <Compile Include="TestInheritance\TableRight.cs" />
+    <Compile Include="TestInheritance\TestDEDetailTableWithInheritance.cs" />
+    <Compile Include="TestInheritance\TestDEMasterTableWithInheritance.cs" />
     <Compile Include="TestMaster.cs" />
+    <Compile Include="TestOwnTable\BaseObjectWithId.cs" />
+    <Compile Include="TestOwnTable\Customer.cs" />
+    <Compile Include="TestOwnTable\Employee.cs" />
+    <Compile Include="TestOwnTable\Executive.cs" />
+    <Compile Include="TestOwnTable\Person.cs" />
+    <Compile Include="TestTable4Types.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestInheritance\ddl.sql" />
+    <Content Include="TestInheritance\dml.sql" />
+    <Content Include="TestOwnTable\ddl.sql" />
+    <Content Include="TestOwnTable\dml.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

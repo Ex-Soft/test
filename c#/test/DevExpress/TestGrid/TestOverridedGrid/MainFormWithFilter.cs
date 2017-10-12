@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DevExpress.Utils.Filtering.Internal;
 using DevExpress.Xpo;
-using TestOverridedGrid.Db;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Localization;
+using TestDB;
 
 namespace TestOverridedGrid
 {
@@ -20,6 +22,8 @@ namespace TestOverridedGrid
 
         private static void Localize()
         {
+            Localizer.Active = new CustomLocalizer();
+            GridLocalizer.Active = new CustomGridLocalizer();
             FilterUIElementLocalizer.Active = new CustomFilterUIElementLocalizer();
         }
 
@@ -44,6 +48,8 @@ namespace TestOverridedGrid
         {
             gridControlWithFilter.DataSource = CreateDataSourceWithFilter();
             SimpleButtonSetColumnFilterPopupMaxRecordsCountClick(null, EventArgs.Empty);
+
+            //customGridViewWithFilter.OptionsFilter.ColumnFilterPopupMaxRecordsCount = 0;
         }
 
         private static object CreateDataSourceWithFilter()

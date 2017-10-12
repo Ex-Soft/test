@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestOwnTable.Db
+namespace TestDB.TestOwnTable
 {
     [NonPersistent]
     public abstract class BaseObjectWithId : XPBaseObject

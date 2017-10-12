@@ -2,7 +2,7 @@
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
-using TestOverridedGrid.Db;
+using TestDB;
 
 namespace TestOverridedGrid
 {

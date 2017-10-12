@@ -5,7 +5,7 @@ using System.IO;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors.DXErrorProvider;
 
-namespace TestOverridedGrid.Db
+namespace TestDB
 {
     [Persistent("TestTable4Types")]
     public class TestTable4Types : XPCustomObject, IDXDataErrorInfo

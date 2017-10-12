@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestInheritance.Db
+namespace TestDB.TestInheritance
 {
     [Persistent("Entity3")]
     public class Entity3Base : XPBaseObject

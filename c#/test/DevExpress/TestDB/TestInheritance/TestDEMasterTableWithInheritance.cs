@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestInheritance.Db
+namespace TestDB.TestInheritance
 {
     [Persistent("TestDEMasterTableWithInheritance")]
     public class TestDEMasterTableWithInheritanceLite : XPBaseObject
@@ -26,7 +26,7 @@ namespace TestInheritance.Db
             set { SetPropertyValue("valueLite", ref _valueLite, value); }
         }
 
-        [Association("TestMaster-TestDetail", typeof(TestDEDetailTableWithInheritanceLite))]
+        [Association("TestMasterTableWithInheritanceLite-TestDetailTableWithInheritanceLite", typeof(TestDEDetailTableWithInheritanceLite))]
         public XPCollection<TestDEDetailTableWithInheritanceLite> Details
         {
             get { return GetCollection<TestDEDetailTableWithInheritanceLite>("Details"); }
@@ -48,7 +48,7 @@ namespace TestInheritance.Db
             set { SetPropertyValue("Value", ref _value, value); }
         }
 
-        [Association("TestMaster-TestDetail", typeof(TestDEDetailTableWithInheritance))]
+        //[Association("TestMasterTableWithInheritanceLite-TestDetailTableWithInheritanceLite", typeof(TestDEDetailTableWithInheritance))]
         public new XPCollection<TestDEDetailTableWithInheritance> Details
         {
             get { return GetCollection<TestDEDetailTableWithInheritance>("Details"); }

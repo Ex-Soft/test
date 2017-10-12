@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestOwnTable.Db
+namespace TestDB.TestOwnTable
 {
     [Persistent("Employee")]
     [MapInheritance(MapInheritanceType.OwnTable)]

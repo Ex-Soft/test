@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
 using DevExpress.XtraEditors;
-using TestOverridedGrid.Db;
+using TestDB;
 
 namespace TestOverridedGrid
 {
@@ -48,7 +48,7 @@ namespace TestOverridedGrid
             InitializeComponent();
 
             #if USE_DB
-                XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("i-nozhenko", "sa", "123", "testdb");
+                XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
 
                 #if USE_SESSION
                     _session = new Session();
