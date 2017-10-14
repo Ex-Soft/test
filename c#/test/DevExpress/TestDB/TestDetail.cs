@@ -31,5 +31,8 @@ namespace TestDB
 
         [PersistentAlias("Master.Val")]
         public string MasterVal => (string)EvaluateAlias(nameof(MasterVal));
+
+        [NonPersistent]
+        public string NonPersistentField => Id.ToString();
     }
 }

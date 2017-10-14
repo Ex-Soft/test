@@ -44,9 +44,6 @@
             this.gridControlWithFilter = new DevExpress.XtraGrid.GridControl();
             this.customGridViewWithFilter = new TestOverridedGrid.CustomGridViewWithFilter();
             this.pnlBottom2 = new System.Windows.Forms.Panel();
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount = new DevExpress.XtraEditors.SimpleButton();
-            this.textEditColumnFilterPopupMaxRecordsCount = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tabPageWithValidation = new System.Windows.Forms.TabPage();
             this.pnlFill3 = new System.Windows.Forms.Panel();
             this.gridControlWithValidation = new DevExpress.XtraGrid.GridControl();
@@ -62,8 +59,6 @@
             this.pnlFill2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWithFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customGridViewWithFilter)).BeginInit();
-            this.pnlBottom2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditColumnFilterPopupMaxRecordsCount.Properties)).BeginInit();
             this.tabPageWithValidation.SuspendLayout();
             this.pnlFill3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWithValidation)).BeginInit();
@@ -211,39 +206,11 @@
             // 
             // pnlBottom2
             // 
-            this.pnlBottom2.Controls.Add(this.simpleButtonSetColumnFilterPopupMaxRecordsCount);
-            this.pnlBottom2.Controls.Add(this.textEditColumnFilterPopupMaxRecordsCount);
-            this.pnlBottom2.Controls.Add(this.labelControl1);
             this.pnlBottom2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom2.Location = new System.Drawing.Point(3, 343);
             this.pnlBottom2.Name = "pnlBottom2";
             this.pnlBottom2.Size = new System.Drawing.Size(659, 50);
             this.pnlBottom2.TabIndex = 1;
-            // 
-            // simpleButtonSetColumnFilterPopupMaxRecordsCount
-            // 
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount.Location = new System.Drawing.Point(320, 14);
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount.Name = "simpleButtonSetColumnFilterPopupMaxRecordsCount";
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount.TabIndex = 2;
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount.Text = "Set";
-            this.simpleButtonSetColumnFilterPopupMaxRecordsCount.Click += new System.EventHandler(this.SimpleButtonSetColumnFilterPopupMaxRecordsCountClick);
-            // 
-            // textEditColumnFilterPopupMaxRecordsCount
-            // 
-            this.textEditColumnFilterPopupMaxRecordsCount.EditValue = "-1";
-            this.textEditColumnFilterPopupMaxRecordsCount.Location = new System.Drawing.Point(200, 15);
-            this.textEditColumnFilterPopupMaxRecordsCount.Name = "textEditColumnFilterPopupMaxRecordsCount";
-            this.textEditColumnFilterPopupMaxRecordsCount.Size = new System.Drawing.Size(100, 20);
-            this.textEditColumnFilterPopupMaxRecordsCount.TabIndex = 1;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(8, 19);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(177, 13);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "ColumnFilterPopupMaxRecordsCount";
             // 
             // tabPageWithValidation
             // 
@@ -308,9 +275,6 @@
             this.pnlFill2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWithFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customGridViewWithFilter)).EndInit();
-            this.pnlBottom2.ResumeLayout(false);
-            this.pnlBottom2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditColumnFilterPopupMaxRecordsCount.Properties)).EndInit();
             this.tabPageWithValidation.ResumeLayout(false);
             this.pnlFill3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWithValidation)).EndInit();
@@ -342,9 +306,6 @@
         private DevExpress.XtraGrid.GridControl gridControlWithValidation;
         private CustomGridViewWithValidation customGridViewWithValidation;
         private System.Windows.Forms.Panel pnlBottom3;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonSetColumnFilterPopupMaxRecordsCount;
-        private DevExpress.XtraEditors.TextEdit textEditColumnFilterPopupMaxRecordsCount;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }
 
