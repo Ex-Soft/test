@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestDB</RootNamespace>
     <AssemblyName>TestDB</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,13 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <Choose>
-    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
+    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2017'">
       <ItemGroup>
         <Reference Include="DevExpress.Data.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v17.1.dll</HintPath>
+          <HintPath>..\DevExpress.asm\DevExpress.Data.v17.1.dll</HintPath>
         </Reference>
         <Reference Include="DevExpress.Xpo.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v17.1.dll</HintPath>
+          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v17.1.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
