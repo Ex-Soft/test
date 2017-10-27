@@ -24,12 +24,13 @@ namespace TestException
         {
             var content = string.Empty;
 
-            try
+            /*try
             {
                 var request = (HttpWebRequest)WebRequest.Create(uri);
                 request.Method = method;
 
                 using (var response = (HttpWebResponse)request.GetResponse())
+                using (var streamResponse = response.GetResponseStream())
                 using (var streamResponse = response.GetResponseStream())
                 using (var streamReader = new StreamReader(streamResponse))
                 {
@@ -39,7 +40,7 @@ namespace TestException
             catch (Exception eException)
             {
                 Debug.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
-            }
+            }*/
 
             return content.Length;
         }
@@ -86,6 +87,35 @@ namespace TestException
             //}
 
             return content.Length;
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            var uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var factory = new TaskFactory(uiScheduler);
+            try
+            {
+                await factory.StartNew(() => MethodWithException1())
+                    .ContinueWith(t => MethodWithException2(), uiScheduler)
+                    .ContinueWith(t => MethodWithException3(), uiScheduler);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("catch (Exception ex)");
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+        }
+        private void MethodWithException1()
+        {
+            throw new Exception("Tadam# 1!!!");
+        }
+        private void MethodWithException2()
+        {
+            throw new Exception("Tadam#2 !!!");
+        }
+        private void MethodWithException3()
+        {
+            throw new Exception("Tadam# 3!!!");
         }
     }
 }
