@@ -1,6 +1,13 @@
 ﻿// http://msdn.microsoft.com/en-us/library/hh534540.aspx [CallerMemberName]/[CallerFilePath]/[CallerLineNumber] 4.5
+// https://blogs.msdn.microsoft.com/mvpawardprogram/2012/03/26/an-introduction-to-new-features-in-c-5-0/
+// https://www.go4expert.com/articles/features-c-sharp-50-t30461/
+// http://www.dotnettricks.com/learn/csharp/new-features-added-to-csharp-50
 
-#define TEST_EXPANDO_OBJECT
+#define TEST_CALLER_INFORMATION
+#define TEST_ASYNC_FEATURE
+#define TEST_LAMBDA_EXPRESSIONS
+
+//#define TEST_EXPANDO_OBJECT
 //#define TEST_SORTER
 //#define TEST_TUPLE
 //#define TEST_ENUM
@@ -13,16 +20,19 @@
 //#define TEST_STRING
 
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Dynamic;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
-//using static Console; // WriteLine(Text) (wo Console.)
+using static System.Console; // WriteLine(Text) (wo Console.)
 
 namespace cs5
 {
@@ -201,6 +211,20 @@ namespace cs5
 
             try
             {
+                #if TEST_LAMBDA_EXPRESSIONS
+                    Func<string, string> lambda = inputString => string.Format("inputString = \"{0}\"", inputString);
+                    WriteLine(lambda("inputString"));
+                #endif
+
+                #if TEST_ASYNC_FEATURE
+                    int length = TestAsyncFeature().GetAwaiter().GetResult();
+                    WriteLine("length = {0}", length);
+                #endif
+
+                #if TEST_CALLER_INFORMATION
+                    TestCallerInformation();
+                #endif
+
                 #if TEST_EXPANDO_OBJECT
                     dynamic expandoObject = new ExpandoObject();
 
@@ -429,6 +453,32 @@ namespace cs5
                 collection.ToList().ForEach(item => tmpCollection.Add(new Tuple<long?, T>(orderPropertyGetter(item), item)));
 
                 return tmpCollection.OrderBy(item => item.Item1, new NullableLongComparer()).Select(item => item.Item2).ToList();
+            }
+        #endif
+
+        #if TEST_CALLER_INFORMATION
+            static void TestCallerInformation([CallerMemberName] string memberName = "", [CallerFilePath] string sourceFilePath = "", [CallerLineNumber] int sourceLineNumber = 0)
+            {
+                var msg = string.Format("memberName = \"{0}\" sourceFilePath = \"{1}\" sourceLineNumber = {2}", memberName, sourceFilePath, sourceLineNumber);
+                WriteLine(msg);
+                Debug.WriteLine(msg);
+            }
+        #endif
+
+        #if TEST_ASYNC_FEATURE
+            static async Task<int> TestAsyncFeature()
+            {
+                HttpClient client = new HttpClient();
+                Uri address = new Uri("http://www.google.com/ncr");
+                HttpResponseMessage response = await client.GetAsync(address);
+     
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return content.Length;
+                }
+
+                return 0;
             }
         #endif
     }

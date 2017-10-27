@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Windows.Forms;
 using DevExpress.Utils.About;
-using DevExpress.XtraEditors;
 
 namespace TestDEControlsII
 {
@@ -24,7 +23,7 @@ namespace TestDEControlsII
             #endregion
 
 
-            WindowsFormsSettings.ColumnFilterPopupMode = ColumnFilterPopupMode.Classic;
+            // DevExpress.XtraEditors.WindowsFormsSettings.ColumnFilterPopupMode = DevExpress.XtraEditors.ColumnFilterPopupMode.Classic;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

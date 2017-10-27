@@ -24,9 +24,9 @@
 //#define TEST_AD
 //#define TEST_PARAMS
 //#define TEST_THERMO
-//#define TEST_DATE_TIME
+#define TEST_DATE_TIME
 //#define TEST_SPLIT
-#define TEST_ENUM
+//#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -909,6 +909,36 @@ namespace AnyTest
             #endif
 
 			#if TEST_DATE_TIME
+                tmpDateTime = DateTime.UtcNow;
+                tmpString = "1970-01-01T17:30:00.0000000Z";
+                tmpDateTimeI = DateTime.Parse(tmpString);
+                tmpDateTimeOffset = DateTimeOffset.Parse(tmpString);
+                tmpDateTimeI = tmpDateTimeI.ToUniversalTime();
+                
+                tmpDateTime = new DateTime(1970, 1, 1, 17, 30, 0, DateTimeKind.Utc);
+                tmpDateTimeI = new DateTime(1970, 1, 1, 19, 30, 0, DateTimeKind.Local);
+                tmpDateTimeOffset = new DateTimeOffset(1970, 1, 1, 19, 30, 0, new TimeSpan(2, 0, 0));
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI ? "=" : "!")}= tmpDateTimeI";
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI.ToUniversalTime() ? "=" : "!")}= tmpDateTimeI.ToUniversalTime()";
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeOffset ? "=" : "!")}= tmpDateTimeOffset";
+
+                tmpString = "1970-01-01 20:30:00+03:00";
+                tmpDateTimeI = DateTime.Parse(tmpString);
+                tmpDateTimeOffset = DateTimeOffset.Parse(tmpString);
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI ? "=" : "!")}= tmpDateTimeI";
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI.ToUniversalTime() ? "=" : "!")}= tmpDateTimeI.ToUniversalTime()";
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeOffset ? "=" : "!")}= tmpDateTimeOffset";
+
+                tmpDateTimeI = new DateTime(1970, 1, 1, 19, 30, 0, DateTimeKind.Local);
+                tmpString = "1970-01-01 20:29:59+03:00";
+                tmpDateTimeOffset = DateTimeOffset.Parse(tmpString);
+                tmpString = $"tmpDateTime {(tmpDateTime >= tmpDateTimeOffset ? ">=" : "<")} tmpDateTimeOffset";
+                tmpString = $"tmpDateTimeI {(tmpDateTimeI >= tmpDateTimeOffset ? ">=" : "<")} tmpDateTimeOffset";
+                tmpString = "1970-01-01 20:30:01+03:00";
+                tmpDateTimeOffset = DateTimeOffset.Parse(tmpString);
+                tmpString = $"tmpDateTime {(tmpDateTime >= tmpDateTimeOffset ? ">=" : "<")} tmpDateTimeOffset";
+                tmpString = $"tmpDateTimeI {(tmpDateTimeI >= tmpDateTimeOffset ? ">=" : "<")} tmpDateTimeOffset";
+
                 tmpDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                 tmpDateTimeI = tmpDateTime.AddMilliseconds(1456272000000);
 
@@ -965,13 +995,13 @@ namespace AnyTest
                 Console.WriteLine("{0} {1}= {2}", tmpDateTimeI, tmpDateTimeI.TimeOfDay == TimeSpan.Zero ? "=" : "!", TimeSpan.Zero);
 
                 tmpObject = null;
-                tmpDateTimeNullable = (DateTime?) tmpObject;
-                tmpDateTimeNullableII = null;
+                tmpDateTimeNullable1 = (DateTime?) tmpObject;
+                tmpDateTimeNullable2 = null;
 
-                Console.WriteLine("tmpDateTimeNullable {0}= tmpDateTimeNullableII", tmpDateTimeNullable==tmpDateTimeNullableII ? "=" : "!");
+                Console.WriteLine("tmpDateTimeNullable1 {0}= tmpDateTimeNullable2", tmpDateTimeNullable1 == tmpDateTimeNullable2 ? "=" : "!");
 
-                tmpDateTimeNullable = DateTime.Now;
-                Console.WriteLine("tmpDateTimeNullable {0}= tmpDateTimeNullableII", tmpDateTimeNullable == tmpDateTimeNullableII ? "=" : "!");
+                tmpDateTimeNullable1 = DateTime.Now;
+                Console.WriteLine("tmpDateTimeNullable1 {0}= tmpDateTimeNullable2", tmpDateTimeNullable1 == tmpDateTimeNullable2 ? "=" : "!");
 
                 tmpDateTime = DateTime.FromOADate(0.5625);
 
@@ -1242,6 +1272,18 @@ namespace AnyTest
 			#endif
 
 			#if TEST_NULLABLE_TYPES
+                bool?
+                    tmpBoolNullable = null;
+
+                try
+                { 
+                    Console.WriteLine("tmpBoolNullable.Value = {0}", tmpBoolNullable.Value);
+                }
+                catch(InvalidOperationException eException)
+                {
+                    Console.WriteLine("Nullable object must have a value. ({0}: {1})", eException.GetType().FullName, eException.Message);
+                }
+
                 int?
                     tmpIntNullableI = null,
                     tmpIntNullableII = null;
@@ -1392,15 +1434,25 @@ namespace AnyTest
 					Console.WriteLine("Unable to convert DBNull.Value to a String. ({0}: {1})", eException.GetType().FullName, eException.Message);
 				}
 
+                tmpObject = DBNull.Value;
+                try
+                {
+                    tmpDateTime = Convert.ToDateTime(tmpObject);
+                }
+                catch (InvalidCastException eException)
+                {
+                    Console.WriteLine("Unable to convert DBNull.Value to a DateTime. ({0}: {1})", eException.GetType().FullName, eException.Message);
+                }
+
                 #region ToBoolen
-   				try { tmpBool = Convert.ToBoolean(tmpString = null); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }     // oB!
-				try { tmpBool = Convert.ToBoolean(tmpString = ""); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }       // FormatException
-                try { tmpBool = Convert.ToBoolean(tmpString = "0"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
-                try { tmpBool = Convert.ToBoolean(tmpString = "1"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
-                try { tmpBool = Convert.ToBoolean(tmpString = "true"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
-                try { tmpBool = Convert.ToBoolean(tmpString = "false"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
-                try { tmpBool = Convert.ToBoolean(tmpString = "TrUe"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
-                try { tmpBool = Convert.ToBoolean(tmpString = "FaLsE"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = null); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }     // oB!
+				    try { tmpBool = Convert.ToBoolean(tmpString = ""); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }       // FormatException
+                    try { tmpBool = Convert.ToBoolean(tmpString = "0"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
+                    try { tmpBool = Convert.ToBoolean(tmpString = "1"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }      // FormatException
+                    try { tmpBool = Convert.ToBoolean(tmpString = "true"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = "false"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = "TrUe"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }   // oB!
+                    try { tmpBool = Convert.ToBoolean(tmpString = "FaLsE"); } catch (FormatException) { Console.WriteLine("Unable to convert \"{0}\" to a Boolean.", tmpString); }  // oB!
                 #endregion
 
                 tmpInt = int.MinValue;

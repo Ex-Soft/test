@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using DevExpress.Utils;
 using DevExpress.Xpo;
@@ -24,6 +25,9 @@ namespace TestDEControlsII
 
         public MainForm()
         {
+            var assembly = Assembly.GetAssembly(typeof(XtraForm));
+            Debug.WriteLine(assembly.GetName().Version);
+
             InitializeComponent();
 
             XpoDefault.ConnectionString = Utils.GetConnectionString();

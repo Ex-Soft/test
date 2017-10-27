@@ -117,7 +117,7 @@
             // 
             // xpCollection
             // 
-            this.xpCollection.ObjectType = typeof(TestTreeList.Model.TableWithHierarchy);
+            this.xpCollection.ObjectType = typeof(TestDB.TableWithHierarchy);
             this.xpCollection.Session = this.session;
             // 
             // session

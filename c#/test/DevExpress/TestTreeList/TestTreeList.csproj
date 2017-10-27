@@ -35,34 +35,34 @@
   <Choose>
     <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v16.2">
-          <HintPath>..\DevExpress.asm\DevExpress.Data.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.Data.v17.1">
+          <HintPath>..\DevExpress.asm\DevExpress.Data.v17.1.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.DataAccess.v16.2">
-          <HintPath>..\DevExpress.asm\DevExpress.DataAccess.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.DataAccess.v17.1">
+          <HintPath>..\DevExpress.asm\DevExpress.DataAccess.v17.1.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Xpo.v16.2">
-          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.Xpo.v17.1">
+          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v17.1.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Utils.v16.2">
-          <HintPath>..\DevExpress.asm\DevExpress.Utils.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.Utils.v17.1">
+          <HintPath>..\DevExpress.asm\DevExpress.Utils.v17.1.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraEditors.v16.2">
-          <HintPath>..\DevExpress.asm\DevExpress.XtraEditors.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.XtraEditors.v17.1">
+          <HintPath>..\DevExpress.asm\DevExpress.XtraEditors.v17.1.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraTreeList.v16.2">
-          <HintPath>..\DevExpress.asm\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.XtraTreeList.v17.1">
+          <HintPath>..\DevExpress.asm\DevExpress.XtraTreeList.v17.1.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Utils.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Data.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Utils.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -71,8 +71,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,8 +87,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="main.cs" />
-    <Compile Include="Model\TableWithHierarchy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestDB\TestDB.csproj">
+      <Project>{b75a7089-be4a-4976-aa4e-f4670b591027}</Project>
+      <Name>TestDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -24,7 +24,8 @@ function Check_Date()
 var
 	d=new Date(),
 	dd,
-	i;
+	i,
+	o;
 
 	document.write("d=new Date()","<br>");
 	document.write("typeof(d)=\"",typeof(d),"\"","<br>");
@@ -39,6 +40,9 @@ var
 
 	document.write(d.toString(),"<br>","getTimezoneOffset()=",d.getTimezoneOffset(),"<hr>");
 
+	o = JSON.parse("{\"gmt\":\"new Date(1508310210135+0300)"}");
+	document.write(o.gmt.toString(),"<br>");
+	
 	document.write("d=new Date(1974,0,5)","<br>");
 	d=new Date(1974,0,5);
 	document.write(d.toString(),"<hr>");

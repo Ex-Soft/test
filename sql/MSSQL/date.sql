@@ -12,6 +12,8 @@ set @t_datetime2=getdate()
 set @t_smalldatetime=getdate()
 set @t_datetimeoffset=getdate()
 
+print convert(varchar, @t_datetime, 4) + ' ' + convert(varchar, @t_datetime, 108) + ' - ' + convert(varchar, @t_datetime, 108)
+
 set @t_datetimeoffset = N'20170101 01:13:13.456 +01:00'
 set @t_datetimeoffset2 = N'20170101 02:13:13.456 +02:00'
 select @t_datetimeoffset, @t_datetimeoffset2

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ClassWithDates.cs" />
     <Compile Include="ClassWithObjectProperty.cs" />
+    <Compile Include="LicenseObject.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObject.cs" />

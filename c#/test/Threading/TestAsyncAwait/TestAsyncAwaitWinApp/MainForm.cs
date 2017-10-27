@@ -10,7 +10,9 @@ namespace TestAsyncAwaitWinApp
 {
     public partial class MainForm : Form
     {
-        private const string Uri = "http://www.google.com.ua";
+        private const string
+            Uri = "http://www.goo_gle.com.ua",
+            DateTimeFormat = "HH:mm:ss.fffffff";
 
         public MainForm()
         {
@@ -186,6 +188,10 @@ namespace TestAsyncAwaitWinApp
                 content = await getStringTask;
                 WriteToLog("9. After await getStringTask", uiContext);
             }
+            catch (HttpRequestException eException)
+            {
+                Debug.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
             catch (Exception eException)
             {
                 Debug.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
@@ -198,7 +204,7 @@ namespace TestAsyncAwaitWinApp
 
         private void WriteToLog(string message, bool addListItem = true)
         {
-            message = $"{message} (WriteToLogThread:{Thread.CurrentThread.ManagedThreadId})";
+            message = $"{DateTime.Now.ToString(DateTimeFormat)} {message} (WriteToLogThread:{Thread.CurrentThread.ManagedThreadId})";
 
             Debug.WriteLine(message);
 
@@ -210,7 +216,7 @@ namespace TestAsyncAwaitWinApp
 
         private void WriteToLog(string message, SynchronizationContext uiContext, bool addListItem = true)
         {
-            message = $"{message} (WriteToLogThread:{Thread.CurrentThread.ManagedThreadId})";
+            message = $"{DateTime.Now.ToString(DateTimeFormat)} {message} (WriteToLogThread:{Thread.CurrentThread.ManagedThreadId})";
 
             Debug.WriteLine(message);
 
@@ -225,7 +231,7 @@ namespace TestAsyncAwaitWinApp
             if (!(state is string))
                 return;
 
-            var msg = $"{(string)state} (WriteToLogCallbackThread:{Thread.CurrentThread.ManagedThreadId})";
+            var msg = $"{DateTime.Now.ToString(DateTimeFormat)} {(string)state} (WriteToLogCallbackThread:{Thread.CurrentThread.ManagedThreadId})";
 
             listBoxLog.Items.Add(msg);
         }

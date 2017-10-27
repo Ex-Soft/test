@@ -1,11 +1,12 @@
-﻿//#define TEST_CLASS_WITH_OBJECT_PROPERTY
-#define TEST_DATE
+﻿#define TEST_CLASS_WITH_OBJECT_PROPERTY
+//#define TEST_DATE
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Text.RegularExpressions;
 
 namespace TestJsonNET
 {
@@ -16,25 +17,88 @@ namespace TestJsonNET
             string
                 tmpString;
 
+            DateTime
+                dateTime1,
+                dateTime2;
+
+            DateTimeOffset
+                dateTimeOffset1,
+                dateTimeOffset2;
+
             try
             {
                 #if TEST_DATE
                     // http://www.newtonsoft.com/json/help/html/DatesInJSON.htm
 
-                    ClassWithDates classWithDates = new ClassWithDates { FDateOnly = new DateTime(2016, 2, 29), FDateTime = new DateTime(2016, 2, 29, 23, 53, 38), FDateTimeOffset = new DateTimeOffset(2016, 2, 29, 23, 53, 38, new TimeSpan(0, 3, 0)) };
-                    tmpString = JsonConvert.SerializeObject(classWithDates); // {"FDateOnly":"2016-02-29T00:00:00", "FDateTime":"2016-02-29T23:53:38", "FDateTimeOffset":"2016-02-29T23:53:38+00:03"}
+                    //tmpString = "{\"gmt\":\"\\/Date(1508310210135)\\/\"}";
+                    tmpString = "{\"FDateTimeOffset\":\"\\/Date(1508321380535+0300)\\/\"}";
+                    //tmpString = "{\"FDateTimeOffset\":\"\\/Date(1508325572835+0300)\\/\"}";
+
+                    Newtonsoft.Json.Linq.JObject jObject = JsonConvert.DeserializeObject(tmpString) as Newtonsoft.Json.Linq.JObject;
+                    Newtonsoft.Json.Linq.JToken jToken;
+                
+                    if(jObject != null && jObject.TryGetValue("FDateTimeOffset", out jToken))
+                    {
+                        dateTime1 = (DateTime)jToken;
+                        dateTimeOffset1 = (DateTimeOffset)jToken;
+                    }
                     var classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
 
+                    dateTime1 = DateTime.UtcNow;
+                    dateTime2 = DateTime.Now;
+                    dateTimeOffset1 = DateTimeOffset.UtcNow;
+                    dateTimeOffset2 = DateTimeOffset.Now;
+
                     JsonSerializerSettings microsoftDateFormatSettings = new JsonSerializerSettings { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat };
+
+                    ClassWithDates classWithDates = new ClassWithDates { FDateOnly = dateTime1.Date, FDateTime = dateTime1, FDateTimeOffset = dateTimeOffset1 };
+                    tmpString = JsonConvert.SerializeObject(classWithDates);
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+                    tmpString = JsonConvert.SerializeObject(classWithDates, microsoftDateFormatSettings);
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+
+                    classWithDates = new ClassWithDates { FDateOnly = dateTime2.Date, FDateTime = dateTime2, FDateTimeOffset = dateTimeOffset2 };
+                    tmpString = JsonConvert.SerializeObject(classWithDates); // {"FDateOnly":"2016-02-29T00:00:00", "FDateTime":"2016-02-29T23:53:38", "FDateTimeOffset":"2016-02-29T23:53:38+00:03"}
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
                     tmpString = JsonConvert.SerializeObject(classWithDates, microsoftDateFormatSettings); // {"FDateOnly":"\/Date(1456696800000+0200)\/", "FDateTime":"\/Date(1456782818000+0200)\/", "FDateTimeOffset":"\/Date(1456789838000+0003)\/"}
                     classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
 
+                    classWithDates = new ClassWithDates { FDateOnly = new DateTime(2017, 10, 18), FDateTime = new DateTime(2017, 10, 18, 10, 03, 30), FDateTimeOffset = new DateTimeOffset(2017, 10, 18, 10, 03, 30, 135, new TimeSpan(3, 0, 0)) };
+                    tmpString = JsonConvert.SerializeObject(classWithDates); // {"FDateOnly":"2016-02-29T00:00:00", "FDateTime":"2016-02-29T23:53:38", "FDateTimeOffset":"2016-02-29T23:53:38+00:03"}
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+                    tmpString = JsonConvert.SerializeObject(classWithDates, microsoftDateFormatSettings); // {"FDateOnly":"\/Date(1456696800000+0200)\/", "FDateTime":"\/Date(1456782818000+0200)\/", "FDateTimeOffset":"\/Date(1456789838000+0003)\/"}
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+
+                    classWithDates = new ClassWithDates { FDateOnly = new DateTime(2016, 2, 29), FDateTime = new DateTime(2016, 2, 29, 23, 53, 38), FDateTimeOffset = new DateTimeOffset(2016, 2, 29, 23, 53, 38, new TimeSpan(0, 3, 0)) };
+                    tmpString = JsonConvert.SerializeObject(classWithDates); // {"FDateOnly":"2016-02-29T00:00:00", "FDateTime":"2016-02-29T23:53:38", "FDateTimeOffset":"2016-02-29T23:53:38+00:03"}
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+                    tmpString = JsonConvert.SerializeObject(classWithDates, microsoftDateFormatSettings); // {"FDateOnly":"\/Date(1456696800000+0200)\/", "FDateTime":"\/Date(1456782818000+0200)\/", "FDateTimeOffset":"\/Date(1456789838000+0003)\/"}
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
                     tmpString = JsonConvert.SerializeObject(classWithDates, new JavaScriptDateTimeConverter()); // {"FDateOnly":new Date(1456696800000), "FDateTime":new Date(1456782818000), "FDateTimeOffset":new Date(1456789838000)}
-                    //classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
+                    classWithDatesOut = JsonConvert.DeserializeObject<ClassWithDates>(tmpString);
                 #endif
 
                 #if TEST_CLASS_WITH_OBJECT_PROPERTY
-                    var raw = "{\"Code\":20002,\"Data\":28147497734082}";
+                    var raw = "{\"LicenseKey\":{\"ExpirationDate\":\"2017-10-17T13:13:13.1313131Z\", \"ExpirationDateTimeOffset\":\"2017-10-17T13:13:13.1313131Z\"}}"; // https://www.w3.org/TR/NOTE-datetime
+                    var licenseObject = JsonConvert.DeserializeObject<LicenseObject>(raw);
+                    var licenseKey = licenseObject.LicenseKey as Newtonsoft.Json.Linq.JObject;
+
+                    Newtonsoft.Json.Linq.JToken jToken;
+                    if (licenseKey.TryGetValue("ExpirationDate", out jToken))
+                    {
+                        DateTime dateTime = (DateTime)licenseKey["ExpirationDate"]; // Kind == Utc
+                        dateTime = licenseKey.Value<DateTime>("ExpirationDate"); // Kind == Utc
+                        dateTime = (DateTime)jToken; // Kind == Utc
+                    }
+
+                    if (licenseKey.TryGetValue("ExpirationDateTimeOffset", out jToken))
+                    {
+                        DateTimeOffset dateTimeOffset = (DateTimeOffset)licenseKey["ExpirationDateTimeOffset"]; // Kind == Unspecified, Local - oB! (Utc + REAL Offset), Offset == 00:00:00
+                        //dateTimeOffset = licenseKey.Value<DateTimeOffset>("ExpirationDateTimeOffset"); // System.InvalidCastException "Invalid cast from 'System.DateTime' to 'System.DateTimeOffset'."
+                        dateTimeOffset = (DateTimeOffset)jToken; // Kind == Unspecified, Local - oB! (Utc + REAL Offset), Offset == 00:00:00 
+                    }
+
+                    raw = "{\"Code\":20002,\"Data\":28147497734082}";
                     var classWithObjectProperty = JsonConvert.DeserializeObject<ClassWithObjectProperty>(raw);
                     tmpString = JsonConvert.SerializeObject(classWithObjectProperty);
                     raw = "{\"Code\":20004,\"Data\":null}";

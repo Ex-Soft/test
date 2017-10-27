@@ -30,10 +30,15 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxTask = new System.Windows.Forms.GroupBox();
+            this.textBoxTaskDelay = new System.Windows.Forms.TextBox();
+            this.labelDelay = new System.Windows.Forms.Label();
             this.textBoxTaskMaxCount = new System.Windows.Forms.TextBox();
             this.labelTaskMaxCount = new System.Windows.Forms.Label();
             this.groupBoxSemaphoreSlim = new System.Windows.Forms.GroupBox();
+            this.textBoxBoxSemaphoreSlimDelay = new System.Windows.Forms.TextBox();
+            this.labelSemaphoreSlimDelay = new System.Windows.Forms.Label();
             this.textBoxSemaphoreSlimInitialCount = new System.Windows.Forms.TextBox();
             this.textBoxSemaphoreSlimMaxCount = new System.Windows.Forms.TextBox();
             this.labelSemaphoreSlimMaxCount = new System.Windows.Forms.Label();
@@ -41,9 +46,6 @@
             this.buttonDoIt = new System.Windows.Forms.Button();
             this.tabPageLog = new System.Windows.Forms.TabPage();
             this.listBoxLog = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBoxDelay = new System.Windows.Forms.TextBox();
-            this.labelDelay = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.groupBoxTask.SuspendLayout();
@@ -76,9 +78,19 @@
             this.tabPageMain.Text = "Main";
             this.tabPageMain.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(207, 219);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Clear Log";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBoxTask
             // 
-            this.groupBoxTask.Controls.Add(this.textBoxDelay);
+            this.groupBoxTask.Controls.Add(this.textBoxTaskDelay);
             this.groupBoxTask.Controls.Add(this.labelDelay);
             this.groupBoxTask.Controls.Add(this.textBoxTaskMaxCount);
             this.groupBoxTask.Controls.Add(this.labelTaskMaxCount);
@@ -88,6 +100,23 @@
             this.groupBoxTask.TabIndex = 2;
             this.groupBoxTask.TabStop = false;
             this.groupBoxTask.Text = "Task";
+            // 
+            // textBoxTaskDelay
+            // 
+            this.textBoxTaskDelay.Location = new System.Drawing.Point(83, 62);
+            this.textBoxTaskDelay.Name = "textBoxTaskDelay";
+            this.textBoxTaskDelay.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTaskDelay.TabIndex = 4;
+            this.textBoxTaskDelay.Text = "1000";
+            // 
+            // labelDelay
+            // 
+            this.labelDelay.AutoSize = true;
+            this.labelDelay.Location = new System.Drawing.Point(18, 70);
+            this.labelDelay.Name = "labelDelay";
+            this.labelDelay.Size = new System.Drawing.Size(34, 13);
+            this.labelDelay.TabIndex = 3;
+            this.labelDelay.Text = "Delay";
             // 
             // textBoxTaskMaxCount
             // 
@@ -108,6 +137,8 @@
             // 
             // groupBoxSemaphoreSlim
             // 
+            this.groupBoxSemaphoreSlim.Controls.Add(this.textBoxBoxSemaphoreSlimDelay);
+            this.groupBoxSemaphoreSlim.Controls.Add(this.labelSemaphoreSlimDelay);
             this.groupBoxSemaphoreSlim.Controls.Add(this.textBoxSemaphoreSlimInitialCount);
             this.groupBoxSemaphoreSlim.Controls.Add(this.textBoxSemaphoreSlimMaxCount);
             this.groupBoxSemaphoreSlim.Controls.Add(this.labelSemaphoreSlimMaxCount);
@@ -118,6 +149,23 @@
             this.groupBoxSemaphoreSlim.TabIndex = 1;
             this.groupBoxSemaphoreSlim.TabStop = false;
             this.groupBoxSemaphoreSlim.Text = "SemaphoreSlim";
+            // 
+            // textBoxBoxSemaphoreSlimDelay
+            // 
+            this.textBoxBoxSemaphoreSlimDelay.Location = new System.Drawing.Point(82, 63);
+            this.textBoxBoxSemaphoreSlimDelay.Name = "textBoxBoxSemaphoreSlimDelay";
+            this.textBoxBoxSemaphoreSlimDelay.Size = new System.Drawing.Size(100, 20);
+            this.textBoxBoxSemaphoreSlimDelay.TabIndex = 5;
+            this.textBoxBoxSemaphoreSlimDelay.Text = "0";
+            // 
+            // labelSemaphoreSlimDelay
+            // 
+            this.labelSemaphoreSlimDelay.AutoSize = true;
+            this.labelSemaphoreSlimDelay.Location = new System.Drawing.Point(17, 69);
+            this.labelSemaphoreSlimDelay.Name = "labelSemaphoreSlimDelay";
+            this.labelSemaphoreSlimDelay.Size = new System.Drawing.Size(34, 13);
+            this.labelSemaphoreSlimDelay.TabIndex = 4;
+            this.labelSemaphoreSlimDelay.Text = "Delay";
             // 
             // textBoxSemaphoreSlimInitialCount
             // 
@@ -183,33 +231,6 @@
             this.listBoxLog.Size = new System.Drawing.Size(862, 576);
             this.listBoxLog.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(207, 219);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Clear Log";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBoxDelay
-            // 
-            this.textBoxDelay.Location = new System.Drawing.Point(83, 62);
-            this.textBoxDelay.Name = "textBoxDelay";
-            this.textBoxDelay.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDelay.TabIndex = 4;
-            this.textBoxDelay.Text = "1000";
-            // 
-            // labelDelay
-            // 
-            this.labelDelay.AutoSize = true;
-            this.labelDelay.Location = new System.Drawing.Point(18, 70);
-            this.labelDelay.Name = "labelDelay";
-            this.labelDelay.Size = new System.Drawing.Size(34, 13);
-            this.labelDelay.TabIndex = 3;
-            this.labelDelay.Text = "Delay";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,8 +267,10 @@
         private System.Windows.Forms.TextBox textBoxTaskMaxCount;
         private System.Windows.Forms.Label labelTaskMaxCount;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBoxDelay;
+        private System.Windows.Forms.TextBox textBoxTaskDelay;
         private System.Windows.Forms.Label labelDelay;
+        private System.Windows.Forms.Label labelSemaphoreSlimDelay;
+        private System.Windows.Forms.TextBox textBoxBoxSemaphoreSlimDelay;
     }
 }
 

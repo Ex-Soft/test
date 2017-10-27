@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.pnlBottom = new System.Windows.Forms.Panel();
+            this.btnAsync = new System.Windows.Forms.Button();
             this.btnSync = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnAsync = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlBottom.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBottom
             // 
+            this.pnlBottom.Controls.Add(this.button1);
             this.pnlBottom.Controls.Add(this.btnAsync);
             this.pnlBottom.Controls.Add(this.btnSync);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -47,6 +49,16 @@
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(284, 50);
             this.pnlBottom.TabIndex = 0;
+            // 
+            // btnAsync
+            // 
+            this.btnAsync.Location = new System.Drawing.Point(105, 14);
+            this.btnAsync.Name = "btnAsync";
+            this.btnAsync.Size = new System.Drawing.Size(75, 23);
+            this.btnAsync.TabIndex = 2;
+            this.btnAsync.Text = "async";
+            this.btnAsync.UseVisualStyleBackColor = true;
+            this.btnAsync.Click += new System.EventHandler(this.btnAsyncClick);
             // 
             // btnSync
             // 
@@ -89,15 +101,15 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnAsync
+            // button1
             // 
-            this.btnAsync.Location = new System.Drawing.Point(105, 14);
-            this.btnAsync.Name = "btnAsync";
-            this.btnAsync.Size = new System.Drawing.Size(75, 23);
-            this.btnAsync.TabIndex = 2;
-            this.btnAsync.Text = "async";
-            this.btnAsync.UseVisualStyleBackColor = true;
-            this.btnAsync.Click += new System.EventHandler(this.btnAsyncClick);
+            this.button1.Location = new System.Drawing.Point(186, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "async";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -123,6 +135,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnAsync;
+        private System.Windows.Forms.Button button1;
     }
 }
 

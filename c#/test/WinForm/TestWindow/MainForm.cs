@@ -133,10 +133,49 @@ namespace TestWindow
         {
         }
 
+        private void ButtonTestModalClick(object sender, EventArgs e)
+        {
+            DialogResult result;
+
+            using (var modalForm = new ModalForm())
+            {
+                result = modalForm.ShowDialog(this);
+            }
+
+            WriteToLog(result.ToString());
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            WriteToLog("MainForm: OnClosing");
+            base.OnClosing(e);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            WriteToLog("MainForm: OnClosed");
+            base.OnClosed(e);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            WriteToLog("MainForm: OnFormClosing");
+            base.OnFormClosing(e);
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            WriteToLog("MainForm: OnFormClosed");
+            base.OnFormClosed(e);
+        }
         /*
+MainForm: OnClosing
 MainForm: Closing
+MainForm: OnFormClosing
 MainForm: FormClosing
+MainForm: OnClosed
 MainForm: Closed
+MainForm: OnFormClosed
 MainForm: FormClosed
 MainForm: Dispose(True)
 MainForm: IsDisposed = False

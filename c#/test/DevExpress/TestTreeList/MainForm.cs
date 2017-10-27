@@ -11,7 +11,7 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.ViewInfo;
 using DevExpress.XtraTreeList.Nodes.Operations;
 using DevExpress.XtraTreeList.Nodes;
-using TestTreeList.Model;
+using TestDB;
 
 namespace TestTreeList
 {
@@ -31,6 +31,27 @@ namespace TestTreeList
 
             treeList.OptionsFind.AllowFindPanel = true;
             treeList.OptionsFind.FindMode = FindMode.Always;
+
+            treeList.Load += TreeListLoad;
+        }
+
+        private void TreeListLoad(object sender, EventArgs e)
+        {
+            TreeList treeList;
+
+            if ((treeList = sender as TreeList) == null)
+                return;
+
+            new List<int> { 1, 2, 9, 15, 10, /*11,*/ 3, 5, /*101,*/ /*104,*/ /*107*/ }.ForEach(id => {
+                TreeListNode node;
+
+                if ((node = treeList.FindNodeByKeyID(id)) != null)
+                    node.Expanded = true;
+            });
+
+            TreeListNode node4focus;
+            if ((node4focus = treeList.FindNodeByKeyID(20)) != null)
+                treeList.FocusedNode = node4focus;
         }
 
         private void TreeListFocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
