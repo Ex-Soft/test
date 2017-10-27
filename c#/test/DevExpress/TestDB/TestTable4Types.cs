@@ -87,14 +87,14 @@ namespace TestDB
 
         public void GetPropertyError(string propertyName, ErrorInfo info)
         {
-            info.ErrorType = ErrorType.Critical;
-            info.ErrorText = propertyName;
+            //info.ErrorType = ErrorType.Critical;
+            //info.ErrorText = propertyName;
         }
 
         public void GetError(ErrorInfo info)
         {
-            var propertyInfo = new ErrorInfo();
-            GetPropertyError(nameof(Image), propertyInfo);
+            //var propertyInfo = new ErrorInfo();
+            //GetPropertyError(nameof(Image), propertyInfo);
 
             //if (propertyInfo.ErrorType == ErrorType.Critical)
             //{

@@ -53,25 +53,25 @@ namespace TestOverridedGrid
                 switch (i)
                 {
                     case 0:
-                    {
-                        column.OptionsColumn.ReadOnly = true;
-                        break;
-                    }
+                        {
+                            column.OptionsColumn.ReadOnly = true;
+                            break;
+                        }
                     case 1:
-                    {
-                        column.OptionsColumn.ReadOnly = false;
-                        break;
-                    }
+                        {
+                            column.OptionsColumn.ReadOnly = false;
+                            break;
+                        }
                     case 2:
-                    {
-                        column.OptionsColumn.AllowEdit = true;
-                        break;
-                    }
+                        {
+                            column.OptionsColumn.AllowEdit = true;
+                            break;
+                        }
                     case 3:
-                    {
-                        column.OptionsColumn.AllowEdit = false;
-                        break;
-                    }
+                        {
+                            column.OptionsColumn.AllowEdit = false;
+                            break;
+                        }
                 }
 
                 column.ColumnEdit = new RepositoryItemTextEdit();
