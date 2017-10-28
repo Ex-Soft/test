@@ -77,14 +77,20 @@ namespace TestDB
 
 	    protected override void OnSaving()
 	    {
-			System.Diagnostics.Debug.WriteLine("XPBaseObject: OnSaving");
+			System.Diagnostics.Debug.WriteLine("XPCustomObject: OnSaving");
 		    base.OnSaving();
 	    }
 
 	    protected override void OnSaved()
 	    {
-			System.Diagnostics.Debug.WriteLine("XPBaseObject: OnSaved");
+			System.Diagnostics.Debug.WriteLine("XPCustomObject: OnSaved");
 		    base.OnSaved();
 	    }
+
+        public override void AfterConstruction()
+        {
+            System.Diagnostics.Debug.WriteLine("XPCustomObject: AfterConstruction");
+            base.AfterConstruction();
+        }
     }
 }

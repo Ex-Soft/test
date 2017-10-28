@@ -1,9 +1,9 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestXPO.Db
+namespace TestDB.TestXPO
 {
-    [Persistent("TestTable4TestPIVOTProducts")]
-    public class TestTable4TestPIVOTProduct : XPCustomObject
+    [Persistent("TestTable4TestPIVOTStores")]
+    public class TestTable4TestPIVOTStore : XPCustomObject
     {
         private int _id;
         private string _name;
@@ -14,7 +14,7 @@ namespace TestXPO.Db
             get { return _id; }
             set
             {
-                System.Diagnostics.Debug.WriteLine($"TestTable4TestPIVOTProduct.set_Id({value})");
+                System.Diagnostics.Debug.WriteLine($"TestTable4TestPIVOTStore.set_Id({value})");
                 SetPropertyValue("Id", ref _id, value);
             }
         }
@@ -24,25 +24,25 @@ namespace TestXPO.Db
             get { return _name; }
             set
             {
-                System.Diagnostics.Debug.WriteLine($"TestTable4TestPIVOTProduct.set_Name({value})");
+                System.Diagnostics.Debug.WriteLine($"TestTable4TestPIVOTStore.set_Name({value})");
                 SetPropertyValue("Name", ref _name, value);
             }
         }
 
-        public TestTable4TestPIVOTProduct(Session session) : base(session)
+        public TestTable4TestPIVOTStore(Session session) : base(session)
         {
-            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTProduct.ctor(Session)");
+            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTStore.ctor(Session)");
         }
 
         protected override void OnLoading()
         {
-            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTProduct.OnLoading()");
+            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTStore.OnLoading()");
             base.OnLoading();
         }
 
         protected override void OnLoaded()
         {
-            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTProduct.OnLoaded()");
+            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTStore.OnLoaded()");
             base.OnLoaded();
         }
     }

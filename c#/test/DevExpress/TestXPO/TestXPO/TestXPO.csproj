@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestXPO</RootNamespace>
     <AssemblyName>TestXPO</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -56,29 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Db\EntityA.cs" />
-    <Compile Include="Db\EntityB.cs" />
-    <Compile Include="Db\EntityC.cs" />
-    <Compile Include="Db\Staff.cs" />
-    <Compile Include="Db\TestDE.cs" />
-    <Compile Include="Db\TestDetail.cs" />
-    <Compile Include="Db\TestDetailWOFK.cs" />
-    <Compile Include="Db\TestMaster.cs" />
-    <Compile Include="Db\TestMasterWOFK.cs" />
-    <Compile Include="Db\TestTable4TestPIVOTList.cs" />
-    <Compile Include="Db\TestTable4TestPIVOTProduct.cs" />
-    <Compile Include="Db\TestTable4TestPIVOTStore.cs" />
-    <Compile Include="Db\TestTable4Types.cs" />
-    <Compile Include="Db\TestTableWOIdentity.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Db\ddl.sql" />
-    <Content Include="Db\dml.sql" />
+    <ProjectReference Include="..\..\TestDB\TestDB.csproj">
+      <Project>{b75a7089-be4a-4976-aa4e-f4670b591027}</Project>
+      <Name>TestDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

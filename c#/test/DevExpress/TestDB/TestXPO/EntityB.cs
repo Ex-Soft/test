@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestXPO.Db
+namespace TestDB.TestXPO
 {
     [Persistent("EntityB")]
     public class EntityB : XPBaseObject

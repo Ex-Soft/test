@@ -1,6 +1,6 @@
 ﻿using DevExpress.Xpo;
 
-namespace TestXPO.Db
+namespace TestDB.TestXPO
 {
     [Persistent("TestTable4TestPIVOTList")]
     public class TestTable4TestPIVOTList : XPCustomObject

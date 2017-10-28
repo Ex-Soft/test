@@ -85,13 +85,25 @@
     <Compile Include="TestOwnTable\Executive.cs" />
     <Compile Include="TestOwnTable\Person.cs" />
     <Compile Include="TestTable4Types.cs" />
+    <Compile Include="TestXPO\EntityA.cs" />
+    <Compile Include="TestXPO\EntityB.cs" />
+    <Compile Include="TestXPO\EntityC.cs" />
+    <Compile Include="TestXPO\TestDetailWOFK.cs" />
+    <Compile Include="TestXPO\TestMasterWOFK.cs" />
+    <Compile Include="TestXPO\TestTable4TestPIVOTList.cs" />
+    <Compile Include="TestXPO\TestTable4TestPIVOTProduct.cs" />
+    <Compile Include="TestXPO\TestTable4TestPIVOTStore.cs" />
+    <Compile Include="TestXPO\TestTableWOIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestInheritance\ddl.sql" />
     <Content Include="TestInheritance\dml.sql" />
     <Content Include="TestOwnTable\ddl.sql" />
     <Content Include="TestOwnTable\dml.sql" />
+    <Content Include="TestXPO\ddl.sql" />
+    <Content Include="TestXPO\dml.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

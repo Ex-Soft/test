@@ -28,7 +28,8 @@ using DevExpress.Xpo.Exceptions;
 using DevExpress.Xpo.Generators;
 using DevExpress.Xpo.Helpers;
 using DevExpress.Xpo.Metadata;
-using TestXPO.Db;
+using TestDB;
+using TestDB.TestXPO;
 
 namespace TestXPO
 {
@@ -259,6 +260,13 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     criteria = CriteriaOperator.Or(null, new BinaryOperator(new OperandProperty("Right"), new ConstantValue("R"), BinaryOperatorType.Equal));
                     criteria = CriteriaOperator.Or(new BinaryOperator(new OperandProperty("Left"), new ConstantValue("L"), BinaryOperatorType.Equal), new BinaryOperator(new OperandProperty("Right"), new ConstantValue("R"), BinaryOperatorType.Equal));
                     
+                    criteriaII = CriteriaOperator.Parse($"{nameof(TestDetail.Master)}.{nameof(TestMaster.Id)} = 1L");
+                    criteria = new BinaryOperator(new OperandProperty($"{nameof(TestDetail.Master)}.{nameof(TestMaster.Id)}"), new ConstantValue(1L), BinaryOperatorType.Equal);
+                    Debug.WriteLine($"{(criteria.Equals(criteriaII) ? "" : "!")}criteria.Equals(criteriaII)"); // criteria.Equals(criteriaII)
+                    Debug.WriteLine($"{(criteriaII.Equals(criteria) ? "" : "!")}criteriaII.Equals(criteria)"); // criteriaII.Equals(criteria)
+                    xpCollection = new XPCollection(typeof(TestDetail), criteria);
+                    foreach (TestDetail item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
 
                     criteria = CriteriaOperator.Parse("Details[Id in (1L, 3L)]");
                     xpCollection = new XPCollection(typeof(TestMaster), criteria);
@@ -274,13 +282,13 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}}}", item.Id);
 
-                    criteria = CriteriaOperator.Parse("Details[Name == '1.1']");
+                    criteria = CriteriaOperator.Parse($"Details[{nameof(TestDetail.Val)} == '1.1']");
                     xpCollection = new XPCollection(typeof(TestMaster), criteria);
                     foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}}}", item.Id);
 
                     //agregateOperand {[Details][[Name] = '1.1'].Count([Name] = '1.1')}
-                    var agregateOperand = new AggregateOperand(new OperandProperty("Details"), new BinaryOperator(new OperandProperty("Name"), new ConstantValue("1.1"),  BinaryOperatorType.Equal), Aggregate.Count, new BinaryOperator(new OperandProperty("Name"), new ConstantValue("1.1"), BinaryOperatorType.Equal));
+                    var agregateOperand = new AggregateOperand(new OperandProperty("Details"), new BinaryOperator(new OperandProperty(nameof(TestDetail.Val)), new ConstantValue("1.1"),  BinaryOperatorType.Equal), Aggregate.Count, new BinaryOperator(new OperandProperty(nameof(TestDetail.Val)), new ConstantValue("1.1"), BinaryOperatorType.Equal));
 /*
 select N0."Id",N0."Val",N0."OptimisticLockField",N0."GCRecord" from "dbo"."TestMaster" N0
 where (N0."GCRecord" is null and ((select count(case when (N1."Val" = N'1.1') then 1 else 0 end) as Res from "dbo"."TestDetail" N1 where ((N0."Id" = N1."IdMaster") and N1."GCRecord" is null and (N1."Val" = N'1.1'))) = 1))
@@ -320,17 +328,17 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
                     criteria = new InOperator("Master.Id", new[] { 1L, 3L });
                     xpCollection = new XPCollection(typeof(TestDetail), criteria);
                     foreach (TestDetail item in xpCollection)
-                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+                        Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
                     criteria = new InOperator("Master.Id", new[] { 1L, 2L, 3L });
                     xpCollection = new XPCollection(typeof(TestDetail), criteria);
                     foreach (TestDetail item in xpCollection)
-                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+                        Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
                     criteria = new InOperator("Master", new[] {1L, 2L, 3L});
                     xpCollection = new XPCollection(typeof(TestDetail), criteria);
                     foreach (TestDetail item in xpCollection)
-                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+                        Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
                     criteria = new BinaryOperator(new OperandProperty("Id"), new OperandValue(1), BinaryOperatorType.Equal);
                     criteriaII = new BinaryOperator(new OperandProperty("Id"), new OperandValue(1), BinaryOperatorType.Equal);
@@ -361,48 +369,48 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
                     {
                     }
 
-                    criteria = CriteriaOperator.Parse("Details[Name == ?]", "1.1");
+                    criteria = CriteriaOperator.Parse("Details[Val == ?]", "1.1");
 					xpCollection = new XPCollection(typeof(TestMaster), criteria);
 					foreach (TestMaster item in xpCollection)
-						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+						Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
-                    criteria = CriteriaOperator.Parse("Details[StartsWith(Name, ?)].Count > 1", "1");
+                    criteria = CriteriaOperator.Parse("Details[StartsWith(Val, ?)].Count > 1", "1");
                     xpCollection = new XPCollection(typeof(TestMaster), criteria);
                     foreach (TestMaster item in xpCollection)
-                        Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+                        Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
 					criteria = CriteriaOperator.Parse("Details.Sum(Master.Id) = ?", 12);
 					xpCollection = new XPCollection(typeof(TestMaster), criteria);
 					foreach (TestMaster item in xpCollection)
-						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+						Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
 					//criteria = CriteriaOperator.Parse("Details.Single() is not null");
 					//resultOfTestCriteria = new XPCollection(typeof(TestMaster), criteria);
 					//foreach (TestMaster item in resultOfTestCriteria)
 					//	Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
 
-					criteria = CriteriaOperator.Parse("Details.Single([Name]) = ?", "1.1");
+					criteria = CriteriaOperator.Parse("Details.Single([Val]) = ?", "1.1");
 					xpCollection = new XPCollection(typeof(TestMaster), criteria);
 					foreach (TestMaster item in xpCollection)
-						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+						Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
 					criteria = CriteriaOperator.Parse("Id = ?", 12);
 					xpCollection = new XPCollection(typeof(TestMaster), criteria);
 					foreach (TestMaster item in xpCollection)
-						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+						Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
 					criteria = CriteriaOperator.Parse("Id = ?", 12);
 					xpCollection = new XPCollection(typeof(TestMaster), criteria);
 					foreach (TestMaster item in xpCollection)
-						Console.WriteLine("{{Id: {0}, Name: \"{1}\"}}", item.Id, item.Name);
+						Console.WriteLine("{{Id: {0}, Val: \"{1}\"}}", item.Id, item.Val);
 
 					xpCollection = new XPCollection(typeof(TestDetail));
 					foreach (TestDetail item in xpCollection)
-						Console.WriteLine("{{Id: {0}, Name: \"{2}\", Master.Id: {1}}}", item.Id, item.Name, item.Master.Id);
+						Console.WriteLine("{{Id: {0}, Val: \"{2}\", Master.Id: {1}}}", item.Id, item.Val, item.Master.Id);
 
 					var res = (from _testMaster_ in new XPQuery<TestMaster>(session)
 							   join _testDetail_ in new XPQuery<TestDetail>(session) on _testMaster_.Id equals _testDetail_.Master.Id
-							   where _testDetail_.Name == "1.1"  /*&& _testDetail_.PhysicalPerson.id == processedUser.id*/ && _testDetail_.Master.Id == 1
+							   where _testDetail_.Val == "1.1"  /*&& _testDetail_.PhysicalPerson.id == processedUser.id*/ && _testDetail_.Master.Id == 1
 							   select new
 							   {
 								   TestMasterId = _testMaster_.Id,
