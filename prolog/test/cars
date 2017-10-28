@@ -1,0 +1,5 @@
+['cars.pl'].
+car(Make,Odometer,Years_on_road,Body,25000).
+car(Make,Odometer,Years_on_road,Body,Cost), Cost < 25000.
+(car(Make,Odometer,Years_on_road,Body,Cost), Cost < 25000);(truck(Make,Odometer,Years_on_road,Body,Cost), Cost < 25000).
+halt.

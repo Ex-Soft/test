@@ -1,0 +1,4 @@
+['HelloWorld.pl'].
+human(ann).
+human(tuzik).
+halt.
