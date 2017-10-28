@@ -1,8 +1,8 @@
-//#define TEST_XML
+п»ї//#define TEST_XML
 //#define TEST_REF
 //#define TEST_TYPE_CONVERTER
 //#define TEST_ROUND
-#define TEST__FUNC__
+//#define TEST__FUNC__
 //#define TEST_REGEX
 //#define TEST_FILE_ATTRIBUTE
 //#define TEST_RANDOM
@@ -11,7 +11,7 @@
 //#define TEST_STRING
 //#define TEST_PATH
 //#define TEST_FILES
-//#define TEST_ENCODING
+#define TEST_ENCODING
 //#define TEST_STRING_BUILDER
 //#define TEST_ARRAY
 //#define TEST_EXCEPTION
@@ -39,7 +39,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 #if TEST_ENCODING || TEST_WIN_API || TEST__FUNC__
-	using System.Text;
+using System.Text;
 #endif
 
 #if TEST_WIN_API
@@ -71,21 +71,21 @@ delegate void MyEventHandler();
 
 class CPoint
 {
-	public int
-		x,
-		y;
+    public int
+        x,
+        y;
 
-	public CPoint():this(int.MinValue,int.MinValue)
-	{}
+    public CPoint() : this(int.MinValue, int.MinValue)
+    {}
 
-	public CPoint(CPoint aObj):this(aObj.x,aObj.y)
-	{}
+    public CPoint(CPoint aObj) : this(aObj.x, aObj.y)
+    {}
 
-	public CPoint(int aX, int aY)
-	{
-		x=aX;
-		y=aY;
-	}
+    public CPoint(int aX, int aY)
+    {
+        x = aX;
+        y = aY;
+    }
 }
 
 #if TEST_REF
@@ -113,46 +113,46 @@ class ClassOfCPoint
 
 struct SPoint
 {
-	public int
-		x,
-		y;
+    public int
+        x,
+        y;
 
-	public SPoint(SPoint obj):this(obj.x,obj.y)
-	{}
+    public SPoint(SPoint obj) : this(obj.x, obj.y)
+    {}
 
-	public SPoint(int _x_, int _y_)
-	{
-		x=_x_;
-		y=_y_;
-	}
+    public SPoint(int _x_, int _y_)
+    {
+        x = _x_;
+        y = _y_;
+    }
 }
 
 class MyEvent
 {
-	public event MyEventHandler
-	  SomeEvent;
+    public event MyEventHandler
+      SomeEvent;
 
-	public void OnSameEvent()
-	{
-		if(SomeEvent!=null)
-          SomeEvent();
-	}
+    public void OnSameEvent()
+    {
+        if (SomeEvent != null)
+            SomeEvent();
+    }
 }
 
 class X
 {
-	public void Xhandler()
-	{
-		Console.WriteLine("Событие, полученное объектом X");
-	}
+    public void Xhandler()
+    {
+        Console.WriteLine("РЎРѕР±С‹С‚РёРµ, РїРѕР»СѓС‡РµРЅРЅРѕРµ РѕР±СЉРµРєС‚РѕРј X");
+    }
 }
 
 class Y
 {
-	public void Yhandler()
-	{
-		Console.WriteLine("Событие, полученное объектом Y");
-	}
+    public void Yhandler()
+    {
+        Console.WriteLine("РЎРѕР±С‹С‚РёРµ, РїРѕР»СѓС‡РµРЅРЅРѕРµ РѕР±СЉРµРєС‚РѕРј Y");
+    }
 }
 
 delegate string strMod(string str);
@@ -160,349 +160,349 @@ delegate void strMod_(ref string str);
 
 class DelegateTest
 {
-	public static string replaceSpaces(string a)
-	{
-		Console.WriteLine("replaceSpaces(string)");
-		return(a.Replace(' ','-'));
-	}
+    public static string replaceSpaces(string a)
+    {
+        Console.WriteLine("replaceSpaces(string)");
+        return (a.Replace(' ', '-'));
+    }
 
-	public static string removeSpaces(string a)
-	{
-		string
-		  temp="";
+    public static string removeSpaces(string a)
+    {
+        string
+          temp = "";
 
-		Console.WriteLine("removeSpaces(string)");
-		for(int i=0; i<a.Length; ++i)
-		{
-			if(a[i]!=' ')
-			  temp+=a[i];
-		}
+        Console.WriteLine("removeSpaces(string)");
+        for (int i = 0; i < a.Length; ++i)
+        {
+            if (a[i] != ' ')
+                temp += a[i];
+        }
 
-		return(temp);
-	}
+        return (temp);
+    }
 
-	public static string reverce(string a)
-	{
-		string
-			temp="";
+    public static string reverce(string a)
+    {
+        string
+            temp = "";
 
-		Console.WriteLine("reverce(string)");
-		for(int i=a.Length-1; i>=0; --i)
-		{
-			temp+=a[i];
-		}
+        Console.WriteLine("reverce(string)");
+        for (int i = a.Length - 1; i >= 0; --i)
+        {
+            temp += a[i];
+        }
 
-		return(temp);
-	}
+        return (temp);
+    }
 }
 
 class StringOps
 {
-	public static void replaceSpaces(ref string a)
-	{
-		Console.WriteLine("replaceSpaces(string)");
-		a=a.Replace(' ','-');
-	}
+    public static void replaceSpaces(ref string a)
+    {
+        Console.WriteLine("replaceSpaces(string)");
+        a = a.Replace(' ', '-');
+    }
 
-	public static void removeSpaces(ref string a)
-	{
-		string
-			temp="";
+    public static void removeSpaces(ref string a)
+    {
+        string
+            temp = "";
 
-		Console.WriteLine("removeSpaces(string)");
-		for(int i=0; i<a.Length; ++i)
-		{
-			if(a[i]!=' ')
-				temp+=a[i];
-		}
+        Console.WriteLine("removeSpaces(string)");
+        for (int i = 0; i < a.Length; ++i)
+        {
+            if (a[i] != ' ')
+                temp += a[i];
+        }
 
-		a=temp;
-	}
+        a = temp;
+    }
 
-	public static void reverce(ref string a)
-	{
-		string
-			temp="";
+    public static void reverce(ref string a)
+    {
+        string
+            temp = "";
 
-		Console.WriteLine("reverce(string)");
-		for(int i=a.Length-1; i>=0; --i)
-		{
-			temp+=a[i];
-		}
+        Console.WriteLine("reverce(string)");
+        for (int i = a.Length - 1; i >= 0; --i)
+        {
+            temp += a[i];
+        }
 
-		a=temp;
-	}
+        a = temp;
+    }
 }
 
 class Cons
 {
-	public static int
-	  alpha;
+    public static int
+      alpha;
 
-	public int
-	  beta;
+    public int
+      beta;
 
-	static Cons()
-	{
-		alpha=99;
-		Console.WriteLine("static Cons()");
-	}
+    static Cons()
+    {
+        alpha = 99;
+        Console.WriteLine("static Cons()");
+    }
 
-	public Cons()
-	{
-		beta=100;
+    public Cons()
+    {
+        beta = 100;
         Console.WriteLine("Cons()");
-	}
+    }
 }
 
 class MyClassWithFactory
 {
-	int
-	  a,
-	  b;
+    int
+      a,
+      b;
 
-	static public MyClassWithFactory factory(int i, int j)
-	{
-		MyClassWithFactory
-		  t=new MyClassWithFactory();
+    static public MyClassWithFactory factory(int i, int j)
+    {
+        MyClassWithFactory
+          t = new MyClassWithFactory();
 
-		t.a=i;
-		t.b=j;
+        t.a = i;
+        t.b = j;
 
-		return(t);
-	}
+        return (t);
+    }
 
-	public void show()
-	{
-		Console.WriteLine("a и b: "+a+" "+b);
-	}
+    public void show()
+    {
+        Console.WriteLine("a Рё b: " + a + " " + b);
+    }
 }
 
 class XYCoord
 {
-	public int
-	  x,
-	  y;
+    public int
+      x,
+      y;
 
-	public XYCoord():this(0,0)
-	{
-		Console.WriteLine("XYCoord()");
-	}
+    public XYCoord() : this(0, 0)
+    {
+        Console.WriteLine("XYCoord()");
+    }
 
-	public XYCoord(XYCoord obj):this(obj.x,obj.y)
-	{
-		Console.WriteLine("XYCoord(XYCoord)");
-	}
-	
-	public XYCoord(int x, int y)
-	{
-		Console.WriteLine("XYCoord(int, int)");
-		this.x=x;
-		this.y=y;
-	}
+    public XYCoord(XYCoord obj) : this(obj.x, obj.y)
+    {
+        Console.WriteLine("XYCoord(XYCoord)");
+    }
+
+    public XYCoord(int x, int y)
+    {
+        Console.WriteLine("XYCoord(int, int)");
+        this.x = x;
+        this.y = y;
+    }
 }
 
 class Test
 {
-	[Obsolete("Лучше использовать метод myMeth2", false /*true*/)]
-	public static int myMeth(int a, int b)
-	{
-       return(a/b);
-	}
+    [Obsolete("Р›СѓС‡С€Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РјРµС‚РѕРґ myMeth2", false /*true*/)]
+    public static int myMeth(int a, int b)
+    {
+        return (a / b);
+    }
 
-	public static int myMeth2(int a, int b)
-	{
-		return(b==0 ? 0 : a/b);
-	}
+    public static int myMeth2(int a, int b)
+    {
+        return (b == 0 ? 0 : a / b);
+    }
 
-	[Conditional("TRIAL")]
-	public void trial()
-	{
-		Console.WriteLine("Пробная версия, не для распространения");
-	}
+    [Conditional("TRIAL")]
+    public void trial()
+    {
+        Console.WriteLine("РџСЂРѕР±РЅР°СЏ РІРµСЂСЃРёСЏ, РЅРµ РґР»СЏ СЂР°СЃРїСЂРѕСЃС‚СЂР°РЅРµРЅРёСЏ");
+    }
 
-	[Conditional("RELEASE")]
-	public void release()
-	{
-		Console.WriteLine("Окончательная версия");
-	}
+    [Conditional("RELEASE")]
+    public void release()
+    {
+        Console.WriteLine("РћРєРѕРЅС‡Р°С‚РµР»СЊРЅР°СЏ РІРµСЂСЃРёСЏ");
+    }
 }
 
 class A
 {
 }
 
-class B:A
+class B : A
 {
 }
 
 [AttributeUsage(AttributeTargets.All)]
-class RemarkAttribute:Attribute
+class RemarkAttribute : Attribute
 {
-	string
-		pri_remark;
+    string
+        pri_remark;
 
-	int
-		pri_priority;
-    
-	public string
-		supplement;
+    int
+        pri_priority;
+
+    public string
+        supplement;
 
 
-	public RemarkAttribute(string str)
-	{
-		pri_remark=str;
-        supplement="Данные отсутствуют";
-	}
+    public RemarkAttribute(string str)
+    {
+        pri_remark = str;
+        supplement = "Р”Р°РЅРЅС‹Рµ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚";
+    }
 
-	public string remark
-	{
-		get
-		{
-			return(pri_remark);
-		}
-	}
+    public string remark
+    {
+        get
+        {
+            return (pri_remark);
+        }
+    }
 
-	public int priority
-	{
-		get
-		{
-			return(pri_priority);
-		}
-		set
-		{
-			pri_priority=value;
-		}
-	}
+    public int priority
+    {
+        get
+        {
+            return (pri_priority);
+        }
+        set
+        {
+            pri_priority = value;
+        }
+    }
 }
 
-[RemarkAttribute("Этот класс использует атрибут",
-	             supplement="Это дополнительная информация",
-	             priority=10)]
+[RemarkAttribute("Р­С‚РѕС‚ РєР»Р°СЃСЃ РёСЃРїРѕР»СЊР·СѓРµС‚ Р°С‚СЂРёР±СѓС‚",
+                 supplement = "Р­С‚Рѕ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ",
+                 priority = 10)]
 class MyClass
 {
-	int
-		x,
-		y,
-		fI,
-		fJ;
+    int
+        x,
+        y,
+        fI,
+        fJ;
 
-	public MyClass(int i)
-	{
-		Console.WriteLine("MyClass(int)");
-		x=y=i;
-		show();
-	}
+    public MyClass(int i)
+    {
+        Console.WriteLine("MyClass(int)");
+        x = y = i;
+        show();
+    }
 
-	public MyClass(int i, int j)
-	{
-	    Console.WriteLine("MyClass(int, int)");
-		x=i;
-        y=j;
-		show();
-	}
+    public MyClass(int i, int j)
+    {
+        Console.WriteLine("MyClass(int, int)");
+        x = i;
+        y = j;
+        show();
+    }
 
-	public int I
-	{
-		get
-		{
-			return(fI);
-		}
-		set
-		{
-			if(fI!=value)
-				fI=value;
-		}
-	}
+    public int I
+    {
+        get
+        {
+            return (fI);
+        }
+        set
+        {
+            if (fI != value)
+                fI = value;
+        }
+    }
 
-	public int J
-	{
-		get
-		{
-			return(fJ);
-		}
-		set
-		{
-			if(fJ!=value)
-				fJ=value;
-		}
-	}
+    public int J
+    {
+        get
+        {
+            return (fJ);
+        }
+        set
+        {
+            if (fJ != value)
+                fJ = value;
+        }
+    }
 
-	public int sum()
-	{
-	   return(x+y);
-	}
+    public int sum()
+    {
+        return (x + y);
+    }
 
-	public bool isBetween(int i)
-	{
-	   if(x<i && i<y)
-	     return(true);
-	   else
-	     return(false);
-	}
+    public bool isBetween(int i)
+    {
+        if (x < i && i < y)
+            return (true);
+        else
+            return (false);
+    }
 
-	public void set(int a, int b)
-	{
-	   Console.Write("set(int, int) ");
-	   x=a;
-       y=b;
-       show();
-	}
-	
-	public void set(double a, double b)
-	{
-	   Console.Write("set(double, double) ");
-	   x=(int)a;
-	   y=(int)b;
-       show();
-	}
+    public void set(int a, int b)
+    {
+        Console.Write("set(int, int) ");
+        x = a;
+        y = b;
+        show();
+    }
 
-	public void show()
-	{
-	   Console.WriteLine("x: {0}, y: {1}",x,y);
-	}
+    public void set(double a, double b)
+    {
+        Console.Write("set(double, double) ");
+        x = (int)a;
+        y = (int)b;
+        show();
+    }
+
+    public void show()
+    {
+        Console.WriteLine("x: {0}, y: {1}", x, y);
+    }
 }
 
 public class AA
 {
-	
+
 }
 
 public class BB
 {
-	AA F()
-	{
-		AA
-			a=new AA();
+    AA F()
+    {
+        AA
+            a = new AA();
 
-		return(a);
-	}
+        return (a);
+    }
 
-	internal AA G()
-	{
-		AA
-			a=new AA();
+    internal AA G()
+    {
+        AA
+            a = new AA();
 
-		return(a);
-	}
+        return (a);
+    }
 
-	public AA H()
-	{
-		AA
-			a=new AA();
+    public AA H()
+    {
+        AA
+            a = new AA();
 
-		return(a);
-	}
+        return (a);
+    }
 }
 
 class MainClass
 {
-	static void handler()
-	{
-        Console.WriteLine("Событие, полученное классом MainClass");
-	}
+    static void handler()
+    {
+        Console.WriteLine("РЎРѕР±С‹С‚РёРµ, РїРѕР»СѓС‡РµРЅРЅРѕРµ РєР»Р°СЃСЃРѕРј MainClass");
+    }
 
-	#if TEST_WIN_API
+    #if TEST_WIN_API
 		[DllImport("kernel32.dll", CharSet = CharSet.Auto)]
 		public static extern int GetShortPathName(
 			[MarshalAs(UnmanagedType.LPTStr)]
@@ -510,9 +510,9 @@ class MainClass
 			[MarshalAs(UnmanagedType.LPTStr)]
 			StringBuilder shortPath,
 			int shortPathLength);
-	#endif
+    #endif
 
-	#if TEST_CONVERT
+    #if TEST_CONVERT
 		static void DecimalParse(NumberStyles styles, IFormatProvider provider)
 		{
 			string[ ] decimalFormats = { "9876543210.9876543210",
@@ -550,9 +550,9 @@ class MainClass
 				}
 			}
 		}
-	#endif
+    #endif
 
-	#if TEST_ENUM
+    #if TEST_ENUM
 		enum TestEnum
 		{
 			Zero,
@@ -560,89 +560,89 @@ class MainClass
 			Second=0x2,
 			Third=0x4
 		};
-	#endif
+    #endif
 
-	#if TEST__FUNC__
-	static void Test__FUNC__Method(string Param1, string Param2)
-	{
-		StackTrace
-			s=new StackTrace(0),
-			st=new StackTrace(true);
+    #if TEST__FUNC__
+        static void Test__FUNC__Method(string Param1, string Param2)
+        {
+            StackTrace
+                s = new StackTrace(0),
+                st = new StackTrace(true);
 
-		MethodBase
-			mb=st.GetFrame(0).GetMethod();
+            MethodBase
+                mb = st.GetFrame(0).GetMethod();
 
-		Type
-			t=mb.ReflectedType;
+            Type
+                t = mb.ReflectedType;
 
-		string
-			typename=t.Name;
+            string
+                typename = t.Name;
 
-		ParameterInfo[]
-			parameterInfo=mb.GetParameters();
+            ParameterInfo[]
+                parameterInfo = mb.GetParameters();
 
-		StringBuilder
-			sb=new StringBuilder();
+            StringBuilder
+                sb = new StringBuilder();
 
-		sb.Append(mb.Name);
-		sb.Append("(");
+            sb.Append(mb.Name);
+            sb.Append("(");
 
-		try
-		{
-			if(parameterInfo.Length!=0)
-			{
-				for(int i=0; i<parameterInfo.Length; ++i)
-				{
-					sb.Append(parameterInfo[i].Name);
-					sb.Append("=");
-					sb.Append(",");
-				}
-				sb.Length--;
-			}
-		}
-		catch
-		{
-			;
-		}
+            try
+            {
+                if (parameterInfo.Length != 0)
+                {
+                    for (int i = 0; i < parameterInfo.Length; ++i)
+                    {
+                        sb.Append(parameterInfo[i].Name);
+                        sb.Append("=");
+                        sb.Append(",");
+                    }
+                    sb.Length--;
+                }
+            }
+            catch
+            {
+                ;
+            }
 
-		sb.Append(")");
-		Console.WriteLine(sb.ToString(), typename/*, TraceEventType.Information*/);
-		Console.WriteLine(s.GetFrame(0).GetMethod().Name);
-	}
-	#endif
+            sb.Append(")");
+            Console.WriteLine(sb.ToString(), typename/*, TraceEventType.Information*/);
+            Console.WriteLine(s.GetFrame(0).GetMethod().Name);
+        }
+    #endif
 
-	public static int Main(string []argv)
-	{
-		string
-			tmpString;
+    public static int Main(string[] argv)
+    {
+        string
+            tmpString;
 
-		double
-			tmpDouble;
+        double
+            tmpDouble;
 
-		decimal
-			tmpDecimal;
+        decimal
+            tmpDecimal;
 
-		int
-			tmpInt;
+        int
+            tmpInt;
 
-		const int
-				  CountFillChar=60;
+        const int
+                  CountFillChar = 60;
 
-		const char
-				  FillChar='=';
+        const char
+                  FillChar = '=';
 
-		int
-			BitValue=107,
-			BitFlag=8;
+        int
+            BitValue = 107,
+            BitFlag = 8;
 
-		BitValue^=BitFlag;
+        BitValue ^= BitFlag;
 
-		bool
-			tmpBool=false;
+        bool
+            tmpBool = false;
 
-		tmpBool |= 5==5;
+        tmpBool |= 5 == 5;
 
-		#if TEST_XML
+        #if TEST_XML
 			try
 			{
 				XmlDocument
@@ -667,7 +667,7 @@ class MainClass
 				doc.AppendChild(node);
 
 				node=doc.CreateElement("contragent");
-				node.AppendChild(doc.CreateTextNode("Иванов Иван Иванович"));
+				node.AppendChild(doc.CreateTextNode("РРІР°РЅРѕРІ РРІР°РЅ РРІР°РЅРѕРІРёС‡"));
 				doc.DocumentElement.AppendChild(node);
 
 				node=doc.CreateElement("date");
@@ -683,19 +683,19 @@ class MainClass
 				nnode=doc.CreateElement("othersperson:contragent");
 				nnode.Attributes.Append(doc.CreateAttribute("othersperson:date"));
 				nnode.Attributes["othersperson:date"].Value="1870.04.22";
-				nnode.AppendChild(doc.CreateTextNode("Ленин Владимир Ильич"));
+				nnode.AppendChild(doc.CreateTextNode("Р›РµРЅРёРЅ Р’Р»Р°РґРёРјРёСЂ РР»СЊРёС‡"));
 				node.AppendChild(nnode);
 
 				nnode=doc.CreateElement("othersperson:contragent");
 				nnode.Attributes.Append(doc.CreateAttribute("othersperson:date"));
 				nnode.Attributes["othersperson:date"].Value="1878.12.18";
-				nnode.AppendChild(doc.CreateTextNode("Сталин Иосиф Виссарионович"));
+				nnode.AppendChild(doc.CreateTextNode("РЎС‚Р°Р»РёРЅ РРѕСЃРёС„ Р’РёСЃСЃР°СЂРёРѕРЅРѕРІРёС‡"));
 				node.AppendChild(nnode);
 
 				nnode=doc.CreateElement("othersperson:contragent");
 				nnode.Attributes.Append(doc.CreateAttribute("othersperson:date"));
 				nnode.Attributes["othersperson:date"].Value="1894.04.17";
-				nnode.AppendChild(doc.CreateTextNode("Хрущев Никита Сергеевич"));
+				nnode.AppendChild(doc.CreateTextNode("РҐСЂСѓС‰РµРІ РќРёРєРёС‚Р° РЎРµСЂРіРµРµРІРёС‡"));
 				node.AppendChild(nnode);
 
 				doc.DocumentElement.AppendChild(node);
@@ -710,9 +710,9 @@ class MainClass
 			{
 				throw(new Exception(eException.GetType().FullName+Environment.NewLine+"Message: "+eException.Message+Environment.NewLine+"StackTrace:"+Environment.NewLine+eException.StackTrace));
 			}
-		#endif
+        #endif
 
-		#if TEST_REF
+        #if TEST_REF
 			CPoint
 				x2=null,
 				x1=new CPoint();
@@ -744,9 +744,9 @@ class MainClass
 				TestRef(ref ClassOfCPoints[i].p,true,false);
 				Console.WriteLine("x="+ClassOfCPoints[i].p.x+" y="+ClassOfCPoints[i].p.y);
 			}
-		#endif
+        #endif
 
-		#if TEST_TYPE_CONVERTER
+        #if TEST_TYPE_CONVERTER
 			Console.WriteLine()};
 			Console.WriteLine("TEST_TYPE_CONVERTER");
 			Console.WriteLine(new string(FillChar,CountFillChar));
@@ -776,9 +776,9 @@ class MainClass
 
 			Console.WriteLine(new string(FillChar,CountFillChar));
 			Console.WriteLine();
-		#endif
+        #endif
 
-		#if TEST_ROUND
+        #if TEST_ROUND
 			int
 				aDigit=-1;
 
@@ -788,13 +788,13 @@ class MainClass
 			tmpInt=tmpDecimal<0 ? (int)(tmpDecimal-0.5m) : (int)(tmpDecimal+0.5m);
 			tmpDecimal=tmpInt/(decimal)tmpDouble;
 			tmpDecimal=Math.Round(1.45m,1);
-		#endif
+        #endif
 
-		#if TEST__FUNC__
-			Test__FUNC__Method("Param1","Param2");
-		#endif
+        #if TEST__FUNC__
+            Test__FUNC__Method("Param1", "Param2");
+        #endif
 
-		#if TEST_REGEX
+        #if TEST_REGEX
 			Regex
 				r;
 
@@ -878,9 +878,9 @@ class MainClass
 			tmpString="<html><head><title>bla-bla-bla</title></head><body></body></html>";
 			r=new Regex("<title>.*</title>");
 			tmpString=r.Replace(tmpString,"<TITLE>BLA-BLA-BLA</TITLE>");
-		#endif
+        #endif
 
-		#if TEST_FILE_ATTRIBUTE
+        #if TEST_FILE_ATTRIBUTE
 			//tmpString="E:\\Soft.src\\ASP.NET\\.svn";
 			//tmpString="E:\\Soft.src\\ASP.NET\\bill\\.svn";
 			tmpString="E:\\Soft.src\\ASP.NET\\bill\\blanks\\.svn";
@@ -923,9 +923,9 @@ class MainClass
 					tmpString+=" ";
 				tmpString+="Archive";
 			}
-		#endif
+        #endif
 
-		#if TEST_RANDOM
+        #if TEST_RANDOM
 			Random
 				Rnd=new Random(unchecked((int)DateTime.Now.Ticks));
 
@@ -941,9 +941,9 @@ class MainClass
 					Console.Write("!!!");
 				Console.WriteLine();
 			}
-		#endif
+        #endif
 
-		#if TEST_WIN_API
+        #if TEST_WIN_API
 			StringBuilder
 				shortNameBuffer=new StringBuilder();
 
@@ -970,9 +970,9 @@ class MainClass
 			{
 				throw(new Exception("kernel32.GetShortPathName() error "+eException.GetType().FullName+Environment.NewLine+"Message: "+eException.Message+Environment.NewLine+"StackTrace:"+Environment.NewLine+eException.StackTrace));
 			}
-		#endif
+        #endif
 
-		#if TEST_STRING
+        #if TEST_STRING
 			tmpString=ConfigurationSettings.AppSettings["AbsentKey"];
 			if(tmpString==string.Empty)
 				tmpString="string.Empty";
@@ -1089,16 +1089,16 @@ class MainClass
 			if(tmpString!=string.Empty)
 				tmpString+=tmpString;
 
-			tmpString="йцукенгшщзхъ";
+			tmpString="Р№С†СѓРєРµРЅРіС€С‰Р·С…СЉ";
 			tmpString=tmpString.ToUpper();
-			tmpString="фывапролджэ";
+			tmpString="С„С‹РІР°РїСЂРѕР»РґР¶СЌ";
 			tmpString=tmpString.ToUpper();
-			tmpString="ячсмитьбю";
+			tmpString="СЏС‡СЃРјРёС‚СЊР±СЋ";
 			tmpString=tmpString.ToUpper();
-			tmpString="ёґіїє";
+			tmpString="С‘Т‘С–С—С”";
 			tmpString=tmpString.ToUpper();
 
-			tmpString="один два три четыре";
+			tmpString="РѕРґРёРЅ РґРІР° С‚СЂРё С‡РµС‚С‹СЂРµ";
 
 			char[]
 				CharArray=tmpString.ToCharArray();
@@ -1110,9 +1110,9 @@ class MainClass
 
 				tmpString+="%u"+code.ToString("x");
 			}
-		#endif
+        #endif
 
-		#if TEST_DATE_TIME
+        #if TEST_DATE_TIME
 			DateTime
 				vDateTime=DateTime.MinValue,
 				vDate=vDateTime.Date;
@@ -1212,9 +1212,9 @@ class MainClass
 			tmpString=dd.ToString("dd.MM.yyyy");
 			tmpString=dd.ToString("#yyyy/MM/dd#");
 			tmpString=dd.ToString(CultureInfo.InvariantCulture);
-		#endif
+        #endif
 
-		#if TEST_PATH
+        #if TEST_PATH
 			string
 				MustDiePath="E:\\Soft.src\\C#\\ReadFile\\ini\\DbfFile.ini",
 				NixPath="E:/Soft.src/C#/ReadFile/ini/DbfFile.ini";
@@ -1270,9 +1270,9 @@ class MainClass
 			tmpString=File.GetLastAccessTimeUtc(NixPath).ToString();
 			tmpString=File.GetLastWriteTime(NixPath).ToString();
 			tmpString=File.GetLastWriteTimeUtc(NixPath).ToString();
-		#endif
+        #endif
 
-		#if TEST_ENCODING
+        #if TEST_ENCODING
 			string
 				unicodeString="This string contains the unicode character Pi(\u03a0)";
 
@@ -1322,7 +1322,7 @@ class MainClass
 				bytes;
 
 			String
-				chars="UTF8 Encoding Example Йобаный в рот";
+				chars="UTF8 Encoding Example Р™РѕР±Р°РЅС‹Р№ РІ СЂРѕС‚";
         
 			System.Text.UTF8Encoding
 				_utf8_ = new System.Text.UTF8Encoding();
@@ -1374,9 +1374,9 @@ class MainClass
 
 			tmpString=Encoding.UTF8.GetString(Encoding.GetEncoding(1251).GetBytes(unicodeString));
 			tmpString=Encoding.GetEncoding(1251).GetString(Encoding.UTF8.GetBytes(unicodeString));
-		#endif
+        #endif
 
-		#if TEST_STRING_BUILDER
+        #if TEST_STRING_BUILDER
 			StringBuilder
 				sb=new StringBuilder();
 
@@ -1439,9 +1439,9 @@ class MainClass
 			Console.WriteLine(sbMethod1.Invoke(sb,new object[0]));
 
 			Console.WriteLine(ReferenceEquals(StrNew1,StrNew2)); 
-		#endif
+        #endif
 
-		#if TEST_ARRAY
+        #if TEST_ARRAY
 			object[,]
 				ArrayOfSmth={	{"1st",1},
 								{"2nd",2},
@@ -1527,9 +1527,9 @@ class MainClass
 
 			tmpString=ArrayOfInt.ToString();
 			Console.WriteLine(tmpString);
-		#endif
+        #endif
 
-		#if TEST_EXCEPTION
+        #if TEST_EXCEPTION
 			try
 			{
 				try
@@ -1558,9 +1558,9 @@ class MainClass
 
 				Console.WriteLine(tmpString);
 			}
-		#endif
+        #endif
 
-		#if TEST_ENUM
+        #if TEST_ENUM
 			TestEnum
 				enumVar;
 
@@ -1593,9 +1593,9 @@ class MainClass
 					tmpString+=" ";
 				tmpString+="Contains "+TestEnum.Third;
 			}
-		#endif
+        #endif
 
-		#if TEST_CONVERT
+        #if TEST_CONVERT
 			try
 			{
 				tmpDecimal=Convert.ToDecimal("123-456");
@@ -1665,9 +1665,9 @@ class MainClass
 			{
 				Console.WriteLine("ArgumentNullException (Message: \""+eException.Message+"\")");
 			}
-		#endif
+        #endif
 
-		#if TEST_TYPES
+        #if TEST_TYPES
 			long
 				tmpLong;
 
@@ -1738,98 +1738,98 @@ class MainClass
 
 			tmpString = objectA==objectB ? "==" : "!=";
 			tmpString = objectA.Equals(objectB) ? "Equals" : "!Equals";
-		#endif
+        #endif
 
-		Console.WriteLine();
-
-		tmpDouble=double.NaN;
-		if(tmpDouble!=double.NaN)
-			Console.WriteLine("tmpDouble!=double.NaN");
-		if(double.IsNaN(tmpDouble))
-			Console.WriteLine("double.IsNaN(tmpDouble)");
-
-		int
-			VictimRightShift=0x0ffff;
-
-		VictimRightShift>>=1;
-		VictimRightShift>>=3;
-
-		int[]
-			arr1=new int[]{0,1,2,3,4,5,6,7,8},
-			arr2=new int[]{0,1,2,3,4,5,6,7,8,9,10},
-			arr=null;
-
-		arr=arr1;
-		tmpString=arr.Length.ToString();
-		arr=arr2;
-		tmpString=arr.Length.ToString();
-
-		Console.WriteLine();
-        
-		CPoint
-			cp1=new CPoint();
-
-		cp1.x=1;
-		cp1.y=2;
-
-		CPoint
-			cp2=cp1;
-
-		cp2.x=3;
-		cp2.y=4;
-		Console.WriteLine("cp1=({0},{1})",cp1.x,cp1.y);
-		Console.WriteLine("cp2=({0},{1})",cp2.x,cp2.y);
-
-		SPoint
-			sp1=new SPoint();
-
-		sp1.x=1;
-		sp1.y=2;
-
-		SPoint
-			sp2=sp1;
-
-		sp2.x=3;
-		sp2.y=4;
-		Console.WriteLine("sp1=({0},{1})",sp1.x,sp1.y);
-		Console.WriteLine("sp2=({0},{1})",sp2.x,sp2.y);
-		Console.WriteLine();
-		
-		MyEvent
-          evt=new MyEvent();
-
-		evt.SomeEvent+=new MyEventHandler(handler);
-        evt.OnSameEvent();
-        
-		X
-		 xOb=new X();
-
-		Y
-		 yOb=new Y();
-
-		evt.SomeEvent+=new MyEventHandler(xOb.Xhandler);
-		evt.SomeEvent+=new MyEventHandler(yOb.Yhandler);
-		evt.OnSameEvent();
-		Console.WriteLine();
-
-		evt.SomeEvent-=new MyEventHandler(xOb.Xhandler);
-		evt.OnSameEvent();
-
-		Console.WriteLine();
-		
-		Test
-		  objTest=new Test();
-
-		objTest.trial();
-		objTest.release();
-		Console.WriteLine("4 / 3 is "+Test.myMeth(4,3));
         Console.WriteLine();
 
-		Type
-			t;
+        tmpDouble = double.NaN;
+        if (tmpDouble != double.NaN)
+            Console.WriteLine("tmpDouble!=double.NaN");
+        if (double.IsNaN(tmpDouble))
+            Console.WriteLine("double.IsNaN(tmpDouble)");
 
-		int
-		  x;
+        int
+            VictimRightShift = 0x0ffff;
+
+        VictimRightShift >>= 1;
+        VictimRightShift >>= 3;
+
+        int[]
+            arr1 = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 },
+            arr2 = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+            arr = null;
+
+        arr = arr1;
+        tmpString = arr.Length.ToString();
+        arr = arr2;
+        tmpString = arr.Length.ToString();
+
+        Console.WriteLine();
+
+        CPoint
+            cp1 = new CPoint();
+
+        cp1.x = 1;
+        cp1.y = 2;
+
+        CPoint
+            cp2 = cp1;
+
+        cp2.x = 3;
+        cp2.y = 4;
+        Console.WriteLine("cp1=({0},{1})", cp1.x, cp1.y);
+        Console.WriteLine("cp2=({0},{1})", cp2.x, cp2.y);
+
+        SPoint
+            sp1 = new SPoint();
+
+        sp1.x = 1;
+        sp1.y = 2;
+
+        SPoint
+            sp2 = sp1;
+
+        sp2.x = 3;
+        sp2.y = 4;
+        Console.WriteLine("sp1=({0},{1})", sp1.x, sp1.y);
+        Console.WriteLine("sp2=({0},{1})", sp2.x, sp2.y);
+        Console.WriteLine();
+
+        MyEvent
+          evt = new MyEvent();
+
+        evt.SomeEvent += new MyEventHandler(handler);
+        evt.OnSameEvent();
+
+        X
+         xOb = new X();
+
+        Y
+         yOb = new Y();
+
+        evt.SomeEvent += new MyEventHandler(xOb.Xhandler);
+        evt.SomeEvent += new MyEventHandler(yOb.Yhandler);
+        evt.OnSameEvent();
+        Console.WriteLine();
+
+        evt.SomeEvent -= new MyEventHandler(xOb.Xhandler);
+        evt.OnSameEvent();
+
+        Console.WriteLine();
+
+        Test
+          objTest = new Test();
+
+        objTest.trial();
+        objTest.release();
+        Console.WriteLine("4 / 3 is " + Test.myMeth(4, 3));
+        Console.WriteLine();
+
+        Type
+            t;
+
+        int
+          x;
 
         #if SELFASSEMBLY
 			Assembly
@@ -1841,7 +1841,7 @@ class MainClass
 			x=-1;
 			for(int i=0; i<alltypes.Length; ++i)
 			{
-				Console.WriteLine("Обнаружено: "+alltypes[i].Name);
+				Console.WriteLine("РћР±РЅР°СЂСѓР¶РµРЅРѕ: "+alltypes[i].Name);
 				if(alltypes[i].Name.CompareTo("MyClass")==0)
 				x=i;
 			}
@@ -1851,373 +1851,373 @@ class MainClass
 				t=alltypes[x];
 			else
 				return(-1);
-		#else
-		   t=typeof(MyClass);
-		#endif
-        
-		Console.WriteLine("Аттрибуты в "+t.Name+": ");
+        #else
+            t = typeof(MyClass);
+        #endif
 
-		object[]
-		  attribs=t.GetCustomAttributes(false);
+        Console.WriteLine("РђС‚С‚СЂРёР±СѓС‚С‹ РІ " + t.Name + ": ");
 
-		foreach(object o in attribs)
-		{
-			Console.WriteLine(o);
-		}
-		Console.WriteLine();
+        object[]
+          attribs = t.GetCustomAttributes(false);
+
+        foreach (object o in attribs)
+        {
+            Console.WriteLine(o);
+        }
+        Console.WriteLine();
         Console.WriteLine("RemarkAttribute:");
-        
-		Type
-		  tRemAtt=typeof(RemarkAttribute);
 
-		RemarkAttribute
-		  ra=(RemarkAttribute)Attribute.GetCustomAttribute(t,tRemAtt);
+        Type
+          tRemAtt = typeof(RemarkAttribute);
 
-		Console.WriteLine("Remark: "+ra.remark);
-        Console.WriteLine("Supplement: "+ra.supplement);
-		Console.WriteLine("Priority: "+ra.priority);
-		Console.WriteLine();
+        RemarkAttribute
+          ra = (RemarkAttribute)Attribute.GetCustomAttribute(t, tRemAtt);
 
-		FieldInfo[]
-			fi=t.GetFields(BindingFlags.Instance|BindingFlags.NonPublic|BindingFlags.Public);
-
-		Console.WriteLine("Анализ Field, определенных в "+t.Name);
-		foreach(FieldInfo f in fi)
-		{
-			Console.Write("   "+f.Name);
-			Console.WriteLine();
-		}
-		Console.WriteLine();
-
-		PropertyInfo[]
-			pi_=t.GetProperties(BindingFlags.Instance|BindingFlags.NonPublic|BindingFlags.Public);
-
-		Console.WriteLine("Анализ Property, определенных в "+t.Name);
-		foreach(PropertyInfo p_ in pi_)
-		{
-			Console.Write("   "+p_.Name);
-			Console.WriteLine();
-		}
-		Console.WriteLine();
-
-		Console.WriteLine("Анализ методов, определенных в "+t.Name);
-		Console.WriteLine();
-
-		ConstructorInfo[]
-		  ci=t.GetConstructors();
-
-		ParameterInfo[]
-		  pi;
-        
-		Console.WriteLine("Имеются следующие конструкторы: ");
-		foreach(ConstructorInfo c in ci)
-		{
-			Console.Write("   "+t.Name+"(");
-			pi=c.GetParameters();
-			for(int i=0; i<pi.Length; ++i)
-			{
-				Console.Write(pi[i].ParameterType.Name+" "+pi[i].Name);
-				if(i+1<pi.Length)
-				  Console.Write(", ");
-			}
-			Console.WriteLine(")");
-		}
-		Console.WriteLine();
-
-		Console.WriteLine("Поддерживаемые методы:");
-
-		MethodInfo[]
-		  mi;
-
-		//mi=t.GetMethods();
-		mi=t.GetMethods(BindingFlags.DeclaredOnly
-		                | BindingFlags.Instance
-			            | BindingFlags.Public);
-
-		foreach(MethodInfo m in mi)
-		{
-			Console.Write("   "+m.ReturnType.Name+" "+m.Name+"(");
-			pi=m.GetParameters();
-
-			for(int i=0; i<pi.Length; ++i)
-			{
-				Console.Write(pi[i].ParameterType.Name+" "+pi[i].Name);
-				if(i+1<pi.Length)
-					Console.Write(", ");
-			}
-			Console.WriteLine(")");
-		}
+        Console.WriteLine("Remark: " + ra.remark);
+        Console.WriteLine("Supplement: " + ra.supplement);
+        Console.WriteLine("Priority: " + ra.priority);
         Console.WriteLine();
 
-		for(x=0; x<ci.Length; ++x)
-		{
-			pi=ci[x].GetParameters();
-			if(pi.Length==2)
-			  break;
-		}
+        FieldInfo[]
+            fi = t.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
-		if(x==ci.Length)
-		{
-			Console.WriteLine("Подходящий конструктор не найден");
-			return(-1);
-		}
-		else
-			Console.WriteLine("Найден конструктор с двумя параметрами\n");
+        Console.WriteLine("РђРЅР°Р»РёР· Field, РѕРїСЂРµРґРµР»РµРЅРЅС‹С… РІ " + t.Name);
+        foreach (FieldInfo f in fi)
+        {
+            Console.Write("   " + f.Name);
+            Console.WriteLine();
+        }
+        Console.WriteLine();
 
-		object[]
-		  argv_;
-		
-		argv_=new object[2];
-		argv_[0]=100;
-		argv_[1]=200;
+        PropertyInfo[]
+            pi_ = t.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
-		object
-		  reflectObj_=ci[x].Invoke(argv_);
+        Console.WriteLine("РђРЅР°Р»РёР· Property, РѕРїСЂРµРґРµР»РµРЅРЅС‹С… РІ " + t.Name);
+        foreach (PropertyInfo p_ in pi_)
+        {
+            Console.Write("   " + p_.Name);
+            Console.WriteLine();
+        }
+        Console.WriteLine();
 
-		MyClass
-		  reflectObj=new MyClass(10,20);
+        Console.WriteLine("РђРЅР°Р»РёР· РјРµС‚РѕРґРѕРІ, РѕРїСЂРµРґРµР»РµРЅРЅС‹С… РІ " + t.Name);
+        Console.WriteLine();
 
-		Console.WriteLine();
-		Console.WriteLine("Вызов методов, определенных в "+t.Name);
-		Console.WriteLine();
-		
-		mi=t.GetMethods(BindingFlags.DeclaredOnly
-		                | BindingFlags.Instance
-			            | BindingFlags.Public);
+        ConstructorInfo[]
+          ci = t.GetConstructors();
+
+        ParameterInfo[]
+          pi;
+
+        Console.WriteLine("РРјРµСЋС‚СЃСЏ СЃР»РµРґСѓСЋС‰РёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹: ");
+        foreach (ConstructorInfo c in ci)
+        {
+            Console.Write("   " + t.Name + "(");
+            pi = c.GetParameters();
+            for (int i = 0; i < pi.Length; ++i)
+            {
+                Console.Write(pi[i].ParameterType.Name + " " + pi[i].Name);
+                if (i + 1 < pi.Length)
+                    Console.Write(", ");
+            }
+            Console.WriteLine(")");
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("РџРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ РјРµС‚РѕРґС‹:");
+
+        MethodInfo[]
+          mi;
+
+        //mi=t.GetMethods();
+        mi = t.GetMethods(BindingFlags.DeclaredOnly
+                        | BindingFlags.Instance
+                        | BindingFlags.Public);
+
+        foreach (MethodInfo m in mi)
+        {
+            Console.Write("   " + m.ReturnType.Name + " " + m.Name + "(");
+            pi = m.GetParameters();
+
+            for (int i = 0; i < pi.Length; ++i)
+            {
+                Console.Write(pi[i].ParameterType.Name + " " + pi[i].Name);
+                if (i + 1 < pi.Length)
+                    Console.Write(", ");
+            }
+            Console.WriteLine(")");
+        }
+        Console.WriteLine();
+
+        for (x = 0; x < ci.Length; ++x)
+        {
+            pi = ci[x].GetParameters();
+            if (pi.Length == 2)
+                break;
+        }
+
+        if (x == ci.Length)
+        {
+            Console.WriteLine("РџРѕРґС…РѕРґСЏС‰РёР№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РЅРµ РЅР°Р№РґРµРЅ");
+            return (-1);
+        }
+        else
+            Console.WriteLine("РќР°Р№РґРµРЅ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РґРІСѓРјСЏ РїР°СЂР°РјРµС‚СЂР°РјРё\n");
+
+        object[]
+          argv_;
+
+        argv_ = new object[2];
+        argv_[0] = 100;
+        argv_[1] = 200;
+
+        object
+          reflectObj_ = ci[x].Invoke(argv_);
+
+        MyClass
+          reflectObj = new MyClass(10, 20);
+
+        Console.WriteLine();
+        Console.WriteLine("Р’С‹Р·РѕРІ РјРµС‚РѕРґРѕРІ, РѕРїСЂРµРґРµР»РµРЅРЅС‹С… РІ " + t.Name);
+        Console.WriteLine();
+
+        mi = t.GetMethods(BindingFlags.DeclaredOnly
+                        | BindingFlags.Instance
+                        | BindingFlags.Public);
 
         int
-		  val;
+          val;
 
-		foreach(MethodInfo m in mi)
-		{
-			Console.WriteLine(m.Name);
-			pi=m.GetParameters();
-			if(m.Name.CompareTo("set")==0
-			   && pi[0].ParameterType==typeof(int)
-			  )
-			  {
-				argv_=new object[2];
-				try
-				{
-					argv_[0]=9;
-					argv_[1]=18;
-					m.Invoke(reflectObj,argv_);
-				}
-				catch(TargetException eException)
-				{
-					Console.WriteLine("Message: "+eException.Message+"\nSource: "+eException.Source+"\nStackTrace: "+eException.StackTrace+"\nTargetSite: "+eException.TargetSite);
-				}
-				argv_[0]=90;
-				argv_[1]=180;
-				m.Invoke(reflectObj_,argv_);
-			  }
-			else if(m.Name.CompareTo("set")==0
-				&& pi[0].ParameterType==typeof(double)
-				)
-			{
-				argv_=new object[2];
-				try
-				{
-					argv_[0]=1.12;
-					argv_[1]=23.4;
-					m.Invoke(reflectObj,argv_);
-				}
-				catch(TargetException eException)
-				{
-					Console.WriteLine("Message: "+eException.Message+"\nSource: "+eException.Source+"\nStackTrace: "+eException.StackTrace+"\nTargetSite: "+eException.TargetSite);
-				}
-				argv_[0]=10.12;
-				argv_[1]=230.4;
-				m.Invoke(reflectObj_,argv_);
-			}
-			else if(m.Name.CompareTo("sum")==0)
-			{
-				try
-				{
-					val=(int)m.Invoke(reflectObj,null);
-					Console.WriteLine("Результат вызова метода sum равен "+val);
-				}
-				catch(TargetException eException)
-				{
-					Console.WriteLine("Message: "+eException.Message+"\nSource: "+eException.Source+"\nStackTrace: "+eException.StackTrace+"\nTargetSite: "+eException.TargetSite);
-				}
-				val=(int)m.Invoke(reflectObj_,null);
-				Console.WriteLine("Результат вызова метода sum равен "+val);
-			}
-			else if(m.Name.CompareTo("isBetween")==0)
-			{
-				argv_=new object[1];
-				try
-				{
-					argv_[0]=14;
-					if((bool)m.Invoke(reflectObj,argv_))
-						Console.WriteLine("{0} находится между x и y",argv_[0]);
-				}
-				catch(TargetException eException)
-				{
-					Console.WriteLine("Message: "+eException.Message+"\nSource: "+eException.Source+"\nStackTrace: "+eException.StackTrace+"\nTargetSite: "+eException.TargetSite);
-				}
-				argv_[0]=140;
-				if((bool)m.Invoke(reflectObj_,argv_))
-					Console.WriteLine("{0} находится между x и y",argv_[0]);
-			}
-			else if(m.Name.CompareTo("show")==0)
-			{
-				try
-				{
-					m.Invoke(reflectObj,null);
-				}
-				catch(TargetException eException)
-				{
-					Console.WriteLine("Message: "+eException.Message+"\nSource: "+eException.Source+"\nStackTrace: "+eException.StackTrace+"\nTargetSite: "+eException.TargetSite);
-				}
-				m.Invoke(reflectObj_,null);
-			}
-            
-			Console.WriteLine();
-		}
+        foreach (MethodInfo m in mi)
+        {
+            Console.WriteLine(m.Name);
+            pi = m.GetParameters();
+            if (m.Name.CompareTo("set") == 0
+               && pi[0].ParameterType == typeof(int)
+              )
+            {
+                argv_ = new object[2];
+                try
+                {
+                    argv_[0] = 9;
+                    argv_[1] = 18;
+                    m.Invoke(reflectObj, argv_);
+                }
+                catch (TargetException eException)
+                {
+                    Console.WriteLine("Message: " + eException.Message + "\nSource: " + eException.Source + "\nStackTrace: " + eException.StackTrace + "\nTargetSite: " + eException.TargetSite);
+                }
+                argv_[0] = 90;
+                argv_[1] = 180;
+                m.Invoke(reflectObj_, argv_);
+            }
+            else if (m.Name.CompareTo("set") == 0
+                && pi[0].ParameterType == typeof(double)
+                )
+            {
+                argv_ = new object[2];
+                try
+                {
+                    argv_[0] = 1.12;
+                    argv_[1] = 23.4;
+                    m.Invoke(reflectObj, argv_);
+                }
+                catch (TargetException eException)
+                {
+                    Console.WriteLine("Message: " + eException.Message + "\nSource: " + eException.Source + "\nStackTrace: " + eException.StackTrace + "\nTargetSite: " + eException.TargetSite);
+                }
+                argv_[0] = 10.12;
+                argv_[1] = 230.4;
+                m.Invoke(reflectObj_, argv_);
+            }
+            else if (m.Name.CompareTo("sum") == 0)
+            {
+                try
+                {
+                    val = (int)m.Invoke(reflectObj, null);
+                    Console.WriteLine("Р РµР·СѓР»СЊС‚Р°С‚ РІС‹Р·РѕРІР° РјРµС‚РѕРґР° sum СЂР°РІРµРЅ " + val);
+                }
+                catch (TargetException eException)
+                {
+                    Console.WriteLine("Message: " + eException.Message + "\nSource: " + eException.Source + "\nStackTrace: " + eException.StackTrace + "\nTargetSite: " + eException.TargetSite);
+                }
+                val = (int)m.Invoke(reflectObj_, null);
+                Console.WriteLine("Р РµР·СѓР»СЊС‚Р°С‚ РІС‹Р·РѕРІР° РјРµС‚РѕРґР° sum СЂР°РІРµРЅ " + val);
+            }
+            else if (m.Name.CompareTo("isBetween") == 0)
+            {
+                argv_ = new object[1];
+                try
+                {
+                    argv_[0] = 14;
+                    if ((bool)m.Invoke(reflectObj, argv_))
+                        Console.WriteLine("{0} РЅР°С…РѕРґРёС‚СЃСЏ РјРµР¶РґСѓ x Рё y", argv_[0]);
+                }
+                catch (TargetException eException)
+                {
+                    Console.WriteLine("Message: " + eException.Message + "\nSource: " + eException.Source + "\nStackTrace: " + eException.StackTrace + "\nTargetSite: " + eException.TargetSite);
+                }
+                argv_[0] = 140;
+                if ((bool)m.Invoke(reflectObj_, argv_))
+                    Console.WriteLine("{0} РЅР°С…РѕРґРёС‚СЃСЏ РјРµР¶РґСѓ x Рё y", argv_[0]);
+            }
+            else if (m.Name.CompareTo("show") == 0)
+            {
+                try
+                {
+                    m.Invoke(reflectObj, null);
+                }
+                catch (TargetException eException)
+                {
+                    Console.WriteLine("Message: " + eException.Message + "\nSource: " + eException.Source + "\nStackTrace: " + eException.StackTrace + "\nTargetSite: " + eException.TargetSite);
+                }
+                m.Invoke(reflectObj_, null);
+            }
 
-		A
-		 a=new A();
-		B
-		 b=new B();
+            Console.WriteLine();
+        }
 
-        Console.WriteLine();
-		if(a is A)
-          Console.WriteLine("Объект a имеет тип A");
-
-		if(b is A)
-			Console.WriteLine("Объект b совместим с типом A, поскольку его тип выведен из типа A");
-
-		if(a is B)
-			Console.WriteLine("Этот текст не буден отображен, поскольку объект a не выведен из класса B");
-
-		if(b is B)
-			Console.WriteLine("Объект b имеет тип B");
-
-		if(a is object)
-			Console.WriteLine("a -- объект");
-
-		if(a is B)
-          b=(B)a;
-		else
-		  b=null;
-
-		if(b==null)
-          Console.WriteLine("Операция приведения типов b=(B)a НЕ РАЗРЕШЕНА");
-		else
-          Console.WriteLine("Операция приведения типов b=(B)a разрешена");
-
-		b=a as B;
-		if(b==null)
-			Console.WriteLine("Операция приведения типов b=(B)a НЕ РАЗРЕШЕНА");
-		else
-			Console.WriteLine("Операция приведения типов b=(B)a разрешена");
-        
-        t=typeof(StreamReader);
-
-		Console.WriteLine();
-		Console.WriteLine(t.FullName);
-		if(t.IsClass)
-          Console.WriteLine("Это класс");
-		if(t.IsAbstract)
-		  Console.WriteLine("Это абстрактный класс");
-		else
-          Console.WriteLine("Это конкретный класс");
-
-		Console.WriteLine();
-		Console.WriteLine("argc={0}",argv.Length);
-		for(int i=0; i<argv.Length; ++i)
-           Console.WriteLine("argv[{0}]=\""+argv[i]+"\"",i);
-
-		int
-		  sum=0;
-
-		int[]
-		  nums=new int[10];
- 
-		for(int i=0; i<10; ++i)
-			nums[i]=i;
+        A
+         a = new A();
+        B
+         b = new B();
 
         Console.WriteLine();
-		foreach(int xx in nums)
-		  {
-		     Console.WriteLine(xx);
-             sum+=xx;
-		  }
+        if (a is A)
+            Console.WriteLine("РћР±СЉРµРєС‚ a РёРјРµРµС‚ С‚РёРї A");
+
+        if (b is A)
+            Console.WriteLine("РћР±СЉРµРєС‚ b СЃРѕРІРјРµСЃС‚РёРј СЃ С‚РёРїРѕРј A, РїРѕСЃРєРѕР»СЊРєСѓ РµРіРѕ С‚РёРї РІС‹РІРµРґРµРЅ РёР· С‚РёРїР° A");
+
+        if (a is B)
+            Console.WriteLine("Р­С‚РѕС‚ С‚РµРєСЃС‚ РЅРµ Р±СѓРґРµРЅ РѕС‚РѕР±СЂР°Р¶РµРЅ, РїРѕСЃРєРѕР»СЊРєСѓ РѕР±СЉРµРєС‚ a РЅРµ РІС‹РІРµРґРµРЅ РёР· РєР»Р°СЃСЃР° B");
+
+        if (b is B)
+            Console.WriteLine("РћР±СЉРµРєС‚ b РёРјРµРµС‚ С‚РёРї B");
+
+        if (a is object)
+            Console.WriteLine("a -- РѕР±СЉРµРєС‚");
+
+        if (a is B)
+            b = (B)a;
+        else
+            b = null;
+
+        if (b == null)
+            Console.WriteLine("РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїРѕРІ b=(B)a РќР• Р РђР—Р Р•РЁР•РќРђ");
+        else
+            Console.WriteLine("РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїРѕРІ b=(B)a СЂР°Р·СЂРµС€РµРЅР°");
+
+        b = a as B;
+        if (b == null)
+            Console.WriteLine("РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїРѕРІ b=(B)a РќР• Р РђР—Р Р•РЁР•РќРђ");
+        else
+            Console.WriteLine("РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїРѕРІ b=(B)a СЂР°Р·СЂРµС€РµРЅР°");
+
+        t = typeof(StreamReader);
+
+        Console.WriteLine();
+        Console.WriteLine(t.FullName);
+        if (t.IsClass)
+            Console.WriteLine("Р­С‚Рѕ РєР»Р°СЃСЃ");
+        if (t.IsAbstract)
+            Console.WriteLine("Р­С‚Рѕ Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ РєР»Р°СЃСЃ");
+        else
+            Console.WriteLine("Р­С‚Рѕ РєРѕРЅРєСЂРµС‚РЅС‹Р№ РєР»Р°СЃСЃ");
+
+        Console.WriteLine();
+        Console.WriteLine("argc={0}", argv.Length);
+        for (int i = 0; i < argv.Length; ++i)
+            Console.WriteLine("argv[{0}]=\"" + argv[i] + "\"", i);
+
+        int
+          sum = 0;
+
+        int[]
+          nums = new int[10];
+
+        for (int i = 0; i < 10; ++i)
+            nums[i] = i;
+
+        Console.WriteLine();
+        foreach (int xx in nums)
+        {
+            Console.WriteLine(xx);
+            sum += xx;
+        }
         Console.WriteLine(sum);
-		
-		Console.WriteLine();
-		Console.WriteLine("Простая C#-программа ;)");
-        
-		Console.WriteLine();
-		
-		XYCoord
-		  t1=new XYCoord(),
-          t2=new XYCoord(8,9),
-		  t3=new XYCoord(t2);
-        
-		int
-		  ii,
-		  jj;
 
         Console.WriteLine();
-		for(ii=0, jj=10; ii<10; ++ii, --jj)
-		{
-			MyClassWithFactory
-			  ob=MyClassWithFactory.factory(ii,jj);
+        Console.WriteLine("РџСЂРѕСЃС‚Р°СЏ C#-РїСЂРѕРіСЂР°РјРјР° ;)");
 
-			ob.show();
-		}
-        
-		Console.WriteLine();
-		
-		Cons
-          obCons=new Cons();
-		
-		Console.WriteLine("Cons.alpha: "+Cons.alpha);
-		Console.WriteLine("obCons.beta: "+obCons.beta);
+        Console.WriteLine();
 
-		Console.WriteLine();
+        XYCoord
+          t1 = new XYCoord(),
+          t2 = new XYCoord(8, 9),
+          t3 = new XYCoord(t2);
 
-		strMod
-          strOp=new strMod(DelegateTest.replaceSpaces);
-		
-		string
+        int
+          ii,
+          jj;
+
+        Console.WriteLine();
+        for (ii = 0, jj = 10; ii < 10; ++ii, --jj)
+        {
+            MyClassWithFactory
+              ob = MyClassWithFactory.factory(ii, jj);
+
+            ob.show();
+        }
+
+        Console.WriteLine();
+
+        Cons
+          obCons = new Cons();
+
+        Console.WriteLine("Cons.alpha: " + Cons.alpha);
+        Console.WriteLine("obCons.beta: " + obCons.beta);
+
+        Console.WriteLine();
+
+        strMod
+          strOp = new strMod(DelegateTest.replaceSpaces);
+
+        string
           s;
 
-		s=strOp("Это просто тест");
-		Console.WriteLine("s="+s);
+        s = strOp("Р­С‚Рѕ РїСЂРѕСЃС‚Рѕ С‚РµСЃС‚");
+        Console.WriteLine("s=" + s);
 
-		strOp=new strMod(DelegateTest.removeSpaces);
-		s=strOp("Это просто тест");
-		Console.WriteLine("s="+s);
+        strOp = new strMod(DelegateTest.removeSpaces);
+        s = strOp("Р­С‚Рѕ РїСЂРѕСЃС‚Рѕ С‚РµСЃС‚");
+        Console.WriteLine("s=" + s);
 
-		strOp=new strMod(DelegateTest.reverce);
-		s=strOp("Это просто тест");
-		Console.WriteLine("s="+s);
+        strOp = new strMod(DelegateTest.reverce);
+        s = strOp("Р­С‚Рѕ РїСЂРѕСЃС‚Рѕ С‚РµСЃС‚");
+        Console.WriteLine("s=" + s);
 
-		Console.WriteLine();
+        Console.WriteLine();
 
-		strMod_
-		  strOp_,
-		  replaceSp=new strMod_(StringOps.replaceSpaces),
-		  removeSp=new strMod_(StringOps.removeSpaces),
-		  reverceStr=new strMod_(StringOps.reverce);
-		
-		s="Это просто тест";
-		strOp_=replaceSp;
-		strOp_+=reverceStr;
-		strOp_(ref s);
-        Console.WriteLine("s="+s);
+        strMod_
+          strOp_,
+          replaceSp = new strMod_(StringOps.replaceSpaces),
+          removeSp = new strMod_(StringOps.removeSpaces),
+          reverceStr = new strMod_(StringOps.reverce);
 
-		s="Это просто тест";
-		strOp_-=replaceSp;
-		strOp_+=removeSp;
-		strOp_(ref s);
-		Console.WriteLine("s="+s);
+        s = "Р­С‚Рѕ РїСЂРѕСЃС‚Рѕ С‚РµСЃС‚";
+        strOp_ = replaceSp;
+        strOp_ += reverceStr;
+        strOp_(ref s);
+        Console.WriteLine("s=" + s);
 
-		#if TEST_FILES
+        s = "Р­С‚Рѕ РїСЂРѕСЃС‚Рѕ С‚РµСЃС‚";
+        strOp_ -= replaceSp;
+        strOp_ += removeSp;
+        strOp_(ref s);
+        Console.WriteLine("s=" + s);
+
+        #if TEST_FILES
 			string
 				FileName=Directory.GetCurrentDirectory();
 
@@ -2282,129 +2282,129 @@ class MainClass
 				f_inp.Close();
 
 			CompareFileByContent(Directory.GetCurrentDirectory()+"\\..\\..\\bin1.bin",Directory.GetCurrentDirectory()+"\\..\\..\\bin2.bin");
-		#endif
+        #endif
 
-		Console.ReadLine();
+        Console.ReadLine();
 
-		return(0);
-	}
+        return (0);
+    }
 
-	static string MyConvert(string value, System.Text.Encoding src, System.Text.Encoding dest)
-	{
-		System.Text.Decoder
-			dec=src.GetDecoder();
+    static string MyConvert(string value, System.Text.Encoding src, System.Text.Encoding dest)
+    {
+        System.Text.Decoder
+            dec = src.GetDecoder();
 
-		byte[]
-			ba=dest.GetBytes(value);
+        byte[]
+            ba = dest.GetBytes(value);
 
-		int
-			len=dec.GetCharCount(ba,0,ba.Length);
+        int
+            len = dec.GetCharCount(ba, 0, ba.Length);
 
-		char[]
-			ca=new char[len];
+        char[]
+            ca = new char[len];
 
-		dec.GetChars(ba,0,ba.Length,ca,0);
+        dec.GetChars(ba, 0, ba.Length, ca, 0);
 
-		return(new string(ca));
-	}
+        return (new string(ca));
+    }
 
-	#if TEST_FILES
-	private static bool CompareFileByContent(string FileName1, string FileName2)
-	{
-		bool
-			Result=true;
+    #if TEST_FILES
+	    private static bool CompareFileByContent(string FileName1, string FileName2)
+	    {
+		    bool
+			    Result=true;
 
-		byte[]
-			Buff1=null,
-			Buff2=null;
+		    byte[]
+			    Buff1=null,
+			    Buff2=null;
 
-		BinaryReader
-			InputFile1=null,
-			InputFile2=null;
+		    BinaryReader
+			    InputFile1=null,
+			    InputFile2=null;
 
-		try
-		{
-			try
-			{
-				int
-					BuffSize1=10,
-					BuffSize2=BuffSize1,
-					minBuffSize;
+		    try
+		    {
+			    try
+			    {
+				    int
+					    BuffSize1=10,
+					    BuffSize2=BuffSize1,
+					    minBuffSize;
 
-				while(Buff1==null && BuffSize1!=0)
-				{
-					try
-					{
-						Buff1=new byte[BuffSize1];
-					}
-					catch(OutOfMemoryException)
-					{
-						BuffSize1>>=1;
-					}
-				}
-				if(Buff1==null && BuffSize1==0)
-					throw(new Exception("Insufficient memory"));
+				    while(Buff1==null && BuffSize1!=0)
+				    {
+					    try
+					    {
+						    Buff1=new byte[BuffSize1];
+					    }
+					    catch(OutOfMemoryException)
+					    {
+						    BuffSize1>>=1;
+					    }
+				    }
+				    if(Buff1==null && BuffSize1==0)
+					    throw(new Exception("Insufficient memory"));
 
-				while(Buff2==null && BuffSize2!=0)
-				{
-					try
-					{
-						Buff2=new byte[BuffSize2];
-					}
-					catch(OutOfMemoryException)
-					{
-						BuffSize2>>=1;
-					}
-				}
-				if(Buff2==null && BuffSize2==0)
-					throw(new Exception("Insufficient memory"));
+				    while(Buff2==null && BuffSize2!=0)
+				    {
+					    try
+					    {
+						    Buff2=new byte[BuffSize2];
+					    }
+					    catch(OutOfMemoryException)
+					    {
+						    BuffSize2>>=1;
+					    }
+				    }
+				    if(Buff2==null && BuffSize2==0)
+					    throw(new Exception("Insufficient memory"));
 
-				minBuffSize = BuffSize1<BuffSize2 ? BuffSize1 : BuffSize2;
+				    minBuffSize = BuffSize1<BuffSize2 ? BuffSize1 : BuffSize2;
 
-				InputFile1=new BinaryReader(new FileStream(FileName1,FileMode.Open,FileAccess.Read));
-				if(InputFile1==null || InputFile1.BaseStream==null || !InputFile1.BaseStream.CanRead)
-					throw(new Exception("Can't open file \""+FileName1+"\""));
-				InputFile2=new BinaryReader(new FileStream(FileName2,FileMode.Open,FileAccess.Read));
-				if(InputFile2==null || InputFile2.BaseStream==null || !InputFile2.BaseStream.CanRead)
-					throw(new Exception("Can't open file \""+FileName2+"\""));
+				    InputFile1=new BinaryReader(new FileStream(FileName1,FileMode.Open,FileAccess.Read));
+				    if(InputFile1==null || InputFile1.BaseStream==null || !InputFile1.BaseStream.CanRead)
+					    throw(new Exception("Can't open file \""+FileName1+"\""));
+				    InputFile2=new BinaryReader(new FileStream(FileName2,FileMode.Open,FileAccess.Read));
+				    if(InputFile2==null || InputFile2.BaseStream==null || !InputFile2.BaseStream.CanRead)
+					    throw(new Exception("Can't open file \""+FileName2+"\""));
 
-				int
-					i,
-					ReadCount;
+				    int
+					    i,
+					    ReadCount;
 
-				Result = InputFile1.BaseStream.Length == InputFile2.BaseStream.Length;
-				while(Result && InputFile1.BaseStream.Position<InputFile1.BaseStream.Length)
-				{
-					Array.Clear(Buff1,0,minBuffSize);
-					Array.Clear(Buff2,0,minBuffSize);
-					if(Result=!((ReadCount=InputFile1.Read(Buff1,0,minBuffSize))!=InputFile2.Read(Buff2,0,minBuffSize)))
-						for(i=0; i<ReadCount; ++i)
-							if(Buff1[i]!=Buff2[i])
-							{
-								Result=false;
-								break;
-							}
-				}
-			}
-			catch(Exception eException)
-			{
-				throw(new Exception(eException.GetType().FullName+Environment.NewLine+"Message: "+eException.Message+Environment.NewLine+"StackTrace:"+Environment.NewLine+eException.StackTrace));
-			}
-		}
-		finally
-		{
-			if(InputFile1!=null)
-				InputFile1.Close();
-			if(InputFile2!=null)
-				InputFile2.Close();
-		}
+				    Result = InputFile1.BaseStream.Length == InputFile2.BaseStream.Length;
+				    while(Result && InputFile1.BaseStream.Position<InputFile1.BaseStream.Length)
+				    {
+					    Array.Clear(Buff1,0,minBuffSize);
+					    Array.Clear(Buff2,0,minBuffSize);
+					    if(Result=!((ReadCount=InputFile1.Read(Buff1,0,minBuffSize))!=InputFile2.Read(Buff2,0,minBuffSize)))
+						    for(i=0; i<ReadCount; ++i)
+							    if(Buff1[i]!=Buff2[i])
+							    {
+								    Result=false;
+								    break;
+							    }
+				    }
+			    }
+			    catch(Exception eException)
+			    {
+				    throw(new Exception(eException.GetType().FullName+Environment.NewLine+"Message: "+eException.Message+Environment.NewLine+"StackTrace:"+Environment.NewLine+eException.StackTrace));
+			    }
+		    }
+		    finally
+		    {
+			    if(InputFile1!=null)
+				    InputFile1.Close();
+			    if(InputFile2!=null)
+				    InputFile2.Close();
+		    }
 
-		return(Result);
-	}
-	//---------------------------------------------------------------------------
-	#endif
+		    return(Result);
+	    }
+	    //---------------------------------------------------------------------------
+    #endif
 
-	#if TEST_REF
+    #if TEST_REF
 		static void TestRef(ref CPoint p, bool IsSerialize, bool IsDeserialize)
 		{
 			FileStream
@@ -2435,5 +2435,5 @@ class MainClass
 				p=new CPoint(x*2,y*2);
 			}
 		}
-	#endif
+    #endif
 }
