@@ -2,7 +2,6 @@
 // https://msdn.microsoft.com/en-us/library/hh549175(v=vs.110).aspx
 
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using ClassLibrary2;
 using ClassLibrary2.Fakes;
 using Microsoft.QualityTools.Testing.Fakes;
@@ -78,6 +77,33 @@ namespace UnitTestProject
 
                 Assert.AreEqual(Singleton.Instance.SmthExecutor.Mul(2, 3), 5);
                 Assert.AreEqual(Singleton.Instance.SmthExecutor.Div(16, 2), 14);
+            }
+        }
+
+        [TestMethod]
+        public void DerivedClassTest()
+        {
+            using (ShimsContext.Create())
+            {
+                const string
+                    basePropertyGetValue = "BasePropertyGet",
+                    derivedPropertyGetValue = "DerivedPropertyGet";
+
+                var derivedClass = new ShimDerivedClass
+                {
+                    DerivedPropertyGet = () => derivedPropertyGetValue
+                };
+
+                var baseClass = new ShimBaseClass(derivedClass)
+                {
+                    BasePropertyGet = () => basePropertyGetValue
+                };
+
+                var actual = derivedClass.Instance.BaseProperty;
+                Assert.AreEqual(basePropertyGetValue, actual);
+
+                actual = derivedClass.Instance.DerivedProperty;
+                Assert.AreEqual(derivedPropertyGetValue, actual);
             }
         }
     }

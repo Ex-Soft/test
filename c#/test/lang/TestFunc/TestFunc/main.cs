@@ -31,7 +31,7 @@ namespace TestFunc
 
             Console.WriteLine(funcStr());
             Console.WriteLine(funcStrInt(13));
-            Console.WriteLine(CallFuncIntString(null));
+            //Console.WriteLine(CallFuncIntString(null));
             Console.WriteLine(funcStrIntDecimal(13, 13));
             Console.WriteLine(SmthFunc(funcStrIntDecimal,13,13));
             Console.WriteLine(SmthFunc(13));
