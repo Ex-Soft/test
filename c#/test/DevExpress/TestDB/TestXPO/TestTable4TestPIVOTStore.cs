@@ -5,34 +5,34 @@ namespace TestDB.TestXPO
     [Persistent("TestTable4TestPIVOTStores")]
     public class TestTable4TestPIVOTStore : XPCustomObject
     {
-        private int _id;
-        private string _name;
+        public TestTable4TestPIVOTStore(Session session) : base(session)
+        {
+            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTStore.ctor(Session)");
+        }
 
         [Key]
         public int Id
         {
-            get { return _id; }
+            get { return GetPropertyValue<int>(nameof(Id)); }
             set
             {
                 System.Diagnostics.Debug.WriteLine($"TestTable4TestPIVOTStore.set_Id({value})");
-                SetPropertyValue("Id", ref _id, value);
+                SetPropertyValue(nameof(Id), value);
             }
         }
 
         public string Name
         {
-            get { return _name; }
+            get { return GetPropertyValue<string>(nameof(Name)); }
             set
             {
                 System.Diagnostics.Debug.WriteLine($"TestTable4TestPIVOTStore.set_Name({value})");
-                SetPropertyValue("Name", ref _name, value);
+                SetPropertyValue(nameof(Name), value);
             }
         }
 
-        public TestTable4TestPIVOTStore(Session session) : base(session)
-        {
-            System.Diagnostics.Debug.WriteLine("TestTable4TestPIVOTStore.ctor(Session)");
-        }
+        [Association("List-Store", typeof(TestTable4TestPIVOTList))]
+        public XPCollection List => GetCollection(nameof(List));
 
         protected override void OnLoading()
         {

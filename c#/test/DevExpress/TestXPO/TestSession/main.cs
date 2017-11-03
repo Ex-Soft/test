@@ -1,21 +1,21 @@
-﻿//#define TEST_DELETE_REFERENCE_OBJECT
+﻿#define TEST_PRE_FETCH
+//#define TEST_DELETE_REFERENCE_OBJECT
 //#define TEST_GET
 //#define TEST_EXCEPTION_IN_ONSAVING
 //#define TEST_EXCEPTION_IN_ONSAVING_IN_TRANSACTION
-#define TEST_TRANSACTION
+//#define TEST_TRANSACTION
 //#define TEST_DISPOSE
 //#define TEST_IS_NEW_AND_IS_TO_SAVE
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
 using DevExpress.Xpo.Metadata;
-using TestSession.Db;
+using TestDB;
+using TestDB.TestSession;
 
 namespace TestSession
 {
@@ -23,7 +23,7 @@ namespace TestSession
     {
         static void Main(string[] args)
         {
-            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("i-nozhenko", "sa", "123", "testdb");
+            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
 
             string
                 ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123",
@@ -60,6 +60,11 @@ namespace TestSession
 
             Session
                 session = new Session();
+
+            #if TEST_PRE_FETCH
+                XPCollection<TestMaster> masters = new XPCollection<TestMaster>(session, new InOperator(new OperandProperty(nameof(TestMaster.Id)), new ConstantValue(1), new ConstantValue(2)));
+                session.PreFetch(session.GetClassInfo<TestMaster>(), masters, nameof(TestMaster.Details));
+            #endif
 
             #if TEST_DELETE_REFERENCE_OBJECT
                 session.BeginTransaction();
@@ -247,12 +252,12 @@ namespace TestSession
 
             //testMasterII = session.GetObjectByKey<TestMaster>(4L, false);
 
-            tmpString = tmpTestMaster.Details[1].Name;
+            tmpString = tmpTestMaster.Details[1].Val;
 
             //session.PreFetch(new[] { testMaster, testMasterII }, "Details");
 
             foreach (TestDetail testDetail in tmpTestMaster.Details)
-                tmpString = testDetail.Name;
+                tmpString = testDetail.Val;
         }
 
         #if TEST_EXCEPTION_IN_ONSAVING

@@ -1,11 +1,11 @@
 ﻿//#define TEST_DELAYED_PROPERTY
-//#define TEST_LINQ_TO_XPO
+#define TEST_LINQ_TO_XPO
 //#define TEST_SELECT_DATA
 //#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
-#define TEST_CRITERIA
+//#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
@@ -105,6 +105,18 @@ namespace TestXPO
                 #endif
 
                 #if TEST_LINQ_TO_XPO
+                    XPQuery<TestTable4TestPIVOTProduct> products = session.Query<TestTable4TestPIVOTProduct>();
+                    XPQuery<TestTable4TestPIVOTList> lists = session.Query<TestTable4TestPIVOTList>();
+
+                    var lefJoinResultByLambdaSyntax = products
+                        .GroupJoin(lists, product => product, list => list.Product, (outerListProducts, innerListLists) => new { outerListProducts.Name, ListId = innerListLists.Select(list => list.Id) })
+                        .SelectMany(groupJoinItem => groupJoinItem.ListId.DefaultIfEmpty(), (groupJoinItem, ListId) => new { groupJoinItem.Name, ListId }).ToArray();
+
+                    var lefJoinResultByQuerySyntax = (from product in products
+                        join list in lists on product equals list.Product into resultAkaList
+                        from tmpList in resultAkaList.DefaultIfEmpty()
+                        select new { product, tmpList }).ToList();
+
                     var xpQueryTestDetail = new XPQuery<TestDetail>(session);
                     var masterIds = xpQueryTestDetail.Where(item => item.Master.Id == 1).Select(item => item.Master.Id).Distinct().ToArray();
                 #endif
@@ -251,6 +263,11 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                         criteria,
                         criteriaII;
 
+                    criteria = CriteriaOperator.Parse("Name = 'спички' and List[Store.Name = 'балкон' and Id = Product.Id]");
+                    xpCollection = new XPCollection(typeof(TestTable4TestPIVOTProduct), criteria);
+                    foreach (TestTable4TestPIVOTProduct item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
+
                     criteria = CriteriaOperator.And(null, null);
                     criteria = CriteriaOperator.And(new BinaryOperator(new OperandProperty("Left"), new ConstantValue("L"), BinaryOperatorType.Equal), null);
                     criteria = CriteriaOperator.And(null, new BinaryOperator(new OperandProperty("Right"), new ConstantValue("R"), BinaryOperatorType.Equal));
@@ -282,7 +299,10 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}}}", item.Id);
 
-                    criteria = CriteriaOperator.Parse($"Details[{nameof(TestDetail.Val)} == '1.1']");
+                    criteria = CriteriaOperator.Parse($"{nameof(TestMaster.Details)}[{nameof(TestDetail.Val)} == '1.1']");
+                    criteriaII = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new BinaryOperator(new OperandProperty(nameof(TestDetail.Val)), new ConstantValue("1.1"), BinaryOperatorType.Equal));
+                    Debug.WriteLine(string.Format("{0}criteria.Equals(criteriaII)", criteria.Equals(criteriaII) ? "" : "!")); // criteria.Equals(criteriaII)
+                    Debug.WriteLine(string.Format("{0}criteriaII.Equals(criteria)", criteriaII.Equals(criteria) ? "" : "!")); // criteriaII.Equals(criteria)
                     xpCollection = new XPCollection(typeof(TestMaster), criteria);
                     foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}}}", item.Id);

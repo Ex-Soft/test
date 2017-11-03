@@ -3,34 +3,26 @@
 using System;
 using DevExpress.Xpo;
 
-namespace TestSession.Db
+namespace TestDB.TestSession
 {
     [Persistent("Table4TestTransaction")]
     public class Table4TestTransaction : XPCustomObject
     {
-        long
-            _id;
-
-        string
-            _value;
-
         public Table4TestTransaction(Session session) : base(session)
-        {
-        }
+        {}
 
         [Key(true)]
-        [Persistent("id")]
         public long id
         {
-            get { return _id; }
-            set { SetPropertyValue("id", ref _id, value); }
+            get { return GetPropertyValue<long>(nameof(id)); }
+            set { SetPropertyValue(nameof(id), value); }
         }
 
         [Persistent("value")]
         public string Value
         {
-            get { return _value; }
-            set { SetPropertyValue("value", ref _value, value); }
+            get { return GetPropertyValue<string>(nameof(Value)); }
+            set { SetPropertyValue(nameof(Value), value); }
         }
 
         #if TEST_EXCEPTION_IN_ONSAVING

@@ -84,6 +84,7 @@
     <Compile Include="TestOwnTable\Employee.cs" />
     <Compile Include="TestOwnTable\Executive.cs" />
     <Compile Include="TestOwnTable\Person.cs" />
+    <Compile Include="TestSession\Table4TestTransaction.cs" />
     <Compile Include="TestTable4Types.cs" />
     <Compile Include="TestXPO\EntityA.cs" />
     <Compile Include="TestXPO\EntityB.cs" />
