@@ -1,3 +1,13 @@
+select * from TestTable4TestPIVOTProducts
+select * from TestTable4TestPIVOTList
+select * from TestTable4TestPIVOTStores
+
+select
+	*
+from
+	TestTable4TestPIVOTProducts products
+	left join TestTable4TestPIVOTList list on list.IdProduct = products.id
+
 -- http://www.kodyaz.com/articles/t-sql-pivot-tables-in-sql-server-tutorial-with-examples.aspx
 select
   p.Name as Product,
