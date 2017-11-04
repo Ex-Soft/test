@@ -3,9 +3,9 @@
 // https://www.go4expert.com/articles/features-c-sharp-50-t30461/
 // http://www.dotnettricks.com/learn/csharp/new-features-added-to-csharp-50
 
-#define TEST_CALLER_INFORMATION
-#define TEST_ASYNC_FEATURE
-#define TEST_LAMBDA_EXPRESSIONS
+//#define TEST_CALLER_INFORMATION
+//#define TEST_ASYNC_FEATURE
+//#define TEST_LAMBDA_EXPRESSIONS
 
 //#define TEST_EXPANDO_OBJECT
 //#define TEST_SORTER
@@ -14,7 +14,7 @@
 //#define TEST_CONVERT
 //#define TEST_PARAMETERS
 //#define TEST_NAMED_PARAMETERS
-//#define TEST_DYNAMIC
+#define TEST_DYNAMIC
 //#define TEST_DYNAMIC_ATTRIBUTE
 //#define TEST_COVARIANCE
 //#define TEST_STRING
@@ -405,7 +405,7 @@ namespace cs5
 			        Console.WriteLine(a);
 
 			        a = DateTime.Now;
-                    a.
+                    //a. this is compiled without any errors!!!
 			        a = a.AddYears(1);
                     Console.WriteLine(a);
                 #endif
