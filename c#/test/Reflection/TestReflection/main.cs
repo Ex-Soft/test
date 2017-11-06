@@ -12,7 +12,22 @@ namespace TestReflection
 	        Type
 		        tmpType;
 
-	        var data = new[]
+            tmpType = typeof(BaseClass);
+
+            MethodInfo[]
+                methodInfos = tmpType.GetMethods(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+            MethodInfo
+                baseMethodInfo = tmpType.GetMethod("BasePrivateMethod", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            tmpType = typeof(DerivedClass);
+            methodInfos = tmpType.GetMethods(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+            var derived = new DerivedClass("Derived (from Derived)", "Base (from Derived)");
+
+            baseMethodInfo.Invoke(derived, null);
+
+            var data = new[]
 	        {
 		        new {FString = "FString1", FInt = 1, FDecimal = 1.1m},
 				new {FString = "FString2", FInt = 2, FDecimal = 2.2m}

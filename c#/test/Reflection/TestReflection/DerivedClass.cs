@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace ClassLibrary2
+namespace TestReflection
 {
     public class DerivedClass : BaseClass
     {
