@@ -1,11 +1,11 @@
 ﻿//#define TEST_DELAYED_PROPERTY
-#define TEST_LINQ_TO_XPO
+//#define TEST_LINQ_TO_XPO
 //#define TEST_SELECT_DATA
 //#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
-//#define TEST_CRITERIA
+#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE

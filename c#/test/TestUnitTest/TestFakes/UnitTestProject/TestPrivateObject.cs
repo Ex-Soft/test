@@ -25,8 +25,6 @@ namespace UnitTestProject
         [TestMethod]
         public void TestPrivateObjectCallBasePrivateMethod()
         {
-            BindingFlags flags = BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-
             var o = new DerivedClass("Derived (from Derived)", "Base (from Derived)");
             var privateObject = new PrivateObject(o, new PrivateType(typeof(BaseClass)));
 
@@ -34,7 +32,8 @@ namespace UnitTestProject
             privateObject.Invoke("BaseProtectedMethod");
             privateObject.Invoke("BasePublicMethod");
 
-            privateObject.Invoke("DerivedPrivateMethod", BindingFlags.FlattenHierarchy | BindingFlags.NonPublic | BindingFlags.Instance);
+            privateObject.Invoke("BaseProtectedVirtualMethod");
+            privateObject.Invoke("BasePublicVirtualMethod");
         }
 
         [TestMethod]
@@ -46,6 +45,9 @@ namespace UnitTestProject
             privateObject.Invoke("DerivedPrivateMethod");
             privateObject.Invoke("DerivedProtectedMethod");
             privateObject.Invoke("DerivedPublicMethod");
+
+            privateObject.Invoke("BaseProtectedVirtualMethod");
+            privateObject.Invoke("BasePublicVirtualMethod");
         }
     }
 }
