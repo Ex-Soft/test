@@ -25,5 +25,17 @@ namespace ClassLibrary2
         {
             System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
         }
+
+        protected override void BaseProtectedVirtualMethod()
+        {
+            System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
+            base.BaseProtectedVirtualMethod();
+        }
+
+        public override void BasePublicVirtualMethod()
+        {
+            System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
+            base.BasePublicVirtualMethod();
+        }
     }
 }
