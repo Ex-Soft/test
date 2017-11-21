@@ -38,6 +38,7 @@
     <Compile Include="ClassB.cs" />
     <Compile Include="ClassWithPrivateMembers.cs" />
     <Compile Include="DerivedClass.cs" />
+    <Compile Include="EntityA.cs" />
     <Compile Include="ISmthInterface.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="SmthClass.cs" />
