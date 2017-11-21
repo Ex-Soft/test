@@ -29,7 +29,9 @@ namespace TestFilter
             gridControlDetail.DataSource = new XPCollection<TestDetail>(_session);
             treeList.DataSource = new XPCollection<TableWithHierarchy>(_session);
 
-            gridViewCommon.CustomDrawColumnHeader += GridViewCustomDrawColumnHeader;
+            // Turn off FilterPopupMode.Excel
+            // https://www.devexpress.com/Support/Center/Question/Details/T576583/gridview-handlers-showfilterpopupcheckedlistbox-showfilterpopuplistbox
+            //gridViewCommon.CustomDrawColumnHeader += GridViewCustomDrawColumnHeader;
         }
 
         private void GridViewCustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)

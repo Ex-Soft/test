@@ -3,9 +3,9 @@ using DevExpress.Xpo.DB;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 #if TEST_LINQ_IN_PROPERTY
-    using TestGrid.Model;
+    using TestDB;
 #else
-    using TestGrid.Model;
+    using TestDB;
 #endif
 
 namespace TestGrid
@@ -16,7 +16,7 @@ namespace TestGrid
         {
             InitializeComponent();
 
-            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("i-nozhenko", "sa", "123", "testdb");
+            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
 
             var session = new Session();
 
@@ -24,6 +24,10 @@ namespace TestGrid
 
             gridView.OptionsSelection.MultiSelect = true;
             gridView.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
+
+            gridView.OptionsLayout.Columns.AddNewColumns = true;
+
+            gridView.OptionsBehavior.Editable = true;
         }
 
         #if TEST_LINQ_IN_PROPERTY
@@ -38,11 +42,7 @@ namespace TestGrid
         #else
             void SetDataSource(Session session)
             {
-                var classInfo = session.GetClassInfo(typeof(TestMaster));
-                var xpServerCollectionSource = new XPServerCollectionSource(session, classInfo);
-
-                gridControl.DataSource = xpServerCollectionSource;
-                gridView.OptionsLayout.Columns.AddNewColumns = true;
+                gridControl.DataSource = new XPServerCollectionSource(session, session.GetClassInfo<TestMaster>());
             }
         #endif
     }

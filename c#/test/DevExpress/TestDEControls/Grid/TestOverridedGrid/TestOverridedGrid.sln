@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOverridedGrid", "TestOv
 		{B75A7089-BE4A-4976-AA4E-F4670B591027} = {B75A7089-BE4A-4976-AA4E-F4670B591027}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDB", "..\..\TestDB\TestDB.csproj", "{B75A7089-BE4A-4976-AA4E-F4670B591027}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDB", "..\..\..\TestDB\TestDB.csproj", "{B75A7089-BE4A-4976-AA4E-F4670B591027}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

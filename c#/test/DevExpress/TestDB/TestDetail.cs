@@ -31,6 +31,12 @@ namespace TestDB
             set { SetPropertyValue(nameof(Val), value); }
         }
 
+        public bool? FBit
+        {
+            get { return GetPropertyValue<bool?>(nameof(FBit)); }
+            set { SetPropertyValue(nameof(FBit), value); }
+        }
+
         [PersistentAlias("Master.Val")]
         public string MasterVal => (string)EvaluateAlias(nameof(MasterVal));
 

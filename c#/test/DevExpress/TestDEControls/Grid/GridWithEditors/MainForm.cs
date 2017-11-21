@@ -2,12 +2,15 @@
 using System.Data;
 using System.Drawing;
 using DevExpress.Utils;
+using DevExpress.Xpo;
+using DevExpress.Xpo.DB;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Helpers;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using TestDB;
 
 namespace GridWithEditors
 {
@@ -35,6 +38,8 @@ namespace GridWithEditors
         {
             InitializeComponent();
 
+            XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
+
             _dataSet = GenerateDataSet();
 
             SetDataSource(_dataSet.Tables[TableNameWithMainData]);
@@ -55,6 +60,9 @@ namespace GridWithEditors
 
             gridView.CustomRowCellEditForEditing += GridView_CustomRowCellEditForEditing;
             gridView.CustomRowCellEdit += GridView_CustomRowCellEdit;
+
+            gridControlMasterDetail.DataSource = new XPCollection<TestMaster>();
+            //gridViewMasterDetail.OptionsBehavior.EditorShowMode = EditorShowMode.Default;
         }
 
         private void GridView_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)

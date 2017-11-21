@@ -21,6 +21,12 @@ namespace TestFilter.Db
             set { SetPropertyValue(nameof(Val), value); }
         }
 
+        public bool? FBit
+        {
+            get { return GetPropertyValue<bool?>(nameof(FBit)); }
+            set { SetPropertyValue(nameof(FBit), value); }
+        }
+
         [Association("TestMaster-TestDetail")]
         public XPCollection<TestDetail> Details => GetCollection<TestDetail>(nameof(Details));
     }

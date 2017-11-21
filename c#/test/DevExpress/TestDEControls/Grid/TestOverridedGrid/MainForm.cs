@@ -78,15 +78,15 @@ namespace TestOverridedGrid
         }
 
         public
-#if !USE_DB
+        #if !USE_DB
             DataTable
-#else
-#if USE_SERVER_COLLECTION
+        #else
+            #if USE_SERVER_COLLECTION
                 XPServerCollectionSource
-#else
+            #else
                 XPCollection
-#endif
-#endif
+            #endif
+        #endif
         DataSource
         {
             get
@@ -100,33 +100,33 @@ namespace TestOverridedGrid
 
         private void BtnModifyDataClick(object sender, EventArgs e)
         {
-#if !USE_DB
+            #if !USE_DB
                 DataSource.Rows[0][0] = (char)(Convert.ToString(DataSource.Rows[0][0])[0] + 1) + Convert.ToString(DataSource.Rows[0][0]);
-#else
-#if !USE_SP
+            #else
+                #if !USE_SP
                     TestDE testDE;
                     if ((testDE =
-#if USE_SESSION
+                    #if USE_SESSION
                         _session
-#else
+                    #else
                         _unitOfWork
-#endif
+                    #endif
                     .GetObjectByKey<TestDE>(1L)) != null)
                     {
                         testDE.f1 = testDE.f1.HasValue ? testDE.f1 + 1 : 1;
                         testDE.Save();
                     }
 
-#if !USE_SESSION
+                    #if !USE_SESSION
                         _unitOfWork.CommitChanges();
-#endif
-#else
+                    #endif
+                #else
                     ModifyDataBySP();
-#endif
-#endif
+                #endif
+            #endif
         }
 
-#if !USE_DB
+        #if !USE_DB
             private static DataTable CreateDataSource()
             {
                 var result = new DataTable();
@@ -146,36 +146,36 @@ namespace TestOverridedGrid
 
                 return result;
             }
-#else
+        #else
             private
-#if USE_SERVER_COLLECTION
+            #if USE_SERVER_COLLECTION
                 XPServerCollectionSource
-#else
+            #else
                 XPCollection
-#endif
+            #endif
             CreateDataSource()
             {
                 return new
-#if USE_SERVER_COLLECTION
+                #if USE_SERVER_COLLECTION
                     XPServerCollectionSource
-#else
+                #else
                     XPCollection
-#endif
+                #endif
                 (
-#if USE_SESSION
+                #if USE_SESSION
                     _session
-#else
+                #else
                     _unitOfWork
-#endif
+                #endif
                 , typeof(TestDE));
             }
-#endif
+        #endif
 
         private void BtnReloadClick(object sender, EventArgs e)
         {
-#if !USE_SESSION
+            #if !USE_SESSION
                 _unitOfWork.DropIdentityMap();
-#endif
+            #endif
             DataSource.Reload();
         }
 
@@ -194,7 +194,7 @@ namespace TestOverridedGrid
             gridControl.RefreshDataSource();
         }
 
-#if USE_DB && USE_SP
+        #if USE_DB && USE_SP
 
             private static void ModifyDataBySP()
             {
@@ -210,6 +210,6 @@ namespace TestOverridedGrid
                 }
             }
 
-#endif
+        #endif
     }
 }
