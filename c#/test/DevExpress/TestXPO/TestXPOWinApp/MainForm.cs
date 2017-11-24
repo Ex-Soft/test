@@ -3,7 +3,7 @@ using System.Diagnostics;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
 using DevExpress.XtraEditors;
-using TestXPOWinApp.Db;
+using TestDB;
 
 namespace TestXPOWinApp
 {

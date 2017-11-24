@@ -1,11 +1,12 @@
-﻿//#define TEST_DELAYED_PROPERTY
+﻿#define TEST_Session_CrossThreadFailureDetected
+//#define TEST_DELAYED_PROPERTY
 //#define TEST_LINQ_TO_XPO
 //#define TEST_SELECT_DATA
 //#define TEST_LINQ
 //#define TEST_LockingException
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
-#define TEST_CRITERIA
+//#define TEST_CRITERIA
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
@@ -19,7 +20,11 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
@@ -96,6 +101,44 @@ namespace TestXPO
 
                 ICollection
                     iCollection;
+
+                #if TEST_Session_CrossThreadFailureDetected
+                    if ((testMaster = session.GetObjectByKey<TestMaster>(1L)) != null)
+                    {
+                        const int tasksMax = 10;
+                        Task[] tasks = new Task[tasksMax];
+
+                        try
+                        {
+                            for (int i = 0; i < tasksMax; ++i)
+                                tasks[i] = Task.Run(() => LoadDetails(testMaster));
+
+                            Task.WaitAll(tasks);
+                        }
+                        catch (AggregateException eAggregateException)
+                        {
+                            Debug.WriteLine("AggregateException");
+                            for (var j = 0; j < eAggregateException.InnerExceptions.Count; j++)
+                                Debug.WriteLine($"\t{eAggregateException.InnerExceptions[j]}");
+                        }
+                        catch (TargetInvocationException eTargetInvocationException)
+                        {
+                            Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
+                        }
+                        catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
+                        {
+                            Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+                        }
+                        catch (InvalidOperationException eInvalidOperationException)
+                        {
+                            Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
+                        }
+                        catch (Exception eException)
+                        {
+                            Debug.WriteLine(eException.Message);
+                        }
+                    }
+                #endif
 
                 #if TEST_DELAYED_PROPERTY
                     var testTable4TestPIVOTList = session.GetObjectByKey<TestTable4TestPIVOTList>(1);
@@ -636,6 +679,39 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
                 Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
             }
         }
+
+        #if TEST_Session_CrossThreadFailureDetected
+            static void LoadDetails(TestMaster testMaster)
+            {
+                try
+                {
+                    var testDetails = testMaster.Details.FirstOrDefault();
+                    Debug.WriteLine($"{Thread.CurrentThread.ManagedThreadId} {testDetails?.Id.ToString() ?? "null"}");
+                }
+                catch (AggregateException eAggregateException)
+                {
+                    Debug.WriteLine("AggregateException");
+                    for (var j = 0; j < eAggregateException.InnerExceptions.Count; j++)
+                        Debug.WriteLine($"\t{eAggregateException.InnerExceptions[j]}");
+                }
+                catch (TargetInvocationException eTargetInvocationException)
+                {
+                    Debug.WriteLine($"TargetInvocationException: \"{eTargetInvocationException.Message}\"");
+                }
+                catch (InvalidAsynchronousStateException eInvalidAsynchronousStateException)
+                {
+                    Debug.WriteLine($"InvalidAsynchronousStateException: \"{eInvalidAsynchronousStateException.Message}\"");
+                }
+                catch (InvalidOperationException eInvalidOperationException)
+                {
+                    Debug.WriteLine($"InvalidOperationException: \"{eInvalidOperationException.Message}\"");
+                }
+                catch (Exception eException)
+                {
+                    Debug.WriteLine(eException.Message);
+                }
+            }
+        #endif
 
         #if TEST_LIFECYCLE
 		static void AddEventsListeners(XPCollection xpCollection)

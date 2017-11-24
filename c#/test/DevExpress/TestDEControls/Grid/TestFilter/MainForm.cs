@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -28,10 +30,18 @@ namespace TestFilter
             gridControlMaster.DataSource = new XPCollection<TestMaster>(_session);
             gridControlDetail.DataSource = new XPCollection<TestDetail>(_session);
             treeList.DataSource = new XPCollection<TableWithHierarchy>(_session);
+            gridControlWithCustomFilter.DataSource = new XPCollection<TestTable4Types>(_session);
 
             // Turn off FilterPopupMode.Excel
             // https://www.devexpress.com/Support/Center/Question/Details/T576583/gridview-handlers-showfilterpopupcheckedlistbox-showfilterpopuplistbox
             //gridViewCommon.CustomDrawColumnHeader += GridViewCustomDrawColumnHeader;
+
+            gridViewWithCustomFilter.ShowFilterPopupExcel += GridViewShowFilterPopupExcel;
+        }
+
+        private void GridViewShowFilterPopupExcel(object sender, FilterPopupExcelEventArgs e)
+        {
+            Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
         private void GridViewCustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)
@@ -49,7 +59,7 @@ namespace TestFilter
         {
             base.OnLoad(e);
 
-            //Localize();
+            Localize();
         }
 
         private static void Localize()

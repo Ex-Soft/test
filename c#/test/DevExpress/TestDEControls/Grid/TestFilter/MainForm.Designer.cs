@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.checkEditHandler = new DevExpress.XtraEditors.CheckEdit();
             this.btnAddMaster = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddCommon = new DevExpress.XtraEditors.SimpleButton();
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
@@ -43,9 +44,12 @@
             this.gridViewDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabPageTreeList = new DevExpress.XtraTab.XtraTabPage();
             this.treeList = new DevExpress.XtraTreeList.TreeList();
-            this.checkEditHandler = new DevExpress.XtraEditors.CheckEdit();
+            this.tabPageWithCustomFilter = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControlWithCustomFilter = new DevExpress.XtraGrid.GridControl();
+            this.gridViewWithCustomFilter = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
             this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditHandler.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPageCommon.SuspendLayout();
@@ -59,7 +63,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetail)).BeginInit();
             this.tabPageTreeList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditHandler.Properties)).BeginInit();
+            this.tabPageWithCustomFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlWithCustomFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewWithCustomFilter)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBottom
@@ -72,6 +78,15 @@
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(870, 50);
             this.pnlBottom.TabIndex = 1;
+            // 
+            // checkEditHandler
+            // 
+            this.checkEditHandler.Location = new System.Drawing.Point(335, 17);
+            this.checkEditHandler.Name = "checkEditHandler";
+            this.checkEditHandler.Properties.Caption = "Handler";
+            this.checkEditHandler.Size = new System.Drawing.Size(75, 19);
+            this.checkEditHandler.TabIndex = 2;
+            this.checkEditHandler.CheckedChanged += new System.EventHandler(this.CheckEditHandlerCheckedChanged);
             // 
             // btnAddMaster
             // 
@@ -105,7 +120,8 @@
             this.tabPageCommon,
             this.tabPageMaster,
             this.tabPageDetail,
-            this.tabPageTreeList});
+            this.tabPageTreeList,
+            this.tabPageWithCustomFilter});
             // 
             // tabPageCommon
             // 
@@ -192,14 +208,28 @@
             this.treeList.Size = new System.Drawing.Size(864, 427);
             this.treeList.TabIndex = 0;
             // 
-            // checkEditHandler
+            // tabPageWithCustomFilter
             // 
-            this.checkEditHandler.Location = new System.Drawing.Point(335, 17);
-            this.checkEditHandler.Name = "checkEditHandler";
-            this.checkEditHandler.Properties.Caption = "Handler";
-            this.checkEditHandler.Size = new System.Drawing.Size(75, 19);
-            this.checkEditHandler.TabIndex = 2;
-            this.checkEditHandler.CheckedChanged += new System.EventHandler(this.CheckEditHandlerCheckedChanged);
+            this.tabPageWithCustomFilter.Controls.Add(this.gridControlWithCustomFilter);
+            this.tabPageWithCustomFilter.Name = "tabPageWithCustomFilter";
+            this.tabPageWithCustomFilter.Size = new System.Drawing.Size(864, 427);
+            this.tabPageWithCustomFilter.Text = "CustomFilter";
+            // 
+            // gridControlWithCustomFilter
+            // 
+            this.gridControlWithCustomFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlWithCustomFilter.Location = new System.Drawing.Point(0, 0);
+            this.gridControlWithCustomFilter.MainView = this.gridViewWithCustomFilter;
+            this.gridControlWithCustomFilter.Name = "gridControlWithCustomFilter";
+            this.gridControlWithCustomFilter.Size = new System.Drawing.Size(864, 427);
+            this.gridControlWithCustomFilter.TabIndex = 1;
+            this.gridControlWithCustomFilter.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewWithCustomFilter});
+            // 
+            // gridViewWithCustomFilter
+            // 
+            this.gridViewWithCustomFilter.GridControl = this.gridControlWithCustomFilter;
+            this.gridViewWithCustomFilter.Name = "gridViewWithCustomFilter";
             // 
             // MainForm
             // 
@@ -213,6 +243,7 @@
             this.Text = "Test Filter";
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             this.pnlBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditHandler.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPageCommon.ResumeLayout(false);
@@ -226,7 +257,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetail)).EndInit();
             this.tabPageTreeList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditHandler.Properties)).EndInit();
+            this.tabPageWithCustomFilter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlWithCustomFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewWithCustomFilter)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,6 +282,9 @@
         private DevExpress.XtraTab.XtraTabPage tabPageTreeList;
         private DevExpress.XtraTreeList.TreeList treeList;
         private DevExpress.XtraEditors.CheckEdit checkEditHandler;
+        private DevExpress.XtraTab.XtraTabPage tabPageWithCustomFilter;
+        private DevExpress.XtraGrid.GridControl gridControlWithCustomFilter;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewWithCustomFilter;
     }
 }
 

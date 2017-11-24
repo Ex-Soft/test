@@ -33,18 +33,18 @@
   <Choose>
     <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2017'">
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v17.1">
-          <HintPath>..\DevExpress.asm\DevExpress.Data.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.Data.v17.2">
+          <HintPath>..\DevExpress.asm\DevExpress.Data.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Xpo.v17.1">
-          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.Xpo.v17.2">
+          <HintPath>..\DevExpress.asm\DevExpress.Xpo.v17.2.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Data.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
       </ItemGroup>
     </Otherwise>
   </Choose>

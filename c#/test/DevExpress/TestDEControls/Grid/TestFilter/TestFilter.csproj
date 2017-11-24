@@ -35,60 +35,60 @@
   <Choose>
     <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.Data.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Printing.v17.1.Core">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Printing.v17.1.Core.dll</HintPath>
+        <Reference Include="DevExpress.Printing.v17.2.Core">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Printing.v17.2.Core.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Utils.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Utils.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.Utils.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Utils.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Xpo.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.Xpo.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraBars.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraBars.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.XtraBars.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraBars.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraEditors.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraEditors.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.XtraEditors.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraEditors.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraGrid.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraGrid.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.XtraGrid.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraGrid.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraLayout.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraLayout.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.XtraLayout.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraLayout.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraPrinting.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraPrinting.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.XtraPrinting.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraPrinting.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraScheduler.v17.1">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraScheduler.v17.1.dll</HintPath>
+        <Reference Include="DevExpress.XtraScheduler.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraScheduler.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.XtraScheduler.v17.1.Core">
-          <HintPath>..\..\DevExpress.asm\DevExpress.XtraScheduler.v17.1.Core.dll</HintPath>
+        <Reference Include="DevExpress.XtraScheduler.v17.2.Core">
+          <HintPath>..\..\DevExpress.asm\DevExpress.XtraScheduler.v17.2.Core.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-        <Reference Include="DevExpress.Utils.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraBars.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraLayout.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-        <Reference Include="DevExpress.XtraPrinting.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-        <Reference Include="DevExpress.XtraScheduler.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.XtraScheduler.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <Reference Include="DevExpress.Data.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <Reference Include="DevExpress.Utils.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+        <Reference Include="DevExpress.XtraScheduler.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.XtraScheduler.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
