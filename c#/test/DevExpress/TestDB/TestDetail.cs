@@ -13,28 +13,28 @@ namespace TestDB
         [Key(true)]
         public long Id
         {
-            get { return GetPropertyValue<long>(nameof(Id)); }
-            set { SetPropertyValue(nameof(Id), value); }
+            get => GetPropertyValue<long>(nameof(Id));
+            set => SetPropertyValue(nameof(Id), value);
         }
         
         [Persistent("IdMaster")]
         [Association("TestMaster-TestDetail")]
         public TestMaster Master
         {
-            get { return GetPropertyValue<TestMaster>(nameof(Master)); }
-            set { SetPropertyValue(nameof(Master), value); }
+            get => GetPropertyValue<TestMaster>(nameof(Master));
+            set => SetPropertyValue(nameof(Master), value);
         }
         
         public string Val
         {
-            get { return GetPropertyValue<string>(nameof(Val)); }
-            set { SetPropertyValue(nameof(Val), value); }
+            get => GetPropertyValue<string>(nameof(Val));
+            set => SetPropertyValue(nameof(Val), value);
         }
 
         public bool? FBit
         {
-            get { return GetPropertyValue<bool?>(nameof(FBit)); }
-            set { SetPropertyValue(nameof(FBit), value); }
+            get => GetPropertyValue<bool?>(nameof(FBit));
+            set => SetPropertyValue(nameof(FBit), value);
         }
 
         [PersistentAlias("Master.Val")]

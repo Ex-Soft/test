@@ -2,31 +2,26 @@
 
 namespace TestDB.TestInheritance
 {
-    [Persistent("Entity1")]
+    [Persistent(nameof(Entity1))]
     public class Entity1 : XPBaseObject
     {
-        int _id;
-        string _value;
+        public Entity1(Session session) : base(session)
+        {}
 
         [Key]
-        [Persistent("Id")]
         public int Id
         {
-            get { return _id; }
-            set { SetPropertyValue("Id", ref _id, value); }
+            get => GetPropertyValue<int>(nameof(Id));
+            set => SetPropertyValue(nameof(Id), value);
         }
 
-        [Persistent("Value")]
         public string Value
         {
-            get { return _value; }
-            set { SetPropertyValue("Value", ref _value, value); }
+            get => GetPropertyValue<string>(nameof(Value));
+            set => SetPropertyValue(nameof(Value), value);
         }
 
         [Association("Entity1-Entity3Derived1", typeof(Entity3Derived1))]
-        public XPCollection Entity3Derived1 => GetCollection("Entity3Derived1");
-
-        public Entity1(Session session) : base(session)
-        {}
+        public XPCollection Entity3Derived1 => GetCollection(nameof(Entity3Derived1));
     }
 }

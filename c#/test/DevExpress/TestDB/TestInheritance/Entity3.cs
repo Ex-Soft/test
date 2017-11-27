@@ -5,59 +5,51 @@ namespace TestDB.TestInheritance
     [Persistent("Entity3")]
     public class Entity3Base : XPBaseObject
     {
-        int _id;
-        string _value;
+        public Entity3Base(Session session) : base(session)
+        {}
 
         [Key(true)]
-        [Persistent("Id")]
         public int Id
         {
-            get { return _id; }
-            set { SetPropertyValue("Id", ref _id, value); }
+            get => GetPropertyValue<int>(nameof(Id));
+            set => SetPropertyValue(nameof(Id), value);
         }
 
         [Persistent("Value")]
         public string Value
         {
-            get { return _value; }
-            set { SetPropertyValue("Value", ref _value, value); }
+            get => GetPropertyValue<string>(nameof(Value));
+            set => SetPropertyValue(nameof(Value), value);
         }
-
-        public Entity3Base(Session session) : base(session)
-        {}
     }
 
     [MapInheritance(MapInheritanceType.ParentTable)]
     public class Entity3Derived1 : Entity3Base
     {
-        private Entity1 _element;
-
+        public Entity3Derived1(Session session) : base(session)
+        {}
+        
         [Persistent("ElementId")]
         [Association("Entity1-Entity3Derived1", typeof(Entity1))/*, NoForeignKey*/]
         public Entity1 Element
         {
-            get { return _element; }
-            set { SetPropertyValue("Element", ref _element, value); }
+            get => GetPropertyValue<Entity1>(nameof(Element));
+            set => SetPropertyValue(nameof(Element), value);
         }
-
-        public Entity3Derived1(Session session) : base(session)
-        {}
     }
 
     [MapInheritance(MapInheritanceType.ParentTable)]
     public class Entity3Derived2 : Entity3Base
     {
-        private Entity2 _element;
-
+        public Entity3Derived2(Session session) : base(session)
+        {}
+        
         [Persistent("ElementId")]
         [Association("Entity2-Entity3Derived2", typeof(Entity2))/*, NoForeignKey*/]
         public Entity2 Element
         {
-            get { return _element; }
-            set { SetPropertyValue("Element", ref _element, value); }
+            get => GetPropertyValue<Entity2>(nameof(Element));
+            set => SetPropertyValue(nameof(Element), value);
         }
-
-        public Entity3Derived2(Session session) : base(session)
-        {}
     }
 }
