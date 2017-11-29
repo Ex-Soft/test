@@ -1,6 +1,10 @@
-﻿using System;
+﻿#define USE_SKIN
+
+using System;
 using System.Reflection;
 using System.Windows.Forms;
+using DevExpress.Skins;
+using DevExpress.LookAndFeel;
 using DevExpress.Utils.About;
 
 namespace TestTreeList
@@ -22,8 +26,19 @@ namespace TestTreeList
 
             #endregion
 
+            #if USE_SKIN
+                DevExpress.UserSkins.BonusSkins.Register();
+                SkinManager.EnableFormSkins();
+                SkinManager.EnableMdiFormSkins();
+            #endif
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            #if USE_SKIN
+                UserLookAndFeel.Default.SkinName = "Office 2016 Colorful";
+            #endif
+
             //Application.Run(new MainForm());
             Application.Run(new Form1());
         }

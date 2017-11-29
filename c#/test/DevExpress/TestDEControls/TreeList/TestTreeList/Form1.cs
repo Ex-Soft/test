@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
@@ -14,13 +16,25 @@ namespace TestTreeList
 
             treeList.DataSource = GetData();
             treeList.Load += TreeListLoad;
+            treeList.CustomDrawNodeCheckBox += TreeListCustomDrawNodeCheckBox;
         }
 
-        private void TreeListLoad(object sender, EventArgs e)
+        static void TreeListCustomDrawNodeCheckBox(object sender, CustomDrawNodeCheckBoxEventArgs e)
         {
-            TreeList treeList;
+            var disabledIds = new[] { 3 };
 
-            if ((treeList = sender as TreeList) == null)
+            if (!(sender is TreeList treeList)
+                || !treeList.OptionsView.ShowCheckBoxes
+                || !(treeList.GetDataRecordByNode(e.Node) is Data data)
+                || !disabledIds.Contains(data.Id))
+                return;
+
+            e.ObjectArgs.State = ObjectState.Disabled;
+        }
+
+        static void TreeListLoad(object sender, EventArgs e)
+        {
+            if (!(sender is TreeList treeList))
                 return;
 
             new List<int> { 1, 2, 9, 15, 10, /*11,*/ 3, 5, /*101,*/ /*104,*/ /*107*/ }.ForEach(id => {
@@ -35,7 +49,7 @@ namespace TestTreeList
                 treeList.FocusedNode = node4focus;
         }
 
-        List<Data> GetData()
+        static List<Data> GetData()
         {
             return new List<Data>
             {

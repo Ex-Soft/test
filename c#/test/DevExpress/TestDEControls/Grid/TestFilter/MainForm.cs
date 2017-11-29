@@ -59,7 +59,7 @@ namespace TestFilter
         {
             base.OnLoad(e);
 
-            Localize();
+            //Localize();
         }
 
         private static void Localize()

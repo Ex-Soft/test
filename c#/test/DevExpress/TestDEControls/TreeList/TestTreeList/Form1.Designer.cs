@@ -74,7 +74,7 @@
             this.Controls.Add(this.pnlBottom);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Maximize me ->";
+            this.Text = "Scroll me ^ -> v";
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlFill)).EndInit();
             this.pnlFill.ResumeLayout(false);
