@@ -35,6 +35,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+[Ll]og/
 *.lock.json
 project.lock.json
 *.a
@@ -43,7 +44,7 @@ project.lock.json
 result
 rezult
 
-# Visual Studo 2015 cache/options directory
+# Visual Studio 2015 cache/options directory
 .vs/
 
 # MSTest test Results
@@ -76,8 +77,8 @@ _ReSharper*
 *.netmodule
 *.opendb
 *.dat
-ReadMe.*
-UpgradeLog.htm
+[Rr]ead[Mm]e.*
+[Uu]pgrade[Ll]og.htm*
 .sqlplan
 .cpp~
 makefile~
