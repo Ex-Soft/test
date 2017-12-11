@@ -1,6 +1,12 @@
 ﻿select
 	*
 from
+	dbo.TestDetailWithNullableIdMaster [detail]
+	left join dbo.TestMaster [master] on [master].id = [detail].IdMaster;
+
+select
+	*
+from
 	dbo.TestMaster [master]
 	left join dbo.TestDetail [detail] on [detail].IdMaster = [master].Id
 order by [master].Id, [detail].Val;
