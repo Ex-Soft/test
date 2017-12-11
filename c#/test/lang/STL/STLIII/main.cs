@@ -4,8 +4,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+
+using static System.Console;
 
 namespace STLIII
 {
@@ -132,9 +135,9 @@ namespace STLIII
                     foreach (var k in dicIntInt.Keys)
                         dicIntInt[k] = dicIntInt[k] + dicIntInt[k];
                 }
-                catch (InvalidOperationException eInvalidOperationException0)
+                catch (InvalidOperationException eInvalidOperationException)
                 {
-                    Console.WriteLine(eInvalidOperationException0.Message);
+                    WriteLine(eInvalidOperationException.Message);
                 }
 
                 Dictionary<string, string>
@@ -143,17 +146,17 @@ namespace STLIII
                 try
                 {
                     foreach (var kvp in dic)
-                        Console.WriteLine("\"{0}\" = \"{1}\"", kvp.Key, kvp.Value);
+                        WriteLine("\"{0}\" = \"{1}\"", kvp.Key, kvp.Value);
                 }
-                catch(NullReferenceException)
+                catch(NullReferenceException eNullReferenceException)
                 {
-
+                    WriteLine(eNullReferenceException.Message);
                 }
 
                 dic = new Dictionary<string, string>();
 
                 foreach (var kvp in dic)
-                    Console.WriteLine("\"{0}\" = \"{1}\"", kvp.Key, kvp.Value);
+                    WriteLine("\"{0}\" = \"{1}\"", kvp.Key, kvp.Value);
 
                 dic.Add("3rd", "3rd");
                 dic.Add("2nd", "2nd");
@@ -165,20 +168,20 @@ namespace STLIII
                 try
                 {
                     if (dic["6th"] != "6th")
-                        Console.WriteLine("Tampax");
+                        WriteLine("Tampax");
                 }
-                catch (KeyNotFoundException)
+                catch (KeyNotFoundException eKeyNotFoundException)
                 {
-                    
+                    WriteLine(eKeyNotFoundException.Message);
                 }
 
                 foreach (KeyValuePair<string, string> v in dic)
-                    Console.WriteLine("{0} {1}", v.Key, v.Value);
-                Console.WriteLine();
+                    WriteLine("{0} {1}", v.Key, v.Value);
+                WriteLine();
 
                 foreach(string k in dic.Keys)
-                    Console.WriteLine("{0} {1}", k, dic[k]);
-                Console.WriteLine();
+                    WriteLine("{0} {1}", k, dic[k]);
+                WriteLine();
 
                 try
                 {
@@ -187,18 +190,62 @@ namespace STLIII
                 }
                 catch (InvalidOperationException eInvalidOperationException)
                 {
-                    Console.WriteLine(eInvalidOperationException.Message);
+                    WriteLine(eInvalidOperationException.Message);
                 }
 
                 Dictionary<string, string>.Enumerator e = dic.GetEnumerator();
                 while(e.MoveNext())
-                    Console.WriteLine("{0} {1}", e.Current.Key, e.Current.Value);
-                Console.WriteLine();
+                { 
+                    WriteLine("{0} {1}", e.Current.Key, e.Current.Value);
 
+                    //e.Current.Value += "3rd"; // Error CS0200  Property or indexer 'KeyValuePair<string, string>.Value' cannot be assigned to --it is read only
+
+                }
+                e.Dispose();
+                WriteLine();
+                
                 Dictionary<string, string>.KeyCollection.Enumerator ek = dic.Keys.GetEnumerator();
-                while(ek.MoveNext())
-                    Console.WriteLine("{0} {1}", ek.Current, dic[ek.Current]);
-                Console.WriteLine();
+                try
+                {
+                    while(ek.MoveNext())
+                    { 
+                        WriteLine("{0} {1}", ek.Current, dic[ek.Current]);
+
+                        if (ek.Current == "3rd")
+                            dic[ek.Current] = dic[ek.Current] + dic[ek.Current];
+                    }
+                }
+                catch (InvalidOperationException eInvalidOperationException)
+                {
+                    WriteLine(eInvalidOperationException.Message);
+                }
+                finally
+                { 
+                    ek.Dispose();
+                }
+                WriteLine();
+
+                #region ReadOnlyDictionary
+
+                ReadOnlyDictionary<string, string> roDic = new ReadOnlyDictionary<string, string>(dic);
+
+                foreach (var kvp in roDic)
+                    WriteLine($"[\"{kvp.Key}\"] = \"{kvp.Value}\"");
+                WriteLine();
+
+                //roDic["3rd"] = "3rd"; // Error CS0200  Property or indexer 'ReadOnlyDictionary<string, string>.this[string]' cannot be assigned to --it is read only
+                
+                dic["6th"] = "6th";
+                dic["7th"] = "7th";
+                dic["3rd"] = "3rd";
+
+                foreach (var kvp in roDic)
+                    WriteLine($"[\"{kvp.Key}\"] = \"{kvp.Value}\"");
+                WriteLine();
+
+                #endregion
+
+                #region OrderedDictionary
 
                 OrderedDictionary
                     oDic = new OrderedDictionary();
@@ -250,6 +297,9 @@ namespace STLIII
                 IList a = oDic.Cast<DictionaryEntry>().Select(de => de.Value).ToList();
                 IList aa = oDic.Keys.Cast<string>().ToList();
                 Console.WriteLine();
+
+                #endregion
+
             #endif
 
             #if TEST_LIST
