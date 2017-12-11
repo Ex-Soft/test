@@ -1,4 +1,4 @@
-﻿//#define TEST_DUPLICATES
+﻿#define TEST_DUPLICATES
 //#define TEST_SERIALIZATION
 //#define TEST_NULL
 //#define TEST_SELECT
@@ -11,7 +11,7 @@
 //#define TEST_COPY_BY_LINQ
 //#define TEST_COMPUTE
 //#define TEST_DELETE
-#define TEST_DBNULL // http://blogs.msdn.com/b/aconrad/archive/2005/02/28/381859.aspx
+//#define TEST_DBNULL // http://blogs.msdn.com/b/aconrad/archive/2005/02/28/381859.aspx
 //#define TEST_FILTER
 //#define TEST_DELETE_BY_LINQ
 //#define TEST_SELECT_DATE
@@ -104,15 +104,18 @@ namespace ADONET
                     tmpDataTable.Columns.Add("F1", typeof(int));
                     tmpDataTable.Columns.Add("F2", typeof(int));
                     tmpDataTable.Columns.Add("F3", typeof(int));
+			        tmpDataTable.Columns.Add("F4", typeof(string));
+			        tmpDataTable.Columns.Add("F5", typeof(string));
+			        tmpDataTable.Columns.Add("F6", typeof(string));
                     tmpDataTable.PrimaryKey = new[] { tmpDataTable.Columns["Id"] };
 
                     new[] {
-                        new object[] { null, 1, 1, 1},
-                        new object[] { null, 1, 1, 2},
-                        new object[] { null, 1, 1, 3},
-                        new object[] { null, 1, 2, 1},
-                        new object[] { null, 1, 2, 2},
-                        new object[] { null, 1, 2, 3}
+                        new object[] {null, 1, 1, 1, "1", "1", "1"},
+                        new object[] {null, 1, 1, 2, "2", "2", "2"},
+                        new object[] {null, 1, 1, 3, "3", "3", "3"},
+                        new object[] {null, 1, 2, 1, "1", "1", "1"},
+                        new object[] {null, 1, 2, 2, "2", "2", "2"},
+                        new object[] {null, 1, 2, 3, "3", "3", "3" }
                     }.ToList().ForEach(data =>
                         {
                             tmpDataRow = tmpDataTable.NewRow();
@@ -120,13 +123,42 @@ namespace ADONET
                             tmpDataTable.Rows.Add(tmpDataRow);
                         });
 
-			        tmpDataRow = tmpDataTable.Rows[0];
+                    for(var ii = 0; ii < 5; ++ii)
+                    { 
+			            tmpDataRow = tmpDataTable.NewRow();
+                        if (ii % 2 == 0)
+                            tmpDataRow["F4"] = "";
+			            tmpDataTable.Rows.Add(tmpDataRow);
+                    }
+
+			        Expression<Func<DataRow, bool>> isRowEmptyExpression = row => (row.IsNull(4) || string.IsNullOrWhiteSpace(Convert.ToString(row[4]))) && row.IsNull(5) && row.IsNull(6);
+
+			        var param = Expression.Parameter(typeof(DataRow), "row");
+			        var callIsNull1 = Expression.Call(param, typeof(DataRow).GetMethod("IsNull", new[] {typeof(int)}), Expression.Constant(4));
+                    var callGetItem1 = Expression.Call(param, typeof(DataRow).GetProperty("Item", new[] { typeof(int) }).GetGetMethod(), Expression.Constant(4));
+			        var members = typeof(Convert).FindMembers(MemberTypes.Method, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy, Type.FilterNameIgnoreCase, (object)"ToString");
+                    var member = typeof(Convert).GetMethod("ToString", new[] { typeof(object) });
+			        var callConvert1 = Expression.Call(member, callGetItem1);
+                    members = typeof(string).FindMembers(MemberTypes.Method, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy, Type.FilterNameIgnoreCase, (object)"IsNullOrWhiteSpace");
+			        member = typeof(string).GetMethod("IsNullOrWhiteSpace", new[] { typeof(string) });
+			        var callIsNullOrWhiteSpace1 = Expression.Call(member, callConvert1);
+			        var expression1 = Expression.OrElse(callIsNull1, callIsNullOrWhiteSpace1);
+                    var expression2 = Expression.Call(param, typeof(DataRow).GetMethod("IsNull", new[] {typeof(int)}), Expression.Constant(5));
+			        var expression3 = Expression.Call(param, typeof(DataRow).GetMethod("IsNull", new[] {typeof(int)}), Expression.Constant(6));
+			        var expressionAnd1 = Expression.And(expression1, expression2);
+			        var expressionAnd = Expression.And(expressionAnd1, expression3);
+                    Console.WriteLine(expressionAnd.ToString());
+			        var isRowEmpty = Expression.Lambda<Func<DataRow, bool>>(expressionAnd, new[] { param }).Compile();
+                    var emptyRows = tmpDataTable.AsEnumerable().Where(row => isRowEmpty(row)).ToArray();
+			        emptyRows = tmpDataTable.AsEnumerable().Where(row => row.IsNull(4) && row.IsNull(5) && row.IsNull(6)).ToArray();
+
+                    tmpDataRow = tmpDataTable.Rows[0];
 
                     var mi = typeof(string).GetMethod("Format", new[] { typeof(string), typeof(object[]) });
                     var miArgs = new object[] { "F1: \"{0}\" F2:\"{1}\" F3:\"{2}\"", new[] { tmpDataRow["F1"], tmpDataRow["F2"], tmpDataRow["F3"] } };
                     tmpString = mi.Invoke(null, miArgs).ToString();
 
-                    var param = Expression.Parameter(typeof(DataRow), "row");
+                    param = Expression.Parameter(typeof(DataRow), "row");
                     var callIsNull = Expression.Not(Expression.Call(param, typeof(DataRow).GetMethod("IsNull", new[] { typeof(string) }), Expression.Constant("F1")));
                     Console.WriteLine(callIsNull.ToString());
 			        var fBool = Expression.Lambda<Func<DataRow, bool>>(callIsNull, new[] { param }).Compile();
@@ -145,8 +177,8 @@ namespace ADONET
                     });
 
                     var argumants4call = new Expression[] { Expression.Constant("F1:\"{0}\" F2:\"{1}\" F3:\"{2}\""), Expression.NewArrayInit(typeof(object), arguments) };
-                    var members = typeof(string).FindMembers(MemberTypes.Method, BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.FlattenHierarchy, Type.FilterNameIgnoreCase, (object)"Format");
-			        var member = typeof(string).GetMethod("Format", new[] { typeof(string), typeof(object[])});
+                    members = typeof(string).FindMembers(MemberTypes.Method, BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.FlattenHierarchy, Type.FilterNameIgnoreCase, (object)"Format");
+			        member = typeof(string).GetMethod("Format", new[] { typeof(string), typeof(object[])});
 			        var fExprFormat = Expression.Call(member, argumants4call);
                     //var fFormat = Expression.Call(typeof(string), "Format", new[] { typeof(string), typeof(object[]) }, argumants4call);    
                     Console.WriteLine(fExprFormat.ToString());
