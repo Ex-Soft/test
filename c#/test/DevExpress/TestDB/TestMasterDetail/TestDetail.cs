@@ -2,7 +2,7 @@
 using DevExpress.Xpo;
 using DevExpress.XtraEditors.DXErrorProvider;
 
-namespace TestDB
+namespace TestDB.TestMasterDetail
 {
     [Persistent("TestDetail")]
     public class TestDetail : XPCustomObject, IDXDataErrorInfo

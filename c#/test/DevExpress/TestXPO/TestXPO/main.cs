@@ -1,4 +1,5 @@
-﻿#define TEST_Session_CrossThreadFailureDetected
+﻿#define TEST_DETAIL_WITH_NULLABLE_ID_MASTER
+//#define TEST_Session_CrossThreadFailureDetected
 //#define TEST_DELAYED_PROPERTY
 //#define TEST_LINQ_TO_XPO
 //#define TEST_SELECT_DATA
@@ -34,7 +35,10 @@ using DevExpress.Xpo.Generators;
 using DevExpress.Xpo.Helpers;
 using DevExpress.Xpo.Metadata;
 using TestDB;
+using TestDB.TestMasterDetail;
 using TestDB.TestXPO;
+
+using static System.Console;
 
 namespace TestXPO
 {
@@ -101,6 +105,12 @@ namespace TestXPO
 
                 ICollection
                     iCollection;
+
+                #if TEST_DETAIL_WITH_NULLABLE_ID_MASTER
+                    xpCollection = new XPCollection(session, typeof(TestDetailWithNullableIdMaster));
+                    foreach (TestDetailWithNullableIdMaster item in xpCollection)
+                        WriteLine($"{{Id: {item.Id}, Val: \"{item.Val}\", IdMaster: {item.IdMaster}}}"); // default(long) -> 0 for long / null for long?
+                #endif
 
                 #if TEST_Session_CrossThreadFailureDetected
                     if ((testMaster = session.GetObjectByKey<TestMaster>(1L)) != null)

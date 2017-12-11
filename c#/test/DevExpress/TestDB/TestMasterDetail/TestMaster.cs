@@ -3,7 +3,7 @@ using System.Linq;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors.DXErrorProvider;
 
-namespace TestDB
+namespace TestDB.TestMasterDetail
 {
     [Persistent("TestMaster")]
     public class TestMaster : XPCustomObject, IDXDataErrorInfo

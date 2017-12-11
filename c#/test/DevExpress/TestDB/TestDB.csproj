@@ -63,7 +63,7 @@
     <Compile Include="Staff.cs" />
     <Compile Include="TableWithHierarchy.cs" />
     <Compile Include="TestDE.cs" />
-    <Compile Include="TestDetail.cs" />
+    <Compile Include="TestMasterDetail\TestDetail.cs" />
     <Compile Include="TestInheritance\Center.cs" />
     <Compile Include="TestInheritance\Entity1.cs" />
     <Compile Include="TestInheritance\Entity2.cs" />
@@ -78,7 +78,8 @@
     <Compile Include="TestInheritance\TableRight.cs" />
     <Compile Include="TestInheritance\TestDEDetailTableWithInheritance.cs" />
     <Compile Include="TestInheritance\TestDEMasterTableWithInheritance.cs" />
-    <Compile Include="TestMaster.cs" />
+    <Compile Include="TestMasterDetail\TestDetailWithNullableIdMaster.cs" />
+    <Compile Include="TestMasterDetail\TestMaster.cs" />
     <Compile Include="TestOwnTable\BaseObjectWithId.cs" />
     <Compile Include="TestOwnTable\Customer.cs" />
     <Compile Include="TestOwnTable\Employee.cs" />

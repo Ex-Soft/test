@@ -27,6 +27,11 @@ namespace TestFilter
 
             //gridControlCommon.DataSource = new XPCollection<TestTable4Types>(_session);
             gridControlCommon.DataSource = new XPServerCollectionSource(_session, _session.GetClassInfo<TestTable4Types>());
+
+            gridViewCommon.OptionsMenu.ShowAutoFilterRowItem = false;
+            gridViewCommon.OptionsView.ShowAutoFilterRow = false;
+            gridViewCommon.OptionsCustomization.AllowFilter = false;
+            
             gridControlMaster.DataSource = new XPCollection<TestMaster>(_session);
             gridControlDetail.DataSource = new XPCollection<TestDetail>(_session);
             treeList.DataSource = new XPCollection<TableWithHierarchy>(_session);
