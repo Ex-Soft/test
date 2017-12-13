@@ -58,6 +58,8 @@ namespace cs7
             // Out variables
             MethodWithOutParameters(out int x, out int y);
             WriteLine($"({x}, {y})");
+            MethodWithOutParameters(out int a, out _);
+            WriteLine($"({a})");
 
             var tmpStr = "10";
             if (int.TryParse(tmpStr, out var tmpInt)) WriteLine($"tmpInt = {tmpInt}");
