@@ -1,0 +1,3 @@
+﻿interface ILastNameContainer {
+    LastName: string;
+}
