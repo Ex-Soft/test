@@ -33,10 +33,7 @@ namespace DEUpdater.Config
 
         private string
             _sourceDirectory,
-            _fullVersion,
-            _tf;
-
-        private bool _checkin;
+            _fullVersion;
 
         public string[] FileExtensions { get; private set; }
 
@@ -66,26 +63,6 @@ namespace DEUpdater.Config
         }
 
         public string MajorVersion { get; private set; }
-
-        public bool Checkin
-        {
-            get { return _checkin; }
-            set
-            {
-                if (_checkin = value)
-                {
-                    if(!SetTf())
-                        _checkin = false;
-                }
-                else
-                    _tf = null;
-            }
-        }
-
-        public string Tf
-        {
-            get { return _tf; }
-        }
 
         public void Load()
         {
@@ -122,54 +99,6 @@ namespace DEUpdater.Config
             }
 
             return regex != null ? new Pattern(regex, IsMajorVersionPattern.IsMatch(expression)) : null;
-        }
-
-        private bool SetTf()
-        {
-            var result = false;
-            string programFilesFolder;
-
-            if (string.IsNullOrWhiteSpace(programFilesFolder = GetProgramFilesFolder()))
-                return result;
-
-            try
-            {
-                for (var i = 15; i >= 10; --i)
-                    if (File.Exists(_tf = Path.Combine(programFilesFolder, $"Microsoft Visual Studio {i}.0\\Common7\\IDE\\tf.exe")))
-                    {
-                        result = true;
-                        break;
-                    }
-
-                if (!result)
-                    _tf = null;
-            }
-            catch (Exception e)
-            {
-                result = false;
-                WriteLine(e.Message);
-            }
-
-            return result;
-        }
-
-        private static string GetProgramFilesFolder()
-        {
-            string result;
-
-            try
-            {
-                result = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
-                if (string.IsNullOrWhiteSpace(result))
-                    result = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            }
-            catch (Exception e)
-            {
-                result = null;
-                WriteLine(e.Message);
-            }
-
-            return result;
         }
     }
 }

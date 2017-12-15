@@ -52,10 +52,9 @@ namespace DEUpdater
 
         private static void ShowHelp()
         {
-            WriteLine("Usage: DEUpdater <path> <version> [checkout]");
+            WriteLine("Usage: DEUpdater <path> <version>");
             WriteLine("\tpath: source directory");
             WriteLine("\tversion: full version");
-            WriteLine("\tcheckout: checkout");
         }
 
         private static ReturnValue ParseCmdLine(string[] args, AppConfig appConfig)
@@ -77,8 +76,6 @@ namespace DEUpdater
                 return ReturnValue.VersionInvalid;
 
             appConfig.FullVersion = tmpString;
-
-            appConfig.Checkin = args.Length >= 3;
 
             return ReturnValue.Ok;
         }

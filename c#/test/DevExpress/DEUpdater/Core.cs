@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using DEUpdater.Config;
@@ -30,14 +29,10 @@ namespace DEUpdater
                 string content;
                 if (Array.IndexOf(appConfig.FileExtensions, Path.GetExtension(fileName)) == -1
                     || string.IsNullOrWhiteSpace(content = UpdateFileContent(fileName, appConfig))
-                    || !ResetReadOnlyAttribute(fileName)
-                    || !WriteFileContent(fileName, content)
-                    || !appConfig.Checkin
-                    || string.IsNullOrWhiteSpace(appConfig.Tf))
+                    || !ResetReadOnlyAttribute(fileName))
                     continue;
 
-                if (!Checkin(appConfig.Tf, fileName))
-                    appConfig.Checkin = false;
+                WriteFileContent(fileName, content);
             }
 
             return result;
@@ -123,42 +118,6 @@ namespace DEUpdater
             {
                 File.WriteAllText(fileName, content, Encoding.UTF8);
                 result = true;
-            }
-            catch (Exception e)
-            {
-                result = false;
-                WriteLine(e.Message);
-            }
-
-            return result;
-        }
-
-        private static bool Checkin(string tf, string fileName)
-        {
-            bool result;
-
-            try
-            {
-                var processStartInfo = new ProcessStartInfo
-                {
-                    FileName = tf,
-                    Arguments = $"checkout \"{fileName}\"",
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    CreateNoWindow = true
-                };
-
-                var exitCode = 1;
-
-                using (var process = Process.Start(processStartInfo))
-                {
-                    if (process != null)
-                    {
-                        process.WaitForExit();
-                        exitCode = process.ExitCode;
-                    }
-                }
-
-                result = exitCode == 0;
             }
             catch (Exception e)
             {
