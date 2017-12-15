@@ -2,11 +2,7 @@
 using DevExpress.Xpo.DB;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
-#if TEST_LINQ_IN_PROPERTY
-    using TestDB;
-#else
-    using TestDB;
-#endif
+using TestDB.TestMasterDetail;
 
 namespace TestGrid
 {
@@ -45,5 +41,13 @@ namespace TestGrid
                 gridControl.DataSource = new XPServerCollectionSource(session, session.GetClassInfo<TestMaster>());
             }
         #endif
+
+        private void BtnShowForm1Click(object sender, System.EventArgs e)
+        {
+            using (var modalForm = new Form1())
+            {
+                modalForm.ShowDialog(this);
+            }
+        }
     }
 }
