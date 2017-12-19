@@ -1,4 +1,4 @@
-﻿#define TEST_DETAIL_WITH_NULLABLE_ID_MASTER
+﻿//#define TEST_DETAIL_WITH_NULLABLE_ID_MASTER
 //#define TEST_Session_CrossThreadFailureDetected
 //#define TEST_DELAYED_PROPERTY
 //#define TEST_LINQ_TO_XPO
@@ -8,6 +8,7 @@
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
+#define TEST_CRITERIA_VISITOR
 //#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
@@ -105,6 +106,10 @@ namespace TestXPO
 
                 ICollection
                     iCollection;
+
+                CriteriaOperator
+                    criteria,
+                    criteriaII;
 
                 #if TEST_DETAIL_WITH_NULLABLE_ID_MASTER
                     xpCollection = new XPCollection(session, typeof(TestDetailWithNullableIdMaster));
@@ -311,10 +316,27 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     }
 				#endif
 
+                #if TEST_CRITERIA_VISITOR
+                    var visitor = new CustomCriteriaVisitor();
+                    criteria = CriteriaOperator.And(new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new [] {1L, 2L, 3L}.Select(item => new ConstantValue(item)))), new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L, 3L }.Select(item => new ConstantValue(item)))));
+                    criteria.Accept(visitor);
+                #endif
+
 				#if TEST_CRITERIA
-                    CriteriaOperator
-                        criteria,
-                        criteriaII;
+                    criteria = CriteriaOperator.And(CriteriaOperator.Parse("Id in (1L, 2L)"), CriteriaOperator.Parse("Id in (3L, 4L)"));
+                    xpCollection = new XPCollection(typeof(TestMaster), criteria);
+                    foreach (TestTable4TestPIVOTProduct item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
+
+                    criteria = CriteriaOperator.And(CriteriaOperator.Parse("Id = 1L"), CriteriaOperator.Parse("Id = 3L"));
+                    xpCollection = new XPCollection(typeof(TestMaster), criteria);
+                    foreach (TestTable4TestPIVOTProduct item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
+
+                    criteria = CriteriaOperator.Parse("5 = 6");
+                    xpCollection = new XPCollection(typeof(TestMaster), criteria);
+                    foreach (TestTable4TestPIVOTProduct item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
 
                     criteria = CriteriaOperator.Parse("Name = 'спички' and List[Store.Name = 'балкон' and Id = Product.Id]");
                     xpCollection = new XPCollection(typeof(TestTable4TestPIVOTProduct), criteria);
@@ -360,27 +382,32 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
                     foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}}}", item.Id);
 
-                    //agregateOperand {[Details][[Name] = '1.1'].Count([Name] = '1.1')}
+                    // agregateOperand {[Details][[Val] = '1.1'].Count([Val] = '1.1')}
                     var agregateOperand = new AggregateOperand(new OperandProperty("Details"), new BinaryOperator(new OperandProperty(nameof(TestDetail.Val)), new ConstantValue("1.1"),  BinaryOperatorType.Equal), Aggregate.Count, new BinaryOperator(new OperandProperty(nameof(TestDetail.Val)), new ConstantValue("1.1"), BinaryOperatorType.Equal));
 /*
 select N0."Id",N0."Val",N0."OptimisticLockField",N0."GCRecord" from "dbo"."TestMaster" N0
 where (N0."GCRecord" is null and ((select count(case when (N1."Val" = N'1.1') then 1 else 0 end) as Res from "dbo"."TestDetail" N1 where ((N0."Id" = N1."IdMaster") and N1."GCRecord" is null and (N1."Val" = N'1.1'))) = 1))
 */
+                    xpCollection = new XPCollection(typeof(TestMaster), agregateOperand);
+                    foreach (TestMaster item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
 
-                    //agregateOperand {[Details][].Count([Name] = '1.1')}
-                    //agregateOperand = new AggregateOperand(new OperandProperty("Details"), new BinaryOperator(new OperandProperty("Name"), new ConstantValue("1.1"),  BinaryOperatorType.Equal), Aggregate.Count, null);
+                    //agregateOperand {[Details][].Count([Val] = '1.1')}
+                    agregateOperand = new AggregateOperand(new OperandProperty("Details"), new BinaryOperator(new OperandProperty("Name"), new ConstantValue("1.1"),  BinaryOperatorType.Equal), Aggregate.Count, null);
 /*
 select N0."Id",N0."Val",N0."OptimisticLockField",N0."GCRecord" from "dbo"."TestMaster" N0
 where(N0."GCRecord" is null and((select count(case when(N1."Val" = N'1.1') then 1 else 0 end) as Res from "dbo"."TestDetail" N1 where((N0."Id" = N1."IdMaster") and N1."GCRecord" is null)) = 1))
 */
+                    xpCollection = new XPCollection(typeof(TestMaster), agregateOperand);
+                    foreach (TestMaster item in xpCollection)
+                        Console.WriteLine("{{Id: {0}}}", item.Id);
 
-                    //agregateOperand {[Details][[Name] = '1.1'].Count()}
-                    //agregateOperand = new AggregateOperand(new OperandProperty("Details"), null, Aggregate.Count, new BinaryOperator(new OperandProperty("Name"), new ConstantValue("1.1"), BinaryOperatorType.Equal));
+                    //agregateOperand {[Details][[Val] = '1.1'].Count()}
+                    agregateOperand = new AggregateOperand(new OperandProperty("Details"), null, Aggregate.Count, new BinaryOperator(new OperandProperty("Name"), new ConstantValue("1.1"), BinaryOperatorType.Equal));
 /*
 select N0."Id",N0."Val",N0."OptimisticLockField",N0."GCRecord" from "dbo"."TestMaster" N0
 where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" N1 where((N0."Id" = N1."IdMaster") and N1."GCRecord" is null and(N1."Val" = N'1.1'))) = 1))
 */
-
                     xpCollection = new XPCollection(typeof(TestMaster), agregateOperand);
                     foreach (TestMaster item in xpCollection)
                         Console.WriteLine("{{Id: {0}}}", item.Id);
@@ -1005,5 +1032,82 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
             }
         #endif
     }
+
+    #if TEST_CRITERIA_VISITOR
+
+        class CustomCriteriaVisitor : IClientCriteriaVisitor
+        {
+            #region ICriteriaVisitor
+
+            public void Visit(BetweenOperator theOperator)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Visit(BinaryOperator theOperator)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Visit(UnaryOperator theOperator)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Visit(InOperator theOperator)
+            {
+                Debug.WriteLine(theOperator.LeftOperand);
+
+                for (var i = 0; i < theOperator.Operands.Count; ++i)
+                    Debug.WriteLine(theOperator.Operands[i]);
+            }
+
+            public void Visit(GroupOperator theOperator)
+            {
+                Debug.WriteLine(theOperator.OperatorType);
+
+                for (var i = 0; i < theOperator.Operands.Count; ++i)
+                {
+                    Debug.WriteLine(theOperator.Operands[i].ToString());
+                    theOperator.Operands[i].Accept(this);
+                }
+            }
+
+            public void Visit(OperandValue theOperand)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Visit(FunctionOperator theOperator)
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+
+            #region IClientCriteriaVisitor
+
+            public void Visit(AggregateOperand theOperand)
+            {
+                Debug.WriteLine(theOperand.AggregateType);
+                Debug.WriteLine(theOperand.CollectionProperty);
+                Debug.WriteLine(theOperand.Condition);
+                theOperand.Condition.Accept(this);
+            }
+
+            public void Visit(OperandProperty theOperand)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Visit(JoinOperand theOperand)
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+        }
+
+    #endif
 }
-	
+
