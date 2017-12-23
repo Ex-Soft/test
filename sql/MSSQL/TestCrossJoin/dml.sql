@@ -27,3 +27,22 @@ where
 	(t1.f2=1)
 	and (t3.f1 is null)
 order by t1.f1
+
+select
+	*
+from
+	@t1 t1
+	cross join @t1 t2
+
+declare
+	@t4 table (id int)
+
+insert into @t4 (id) values (1)
+insert into @t4 (id) values (2)
+insert into @t4 (id) values (3)
+
+select
+	*
+from
+	@t4 t1
+	cross join @t4 t2
