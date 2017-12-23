@@ -6,6 +6,8 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
+using static System.Console;
+
 namespace TestIEnumerable
 {
     class ClassWithNullable
@@ -530,9 +532,11 @@ namespace TestIEnumerable
             var groupsOfA = listOfAII.GroupBy(a => a.FA);
 
             foreach (var group in groupsOfA)
-            {
-                Console.WriteLine("{0} {1} {2}", group.Key, group.Count(), group.Select(a => a.FB).Distinct().Aggregate(string.Empty, (str, next) => { if (!string.IsNullOrWhiteSpace(str)) str += ", "; return str + next.ToString(); }));
-            }
+                WriteLine("{0} {1} {2}", group.Key, group.Count(), group.Select(a => a.FB).Distinct().Aggregate(string.Empty, (str, next) => { if (!string.IsNullOrWhiteSpace(str)) str += ", "; return str + next.ToString(); }));
+            
+            var groupsOfAB = listOfAII.GroupBy(a => new { a.FA, a.FB });
+            foreach (var group in groupsOfAB)
+                WriteLine($"{group.Key} {group.Count()}");
 
             tmpInt = listOfA.Select(item => item.FB).Distinct().Count();
 
