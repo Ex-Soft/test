@@ -317,9 +317,78 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
 				#endif
 
                 #if TEST_CRITERIA_VISITOR
+                    var dates = new [] { new DateTime(2017, 12, 19), new DateTime(2017, 12, 20) };
+                    //criteria = CriteriaOperator.Parse("Date in (?, ?)", dates[0], dates[1]);
+                    criteria = new InOperator("Date", dates);
+                    criteriaII = new InOperator(new OperandProperty("Date"), dates.Select(item => new OperandValue(item)));
+                    
+                    InOperator
+                        inOperator123 = new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L, 3L }.Select(item => new OperandValue(item))),
+                        inOperator321 = new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 3L, 2L, 1L }.Select(item => new OperandValue(item))),
+                        inOperator12 = new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L }.Select(item => new OperandValue(item))),
+                        inOperator23 = new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 2L, 3L }.Select(item => new OperandValue(item)));
+
+                    AggregateOperand
+                        aggregateOperand1 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L, 3L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand2 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 3L, 2L, 1L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand3 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L, 3L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand4 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 3L, 2L, 1L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand5 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 3L, 2L, 1L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand6 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 2L, 1L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand7 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 3L, 2L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand8 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L, 3L, 4L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand9 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 5L, 6L, 7L }.Select(item => new OperandValue(item)))),
+                        aggregateOperand10 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Val)), new[] { "1st", "2nd", "3rd" }.Select(item => new OperandValue(item)))),
+                        aggregateOperand11 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Val)), new[] { "1st", "2nd", "3rd" }.Select(item => new OperandValue(item)))),
+                        aggregateOperand12 = new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, CriteriaOperator.And(inOperator123, inOperator321, inOperator12, inOperator23));
+
                     var visitor = new CustomCriteriaVisitor();
-                    criteria = CriteriaOperator.And(new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new [] {1L, 2L, 3L}.Select(item => new ConstantValue(item)))), new AggregateOperand(new OperandProperty(nameof(TestMaster.Details)), null, Aggregate.Exists, new InOperator(new OperandProperty(nameof(TestDetail.Id)), new[] { 1L, 2L, 3L }.Select(item => new ConstantValue(item)))));
+
+                    aggregateOperand12.Accept(visitor);
+
+                    var dictionary = new Dictionary<AggregateOperand, InOperator>();
+                    if (!dictionary.ContainsKey(aggregateOperand1))
+                        dictionary.Add(aggregateOperand1, aggregateOperand1.Condition as InOperator);
+                    if (!dictionary.ContainsKey(aggregateOperand2))
+                        dictionary.Add(aggregateOperand2, aggregateOperand2.Condition as InOperator);
+                    if (!dictionary.ContainsKey(aggregateOperand3))
+                        dictionary.Add(aggregateOperand3, aggregateOperand3.Condition as InOperator);
+                    if (!dictionary.ContainsKey(aggregateOperand4))
+                        dictionary.Add(aggregateOperand4, aggregateOperand4.Condition as InOperator);
+                    if (!dictionary.ContainsKey(aggregateOperand5))
+                        dictionary.Add(aggregateOperand5, aggregateOperand5.Condition as InOperator);
+
+                    Debug.WriteLine(aggregateOperand2.Equals(aggregateOperand4));
+                    Debug.WriteLine(aggregateOperand4.Equals(aggregateOperand2));
+                    Debug.WriteLine($"{aggregateOperand2.GetHashCode()} {(aggregateOperand2.GetHashCode() == aggregateOperand4.GetHashCode() ? "=" : "!")}= {aggregateOperand4.GetHashCode()}");
+
+                    Debug.WriteLine(aggregateOperand3.Equals(aggregateOperand4));
+                    Debug.WriteLine(aggregateOperand4.Equals(aggregateOperand3));
+                    Debug.WriteLine($"{aggregateOperand3.GetHashCode()} {(aggregateOperand3.GetHashCode() == aggregateOperand4.GetHashCode() ? "=" : "!")}= {aggregateOperand4.GetHashCode()}");
+
+                    xpCollection = new XPCollection(typeof(TestMaster), aggregateOperand1);
+                    foreach (TestMaster item in xpCollection)
+                        WriteLine("{{Id: {0}}}", item.Id);
+                    
+                    CriteriaOperator
+                        criteriaOperatorAnd1 = CriteriaOperator.And(aggregateOperand1, aggregateOperand2, aggregateOperand5, aggregateOperand6, aggregateOperand7, aggregateOperand8, aggregateOperand9, aggregateOperand10, aggregateOperand11),
+                        criteriaOperatorAnd2 = CriteriaOperator.And(aggregateOperand3, aggregateOperand4);
+
+                    criteria = CriteriaOperator.Or(criteriaOperatorAnd1, criteriaOperatorAnd2);
+
+                    //if (criteriaOperatorAnd1 is GroupOperator groupOperator1 && groupOperator1.Operands.Count > 0)
+                    //    groupOperator1.Operands.RemoveAt(0);
+                    
+                    //if (criteriaOperatorAnd2 is GroupOperator groupOperator2 && groupOperator2.Operands.Count > 0)
+                    //    groupOperator2.Operands.RemoveAt(0);
+                    
+                    xpCollection = new XPCollection(typeof(TestMaster), criteria);
+                    foreach (TestMaster item in xpCollection)
+                        WriteLine("{{Id: {0}}}", item.Id);
+
                     criteria.Accept(visitor);
+                    foreach(var operands in visitor.InOperators)
+                        Debug.WriteLine(operands);
                 #endif
 
 				#if TEST_CRITERIA
@@ -1037,6 +1106,8 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
 
         class CustomCriteriaVisitor : IClientCriteriaVisitor
         {
+            public Dictionary<InOperator, CriteriaOperatorCollection> InOperators = new Dictionary<InOperator, CriteriaOperatorCollection>();
+
             #region ICriteriaVisitor
 
             public void Visit(BetweenOperator theOperator)
@@ -1060,11 +1131,111 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
 
                 for (var i = 0; i < theOperator.Operands.Count; ++i)
                     Debug.WriteLine(theOperator.Operands[i]);
+
+                InOperators[theOperator] = theOperator.Operands;
             }
 
             public void Visit(GroupOperator theOperator)
             {
                 Debug.WriteLine(theOperator.OperatorType);
+
+                if (theOperator.OperatorType == GroupOperatorType.And)
+                {
+                    RemoveIntersections(theOperator, theOperator.Operands
+                        .OfType<AggregateOperand>()
+                        .Where(aggregateOperand => aggregateOperand.AggregateType == Aggregate.Exists && aggregateOperand.Condition is InOperator)
+                        .Select(aggregateOperand => new CriteriaOperatorWithInOperatorOperands(aggregateOperand, ((InOperator)aggregateOperand.Condition).Operands.OfType<OperandValue>().Select(item => item.Value).ToArray()))
+                        .GroupBy(item => new { ((AggregateOperand)item.Operator).CollectionProperty, ((InOperator)((AggregateOperand)item.Operator).Condition).LeftOperand }));
+
+                    RemoveIntersections(theOperator, theOperator.Operands
+                        .OfType<InOperator>()
+                        .Select(inOperator => new CriteriaOperatorWithInOperatorOperands(inOperator, inOperator.Operands.OfType<OperandValue>().Select(item => item.Value).ToArray()))
+                        .GroupBy(item => ((InOperator)item.Operator).LeftOperand));
+
+                    var operands = theOperator.Operands.OfType<AggregateOperand>().Where(operand => operand.AggregateType == Aggregate.Exists && operand.Condition is InOperator).GroupBy(operand => new { operand.CollectionProperty, ((InOperator)operand.Condition).LeftOperand }).ToArray();
+
+                    foreach (var operand in operands)
+                    {
+                        Debug.WriteLine($"Key:{{{operand.Key.CollectionProperty}, {operand.Key.LeftOperand}}}");
+                        foreach (var aggregateOperator in operand)
+                            Debug.WriteLine($"{aggregateOperator.Condition} => {aggregateOperator.Condition.GetHashCode()}");
+
+                        var idxToRemove = new List<int>();
+                        var toRemove = new List<CriteriaOperator>();
+                        var aggregateOperands = operand.ToArray();
+                        for (var i = 0; i < aggregateOperands.Length; ++i)
+                        {
+                            if (idxToRemove.Contains(i))
+                                continue;
+
+                            var current = ((InOperator)aggregateOperands[i].Condition).Operands.OfType<OperandValue>().Select(item => item.Value).ToArray();
+                            for (var j = 0; j < aggregateOperands.Length; ++j)
+                            {
+                                if (i == j || idxToRemove.Contains(j))
+                                    continue;
+
+                                var candidate = ((InOperator)aggregateOperands[j].Condition).Operands.OfType<OperandValue>().Select(item => item.Value).ToArray();
+                                if (candidate.Except(current).Any())
+                                    continue;
+
+                                idxToRemove.Add(j);
+                                toRemove.Add(aggregateOperands[j]);
+                            }
+                        }
+                        
+                        toRemove.ForEach(item => theOperator.Operands.Remove(item));
+
+                        /*var permutations2 = aggregateOperands.SelectMany(item => aggregateOperands, (operandLeft, operandRight) => new AggregateOperandAggregateOperandPair(operandLeft, operandRight)).Where(pair => !Equals(pair.AggregateOperandLeft, pair.AggregateOperandRight)).Distinct(new AggregateOperandAggregateOperandPairComparer()).ToArray();
+
+                        var permutations = from operandLeft in operand
+                                           from operandRight in operand
+                                           where !Equals(operandLeft, operandRight)
+                                           select new AggregateOperandAggregateOperandPair(operandLeft, operandRight);
+
+                        foreach (var p in permutations.Distinct(new AggregateOperandAggregateOperandPairComparer()))
+                        {
+                            Debug.WriteLine($"{p.AggregateOperandLeft.Condition} {p.AggregateOperandRight.Condition}");
+
+                            long[]
+                                left = ((InOperator)p.AggregateOperandLeft.Condition).Operands.OfType<OperandValue>().Select(item => (long)item.Value).ToArray(),
+                                right = ((InOperator)p.AggregateOperandRight.Condition).Operands.OfType<OperandValue>().Select(item => (long)item.Value).ToArray();
+
+                            if (!left.Except(right).Any())
+                                theOperator.Operands.Remove(p.AggregateOperandLeft);
+                            else if (!right.Except(left).Any())
+                                theOperator.Operands.Remove(p.AggregateOperandRight);
+                        }*/
+                    }
+
+                    var operands2 = theOperator.Operands.OfType<InOperator>().GroupBy(operand => operand.LeftOperand).ToArray();
+                    foreach (var inOperand in operands2)
+                    {
+                        var idxToRemove = new List<int>();
+                        var toRemove = new List<CriteriaOperator>();
+                        var inOperands = inOperand.ToArray();
+                        for (var i = 0; i < inOperands.Length; ++i)
+                        {
+                            if (idxToRemove.Contains(i))
+                                continue;
+
+                            var current = inOperands[i].Operands.OfType<OperandValue>().Select(item => item.Value).ToArray();
+                            for (var j = 0; j < inOperands.Length; ++j)
+                            {
+                                if (i == j || idxToRemove.Contains(j))
+                                    continue;
+
+                                var candidate = inOperands[j].Operands.OfType<OperandValue>().Select(item => item.Value).ToArray();
+                                if (candidate.Except(current).Any())
+                                    continue;
+
+                                idxToRemove.Add(j);
+                                toRemove.Add(inOperands[j]);
+                            }
+                        }
+
+                        toRemove.ForEach(item => theOperator.Operands.Remove(item));
+                    }
+                }
 
                 for (var i = 0; i < theOperator.Operands.Count; ++i)
                 {
@@ -1090,6 +1261,7 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
             public void Visit(AggregateOperand theOperand)
             {
                 Debug.WriteLine(theOperand.AggregateType);
+                Debug.WriteLine(theOperand.AggregateType);
                 Debug.WriteLine(theOperand.CollectionProperty);
                 Debug.WriteLine(theOperand.Condition);
                 theOperand.Condition.Accept(this);
@@ -1105,9 +1277,81 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
                 throw new NotImplementedException();
             }
 
-            #endregion
+        #endregion
+
+        void RemoveIntersections(GroupOperator theOperator, IEnumerable<IGrouping<object, CriteriaOperatorWithInOperatorOperands>> operators)
+        {
+            foreach (var @operator in operators)
+            {
+                var operands = @operator.ToArray();
+                if (operands.Length <= 1)
+                    continue;
+
+                var idxToRemove = new List<int>();
+                var toRemove = new List<CriteriaOperator>();
+
+                for (var i = 0; i < operands.Length; ++i)
+                {
+                    if (idxToRemove.Contains(i))
+                        continue;
+
+                    for (var j = 0; j < operands.Length; ++j)
+                    {
+                        if (i == j || idxToRemove.Contains(j) || operands[i].Operands.Intersect(operands[j].Operands).Count() != operands[i].Operands.Length)
+                            continue;
+
+                        idxToRemove.Add(j);
+                        toRemove.Add(operands[j].Operator);
+                    }
+                }
+
+                toRemove.ForEach(item => theOperator.Operands.Remove(item));
+            }
+        }
+    }
+
+    class AggregateOperandAggregateOperandPair
+        {
+            public AggregateOperand AggregateOperandLeft { get; set; }
+            public AggregateOperand AggregateOperandRight { get; set; }
+
+            public AggregateOperandAggregateOperandPair(AggregateOperand aggregateOperandLeft, AggregateOperand aggregateOperandRight)
+            {
+                AggregateOperandLeft = aggregateOperandLeft;
+                AggregateOperandRight = aggregateOperandRight;
+            }
+        }
+
+        class AggregateOperandAggregateOperandPairComparer : IEqualityComparer<AggregateOperandAggregateOperandPair>
+        {
+            public bool Equals(AggregateOperandAggregateOperandPair x, AggregateOperandAggregateOperandPair y)
+            {
+                if (ReferenceEquals(x, y))
+                    return true;
+
+                if (x is null || y is null)
+                    return false;
+
+                return x.AggregateOperandLeft.Equals(y.AggregateOperandLeft) && x.AggregateOperandRight.Equals(y.AggregateOperandRight) || x.AggregateOperandLeft.Equals(y.AggregateOperandRight) && x.AggregateOperandRight.Equals(y.AggregateOperandLeft);
+            }
+
+            public int GetHashCode(AggregateOperandAggregateOperandPair s)
+            {
+                return 0;
+            }
+        }
+
+        class CriteriaOperatorWithInOperatorOperands
+        {
+            public CriteriaOperator Operator { get; set; }
+            public object[] Operands { get; set; }
+
+            public CriteriaOperatorWithInOperatorOperands(CriteriaOperator @operator, object[] operands)
+            {
+                Operator = @operator;
+                Operands = operands;
+            }
         }
 
     #endif
 }
-
