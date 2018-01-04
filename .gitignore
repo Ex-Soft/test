@@ -54,6 +54,8 @@ rezult
 # eclipse
 .settings/
 
+[Bb]ackup/
+
 ipch
 _ReSharper*
 *.sdf
