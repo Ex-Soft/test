@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test binding</title>
+		<script charset="utf-8" src="../../../../angular/angular.js"></script>
+		<script charset="utf-8" src="MainForm.js"></script>		
+	</head>
+	<body>
+		<div ng-app="testBindingApp" ng-controller="testBindingController">
+			<button ng-click="toggle()">Toggle</button>
+			<div ng-show="scopeVar.isDivShow">
+				DIV
+			</div>
+		</div>
+		<hr/>
+		<input type="button" value="Change WatchVar" onclick="ChangeWatchVar()" /> <label for="cbCallApply">call $apply() </label><input type="checkbox" id="cbCallApply" />
+	</body>
+</html>

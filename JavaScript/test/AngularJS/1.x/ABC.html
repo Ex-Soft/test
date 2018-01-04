@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8" />
+		<title>ABC (AngularJS)</title>
+		<script>
+		</script>
+	</head>
+	<body>
+		<label>Name: <input type="text" data-ng-model="name" /></label> {{ name }}
+
+		<div class="container" data-ng-init="names=['3rd', '2nd', '1st']">
+			<h3>Title<h3>
+			<ul>
+				<li data-ng-repeat="name in names">{{ name }}</li>
+			</ul>
+		</div>
+
+		<div class="container" data-ng-init="namesObj1=[ { id: '3rd', value: '3rd' }, { id: '2nd', value: '2nd' }, { id: '1st', value: '1st' }]">
+			<h3>Title<h3>
+			<ul>
+				<li data-ng-repeat="name in namesObj1 | orderBy: 'value'">{ id: '{{ name.id }}', value: '{{ name.value | uppercase }}' } {{ name.id }} + {{ name.value }} {{ name.id + name.value }}</li>
+			</ul>
+		</div>
+
+		<label>Filter: <input type="text" data-ng-model="valueFilter" /></label>
+		<div class="container" data-ng-init="namesObj2=[ { id: '3rd', value: '3rd' }, { id: '2nd', value: '2nd' }, { id: '1st', value: '1st' }]">
+			<h3>Title<h3>
+			<ul>
+				<li data-ng-repeat="name in namesObj1 | filter:valueFilter | orderBy: 'value'">{ id: '{{ name.id }}', value: '{{ name.value }}' }</li>
+			</ul>
+		</div>
+
+		<div class="container" data-ng-controller="SimpleController">
+			<h3>Title<h3>
+			<ul>
+				<li data-ng-repeat="name in namesObj | orderBy: 'value'">{ id: '{{ name.id }}', value: '{{ name.value | uppercase }}' } {{ name.id }} + {{ name.value }} {{ name.id + name.value }}</li>
+			</ul>
+		</div>
+
+		<script charset="utf-8" src="../../angular/angular.js"></script>
+		<script>
+function SimpleController($scope)
+{
+	$scope.namesObj = [
+		{ id: '3rd', value: '3rd' },
+		{ id: '2nd', value: '2nd' },
+		{ id: '1st', value: '1st' }
+	]
+}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Component</title>
+	</head>
+	<body ng-app="heroApp">
+		<!-- components match only elements -->
+		<div ng-controller="mainCtrl as ctrl">
+			<b>Hero</b><br>
+			<hero-detail hero="ctrl.hero"></hero-detail>
+		</div>
+		
+		<script charset="utf-8" src="../../../../../jquery/2/jquery.js"></script>
+		<script charset="utf-8" src="../../../../../angular/angular.js"></script>
+		<script charset="utf-8" src="index.js"></script>
+		<script charset="utf-8" src="heroDetail.js"></script>
+	</body>
+</html>
