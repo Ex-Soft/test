@@ -86,6 +86,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\ArrayVariables.ts" />
     <TypeScriptCompile Include="Scripts\BasicTypeVariables.ts" />
+    <TypeScriptCompile Include="Scripts\ClassWithPrivateParameters.ts" />
+    <TypeScriptCompile Include="Scripts\ClassWithProtectedParameters.ts" />
+    <TypeScriptCompile Include="Scripts\ClassWithPublicParameters.ts" />
     <TypeScriptCompile Include="Scripts\Employee.ts" />
     <TypeScriptCompile Include="Scripts\EnumVariables.ts" />
     <TypeScriptCompile Include="Scripts\HelloWorld.ts" />
