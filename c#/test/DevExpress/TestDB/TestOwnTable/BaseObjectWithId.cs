@@ -5,16 +5,14 @@ namespace TestDB.TestOwnTable
     [NonPersistent]
     public abstract class BaseObjectWithId : XPBaseObject
     {
-        int _id;
+        protected BaseObjectWithId(Session session) : base(session)
+        {}
 
         [Key(false)]
         public int Id
         {
-            get { return _id; }
-            set { SetPropertyValue("Id", ref _id, value); }
+            get => GetPropertyValue<int>(nameof(Id));
+            set => SetPropertyValue(nameof(Id), value);
         }
-
-        protected BaseObjectWithId(Session session) : base(session)
-        {}
     }
 }

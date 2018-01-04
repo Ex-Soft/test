@@ -6,14 +6,13 @@ namespace TestDB.TestOwnTable
     [MapInheritance(MapInheritanceType.OwnTable)]
     public class Customer : Person
     {
-        string _preferences;
-        public string Preferences
-        {
-            get { return _preferences; }
-            set { SetPropertyValue("Preferences", ref _preferences, value); }
-        }
-
         public Customer(Session session) : base(session)
         {}
+
+        public string Preferences
+        {
+            get => GetPropertyValue<string>(nameof(Preferences));
+            set => SetPropertyValue(nameof(Preferences), value);
+        }
     }
 }

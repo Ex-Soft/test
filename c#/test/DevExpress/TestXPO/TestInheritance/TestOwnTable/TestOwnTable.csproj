@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestOwnTable</RootNamespace>
     <AssemblyName>TestOwnTable</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,18 +37,18 @@
   <Choose>
     <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v16.2">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.Data.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v17.2.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Xpo.v16.2">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v16.2.dll</HintPath>
+        <Reference Include="DevExpress.Xpo.v17.2">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v17.2.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Data.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -56,11 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Db\BaseObjectWithId.cs" />
-    <Compile Include="Db\Customer.cs" />
-    <Compile Include="Db\Employee.cs" />
-    <Compile Include="Db\Executive.cs" />
-    <Compile Include="Db\Person.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,8 +65,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Db\ddl.sql" />
-    <Content Include="Db\dml.sql" />
+    <ProjectReference Include="..\..\..\TestDB\TestDB.csproj">
+      <Project>{b75a7089-be4a-4976-aa4e-f4670b591027}</Project>
+      <Name>TestDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,14 +6,13 @@ namespace TestDB.TestOwnTable
     [MapInheritance(MapInheritanceType.OwnTable)]
     public class Employee : Person
     {
-        decimal _salary;
-        public decimal Salary
-        {
-            get { return _salary; }
-            set { SetPropertyValue("Name", ref _salary, value); }
-        }
-
         public Employee(Session session) : base(session)
         {}
+
+        public decimal Salary
+        {
+            get => GetPropertyValue<decimal>(nameof(Salary));
+            set => SetPropertyValue(nameof(Salary), value);
+        }
     }
 }

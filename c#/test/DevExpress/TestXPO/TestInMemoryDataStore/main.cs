@@ -1,4 +1,5 @@
-﻿#define TEST_MAPINHERITANCETYPE_PARENTTABLE
+﻿#define TEST_OWN_TABLE
+//#define TEST_MAPINHERITANCETYPE_PARENTTABLE
 
 using System;
 using System.Diagnostics;
@@ -9,6 +10,8 @@ using DevExpress.Xpo.Metadata;
 using DevExpress.Data.Filtering;
 using TestDB;
 using TestDB.TestInheritance;
+using TestDB.TestMasterDetail;
+using TestDB.TestOwnTable;
 
 namespace TestInMemoryDataStore
 {
@@ -19,6 +22,58 @@ namespace TestInMemoryDataStore
 		    try
 		    {
 		        XpoDefault.DataLayer = new SimpleDataLayer(new InMemoryDataStore());
+
+                #if TEST_OWN_TABLE
+                    using (var unitOfWork = new UnitOfWork())
+                    {
+                        #region Person
+
+                        var dataPerson = new[]
+                        {
+                            new { Id = 1, Name = "Person" }
+                        };
+
+                        foreach (var rec in dataPerson)
+                        {
+                            var entity = InMemoryDataStoreHelper.CreateSimpleEntity(typeof(Person), rec, unitOfWork);
+
+                            if (entity == null)
+                                continue;
+
+                            unitOfWork.Save(entity);
+                        }
+
+                        unitOfWork.CommitChanges();
+
+                        InMemoryDataStoreHelper.ShowExistingData(typeof(Person), o => o is Person item ? $"{{Id:{item.Id}, Name:\"{item.Name}\"}}" : string.Empty);
+
+                        #endregion
+
+                        #region Employee
+
+                        var dataEmployee = new[]
+                        {
+                            new { Id = 2, Name = "Employee" }
+                        };
+
+                        foreach (var rec in dataEmployee)
+                        {
+                            var entity = InMemoryDataStoreHelper.CreateSimpleEntity(typeof(Employee), rec, unitOfWork);
+
+                            if (entity == null)
+                                continue;
+
+                            unitOfWork.Save(entity);
+                        }
+
+                        unitOfWork.CommitChanges();
+
+                        InMemoryDataStoreHelper.ShowExistingData(typeof(Person), o => o is Person item ? $"{{Id:{item.Id}, Name:\"{item.Name}\"}}" : string.Empty);
+                        InMemoryDataStoreHelper.ShowExistingData(typeof(Employee), o => o is Employee item ? $"{{Id:{item.Id}, Name:\"{item.Name}\", Salary:{item.Salary}}}" : string.Empty);
+
+                        #endregion
+                    }
+                #endif
 
                 #if TEST_MAPINHERITANCETYPE_PARENTTABLE
 		            using (var unitOfWork = new UnitOfWork())

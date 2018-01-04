@@ -1,9 +1,6 @@
-﻿select * from XPObjectType where AssemblyName = N'TestOwnTable'
+﻿select * from XPObjectType where AssemblyName = N'TestDB'
 
-/*
-delete from XPObjectType where AssemblyName = N'TestOwnTable'
-delete from Person
-*/
+--delete from Person
 
 select
 	*

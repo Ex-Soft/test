@@ -1,7 +1,7 @@
 ﻿using System;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
-using TestOwnTable.Db;
+using TestDB.TestOwnTable;
 
 namespace TestOwnTable
 {
