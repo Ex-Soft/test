@@ -58,7 +58,7 @@ int main(int argc, char **argv)
 	for (int i = 0; i < len; ++i)
 	{
 		
-		if (!begin && ((!i && !isspace(*(str1 + i))) || (i - 1 >= 0 && isspace(*(str1 + i - 1)) && !isspace(*(str1 + i)))))
+		if (!begin && !isspace(*(str1 + i)) && (!i || isspace(*(str1 + i - 1))))
 			begin = str1 + i;
 		if (begin && ((!end && i == len - 1) || (!isspace(*(str1 + i)) && i + 1 < len && isspace(*(str1 + i + 1)))))
 			end = str1 + i;
