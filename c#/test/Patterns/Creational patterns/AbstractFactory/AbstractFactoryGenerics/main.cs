@@ -2,96 +2,96 @@ using System;
 
 namespace AbstractFactoryGeneric
 {
-	public interface IAbstractFactory
-	{
-		T Create<T>();
+    public interface IAbstractFactory
+    {
+        T Create<T>();
 
-		bool IsProduct<T>();
-	}
+        bool IsProduct<T>();
+    }
 
-	public interface IFactoryMethod<T>
-	{
-		T Create();
-	}
+    public interface IFactoryMethod<T>
+    {
+        T Create();
+    }
 
-	public abstract class AbstractFactory : IAbstractFactory
-	{
-		public T Create<T>()
-		{
-			IFactoryMethod<T>
-				factoryMethod;
+    public abstract class AbstractFactory : IAbstractFactory
+    {
+        public T Create<T>()
+        {
+            IFactoryMethod<T>
+                factoryMethod;
 
-			if ((factoryMethod=this as IFactoryMethod<T>)!=null)
-			{
-				return(factoryMethod.Create());
-			}
+            if ((factoryMethod = this as IFactoryMethod<T>) != null)
+            {
+                return factoryMethod.Create();
+            }
 
-			return default(T);
-		}
+            return default(T);
+        }
 
-		public bool IsProduct<T>()
-		{
-			return(this is IFactoryMethod<T>);
-		}
-	}
+        public bool IsProduct<T>()
+        {
+            return this is IFactoryMethod<T>;
+        }
+    }
 
-	public class ConcreteFactory1:AbstractFactory,IFactoryMethod<ProductA>,IFactoryMethod<ProductB>
-	{
-		ProductA IFactoryMethod<ProductA>.Create()
-		{
-			return(new ConcreteProductA1());
-		}
+    public class ConcreteFactory1 : AbstractFactory, IFactoryMethod<ProductA>, IFactoryMethod<ProductB>
+    {
+        ProductA IFactoryMethod<ProductA>.Create()
+        {
+            return new ConcreteProductA1();
+        }
 
-		ProductB IFactoryMethod<ProductB>.Create()
-		{
-			return(new ConcreteProductB1());
-		}
-	}
+        ProductB IFactoryMethod<ProductB>.Create()
+        {
+            return new ConcreteProductB1();
+        }
+    }
 
-	abstract class ProductA
-	{
-		
-	}
+    abstract class ProductA
+    {
 
-	abstract class ProductB
-	{
-		
-	}
+    }
 
-	class ConcreteProductA1:ProductA
-	{
-		public ConcreteProductA1()
-		{
-			Console.WriteLine("ConcreteProductA1::ConcreteProductA1()");
-		}
-	}
+    abstract class ProductB
+    {
 
-	class ConcreteProductB1:ProductB
-	{
-		public ConcreteProductB1()
-		{
-			Console.WriteLine("ConcreteProductB1::ConcreteProductB1()");
-		}
-	}
+    }
 
-	class Program
-	{
-		static void Main()
-		{
-			IAbstractFactory
-				factory=new ConcreteFactory1();
+    class ConcreteProductA1 : ProductA
+    {
+        public ConcreteProductA1()
+        {
+            Console.WriteLine("ConcreteProductA1::ConcreteProductA1()");
+        }
+    }
 
-			ProductA
-				productA;
+    class ConcreteProductB1 : ProductB
+    {
+        public ConcreteProductB1()
+        {
+            Console.WriteLine("ConcreteProductB1::ConcreteProductB1()");
+        }
+    }
 
-			if(factory.IsProduct<ProductA>())
-				productA=factory.Create<ProductA>();
+    class Program
+    {
+        static void Main()
+        {
+            IAbstractFactory
+                factory = new ConcreteFactory1();
 
-			ProductB
-				productB;
+            ProductA
+                productA;
 
-			if(factory.IsProduct<ProductB>())
-				productB=factory.Create<ProductB>();
-		}
-	}
+            if (factory.IsProduct<ProductA>())
+                productA = factory.Create<ProductA>();
+
+            ProductB
+                productB;
+
+            if (factory.IsProduct<ProductB>())
+                productB = factory.Create<ProductB>();
+        }
+    }
 }

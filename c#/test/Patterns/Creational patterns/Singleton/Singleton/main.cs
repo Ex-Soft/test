@@ -3,33 +3,34 @@ using System.Diagnostics;
 
 namespace Singleton
 {
-	class Program
-	{
-		public sealed class Singleton : IDisposable
-		{
-			static volatile Singleton _instance;
+    class Program
+    {
+        public sealed class Singleton : IDisposable
+        {
+            static volatile Singleton _instance;
             static readonly object SyncRoot = new Object();
             bool _disposed = false;
 
-			Singleton()
-			{}
+            Singleton()
+            {
+            }
 
-			public static Singleton Instance
-			{
-			    get
-			    {
-			        if (_instance == null)
-			        {
-			            lock (SyncRoot)
-			            {
-			                if (_instance == null)
-			                    _instance = new Singleton();
-			            }
-			        }
+            public static Singleton Instance
+            {
+                get
+                {
+                    if (_instance == null)
+                    {
+                        lock (SyncRoot)
+                        {
+                            if (_instance == null)
+                                _instance = new Singleton();
+                        }
+                    }
 
-			        return _instance;
-			    }
-			}
+                    return _instance;
+                }
+            }
 
             public void Dispose()
             {
@@ -41,7 +42,7 @@ namespace Singleton
 
             void Dispose(bool disposing)
             {
-                Debug.WriteLine(string.Format("void Dispose({0})", disposing));
+                Debug.WriteLine($"void Dispose({disposing})");
 
                 if (_disposed)
                     return;
@@ -65,26 +66,26 @@ namespace Singleton
             }
         }
 
-		static void Main()
-		{
-			Singleton
-				s1 = Singleton.Instance,
-				s2 = Singleton.Instance;
+        static void Main()
+        {
+            Singleton
+                s1 = Singleton.Instance,
+                s2 = Singleton.Instance;
 
-			if (s1 == s2)
-			{
-				Console.WriteLine("Objects are the same instance");
-			}
+            if (s1 == s2)
+            {
+                Console.WriteLine("Objects are the same instance");
+            }
 
             if (ReferenceEquals(s1, s2))
             {
                 Console.WriteLine("Objects are the same instance");
             }
 
-		    //s1.Dispose();
+            //s1.Dispose();
             s1 = s2 = null;
 
             GC.Collect();
-		}
-	}
+        }
+    }
 }

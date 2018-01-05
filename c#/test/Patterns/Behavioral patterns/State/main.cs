@@ -4,10 +4,10 @@ namespace State
 {
     public interface IAutomatState
     {
-        String GotApplication();
-        String CheckApplication();
-        String RentApartment();
-        String DispenseKeys();
+        string GotApplication();
+        string CheckApplication();
+        string RentApartment();
+        string DispenseKeys();
     }
 
     public interface IAutomat
@@ -22,19 +22,19 @@ namespace State
         IAutomatState GetApartmentRentedState();
         IAutomatState GetFullyRentedState();
 
-        Int32 Count { get; set; }
+        int Count { get; set; }
     }
 
     public class Automat : IAutomat
     {
-        private IAutomatState _waitingState;
-        private IAutomatState _gotApplicationState;
-        private IAutomatState _apartmentRentedState;
-        private IAutomatState _fullyRentedState;
+        private readonly IAutomatState _waitingState;
+        private readonly IAutomatState _gotApplicationState;
+        private readonly IAutomatState _apartmentRentedState;
+        private readonly IAutomatState _fullyRentedState;
         private IAutomatState _state;
-        private Int32 _count;
+        private int _count;
 
-        public Automat(Int32 n)
+        public Automat(int n)
         {
             _count = n;
             _waitingState = new WaitingState(this);
@@ -85,33 +85,33 @@ namespace State
             _automat = automat;
         }
 
-        public String GotApplication()
+        public string GotApplication()
         {
             _automat.SetState(_automat.GetGotApplicationState());
             return "Thanks for the application.";
         }
 
-        public String CheckApplication() { return "You have to submit an application."; }
+        public string CheckApplication() { return "You have to submit an application."; }
 
-        public String RentApartment() { return "You have to submit an application."; }
+        public string RentApartment() { return "You have to submit an application."; }
 
-        public String DispenseKeys() { return "You have to submit an application."; }
+        public string DispenseKeys() { return "You have to submit an application."; }
     }
 
     public class GotApplicationState : IAutomatState
     {
-        private Automat _automat;
+        private readonly Automat _automat;
         private readonly Random _random;
 
         public GotApplicationState(Automat automat)
         {
             _automat = automat;
-            _random = new Random(System.DateTime.Now.Millisecond);
+            _random = new Random(DateTime.Now.Millisecond);
         }
 
-        public String GotApplication() { return "We already got your application."; }
+        public string GotApplication() { return "We already got your application."; }
 
-        public String CheckApplication()
+        public string CheckApplication()
         {
             var yesNo = _random.Next() % 10;
 
@@ -127,31 +127,31 @@ namespace State
             }
         }
 
-        public String RentApartment() { return "You must have your application checked."; }
+        public string RentApartment() { return "You must have your application checked."; }
 
-        public String DispenseKeys() { return "You must have your application checked."; }
+        public string DispenseKeys() { return "You must have your application checked."; }
     }
 
     public class ApartmentRentedState : IAutomatState
     {
-        private Automat _automat;
+        private readonly Automat _automat;
 
         public ApartmentRentedState(Automat automat)
         {
             _automat = automat;
         }
 
-        public String GotApplication() { return "Hang on, we'ra renting you an apartmeny."; }
+        public string GotApplication() { return "Hang on, we'ra renting you an apartmeny."; }
 
-        public String CheckApplication() { return "Hang on, we'ra renting you an apartmeny."; }
+        public string CheckApplication() { return "Hang on, we'ra renting you an apartmeny."; }
 
-        public String RentApartment()
+        public string RentApartment()
         {
             _automat.Count = _automat.Count - 1;
             return "Renting you an apartment....";
         }
 
-        public String DispenseKeys()
+        public string DispenseKeys()
         {
             if (_automat.Count <= 0)
                 _automat.SetState(_automat.GetFullyRentedState());
@@ -170,13 +170,13 @@ namespace State
             _automat = automat;
         }
 
-        public String GotApplication() { return "Sorry, we're fully rented."; }
+        public string GotApplication() { return "Sorry, we're fully rented."; }
 
-        public String CheckApplication() { return "Sorry, we're fully rented."; }
+        public string CheckApplication() { return "Sorry, we're fully rented."; }
 
-        public String RentApartment() { return "Sorry, we're fully rented."; }
+        public string RentApartment() { return "Sorry, we're fully rented."; }
 
-        public String DispenseKeys() { return "Sorry, we're fully rented."; }
+        public string DispenseKeys() { return "Sorry, we're fully rented."; }
     }
 
     class Program
