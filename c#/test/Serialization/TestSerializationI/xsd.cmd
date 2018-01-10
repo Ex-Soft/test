@@ -1,5 +1,17 @@
 @echo off
 
+set full_path_2_app="c:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.7.1 Tools\x64\xsd.exe"
+if exist %full_path_2_app% goto DoIt
+
+set full_path_2_app="c:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.7.1 Tools\xsd.exe"
+if exist %full_path_2_app% goto DoIt
+
+set full_path_2_app="c:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.7 Tools\x64\xsd.exe"
+if exist %full_path_2_app% goto DoIt
+
+set full_path_2_app="c:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.7 Tools\xsd.exe"
+if exist %full_path_2_app% goto DoIt
+
 set full_path_2_app="c:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools\x64\xsd.exe"
 if exist %full_path_2_app% goto DoIt
 
