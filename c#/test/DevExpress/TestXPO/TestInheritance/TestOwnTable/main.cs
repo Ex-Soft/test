@@ -15,33 +15,42 @@ namespace TestOwnTable
 
                 XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
 
-                using (var session = new Session())
+                using (var session = new UnitOfWork())
                 {
                     object tmpObject;
 
                     var person = new Person(session);
                     person.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from Person")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
                     person.Name = "Person";
-                    person.Save();
+                    session.Save(person);
+                    session.CommitChanges();
 
                     var employee = new Employee(session);
                     employee.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from Person")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
                     employee.Name = "Employee";
                     employee.Salary = 123;
-                    employee.Save();
+
+                    person = session.GetObjectByKey<Person>(employee.Id);
+                    var employee2 = session.GetObjectByKey<Employee>(employee.Id);
+                    session.Save(employee);
+                    person = session.GetObjectByKey<Person>(employee.Id);
+                    employee2 = session.GetObjectByKey<Employee>(employee.Id);
+                    session.CommitChanges();
 
                     var executive = new Executive(session);
                     executive.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from Person")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
                     executive.Name = "Executive";
                     executive.Salary = 456;
                     executive.Bonus = 789;
-                    executive.Save();
+                    session.Save(executive);
+                    session.CommitChanges();
 
                     var customer = new Customer(session);
                     customer.Id = (tmpObject = session.ExecuteScalar("select max(Id) + 1 from Person")) != null && !Convert.IsDBNull(tmpObject) ? Convert.ToInt32(tmpObject) : 1;
                     customer.Name = "Customer";
                     customer.Preferences = "Preferences";
-                    customer.Save();
+                    session.Save(customer);
+                    session.CommitChanges();
                 }
             }
             catch (Exception eException)
