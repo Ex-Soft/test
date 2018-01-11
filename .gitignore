@@ -81,6 +81,7 @@ _ReSharper*
 *.dat
 [Rr]ead[Mm]e.*
 [Uu]pgrade[Ll]og.htm*
-.sqlplan
-.cpp~
+*.sqlplan
+*.cpp~
 makefile~
+*.[Dd][Bb][Ff]
