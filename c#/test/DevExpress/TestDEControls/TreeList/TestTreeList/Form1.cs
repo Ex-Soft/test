@@ -49,7 +49,7 @@ namespace TestTreeList
                 treeList.FocusedNode = node4focus;
         }
 
-        static List<Data> GetData()
+        public static List<Data> GetData()
         {
             return new List<Data>
             {

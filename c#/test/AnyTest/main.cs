@@ -24,7 +24,7 @@
 //#define TEST_AD
 //#define TEST_PARAMS
 //#define TEST_THERMO
-#define TEST_DATE_TIME
+//#define TEST_DATE_TIME
 //#define TEST_SPLIT
 //#define TEST_ENUM
 //#define TEST_GET_STRING
@@ -39,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-//#define TEST_PATH
+#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
