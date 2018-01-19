@@ -29,7 +29,7 @@
 //#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
-//#define TEST_BIT_OPERATIONS
+#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
 //#define TEST_NULLABLE_TYPES
@@ -39,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-#define TEST_PATH
+//#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -263,7 +263,9 @@ namespace AnyTest
                 tmpDateTimeOffset;
 
 			long
-				tmpLong;
+				tmpLong,
+                tmpLongII,
+                tmpLongIII;
 
             long?
                 tmpLongNullable;
@@ -1140,7 +1142,29 @@ namespace AnyTest
 			#endif
 
 			#if TEST_BIT_OPERATIONS
-				tmpLong = 5;
+                tmpLong = -1; // 0xffff_ffff_ffff_ffff
+                tmpLongII = tmpLong << 16; // 0xffff_ffff_ffff_0000
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong >> 48; // 0xffff_ffff_ffff_ffff
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong << 16; // 0xffff_ffff_ffff_0000
+                tmpLongIII = tmpLongII >> 48; // 0xffff_ffff_ffff_ffff
+                WriteLine("{0:x}", tmpLongIII);
+                tmpLongII = tmpLong << 16 >> 48; // 0xffff_ffff_ffff_ffff
+                WriteLine("{0:x}", tmpLongII);
+
+                tmpLong = 0x7444_3333_2222_1111;
+                tmpLongII = tmpLong << 16; // 0x3333_2222_1111_0000
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong >> 48; // 0x_0000_0000_0000_7444
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong << 16; // 0x3333_2222_1111_0000
+                tmpLongIII = tmpLongII >> 48; // 0x0000_0000_0000_3333
+                WriteLine("{0:x}", tmpLongIII);
+                tmpLongII = tmpLong << 16 >> 48;  // 0x0000_0000_0000_3333
+                WriteLine("{0:x}", tmpLongII);
+                
+                tmpLong = 5;
 				tmpLong |= 2;
 				tmpLong ^= 1;
 				tmpLong = 7;
