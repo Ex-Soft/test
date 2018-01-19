@@ -2,6 +2,14 @@
 
 int main(int argc, char **argv)
 {
+	char input[] = "   1st     2nd    3rd   ";
+	char *token = strtok(input, " ");
+	while (token)
+	{
+		std::cout << token << std::endl;
+		token = strtok(NULL, " ");
+	}
+
 	const int BuffSize = 0x0ffff;
 
 	char *str1 = 0, *str2 = 0, *subString = 0;

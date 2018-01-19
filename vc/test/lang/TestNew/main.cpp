@@ -2,8 +2,17 @@
 #include <iostream>
 #include <iomanip>
 
+char *getBuffOfChar();
+
 int main(int argc, char **argv)
 {
+	char *buff = 0;
+	if (buff = getBuffOfChar())
+	{
+		delete []buff;
+		buff = 0;
+	}
+
 	const int size = 5, index = 3;
 	static int array[size];
 	void *destination = reinterpret_cast<void *>(array + index);
@@ -28,4 +37,11 @@ int main(int argc, char **argv)
 	}
 
 	return 0;
+}
+
+char *getBuffOfChar()
+{
+	char *result = new char[255];
+	strcpy(result, "1st 2nd 3rd");
+	return result;
 }
