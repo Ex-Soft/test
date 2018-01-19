@@ -1,207 +1,211 @@
-#define TEST_DBF_BY_ODBC
-//#define TEST_DBF
+Ôªø//#define TEST_DBF_BY_ODBC
+#define TEST_DBF
 //#define TEST_DBF_JOIN
 //#define TEST_VFP
 
 using System;
 using System.Data;
 #if TEST_DBF_BY_ODBC
-	using System.Data.Odbc;
+    using System.Data.Odbc;
 #endif
 using System.Data.OleDb;
 using System.IO;
 
 namespace TestDbf
 {
-	class TestDbf
-	{
-		[STAThread]
-		public static int Main(string[] args)
-		{
-			int
-				Result=-1,
-				_ID_;
+    class TestDbf
+    {
+        [STAThread]
+        public static int Main(string[] args)
+        {
+            int
+                Result = -1,
+                _ID_;
 
-			StreamWriter
-				fstr_out=null,
-				fstr_out_866=null;
+            StreamWriter
+                fstr_out = null,
+                fstr_out_866 = null;
 
-			string
-				tmpString="log.log",
-				DbfFileName,
-				asciiString,
-				cp866String;
+            string
+                currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location,
+                tmpString = "log.log",
+                DbfFileName,
+                asciiString,
+                cp866String;
 
-			byte[]
-				asciiBytes,
-				cp866Bytes;
+            if (currentDirectory.IndexOf("bin") != -1)
+                currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
 
-			char[]
-				cp866Chars;
+            byte[]
+                asciiBytes,
+                cp866Bytes;
 
-			#if TEST_DBF_BY_ODBC
-				OdbcConnection
-					odbc_conn=null;
+            char[]
+                cp866Chars;
 
-				OdbcCommand
-					odbc_cmd=null;
+            #if TEST_DBF_BY_ODBC
+                OdbcConnection
+                    odbc_conn = null;
 
-				OdbcDataReader
-					odbc_rdr=null;
+                OdbcCommand
+                    odbc_cmd = null;
 
-				OdbcDataAdapter
-					odbc_da=null;
-			#endif
+                OdbcDataReader
+                    odbc_rdr = null;
 
-			OleDbConnection
-				conn=null;
+                OdbcDataAdapter
+                    odbc_da = null;
+            #endif
 
-			OleDbCommand
-				cmd=null;
+            OleDbConnection
+                conn = null;
 
-			OleDbDataReader
-				rdr=null;
+            OleDbCommand
+                cmd = null;
 
-			OleDbDataAdapter
-				da=null;
+            OleDbDataReader
+                rdr = null;
 
-			DataTable
-				tmpDataTable=null;
+            OleDbDataAdapter
+                da = null;
 
-			object
-				tmpObject;
+            DataTable
+                tmpDataTable = null;
 
-			try
-			{
-				try
-				{
-					fstr_out=new StreamWriter(tmpString,false,System.Text.Encoding.GetEncoding(1251));
-					fstr_out.AutoFlush=true;
+            object
+                tmpObject;
 
-					fstr_out_866=new StreamWriter(tmpString+"_866",false,System.Text.Encoding.GetEncoding(866));
-					fstr_out_866.AutoFlush=true;
+            try
+            {
+                try
+                {
+                    fstr_out = new StreamWriter(tmpString, false, System.Text.Encoding.GetEncoding(1251));
+                    fstr_out.AutoFlush = true;
 
-					#if TEST_DBF_BY_ODBC || TEST_DBF || TEST_VFP
-						string
-							PathToDbf="C:\\FPD26\\dbf",
-							CommonDbfTableName="Common",
-							CommonDbfTableSQLCreate=@"
-create table "+CommonDbfTableName+@"(
+                    fstr_out_866 = new StreamWriter(tmpString + "_866", false, System.Text.Encoding.GetEncoding(866));
+                    fstr_out_866.AutoFlush = true;
+
+                    #if TEST_DBF_BY_ODBC || TEST_DBF || TEST_VFP
+                        string
+                            PathToDbf = Path.Combine(currentDirectory, "dbf"),
+                            CommonDbfTableName = "Common",
+                            CommonDbfTableSQLCreate = @"
+create table " + CommonDbfTableName + @"(
 FInt integer,
 FChar char(254),
 FDate1 date,
 FDate2 date
 )";
-					#endif
+                    #endif
 
-					#if TEST_DBF_BY_ODBC
-						if(PathToDbf.EndsWith(Path.DirectorySeparatorChar.ToString()))
-							PathToDbf=PathToDbf.Remove(PathToDbf.Length-1,1);
+                    #if TEST_DBF_BY_ODBC
+                        if (PathToDbf.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                            PathToDbf = PathToDbf.Remove(PathToDbf.Length - 1, 1);
 
-						tmpString="Driver={Microsoft dBASE Driver (*.dbf)};DriverID=277;Dbq="+PathToDbf+";";
-						odbc_conn=new OdbcConnection(tmpString);
-						odbc_conn.Open();
-						fstr_out.WriteLine("ConnectionString: "+odbc_conn.ConnectionString);
-						fstr_out.WriteLine("ConnectionTimeout: "+odbc_conn.ConnectionTimeout.ToString());
-						fstr_out.WriteLine("Database: "+odbc_conn.Database);
-						fstr_out.WriteLine("DataSource: "+odbc_conn.DataSource);
-						fstr_out.WriteLine("Driver: "+odbc_conn.Driver);
-						fstr_out.WriteLine("ServerVersion: "+odbc_conn.ServerVersion);
-						fstr_out.WriteLine("State: "+odbc_conn.State.ToString());
-						fstr_out.WriteLine();
+                        tmpString = "Driver={Microsoft dBASE Driver (*.dbf)};DriverID=277;Dbq=" + PathToDbf + ";";
+                        odbc_conn = new OdbcConnection(tmpString);
+                        odbc_conn.Open();
+                        fstr_out.WriteLine("ConnectionString: " + odbc_conn.ConnectionString);
+                        fstr_out.WriteLine("ConnectionTimeout: " + odbc_conn.ConnectionTimeout.ToString());
+                        fstr_out.WriteLine("Database: " + odbc_conn.Database);
+                        fstr_out.WriteLine("DataSource: " + odbc_conn.DataSource);
+                        fstr_out.WriteLine("Driver: " + odbc_conn.Driver);
+                        fstr_out.WriteLine("ServerVersion: " + odbc_conn.ServerVersion);
+                        fstr_out.WriteLine("State: " + odbc_conn.State.ToString());
+                        fstr_out.WriteLine();
 
-						tmpString=PathToDbf+Path.DirectorySeparatorChar+CommonDbfTableName+".dbf";
-						if(File.Exists(tmpString))
-							File.Delete(tmpString);
+                        tmpString = PathToDbf + Path.DirectorySeparatorChar + CommonDbfTableName + ".dbf";
+                        if (File.Exists(tmpString))
+                            File.Delete(tmpString);
 
-						odbc_cmd=odbc_conn.CreateCommand();
-						odbc_cmd.CommandType=CommandType.Text;
-						odbc_cmd.CommandText=CommonDbfTableSQLCreate;
-						odbc_cmd.ExecuteNonQuery();
+                        odbc_cmd = odbc_conn.CreateCommand();
+                        odbc_cmd.CommandType = CommandType.Text;
+                        odbc_cmd.CommandText = CommonDbfTableSQLCreate;
+                        odbc_cmd.ExecuteNonQuery();
 
-						odbc_cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar, FDate1, FDate2) values (1, 'Line# 1 ÀËÌËˇ π 1 À≥Ì≥ˇ π 1', {d'2008-12-31'}, {d'2008-12-31'})";
-						odbc_cmd.ExecuteNonQuery();
+                        odbc_cmd.CommandText = "insert into " + CommonDbfTableName + " (FInt, FChar, FDate1, FDate2) values (1, 'Line# 1 –õ–∏–Ω–∏—è ‚Ññ 1 –õ—ñ–Ω—ñ—è ‚Ññ 1', {d'2008-12-31'}, {d'2008-12-31'})";
+                        odbc_cmd.ExecuteNonQuery();
 
-						odbc_cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar) values (?, ?)";
-						odbc_cmd.Parameters.Clear();
-						odbc_cmd.Parameters.Add("FInt",OdbcType.Int).Value=2;
-						odbc_cmd.Parameters.Add("FChar",OdbcType.VarChar).Value="Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2";
-						odbc_cmd.ExecuteNonQuery();
+                        odbc_cmd.CommandText = "insert into " + CommonDbfTableName + " (FInt, FChar) values (?, ?)";
+                        odbc_cmd.Parameters.Clear();
+                        odbc_cmd.Parameters.Add("FInt", OdbcType.Int).Value = 2;
+                        odbc_cmd.Parameters.Add("FChar", OdbcType.VarChar).Value = "Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2";
+                        odbc_cmd.ExecuteNonQuery();
 
-						tmpString="select * from baza";
-						odbc_cmd=new OdbcCommand(tmpString,odbc_conn);
+                        tmpString = "select * from " + CommonDbfTableName;
+                        odbc_cmd = new OdbcCommand(tmpString, odbc_conn);
 
-						odbc_rdr=odbc_cmd.ExecuteReader();
-						while(odbc_rdr.Read())
-						{
-							for(int i=0; i<odbc_rdr.FieldCount; ++i)
-							{
-								fstr_out.Write(odbc_rdr[odbc_rdr.GetName(i)]);
-								if(i<odbc_rdr.FieldCount)
-									fstr_out.Write("\t");
-							}
-							fstr_out.WriteLine();
-						}
-						odbc_rdr.Close();
+                        odbc_rdr = odbc_cmd.ExecuteReader();
+                        while (odbc_rdr.Read())
+                        {
+                            for (int i = 0; i < odbc_rdr.FieldCount; ++i)
+                            {
+                                fstr_out.Write(odbc_rdr[odbc_rdr.GetName(i)]);
+                                if (i < odbc_rdr.FieldCount)
+                                    fstr_out.Write("\t");
+                            }
+                            fstr_out.WriteLine();
+                        }
+                        odbc_rdr.Close();
 
-						odbc_da=new OdbcDataAdapter(tmpString,odbc_conn);
-						if(tmpDataTable==null)
-							tmpDataTable=new DataTable();
-						odbc_da.Fill(tmpDataTable);
-						ShowStru(tmpDataTable,fstr_out);
-						tmpDataTable.Reset();
-						
-						odbc_cmd.CommandText="select * from testtype_1";
+                        odbc_da = new OdbcDataAdapter(tmpString, odbc_conn);
+                        if (tmpDataTable == null)
+                            tmpDataTable = new DataTable();
+                        odbc_da.Fill(tmpDataTable);
+                        ShowStru(tmpDataTable, fstr_out);
+                        tmpDataTable.Reset();
 
-						fstr_out.WriteLine();
-						fstr_out.WriteLine("OdbcDataAdapter.FillSchema()");
-						odbc_da.SelectCommand=odbc_cmd;
-						odbc_da.FillSchema(tmpDataTable,SchemaType.Source);
-						foreach(DataColumn c in tmpDataTable.Columns)
-							fstr_out.WriteLine(c.ColumnName+": \""+c.DataType.ToString()+"\"");
-						tmpDataTable.Reset();
+                        odbc_cmd.CommandText = "select * from testtype_1";
 
-						odbc_rdr=odbc_cmd.ExecuteReader(CommandBehavior.SchemaOnly);
-						fstr_out.WriteLine(Environment.NewLine+"OdbcDataReader.HasRows="+odbc_rdr.HasRows.ToString());
-						for(int i=0; i<odbc_rdr.FieldCount; ++i)
-							fstr_out.WriteLine(odbc_rdr.GetName(i)+" GetDataTypeName(): \""+odbc_rdr.GetDataTypeName(i)+"\" GetFieldType(): \""+odbc_rdr.GetFieldType(i)+"\"");
-						odbc_rdr.Close();
+                        fstr_out.WriteLine();
+                        fstr_out.WriteLine("OdbcDataAdapter.FillSchema()");
+                        odbc_da.SelectCommand = odbc_cmd;
+                        odbc_da.FillSchema(tmpDataTable, SchemaType.Source);
+                        foreach (DataColumn c in tmpDataTable.Columns)
+                            fstr_out.WriteLine(c.ColumnName + ": \"" + c.DataType.ToString() + "\"");
+                        tmpDataTable.Reset();
 
-						/*
-						odbc_cmd.CommandText="insert into testtype_1 (FLogical) values (true)";
-						odbc_cmd.ExecuteNonQuery();
+                        odbc_rdr = odbc_cmd.ExecuteReader(CommandBehavior.SchemaOnly);
+                        fstr_out.WriteLine(Environment.NewLine + "OdbcDataReader.HasRows=" + odbc_rdr.HasRows.ToString());
+                        for (int i = 0; i < odbc_rdr.FieldCount; ++i)
+                            fstr_out.WriteLine(odbc_rdr.GetName(i) + " GetDataTypeName(): \"" + odbc_rdr.GetDataTypeName(i) + "\" GetFieldType(): \"" + odbc_rdr.GetFieldType(i) + "\"");
+                        odbc_rdr.Close();
 
-						odbc_cmd.CommandText="update testtype_1 set FLogical=false";
-						odbc_cmd.ExecuteNonQuery();
-						*/
+                        /*
+                        odbc_cmd.CommandText="insert into testtype_1 (FLogical) values (true)";
+                        odbc_cmd.ExecuteNonQuery();
 
-						try
-						{
-							tmpString="select * from t"; // t is FoxPro (with cdx) table
-							odbc_cmd.CommandText=tmpString;
-							odbc_rdr=odbc_cmd.ExecuteReader();
-							odbc_rdr.Close();
-						}
-						catch(OdbcException eException)
-						{
-							tmpString=string.Empty;
-							for(int i=0; i<eException.Errors.Count; ++i)
-							{
-								if(tmpString!=string.Empty)
-									tmpString+=Environment.NewLine;
+                        odbc_cmd.CommandText="update testtype_1 set FLogical=false";
+                        odbc_cmd.ExecuteNonQuery();
+                        */
 
-								tmpString+="Index #"+i+"\t"+
-									"Message: \""+eException.Errors[i].Message+"\"\t"+
-									"Native: \""+eException.Errors[i].NativeError.ToString()+"\"\t"+
-									"Source: \""+eException.Errors[i].Source+"\"\t"+
-									"SQL: \""+eException.Errors[i].SQLState+"\"";
-							}
-							fstr_out.WriteLine(Environment.NewLine+"OdbcException:"+Environment.NewLine+tmpString+Environment.NewLine);
-						}
-						odbc_conn.Close();
-					#endif
+                        try
+                        {
+                            tmpString = "select * from t"; // t is FoxPro (with cdx) table
+                            odbc_cmd.CommandText = tmpString;
+                            odbc_rdr = odbc_cmd.ExecuteReader();
+                            odbc_rdr.Close();
+                        }
+                        catch (OdbcException eException)
+                        {
+                            tmpString = string.Empty;
+                            for (int i = 0; i < eException.Errors.Count; ++i)
+                            {
+                                if (tmpString != string.Empty)
+                                    tmpString += Environment.NewLine;
 
-					#if TEST_DBF
+                                tmpString += "Index #" + i + "\t" +
+                                    "Message: \"" + eException.Errors[i].Message + "\"\t" +
+                                    "Native: \"" + eException.Errors[i].NativeError.ToString() + "\"\t" +
+                                    "Source: \"" + eException.Errors[i].Source + "\"\t" +
+                                    "SQL: \"" + eException.Errors[i].SQLState + "\"";
+                            }
+                            fstr_out.WriteLine(Environment.NewLine + "OdbcException:" + Environment.NewLine + tmpString + Environment.NewLine);
+                        }
+                        odbc_conn.Close();
+                    #endif
+
+                    #if TEST_DBF
 						if(PathToDbf.EndsWith(Path.DirectorySeparatorChar.ToString()))
 							PathToDbf=PathToDbf.Remove(PathToDbf.Length-1,1);
 
@@ -226,16 +230,16 @@ FDate2 date
 						cmd.CommandText=CommonDbfTableSQLCreate;
 						cmd.ExecuteNonQuery();
 
-						cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar, FDate1, FDate2) values (1, 'Line# 1 ÀËÌËˇ π 1 À≥Ì≥ˇ π 1',{12/31/2008},{12/31/2008})";
+						cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar, FDate1, FDate2) values (1, 'Line# 1 –õ–∏–Ω–∏—è ‚Ññ 1 –õ—ñ–Ω—ñ—è ‚Ññ 1', #01/01/2008#, #01/01/2008#)";
 						cmd.ExecuteNonQuery();
 
 						cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar) values (?, ?)";
 						cmd.Parameters.Clear();
 						cmd.Parameters.Add("FInt",OleDbType.Integer).Value=2;
-						cmd.Parameters.Add("FChar",OleDbType.VarChar).Value="Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2";
+						cmd.Parameters.Add("FChar",OleDbType.VarChar).Value="Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2";
 						cmd.ExecuteNonQuery();
 
-						tmpString="select * from baza";
+						tmpString="select * from " + CommonDbfTableName;
 						cmd=new OleDbCommand(tmpString,conn);
 						rdr=cmd.ExecuteReader();
 						while(rdr.Read())
@@ -360,24 +364,24 @@ FDate2 date
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ";
+						cmd.Parameters["FCHAR"].Value="–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ";
+						cmd.Parameters["FCHAR"].Value="–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="®∏•¥≤≥Øø™∫π";
+						cmd.Parameters["FCHAR"].Value="–Å—ë“ê“ë–Ü—ñ–á—ó–Ñ—î‚Ññ";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ";
+						asciiString="–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
@@ -389,7 +393,7 @@ FDate2 date
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ";
+						asciiString="–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
@@ -401,16 +405,16 @@ FDate2 date
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="®∏•¥≤≥Øø™∫π";
+						asciiString="–Å—ë“ê“ë–Ü—ñ–á—ó–Ñ—î‚Ññ";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
-						asciiBytes[2]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) • -> √
-						asciiBytes[3]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) ¥ -> „
-						asciiBytes[4]=0x0a1; // 0x0b2 (178) -> 0x0a1 (161) ≤ -> °
-						asciiBytes[5]=0x0a2; // 0x0b3 (179) -> 0x0a2 (162) ≥ -> ¢
-						asciiBytes[6]=0x0b0; // 0x0af (175) -> 0x0b0 (176) Ø -> ∞
-						asciiBytes[7]=0x0b7; // 0x0bf (191) -> 0x0b7 (183) ø -> ∑
-						asciiBytes[8]=0x0af; // 0x0aa (170) -> 0x0af (175) ™ -> Ø
-						asciiBytes[9]=0x0bf; // 0x0ba (186) -> 0x0bf (191) ∫ -> ø						
+						asciiBytes[2]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) “ê -> –ì
+						asciiBytes[3]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) “ë -> –≥
+						asciiBytes[4]=0x0a1; // 0x0b2 (178) -> 0x0a1 (161) –Ü -> –é
+						asciiBytes[5]=0x0a2; // 0x0b3 (179) -> 0x0a2 (162) —ñ -> —û
+						asciiBytes[6]=0x0b0; // 0x0af (175) -> 0x0b0 (176) –á -> ¬∞
+						asciiBytes[7]=0x0b7; // 0x0bf (191) -> 0x0b7 (183) —ó -> ¬∑
+						asciiBytes[8]=0x0af; // 0x0aa (170) -> 0x0af (175) –Ñ -> –á
+						asciiBytes[9]=0x0bf; // 0x0ba (186) -> 0x0bf (191) —î -> —ó						
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
 						System.Text.Encoding.GetEncoding(866).GetChars(cp866Bytes,0,cp866Bytes.Length,cp866Chars,0);
@@ -424,7 +428,7 @@ FDate2 date
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value=CP1251ToCP866("Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2");
+						cmd.Parameters["FCHAR"].Value=CP1251ToCP866("Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2");
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
@@ -460,24 +464,24 @@ FDate2 date
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ";
+						cmd.Parameters["FCHAR"].Value="–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ";
+						cmd.Parameters["FCHAR"].Value="–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="®∏•¥≤≥Øø™∫π";
+						cmd.Parameters["FCHAR"].Value="–Å—ë“ê“ë–Ü—ñ–á—ó–Ñ—î‚Ññ";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ";
+						asciiString="–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
@@ -489,7 +493,7 @@ FDate2 date
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ";
+						asciiString="–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
@@ -501,20 +505,20 @@ FDate2 date
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="®∏•¥≤≥Øø™∫π";
+						asciiString="–Å—ë“ê“ë–Ü—ñ–á—ó–Ñ—î‚Ññ";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
-						asciiBytes[2]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) • -> √
-						asciiBytes[3]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) ¥ -> „
-						asciiBytes[4]=0x0a1; // 0x0b2 (178) -> 0x0a1 (161) ≤ -> °
-						asciiBytes[5]=0x0a2; // 0x0b3 (179) -> 0x0a2 (162) ≥ -> ¢
-						asciiBytes[6]=0x0b0; // 0x0af (175) -> 0x0b0 (176) Ø -> ∞
-						asciiBytes[7]=0x0b7; // 0x0bf (191) -> 0x0b7 (183) ø -> ∑
-						asciiBytes[8]=0x0af; // 0x0aa (170) -> 0x0af (175) ™ -> Ø
-						asciiBytes[9]=0x0bf; // 0x0ba (186) -> 0x0bf (191) ∫ -> ø						
+						asciiBytes[2]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) “ê -> –ì
+						asciiBytes[3]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) “ë -> –≥
+						asciiBytes[4]=0x0a1; // 0x0b2 (178) -> 0x0a1 (161) –Ü -> –é
+						asciiBytes[5]=0x0a2; // 0x0b3 (179) -> 0x0a2 (162) —ñ -> —û
+						asciiBytes[6]=0x0b0; // 0x0af (175) -> 0x0b0 (176) –á -> ¬∞
+						asciiBytes[7]=0x0b7; // 0x0bf (191) -> 0x0b7 (183) —ó -> ¬∑
+						asciiBytes[8]=0x0af; // 0x0aa (170) -> 0x0af (175) –Ñ -> –á
+						asciiBytes[9]=0x0bf; // 0x0ba (186) -> 0x0bf (191) —î -> —ó						
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
 						System.Text.Encoding.GetEncoding(866).GetChars(cp866Bytes,0,cp866Bytes.Length,cp866Chars,0);
-						cp866Chars[7]=(char)0x02219; // ï
+						cp866Chars[7]=(char)0x02219; // ‚Ä¢
 						cp866String=new string(cp866Chars);
 						cmd.Parameters["ID"].Value=++_ID_;
 						cmd.Parameters["FCHAR"].Value=cp866String;
@@ -523,13 +527,13 @@ FDate2 date
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value=tmpString=CP1251ToCP866("Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2");
+						cmd.Parameters["FCHAR"].Value=tmpString=CP1251ToCP866("Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2");
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 						fstr_out_866.WriteLine(tmpString);
 
-						#if TEST_DBF_JOIN
+                    #if TEST_DBF_JOIN
 							cmd.CommandType=CommandType.Text;
 /*
 							cmd.CommandText=@"
@@ -595,12 +599,12 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 
 							da.Fill(tmpDataTable);
 							tmpDataTable.Reset();
-						#endif
+                    #endif
 
 						conn.Close();
-					#endif
+                    #endif
 
-					#if TEST_VFP
+                    #if TEST_VFP
 						if(!PathToDbf.EndsWith(Path.DirectorySeparatorChar.ToString()))
 							PathToDbf+=Path.DirectorySeparatorChar;
 
@@ -625,13 +629,13 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						cmd.CommandText=CommonDbfTableSQLCreate;
 						cmd.ExecuteNonQuery();
 
-						cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar) values (1, 'Line# 1 ÀËÌËˇ π 1 À≥Ì≥ˇ π 1')";
+						cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar) values (1, 'Line# 1 –õ–∏–Ω–∏—è ‚Ññ 1 –õ—ñ–Ω—ñ—è ‚Ññ 1')";
 						cmd.ExecuteNonQuery();
 
 						cmd.CommandText="insert into "+CommonDbfTableName+" (FInt, FChar, FDate1, FDate2) values (?, ?, ?, ?)";
 						cmd.Parameters.Clear();
 						cmd.Parameters.Add("FInt",OleDbType.Integer).Value=2;
-						cmd.Parameters.Add("FChar",OleDbType.VarChar).Value="Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2";
+						cmd.Parameters.Add("FChar",OleDbType.VarChar).Value="Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2";
 						cmd.Parameters.Add("FDate1",OleDbType.DBDate).Value=DateTime.Now;
 						cmd.Parameters.Add("FDate2",OleDbType.Date).Value=DateTime.Now;	
 						cmd.ExecuteNonQuery();
@@ -640,10 +644,10 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						cmd.Parameters.Clear();
 						cmd.Parameters.Add("FDate1",OleDbType.Date).Value=DateTime.Now;
 						cmd.Parameters.Add("FDate2",OleDbType.DBDate).Value=DateTime.Now;
-						cmd.Parameters.Add("FChar1",OleDbType.Char).Value=CP1251ToCP866("Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2");
+						cmd.Parameters.Add("FChar1",OleDbType.Char).Value=CP1251ToCP866("Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2");
 						cmd.ExecuteNonQuery();
 
-						cmd.CommandText="insert into test_t3 (FDate1, FDate2, FChar1) values ({12/31/2008},{12/31/2008},'"+CP1251ToCP866("Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2")+"')";
+						cmd.CommandText="insert into test_t3 (FDate1, FDate2, FChar1) values ({12/31/2008},{12/31/2008},'"+CP1251ToCP866("Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2")+"')";
 						cmd.ExecuteNonQuery();
 
 						DbfFileName="test_ins";
@@ -669,24 +673,24 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ";
+						cmd.Parameters["FCHAR"].Value="–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ";
+						cmd.Parameters["FCHAR"].Value="–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value="®∏•¥≤≥Øø™∫π";
+						cmd.Parameters["FCHAR"].Value="–Å—ë“ê“ë–Ü—ñ–á—ó–Ñ—î‚Ññ";
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ";
+						asciiString="–ê–ë–í–ì–î–ï–ñ–ó–ò–ô–ö–õ–ú–ù–û–ü–†–°–¢–£–§–•–¶–ß–®–©–™–´–¨–≠–Æ–Ø";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
@@ -698,7 +702,7 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ";
+						asciiString="–∞–±–≤–≥–¥–µ–∂–∑–∏–π–∫–ª–º–Ω–æ–ø—Ä—Å—Ç—É—Ñ—Ö—Ü—á—à—â—ä—ã—å—ç—é—è";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
@@ -710,16 +714,16 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
 
-						asciiString="®∏•¥≤≥Øø™∫π";
+						asciiString="–Å—ë“ê“ë–Ü—ñ–á—ó–Ñ—î‚Ññ";
 						asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(asciiString);
-						asciiBytes[2]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) • -> √
-						asciiBytes[3]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) ¥ -> „
-						asciiBytes[4]=0x0a1; // 0x0b2 (178) -> 0x0a1 (161) ≤ -> °
-						asciiBytes[5]=0x0a2; // 0x0b3 (179) -> 0x0a2 (162) ≥ -> ¢
-						asciiBytes[6]=0x0b0; // 0x0af (175) -> 0x0b0 (176) Ø -> ∞
-						asciiBytes[7]=0x0b7; // 0x0bf (191) -> 0x0b7 (183) ø -> ∑
-						asciiBytes[8]=0x0af; // 0x0aa (170) -> 0x0af (175) ™ -> Ø
-						asciiBytes[9]=0x0bf; // 0x0ba (186) -> 0x0bf (191) ∫ -> ø						
+						asciiBytes[2]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) “ê -> –ì
+						asciiBytes[3]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) “ë -> –≥
+						asciiBytes[4]=0x0a1; // 0x0b2 (178) -> 0x0a1 (161) –Ü -> –é
+						asciiBytes[5]=0x0a2; // 0x0b3 (179) -> 0x0a2 (162) —ñ -> —û
+						asciiBytes[6]=0x0b0; // 0x0af (175) -> 0x0b0 (176) –á -> ¬∞
+						asciiBytes[7]=0x0b7; // 0x0bf (191) -> 0x0b7 (183) —ó -> ¬∑
+						asciiBytes[8]=0x0af; // 0x0aa (170) -> 0x0af (175) –Ñ -> –á
+						asciiBytes[9]=0x0bf; // 0x0ba (186) -> 0x0bf (191) —î -> —ó						
 						cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
 						cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
 						System.Text.Encoding.GetEncoding(866).GetChars(cp866Bytes,0,cp866Bytes.Length,cp866Chars,0);
@@ -733,7 +737,7 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						cmd.ExecuteNonQuery();
 
 						cmd.Parameters["ID"].Value=++_ID_;
-						cmd.Parameters["FCHAR"].Value=CP1251ToCP866("Line# 2 ÀËÌËˇ π 2 À≥Ì≥ˇ π 2");
+						cmd.Parameters["FCHAR"].Value=CP1251ToCP866("Line# 2 –õ–∏–Ω–∏—è ‚Ññ 2 –õ—ñ–Ω—ñ—è ‚Ññ 2");
 						cmd.Parameters["DDATE"].Value=DateTime.Now;
 						cmd.Parameters["FNUMERIC"].Value=99.999*_ID_;
 						cmd.ExecuteNonQuery();
@@ -882,88 +886,87 @@ order by m.ID, d_l_I.ID, d_l_II.ID
 						tmpDataTable.Reset();
 
 						conn.Close();
-					#endif
+                    #endif
 
-					Result=0;
-				}
-				catch(Exception eException)
-				{
-					Console.WriteLine(eException.GetType().FullName+Environment.NewLine+"Message: "+eException.Message+Environment.NewLine+"StackTrace:"+Environment.NewLine+eException.StackTrace);
-				} 			
-			}
-			finally
-			{
-				#if TEST_DBF_BY_ODBC
-					if(odbc_rdr!=null && !odbc_rdr.IsClosed)
-						odbc_rdr.Close();
+                    Result = 0;
+                }
+                catch (Exception eException)
+                {
+                    Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+                }
+            }
+            finally
+            {
+                #if TEST_DBF_BY_ODBC
+                    if (odbc_rdr != null && !odbc_rdr.IsClosed)
+                        odbc_rdr.Close();
 
-					if(odbc_conn!=null && odbc_conn.State==System.Data.ConnectionState.Open)
-						odbc_conn.Close();
-				#endif
+                    if (odbc_conn != null && odbc_conn.State == System.Data.ConnectionState.Open)
+                        odbc_conn.Close();
+                #endif
 
-				if(rdr!=null && !rdr.IsClosed)
-					rdr.Close();
+                if (rdr != null && !rdr.IsClosed)
+                    rdr.Close();
 
-				if(conn!=null && conn.State==System.Data.ConnectionState.Open)
-					conn.Close();
+                if (conn != null && conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
 
-				if(fstr_out!=null)
-					fstr_out.Close();
+                if (fstr_out != null)
+                    fstr_out.Close();
 
-				if(fstr_out_866!=null)
-					fstr_out_866.Close();
-			}
-			return(Result);
-		}
+                if (fstr_out_866 != null)
+                    fstr_out_866.Close();
+            }
+            return (Result);
+        }
 
-		static void ShowStru(DataTable t, StreamWriter f)
-		{
-			f.WriteLine();
-			foreach(DataColumn col in t.Columns)
-				f.WriteLine(col.ColumnName+": DataType=\""+col.DataType.ToString()+"\"");
-		}
+        static void ShowStru(DataTable t, StreamWriter f)
+        {
+            f.WriteLine();
+            foreach (DataColumn col in t.Columns)
+                f.WriteLine(col.ColumnName + ": DataType=\"" + col.DataType.ToString() + "\"");
+        }
 
-		public static string CP1251ToCP866(string aInpStr)
-		{
-			byte[]
-				asciiBytes=System.Text.Encoding.GetEncoding(1251).GetBytes(aInpStr);
+        public static string CP1251ToCP866(string aInpStr)
+        {
+            byte[]
+                asciiBytes = System.Text.Encoding.GetEncoding(1251).GetBytes(aInpStr);
 
-			for(int i=0; i<asciiBytes.Length; ++i)
-			{
-				switch(asciiBytes[i])
-				{
-					case 0x0a5 :
-					{
-						asciiBytes[i]=0x0c3; // 0x0a5 (165) -> 0x0c3 (195) • -> √
-						break;
-					}
-					case 0x0b4 :
-					{
-						asciiBytes[i]=0x0e3; // 0x0b4 (180) -> 0x0e3 (227) ¥ -> „
-						break;	
-					}
-					case 0x0b2 :
-					{
-						asciiBytes[i]=0x049; // 0x0b2 (178) -> 0x049 (73) ≤ -> LATIN LETTER I
-						break;	
-					}
-					case 0x0b3 :
-					{
-						asciiBytes[i]=0x069; // 0x0b3 (179) -> 0x069 (105) ≥ -> LATIN LETTER i
-						break;	
-					}
-				}
-			}
+            for (int i = 0; i < asciiBytes.Length; ++i)
+            {
+                switch (asciiBytes[i])
+                {
+                    case 0x0a5:
+                        {
+                            asciiBytes[i] = 0x0c3; // 0x0a5 (165) -> 0x0c3 (195) “ê -> –ì
+                            break;
+                        }
+                    case 0x0b4:
+                        {
+                            asciiBytes[i] = 0x0e3; // 0x0b4 (180) -> 0x0e3 (227) “ë -> –≥
+                            break;
+                        }
+                    case 0x0b2:
+                        {
+                            asciiBytes[i] = 0x049; // 0x0b2 (178) -> 0x049 (73) –Ü -> LATIN LETTER I
+                            break;
+                        }
+                    case 0x0b3:
+                        {
+                            asciiBytes[i] = 0x069; // 0x0b3 (179) -> 0x069 (105) —ñ -> LATIN LETTER i
+                            break;
+                        }
+                }
+            }
 
-			byte[]
-				cp866Bytes=System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251),System.Text.Encoding.GetEncoding(866),asciiBytes);
+            byte[]
+                cp866Bytes = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(1251), System.Text.Encoding.GetEncoding(866), asciiBytes);
 
-			char[]
-				cp866Chars=new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes,0,cp866Bytes.Length)];
+            char[]
+                cp866Chars = new char[System.Text.Encoding.GetEncoding(866).GetCharCount(cp866Bytes, 0, cp866Bytes.Length)];
 
-			System.Text.Encoding.GetEncoding(866).GetChars(cp866Bytes,0,cp866Bytes.Length,cp866Chars,0);
-			return(new string(cp866Chars));				
-		}
-		//---------------------------------------------------------------------------
-	}
+            System.Text.Encoding.GetEncoding(866).GetChars(cp866Bytes, 0, cp866Bytes.Length, cp866Chars, 0);
+            return (new string(cp866Chars));
+        }
+    }
 }

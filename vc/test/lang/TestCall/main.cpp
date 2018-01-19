@@ -21,7 +21,8 @@ int main(int argc, char **argv)
 
 int fooC(int a, int b, int *c, int &d)
 {
-	return a + b + *c + d;
+	int local1 = 0x0fedc, local2 = 0x04321;
+	return a + b + *c + d + local1 + local2;
 }
 
 void fooAsm(int a, int b, int *c, int &d)

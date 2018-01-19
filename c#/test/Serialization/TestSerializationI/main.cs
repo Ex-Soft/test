@@ -2,6 +2,7 @@
 #define TEST_DESERIALIZE
 
 using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 using System.Text;
@@ -106,6 +107,11 @@ namespace TestSerializationI
 			#if TEST_DESERIALIZE
                 StreamReader
                     sr;
+
+                fileName = Path.Combine(currentDirectory, "Reports.xml");
+                sr = new StreamReader(fileName, Encoding.UTF8);
+                x = new XmlSerializer(typeof(Reports));
+		        var reports = (Reports)x.Deserialize(sr);
 
                 fileName = Path.Combine(currentDirectory, "QuickBaseEditRecord.xml");
                 sr = new StreamReader(fileName, Encoding.UTF8);

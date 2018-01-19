@@ -72,6 +72,23 @@ namespace TestInMemoryDataStore
                         InMemoryDataStoreHelper.ShowExistingData(typeof(Employee), o => o is Employee item ? $"{{Id:{item.Id}, Name:\"{item.Name}\", Salary:{item.Salary}}}" : string.Empty);
 
                         #endregion
+
+                        #region Executive
+
+                        var executive = new Executive(unitOfWork);
+                        executive.Id = 3;
+                        executive.Name = "Executive";
+                        executive.Salary = 456;
+                        executive.Bonus = 789;
+
+                        var person = unitOfWork.GetObjectByKey<Person>(3);
+                        var employee = unitOfWork.GetObjectByKey<Employee>(3);
+                        var executive2 = unitOfWork.GetObjectByKey<Executive>(3);
+
+                        unitOfWork.Save(executive);
+                        unitOfWork.CommitChanges();
+
+                        #endregion
                     }
                 #endif
 

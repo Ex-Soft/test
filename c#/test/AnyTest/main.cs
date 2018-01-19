@@ -24,7 +24,7 @@
 //#define TEST_AD
 //#define TEST_PARAMS
 //#define TEST_THERMO
-#define TEST_DATE_TIME
+//#define TEST_DATE_TIME
 //#define TEST_SPLIT
 //#define TEST_ENUM
 //#define TEST_GET_STRING
@@ -39,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-//#define TEST_PATH
+#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -58,6 +58,8 @@ using System.Text;
 using System.Security.Permissions;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+
+using static System.Console;
 
 namespace AnyTest
 {
@@ -1687,11 +1689,19 @@ namespace AnyTest
                 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
                 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
 
-                tmpString = System.Reflection.Assembly.GetCallingAssembly().GetName() + " " + System.Reflection.Assembly.GetCallingAssembly().Location;
-                Console.WriteLine(tmpString);
-                Console.WriteLine(Directory.GetCurrentDirectory());
-                tmpString = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase;
-				tmpString = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                WriteLine($"System.Reflection.Assembly.GetCallingAssembly().GetName(): \"{System.Reflection.Assembly.GetCallingAssembly().GetName()}\"");
+                WriteLine($"System.Reflection.Assembly.GetCallingAssembly().Location: \"{System.Reflection.Assembly.GetCallingAssembly().Location}\"");
+                WriteLine($"Directory.GetCurrentDirectory(): \"{Directory.GetCurrentDirectory()}\"");
+                WriteLine($"System.Reflection.Assembly.GetExecutingAssembly().CodeBase: \"{tmpString = System.Reflection.Assembly.GetExecutingAssembly().CodeBase}\"");
+                var uriBuilder = new UriBuilder(tmpString);
+                tmpStringII = Uri.UnescapeDataString(uriBuilder.Path);
+                WriteLine($"new UriBuilder(CodeBase) -> Path.GetDirectoryName(Uri.UnescapeDataString(uriBuilder.Path)): \"{tmpStringIII = Path.GetDirectoryName(tmpStringII)}\"");
+                var uri = new Uri(tmpString);
+                WriteLine($"new Uri(CodeBase) -> Path.GetDirectoryName(uri.LocalPath): \"{tmpStringIII = Path.GetDirectoryName(uri.LocalPath)}\"");
+                WriteLine($"System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase: \"{System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase}\"");
+				WriteLine($"System.Reflection.Assembly.GetExecutingAssembly().Location: \"{System.Reflection.Assembly.GetExecutingAssembly().Location}\"");
+                WriteLine($"typeof(Program).Assembly.Location.Location: \"{tmpString = typeof(Program).Assembly.Location}\"");
+                //ReadLine();
 				Console.WriteLine(Path.GetDirectoryName(tmpString));
 				Console.WriteLine(Path.GetExtension(tmpString));
 				Console.WriteLine(Path.GetFileName(tmpString));

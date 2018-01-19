@@ -1,4 +1,4 @@
-//#define LIVE_APPLICATION
+Ôªø//#define LIVE_APPLICATION
 #define GLOBAL_DATA_TABLE
 using System;
 using System.Configuration;
@@ -6,37 +6,38 @@ using System.Data.OleDb;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Data;
+using System.IO;
 
 namespace AnyTest
 {
-	public class MainForm : System.Windows.Forms.Form
-	{
-		private System.Windows.Forms.TabControl tabControlMain;
-		private System.Windows.Forms.TabPage tabPageButtons;
-		private System.Windows.Forms.TabPage tabPageData;
-		private System.Windows.Forms.DataGrid dataGridMaster;
-		private System.Windows.Forms.DataGrid dataGridDetails;
-		private System.Windows.Forms.DataGrid dataGridSubDetails;
-		private System.Windows.Forms.TabPage tabPageDataII;
-		private System.Windows.Forms.DataGrid dataGridDataII;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.ComboBox comboBox1;
+    public class MainForm : System.Windows.Forms.Form
+    {
+        private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.TabPage tabPageButtons;
+        private System.Windows.Forms.TabPage tabPageData;
+        private System.Windows.Forms.DataGrid dataGridMaster;
+        private System.Windows.Forms.DataGrid dataGridDetails;
+        private System.Windows.Forms.DataGrid dataGridSubDetails;
+        private System.Windows.Forms.TabPage tabPageDataII;
+        private System.Windows.Forms.DataGrid dataGridDataII;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
 
-		private System.ComponentModel.Container components = null;
+        private System.ComponentModel.Container components = null;
 
-		Button
-		  MyButton,
-		  StopButton;
-		
-		MainMenu
+        Button
+          MyButton,
+          StopButton;
+
+        MainMenu
           MyMenu;
 
-		DataSet
-			ds;
-		private System.Windows.Forms.Label labelWithLongText;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.TabPage tabPageControls;
+        DataSet
+            ds;
+        private System.Windows.Forms.Label labelWithLongText;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabPage tabPageControls;
         private TabPage tabPageSplitContainer;
         private SplitContainer splitContainer1;
         private Button button5;
@@ -44,297 +45,297 @@ namespace AnyTest
         private Button button6;
         private Button btnPlatform;
 
-		#if GLOBAL_DATA_TABLE
-			DataTable
-				tmpDataTable;
-		#endif
+        #if GLOBAL_DATA_TABLE
+            DataTable
+                tmpDataTable;
+        #endif
 
-		public MainForm()
-		{
-			InitializeComponent();
+        public MainForm()
+        {
+            InitializeComponent();
 
-			#if GLOBAL_DATA_TABLE
-				tmpDataTable=new DataTable();
-				dataGridDataII.DataSource=tmpDataTable;
-			#endif
+            #if GLOBAL_DATA_TABLE
+                tmpDataTable = new DataTable();
+                dataGridDataII.DataSource = tmpDataTable;
+            #endif
 
-			int
-				InputValue=12133;
+            int
+                InputValue = 12133;
 
-			string
-				InputValueStr=Convert.ToString(InputValue),
-				Suffix="th";
+            string
+                InputValueStr = Convert.ToString(InputValue),
+                Suffix = "th";
 
-			byte
-				Remainder=Convert.ToByte(InputValueStr.Substring(InputValueStr.Length-2));
+            byte
+                Remainder = Convert.ToByte(InputValueStr.Substring(InputValueStr.Length - 2));
 
-			if(Remainder<11 || Remainder>13)
-				Remainder=Convert.ToByte(InputValueStr.Substring(InputValueStr.Length-1));
+            if (Remainder < 11 || Remainder > 13)
+                Remainder = Convert.ToByte(InputValueStr.Substring(InputValueStr.Length - 1));
 
-			switch(Remainder)
-			{
-				case 1 :
-				{
-					Suffix="st";
-					break;
-				}
-				case 2 :
-				{
-					Suffix="nd";
-					break;
-				}
-				case 3 :
-				{
-					Suffix="rd";
-					break;
-				}
-			}
+            switch (Remainder)
+            {
+                case 1:
+                    {
+                        Suffix = "st";
+                        break;
+                    }
+                case 2:
+                    {
+                        Suffix = "nd";
+                        break;
+                    }
+                case 3:
+                    {
+                        Suffix = "rd";
+                        break;
+                    }
+            }
 
-			InputValueStr+=Suffix;
-			Log.Log.WriteToLog(InputValueStr,true);
+            InputValueStr += Suffix;
+            Log.Log.WriteToLog(InputValueStr, true);
 
-			InputValue=InputValue/Convert.ToInt32(Math.Pow(10,Convert.ToString(InputValue).Length-1));
-			Log.Log.WriteToLog(Convert.ToString(InputValue),true);
+            InputValue = InputValue / Convert.ToInt32(Math.Pow(10, Convert.ToString(InputValue).Length - 1));
+            Log.Log.WriteToLog(Convert.ToString(InputValue), true);
 
-			tabControlMain.Height=this.ClientRectangle.Height;
+            tabControlMain.Height = this.ClientRectangle.Height;
 
-			dataGridMaster.Location=new Point(0,0);
-			dataGridMaster.Width=tabPageData.ClientRectangle.Width;
-			dataGridMaster.Height=tabPageData.ClientRectangle.Height/3;
-			dataGridMaster.AllowNavigation=false;
+            dataGridMaster.Location = new Point(0, 0);
+            dataGridMaster.Width = tabPageData.ClientRectangle.Width;
+            dataGridMaster.Height = tabPageData.ClientRectangle.Height / 3;
+            dataGridMaster.AllowNavigation = false;
 
-			dataGridDetails.Location=new Point(0,dataGridMaster.Height);
-			dataGridDetails.Width=tabPageData.ClientRectangle.Width;
-			dataGridDetails.Height=tabPageData.ClientRectangle.Height/3;
-			dataGridDetails.AllowNavigation=false;
+            dataGridDetails.Location = new Point(0, dataGridMaster.Height);
+            dataGridDetails.Width = tabPageData.ClientRectangle.Width;
+            dataGridDetails.Height = tabPageData.ClientRectangle.Height / 3;
+            dataGridDetails.AllowNavigation = false;
 
-			dataGridSubDetails.Location=new Point(0,dataGridMaster.Height+dataGridDetails.Height);
-			dataGridSubDetails.Width=tabPageData.ClientRectangle.Width;
-			dataGridSubDetails.Height=tabPageData.ClientRectangle.Height-dataGridMaster.Height-dataGridDetails.Height;
-			dataGridSubDetails.AllowNavigation=false;
+            dataGridSubDetails.Location = new Point(0, dataGridMaster.Height + dataGridDetails.Height);
+            dataGridSubDetails.Width = tabPageData.ClientRectangle.Width;
+            dataGridSubDetails.Height = tabPageData.ClientRectangle.Height - dataGridMaster.Height - dataGridDetails.Height;
+            dataGridSubDetails.AllowNavigation = false;
 
-			Text="MainForm";
+            Text = "MainForm";
 
-			MyButton=new Button();
-			MyButton.Text="Click";
-			MyButton.Location=new Point(0,0);
-            MyButton.Click+=new EventHandler(MyButtonClick);
-			tabPageButtons.Controls.Add(MyButton);
+            MyButton = new Button();
+            MyButton.Text = "Click";
+            MyButton.Location = new Point(0, 0);
+            MyButton.Click += new EventHandler(MyButtonClick);
+            tabPageButtons.Controls.Add(MyButton);
 
-			StopButton=new Button();
-			StopButton.Text="Stop";
-			StopButton.Location=new Point(this.ClientRectangle.Width-StopButton.Width,(this.ClientRectangle.Height-StopButton.Height)/2);
-			//StopButton.Anchor=AnchorStyles.Top|AnchorStyles.Right|AnchorStyles.Bottom;
-			StopButton.Click+=new EventHandler(StopButtonClick);
-			
-			Controls.Add(StopButton);
+            StopButton = new Button();
+            StopButton.Text = "Stop";
+            StopButton.Location = new Point(this.ClientRectangle.Width - StopButton.Width, (this.ClientRectangle.Height - StopButton.Height) / 2);
+            //StopButton.Anchor=AnchorStyles.Top|AnchorStyles.Right|AnchorStyles.Bottom;
+            StopButton.Click += new EventHandler(StopButtonClick);
 
-			MyMenu=new MainMenu();
+            Controls.Add(StopButton);
 
-			MenuItem
-              m1=new MenuItem("‘‡ÈÎ");
+            MyMenu = new MainMenu();
 
-			MyMenu.MenuItems.Add(m1);
+            MenuItem
+              m1 = new MenuItem("–§–∞–π–ª");
 
-			MenuItem
-              m2=new MenuItem("—Â‚ËÒ");  
+            MyMenu.MenuItems.Add(m1);
 
-			MyMenu.MenuItems.Add(m2);
+            MenuItem
+              m2 = new MenuItem("–°–µ—Ä–≤–∏—Å");
 
-			MenuItem
-              subm1=new MenuItem("ŒÚÍ˚Ú¸");
+            MyMenu.MenuItems.Add(m2);
 
-			m1.MenuItems.Add(subm1);
+            MenuItem
+              subm1 = new MenuItem("–û—Ç–∫—Ä—ã—Ç—å");
 
-			MenuItem
-			  subm2=new MenuItem("«‡Í˚Ú¸");
+            m1.MenuItems.Add(subm1);
 
-			m1.MenuItems.Add(subm2);
+            MenuItem
+              subm2 = new MenuItem("–ó–∞–∫—Ä—ã—Ç—å");
 
-			MenuItem
-			  subm3=new MenuItem("¬˚ÈÚË");
+            m1.MenuItems.Add(subm2);
 
-			m1.MenuItems.Add(subm3);
+            MenuItem
+              subm3 = new MenuItem("–í—ã–π—Ç–∏");
 
-			MenuItem
-			  subm4=new MenuItem(" ÓÓ‰ËÌ‡Ú˚");
-            
-			m2.MenuItems.Add(subm4);
+            m1.MenuItems.Add(subm3);
 
-			MenuItem
-			  subm5=new MenuItem("»ÁÏÂÌËÚ¸ ‡ÁÏÂ");
-            
-			m2.MenuItems.Add(subm5);
+            MenuItem
+              subm4 = new MenuItem("–ö–æ–æ—Ä–¥–∏–Ω–∞—Ç—ã");
 
-			MenuItem
-			  subm6=new MenuItem("¬ÓÒÒÚ‡ÌÓ‚ËÚ¸");
-            
-			m2.MenuItems.Add(subm6);			
+            m2.MenuItems.Add(subm4);
 
-			subm1.Click+=new EventHandler(MMOpenClick);
-			subm2.Click+=new EventHandler(MMCloseClick);
-			subm3.Click+=new EventHandler(StopButtonClick);
-			subm4.Click+=new EventHandler(MMCoordClick);
-			subm5.Click+=new EventHandler(MMChangeClick);
-            subm6.Click+=new EventHandler(MMRestoreClick);
-			Menu=MyMenu;
+            MenuItem
+              subm5 = new MenuItem("–ò–∑–º–µ–Ω–∏—Ç—å —Ä–∞–∑–º–µ—Ä");
 
-			DataColumn
-				col;
+            m2.MenuItems.Add(subm5);
 
-			ds=new DataSet();
+            MenuItem
+              subm6 = new MenuItem("–í–æ—Å—Å—Ç–∞–Ω–æ–≤–∏—Ç—å");
 
-			ds.Tables.Add("Master");
-			col=ds.Tables["Master"].Columns.Add("Id",typeof(int));
-			col.AllowDBNull=false;
-			col.Unique=true;
-			col.AutoIncrement=true;
-			col.AutoIncrementSeed=-1;
-			col.AutoIncrementStep=-1;
-			col.ReadOnly=true;
-			ds.Tables["Master"].Columns.Add("Name",typeof(string));
-			ds.Tables["Master"].PrimaryKey=new DataColumn[]{ds.Tables["Master"].Columns["Id"]};
+            m2.MenuItems.Add(subm6);
 
-			ds.Tables.Add("Details");
-			ds.Tables["Details"].Columns.Add("Id",typeof(int));
-			ds.Tables["Details"].Columns.Add("SubId",typeof(int));
-			ds.Tables["Details"].Columns.Add("Name",typeof(string));
-			ds.Tables["Details"].PrimaryKey=new DataColumn[]{ds.Tables["Details"].Columns["Id"],ds.Tables["Details"].Columns["SubId"]};
-			ds.Relations.Add(new DataRelation("MasterDetailsRelation",ds.Tables["Master"].Columns["Id"],ds.Tables["Details"].Columns["Id"]));
+            subm1.Click += new EventHandler(MMOpenClick);
+            subm2.Click += new EventHandler(MMCloseClick);
+            subm3.Click += new EventHandler(StopButtonClick);
+            subm4.Click += new EventHandler(MMCoordClick);
+            subm5.Click += new EventHandler(MMChangeClick);
+            subm6.Click += new EventHandler(MMRestoreClick);
+            Menu = MyMenu;
 
-			ds.Tables.Add("SubDetails");
-			ds.Tables["SubDetails"].Columns.Add("Id",typeof(int));
-			ds.Tables["SubDetails"].Columns.Add("SubId",typeof(int));
-			ds.Tables["SubDetails"].Columns.Add("SubSubId",typeof(int));
-			ds.Tables["SubDetails"].Columns.Add("Name",typeof(string));
-			ds.Tables["SubDetails"].PrimaryKey=new DataColumn[]{ds.Tables["SubDetails"].Columns["Id"],ds.Tables["SubDetails"].Columns["SubId"],ds.Tables["SubDetails"].Columns["SubSubId"]};
-			ds.Relations.Add(new DataRelation("MasterDetailsSubDetailsRelation",new DataColumn[]{ds.Tables["Details"].Columns["Id"],ds.Tables["Details"].Columns["SubId"]},new DataColumn[]{ds.Tables["SubDetails"].Columns["Id"],ds.Tables["SubDetails"].Columns["SubId"]}));
+            DataColumn
+                col;
 
-			DataRow
-				row;
+            ds = new DataSet();
 
-			int
-				tmpId;
+            ds.Tables.Add("Master");
+            col = ds.Tables["Master"].Columns.Add("Id", typeof(int));
+            col.AllowDBNull = false;
+            col.Unique = true;
+            col.AutoIncrement = true;
+            col.AutoIncrementSeed = -1;
+            col.AutoIncrementStep = -1;
+            col.ReadOnly = true;
+            ds.Tables["Master"].Columns.Add("Name", typeof(string));
+            ds.Tables["Master"].PrimaryKey = new DataColumn[] { ds.Tables["Master"].Columns["Id"] };
 
-			row=ds.Tables["Master"].NewRow();
-			row["Name"]="»‚‡ÌÓ‚";
-			ds.Tables["Master"].Rows.Add(row);
+            ds.Tables.Add("Details");
+            ds.Tables["Details"].Columns.Add("Id", typeof(int));
+            ds.Tables["Details"].Columns.Add("SubId", typeof(int));
+            ds.Tables["Details"].Columns.Add("Name", typeof(string));
+            ds.Tables["Details"].PrimaryKey = new DataColumn[] { ds.Tables["Details"].Columns["Id"], ds.Tables["Details"].Columns["SubId"] };
+            ds.Relations.Add(new DataRelation("MasterDetailsRelation", ds.Tables["Master"].Columns["Id"], ds.Tables["Details"].Columns["Id"]));
 
-			tmpId=Convert.ToInt32(row["Id"]);
+            ds.Tables.Add("SubDetails");
+            ds.Tables["SubDetails"].Columns.Add("Id", typeof(int));
+            ds.Tables["SubDetails"].Columns.Add("SubId", typeof(int));
+            ds.Tables["SubDetails"].Columns.Add("SubSubId", typeof(int));
+            ds.Tables["SubDetails"].Columns.Add("Name", typeof(string));
+            ds.Tables["SubDetails"].PrimaryKey = new DataColumn[] { ds.Tables["SubDetails"].Columns["Id"], ds.Tables["SubDetails"].Columns["SubId"], ds.Tables["SubDetails"].Columns["SubSubId"] };
+            ds.Relations.Add(new DataRelation("MasterDetailsSubDetailsRelation", new DataColumn[] { ds.Tables["Details"].Columns["Id"], ds.Tables["Details"].Columns["SubId"] }, new DataColumn[] { ds.Tables["SubDetails"].Columns["Id"], ds.Tables["SubDetails"].Columns["SubId"] }));
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=1;
-			row["Name"]="»‚‡Ì";
-			ds.Tables["Details"].Rows.Add(row);
+            DataRow
+                row;
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=2;
-			row["Name"]="œÂÚ";
-			ds.Tables["Details"].Rows.Add(row);
+            int
+                tmpId;
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=3;
-			row["Name"]="—Ë‰Ó";
-			ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["Master"].NewRow();
+            row["Name"] = "–ò–≤–∞–Ω–æ–≤";
+            ds.Tables["Master"].Rows.Add(row);
 
-			row=ds.Tables["Master"].NewRow();
-			row["Name"]="œÂÚÓ‚";
-			ds.Tables["Master"].Rows.Add(row);
+            tmpId = Convert.ToInt32(row["Id"]);
 
-			tmpId=Convert.ToInt32(row["Id"]);
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 1;
+            row["Name"] = "–ò–≤–∞–Ω";
+            ds.Tables["Details"].Rows.Add(row);
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=1;
-			row["Name"]="»‚‡Ì»‚‡Ì";
-			ds.Tables["Details"].Rows.Add(row);
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=2;
-			row["Name"]="œÂÚœÂÚ";
-			ds.Tables["Details"].Rows.Add(row);
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=3;
-			row["Name"]="—Ë‰Ó—Ë‰Ó";
-			ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 2;
+            row["Name"] = "–ü–µ—Ç—Ä";
+            ds.Tables["Details"].Rows.Add(row);
 
-			row=ds.Tables["SubDetails"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=1;
-			row["SubSubId"]=1;
-			row["Name"]="»‚‡Ì»‚‡Ì_1";
-			ds.Tables["SubDetails"].Rows.Add(row);
-			row=ds.Tables["SubDetails"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=1;
-			row["SubSubId"]=2;
-			row["Name"]="œÂÚœÂÚ_1";
-			ds.Tables["SubDetails"].Rows.Add(row);
-			row=ds.Tables["SubDetails"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=1;
-			row["SubSubId"]=3;
-			row["Name"]="—Ë‰Ó—Ë‰Ó_1";
-			ds.Tables["SubDetails"].Rows.Add(row);
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 3;
+            row["Name"] = "–°–∏–¥–æ—Ä";
+            ds.Tables["Details"].Rows.Add(row);
 
-			row=ds.Tables["Master"].NewRow();
-			row["Name"]="—Ë‰ÓÓ‚";
-			ds.Tables["Master"].Rows.Add(row);
+            row = ds.Tables["Master"].NewRow();
+            row["Name"] = "–ü–µ—Ç—Ä–æ–≤";
+            ds.Tables["Master"].Rows.Add(row);
 
-			tmpId=Convert.ToInt32(row["Id"]);
+            tmpId = Convert.ToInt32(row["Id"]);
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=1;
-			row["Name"]="»‚‡Ì»‚‡Ì»‚‡Ì";
-			ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 1;
+            row["Name"] = "–ò–≤–∞–Ω–ò–≤–∞–Ω";
+            ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 2;
+            row["Name"] = "–ü–µ—Ç—Ä–ü–µ—Ç—Ä";
+            ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 3;
+            row["Name"] = "–°–∏–¥–æ—Ä–°–∏–¥–æ—Ä";
+            ds.Tables["Details"].Rows.Add(row);
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=2;
-			row["Name"]="œÂÚœÂÚœÂÚ";
-			ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["SubDetails"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 1;
+            row["SubSubId"] = 1;
+            row["Name"] = "–ò–≤–∞–Ω–ò–≤–∞–Ω_1";
+            ds.Tables["SubDetails"].Rows.Add(row);
+            row = ds.Tables["SubDetails"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 1;
+            row["SubSubId"] = 2;
+            row["Name"] = "–ü–µ—Ç—Ä–ü–µ—Ç—Ä_1";
+            ds.Tables["SubDetails"].Rows.Add(row);
+            row = ds.Tables["SubDetails"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 1;
+            row["SubSubId"] = 3;
+            row["Name"] = "–°–∏–¥–æ—Ä–°–∏–¥–æ—Ä_1";
+            ds.Tables["SubDetails"].Rows.Add(row);
 
-			row=ds.Tables["Details"].NewRow();
-			row["Id"]=tmpId;
-			row["SubId"]=3;
-			row["Name"]="—Ë‰Ó—Ë‰Ó—Ë‰Ó";
-			ds.Tables["Details"].Rows.Add(row);
+            row = ds.Tables["Master"].NewRow();
+            row["Name"] = "–°–∏–¥–æ—Ä–æ–≤";
+            ds.Tables["Master"].Rows.Add(row);
 
-			dataGridMaster.SetDataBinding(ds,"Master");
-			dataGridDetails.SetDataBinding(ds,"Master"+'.'+"MasterDetailsRelation");
-			dataGridSubDetails.SetDataBinding(ds,"Master"+'.'+"MasterDetailsRelation"+"."+"MasterDetailsSubDetailsRelation");
+            tmpId = Convert.ToInt32(row["Id"]);
 
-			comboBox1.DataSource=ds.Tables["Master"];
-			comboBox1.ValueMember="Id";
-			comboBox1.DisplayMember="Name";
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 1;
+            row["Name"] = "–ò–≤–∞–Ω–ò–≤–∞–Ω–ò–≤–∞–Ω";
+            ds.Tables["Details"].Rows.Add(row);
 
-			tabControlMain.SelectedTab=tabPageData;
-		}
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 2;
+            row["Name"] = "–ü–µ—Ç—Ä–ü–µ—Ç—Ä–ü–µ—Ç—Ä";
+            ds.Tables["Details"].Rows.Add(row);
 
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+            row = ds.Tables["Details"].NewRow();
+            row["Id"] = tmpId;
+            row["SubId"] = 3;
+            row["Name"] = "–°–∏–¥–æ—Ä–°–∏–¥–æ—Ä–°–∏–¥–æ—Ä";
+            ds.Tables["Details"].Rows.Add(row);
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+            dataGridMaster.SetDataBinding(ds, "Master");
+            dataGridDetails.SetDataBinding(ds, "Master" + '.' + "MasterDetailsRelation");
+            dataGridSubDetails.SetDataBinding(ds, "Master" + '.' + "MasterDetailsRelation" + "." + "MasterDetailsSubDetailsRelation");
+
+            comboBox1.DataSource = ds.Tables["Master"];
+            comboBox1.ValueMember = "Id";
+            comboBox1.DisplayMember = "Name";
+
+            tabControlMain.SelectedTab = tabPageData;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageButtons = new System.Windows.Forms.TabPage();
             this.tabPageData = new System.Windows.Forms.TabPage();
@@ -371,8 +372,8 @@ namespace AnyTest
             // 
             // tabControlMain
             // 
-            this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlMain.Controls.Add(this.tabPageButtons);
             this.tabControlMain.Controls.Add(this.tabPageData);
@@ -602,228 +603,233 @@ namespace AnyTest
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
-		[STAThread]
-		static void Main() 
-		{
-			Application.Run(new MainForm());
-		}
+        [STAThread]
+        static void Main()
+        {
+            Application.Run(new MainForm());
+        }
 
-		protected void MyButtonClick(object sender, EventArgs e)
-		{
-			Button
-              tmpButton=(Button)sender;
+        protected void MyButtonClick(object sender, EventArgs e)
+        {
+            Button
+              tmpButton = (Button)sender;
 
-			if(tmpButton.Top==0)
-				tmpButton.Location=new Point(tmpButton.Parent.ClientRectangle.Width-tmpButton.Width,tmpButton.Parent.ClientRectangle.Height-tmpButton.Height);
-			else
-				tmpButton.Location=new Point(0,0);
-		}
+            if (tmpButton.Top == 0)
+                tmpButton.Location = new Point(tmpButton.Parent.ClientRectangle.Width - tmpButton.Width, tmpButton.Parent.ClientRectangle.Height - tmpButton.Height);
+            else
+                tmpButton.Location = new Point(0, 0);
+        }
 
-		protected void StopButtonClick(object sender, EventArgs e)
-		{
-			Button
-			  tmpButton=sender as Button;
-			
-			MenuItem
-			  tmpMenuItem=sender as MenuItem;
+        protected void StopButtonClick(object sender, EventArgs e)
+        {
+            Button
+              tmpButton = sender as Button;
 
-			string
-			  tmpStr="ŒÒÚ‡ÌÓ‚ËÚ¸ ÔÓ„‡ÏÏÛ?";
+            MenuItem
+              tmpMenuItem = sender as MenuItem;
 
-			if(tmpButton!=null)
-			  {  
-				 tmpStr+=" (From Button)"+tmpButton.Name;
-			  }
+            string
+              tmpStr = "–û—Å—Ç–∞–Ω–æ–≤–∏—Ç—å –ø—Ä–æ–≥—Ä–∞–º–º—É?";
 
-			if(tmpMenuItem!=null)
-			  {
-				 tmpStr+=" (From Menu) \""+tmpMenuItem.Text+"\"";
-			  }
+            if (tmpButton != null)
+            {
+                tmpStr += " (From Button)" + tmpButton.Name;
+            }
 
-			DialogResult
-              result=MessageBox.Show(tmpStr,"«‡‚Â¯ÂÌËÂ",MessageBoxButtons.YesNo);
+            if (tmpMenuItem != null)
+            {
+                tmpStr += " (From Menu) \"" + tmpMenuItem.Text + "\"";
+            }
 
-			if(result==DialogResult.Yes)
-              Application.Exit();
-		}
+            DialogResult
+              result = MessageBox.Show(tmpStr, "–ó–∞–≤–µ—Ä—à–µ–Ω–∏–µ", MessageBoxButtons.YesNo);
 
-		private void MMOpenClick(object sender, EventArgs e)
-		  {
-			string
-				inp="123b345",
-				str="";
+            if (result == DialogResult.Yes)
+                Application.Exit();
+        }
 
-			try
-			{
-				double
-					a=Convert.ToDouble(inp);
+        private void MMOpenClick(object sender, EventArgs e)
+        {
+            string
+                inp = "123b345",
+                str = "";
 
-				str="a="+a.ToString();
-			}
-			catch(OverflowException eException)
-			{
-				str="OverflowException "+eException.Message;
-			}
-			catch(InvalidCastException eException)
-			{
-				str="InvalidCastException "+eException.Message;
-			}
-			catch(FormatException eException)
-			{
-				str="FormatException "+eException.Message;
-			}
-			catch(Exception eException)
-			{
-				str="Exception "+eException.Message;
-			}
-			
-			MessageBox.Show(str,"«‡„ÎÛ¯Í‡",MessageBoxButtons.OK);
-			MessageBox.Show("ÕÂ‡ÍÚË‚Ì‡ˇ ÍÓÏ‡Ì‰‡","«‡„ÎÛ¯Í‡",MessageBoxButtons.OK);
-		  }
+            try
+            {
+                double
+                    a = Convert.ToDouble(inp);
 
-		private void MMCloseClick(object sender, EventArgs e)
-		  {
-             MessageBox.Show("ÕÂ‡ÍÚË‚Ì‡ˇ ÍÓÏ‡Ì‰‡","«‡„ÎÛ¯Í‡",MessageBoxButtons.OK);
-		  }
+                str = "a=" + a.ToString();
+            }
+            catch (OverflowException eException)
+            {
+                str = "OverflowException " + eException.Message;
+            }
+            catch (InvalidCastException eException)
+            {
+                str = "InvalidCastException " + eException.Message;
+            }
+            catch (FormatException eException)
+            {
+                str = "FormatException " + eException.Message;
+            }
+            catch (Exception eException)
+            {
+                str = "Exception " + eException.Message;
+            }
 
-		private void MMCoordClick(object sender, EventArgs e)
-		  {
-             string
-			   size=String.Format("{0}: {1}, {2}\n{3}: {4}, {5}", "¬‚ÂıÛ, —ÎÂ‚‡", Top, Left, "¬ÌËÁÛ, —Ô‡‚‡", Bottom, Right);
-             
-			 MessageBox.Show(size," ÓÓ‰ËÌ‡Ú˚ ÓÍÌ‡",MessageBoxButtons.OK);
-		  }
+            MessageBox.Show(str, "–ó–∞–≥–ª—É—à–∫–∞", MessageBoxButtons.OK);
+            MessageBox.Show("–ù–µ–∞–∫—Ç–∏–≤–Ω–∞—è –∫–æ–º–∞–Ω–¥–∞", "–ó–∞–≥–ª—É—à–∫–∞", MessageBoxButtons.OK);
+        }
 
-		private void MMChangeClick(object sender, EventArgs e)
-		  {
-             Width=Height=200;
-		  }
+        private void MMCloseClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("–ù–µ–∞–∫—Ç–∏–≤–Ω–∞—è –∫–æ–º–∞–Ω–¥–∞", "–ó–∞–≥–ª—É—à–∫–∞", MessageBoxButtons.OK);
+        }
 
-		private void MMRestoreClick(object sender, EventArgs e)
-		  {
-             Width=Height=500;
-		  }
+        private void MMCoordClick(object sender, EventArgs e)
+        {
+            string
+              size = String.Format("{0}: {1}, {2}\n{3}: {4}, {5}", "–í–≤–µ—Ä—Ö—É, –°–ª–µ–≤–∞", Top, Left, "–í–Ω–∏–∑—É, –°–ø—Ä–∞–≤–∞", Bottom, Right);
 
-		private void MainForm_Resize(object sender, System.EventArgs e)
-		{
-			StopButton.Location=new Point(this.ClientRectangle.Width-StopButton.Width,(this.ClientRectangle.Height-StopButton.Height)/2);
+            MessageBox.Show(size, "–ö–æ–æ—Ä–¥–∏–Ω–∞—Ç—ã –æ–∫–Ω–∞", MessageBoxButtons.OK);
+        }
 
-			dataGridMaster.Width=tabPageData.ClientRectangle.Width;
-			dataGridMaster.Height=tabPageData.ClientRectangle.Height/3;
+        private void MMChangeClick(object sender, EventArgs e)
+        {
+            Width = Height = 200;
+        }
 
-			dataGridDetails.Location=new Point(0,dataGridMaster.Height);
-			dataGridDetails.Width=tabPageData.ClientRectangle.Width;
-			dataGridDetails.Height=tabPageData.ClientRectangle.Height/3;
+        private void MMRestoreClick(object sender, EventArgs e)
+        {
+            Width = Height = 500;
+        }
 
-			dataGridSubDetails.Location=new Point(0,dataGridMaster.Height+dataGridDetails.Height);
-			dataGridSubDetails.Width=tabPageData.ClientRectangle.Width;
-			dataGridSubDetails.Height=tabPageData.ClientRectangle.Height-dataGridMaster.Height-dataGridDetails.Height;
-		}
+        private void MainForm_Resize(object sender, System.EventArgs e)
+        {
+            StopButton.Location = new Point(this.ClientRectangle.Width - StopButton.Width, (this.ClientRectangle.Height - StopButton.Height) / 2);
 
-		private void button1_Click(object sender, System.EventArgs e)
-		{
-			Button
-				tmpButton;
+            dataGridMaster.Width = tabPageData.ClientRectangle.Width;
+            dataGridMaster.Height = tabPageData.ClientRectangle.Height / 3;
 
-			if((tmpButton=sender as Button)==null)
-				return;
+            dataGridDetails.Location = new Point(0, dataGridMaster.Height);
+            dataGridDetails.Width = tabPageData.ClientRectangle.Width;
+            dataGridDetails.Height = tabPageData.ClientRectangle.Height / 3;
 
-			string
-				SQLText=string.Empty;
+            dataGridSubDetails.Location = new Point(0, dataGridMaster.Height + dataGridDetails.Height);
+            dataGridSubDetails.Width = tabPageData.ClientRectangle.Width;
+            dataGridSubDetails.Height = tabPageData.ClientRectangle.Height - dataGridMaster.Height - dataGridDetails.Height;
+        }
 
-			switch(tmpButton.Name)
-			{
-				case "button1" :
-				{
-					SQLText = "select * from Staff";
-					break;	
-				}
-				case "button2":
-				{
-					SQLText = "select * from TEST_CHAR";
-					break;
-				}
-				default :
-				{
-					throw (new Exception("Unknown sender: \"" + tmpButton.Name + "\""));
-				}
-			}
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            Button
+                tmpButton;
 
-			OleDbConnection
-				cn = null;
+            if ((tmpButton = sender as Button) == null)
+                return;
 
-			try
-			{
-				try
-				{
-					string
-						strConn =ConfigurationSettings.AppSettings["connectionString"];
+            string
+                SQLText = string.Empty;
 
-					#if WITHOUT_CONNECTION_POOL
+            switch (tmpButton.Name)
+            {
+                case "button1":
+                    {
+                        SQLText = "select * from Staff";
+                        break;
+                    }
+                case "button2":
+                    {
+                        SQLText = "select * from TEST_CHAR";
+                        break;
+                    }
+                default:
+                    {
+                        throw (new Exception("Unknown sender: \"" + tmpButton.Name + "\""));
+                    }
+            }
+
+            OleDbConnection
+                cn = null;
+
+            try
+            {
+                try
+                {
+                    string
+                        strConn = ConfigurationSettings.AppSettings["connectionString"];
+
+                    #if WITHOUT_CONNECTION_POOL
 						strConn+=";OLE DB Services=-4"; // strConn+=";Pooling=False" // 4 SqlConnection
-					#endif
+                    #endif
 
-					cn = new OleDbConnection(strConn);
+                    cn = new OleDbConnection(strConn);
 
-					OleDbCommand
-						cmd = cn.CreateCommand();
+                    OleDbCommand
+                        cmd = cn.CreateCommand();
 
-					cmd.CommandType = CommandType.Text;
-					cmd.CommandText = SQLText;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = SQLText;
 
-					OleDbDataAdapter
-						da=new OleDbDataAdapter(cmd);
+                    OleDbDataAdapter
+                        da = new OleDbDataAdapter(cmd);
 
-					#if GLOBAL_DATA_TABLE
-						tmpDataTable.Reset();
-						//dataGridDataII.DataSource = null;
-					#else
+                    #if GLOBAL_DATA_TABLE
+                        tmpDataTable.Reset();
+                        //dataGridDataII.DataSource = null;
+                    #else
 						DataTable
 							tmpDataTable=new DataTable();
-					#endif
-					da.Fill(tmpDataTable);
-					#if !GLOBAL_DATA_TABLE
+                    #endif
+                    da.Fill(tmpDataTable);
+                    #if !GLOBAL_DATA_TABLE
 						dataGridDataII.DataSource = tmpDataTable;
-					#endif
-					dataGridDataII.Refresh();
-				}
-				catch (Exception eException)
-				{
-					throw (new Exception(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace));
-				}
-			}
-			finally
-			{
-				if(cn!=null && cn.State==ConnectionState.Open)
-					cn.Close();
-			}
-		}
+                    #endif
+                    dataGridDataII.Refresh();
+                }
+                catch (Exception eException)
+                {
+                    throw (new Exception(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace));
+                }
+            }
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+        }
 
-		private void dataGridDataII_DataSourceChanged(object sender, System.EventArgs e)
-		{
-			MessageBox.Show("DataSourceChanged");
-		}
+        private void dataGridDataII_DataSourceChanged(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("DataSourceChanged");
+        }
 
-		private void button3_Click(object sender, System.EventArgs e)
-		{
-			for(long i=0; i<long.MaxValue; ++i)
-			{
-				labelWithLongText.Text=i.ToString();
-				#if LIVE_APPLICATION
+        private void button3_Click(object sender, System.EventArgs e)
+        {
+            for (long i = 0; i < long.MaxValue; ++i)
+            {
+                labelWithLongText.Text = i.ToString();
+                #if LIVE_APPLICATION
 					Application.DoEvents();
-				#else
-					labelWithLongText.Update();
-					//label1.Refresh();
-				#endif
-			}
-		}
+                #else
+                    labelWithLongText.Update();
+                    //label1.Refresh();
+                #endif
+            }
+        }
 
         private void BtnPlatformClick(object sender, EventArgs e)
         {
             string platform = IntPtr.Size == 8 ? "x64" : "x86";
+
+            System.Diagnostics.Debug.WriteLine(Path.GetDirectoryName(Application.ExecutablePath));
+            System.Diagnostics.Debug.WriteLine(Environment.CurrentDirectory);
+            Directory.SetCurrentDirectory("..");
+            System.Diagnostics.Debug.WriteLine(Environment.CurrentDirectory);
         }
-	}
+    }
 }
