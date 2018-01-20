@@ -1143,6 +1143,7 @@ namespace AnyTest
 
 			#if TEST_BIT_OPERATIONS
                 tmpLong = -1; // 0xffff_ffff_ffff_ffff
+                WriteLine("{0:x}", tmpLong);
                 tmpLongII = tmpLong << 16; // 0xffff_ffff_ffff_0000
                 WriteLine("{0:x}", tmpLongII);
                 tmpLongII = tmpLong >> 48; // 0xffff_ffff_ffff_ffff
@@ -1152,8 +1153,36 @@ namespace AnyTest
                 WriteLine("{0:x}", tmpLongIII);
                 tmpLongII = tmpLong << 16 >> 48; // 0xffff_ffff_ffff_ffff
                 WriteLine("{0:x}", tmpLongII);
+                WriteLine(new string('-', 60));
+
+                tmpLong = -9_223_372_036_854_775_808; // 0x8000_0000_0000_0000
+                WriteLine("{0:x}", tmpLong);
+                tmpLongII = tmpLong << 16; // 0x0000_0000_0000_0000
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong >> 48; // 0xffff_ffff_ffff_8000
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong << 16; // 0x0000_0000_0000_0000
+                tmpLongIII = tmpLongII >> 48; // 0x0000_0000_0000_0000
+                WriteLine("{0:x}", tmpLongIII);
+                tmpLongII = tmpLong << 16 >> 48; // 0x0000_0000_0000_0000
+                WriteLine("{0:x}", tmpLongII);
+                WriteLine(new string('-', 60));
+
+                tmpLong = 0x8000_0000_0000; // 0x0000_8000_0000_0000
+                WriteLine("{0:x}", tmpLong);
+                tmpLongII = tmpLong << 16; // 0x8000_0000_0000_0000
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong >> 48; // 0x0000_0000_0000_0000
+                WriteLine("{0:x}", tmpLongII);
+                tmpLongII = tmpLong << 16; // 0x8000_0000_0000_0000
+                tmpLongIII = tmpLongII >> 48; // 0xffff_ffff_ffff_8000
+                WriteLine("{0:x}", tmpLongIII);
+                tmpLongII = tmpLong << 16 >> 48; // 0xffff_ffff_ffff_8000
+                WriteLine("{0:x}", tmpLongII);
+                WriteLine(new string('-', 60));
 
                 tmpLong = 0x7444_3333_2222_1111;
+                WriteLine("{0:x}", tmpLong);
                 tmpLongII = tmpLong << 16; // 0x3333_2222_1111_0000
                 WriteLine("{0:x}", tmpLongII);
                 tmpLongII = tmpLong >> 48; // 0x_0000_0000_0000_7444
@@ -1163,6 +1192,7 @@ namespace AnyTest
                 WriteLine("{0:x}", tmpLongIII);
                 tmpLongII = tmpLong << 16 >> 48;  // 0x0000_0000_0000_3333
                 WriteLine("{0:x}", tmpLongII);
+                WriteLine(new string('-', 60));
                 
                 tmpLong = 5;
 				tmpLong |= 2;
