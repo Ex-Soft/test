@@ -53,6 +53,12 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = ".[tableName]";
+            r = new Regex("(?<=\\.\\[?)[^\\[\\]]+(?=]?)");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = match.Value;
+
             srcString = "{\"o\":{\"p1\":\"p1\",\"io\":{\"p1\":\"p1\"},\"p2\":\"p2\"},\"p1\":\"p1\"}";
             r = new Regex("(?<=\"o\"\\s*:\\s*\\{).*?(?=})");
             match = r.Match(srcString);
