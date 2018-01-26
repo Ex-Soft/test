@@ -28,7 +28,7 @@ namespace TestConfig
                 Console.WriteLine("statement=\"{0}\", attributeBool=\"{1}\"", querySection.Query.Statement, querySection.Query.AttributeBool);
 
                 foreach (ClauseElement clause in querySection.Clauses)
-                    Console.WriteLine("{{ name=\"{0}\", condition=\"{1}\", type=\"{2}\", operator=\"{3}\" }}", clause.Name, clause.Condition, clause.Type, clause.Operator);
+                    Console.WriteLine($"{{ name=\"{clause.Name}\", condition=\"{clause.Condition}\", type=\"{clause.Type}\", operator=\"{clause.Operator}\", boolRequired={clause.BoolRequired}, BoolOptionalTrue={clause.BoolOptionalTrue}, BoolOptionalFalse={clause.BoolOptionalFalse}}}");
 
                 ClauseElement
                     clauseName1 = querySection.Clauses.OfType<ClauseElement>().FirstOrDefault(item => item.Name == "name1")/*,

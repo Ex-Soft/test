@@ -1,4 +1,5 @@
-﻿#define TEST_DATE_TYPES
+﻿#define TEST_BATCH
+//#define TEST_DATE_TYPES
 //#define ANY_TEST
 //#define Determining_SET_Options_for_Current_Session // https://www.mssqltips.com/sqlservertip/1415/determining-set-options-for-a-current-session-in-sql-server/
 //#define TEST_COLUMN_TYPES_BY_SP
@@ -128,9 +129,9 @@ namespace MSSQLSQL
 				        //ConnectionString = "Server=air\\inst5;Database=SunEdge_Default;User ID=sa;Password=password";
                         //ConnectionString = "Server=test-robot-6.systtech.ru;Database=region_16_weekly_AUTOTEST-VM3_192.168.2.43;User ID=sa;Password=123456";
                         //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123";
-                        //ConnectionString = "Server=i-nozhenko;Database=ch;User ID=sa;Password=123;Timeout=300";
-                        //ConnectionString = "Server=i-nozhenko;Database=ch;User ID=sa;Password=123;ConnectTimeout=300";
-                        //ConnectionString = "Server=i-nozhenko;Database=ch;User ID=sa;Password=123;Connection Timeout=300";
+                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;Timeout=300";
+                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;ConnectTimeout=300";
+                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;Connection Timeout=300";
                         //ConnectionString = "Server=.;Database=ch;User ID=test_login;Password=12==3";
                         //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
                         //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
@@ -218,6 +219,24 @@ namespace MSSQLSQL
                     #endif
 
 					conn.Open();
+
+                    #if TEST_BATCH
+                        if (cmd == null)
+							cmd = conn.CreateCommand();
+
+						cmd.CommandType = CommandType.Text;
+				        cmd.CommandText = @"
+begin transaction;
+insert into dbo.TestMasterX (Val) values (@ValX);
+insert into dbo.TestMasterY (Val) values (@ValY);
+commit transaction;
+";
+						cmd.Parameters.Clear();
+                        cmd.Parameters.Add("@ValX", SqlDbType.NVarChar).Value = "101";
+                        cmd.Parameters.Add("@ValY", SqlDbType.NVarChar).Value = "201";
+
+                        tmpInt = cmd.ExecuteNonQuery();
+                    #endif
 
                     #if TEST_DATE_TYPES
                         if (cmd == null)

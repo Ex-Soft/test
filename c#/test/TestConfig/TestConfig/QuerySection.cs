@@ -34,29 +34,50 @@ namespace TestConfig
         [ConfigurationProperty("name", IsRequired = true)]
         public string Name
         {
-            get { return (string)this["name"]; }
-            set { this["name"] = value; }
+            get => (string)this["name"];
+            set => this["name"] = value;
         }
 
         [ConfigurationProperty("condition", IsRequired = true)]
         public string Condition
         {
-            get { return (string)this["condition"]; }
-            set { this["condition"] = value; }
+            get => (string)this["condition"];
+            set => this["condition"] = value;
         }
 
         [ConfigurationProperty("type", IsRequired = false, DefaultValue = "String")]
         public string Type
         {
-            get { return (string)this["type"]; }
-            set { this["type"] = value; }
+            get => (string)this["type"];
+            set => this["type"] = value;
         }
 
         [ConfigurationProperty("operator", IsRequired = false, DefaultValue = "and")]
         public string Operator
         {
-            get { return (string)this["operator"]; }
-            set { this["operator"] = value; }
+            get => (string)this["operator"];
+            set => this["operator"] = value;
+        }
+
+        [ConfigurationProperty("boolRequired", IsRequired = true, DefaultValue = true)]
+        public bool BoolRequired
+        {
+            get => (bool)this["boolRequired"];
+            set => this["boolRequired"] = value;
+        }
+
+        [ConfigurationProperty("boolOptionalTrue", DefaultValue = true)]
+        public bool BoolOptionalTrue
+        {
+            get => (bool)this["boolOptionalTrue"];
+            set => this["boolOptionalTrue"] = value;
+        }
+
+        [ConfigurationProperty("boolOptionalFalse", DefaultValue = false)]
+        public bool BoolOptionalFalse
+        {
+            get => (bool)this["boolOptionalFalse"];
+            set => this["boolOptionalFalse"] = value;
         }
     }
 
