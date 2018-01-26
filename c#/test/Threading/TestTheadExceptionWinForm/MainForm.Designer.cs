@@ -28,25 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDoIt = new System.Windows.Forms.Button();
+            this.btnThrow = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnDoIt
+            // btnThrow
             // 
-            this.btnDoIt.Location = new System.Drawing.Point(117, 98);
-            this.btnDoIt.Name = "btnDoIt";
-            this.btnDoIt.Size = new System.Drawing.Size(75, 23);
-            this.btnDoIt.TabIndex = 0;
-            this.btnDoIt.Text = "DoIt!";
-            this.btnDoIt.UseVisualStyleBackColor = true;
-            this.btnDoIt.Click += new System.EventHandler(this.BtnDoItClick);
+            this.btnThrow.Location = new System.Drawing.Point(12, 12);
+            this.btnThrow.Name = "btnThrow";
+            this.btnThrow.Size = new System.Drawing.Size(75, 23);
+            this.btnThrow.TabIndex = 0;
+            this.btnThrow.Text = "Throw";
+            this.btnThrow.UseVisualStyleBackColor = true;
+            this.btnThrow.Click += new System.EventHandler(this.BtnThrowClick);
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(12, 52);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 1;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.BtnStopClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.btnDoIt);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnThrow);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -56,7 +68,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnDoIt;
+        private System.Windows.Forms.Button btnThrow;
+        private System.Windows.Forms.Button btnStop;
     }
 }
 
