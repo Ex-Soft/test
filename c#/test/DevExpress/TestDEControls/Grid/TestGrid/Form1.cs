@@ -22,6 +22,8 @@ namespace TestGrid
 
             FillInMemoryDataStore(_session);
 
+            gridView.DisableCurrencyManager = true;
+
             gridControl.DataSource = new XPServerCollectionSource(_session, _session.GetClassInfo<Master>());
         }
 
