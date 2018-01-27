@@ -1,13 +1,17 @@
 ﻿//#define TEST_LIST
 //#define TEST_CONTINUE_WITH
-#define TEST_AWAITER
+//#define TEST_AWAITER
+#define TEST_TASK_COMPLETION_SOURCE
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Timers;
 using static System.Console;
 
 namespace TestTask
@@ -39,6 +43,16 @@ namespace TestTask
         static void Main(string[] args)
         {
             Task task;
+
+            #if TEST_TASK_COMPLETION_SOURCE
+
+                int tmpInt;
+                TaskAwaiter<int> awaiter = TestTaskCompletionSource(5000).GetAwaiter();
+                awaiter.OnCompleted(() => tmpInt = awaiter.GetResult());
+
+                tmpInt = TestTaskCompletionSource(10000).Result;
+
+            #endif
 
             #if TEST_AWAITER
                 Task<int> primeNumberTask = Task.Run(() => Enumerable.Range(2, 3000000).Count(n => Enumerable.Range(2, (int)Math.Sqrt(n) - 1).All(i => n % i > 0)));
@@ -222,6 +236,43 @@ namespace TestTask
                 Console.WriteLine("{0}\t{1} i={2}", DateTime.Now.ToString("HH:mm:ss.fffffff"), methodName, taskParam.List.Count());
                 Console.WriteLine("{0}\t{1} finished", DateTime.Now.ToString("HH:mm:ss.fffffff"), methodName);
             }
+        #endif
+
+        #if TEST_TASK_COMPLETION_SOURCE
+
+            static Task<int> TestTaskCompletionSource(int exitCode)
+            {
+                string message;
+                Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+                WriteLine(message);
+
+                TaskCompletionSource<int> taskCompletionSource = new TaskCompletionSource<int>();
+                System.Timers.Timer timer = new System.Timers.Timer(1000) { AutoReset = false };
+
+                timer.Elapsed += delegate
+                {
+                    timer.Dispose();
+
+                    string _message_;
+                    Debug.WriteLine(_message_ = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} b4 taskCompletionSource.SetResult({exitCode})");
+                    WriteLine(_message_);
+                    taskCompletionSource.SetResult(exitCode);
+                    Debug.WriteLine(_message_ = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} after taskCompletionSource.SetResult({exitCode})");
+                    WriteLine(_message_);
+                };
+
+                Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} b4 timer.Start()");
+                WriteLine(message);
+                timer.Start();
+                Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} after timer.Start()");
+                WriteLine(message);
+
+                Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+                WriteLine(message);
+
+                return taskCompletionSource.Task;
+            }
+
         #endif
     }
 }
