@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<!-- https://stackoverflow.com/questions/48270127/can-a-1-a-2-a-3-ever-evaluate-to-true -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>(a == 1 && a == 2 && a == 3) == true</title>
+		<script>
+if(window.console && console.clear)
+	console.clear();
+
+var a = {
+	num: 0,
+	valueOf: function() {
+		return this.num += 1
+	}
+};
+if(a == 1 && a == 2 && a == 3)
+	if(window.console && console.log)
+		console.log("oB!");
+
+a = {
+	i: 1,
+	toString: function () {
+		return a.i++;
+	}
+}
+if(a == 1 && a == 2 && a == 3)
+	if(window.console && console.log)
+		console.log("oB!");
+
+var i = 0;
+
+with({
+	get a() {
+		return ++i;
+	}
+}) {
+	if (a == 1 && a == 2 && a == 3)
+    	if(window.console && console.log)
+			console.log("oB!");
+}
+
+a = [ 1, 2, 3 ];
+a.join = a.shift;
+if(a == 1 && a == 2 && a == 3)
+	if(window.console && console.log)
+		console.log("oB!");
+
+a = {[Symbol.toPrimitive]: ((i) => () => ++i) (0)};
+if(a == 1 && a == 2 && a == 3)
+	if(window.console && console.log)
+		console.log("oB!");
+
+a = {
+	r: /\d/g, 
+	valueOf: function(){
+		return this.r.exec(123)[0]
+	}
+}
+if(a == 1 && a == 2 && a == 3)
+	if(window.console && console.log)
+		console.log("oB!");
+
+var val = 0;
+Object.defineProperty(window, 'aa', {
+	get: function() {
+		return ++val;
+	}
+});
+if(aa == 1 && aa == 2 && aa == 3)
+	if(window.console && console.log)
+		console.log("oB!");
+
+(() => {
+    "use strict";
+    Object.defineProperty(this, "aaa", {
+        "get": () => {
+            Object.defineProperty(this, "aaa", {
+                "get": () => {
+                    Object.defineProperty(this, "aaa", {
+                        "get": () => {
+                            return 3;
+                        }
+                    });
+                    return 2;
+                },
+                configurable: true
+            });
+            return 1;
+        },
+        configurable: true
+    });
+    if (aaa == 1 && aaa == 2 && aaa == 3) {
+        if(window.console && console.log)
+			console.log("oB!");
+    }
+})();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
