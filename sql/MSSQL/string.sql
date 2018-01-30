@@ -7,6 +7,9 @@ declare
   @s1 nvarchar(256),
   @s2 nvarchar(256)
 
+set @s1 = N'1st/2nd/3rd'
+select right(@s1, charindex(N'/', reverse(@s1)) - 1)
+
 set @s1 = N'image.jpg'
 select @s1, reverse(@s1)
 
