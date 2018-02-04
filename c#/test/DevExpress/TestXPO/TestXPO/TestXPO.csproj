@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <Choose>
-    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2015'">
+    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2017'">
       <ItemGroup>
         <Reference Include="DevExpress.Data.v17.2">
           <HintPath>..\..\DevExpress.asm\DevExpress.Data.v17.2.dll</HintPath>
