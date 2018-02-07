@@ -40,13 +40,28 @@ namespace cs6
         public void Print() => WriteLine(FullName);
     }
 
+    public enum Ordinals
+    {
+        Zero,
+        First,
+        Second,
+        Third,
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            var classWithListOfString = new ClassWithListOfString();
-            foreach (var str in classWithListOfString?.ListOfString)
-                System.Diagnostics.Debug.WriteLine(str);
+            try
+            {
+                var classWithListOfString = new ClassWithListOfString();
+                foreach (var str in classWithListOfString?.ListOfString)
+                    System.Diagnostics.Debug.WriteLine(str);
+            }
+            catch (NullReferenceException eException)
+            {
+                WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
 
             var range = Range(5, 17);
             //var odd = Where(range, i => i % 2 == 1); // Error, not in scope
@@ -54,6 +69,7 @@ namespace cs6
 
             // nameof expressions
             WriteLine(nameof(Customer.FullName));
+            WriteLine(nameof(Ordinals.Second));
 
             // Null-conditional operators
             string tmpString = null;
