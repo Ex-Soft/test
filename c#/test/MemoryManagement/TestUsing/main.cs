@@ -90,5 +90,10 @@ namespace TestUsing
                 Debug.WriteLine(a.ToString());
             }
         }
+
+        static A GetA()
+        {
+            return null;
+        }
     }
 }
