@@ -1,0 +1,108 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>widget</title>
+    <style>
+textarea {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    resize: none;
+    outline: none;
+}         
+    </style>
+</head>
+<body>
+    <textarea id="textarea"></textarea>
+    <script>
+(function(global) {
+    if (typeof(Widget) === "undefined")
+        global.Widget = new (function() {
+            var	me = this;
+			
+            this.textarea = undefined;
+			
+            this.addEventListener = function(element, eventName, handler) {
+                if (element.addEventListener)
+                    element.addEventListener(eventName, handler, false);
+                else if (element.attachEvent)
+                    element.attachEvent("on" + eventName, handler);
+                else
+                    element.onload = handler;
+            };
+			
+            this.onLoad = function(e) {
+                if (!me.textarea)
+                    me.textarea = document.getElementById("textarea");
+
+                if (!me.textarea)
+                    return;
+				
+                me.addEventListener(me.textarea, "keyup", me.onKeyUp);
+                me.addEventListener(me.textarea, "keyup", me.autoGrow);
+            };
+			
+            this.onKeyUp = function(e) {
+                if (!me.textarea || !window || !window.parent || !window.parent.postMessage)
+                    return;
+
+                window.parent.postMessage({ data: me.textarea.value, height: me.textarea.scrollHeight }, "*");
+            };
+
+            this.onMessage = function(e) {
+                if (!e.data || !e.data.data)
+                    return;
+
+                me[e.data.search ? "searchData" : "setData"](e.data.data);
+            };
+
+            this.searchData = function(data) {
+                var pos;
+
+                if (!me.textarea || (pos = me.textarea.value.indexOf(data)) === -1)
+                    return;
+
+                me.textarea.focus();
+
+                if (me.textarea.createTextRange) {
+                    var range = me.textarea.createTextRange();
+                    range.collapse(true);
+                    range.moveStart("character", pos);
+                    range.moveEnd("character", data.length);
+                    range.select();
+                } else if (me.textarea.setSelectionRange) {
+                    me.textarea.setSelectionRange(pos, pos + data.length);
+                } else if (typeof (me.textarea.selectionStart) !== "undefined") {
+                    me.textarea.selectionStart = pos;
+                    me.textarea.selectionEnd = pos + data.length;
+                }
+            };
+
+            this.setData = function(data) {
+                if (!me.textarea || me.textarea.value === data)
+                    return;
+
+                me.textarea.value = data;
+                me.autoGrow();
+            };
+            
+            this.autoGrow = function(e) {
+                if (!me.textarea)
+                    return;
+
+                if (me.textarea.scrollHeight > me.textarea.clientHeight)
+                    me.textarea.style.height = me.textarea.scrollHeight + "px";
+            }
+        })();
+	
+        global.Widget.addEventListener(global, "load", global.Widget.onLoad);
+        global.Widget.addEventListener(global, "message", global.Widget.onMessage);
+})(this);
+    </script>
+</body>
+</html>
