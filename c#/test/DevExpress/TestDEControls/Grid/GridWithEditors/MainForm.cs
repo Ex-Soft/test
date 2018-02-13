@@ -11,6 +11,7 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using TestDB;
+using TestDB.TestMasterDetail;
 
 namespace GridWithEditors
 {
