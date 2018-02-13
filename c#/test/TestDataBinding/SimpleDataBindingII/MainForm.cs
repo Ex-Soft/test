@@ -19,7 +19,27 @@ namespace SimpleDataBindingII
         private void MainFormLoad(object sender, System.EventArgs e)
         {
             textBox1.DataBindings.Add(nameof(TextBox.Text), _victim, nameof(VictimClass.VictimProperty), false, DataSourceUpdateMode.OnPropertyChanged);
-            DataBindings.Add(nameof(FormProperty), _victim, nameof(VictimClass.FormProperty), false, DataSourceUpdateMode.OnPropertyChanged);
+
+            Binding binding = new Binding(nameof(FormProperty), _victim, nameof(VictimClass.FormProperty), true, DataSourceUpdateMode.OnPropertyChanged);
+            binding.BindingComplete += BindingBindingComplete;
+            binding.Format += BindingFormat;
+            binding.Parse += BindingParse;
+            DataBindings.Add(binding);
+        }
+
+        private void BindingParse(object sender, ConvertEventArgs e)
+        {
+            
+        }
+
+        private void BindingFormat(object sender, ConvertEventArgs e)
+        {
+            
+        }
+
+        private void BindingBindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            
         }
 
         private void BtnSetPropertyClick(object sender, System.EventArgs e)
