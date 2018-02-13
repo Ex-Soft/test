@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>Test vars in IFrames</title>
+    <script type="text/javascript" src="func.js"></script>
+<script type="text/javascript">
+<!--
+var
+  aVar="aVar in MainForm";
+
+ShowVariable();
+
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      if(field=="makeObjectTable")
+        continue;
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+var
+  MainFormVar="MainFormVar";
+
+function SetMainVar()
+{
+   var
+     Ctrl,
+     tmpStr;
+
+   if(Ctrl=document.getElementById("MainVarSet"))
+   {
+      tmpStr="\"removeAttribute\" in Ctrl";
+      if(!Ctrl.removeAttribute)
+        tmpStr="!"+tmpStr;
+      alert(tmpStr);
+
+      MainFormVar=Ctrl.value;
+      Ctrl.CheckValid=true;
+      tmpStr="\"CheckValid\" in Ctrl";
+      if(!("CheckValid" in Ctrl))
+        tmpStr="!"+tmpStr;
+      alert(tmpStr);
+      alert(typeof(Ctrl.CheckValid));
+        
+      Ctrl.removeAttribute("CheckValid");
+      tmpStr="\"CheckValid\" in Ctrl (after removeAttribute)";
+      if(!("CheckValid" in Ctrl))
+        tmpStr="!"+tmpStr;
+      alert(tmpStr);
+      alert(typeof(Ctrl.CheckValid));
+   }
+}
+
+function GetMainVar()
+{
+   document.getElementById("MainVarGet").value=MainFormVar;
+}
+
+function ShowMainFormVar()
+{
+   alert("ShowMainFormVar(): MainFormVar="+MainFormVar);
+}
+
+function SetFrame1Var()
+{
+   frames[0].FrameVar=document.getElementById("Frame1VarSet").value;
+}
+
+function GetFrame1Var()
+{
+   document.getElementById("Frame1VarGet").value=frames[0].FrameVar;
+}
+
+function SetFrame11Var()
+{
+   frames[0].frames[0].FrameVar=document.getElementById("Frame11VarSet").value;
+}
+
+function GetFrame11Var()
+{
+   document.getElementById("Frame11VarGet").value=frames[0].frames[0].FrameVar;
+}
+
+function SetFrame2Var()
+{
+   frames[1].FrameVar=document.getElementById("Frame2VarSet").value;
+}
+
+function GetFrame2Var()
+{
+   document.getElementById("Frame2VarGet").value=frames[1].FrameVar;
+}
+
+function OnChange()
+{
+   var
+     Selector=document.getElementById("SelectorOnOff"),
+     div1=document.getElementById("DivIFrame1"),
+     div2=document.getElementById("DivIFrame2"),
+     div1Value,
+     div2Value;
+
+   if(Selector==undefined || Selector==null)
+     return;
+
+   div1Value = Selector.options[Selector.selectedIndex].value==1 ? "block" : "none";
+   div2Value = Selector.options[Selector.selectedIndex].value==2 ? "block" : "none";
+
+   if(div1!=undefined && div1!=null)
+     {
+        if(div1.style.display!=undefined)
+          {
+             if(div1.style.display!=null)
+               div1.style.display=div1Value;
+             else
+               ;
+          }
+        else
+          {
+             ;
+          }
+     }
+
+   if(div2!=undefined && div2!=null)
+     {
+        if(div2.style.display!=undefined)
+          {
+             if(div2.style.display!=null)
+               div2.style.display=div2Value;
+             else
+               ;
+          }
+        else
+          {
+             ;
+          }
+     }
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form id="MainForm" name="MainForm">
+      <select id="SelectorOnOff" name="SelectorOnOff" onchange="OnChange();">
+        <option value="0" selected>Off
+        <option value="1">IFrame# 1
+        <option value="2">IFrame# 2
+      </select>
+      <br>
+      <br>
+<script type="text/javascript">
+<!--
+document.write("<hr>");
+document.write("MainFormVar");
+if(MainFormVar!=null)
+  document.writeln("MainFormVar!=null");
+else
+  document.writeln("MainFormVar==null");
+document.writeln("<br>");
+
+if(MainFormVar!=undefined)
+  document.writeln("MainFormVar!=undefined");
+else
+  document.writeln("MainFormVar==undefined");
+document.writeln("<br>");
+document.write("<hr>");
+// -->
+</script>
+      <p id="FrameInfo" name="FrameInfo"></p>
+      <input id="MainVarSet" type="text">&nbsp;<input id="MainVarButtSet" type="button" value="Set MainVar" onclick="SetMainVar();"><br>
+      <input id="MainVarGet" type="text" readonly>&nbsp;<input id="MainVarButtGet" type="button" value="Get MainVar" onclick="GetMainVar();"><br>
+      <input id="Frame1VarSet" type="text">&nbsp;<input id="Frame1VarButtSet" type="button" value="Set Frame# 1 Var" onclick="SetFrame1Var();"><br>
+      <input id="Frame1VarGet" type="text" readonly>&nbsp;<input id="Frame1VarButtGet" type="button" value="Get Frame# 1 Var" onclick="GetFrame1Var();"><br>
+      <input id="Frame11VarSet" type="text">&nbsp;<input id="Frame11VarButtSet" type="button" value="Set Frame# 1.1 Var" onclick="SetFrame11Var();"><br>
+      <input id="Frame11VarGet" type="text" readonly>&nbsp;<input id="Frame11VarButtGet" type="button" value="Get Frame# 1.1 Var" onclick="GetFrame11Var();"><br>
+      <input id="Frame2VarSet" type="text">&nbsp;<input id="Frame2VarButtSet" type="button" value="Set Frame# 2 Var" onclick="SetFrame2Var();"><br>
+      <input id="Frame2VarGet" type="text" readonly>&nbsp;<input id="Frame2VarButtGet" type="button" value="Get Frame# 2 Var" onclick="GetFrame2Var();"><br>
+      <br>
+      <div id="DivIFrame1" name="DivIFrame1" style="DISPLAY: none;  border: 3px solid black; background-color: blue; ">
+        <iframe id="IFrame1" name="IFrame1" src="iframe1.html" width="100%" height="100%"></iframe>
+      </div>
+      <div id="DivIFrame2" name="DivIFrame2" style="DISPLAY: none;  border: 3px solid black; background-color: blue; ">
+        <iframe id="IFrame2" name="IFrame2" src="iframe2.html" width="100%" height="100%"></iframe>
+      </div>
+      <br>
+<script type="text/javascript">
+<!--
+var
+  tmpStr="",
+  Ctrl;
+
+if(self.id!=null)
+  tmpStr+="self.di=\""+self.id+"\"";
+else
+  tmpStr+="self.id==null";
+tmpStr+="<br>";
+
+if(self.name!=null)
+  tmpStr+="self.name=\""+self.name+"\"";
+else
+  tmpStr+="self.name==null";
+tmpStr+="<br>";
+
+if(window.id!=null)
+  tmpStr+="window.id=\""+window.id+"\"";
+else
+  tmpStr+="window.id==null";
+tmpStr+="<br>";
+
+if(window.name!=null)
+  tmpStr+="window.name=\""+window.name+"\"";
+else
+  tmpStr+="window.name==null";
+tmpStr+="<br>";
+
+if(frames!=null)
+  tmpStr+="frames!=null";
+else
+  tmpStr+="frames==null";
+tmpStr+="<br>";
+
+if(frames!=undefined)
+  tmpStr+="frames!=undefined";
+else
+  tmpStr+="frames==undefined";
+tmpStr+="<br>";
+
+tmpStr+="frames.length=";
+tmpStr+=frames.length;
+tmpStr+="<br>";
+
+tmpStr += document.all ? "<br>" : "<hr>"; // Fucking M$ IE
+tmpStr+="Ctrl=document.getElementById(\"IFrame1\")";
+tmpStr+="<br>";
+Ctrl=document.getElementById("IFrame1");
+if(Ctrl!=null && Ctrl!=undefined)
+{
+   if("src" in Ctrl)
+     tmpStr+="\"src\" in Ctrl (Ctrl.src=\""+Ctrl.src+"\")<br>";
+   if("location" in Ctrl)
+     tmpStr+="\"location\" in Ctrl<br>";
+   if("contentDocument" in Ctrl)
+     tmpStr+="\"contentDocument\" in Ctrl<br>";
+   else
+     tmpStr+="!(\"contentDocument\" in Ctrl)<br>"; // M$ IE
+   if("contentWindow" in Ctrl)
+     tmpStr+="\"contentWindow\" in Ctrl<br>";
+   else
+     tmpStr+="!(\"contentWindow\" in Ctrl)<br>";
+   if("location" in Ctrl.contentWindow)
+     tmpStr+="\"location\" in Ctrl.contentWindow (Ctrl.contentWindow.location.href=\""+Ctrl.contentWindow.location.href+"\")<br>";
+   if("document" in Ctrl.contentWindow)
+     tmpStr+="\"document\" in Ctrl.contentWindow (Ctrl.contentWindow.document.location=\""+Ctrl.contentWindow.document.location+"\")<br>";
+   if("getElementById" in Ctrl.contentWindow.document)
+     tmpStr+="\"getElementById\" in Ctrl.contentWindow.document<br>";
+
+   tmpStr += document.all ? "<br>" : "<hr>"; // Fucking M$ IE
+   tmpStr+="Ctrl=Ctrl.contentWindow.document.getElementById(\"OtherFrameVarGet\")";
+   tmpStr+="<br>";
+   Ctrl=Ctrl.contentWindow.document.getElementById("OtherFrameVarGet");
+   if(Ctrl!=null && Ctrl!=undefined)
+     Ctrl.value=MainFormVar; 
+   else
+     tmpStr+="Ctrl==null || Ctrl==undefined<br>";
+}
+else
+  tmpStr+="Ctrl==null || Ctrl==undefined<br>";
+
+tmpStr += document.all ? "<br>" : "<hr>"; // Fucking M$ IE
+for(var i=0; i<frames.length; ++i)
+{
+   tmpStr+="frames[";
+   tmpStr+=i;
+   tmpStr+="].id=";
+   tmpStr+=frames[i].id;
+   tmpStr+="&nbsp;";
+   tmpStr+="frames[";
+   tmpStr+=i;
+   tmpStr+="].name=";
+   tmpStr+=frames[i].name;
+   tmpStr+="<br>";
+   /* frames[i].contentWindow.document.getElementById("MainVarSet").value=MainFormVar; */
+}
+tmpStr += document.all ? "<br>" : "<hr>"; // Fucking M$ IE
+
+document.getElementById("FrameInfo").innerHTML=tmpStr;
+// -->
+</script>
+    </form>
+  </body>
+</HTML>

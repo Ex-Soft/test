@@ -1,11 +1,13 @@
-﻿TestNamespace.ClassI=new(function() {
-	this.MethodI=function() {
+﻿TestNamespace.ClassI = new (function() {
+	this.MethodI = function() {
 		if(window.console && console.log)
-			console.log("ClassI.MethodI()");
+			console.log("ClassI.MethodI(%o)", this);
 	};
 
-	this.MethodII=function() {
+	this.MethodII = function() {
 		if(window.console && console.log)
-			console.log("ClassI.MethodII()");
+			console.log("ClassI.MethodII(%o)", this);
+		
+		this.MethodI();
 	};
 })();

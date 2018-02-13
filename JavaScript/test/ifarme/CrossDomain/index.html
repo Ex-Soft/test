@@ -1,0 +1,109 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>main</title>
+		<style>
+iframe {
+	min-height: 100px;
+}
+		</style>
+	</head>
+	<body>
+		<header>
+			<input id="btnNewWidget" type="button" value="New Widget"/>
+			<input id="editSearch" type="search"/>
+			<input id="btnGo" type="button" value="Go!"/>
+		</header>
+		<main>
+		</main>
+	</body>
+	<script>
+(function(global) {
+	if (typeof(MainForm) === "undefined")
+		global.MainForm = new (function() {
+			var	me = this;
+			
+			this.main = undefined;
+			this.lastData = undefined;
+			
+			this.addEventListener = function(element, eventName, handler) {
+				if(element.addEventListener)
+					element.addEventListener(eventName, handler, false);
+				else if(element.attachEvent)
+					element.attachEvent("on" + eventName, handler);
+				else
+					element.onload = handler;
+			};
+			
+			this.onLoad = function(e) {
+				var btn;
+		
+				if (btn = document.getElementById("btnNewWidget"))
+					me.addEventListener(btn, "click", me.onBtnNewWidgetClick);
+				if (btn = document.getElementById("btnGo"))
+					me.addEventListener(btn, "click", me.onBtnGoClick);
+				
+				me.addEventListener(window, "message", me.onMessage);
+			};
+			
+			this.onBtnNewWidgetClick = function(e) {
+				var frm;
+				
+				if (!(me.main = document.querySelector("main")) || !(frm = document.createElement("iframe")))
+					return;
+
+				frm.scrolling = "no";
+				frm.style.width = me.getRandomInt(100, 200) + "px";
+				if (me.lastData && me.lastData.height > 150)
+					frm.style.height = me.lastData.height + "px";
+				me.addEventListener(frm, "load", me.onFrameLoad);
+				frm.src = "http://localhost:22763/widget.html";
+				me.main.appendChild(frm);
+			};
+			
+			this.onFrameLoad = function(e) {
+				if (me.lastData)
+					e.target.contentWindow.postMessage({ data: me.lastData.data }, "*");
+			};
+			
+			this.onMessage = function(e) {
+				for(var i = frames.length - 1; i >= 0; --i)
+				{
+					if (frames[i].postMessage)
+						frames[i].postMessage(me.lastData = e.data, "*");
+				}
+				
+				me.autoGrow(e.data.height);
+			};
+			
+			this.autoGrow = function(height) {
+				var iframes = document.body.getElementsByTagName("iframe");
+				for (var i = iframes.length - 1; i >= 0; --i)
+				{
+					if (iframes[i].offsetHeight < height)
+						iframes[i].style.height = height + "px";
+				}
+			};
+			
+			this.onBtnGoClick = function(e) {
+				var inp;
+				if (!(inp = document.getElementById("editSearch")) || frames.length == 0)
+					return;
+				
+				frames[me.getRandomInt(0, frames.length)].postMessage({ search: true, data: inp.value }, "*");
+			};
+			
+			this.getRandomInt = function(min, max) {
+				min = Math.ceil(min);
+				max = Math.floor(max);
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+		})();
+	
+	global.MainForm.addEventListener(global, "load", global.MainForm.onLoad);
+})(this);
+	</script>
+</html>

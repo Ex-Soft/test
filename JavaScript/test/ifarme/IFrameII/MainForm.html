@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html>
+  <head>
+    <title>MainForm</title>
+<script type="text/javascript">
+<!--
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      if(field=="makeObjectTable")
+        continue;
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+function ShowElements(aWin)
+{
+   var
+     tmpStr="";
+
+   for(var iForm=0; iForm<aWin.document.forms.length; ++iForm)
+   {
+      if(tmpStr.length!=0)
+        tmpStr+="\n";
+      tmpStr+=aWin.document.forms[iForm].id;
+
+      for(var iElement=0; iElement<aWin.document.forms[iForm].length; ++iElement)
+      {
+         if(tmpStr.length!=0)
+           tmpStr+="\n";
+         tmpStr+=aWin.document.forms[iForm].elements[iElement].id;
+      }
+   }
+
+   for(var iFrame=0; iFrame<aWin.frames.length; ++iFrame)
+   {
+      ShowElements(aWin.frames[iFrame]);
+   }
+
+   alert(tmpStr);
+
+   return(true);
+}
+
+function DoShow()
+{
+   var
+     tmpStr="";
+
+   tmpStr+="window.frames.length=";
+   tmpStr+=window.frames.length;
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].name=";
+   tmpStr+=window.frames[0].name;
+   tmpStr+="<br>";
+
+   if(window.frames[0].document.URL)
+   {
+      tmpStr+="window.frames[0].document.URL=";
+      tmpStr+=window.frames[0].document.URL;
+      tmpStr+="<br>";
+   }
+
+   if(window.frames[0].document.forms.length)
+   {
+     tmpStr+="window.frames[0].document.forms.length=";
+     tmpStr+=window.frames[0].document.forms.length;
+     tmpStr+="<br>";
+   }
+
+   tmpStr+="window.frames[0].document.forms[0].name=";
+   tmpStr+=window.frames[0].document.forms[0].name;
+   tmpStr+="<br>";
+
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].document.forms[0]";
+   tmpStr+="<br>";
+   for(field in window.frames[0].document.forms[0])
+   {
+      tmpStr+=field;
+      tmpStr+="<br>";
+   }
+
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].document";
+   tmpStr+="<br>";
+   for(field in window.frames[0].document)
+   {
+      tmpStr+=field;
+      tmpStr+="<br>";
+   }
+
+   if(window.frames[0].document.ownerDocument)
+   {
+      tmpStr+="window.frames[0].document.ownerDocument present";
+      tmpStr+="<br>";
+   }
+
+   if(window.frames[0].document.parentWindow)
+   {
+      tmpStr+="window.frames[0].document.parentWindow present";
+      if(window.frames[0].document.parentWindow.name)
+      {
+        tmpStr+=" (";
+        tmpStr+=window.frames[0].document.parentWindow.name;
+        tmpStr+=")";
+      }
+      tmpStr+="<br>";
+   }
+
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0]";
+   tmpStr+="<br>";
+   for(field in window.frames[0])
+   {
+      tmpStr+=field;
+      tmpStr+="<br>";
+   }
+
+   tmpStr+="window.frames[0].top.name=";
+   tmpStr+=window.frames[0].top.name;
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].top.id=";
+   tmpStr+=window.frames[0].top.id;
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].parent.name=";
+   tmpStr+=window.frames[0].parent.name;
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].parent.id=";
+   tmpStr+=window.frames[0].parent.id;
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].window.name=";
+   tmpStr+=window.frames[0].window.name;
+   tmpStr+="<br>";
+   tmpStr+="window.frames[0].window.id=";
+   tmpStr+=window.frames[0].window.id;
+   tmpStr+="<br>";
+
+   var
+     e=window.frames[0].frames[0].document.getElementById("Frame11FormInput1");
+
+   tmpStr+="<br>";
+   tmpStr+="Frame11FormInput1";
+   tmpStr+="<br>";
+   for(field in e)
+   {
+      tmpStr+=field;
+      tmpStr+="<br>";
+   }
+
+   document.getElementById("FrameInfo").innerHTML=tmpStr;
+
+   Test();
+}
+
+var
+  handler;
+
+function delaySet(obj, val, mSec)
+{
+   handler=setInterval(function(){MakeDalay(obj,val)},mSec);
+}
+
+function MakeDalay(obj, val)
+{
+   clearInterval(handler);
+   obj.style.backgroundColor=val;
+}
+
+function Test()
+{
+   var
+     e=window.frames[0].frames[0].document.getElementById("Frame11FormInput1"),
+     color_="rgb(255,191,191)";
+
+   document.getElementById("TestSetInterval").innerHTML=e.id;
+
+   delaySet(e,color_,250);
+}
+// -->
+</script>
+  </head>
+  <body>
+    <form id="MainForm" name="MainForm" method="post" onsubmit="ShowElements(window)">
+      <input id="MainFormInput1" name="MainFormInput1" type="text"><br>
+      <input id="MainFormInput2" name="MainFormInput2" type="text"><br>
+      <input id="MainFormInput3" name="MainFormInput3" type="text"><br>
+      <input id="MainFormButton1" name="MainFormButton1" type="submit" value="Submit"><br>
+      <input id="MainFormButton2" name="MainFormButton2" type="button" value="Show" onclick="DoShow()">
+      <div id="DivIFrame1" name="DivIFrame1" style="width: 100%; height: 50%">
+        <iframe id="IFrame1" name="IFrame1" src="iframe1.html" width="100%" height="100%"></iframe>
+      </div>
+      <p id="FrameInfo" name="FrameInfo"></p>
+      <p id="TestSetInterval" name="TestSetInterval"></p>
+    </form>
+  </body>
+</HTML>

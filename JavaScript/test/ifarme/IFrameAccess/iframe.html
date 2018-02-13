@@ -1,0 +1,16 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test &lt;IFRAME&gt; (access) (iframe)</title>
+		<script>
+function btnOnClick()
+{
+	if(window.console && console.log)
+		console.log("iframe.btnOnClick(%o)", arguments);
+}
+		</script>
+	<body>
+		<button id="btnVictim" onclick="btnOnClick(this)">DoIt!</button>
+	</body>
+</html>

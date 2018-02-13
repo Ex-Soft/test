@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Main Form</title>
+		<script type="text/javascript">
+<!--
+function DoItByCreateElement(isSelf)
+{
+	var
+		frm,
+		Ctrl,
+		s="\n<!--\nvar\n\tTestVar=99;\n\nfunction Test()\n{\n\talert('Test ('+TestVar+')');\n}\n// -->\n";
+
+	if(!(frm=document.getElementById("IFrame1"))
+		|| !(Ctrl=(isSelf ? document : frm.contentWindow.document).createElement("script")))
+		return;
+
+	Ctrl.text=s;
+	//Ctrl.appendChild((isSelf ? document : frm.contentWindow.document).createTextNode(s));
+	frm.contentWindow.document.body.appendChild(Ctrl);
+}
+
+function DoItByInnerHTML()
+{
+	var
+		frm;
+
+	if(!(frm=document.getElementById("IFrame1")))
+		return;
+
+	frm.contentWindow.document.body.innerHTML="<div>div</div><script defer=\"defer\" type=\"text/javascript\">\n<!--\nvar\n\tTestVar=99;\n\nfunction Test()\n{\n\talert('Test ('+TestVar+')');\n}\n// -->\n</"+"script>";
+	//frm.contentWindow.document.body.innerHTML=document.getElementById("ta").value;
+}
+
+function CallTest()
+{
+	var
+		frm;
+
+	if(!(frm=document.getElementById("IFrame1")))
+		return;
+
+	frm.contentWindow.Test();
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<iframe id="IFrame1" src="iframe1.html"></iframe><br>
+		<textarea id="ta"><script>var ogogo=1;</script>some text</textarea><br>
+		<input type="button" value="createElement (self)" onclick="DoItByCreateElement(true)">
+		<input type="button" value="createElement (iframe)" onclick="DoItByCreateElement(false)">
+		<input type="button" value="innerHTML" onclick="DoItByInnerHTML()">
+		<input type="button" value="call Test" onclick="CallTest()">
+	</body>
+</html>

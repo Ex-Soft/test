@@ -11,20 +11,19 @@ function DoIt()
 		to,
 		sel,
 		startPos,
-		endPos;
+		endPos,
+		searchValue = "34567",
+		pos;
 
 	if(!(from=document.getElementById("InputTextFrom"))
 		|| !(to=document.getElementById("InputTextArea")))
 		return;
 
-	if(window.console && console.log)
-	{
-		console.log("typeof document.selection = \"%s\"", typeof document.selection);
-		console.log("typeof element.selectionStart = \"%s\"", typeof to.selectionStart);
-	}
-
 	if(document.selection && document.selection.createRange)
 	{
+		if(window.console && console.log)
+			console.log("typeof document.selection = \"%s\"", typeof document.selection);
+
 		to.focus();
 
 		if(!(sel=document.selection.createRange()))
@@ -32,11 +31,32 @@ function DoIt()
 
 		sel.text = from.value;
 	}
-	else if(typeof to.selectionStart !== "undefined")
+	else if(to.setSelectionRange)
 	{
-		startPos=to.selectionStart;
-		endPos=to.selectionEnd;
-		to.value = to.value.substring(0, startPos) + from.value + to.value.substring(startPos);
+		if(window.console && console.log)
+			console.log("typeof element.setSelectionRange = \"%s\"", typeof to.setSelectionRange);
+		
+		if ((pos = to.value.indexOf(searchValue)) === -1)
+			return;
+
+		to.setSelectionRange(pos, pos + searchValue.length);
+		to.focus();
+	}
+	else if(typeof(to.selectionStart) !== "undefined")
+	{
+		if(window.console && console.log)
+			console.log("typeof element.selectionStart = \"%s\"", typeof to.selectionStart);
+		
+		//startPos=to.selectionStart;
+		//endPos=to.selectionEnd;
+		//to.value = to.value.substring(0, startPos) + from.value + to.value.substring(startPos);
+		
+		if ((pos = to.value.indexOf(searchValue)) === -1)
+			return;
+		
+		to.selectionStart = pos;
+		to.selectionEnd = pos + searchValue.length;
+		to.focus();
 	}
 }
 		</script>

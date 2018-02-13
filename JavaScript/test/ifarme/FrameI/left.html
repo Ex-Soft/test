@@ -1,0 +1,59 @@
+<html>
+<HEAD>
+<style>
+
+TD.HomeTitle	{ background: "#3333cc"; 
+			font-family: Tahoma,Helvetica,sans-serif;
+			text-decoration: none;
+			font-weight: none; 
+			font-size: 11px;
+			color: blue;
+			line-height: 120%;
+			border-bottom: #00008B solid 1px; 
+			border-top: #00008B solid 1px; 
+			border-left: #00008B solid 1px; 
+			border-right: #00008B solid 1px;
+			padding: 5px;
+		}
+	
+TD.HomeTitleHi	{ background: "#FFF0B0"; 
+			font-family: Tahoma,Helvetica,sans-serif;
+			text-decoration: none;
+			font-weight: none; 
+			font-size: 11px;
+			color: blue;
+			line-height: 120%;
+			border: black solid 1px; 
+			padding: 5px;
+		}
+TD.HomeTitle A { text-decoration: none; color: white;  }
+TD.HomeTitleHi A { text-decoration: none; color: red;  }
+TD.HomeSubTitleHi { background: white; color: black; 
+			font-size: 11px;
+			border-bottom: #AAAAAA solid 1px; 
+			border-top: #AAAAAA solid 1px; 
+			padding: 5px;
+			}
+</style>
+
+<TITLE> </TITLE>
+
+</HEAD>
+<BODY bgcolor="#66CCFF" >
+	<table CLASS="Home" height="100%" width="100%">
+		<tr CLASS="Home">
+			<td CLASS="HomeTitle" NOWRAP="1" onclick="window.open('2.html?KEY=SETRelease','window1');" onmouseover="this.className='HomeTitleHi'" onmouseout="this.className='HomeTitle'">
+				<A HREF="1.html" target="window1"><center>Главная</center></A>
+			</td>
+		</tr>
+		<tr>
+			<td CLASS="HomeTitle" NOWRAP="1" onclick="parent.document.getElementById('window1').src='2.html?KEY=SETRelease'" onmouseover="this.className='HomeTitleHi'" onmouseout="this.className='HomeTitle'">
+				<A HREF="1.html" target="window1"><center>Главная</center></A>
+			</td>
+		</tr>
+		<tr>
+			<td height="98%"></td>
+		</tr>
+	</table>
+</body>
+</html>
