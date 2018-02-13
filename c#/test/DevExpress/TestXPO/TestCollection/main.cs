@@ -1,4 +1,5 @@
-﻿#define TEST_GENERICS
+﻿#define TEST_PREFETCH_COLLECTION
+//#define TEST_GENERICS
 //#define TEST_SORTING
 //#define TEST_COLLECTION_FROM_COLLECTION
 //#define TEST_ADD
@@ -19,8 +20,12 @@ using System.Reflection;
 using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
+using DevExpress.Xpo.Helpers;
 using DevExpress.Xpo.Metadata;
-using TestCollection.Db;
+using TestDB;
+using TestDB.TestMasterDetail;
+
+using static System.Console;
 
 namespace TestCollection
 {
@@ -41,6 +46,9 @@ namespace TestCollection
 
             UnitOfWork
                 unitOfWorkI;
+
+            XPMemberInfo
+                memberInfo;
 
             XPCollection
                 xpCollectionI,
@@ -77,6 +85,34 @@ namespace TestCollection
 
             Victim
                 tmpVictim;
+
+            #if TEST_PREFETCH_COLLECTION
+
+                if ((tmpTestMaster = sessionI.GetObjectByKey<TestMaster>(2L)) != null)
+                {
+                    foreach (var detail in tmpTestMaster.Details)
+                        Debug.WriteLine($"Id: {detail.Id}");
+                }
+
+                if ((tmpTestMaster = sessionI.GetObjectByKey<TestMaster>(1L)) != null && (memberInfo = testMasterClassInfo.GetMember(nameof(TestMaster.Details))).MemberType.IsSubclassOf(typeof(XPBaseCollection)))
+                {
+                    if (memberInfo.GetValue(tmpTestMaster) is XPCollection<TestDetail> xpCollectionTestDetails)
+                    {
+                        if (((IXPPrefetchableAssociationList)xpCollectionTestDetails).NeedPrefetch())
+                        {
+                            criteria = new BinaryOperator(new OperandProperty(nameof(TestDetail.Master)), new OperandValue(tmpTestMaster.Id), BinaryOperatorType.Equal);
+                            var details = sessionI.GetObjects(testDetailClassInfo, criteria, null, 0, true, false);
+                            ((IXPPrefetchableAssociationList)xpCollectionTestDetails).FinishPrefetch(details);
+                            if (!xpCollectionTestDetails.IsLoaded)
+                                xpCollectionTestDetails.Load();
+                        }
+                    }
+
+                    foreach (var detail in tmpTestMaster.Details)
+                        Debug.WriteLine($"Id: {detail.Id}");
+                }
+
+            #endif
 
             #if TEST_GENERICS
                 xpCollectionI = new XPCollection(sessionI, typeof(Staff));
@@ -296,7 +332,7 @@ namespace TestCollection
                     tmpTestMaster = listOfTestMaster[0];
 
                     if(tmpTestMaster.Details.Count > 0)
-                        tmpString = tmpTestMaster.Details[0].Name;
+                        tmpString = tmpTestMaster.Details[0].Val;
                 }
 
             #endif

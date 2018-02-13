@@ -2,7 +2,7 @@
 
 using DevExpress.Xpo;
 
-namespace TestCollection.Db
+namespace TestDB.TestMasterDetail
 {
     [Persistent("vTestMasterTestDetail")]
     public class TestMasterTestDetailView : XPLiteObject

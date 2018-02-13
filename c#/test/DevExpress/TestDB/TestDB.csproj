@@ -81,6 +81,7 @@
     <Compile Include="TestInheritance\TestDEMasterTableWithInheritance.cs" />
     <Compile Include="TestMasterDetail\TestDetailWithNullableIdMaster.cs" />
     <Compile Include="TestMasterDetail\TestMaster.cs" />
+    <Compile Include="TestMasterDetail\TestMasterTestDetailView.cs" />
     <Compile Include="TestOwnTable\BaseObjectWithId.cs" />
     <Compile Include="TestOwnTable\Customer.cs" />
     <Compile Include="TestOwnTable\Employee.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="TestXPO\TestTable4TestPIVOTProduct.cs" />
     <Compile Include="TestXPO\TestTable4TestPIVOTStore.cs" />
     <Compile Include="TestXPO\TestTableWOIdentity.cs" />
+    <Compile Include="Victim.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestInheritance\ddl.sql" />

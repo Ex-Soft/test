@@ -5,7 +5,7 @@ using DevExpress.XtraEditors.DXErrorProvider;
 
 namespace TestDB.TestMasterDetail
 {
-    [Persistent("TestMaster")]
+    [Persistent("dbo.TestMaster")]
     public class TestMaster : XPCustomObject, IDXDataErrorInfo
     {
         public TestMaster(Session session) : base(session)
@@ -44,6 +44,23 @@ namespace TestDB.TestMasterDetail
                 //throw new NullReferenceException();
                 return Details.Select(detail => detail.Name).Aggregate(0, (value, next) => value + next.Length);
             }
+        }
+
+        #endif
+
+        #if TEST_An_item_with_the_same_key_has_already_been_added
+
+        [Persistent("IdForView"), Delayed, NoForeignKey]
+        public TestMasterTestDetailView View
+        {
+            get { return GetDelayedPropertyValue<TestMasterTestDetailView>("View"); }
+            set { SetDelayedPropertyValue("View", value); }
+        }
+
+        [PersistentAlias("View.DetailVal")]
+        public string DetailVal
+        {
+            get { return (string)EvaluateAlias("DetailVal"); }
         }
 
         #endif

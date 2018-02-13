@@ -8,9 +8,9 @@
 //#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
-#define TEST_CRITERIA_VISITOR
+//#define TEST_CRITERIA_VISITOR
 //#define TEST_VARBINARY
-//#define TEST_CLASS_INFO
+#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
 //#define TEST_LIFECYCLE
@@ -623,7 +623,7 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
 					classInfo = session.GetClassInfo(typeof(TestMaster));
 					memberInfo = classInfo.GetMember("Details");
 					testMaster = new TestMaster(session);
-                    testMaster.Name = "Name";
+                    testMaster.Val = "Name";
 					var xpCollectionOfTestDetail = (XPCollection<TestDetail>)memberInfo.GetValue(testMaster);
 				#endif
 
