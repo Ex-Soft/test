@@ -53,6 +53,12 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "[1st] = '1st' Or [2nd] = '2nd' Or [3rd] = '3rd' Or [4th] = '4th'";
+            r = new Regex("\\[[^\\[\\]]+?]");
+            var matches = r.Matches(srcString);
+            if (matches.Count > 0)
+                tmpString = matches[0].Value;
+
             srcString = ".[tableName]";
             r = new Regex("(?<=\\.\\[?)[^\\[\\]]+(?=]?)");
             match = r.Match(srcString);
