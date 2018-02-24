@@ -1,18 +1,21 @@
-﻿using System;
+﻿//using System;
 
 namespace ForILDasm
 {
     class Program
     {
-        class A
-        {
-            public string s;
-        }
+        //class A
+        //{
+        //    public string s;
+        //}
 
         static void Main(string[] args)
         {
-            var a= new A();
-            var b = a?.s?.Length;
+            int a = 1234;
+            int b = 5678;
+            int c = Add(a, b);
+            //var a= new A();
+            //var b = a?.s?.Length;
 
             /*
             object
@@ -36,5 +39,10 @@ namespace ForILDasm
         {
             
         }*/
+
+        static int Add(int a, int b)
+        {
+            return a + b;
+        }
     }
 }
