@@ -12,5 +12,11 @@ namespace TestPivotGrid
             sqlDataSource.Fill();
             pivotGridControl.FieldsCustomization(splitContainerControl.Panel1);
         }
+
+        private void BtnAllowDragClick(object sender, System.EventArgs e)
+        {
+            pivotGridControl.OptionsCustomization.AllowDrag = !pivotGridControl.OptionsCustomization.AllowDrag;
+            pivotGridControl.OptionsCustomization.AllowDragInCustomizationForm = !pivotGridControl.OptionsCustomization.AllowDragInCustomizationForm;
+        }
     }
 }

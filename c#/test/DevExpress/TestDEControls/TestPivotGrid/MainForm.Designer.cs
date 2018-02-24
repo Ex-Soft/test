@@ -38,7 +38,9 @@
             this.fieldProductName = new DevExpress.XtraPivotGrid.PivotGridField();
             this.fieldStoreName = new DevExpress.XtraPivotGrid.PivotGridField();
             this.fieldCount = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.btnAllowDrag = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
+            this.pnlBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl)).BeginInit();
@@ -56,6 +58,7 @@
             // 
             // pnlBottom
             // 
+            this.pnlBottom.Controls.Add(this.btnAllowDrag);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 486);
             this.pnlBottom.Name = "pnlBottom";
@@ -120,6 +123,15 @@
             this.fieldCount.FieldName = "Count";
             this.fieldCount.Name = "fieldCount";
             // 
+            // btnAllowDrag
+            // 
+            this.btnAllowDrag.Location = new System.Drawing.Point(24, 15);
+            this.btnAllowDrag.Name = "btnAllowDrag";
+            this.btnAllowDrag.Size = new System.Drawing.Size(75, 23);
+            this.btnAllowDrag.TabIndex = 0;
+            this.btnAllowDrag.Text = "AllowDrag";
+            this.btnAllowDrag.Click += new System.EventHandler(this.BtnAllowDragClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,6 +143,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test PivotGrid";
             ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
             this.splitContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl)).EndInit();
@@ -147,6 +160,7 @@
         private DevExpress.XtraPivotGrid.PivotGridField fieldProductName;
         private DevExpress.XtraPivotGrid.PivotGridField fieldStoreName;
         private DevExpress.XtraPivotGrid.PivotGridField fieldCount;
+        private DevExpress.XtraEditors.SimpleButton btnAllowDrag;
     }
 }
 
