@@ -69,6 +69,7 @@ _ReSharper*
 *.log
 *.InstallLog
 *.out
+*.txt
 *.[Oo][Bb][Jj]
 *.[Cc][Oo][Mm]
 *.[Ee][Xx][Ee]
