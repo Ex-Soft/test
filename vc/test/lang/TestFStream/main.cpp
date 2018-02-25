@@ -14,13 +14,27 @@ struct TestStruct
 	char fChar[MaxCharSize];
 };
 
-void FillStruct(TestStruct *, int);
+void Fill(TestStruct *, int);
 void WriteBinary(TestStruct *, int);
 void ReadBinary(TestStruct *, int);
 void ReadBinary(TestStruct *, int, int);
 
 void WriteText(int maxSize);
 void ReadText(void);
+
+struct Item
+{
+	int fInt;
+	long fLong;
+	char fChar[MaxCharSize];
+	Item *prev, *next;
+};
+
+Item * Fill(int);
+void WriteBinary(Item *);
+Item * ReadBinary(void);
+Item * ReadBinary(int);
+void Free(Item *);
 
 int main(int argc, char **argv)
 {
@@ -29,7 +43,7 @@ int main(int argc, char **argv)
 		inTestStruct[MaxSize],
 		inTestStructPos;
 
-	FillStruct(outTestStruct, MaxSize);
+	Fill(outTestStruct, MaxSize);
 
 	WriteBinary(outTestStruct, MaxSize);
 
@@ -39,10 +53,25 @@ int main(int argc, char **argv)
 	WriteText(MaxSize);
 	ReadText();
 
+	Item
+		*outItems = Fill(MaxSize),
+		*inItems,
+		*inItemPos;
+
+	WriteBinary(outItems);
+	inItems = ReadBinary();
+	inItemPos = ReadBinary(MaxSize - 1);
+
+	Free(outItems);
+	Free(inItems);
+
+	if (inItemPos)
+		delete inItemPos;
+
 	return 0;
 }
 
-void FillStruct(TestStruct *testStructs, int maxSize)
+void Fill(TestStruct *testStructs, int maxSize)
 {
 	char buff[10];
 
@@ -158,4 +187,167 @@ void ReadText(void)
 
 	delete []buff;
 	file.close();
+}
+
+Item * Fill(int maxSize)
+{
+	Item
+		*item = 0,
+		*head = 0,
+		*prev = 0;
+
+	char buff[10];
+
+	for (int i = 0; i < maxSize; ++i)
+	{
+		item = new Item;
+
+		if (!head)
+			head = item;
+
+		item->fInt = i;
+		item->fLong = i;
+
+#pragma warning(disable:4996)
+		itoa(i, buff, 10);
+#pragma warning(default:4996)
+
+		strcpy(item->fChar, buff);
+
+		item->next = 0;
+		item->prev = prev;
+		if (item->prev)
+			item->prev->next = item;
+
+		prev = item;
+	}
+
+	return head;
+}
+
+void WriteBinary(Item *items)
+{
+	std::ofstream file("data2.dat", std::ios_base::out | std::ios_base::binary);
+	if (!file.is_open() || !file.good())
+		return;
+
+	Item *item = items;
+	while(item)
+	{
+		file.write((char *)item, sizeof(Item) - sizeof(Item *) * 2);
+		item = item->next;
+	}
+	file.close();
+}
+
+Item * ReadBinary(void)
+{
+	Item
+		*item = 0,
+		*head = 0,
+		*prev = 0;
+
+	std::ifstream file("data2.dat", std::ios_base::in | std::ios_base::binary);
+	if (!file.is_open() || !file.good())
+		return head;
+
+	while (!file.eof())
+	{
+		item = new Item;
+
+		file.read((char *)item, sizeof(Item) - sizeof(Item *) * 2);
+
+		std::cout << "file.good()=" << file.good() << " " << "file.eof()=" << file.eof() << std::endl;
+		
+		if (!file.good() && !file.eof())
+		{
+			std::cout << "Data read error" << std::endl;
+			delete item;
+			break;
+		}
+
+		if (file.eof())
+		{
+			delete item;
+			break;
+		}
+
+		if (!head)
+			head = item;
+
+		item->next = 0;
+		item->prev = prev;
+		if (item->prev)
+			item->prev->next = item;
+
+		prev = item;
+	}
+
+	file.close();
+
+	return head;
+}
+
+Item * ReadBinary(int position)
+{
+	std::ifstream file("data2.dat", std::ios_base::in | std::ios_base::binary);
+	if (!file.is_open() || !file.good())
+		return 0;
+
+	unsigned int sizeOfItem = sizeof(Item) - sizeof(Item *) * 2;
+	std::streampos begin = file.tellg();
+	long fileSize;
+
+	file.seekg(0, std::ios_base::end);
+	fileSize = file.tellg() - begin;
+
+	if ((position + 1) * sizeOfItem > fileSize)
+	{
+		file.close();
+		return 0;
+	}
+
+	file.seekg(position * sizeOfItem, std::ios_base::beg);
+
+	Item *item = new Item;
+
+	file.read((char *)item, sizeOfItem);
+
+	std::cout << "file.good()=" << file.good() << " " << "file.eof()=" << file.eof() << std::endl;
+
+	if (!file.good() && !file.eof())
+	{
+		std::cout << "Data read error" << std::endl;
+		file.close();
+		delete item;
+		return 0;
+	}
+
+	if (file.eof())
+	{
+		file.close();
+		delete item;
+		return 0;
+	}
+
+	file.close();
+
+	item->next = 0;
+	item->prev = 0;
+
+	return item;
+}
+
+void Free(Item *items)
+{
+	Item
+		*item = items,
+		*next = 0;
+
+	while (item)
+	{
+		next = item->next;
+		delete item;
+		item = next;
+	}
 }
