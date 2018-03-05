@@ -117,7 +117,7 @@ namespace TestDispose
 
         protected virtual void Dispose(bool disposing)
         {
-            Debug.WriteLine(string.Format("DisposableC::Dispose({0})", disposing));
+            Debug.WriteLine($"DisposableC::Dispose({disposing})");
 
             if (!_disposed)
             {
@@ -138,8 +138,8 @@ namespace TestDispose
 			var c = new DisposableC();
             var cc = c;
 			c.Dispose();
-			Debug.WriteLine(string.Format("c {0}= null", c != null ? "!" : "="));
-            Debug.WriteLine(string.Format("cc {0}= null", cc != null ? "!" : "="));
+            Debug.WriteLine($"c {(c != null ? "!" : "=")}= null");
+            Debug.WriteLine($"cc {(cc != null ? "!" : "=")}= null");
 
             Foo(1);
             Foo(2);
