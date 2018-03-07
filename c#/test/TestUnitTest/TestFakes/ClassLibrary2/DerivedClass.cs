@@ -16,9 +16,10 @@ namespace ClassLibrary2
             System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}() {{DerivedProperty: \"{DerivedProperty}\", BaseProperty: \"{BaseProperty}\"}}");
         }
 
-        protected void DerivedProtectedMethod()
+        protected bool DerivedProtectedMethod(object param)
         {
-            System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
+            System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}(object)");
+            return param != null;
         }
 
         public void DerivedPublicMethod()
@@ -26,10 +27,10 @@ namespace ClassLibrary2
             System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
         }
 
-        protected override void BaseProtectedVirtualMethod()
+        protected override bool BaseProtectedVirtualMethod(object param)
         {
-            System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
-            base.BaseProtectedVirtualMethod();
+            System.Diagnostics.Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}(object)");
+            return base.BaseProtectedVirtualMethod(param);
         }
 
         public override void BasePublicVirtualMethod()
