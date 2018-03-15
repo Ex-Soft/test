@@ -15,17 +15,17 @@ namespace AnyTest2_1
         {
 			if(!IsPostBack)
 			{
-				string
-					LogFileName = LogII.LogII.MakeLogFileName();
+                string
+                    LogFileName = LogII.LogII.MakeLogFileName();
 
-				LogII.LogII.MakeFile(LogFileName, LogFileName, true);
+                LogII.LogII.MakeFile(LogFileName, LogFileName, true);
 
-				LogFileName = LogII.LogII.MakeLogFileName("");
-				LogII.LogII.MakeFile(LogFileName, LogFileName, true);
+                LogFileName = LogII.LogII.MakeLogFileName("");
+                LogII.LogII.MakeFile(LogFileName, LogFileName, true);
 
-				LogFileName = LogII.LogII.MakeLogFileName("Transaction");
-				LogII.LogII.MakeFile(LogFileName, LogFileName, true);
-			}
+                LogFileName = LogII.LogII.MakeLogFileName("Transaction");
+                LogII.LogII.MakeFile(LogFileName, LogFileName, true);
+            }
         }
 
         public static string SmthStaticMethod(object Param)
