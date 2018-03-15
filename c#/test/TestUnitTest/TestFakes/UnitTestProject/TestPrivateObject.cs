@@ -43,10 +43,29 @@ namespace UnitTestProject
             var privateObject = new PrivateObject(o);
 
             privateObject.Invoke("DerivedPrivateMethod");
-            privateObject.Invoke("DerivedProtectedMethod");
+
+            var actual = privateObject.Invoke("DerivedProtectedMethod", new object[] { null });
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual is bool);
+            Assert.IsFalse((bool)actual);
+
+            actual = privateObject.Invoke("DerivedProtectedMethod", new object());
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual is bool);
+            Assert.IsTrue((bool)actual);
+
             privateObject.Invoke("DerivedPublicMethod");
 
-            privateObject.Invoke("BaseProtectedVirtualMethod");
+            actual = privateObject.Invoke("BaseProtectedVirtualMethod", new object[] { null });
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual is bool);
+            Assert.IsFalse((bool)actual);
+
+            actual = privateObject.Invoke("BaseProtectedVirtualMethod", new object());
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual is bool);
+            Assert.IsTrue((bool)actual);
+
             privateObject.Invoke("BasePublicVirtualMethod");
         }
     }
