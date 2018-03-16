@@ -41,3 +41,9 @@ go
 if not exists (select 1 from sys.columns where object_id = object_id(N'TestTable4Types') and name = N'FVarBinary_Max')
   alter table TestTable4Types add FVarBinary_Max varbinary(max) null
 go
+
+if col_length(N'TestTable4Types', N'FVarBinary_28_Length') is null
+	alter table TestTable4Types add FVarBinary_28_Length as datalength(FVarBinary_28);
+
+if col_length(N'TestTable4Types', N'FVarBinary_Max_Length') is null
+	alter table TestTable4Types add FVarBinary_Max_Length as datalength(FVarBinary_Max);
