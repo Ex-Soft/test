@@ -9,8 +9,8 @@
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
 //#define TEST_CRITERIA_VISITOR
-//#define TEST_VARBINARY
-#define TEST_CLASS_INFO
+#define TEST_VARBINARY
+//#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
 //#define TEST_LIFECYCLE
@@ -588,6 +588,10 @@ where(N0."GCRecord" is null and((select count(*) as Res from "dbo"."TestDetail" 
 				#endif
 
                 #if TEST_VARBINARY
+                    xpCollection = new XPCollection(session, typeof(TestTable4Types));
+                    foreach (TestTable4Types item in xpCollection)
+                        Console.WriteLine("{{Id: {0}, FVarBinary28Length: {1}, FVarBinaryMaxLength: {2}}}", item.Id, item.FVarBinary28Length, item.FVarBinaryMaxLength);
+
                     var id = 1;
                     //var varBinary28 = new byte[] { 0, 1, 2 };
                     //var varBinary28 = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };

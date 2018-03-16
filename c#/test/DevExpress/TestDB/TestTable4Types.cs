@@ -18,32 +18,32 @@ namespace TestDB
         [Key(true)]
         public long Id
         {
-            get { return GetPropertyValue<long>(nameof(Id)); }
-            set { SetPropertyValue(nameof(Id), value); }
+            get => GetPropertyValue<long>(nameof(Id));
+            set => SetPropertyValue(nameof(Id), value);
         }
 
         public string FVarChar
         {
-            get { return GetPropertyValue<string>(nameof(FVarChar)); }
-            set { SetPropertyValue(nameof(FVarChar), value); }
+            get => GetPropertyValue<string>(nameof(FVarChar));
+            set => SetPropertyValue(nameof(FVarChar), value);
         }
 
         public string FNVarChar
         {
-            get { return GetPropertyValue<string>(nameof(FNVarChar)); }
-            set { SetPropertyValue(nameof(FNVarChar), value); }
+            get => GetPropertyValue<string>(nameof(FNVarChar));
+            set => SetPropertyValue(nameof(FNVarChar), value);
         }
 
         public DateTime? FDate
         {
-            get { return GetPropertyValue<DateTime?>(nameof(FDate)); }
-            set { SetPropertyValue(nameof(FDate), value); }
+            get => GetPropertyValue<DateTime?>(nameof(FDate));
+            set => SetPropertyValue(nameof(FDate), value);
         }
 
         public DateTime? FDateTime
         {
-            get { return GetPropertyValue<DateTime?>(nameof(FDateTime)); }
-            set { SetPropertyValue(nameof(FDateTime), value); }
+            get => GetPropertyValue<DateTime?>(nameof(FDateTime));
+            set => SetPropertyValue(nameof(FDateTime), value);
         }
 
         [Persistent("FXml")]
@@ -51,22 +51,36 @@ namespace TestDB
         [ValueConverter(typeof(XmlConverter))]
         public XmlDocument Doc
         {
-            get { return GetPropertyValue<XmlDocument>(nameof(Doc)); }
-            set { SetPropertyValue(nameof(Doc), value); }
+            get => GetPropertyValue<XmlDocument>(nameof(Doc));
+            set => SetPropertyValue(nameof(Doc), value);
         }
 
         [Persistent("FVarBinary_28")]
         public byte[] VarBinary28
         {
-            get { return GetPropertyValue<byte[]>(nameof(VarBinary28)); }
-            set { SetPropertyValue(nameof(VarBinary28), value); }
+            get => GetPropertyValue<byte[]>(nameof(VarBinary28));
+            set => SetPropertyValue(nameof(VarBinary28), value);
+        }
+
+        [Persistent("FVarBinary_28_Length")]
+        public int? FVarBinary28Length
+        {
+            get => GetPropertyValue<int?>(nameof(FVarBinary28Length));
+            set => SetPropertyValue(nameof(FVarBinary28Length), value);
         }
 
         [Persistent("FVarBinary_Max")]
         public byte[] FVarBinaryMax
         {
-            get { return GetPropertyValue<byte[]>(nameof(FVarBinaryMax)); }
-            set { SetPropertyValue(nameof(FVarBinaryMax), value); }
+            get => GetPropertyValue<byte[]>(nameof(FVarBinaryMax));
+            set => SetPropertyValue(nameof(FVarBinaryMax), value);
+        }
+
+        [Persistent("FVarBinary_Max_Length")]
+        public int? FVarBinaryMaxLength
+        {
+            get => GetPropertyValue<int?>(nameof(FVarBinaryMaxLength));
+            set => SetPropertyValue(nameof(FVarBinaryMaxLength), value);
         }
 
         private Image _image;
@@ -74,15 +88,13 @@ namespace TestDB
         [Delayed, NonPersistent]
         public Image Image
         {
-            get { return _image ?? (_image = ByteArrayToImage(FVarBinaryMax)); }
+            get => _image ?? (_image = ByteArrayToImage(FVarBinaryMax));
             set { if (!IsLoading) FVarBinaryMax = ImageToByteArray(value); }
         }
 
         public static Image ByteArrayToImage(byte[] array)
         {
-            bool? arrayIsImage;
-
-            return ByteArrayToImage(array, out arrayIsImage);
+            return ByteArrayToImage(array, out var arrayIsImage);
         }
 
         public static byte[] ImageToByteArray(Image imageIn)
@@ -178,9 +190,6 @@ namespace TestDB
             return doc;
         }
 
-        public override Type StorageType
-        {
-            get { return typeof(string); }
-        }
+        public override Type StorageType => typeof(string);
     }
 }
