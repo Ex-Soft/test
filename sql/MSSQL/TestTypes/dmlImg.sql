@@ -1,6 +1,6 @@
 ﻿declare
 	@Path nvarchar(max) = N'D:\temp\images\',
-	@ImageFileName nvarchar(max) = N'delete.png'
+	@ImageFileName nvarchar(max) = N'delete.png';
 
 exec(N'
 	update
@@ -10,4 +10,14 @@ exec(N'
 	where
 		id = 2
 	'
-)
+);
+
+select cast(0 as varbinary(max));
+select datalength(cast(0 as varbinary(max)));
+
+select
+	datalength(FVarBinary_28) as [datalength(FVarBinary_28)],
+	datalength(FVarBinary_Max) as [datalength(FVarBinary_Max)],
+	*
+from
+	TestTable4Types;
