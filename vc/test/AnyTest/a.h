@@ -1,7 +1,7 @@
 #ifndef A_H
 #define A_H
 
-#include "stdafx.h"
+#include <iostream>
 
 class A
 {
@@ -19,7 +19,7 @@ public:
     friend bool operator == (const A&, const A&);
     friend bool operator != (const A&, const A&);
 
-    friend std::ostream& operator << (std::ostream& os, const A&);
+    friend std::ostream& operator << (std::ostream&, const A&);
 };
 
 #endif

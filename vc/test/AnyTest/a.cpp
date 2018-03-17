@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "a.h"
 
 using namespace std;
 
