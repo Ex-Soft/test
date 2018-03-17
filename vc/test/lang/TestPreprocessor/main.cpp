@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdarg.h>
+#include <assert.h>
 
 #define begin {
 #define end }
@@ -13,7 +15,7 @@
 
 // https://docs.microsoft.com/en-us/cpp/preprocessor/stringizing-operator-hash
 // Stringizing Operator (#)
-#define stringer( x ) printf( #x "\n" )
+#define stringer(x) printf(#x "\n")
 
 #define F abc  
 #define B def  
@@ -28,7 +30,9 @@
 // Charizing Operator (#@)
 #define makechar(x)  #@x
 
-#pragma pack(push, 1) 
+#pragma pack(show)
+#pragma pack(push, 1)
+#pragma pack(show)
 struct t1 {
 	char a;
 	float b;
@@ -40,10 +44,14 @@ struct t2 {
 	float b;
 };
 
-void foo(void);
+void foo(int count, ...);
+#define FOO(count, ...) foo(count, __VA_ARGS__)
 
 int main(int argc, char **argv)
 {
+	int tmpInt = 9;
+	//assert(tmpInt > 10);
+
 	printf("In quotes in the printf function call\n" "\n");
 	printf("\"In quotes when printed to the screen\"\n" "\n");
 	printf("\"This: \\\" prints an escaped double quote\"" "\n");
@@ -60,8 +68,8 @@ int main(int argc, char **argv)
 
 	int token9 = 9;
 	paster(9);
-	// printf( "token" "9" " = %d", token9 );
-	// printf( "token9 = %d", token9 );
+	// printf("token" "9" " = %d", token9);
+	// printf("token9 = %d", token9);
 
 	char a = makechar(b);
 	// a = 'b';
@@ -124,15 +132,29 @@ int main(int argc, char **argv)
 
 	std::cout << std::boolalpha << (sizeof(t1) == sizeof(t2)) << std::endl;
 
-	foo();
+	foo(5, "1st", "2nd", "3rd", "4th", "5th");
+	FOO(5, "1st", "2nd", "3rd", "4th", "5th");
 
 	return 0;
 }
 
-void foo(void)
+void foo(int count, ...)
 begin
 	std::cout << "__FUNCTION__ = \"" << __FUNCTION__ << "\"" << std::endl;
 	std::cout << "__FUNCDNAME__ = \"" << __FUNCDNAME__ << "\"" << std::endl;
 	std::cout << "__FUNCSIG__ = \"" << __FUNCSIG__ << "\"" << std::endl;
 	std::cout << "__func__ = \"" << __func__ << "\"" << std::endl;
+
+	const char *value;
+
+	va_list vl;
+	va_start(vl, count);
+
+	for (int i = 0; i < count; ++i)
+	begin
+		value = va_arg(vl, const char *);
+		std::cout << "[" << i << "] = \"" << value << "\"" << std::endl;
+	end
+
+	va_end(vl);
 end
