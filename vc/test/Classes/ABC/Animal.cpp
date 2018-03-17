@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "Animal.h"
 
 Animal::Animal(std::string name)
 {

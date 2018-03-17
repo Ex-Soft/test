@@ -1,7 +1,6 @@
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
-#include "stdafx.h"
 #include <string>
 
 class Animal

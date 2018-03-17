@@ -1,8 +1,8 @@
 #ifndef DUCK_H
 #define DUCK_H
 
-#include "stdafx.h"
 #include <string>
+#include "Animal.h"
 
 class Duck : public Animal
 {

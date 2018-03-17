@@ -1,7 +1,6 @@
 #ifndef CLASS_OF_CAT_H
 #define CLASS_OF_CAT_H
 
-#include "stdafx.h"
 #include <string>
 
 class ClassOfCat

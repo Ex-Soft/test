@@ -1,6 +1,8 @@
 ﻿#ifndef __BASEOBJECT_H__
 #define __BASEOBJECT_H__
 
+#include <string>
+
 class BaseObject
 {
   int
@@ -8,7 +10,7 @@ class BaseObject
     _width;
 
  public:
-  BaseObject(int height=0, int width=0);
+  BaseObject(int height = 0, int width = 0);
   BaseObject(const BaseObject &obj);
   virtual ~BaseObject(void);
 
@@ -17,6 +19,13 @@ class BaseObject
 
   void ping(void) const;
   std::string pong(void) const;
+
+  BaseObject & operator = (const BaseObject &);
+  operator int () const;
+
+  friend std::ostream & operator << (std::ostream &, const BaseObject &);
+
+  static int MInt;
 };
 
 #endif

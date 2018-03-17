@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "Cat.h"
 
 Cat::Cat(std::string name, std::string smthCatProperty) : Animal(name)
 {

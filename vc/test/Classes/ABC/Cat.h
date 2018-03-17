@@ -1,8 +1,8 @@
 #ifndef CAT_H
 #define CAT_H
 
-#include "stdafx.h"
 #include <string>
+#include "Animal.h"
 
 class Cat : public Animal
 {

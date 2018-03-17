@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "ClassOfCat.h"
 
 ClassOfCat::ClassOfCat(std::string name)
 {

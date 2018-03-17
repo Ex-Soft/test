@@ -1,8 +1,8 @@
 #ifndef FISH_H
 #define FISH_H
 
-#include "stdafx.h"
 #include <string>
+#include "Animal.h"
 
 class Fish : public Animal
 {
