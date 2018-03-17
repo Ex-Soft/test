@@ -1,4 +1,5 @@
-#include "stdafx.h"
+#include <iostream>
+#include "ClassWithStaticMethod.h"
 
 using namespace std;
 

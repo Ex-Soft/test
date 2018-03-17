@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "a.h"
 
 using namespace std;
 
@@ -51,7 +51,6 @@ A operator + (const A& left, int right)
 {
     return A((left.x + right) * 2, (left.y + right) * 3);
 }
-
 
 ostream& operator << (ostream& os, const A &aA)
 {

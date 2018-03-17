@@ -17,8 +17,8 @@ public:
     friend bool operator == (const A&, const A&);
     friend bool operator != (const A&, const A&);
 
-    friend A& operator ++ (A&);
-    friend A& operator ++ (A&, int);
+    A& operator ++ ();
+    A operator ++ (int);
 };
 
 #endif

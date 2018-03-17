@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "CharClass.h"
 
 using namespace std;
 

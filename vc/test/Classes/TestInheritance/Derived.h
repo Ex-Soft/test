@@ -1,7 +1,7 @@
 #ifndef DERIVED_H
 #define DERIVED_H
 
-#include "stdafx.h"
+#include "Base.h"
 
 class DerivedClass : public BaseClass
 {
@@ -20,7 +20,7 @@ public:
     friend bool operator == (const DerivedClass&, const DerivedClass&);
     friend bool operator != (const DerivedClass&, const DerivedClass&);
 
-    friend ostream& operator << (ostream& os, const DerivedClass&);
+    friend std::ostream& operator << (std::ostream&, const DerivedClass&);
 };
 
 #endif

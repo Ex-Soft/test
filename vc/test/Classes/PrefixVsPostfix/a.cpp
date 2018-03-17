@@ -1,59 +1,62 @@
-#include "stdafx.h"
-
-using namespace std;
+#include <iostream>
+#include "a.h"
 
 A::A(int aX, int aY) : x(aX), y(aY)
 {
-    cout<<"A::A(int, int)"<<endl;
+	std::cout << "\"" << __FUNCSIG__ << "\"" << std::endl;
 }
 
 A::A(const A &a) : x(a.x), y(a.y)
 {
-    cout<<"A::A(const A&)"<<endl;
+	std::cout << "\"" << __FUNCSIG__ << "\"" << std::endl;
 }
 
 A::~A(void)
 {
-    cout<<"A::~A(void)"<<endl;
+	std::cout << "\"" << __FUNCSIG__ << "\"" << std::endl;
 }
 
 A & A::operator = (const A &aA)
 {
-    cout<<"A::operator = (const A&)"<<endl;
+	std::cout << "\"" << __FUNCSIG__ << "\"" << std::endl;
 
-    if(this!=&aA)
-    {
-        x=aA.x;
-        y=aA.y;
-    }
+	if (this != &aA)
+	{
+		x = aA.x;
+		y = aA.y;
+	}
 
     return(*this);
 }
 
 bool operator == (const A &aAL, const A &aAR)
 {
-   return(aAL.x==aAR.x && aAL.y==aAR.y);
+	return(aAL.x == aAR.x && aAL.y == aAR.y);
 }
 
 bool operator != (const A &aAL, const A &aAR)
 {
-   return(!(aAL==aAR));
+	return(!(aAL == aAR));
 }
 
-A& operator ++ (A &aA)
+A& A::operator ++ ()
 {
-    cout<<"A::operator ++ (A&)"<<endl;
-    ++aA.x;
-    ++aA.y;
+	std::cout << "\"" << __FUNCSIG__ << "\"" << std::endl;
 
-    return aA;
+    ++this->x;
+    ++this->y;
+
+    return *this;
 }
 
-A& operator ++ (A &aA, int k)
+A A::operator ++ (int ignored_dummy_value)
 {
-    cout<<"A::operator ++ (A&, int)"<<endl;
-    aA.x++;
-    aA.y++;
+	std::cout << "\"" << __FUNCSIG__ << "\"" << std::endl;
 
-    return aA;
+	A tmp = *this;
+
+    this->x++;
+    this->y++;
+
+    return tmp;
 }

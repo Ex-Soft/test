@@ -1,11 +1,10 @@
-// TestClassWithStaticMethod.cpp : Defines the entry point for the console application.
-//
+#include <iostream>
 
-#include "stdafx.h"
+#include "ClassWithStaticMethod.h"
 
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char **argv)
 {
    /*
    ClassWithStaticMethod
@@ -23,4 +22,3 @@ int _tmain(int argc, _TCHAR* argv[])
 
    return 0;
 }
-

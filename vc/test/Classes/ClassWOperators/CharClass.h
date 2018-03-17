@@ -1,7 +1,7 @@
 #ifndef CharClass_H
 #define CharClass_H
 
-#include "stdafx.h"
+#include <iostream>
 
 class CharClass
 {
@@ -15,7 +15,7 @@ public:
     CharClass(const CharClass&);
     ~CharClass(void);
 
-    friend std::ostream& operator << (std::ostream& os, const CharClass&);
+    friend std::ostream& operator << (std::ostream&, const CharClass&);
 };
 
 #endif

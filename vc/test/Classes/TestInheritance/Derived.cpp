@@ -1,4 +1,6 @@
-#include "stdafx.h"
+#include "Derived.h"
+
+using namespace std;
 
 DerivedClass::DerivedClass(int aX, int aY, int aZ) : BaseClass(aX, aY), z(aZ)
 {

@@ -1,4 +1,6 @@
-#include "stdafx.h"
+#include "Base.h"
+
+using namespace std;
 
 BaseClass::BaseClass(int aX, int aY) : x(aX), y(aY)
 {

@@ -32,6 +32,8 @@ int main(int argc, char **argv, char **envp)
 		classWithConstructors2 = 1L,
 		classWithConstructors3 = 1.1;
 
+	BaseObject::MInt = 13;
+
 	BaseObject
 		baseObject1 = BaseObject(10, 20),
 		baseObject2 = BaseObject(baseObject1),

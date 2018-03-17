@@ -1,20 +1,31 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestVirtualDestructor", "TestVirtualDestructor.vcxproj", "{9936EED7-B62B-4F79-B009-3DAE94C2718B}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestVirtualDestructor", "TestVirtualDestructor.vcxproj", "{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9936EED7-B62B-4F79-B009-3DAE94C2718B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{9936EED7-B62B-4F79-B009-3DAE94C2718B}.Debug|Win32.Build.0 = Debug|Win32
-		{9936EED7-B62B-4F79-B009-3DAE94C2718B}.Release|Win32.ActiveCfg = Release|Win32
-		{9936EED7-B62B-4F79-B009-3DAE94C2718B}.Release|Win32.Build.0 = Release|Win32
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Debug|x64.ActiveCfg = Debug|x64
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Debug|x64.Build.0 = Debug|x64
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Debug|x86.ActiveCfg = Debug|Win32
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Debug|x86.Build.0 = Debug|Win32
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Release|x64.ActiveCfg = Release|x64
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Release|x64.Build.0 = Release|x64
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Release|x86.ActiveCfg = Release|Win32
+		{D1BD9D28-EB68-4BAC-9453-4B5AD2B8F107}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D09C37D-DDFC-4CBA-9CC8-39330D1D0AD9}
 	EndGlobalSection
 EndGlobal

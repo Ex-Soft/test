@@ -2,7 +2,7 @@
 
 #include "BaseObject.h"
 
-int BaseObject::MInt = 5;
+int BaseObject::MInt;
 
 BaseObject::BaseObject(int height, int width) : _height(height), _width(width)
 {

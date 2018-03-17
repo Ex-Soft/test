@@ -1,6 +1,8 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include <iostream>
+
 class BaseClass
 {
 public:
@@ -20,7 +22,7 @@ public:
     friend bool operator == (const BaseClass&, const BaseClass&);
     friend bool operator != (const BaseClass&, const BaseClass&);
 
-    friend ostream& operator << (ostream& os, const BaseClass&);
+    friend std::ostream& operator << (std::ostream&, const BaseClass&);
 };
 
 #endif
