@@ -29,7 +29,7 @@
 //#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
-#define TEST_BIT_OPERATIONS
+//#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
 //#define TEST_NULLABLE_TYPES
@@ -39,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-//#define TEST_PATH
+#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -1739,6 +1739,7 @@ namespace AnyTest
 			#endif
 
 			#if TEST_PATH
+                Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
                 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
                 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
                 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
