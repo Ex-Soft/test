@@ -3,7 +3,7 @@
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
-//#define TEST_FILE_TIME
+#define TEST_FILE_TIME
 //#define TEST_OPERATOR
 //#define TEST_STRING_BUILDER
 //#define TEST_HASH_CODE
@@ -39,7 +39,7 @@
 //#define TEST_INDEX_OF
 //#define TEST_FOR
 //#define TEST_REF
-#define TEST_PATH
+//#define TEST_PATH
 //#define TEST_FORMAT
 
 using System;
@@ -454,8 +454,9 @@ namespace AnyTest
 				tmpDateTime = File.GetLastAccessTimeUtc(tmpString);
                 tmpDateTime = File.GetLastWriteTime(tmpString);
 				tmpDateTime = File.GetLastWriteTimeUtc(tmpString);
+                File.SetLastWriteTime(tmpString, new DateTime(2018, 3, 27, 13, 13, 13));
 
-				if (!File.Exists(tmpString = Path.Combine(currentDirectory, "updated.txt")))
+                if (!File.Exists(tmpString = Path.Combine(currentDirectory, "updated.txt")))
 					File.WriteAllText(tmpString, DateTime.Now.ToString(CultureInfo.InvariantCulture), Encoding.UTF8);
 
 				tmpStringII = File.ReadAllText(tmpString, Encoding.UTF8);
