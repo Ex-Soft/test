@@ -11,7 +11,7 @@ set @s1 = N'1st/2nd/3rd'
 select right(@s1, charindex(N'/', reverse(@s1)) - 1)
 
 set @s1 = N'image.jpg'
-select @s1, reverse(@s1)
+select @s1, reverse(@s1), charindex(N'.', reverse(@s1)), left(@s1, len(@s1) - charindex(N'.', reverse(@s1))), left(@s1, len(@s1) - charindex(N'.', reverse(@s1))) + N'_suffix' + right(@s1, charindex(N'.', reverse(@s1)))
 
 set @s1 = null
 set @a = len(@s1)
