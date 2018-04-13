@@ -23,6 +23,8 @@ themes/
 **/kendo/examples
 **/kendo/src
 
+**/Scripts/dojo
+
 #bootstrap
 bootstrap*.js
 bootstrap*.css

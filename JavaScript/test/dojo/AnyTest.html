@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>dojo</title>
+	</head>
+	<body>
+		<h1 id="greeting1">Hello</h1>
+		<h1 id="greeting2">Hello</h1>
+		<h1 id="greeting3">Hello</h1>
+		<h1 id="greeting4">Hello</h1>
+
+		<button type="button" id="myButton1" data-dojo-type="dijit/form/Button">
+			<span>Click Me!</span>
+		</button>
+
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true,
+	packages: [{
+		name: "demo",
+		location: location.pathname.replace(/\/[^/]*$/, '') + '/demo'
+	}]
+};
+		</script>
+
+		<script src="../../dojo/dojo/dojo.js"></script>
+
+		<script>
+require([
+	'dojo/dom',
+	'dojo/dom-construct'
+], function (dom, domConstruct) {
+	var greeting1Node = dom.byId('greeting1');
+	domConstruct.place('<em> Dojo!</em>', greeting1Node);
+});
+		</script>
+
+		<script>
+require([
+	'demo/myModule'
+], function (myModule) {
+	myModule.setText('greeting2', 'Hello Dojo!');
+
+	setTimeout(function () {
+		myModule.restoreText('greeting2');
+	}, 3000);});
+		</script>
+
+		<script>
+require([
+	'dojo/dom',
+	'dojo/domReady!'
+], function (dom) {
+	var greeting3 = dom.byId('greeting3');
+	greeting3.innerHTML += ' from Dojo!';
+});
+		</script>
+
+		<script>
+require([
+	'dojo/dom',
+	'dojo/fx',
+	'dojo/domReady!'
+], function (dom, fx) {
+	var greeting4 = dom.byId('greeting4');
+	greeting4.innerHTML += ' from Dojo!';
+
+	fx.slideTo({
+		node: greeting4,
+		top: 100,
+		left: 200
+	}).play();
+});
+		</script>
+
+
+		<script>
+require(["dojo/request"], function(request){
+	request("AnyTest.json").then(
+		function(text){
+			if (window.console && console.log)
+				console.log("The file's content is: " + text);
+		},
+		function(error){
+			if (window.console && console.log)
+				console.log("An error occurred: " + error);
+		}
+	);
+});
+		</script>
+
+		<script>
+require(["dojo/request"], function(request){
+	request.get("AnyTest.json", { handleAs: "json" })
+	.then(
+		function(o){
+			if (window.console && console.log)
+				console.log("The file's content is: %o", o);
+		},
+		function(error){
+			if (window.console && console.log)
+				console.log("An error occurred: " + error);
+		}
+	);
+});
+		</script>
+
+		<script>
+require(["dojo/parser", "dijit/form/Button", "dojo/domReady!"],
+	function(parser){
+		parser.parse();
+});
+		</script>
+
+		<script>
+		</script>
+
+	</body>
+</html>

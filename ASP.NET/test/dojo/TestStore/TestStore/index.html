@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test dojo</title>
+    <link rel="stylesheet" href="content/style.css" media="screen">
+    <link rel="stylesheet" href="content/demo.css" media="screen">
+    <link rel="stylesheet" href="scripts/dojo/dojo/resources/dojo.css">
+    <link rel="stylesheet" href="scripts/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="scripts/dojo/dojox/grid/resources/Grid.css">
+    <link rel="stylesheet" href="scripts/dojo/dojox/grid/resources/claroGrid.css">
+</head>
+<body>
+    <div id="GridId"></div>
+    <button id="save">Save</button>
+    <script>
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            isDebug: true,
+            packages: [{
+                name: "testStore",
+                location: location.pathname.replace(/\/[^/]*$/, '') + '/scripts'
+            }]
+        };
+    </script>
+    <script charset="utf-8" src="scripts/dojo/dojo/dojo.js"></script>
+    <script>
+        require(["testStore/testStore"]);
+    </script>
+</body>
+</html>

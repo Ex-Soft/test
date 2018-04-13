@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true,
+	packages: [{
+		name: "demo",
+		location: location.pathname.replace(/\/[^/]*$/, '') + '/demo'
+	}]
+};
+		</script>
+
+		<script src="../../dojo/dojo/dojo.js"></script>
+
+		<script>
+var r = require(["demo/Person"], function(Person){
+	var person = new Person("phiggins", 42, "Tennessee");
+
+	if (window.console && console.log)
+		console.log(person);
+});
+
+if (window.console && console.log)
+	console.log("require %o", r);
+		</script>
+	</body>
+</html>
+
