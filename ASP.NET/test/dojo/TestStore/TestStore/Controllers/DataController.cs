@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using TestStore.Models;
 
@@ -15,9 +16,10 @@ namespace TestStore.Controllers
             new Data{Id = 3, FString = "FString# 3", FDecimal = 3m, FDateTime = new DateTime(2018, 4, 13, 13, 13, 13)},
         };
 
-        public IEnumerable<Data> GetAllData()
+        public HttpResponseMessage GetAllData()
         {
-            return data;
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+            //return Request.CreateResponse(HttpStatusCode.InternalServerError, "blah-blah-blah");
         }
 
         public IHttpActionResult GetData(int id)
