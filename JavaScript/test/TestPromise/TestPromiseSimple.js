@@ -9,11 +9,44 @@
 
 	doSomething().then(function() {
 		if(window.console && console.log)
-			console.log("%s then", new Date().toString());
+			console.log("%s then->resolve(%o)", new Date().toString(), arguments);
+	}, function() {
+		if(window.console && console.log)
+			console.log("%s then->reject(%o)", new Date().toString(), arguments);
+	}).catch(function() {
+		if(window.console && console.log)
+			console.log("%s catch(%o)", new Date().toString(), arguments);
+	});
+
+	doSomething().then(function() {
+		if(window.console && console.log)
+			console.log("%s then->resolve(%o)", new Date().toString(), arguments);
+	}).catch(function() {
+		if(window.console && console.log)
+			console.log("%s catch(%o)", new Date().toString(), arguments);
+	});
+
+	doSomething(true).then(function() {
+		if(window.console && console.log)
+			console.log("%s then->resolve(%o)", new Date().toString(), arguments);
+	}, function() {
+		if(window.console && console.log)
+			console.log("%s then->reject(%o)", new Date().toString(), arguments);
+	}).catch(function() {
+		if(window.console && console.log)
+			console.log("%s catch(%o)", new Date().toString(), arguments);
+	});
+
+	doSomething(true).then(function() {
+		if(window.console && console.log)
+			console.log("%s then->resolve(%o)", new Date().toString(), arguments);
+	}).catch(function() {
+		if(window.console && console.log)
+			console.log("%s catch(%o)", new Date().toString(), arguments);
 	});
 }
 
-function doSomething() {
+function doSomething(withReject) {
 	return new Promise(function(resolve, reject) {
 		var timeoutID = -1;
 
@@ -25,7 +58,11 @@ function doSomething() {
 				console.log("%s finished (timeoutID = %i)", new Date().toString(), timeoutID);
 
 			clearTimeout(timeoutID);
-			resolve();
+			
+			if (withReject)
+				reject("reject");
+			else
+				resolve("resolve");
 		}, 2000);
 
 		if(window.console && console.log)

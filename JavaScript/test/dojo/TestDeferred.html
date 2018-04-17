@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test dojo/Deferred</title>
+	</head>
+	<body>
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true
+};
+		</script>
+
+		<script src="../../dojo/dojo/dojo.js"></script>
+
+		<script>
+require(["dojo/Deferred", "dojo/when"], function(Deferred, when){
+	function xhr(message){
+		if (window.console && console.log)
+			console.log("xhr(%o)", arguments);
+
+		var
+			deferred = new Deferred(),
+			timeoutProgress = setTimeout(function(){
+				clearTimeout(timeoutProgress);
+				deferred.progress(message + " (progress)");
+			}, 1000),
+			/*timeoutReject = setTimeout(function(){
+				clearTimeout(timeoutReject);
+				deferred.reject(message + " (reject)");
+			}, 1500),*/
+			timeoutResolve = setTimeout(function(){
+				clearTimeout(timeoutResolve);
+				deferred.resolve(message + " (resolve)");
+			}, 2000);
+		
+		return deferred.promise;
+	};
+
+	xhr("url1").then(function(result){
+		if (window.console && console.log)
+			console.log("resolve %s", result);
+
+		return xhr("url2");
+	}, function(err){
+		if (window.console && console.log)
+			console.log("reject %s", err);
+	}, function(progress){
+		if (window.console && console.log)
+			console.log("progress %s", progress);
+	}).then(function(result){
+		if (window.console && console.log)
+			console.log("resolve %s", result);
+
+		return xhr("url3");
+	}, function(err){
+		if (window.console && console.log)
+			console.log("reject %s", err);
+	}, function(progress){
+		if (window.console && console.log)
+			console.log("progress %s", progress);
+	}).then(function(result){
+		if (window.console && console.log)
+			console.log("resolve %s", result);
+	}, function(err){
+		if (window.console && console.log)
+			console.log("reject %s", err);
+	}, function(progress){
+		if (window.console && console.log)
+			console.log("progress %s", progress);
+	});
+	
+	when(xhr("when"),
+		function(result){
+			if (window.console && console.log)
+				console.log("resolve %s", result);
+		}, function(err){
+			if (window.console && console.log)
+				console.log("reject %s", err);
+		}, function(progress){
+			if (window.console && console.log)
+				console.log("progress %s", progress);
+		}
+	);
+});
+		</script>
+	</body>
+</html>
+
