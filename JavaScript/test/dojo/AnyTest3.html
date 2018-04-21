@@ -19,10 +19,20 @@ var dojoConfig = {
 
 		<script>
 var r = require(["demo/Person"], function(Person){
-	var person = new Person("phiggins", 42, "Tennessee");
+	var
+		person1 = new Person("phiggins", 42, "Tennessee"),
+		person2 = new Person("person2", 13, "person2");
 
 	if (window.console && console.log)
-		console.log(person);
+	{
+		console.log(person1);
+		console.log(person1.getName());
+		console.log(person2);
+		console.log(person2.getName());
+		person1.setName("person1");
+		console.log(person1.getName());
+		console.log(person2.getName());
+	}
 });
 
 if (window.console && console.log)

@@ -25,14 +25,17 @@ require(["dojo/Deferred", "dojo/when"], function(Deferred, when){
 			deferred = new Deferred(),
 			timeoutProgress = setTimeout(function(){
 				clearTimeout(timeoutProgress);
+				timeoutProgress = null;
 				deferred.progress(message + " (progress)");
 			}, 1000),
 			/*timeoutReject = setTimeout(function(){
 				clearTimeout(timeoutReject);
+				timeoutReject = null;
 				deferred.reject(message + " (reject)");
 			}, 1500),*/
 			timeoutResolve = setTimeout(function(){
 				clearTimeout(timeoutResolve);
+				timeoutResolve = null;
 				deferred.resolve(message + " (resolve)");
 			}, 2000);
 		
@@ -70,6 +73,24 @@ require(["dojo/Deferred", "dojo/when"], function(Deferred, when){
 	}, function(progress){
 		if (window.console && console.log)
 			console.log("progress %s", progress);
+	}).then(function(result){
+		if (window.console && console.log)
+			console.log("final resolve %s", result);
+	}, function(err){
+		if (window.console && console.log)
+			console.log("final reject %s", err);
+	}, function(progress){
+		if (window.console && console.log)
+			console.log("final progress %s", progress);
+	}).then(function(result){
+		if (window.console && console.log)
+			console.log("final final resolve %s", result);
+	}, function(err){
+		if (window.console && console.log)
+			console.log("final final reject %s", err);
+	}, function(progress){
+		if (window.console && console.log)
+			console.log("final final progress %s", progress);
 	});
 	
 	when(xhr("when"),
