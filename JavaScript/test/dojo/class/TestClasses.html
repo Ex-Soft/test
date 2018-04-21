@@ -1,0 +1,484 @@
+﻿<!doctype html>
+<!-- http://dojotoolkit.org/documentation/tutorials/1.10/declare/index.html -->
+<!-- http://dojotoolkit.org/reference-guide/1.10/dojo/_base/declare.html -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Classes</title>
+	</head>
+	<body>
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true
+};
+		</script>
+
+		<script src="../../../dojo/dojo/dojo.js"></script>
+
+		<script>
+// Static objects
+/*define(['dojo/_base/declare'], function(declare){
+	var Demo = declare(null, {
+		constructor: function(){
+			console.debug("this is Demo object #" + Demo.counter++);
+		}
+	});
+
+	Demo.counter = 0;
+
+	return Demo;
+});*/
+
+// Private
+/*
+define(["dojo/_base/declare"], function(declare){
+	var _MyPrivateItem = declare(null, {
+		someProperty: null
+	});
+
+	return declare(null, {
+		item: null,
+
+		constructor: function(){
+			this.item = new _MyPRivateItem();
+		}
+	});
+});
+*/
+
+require(["dojo/_base/declare", "dojo/_base/lang"], function(declare, lang){
+	var VanillaSoftServe = declare(null, {
+		constructor: function(){
+			console.debug("adding soft serve");
+		}
+	});
+
+	var OreoMixin = declare(null, {
+		constructor: function(){
+			console.debug("mixing in oreos");
+		},
+		kind: "plain"
+	});
+
+	var CookieDoughMixin = declare(null, {
+		constructor: function(){
+			console.debug("mixing in cookie dough");
+		},
+		chunkSize: "medium"
+	});
+
+	var MultipleInheritance = declare([VanillaSoftServe, OreoMixin, CookieDoughMixin], {
+		constructor: function(){
+			console.debug("A blizzard with " +
+				this.kind + " oreos and " +
+				this.chunkSize + "-sized chunks of cookie dough.");
+		}
+	});
+	new MultipleInheritance();
+
+	Person = declare(null, {
+		name: "Anonymous",
+		age: null,
+		residence: "Universe A",
+
+		constructor: function(/*Object*/ kwArgs){
+			lang.mixin(this, kwArgs);
+		},
+
+		moveTo: function(/*String*/ residence){
+			this.residence = residence;
+		}
+	});
+	var
+		anon  = new Person(),
+		alice = new Person({ name: "Alice", age: 42, residence: "Universe 1" });
+
+	var F = function(){ if(window.console && console.log) console.log("raw constructor"); };
+	F.prototype.method = function(){
+		if(window.console && console.log) console.log("raw method");
+	};
+	var A = declare(F, {
+		constructor: function(){
+			if(window.console && console.log) console.log("A.constructor");
+		},
+		method: function(){
+			if(window.console && console.log) console.log("before calling F.method...");
+			this.inherited(arguments);
+			if(window.console && console.log) console.log("...back in A");
+		}
+	});
+	new A().method();
+	// raw constructor
+	// A.constructor
+	// before calling F.method...
+	// raw method
+	// ...back in A
+
+	A = declare(null, {
+		"-chains-": {
+			destroy: "before"
+		}
+	});
+	var B = declare(A, {
+		constructor: function(){
+			if(window.console && console.log) console.log("B.constructor");
+		},
+		destroy: function(){
+			if(window.console && console.log) console.log("B.destroy");
+		}
+	});
+	var C = declare(B, {
+		constructor: function(){
+			if(window.console && console.log) console.log("C.constructor");
+		},
+		destroy: function(){
+			if(window.console && console.log) console.log("C.destroy");
+		}
+	});
+	new C().destroy();
+	// B.constructor
+	// C.constructor
+	// C.destroy
+	// B.destroy
+
+	A = declare(null, {
+		"-chains-": {
+			m1: "before"
+		},
+		m1: function(){
+			if(window.console && console.log) console.log("A.m1");
+		},
+		m2: function(){
+			if(window.console && console.log) console.log("A.m2");
+		}
+	});
+	B = declare(A, {
+		"-chains-": {
+			m2: "after"
+		},
+		m1: function(){
+			if(window.console && console.log) console.log("B.m1");
+		},
+		m2: function(){
+			if(window.console && console.log) console.log("B.m2");
+		}
+	});
+	var x = new B();
+	x.m1();
+	// B.m1
+	// A.m1
+	x.m2();
+	// A.m2
+	// B.m2
+
+	A = declare(null, {
+		m1: function(){
+			if(window.console && console.log) console.log("A.m1");
+		},
+		m2: function(){
+			if(window.console && console.log) console.log("A.m2");
+		}
+	});
+	B = declare(A, {
+		m1: function(){
+			this.inherited(arguments);
+			if(window.console && console.log) console.log("B.m1");
+		}
+	});
+	B.extend({
+		m2: function(){
+			this.inherited(arguments);
+			if(window.console && console.log) console.log("B.m2");
+		}
+	});
+	x = new B();
+	dojo.safeMixin(x, {
+		m1: function(){
+			this.inherited(arguments);
+			if(window.console && console.log) console.log("X.m1");
+		},
+		m2: function(){
+			this.inherited(arguments);
+			if(window.console && console.log) console.log("X.m2");
+		}
+	});
+	x.m2();
+	// A.m1
+	// B.m1
+	// X.m1
+
+	A = declare(null, {
+		m1: function(){ /*...*/ },
+		m2: function(){ /*...*/ },
+		m3: function(){ /*...*/ },
+		m4: function(){ /*...*/ },
+		m5: function(){ /*...*/ }
+	});
+
+	B = declare(A, {
+		m1: function(){
+			// we can do that because m1 is annotated by dojo.declare()
+			return this.inherited(arguments); // calls A.m1
+		}
+	});
+
+	B.extend({
+		m2: function(){
+			// we can do that because m2 is annotated by class.extend()
+			return this.inherited(arguments); // calls A.m2
+		}
+	});
+
+	lang.extend(B, {
+		m3: function(){
+			// we have to specify the name because
+			// this method is not annotated properly
+			return this.inherited("m3", arguments); // calls A.m3
+		}
+	});
+
+	x = new B();
+
+	declare.safeMixin(x, {
+		m4: function(){
+			// we can do that because m4 is annotated by dojo.safeMixin()
+			return this.inherited(arguments); // calls A.m4
+		}
+	});
+
+	lang.mixin(x, {
+		m5: function(){
+			// we have to specify the name because
+			// this method is not annotated properly
+			return this.inherited("m5", arguments); // calls A.m5
+		}
+	});
+
+	A = declare(null, {
+		"-chains-": {
+			init:    "after",
+			destroy: "before"
+		},
+
+		init: function(token){
+			this.initialized = true;
+			this.token = token;
+			console.log("A.init");
+		},
+
+		destroy: function(){
+			console.log("A.destroy");
+		}
+	});
+
+	B = declare(A, {
+		init: function(token){
+			console.log("B.init");
+			// more code
+		},
+
+		destroy: function(){
+			console.log("B.destroy");
+			// more code
+		}
+	});
+
+	x = new B();
+	x.init(42);
+	x.destroy();
+	// A.init
+	// B.init
+	// B.destroy
+	// A.destroy
+
+	A = declare(null, {
+		constructor: function(){
+			console.log("A");
+		}
+	});
+
+	B = declare(A, {
+		"-chains-": {
+			constructor: "manual"
+		},
+		constructor: function(){
+			console.log("B");
+		}
+	});
+
+	C = declare(B, {
+		constructor: function(){
+			console.log("C - 1");
+			this.inherited(arguments);
+			console.log("C - 2");
+		}
+	});
+
+	x = new C();
+	// C - 1
+	// B
+	// C - 2
+
+	A = declare(null, {
+		m1: function(){
+			// ...
+		}
+	});
+
+	A.extend({
+		m1: function(){
+			// this method will replace the original method
+			// ...
+		},
+
+		m2: function(){
+			// ...
+		}
+	});
+
+	x = new A();
+	x.m1();
+	x.m2();
+
+	var
+		classWithObjectProperties = declare(null, {
+			// not strictly necessary, but good practice
+			// for readability to declare all properties
+			memberList: null,
+			roomMap: null,
+
+			constructor: function () {
+				// initializing these properties with values in the constructor
+				// ensures that they ready for use by other methods
+				// (and are not null or undefined)
+				this.memberList = [];
+				this.roomMap = {};
+			}
+		}),
+		Base = declare("testClasses.Base", null, {
+			primitiveVal: 5,
+			objectVal: [1, 2, 3],
+
+			_property1: "property1 (from base)",
+
+			get property1() { return this._property1; },
+			set property1(val) { this._property1 = val; },
+
+			property2: "property2 (from base)",
+
+			propertyA: "propertyA (from base)",
+
+			constructor: function(property1, property2){
+				if (window.console && console.log)
+					console.log("testClasses.Base.ctor(%o)", arguments);
+
+				if(property1)
+					this.property1 = property1;
+				if(property2)
+					this.property2 = property2;
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testClasses.Base.destroy(%o)", arguments);
+			},
+
+			func1: function(){
+				if (window.console && console.log)
+					console.log("testClasses.Base.func1(%o) %s", arguments, this.property1);
+			}
+		}),
+		Derived = declare("testClasses.Derived", Base, {
+
+			propertyA: "propertyA (from derived)",
+
+			_property3: "property3 (from derived)",
+
+			get property3() { return this._property3; },
+			set property3(val) { this._property3 = val; },
+
+			constructor: function(property1, property2, property3){
+				if (window.console && console.log)
+					console.log("testClasses.Derived.ctor(%o)", arguments);
+
+				if(property3)
+					this.property3 = property3;
+			},
+
+			func1: function(){
+				if (window.console && console.log)
+					console.log("testClasses.Derived.func1(%o) %s", arguments, this.property1);
+
+				this.inherited(arguments);
+			}
+		}),
+		DerivedDerived = declare("testClasses.DerivedDerived", Derived, {
+			propertyA: "propertyA (from derived derived)"
+		}),
+		ClassWithObjectInitializer = declare("testClasses.ClassWithObjectInitializer", null, {
+
+			property1: "defaultValue",
+
+			constructor: function(args){
+				declare.safeMixin(this, args);
+			}
+		});
+
+	var
+		base1 = new Base(),
+		base2 = new Base("property1 (from new Base(property1))"),
+		base3 = new Base("property1 (from new Base(property1, property2))", "property2 (from new Base(property1, property2))"),
+		derived1 = new Derived(),
+		derived2 = new Derived("property1 (from new Derived(property1))"),
+		derived3 = new Derived("property1 (from new Derived(property1, property2))", "property2 (from new Derived(property1, property2))"),
+		derived4 = new Derived("property1 (from new Derived(property1, property2, property3))", "property2 (from new Derived(property1, property2, property3))", "property3 (from new Derived(property1, property2, property3))"),
+		classWithObjectInitializer1 = new ClassWithObjectInitializer(),
+		classWithObjectInitializer2 = new ClassWithObjectInitializer({ property1: "property1 from new ClassWithObjectInitializer({})", property2: "property2 from new ClassWithObjectInitializer({})" }),
+		derivedDerived1 = new DerivedDerived();
+
+	if (window.console && console.log)
+	{
+		console.log(base1);
+		console.log(base2);
+		console.log(base3);
+		console.log(base1.property1);
+		console.log(base2.property1);
+		console.log(base3.property1);
+
+		console.log(derived1);
+		console.log(derived2);
+		console.log(derived3);
+		console.log(derived4);
+		console.log(derived1.property3);
+		console.log(derived2.property3);
+		console.log(derived3.property3);
+		console.log(derived4.property3);
+
+		console.log(derivedDerived1);
+
+		base3.func1();
+		derived4.func1();
+
+		console.log(classWithObjectInitializer1);
+		console.log(classWithObjectInitializer2);
+
+		console.log("base1.primitiveVal %s== 5", base1.primitiveVal === 5 ? "=" : "!");
+		console.log("base2.primitiveVal %s== 5", base2.primitiveVal === 5 ? "=" : "!");
+		base2.primitiveVal = 10;
+		console.log("base1.primitiveVal %s== 5", base1.primitiveVal === 5 ? "=" : "!");
+		console.log("base2.primitiveVal %s== 10", base2.primitiveVal === 10 ? "=" : "!");
+
+		console.log("base1.objectVal %s== base2.objectVal", base1.objectVal === base2.objectVal ? "=" : "!");
+		base2.objectVal.push(4);
+		console.log("base1.objectVal.length %s== 4", base1.objectVal.length === 4 ? "=" : "!");
+		console.log("base1.objectVal[3] %s== 4", base1.objectVal[3] === 4 ? "=" : "!");
+		base2.objectVal = [];
+		console.log("base1.objectVal %s== base2.objectVal", base1.objectVal === base2.objectVal ? "=" : "!");
+	}
+});
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../../dojo/dojo/resources/dojo.css">
+		<link rel="stylesheet" href="../../dojo/dijit/themes/claro/claro.css">
+		<link rel="stylesheet" href="../../dojo/dojox/grid/resources/Grid.css">
+		<link rel="stylesheet" href="../../dojo/dojox/grid/resources/claroGrid.css">
+	</head>
+	<body>
+		<div id="GridId"></div>
+		<input type="button" value="Add" onclick="onAdd()">
+		<input type="button" value="Edit" onclick="onEdit()">
+		<input type="button" value="Delete" onclick="onDelete()">
+		<script>
+function onAdd()
+{
+	var row;
+	row = grid.store.newItem({name: new Date().toString(), department: new Date().toString()});
+	console.log(row);
+}
+
+function onEdit()
+{
+	var row;
+	if (!(row  = employeeStore.get("Jim")))
+		return;
+
+	grid.store.setValue(row, "department", new Date().toString());
+	console.log(row);
+}
+
+function onDelete()
+{
+	var row;
+	if (!(row  = employeeStore.get("Bill")))
+		return;
+
+	grid.store.deleteItem(row);
+}
+
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true
+};
+		</script>
+
+		<script src="../../dojo/dojo/dojo.js"></script>
+		<script>
+require(["dojo/store/Memory", "dojox/grid/DataGrid", "dojo/data/ObjectStore"],
+    function(Memory, DataGrid, ObjectStore){
+
+        employees = [
+            {name:"Jim", department:"accounting"},
+            {name:"Bill", department:"engineering"},
+            {name:"Mike", department:"sales"},
+            {name:"John", department:"sales"}
+        ];
+
+        employeeStore = new Memory({data:employees, idProperty: "name"});
+
+	grid = new DataGrid({
+            store: new ObjectStore({ objectStore: employeeStore }),
+            structure: [
+                { name: "name", field: "name" },
+                { name: "department", field: "department" }
+            ]
+	}, "GridId");
+	grid.startup();
+});
+		</script>
+	</body>
+</html>
+

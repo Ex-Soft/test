@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test dojo/Deferred</title>
+	</head>
+	<body>
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true
+};
+		</script>
+
+		<script src="../../dojo/dojo/dojo.js"></script>
+
+		<script>
+require(["dojo/Deferred"], function(Deferred, when){
+	function xhr(message, action, timeout){
+		if (window.console && console.log)
+			console.log("xhr(%o)", arguments);
+
+		var
+			deferred = new Deferred(),
+			timeoutID = setTimeout(function(){
+				clearTimeout(timeoutID);
+				timeoutID = null;
+				deferred[action](message + " (deferred." + action + ")");
+			}, timeout);
+		
+		return deferred.promise;
+	};
+
+	function Get(url, action, timeout){
+		if (window.console && console.log)
+			console.log("Get(%o)", arguments);
+
+		return xhr(url, action, timeout);
+	};
+
+	Get("url1", "resolve", 1000)
+	//Get("url1", "reject", 1000)
+	.then(function(result){
+		if (window.console && console.log)
+			console.log("#1 then.resolve %s", result);
+
+		return Get("url2", "resolve", 5000);
+		//return Get("url2", "reject", 5000);
+	}/*, function(err){
+		if (window.console && console.log)
+			console.log("#1 then.err %s", err);
+	}*/).then(function(result){
+		if (window.console && console.log)
+			console.log("#2 then.resolve %s", result);
+
+		//return Get("url3", "resolve", 2000);
+		return Get("url3", "reject", 2000);
+	}/*, function(err){
+		if (window.console && console.log)
+			console.log("#2 then.err %s", err);
+	}*/).then(function(result){
+		if (window.console && console.log)
+			console.log("#3 then.resolve %s", result);
+	}/*, function(err){
+		if (window.console && console.log)
+			console.log("#3 then.err %s", err);
+	}*/).then(function(result){
+		if (window.console && console.log)
+			console.log("final then.resolve %s", result);
+	}, function(err){
+		if (window.console && console.log)
+			console.log("final then.err %s", err);
+	}).then(function(result){
+		if (window.console && console.log)
+			console.log("final final then.resolve %s", result);
+	}, function(err){
+		if (window.console && console.log)
+			console.log("final final then.err %s", err);
+	});
+});
+		</script>
+	</body>
+</html>
+
