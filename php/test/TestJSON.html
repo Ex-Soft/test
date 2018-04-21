@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Test JSON</title>
+		<script>
+function onLoad()
+{
+	DoIt("TestJSON.php");
+}
+
+function DoIt(url, params, HttpMethod)
+{
+	if(req = initXMLHTTPRequest())
+	{
+		var
+			FileName = document.location.href,
+			pos = FileName.lastIndexOf("/");
+
+		if(pos != -1)
+			FileName = FileName.substr(0,pos+1)+url;
+		if(!HttpMethod)
+			HttpMethod = "GET";
+		req.onreadystatechange = onReadyState;
+		req.open(HttpMethod, FileName, true);
+		req.send(params);
+	}
+}
+
+function initXMLHTTPRequest()
+{
+	var
+		xRequest = null;
+
+	if(window.XMLHttpRequest)
+		xRequest = new XMLHttpRequest();
+	else if(window.ActiveXObject)
+	{
+		try
+		{
+			xRequest = new ActiveXObject("Msxml2.XMLHTTP"); // alert("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{                                   
+				xRequest = new ActiveXObject("Microsoft.XMLHTTP"); // alert("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				if (window.console && console.log)
+					console.log(e);
+			}
+        	}
+	}
+
+	return(xRequest);
+}
+
+function onReadyState()
+{
+	if(req.readyState == 4 && req.status == 200)
+	{
+		toConsole("loading... [" + req.readyState + "]");
+		toConsole("xRequest.status = " + req.status);
+
+		toConsole(req.response);
+		toConsole(req.responseText);
+
+		if (window.console && console.log)
+		{
+			console.log("Array.isArray(req.response) = %o", Array.isArray(req.response));
+			console.log("Array.isArray(req.responseText) = %o", Array.isArray(req.responseText));
+		}
+
+		var
+			array = JSON.parse(req.response);
+
+		if (window.console && console.log)
+			console.log("Array.isArray(array (from response)) = %o", Array.isArray(array));
+
+		array = JSON.parse(req.responseText);
+		if (window.console && console.log)
+			console.log("Array.isArray(array (from responseText)) = %o", Array.isArray(array));
+	}
+	else
+		toConsole("loading... [" + req.readyState + "]");
+}
+
+function toConsole(data)
+{
+	if (window.console && console.log)
+		console.log(data);
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
+
