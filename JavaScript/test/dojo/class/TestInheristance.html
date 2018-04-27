@@ -1,0 +1,210 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Inheristance</title>
+	</head>
+	<body>
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true
+};
+		</script>
+
+		<script src="../../../dojo/dojo/dojo.js"></script>
+
+		<script>
+require(["dojo/_base/declare"], function(declare){
+	var
+		BaseControllerWithChains = declare("testInheristance.BaseControllerWithChains", null, {
+			"-chains-": {
+				destroy: "before",
+				initWidget: "after"
+			},
+
+			constructor: function(widget){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseControllerWithChains.ctor(%o)", arguments);
+
+				this.widget = widget;
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseControllerWithChains.destroy(%o)", arguments);
+			},
+
+			initWidget: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseControllerWithChains.initWidget(%o) %s", arguments, this.widget.declaredClass);
+			}
+		}),
+		ControllerWithChains = declare("testInheristance.ControllerWithChains", BaseControllerWithChains, {
+			constructor: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.ControllerWithChains.ctor(%o)", arguments);
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.ControllerWithChains.destroy(%o)", arguments);
+			},
+
+			initWidget: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.ControllerWithChains.initWidget(%o) %s", arguments);
+			}
+		}),
+		BaseWidgetWithChains = declare("testInheristance.BaseWidgetWithChains", null, {
+			"-chains-": {
+				destroy: "before",
+				init: "after"
+			},
+
+			controller: null,
+
+			constructor: function(controller){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseWidgetWithChains.ctor(%o)", arguments);
+
+				this.controller = controller ? new controller(this) : new BaseControllerWithChains(this);
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseWidgetWithChains.destroy(%o)", arguments);
+
+				if (this.controller)
+					this.controller.destroy();
+			},
+
+			init: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseWidgetWithChains.init(%o)", arguments);
+
+				if (this.controller)
+					this.controller.initWidget();
+			}
+		}),
+		WidgetWithChains = declare("testInheristance.WidgetWithChains", BaseWidgetWithChains, {
+			constructor: function(args){
+				if (window.console && console.log)
+					console.log("testInheristance.WidgetWithChains.ctor(%o)", arguments);
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.WidgetWithChains.destroy(%o)", arguments);
+			},
+
+			init: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.WidgetWithChains.init(%o)", arguments);
+			}
+		}),
+		BaseController = declare("testInheristance.BaseController", null, {
+			constructor: function(widget){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseController.ctor(%o)", arguments);
+
+				this.widget = widget;
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseController.destroy(%o)", arguments);
+			},
+
+			initWidget: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseController.initWidget(%o) %s", arguments, this.widget.declaredClass);
+			}
+		}),
+		Controller = declare("testInheristance.Controller", BaseController, {
+			constructor: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.Controller.ctor(%o)", arguments);
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.Controller.destroy(%o)", arguments);
+
+				this.inherited(arguments);
+			},
+
+			initWidget: function(){
+				this.inherited(arguments);
+
+				if (window.console && console.log)
+					console.log("testInheristance.Controller.initWidget(%o) %s", arguments);
+			}
+		}),
+		BaseWidget = declare("testInheristance.BaseWidget", null, {
+			controller: null,
+
+			constructor: function(controller){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseWidget.ctor(%o)", arguments);
+
+				this.controller = controller ? new controller(this) : new BaseController(this);
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseWidget.destroy(%o)", arguments);
+
+				if (this.controller)
+					this.controller.destroy();
+			},
+
+			init: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.BaseWidget.init(%o)", arguments);
+
+				if (this.controller)
+					this.controller.initWidget();
+			}
+		}),
+		Widget = declare("testInheristance.Widget", BaseWidget, {
+			constructor: function(args){
+				if (window.console && console.log)
+					console.log("testInheristance.Widget.ctor(%o)", arguments);
+			},
+
+			destroy: function(){
+				if (window.console && console.log)
+					console.log("testInheristance.Widget.destroy(%o)", arguments);
+
+				this.inherited(arguments);
+			},
+
+			init: function(){
+				this.inherited(arguments);
+
+				if (window.console && console.log)
+					console.log("testInheristance.Widget.init(%o)", arguments);
+			}
+		});
+
+	var
+		widgetWithChains = new WidgetWithChains(ControllerWithChains);
+
+	widgetWithChains.init();
+	widgetWithChains.destroy();
+
+	if (window.console && console.log)
+		console.log("-");
+
+	var
+		widget = new Widget(Controller);
+
+	widget.init();
+	widget.destroy();	
+});
+		</script>
+	</body>
+</html>
+

@@ -49,6 +49,15 @@ define(["dojo/_base/declare"], function(declare){
 */
 
 require(["dojo/_base/declare", "dojo/_base/lang"], function(declare, lang){
+	var
+		o1 = {p1:"p1", p3:"p3", p5:"p5 (from o1)"},
+		o2 = {p2:"p2", p4:"p4", p5:"p5 (from o2)"},
+		o3 = declare.safeMixin(o1, o2);
+
+	o1 = {p1:"p1", p3:"p3", p5:"p5 (from o1)"};
+	o2 = {p2:"p2", p4:"p4", p5:"p5 (from o2)"};
+	o3 = lang.mixin(o1, o2);
+
 	var VanillaSoftServe = declare(null, {
 		constructor: function(){
 			console.debug("adding soft serve");
