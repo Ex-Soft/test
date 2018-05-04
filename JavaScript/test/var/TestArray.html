@@ -6,10 +6,24 @@
 var
 	a=[0,1,3,4,5],
 	aa,
+	aaa,
 	i;
 
 if(window.console && console.clear)
 	console.clear();
+
+if(window.console && console.log)
+{
+	i = 5;
+	aa = new Array(i);
+	console.log(aa);
+	aaa = aa.concat(["2"]);
+	console.log(aaa);
+	aaa = aaa.join("0");
+	console.log(aaa);
+	aaa = aaa.slice(-i);
+	console.log(aaa);
+}
 
 aa = [
 	{ id: 1, value: "1st" },
