@@ -86,3 +86,7 @@ _ReSharper*
 *.cpp~
 makefile~
 *.[Dd][Bb][Ff]
+
+SELinux
+*.pp
+*te
