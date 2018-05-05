@@ -25,6 +25,14 @@ if(window.console && console.log)
 	console.log(aaa);
 }
 
+aa = [1, 4];
+aaa = a.filter(function(item) { return aa.indexOf(item) !== -1; });
+if(window.console && console.log)
+	console.log("intersect = %o", aaa);
+aaa = a.filter(function(item) { return aa.indexOf(item) === -1; });
+if(window.console && console.log)
+	console.log("except = %o", aaa);
+
 aa = [
 	{ id: 1, value: "1st" },
 	{ id: 2, value: "2nd" },
