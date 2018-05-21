@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>add dynamic css</title>
+		<script>
+function onLoad()
+{
+	var
+		head = document.head || document.getElementsByTagName("head")[0],
+		body = document.body || document.getElementsByTagName("body")[0],
+		link = document.createElement("link"),
+		span = document.createElement("span");
+
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	link.href = "AddDynamicCSS.css";
+	
+	if (link.attachEvent)
+		link.attachEvent("onload", onLoadCss);
+	else if(link.addEventListener)
+		link.addEventListener("load", onLoadCss, false);
+	else
+		link.onload = onLoadCss;
+
+	head.appendChild(link);
+
+	span.setAttribute("class", "test");
+	span.appendChild(document.createTextNode("blah-blah-blah"));
+
+	body.appendChild(span);
+}
+
+function onLoadCss()
+{
+	if (window.console && console.log)
+		console.log("onLoadCss");
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+		<span>blah-blah-blah</span>
+	</body>
+</html>
