@@ -44,7 +44,7 @@ try {
 		echo "Tampax<br/>";
 	echo "<br/>";
 
-	$o = array("p1" => 1, "p2" => "p2", "p3" => array("1st", "2nd", "3rd"), "p4" => array("p1" => 1, "p2" => "p2"));
+	$o = array("p1" => 1, "p2" => "p2", "p3" => array("1st", "2nd", "3rd"), "p4" => array("p1" => 1, "p2" => "p2"), "p5" => array());
 	echo serialize($o);
 	echo "<br/>";
 	echo 'gettype($o) = ' . gettype($o) . "<br/>";
@@ -67,7 +67,18 @@ try {
 	}
 	echo "<br/>";
 
-	$o = (object)["p1" => 1, "p2" => "p2", "p3" => array("1st", "2nd", "3rd"), "p4" => (object)["p1" => 1, "p2" => "p2"]];
+	echo 'foreach($o["p5"] as $oo) begin<br/>';
+	foreach($o["p5"] as $oo)
+		echo "$oo<br/>";
+	echo 'foreach($o["p5"] as $oo) end<br/>';
+	echo "<br/>";
+	echo 'isset($o["p5"]) = ' . isset($o["p5"]) . "<br/>";
+	echo 'empty($o["p5"]) = ' . empty($o["p5"]) . "<br/>";
+	echo 'empty($o["p3"]) = "' . empty($o["p3"]) . "\"<br/>";
+	echo 'is_null($o["p5"]) = "' . is_null($o["p5"]) . "\"<br/>";
+	echo "<br/>";
+
+	$o = (object)["p1" => 1, "p2" => "p2", "p3" => array("1st", "2nd", "3rd"), "p4" => (object)["p1" => 1, "p2" => "p2"], "p5" => array()];
 	echo serialize($o);
 	echo "<br/>";
 
@@ -78,6 +89,12 @@ try {
 		echo '$key=' . $key. ' gettype($value) ' . gettype($value) . "<br/>";
 		echoObject($value);
 	}
+
+	$propertyName = "p3";
+
+	if (isset($o) && ((gettype($o) == "object" && property_exists($o, $propertyName)) || (gettype($o) == "array" && array_key_exists($propertyName, $o))))
+            foreach ($o->$propertyName as $p)
+		echo $p;
 }
 catch(Exception $e) {
 	echo 'Message: ' .$e->getMessage();
