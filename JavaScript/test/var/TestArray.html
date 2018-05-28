@@ -254,6 +254,14 @@ if(a.some)
 		console.log("Array.some() = %s", i);
 }
 
+a = [{id:1, name: "name# 1", value: "value# 1"}, {id:2, name: "name# 2"}, {id:3, value: "value# 3"}];
+if(a.map)
+{
+	aa = a.map(function(item) { return {id: item.id, name: item.value || item.name}; });
+	if(window.console && console.log)
+		console.log("Array.map() = %o", aa);
+}
+
 a=[];
 //a=[1,2,3];
 a["z"]=9;
