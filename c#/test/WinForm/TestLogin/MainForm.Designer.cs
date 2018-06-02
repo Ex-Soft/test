@@ -13,6 +13,8 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            System.Diagnostics.Debug.WriteLine("MainForm: Dispose({0})", disposing);
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -38,6 +40,13 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.MainFormClosing);
+            this.Closed += new System.EventHandler(this.MainFormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainFormFormClosed);
+            this.Load += new System.EventHandler(this.MainFormLoad);
+            this.Disposed += new System.EventHandler(this.MainFormDisposed);
+            this.HandleDestroyed += new System.EventHandler(this.MainFormHandleDestroyed);
             this.ResumeLayout(false);
 
         }
