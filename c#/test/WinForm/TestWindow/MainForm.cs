@@ -99,6 +99,76 @@ namespace TestWindow
             WriteToLog(string.Format("Size: {0}, ClientSize: {1}, MinimumSize: {2}", form.Size, form.ClientSize, form.MinimumSize));
         }
 
+        void MainFormHandleCreated(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: HandleCreated");
+        }
+
+        void MainFormBindingContextChanged(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: BindingContextChanged");
+        }
+
+        void MainFormLoad(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Load");
+        }
+
+        void MainFormVisibleChanged(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: VisibleChanged");
+        }
+
+        void MainFormActivated(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Activated");
+        }
+
+        void MainFormDeactivate(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Deactivated");
+        }
+
+        void MainFormShown(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Shown");
+        }
+
+        void MainFormEnter(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Enter");
+        }
+
+        void MainFormLeave(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Leave");
+        }
+
+        void MainFormGotFocus(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: GotFocus");
+        }
+
+        void MainFormLostFocus(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: LostFocus");
+        }
+
+        void MainFormValidating(object sender, CancelEventArgs e)
+        {
+            WriteToLog("MainForm: Validating");
+        }
+
+        void MainFormValidated(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: Validated");
+        }
+
+        void MainFormHandleDestroyed(object sender, EventArgs e)
+        {
+            WriteToLog("MainForm: HandleDestroyed", false);
+        }
+
         void MainFormFormClosed(object sender, FormClosedEventArgs e)
         {
             WriteToLog("MainForm: FormClosed", false);
@@ -145,6 +215,90 @@ namespace TestWindow
             WriteToLog(result.ToString());
         }
 
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            WriteToLog("MainForm: OnHandleCreated");
+            base.OnHandleCreated(e);
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            WriteToLog("MainForm: OnHandleDestroyed", false);
+            base.OnHandleDestroyed(e);
+        }
+
+        protected override void OnBindingContextChanged(EventArgs e)
+        {
+            WriteToLog("MainForm: OnBindingContextChanged");
+            base.OnBindingContextChanged(e);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            WriteToLog("MainForm: OnLoad");
+            base.OnLoad(e);
+        }
+
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            WriteToLog("MainForm: OnVisibleChanged");
+            base.OnVisibleChanged(e);
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            WriteToLog("MainForm: OnActivated");
+            base.OnActivated(e);
+        }
+
+        protected override void OnDeactivate(EventArgs e)
+        {
+            WriteToLog("MainForm: OnDeactivated");
+            base.OnDeactivate(e);
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            WriteToLog("MainForm: OnShown");
+            base.OnShown(e);
+        }
+
+        protected override void OnEnter(EventArgs e)
+        {
+            WriteToLog("MainForm: OnEnter");
+            base.OnEnter(e);
+        }
+
+        protected override void OnLeave(EventArgs e)
+        {
+            WriteToLog("MainForm: OnLeave");
+            base.OnLeave(e);
+        }
+
+        protected override void OnGotFocus(EventArgs e)
+        {
+            WriteToLog("MainForm: OnGotFocus");
+            base.OnGotFocus(e);
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            WriteToLog("MainForm: OnLostFocus");
+            base.OnLostFocus(e);
+        }
+
+        protected override void OnValidating(CancelEventArgs e)
+        {
+            WriteToLog("MainForm: OnValidating");
+            base.OnValidating(e);
+        }
+
+        protected override void OnValidated(EventArgs e)
+        {
+            WriteToLog("MainForm: OnValidated");
+            base.OnValidated(e);
+        }
+
         protected override void OnClosing(CancelEventArgs e)
         {
             WriteToLog("MainForm: OnClosing");
@@ -169,6 +323,17 @@ namespace TestWindow
             base.OnFormClosed(e);
         }
         /*
+MainForm: OnHandleCreated
+MainForm: HandleCreated
+MainForm: OnBindingContextChanged
+MainForm: BindingContextChanged
+MainForm: OnLoad
+MainForm: Load
+MainForm: OnVisibleChanged
+MainForm: VisibleChanged
+MainForm: OnActivated
+MainForm: Activated
+MainForm: OnShown
 MainForm: OnClosing
 MainForm: Closing
 MainForm: OnFormClosing
@@ -178,8 +343,10 @@ MainForm: Closed
 MainForm: OnFormClosed
 MainForm: FormClosed
 MainForm: Dispose(True)
+MainForm: OnHandleDestroyed
+MainForm: HandleDestroyed
 MainForm: IsDisposed = False
 MainForm: Disposed
-        */
+*/
     }
 }

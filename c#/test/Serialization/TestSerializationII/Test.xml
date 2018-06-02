@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Container xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ContainerField>1</ContainerField>
   <SmthObject Attribute1="0">
     <Field1>0</Field1>
     <Field2>0</Field2>
-    <Field_Nullable_Decimal />
+    <Field_Nullable_Decimal xsi:nil="true" />
   </SmthObject>
   <SmthObject Attribute1="0">
     <Field1>0</Field1>
     <Field2>0</Field2>
-    <Field_Nullable_Decimal />
+    <Field_Nullable_Decimal xsi:nil="true" />
   </SmthObject>
   <SmthObject Attribute1="0">
     <Field1>0</Field1>
     <Field2>0</Field2>
-    <Field_Nullable_Decimal />
+    <Field_Nullable_Decimal xsi:nil="true" />
   </SmthObject>
 </Container>

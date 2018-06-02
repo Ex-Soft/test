@@ -1,4 +1,4 @@
-﻿//#define TEST_SERIALIZE
+﻿#define TEST_SERIALIZE
 #define TEST_DESERIALIZE
 
 using System;
