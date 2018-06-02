@@ -1,4 +1,6 @@
-﻿using System;
+﻿// https://docs.microsoft.com/en-us/dotnet/framework/winforms/order-of-events-in-windows-forms
+
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
