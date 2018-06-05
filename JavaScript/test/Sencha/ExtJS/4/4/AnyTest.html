@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>ExtJS AnyTest</title>
-		<link rel="stylesheet" href="../../../../ExtJS/ExtJS4/ExtJS4.1.1/resources/css/ext-all.css"/>
+		<link rel="stylesheet" href="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/resources/css/ext-all.css"/>
 		<style>
 .hoverer
 {
 	font-weight: bold ! important;
 }
 		</style>
-		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1/ext-all-debug.js"></script>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
 		<script>
 Ext.Loader.setConfig({
 	enabled: true,
@@ -27,6 +27,7 @@ Ext.onReady(function() {
 		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
 
 	var
+		clientSize = Ext.getBody().getViewSize(),
 		ceLinks = Ext.select("UL[id=navbar] LI"),
 		smthField = Ext.create("Ext.form.field.Text");
 
@@ -37,6 +38,8 @@ Ext.onReady(function() {
 		console.log("smthField instanceof Ext.Component = %s", smthField instanceof Ext.Component);
 		console.log("smthField instanceof Ext.AbstractComponent = %s", smthField instanceof Ext.AbstractComponent);
 		console.log("smthField instanceof Ext.Base = %s", smthField instanceof Ext.Base);
+		console.log("window.screen { height = %i, width = %i }", window.screen.height, window.screen.width);
+		console.log("Ext.getBody().getViewSize() { height = %i, width = %i }", clientSize.height, clientSize.width);
 	}
 
 	if(ceLinks)

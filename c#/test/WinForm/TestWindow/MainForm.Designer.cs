@@ -34,6 +34,7 @@ namespace TestWindow
         {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.buttonTestModal = new System.Windows.Forms.Button();
             this.buttonDoIt = new System.Windows.Forms.Button();
             this.checkBoxModal = new System.Windows.Forms.CheckBox();
             this.checkBoxKeyPreview = new System.Windows.Forms.CheckBox();
@@ -42,7 +43,6 @@ namespace TestWindow
             this.buttonShowModal = new System.Windows.Forms.Button();
             this.tabPageLog = new System.Windows.Forms.TabPage();
             this.listBoxLog = new System.Windows.Forms.ListBox();
-            this.buttonTestModal = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.tabPageLog.SuspendLayout();
@@ -75,6 +75,16 @@ namespace TestWindow
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Main";
             this.tabPageMain.UseVisualStyleBackColor = true;
+            // 
+            // buttonTestModal
+            // 
+            this.buttonTestModal.Location = new System.Drawing.Point(309, 7);
+            this.buttonTestModal.Name = "buttonTestModal";
+            this.buttonTestModal.Size = new System.Drawing.Size(75, 23);
+            this.buttonTestModal.TabIndex = 5;
+            this.buttonTestModal.Text = "Test Modal";
+            this.buttonTestModal.UseVisualStyleBackColor = true;
+            this.buttonTestModal.Click += new System.EventHandler(this.ButtonTestModalClick);
             // 
             // buttonDoIt
             // 
@@ -164,16 +174,6 @@ namespace TestWindow
             this.listBoxLog.Size = new System.Drawing.Size(891, 241);
             this.listBoxLog.TabIndex = 0;
             // 
-            // buttonTestModal
-            // 
-            this.buttonTestModal.Location = new System.Drawing.Point(309, 7);
-            this.buttonTestModal.Name = "buttonTestModal";
-            this.buttonTestModal.Size = new System.Drawing.Size(75, 23);
-            this.buttonTestModal.TabIndex = 5;
-            this.buttonTestModal.Text = "Test Modal";
-            this.buttonTestModal.UseVisualStyleBackColor = true;
-            this.buttonTestModal.Click += new System.EventHandler(this.ButtonTestModalClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,14 +184,28 @@ namespace TestWindow
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.Activated += new System.EventHandler(this.MainFormActivated);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.MainFormClosing);
             this.Closed += new System.EventHandler(this.MainFormClosed);
+            this.Deactivate += new System.EventHandler(this.MainFormDeactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainFormFormClosed);
+            this.Load += new System.EventHandler(this.MainFormLoad);
+            this.Shown += new System.EventHandler(this.MainFormShown);
             this.ResizeEnd += new System.EventHandler(this.MainFormResizeEnd);
+            this.BindingContextChanged += new System.EventHandler(this.MainFormBindingContextChanged);
+            this.VisibleChanged += new System.EventHandler(this.MainFormVisibleChanged);
+            this.HandleCreated += new System.EventHandler(this.MainFormHandleCreated);
+            this.HandleDestroyed += new System.EventHandler(this.MainFormHandleDestroyed);
+            this.Enter += new System.EventHandler(this.MainFormEnter);
+            this.GotFocus += new System.EventHandler(this.MainFormGotFocus);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            this.Leave += new System.EventHandler(this.MainFormLeave);
+            this.LostFocus += new System.EventHandler(this.MainFormLostFocus);
+            this.Validating += new System.ComponentModel.CancelEventHandler(this.MainFormValidating);
+            this.Validated += new System.EventHandler(this.MainFormValidated);
             this.Disposed += new System.EventHandler(this.MainFormDisposed);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);

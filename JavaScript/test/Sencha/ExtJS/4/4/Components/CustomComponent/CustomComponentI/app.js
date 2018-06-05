@@ -102,6 +102,12 @@ Ext.define("CustomPanel", {
 });
 
 Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
 	var
 		p = Ext.create("CustomPanel", {
 			border: 50,
