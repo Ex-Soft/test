@@ -3,9 +3,11 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test Class with static</title>
-		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
 		<script>
 Ext.define("Class", {
+	//singleton: true, // Achtung!!! kill statics
+
 	statics: {
 		staticProperty: { prop: "prop" },
 		
@@ -32,6 +34,8 @@ Ext.define("Class", {
 		this.innerProperty = { prop: "prop" };
 
 		this.foo();
+
+		this.callParent(arguments);
 
 		return this;
 	},
