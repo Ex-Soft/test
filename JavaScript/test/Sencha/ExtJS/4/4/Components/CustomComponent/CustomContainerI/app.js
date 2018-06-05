@@ -149,9 +149,9 @@ Ext.onReady(function() {
 		c = Ext.create("CustomContainer", {
 			title: "CustomContainer",
 			contentType: "application/pdf",
-			src: "../../../../../../objecttag/testpdf1.pdf",
+			src: "../../../../../../../ObjectTag/TestPdf1.pdf",
 			//contentType: "image/jpg",
-			//src: "../../../../../../pix/xpfirewall.jpg"
+			//src: "../../../../../../../pix/xpfirewall.jpg"
 		});
 
 	Ext.create("Ext.window.Window", {
@@ -186,7 +186,7 @@ Ext.onReady(function() {
 				c.setValue("../../../../../../../pix/xpfirewall.jpg", "image/jpg");
 			}
 		}, {
-			text: "mg2",
+			text: "img2",
 			handler: function(btn, e) {
 				c.setValue("../../../../../../../pix/podbor.jpg", "image/jpg");
 			}
