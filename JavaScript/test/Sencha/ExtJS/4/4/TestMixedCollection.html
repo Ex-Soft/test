@@ -5,6 +5,22 @@
 		<title>Test Ext.util.MixedCollection</title>
 		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
 		<script>
+Ext.define("TestObject", {
+	config: {
+		disabled: false
+	},
+
+	constructor: function(config) {
+		config = config || {};
+		this.initConfig(config);
+		return this;
+	},
+	
+	isDisabled: function() {
+		return this.disabled;
+	}
+});
+
 Ext.onReady(function() {
 	if(window.console && console.clear)
 		console.clear();
@@ -68,12 +84,41 @@ Ext.onReady(function() {
 
 	coll.each(function(item, index, length) {
 		if(window.console && console.log)
-			console.log("%o", arguments);
+			console.log("%o", item);
 	});
 
 	coll.add("key4", { prop: "Prop4", rate: 4 });
 	coll.get("key2").rate *= 10;
 	item = coll.last();
+
+	coll.clear();
+	coll.add("key1", new TestObject());
+	coll.add("key2", new TestObject({ disabled: true}));
+	coll.add("key3", new TestObject());
+
+	var
+		enabledFilter = new Ext.util.Filter({
+			filterFn: function (item) {
+				return !item.isDisabled();
+			}
+		}),
+		disabledFilter = new Ext.util.Filter({
+			filterFn: function (item) {
+				return item.isDisabled();
+			}
+		}),
+		coll2 = coll.filter(enabledFilter);
+
+	coll2.each(function(item, index, length) {
+		if(window.console && console.log)
+			console.log("coll[%i].disabled = %o", index, item.disabled);
+	});
+
+	coll2 = coll.filter(disabledFilter);
+	coll2.each(function(item, index, length) {
+		if(window.console && console.log)
+			console.log("coll[%i].disabled = %o", index, item.disabled);
+	});
 });
 		</script>
 	</head>

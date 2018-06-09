@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Ext.util.History</title>
+		<link rel="stylesheet" href="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+	
+	var
+		history = Ext.util.History,
+		onChange = function (token, eOpts) {
+			if(window.console && console.log)
+				console.log("onChange(%o)", arguments);
+		};
+
+	history.init(function (h) {
+		var
+			hash = h.getHash(),
+			token = h.getToken();
+
+		if(window.console && console.log)
+			console.log("history.init(onReady(%o)) getHash() = \"%s\" getToken() = \"%s\"", arguments, hash, token );
+
+		
+	});
+
+	history.on("change", onChange);
+
+	history.add("hash1");
+	history.add("hash2");
+
+	var
+		btnBack = new Ext.button.Button({
+			text: "<-",
+			handler: function () {
+				history.back();
+			},
+			renderTo: Ext.getBody()
+		}),
+		btnForward = new Ext.button.Button({
+			text: "->",
+			handler: function () {
+				history.forward();
+			},
+			renderTo: Ext.getBody()
+		});
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
