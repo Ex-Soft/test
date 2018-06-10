@@ -8,7 +8,8 @@
 Ext.define("Class", {
 	config: {
 		configProp1: { prop: "defaultConfigProp1" },
-		configProp2: { prop: "defaultConfigProp2" }
+		configProp2: { prop: "defaultConfigProp2" },
+		configProp3: { prop: "defaultConfigProp3" }
 	},
 
 	constructor: function(config) {
@@ -22,9 +23,44 @@ Ext.define("Class", {
 		return this;
 	},
 
-	applyConfigProp1: function(val) {
-		if(typeof val === "object")
-			return val;
+	applyConfigProp1: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("Class.applyConfigProp1(%o)", arguments);
+
+		return Ext.isObject(value) ? value : (Ext.isString(value) ? { prop: value } : undefined);
+	},
+
+	/*getConfigProp3: function() {
+		if(window.console && console.log)
+			console.log("Class.getConfigProp3(%o)", arguments);
+
+		return this.configProp3;
+	},*/
+
+	applyConfigProp3: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("Class.applyConfigProp3(%o)", arguments);
+
+		return Ext.isObject(value) ? value : (Ext.isString(value) ? { prop: value } : undefined);
+	},
+
+	updateConfigProp3: function(value, oldValue) {
+		if(window.console && console.log)
+			console.log("Class.updateConfigProp3(%o)", arguments);
+	},
+
+	/*setConfigProp3: function(value) {
+		if(window.console && console.log)
+			console.log("Class.setConfigProp3(%o)", arguments);
+
+		this.configProp3 = value;
+	},*/
+
+	resetConfigProp3: function() {
+		if(window.console && console.log)
+			console.log("Class.resetConfigProp3(%o)", arguments);
+
+		return this.configProp3;
 	}
 });
 
@@ -33,9 +69,14 @@ Ext.onReady(function() {
 		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
 
 	var
-		c = Ext.create("Class", { configConfigProp1: { prop: "configConfigProp1" }, configProp2: { prop: "configProp2" } });
+		c = Ext.create("Class", { configConfigProp1: { prop: "configConfigProp1" }, configProp2: { prop: "configProp2" }, configProp3: { prop: "configProp3" } }),
+		tmp;
 
+	tmp = c.getConfigProp1();
 	c.setConfigProp1("a");
+
+	tmp = c.getConfigProp3();
+	c.setConfigProp3("b");
 
 	if(window.console && console.log)
 		console.log("typeof c.resetConfigProp1 = \"%s\"", typeof c.resetConfigProp1);
