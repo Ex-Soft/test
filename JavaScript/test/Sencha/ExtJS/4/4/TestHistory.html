@@ -27,20 +27,32 @@ Ext.onReady(function() {
 
 		if(window.console && console.log)
 			console.log("history.init(onReady(%o)) getHash() = \"%s\" getToken() = \"%s\"", arguments, hash, token );
-
-		
 	});
 
 	history.on("change", onChange);
-
-	history.add("hash1");
-	history.add("hash2");
 
 	var
 		btnBack = new Ext.button.Button({
 			text: "<-",
 			handler: function () {
 				history.back();
+			},
+			renderTo: Ext.getBody()
+		}),
+		btnAdd = new Ext.button.Button({
+			text: "add",
+			handler: function () {
+				var
+					prefix = "hash",
+					token = history.getToken(),
+					r = new RegExp("(?:" + prefix + ")(\\d*)"),
+					m = !Ext.isEmpty(token) ? token.match(r) : [],
+					n = 0;
+
+				if (!Ext.isEmpty(m) && m.length > 1)
+					n = parseInt(m[1], 10);
+
+				history.add(prefix + (n  + 1));
 			},
 			renderTo: Ext.getBody()
 		}),
