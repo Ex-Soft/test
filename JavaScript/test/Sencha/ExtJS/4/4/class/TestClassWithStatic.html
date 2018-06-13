@@ -22,6 +22,39 @@ Ext.define("Class", {
 
 			//foo(); // foo is not defined
 			//this.foo(); // this.foo is not defined
+		},
+
+		staticMethod2: function() {
+			if(window.console && console.log)
+			{
+				console.log("Class.staticMethod2(%o)", arguments);
+				console.log("this.staticProperty = %o", this.staticProperty);
+				console.log("this.outerProperty = %o", this.outerProperty);
+				console.log("this.innerProperty = %o", this.innerProperty);
+			}
+
+			Class.staticMethod();
+		},
+
+		staticMethod3: function() {
+			if(window.console && console.log)
+			{
+				console.log("Class.staticMethod3(%o)", arguments);
+				console.log("this.staticProperty = %o", this.staticProperty);
+				console.log("this.outerProperty = %o", this.outerProperty);
+				console.log("this.innerProperty = %o", this.innerProperty);
+			}
+
+			var
+				timeoutID = setTimeout(function() {
+					clearTimeout(timeoutID);
+					timeoutID = null;
+
+					if(window.console && console.log)
+						console.log("timeout");
+
+					Class.staticMethod();
+				}, 3000);
 		}
 	},
 
@@ -47,6 +80,10 @@ Ext.define("Class", {
 
 	staticMethodCaller: function() {
 		Class.staticMethod();
+	},
+
+	staticMethod2Caller: function() {
+		Class.staticMethod2();
 	},
 	
 	destroy: function() {
@@ -115,10 +152,15 @@ Ext.onReady(function() {
 		console.log("typeof c2.staticMethod =\"%s\"", typeof c2.staticMethod);
 	}
 	Class.staticMethod();
+	Class.staticMethod2();
 	c1.foo();
 	c2.foo();
 	c1.staticMethodCaller();
 	c2.staticMethodCaller();
+	c1.staticMethod2Caller();
+	c2.staticMethod2Caller();
+
+	Class.staticMethod3();
 });
 		</script>
 	</head>

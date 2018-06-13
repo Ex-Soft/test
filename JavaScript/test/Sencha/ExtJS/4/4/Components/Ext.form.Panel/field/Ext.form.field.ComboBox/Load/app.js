@@ -68,6 +68,18 @@ Ext.onReady(function() {
 						});
 					});
 				}
+			}, {
+				text: "getValue()",
+				handler: function(btn, e) {
+					var
+						form = btn.up("form").getForm(),
+						cb = form.findField("TestComboBox"),
+						value = cb.getValue(),
+						values = form.getValues();
+
+					if(window.console && console.log)
+						console.log("value = %o values = %o", value, values);
+				}
 			}]
 		});
 
