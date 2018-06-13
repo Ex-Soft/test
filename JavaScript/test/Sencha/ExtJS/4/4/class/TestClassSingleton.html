@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test Class (Singleton)</title>
-		<script charset="utf-8" src="../../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
 		<script>
 Ext.Loader.setConfig({
 	enabled: true,
@@ -13,7 +13,26 @@ Ext.Loader.setConfig({
 Ext.define("SimpleSingletonClass", {
 	singleton: true,
 
-	simpleSingletonClassProp: "simpleSingletonClassProp"
+	simpleSingletonClassProp: "simpleSingletonClassProp",
+
+	f1: function () {
+        if(window.console && console.log)
+			console.log("SimpleSingletonClass.f1(%o)", arguments);
+
+		SimpleSingletonClass.f2();
+	},
+
+    f2: function () {
+        if(window.console && console.log)
+			console.log("SimpleSingletonClass.f2(%o)", arguments);
+
+		SimpleSingletonClass.f3();
+	},
+
+    f3: function () {
+        if(window.console && console.log)
+            console.log("SimpleSingletonClass.f3(%o)", arguments);
+    }
 });
 
 Ext.define("SingletonClass", {
@@ -32,6 +51,10 @@ Ext.onReady(function() {
 
 	if(window.console && console.log)
 		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	SimpleSingletonClass.f1();
+	SimpleSingletonClass.f2();
+	SimpleSingletonClass.f3();
 });
 		</script>
 	</head>
