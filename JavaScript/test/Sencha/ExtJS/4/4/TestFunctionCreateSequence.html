@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Ext.Function.createSequence</title>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+	
+	var
+		f1 = function (inp) {
+            if(window.console && console.log)
+                console.log("f1(%o)", arguments);
+
+            return inp * 2;
+        },
+        f2 = function (inp) {
+            if(window.console && console.log)
+                console.log("f2(%o)", arguments);
+
+            return inp * 2;
+        },
+        f3 = function (inp) {
+            if(window.console && console.log)
+                console.log("f3(%o)", arguments);
+
+            return inp * 2;
+        },
+        s1 = Ext.Function.createSequence(f1, f2),
+        s2 = Ext.Function.createSequence(s1, f3),
+        result;
+
+    result = s1(2);
+    if(window.console && console.log)
+        console.log("result = %o", result);
+
+    result = s2(3);
+    if(window.console && console.log)
+        console.log("result = %o", result);
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
