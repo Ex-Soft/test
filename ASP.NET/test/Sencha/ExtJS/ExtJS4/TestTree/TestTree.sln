@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTree", "TestTree.csproj", "{012FA42B-B05A-426F-AD7B-82710A35953D}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTree", "TestTree\TestTree.csproj", "{A09E2313-B3F8-411E-A5CA-9F745685F222}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{012FA42B-B05A-426F-AD7B-82710A35953D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{012FA42B-B05A-426F-AD7B-82710A35953D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{012FA42B-B05A-426F-AD7B-82710A35953D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{012FA42B-B05A-426F-AD7B-82710A35953D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09E2313-B3F8-411E-A5CA-9F745685F222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09E2313-B3F8-411E-A5CA-9F745685F222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09E2313-B3F8-411E-A5CA-9F745685F222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09E2313-B3F8-411E-A5CA-9F745685F222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C16FBC2F-9CA6-40BF-BB59-9CE98BE57413}
 	EndGlobalSection
 EndGlobal
