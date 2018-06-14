@@ -1,0 +1,10 @@
+﻿{"children": {
+        "id": 1,
+        "parentId": 0,
+        "caption": "Folder# 1",
+        "children": [
+            { "id": 2, "parentId": 1, "caption": "Leaf# 1.1" },
+            { "id": 3, "parentId": 1, "caption": "Leaf# 1.2" }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+﻿Ext.define("TestRouting.controller.NavPanel", {
+    extend: "Ext.app.Controller",
+    
+    stores: ["NavStore"],
+
+    models: ["NavModel"],
+
+    init: function() {
+        this.control({
+            "navpanel": {
+                select: this.onSelect
+            }
+        });
+    },
+
+    onSelect: function (panel, record, index, eOpts) {
+        if (window.console && console.log)
+            console.log("onSelect(%o)", arguments);
+    }
+});
