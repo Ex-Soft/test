@@ -18,7 +18,7 @@ set linkmaker="d:\Program Files\junction\junction.exe"
 set opt=-s
 
 :create
-set src="..\..\..\..\..\..\JavaScript\Sencha\ExtJS\ExtJS4\ExtJS%2"
+set src="..\..\..\..\..\..\..\JavaScript\Sencha\ExtJS\ExtJS4\ExtJS%2"
 echo %linkmaker% %opt% %1 %src%
 %linkmaker% %opt% %1 %src%
 
