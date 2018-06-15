@@ -2,11 +2,11 @@ Ext.define("TestRouting.widget.GridPanel", {
 	extend: "Ext.grid.Panel",
     alias: "widget.gridpanel",
 
+    requires: [ "TestRouting.store.GridStore" ],
+
     config: {
         url: null,
     },
-
-    //store: "TestRouting.store.GridStore",
 
     columns: [],
 

@@ -14,8 +14,7 @@ Ext.application({
     ],
 
     stores: [
-        "TestRouting.store.NavStore",
-        "TestRouting.store.GridStore"
+        "TestRouting.store.NavStore"
     ],
 
     constructor: function(config) {
