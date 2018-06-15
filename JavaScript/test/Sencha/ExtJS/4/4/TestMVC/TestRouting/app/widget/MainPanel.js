@@ -10,9 +10,17 @@ Ext.define("TestRouting.widget.MainPanel", {
 
 	items: [{
         xtype: "gridpanel",
-        url: "data/grid1data.json"
+        url: "data/grid1data.json",
+        layout: "fit"
     }, {
         xtype: "gridpanel",
-        url: "data/grid2data.json"
-    }]
+        url: "data/grid2data.json",
+        layout: "fit"
+    }],
+
+    tbar: {
+        items:[{
+
+        }]
+    }
 });

@@ -12,9 +12,8 @@ Ext.define("TestRouting.view.Viewport", {
 		layout: "fit",
 		xtype: "navpanel",
 		width: 300
-	},{
+	}, {
 		region: "center",
-		layout: "fit",
 		xtype: "mainpanel"
 	}]
 });

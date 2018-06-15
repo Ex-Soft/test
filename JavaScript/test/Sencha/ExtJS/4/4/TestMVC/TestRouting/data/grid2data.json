@@ -1,7 +1,7 @@
 ﻿{
     "success": true,
     "message": "blah-blah-blah",
-    "metadata": {
+    "metaData": {
         "root": "rows",
         "idProperty": "id",
         "fields": [
@@ -15,10 +15,10 @@
     },
     "total": 5,
     "rows": [
-        { "id": 1, "value": "Record# 1" },
-        { "id": 2, "value": "Record# 2" },
-        { "id": 3, "value": "Record# 3" },
-        { "id": 4, "value": "Record# 4" },
-        { "id": 5, "value": "Record# 5" }
+        { "id": 1, "value": "Record# 21" },
+        { "id": 2, "value": "Record# 22" },
+        { "id": 3, "value": "Record# 23" },
+        { "id": 4, "value": "Record# 24" },
+        { "id": 5, "value": "Record# 25" }
     ]
 }

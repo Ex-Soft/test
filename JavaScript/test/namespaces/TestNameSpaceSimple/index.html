@@ -6,37 +6,67 @@
 		<script>
 var TestNS = TestNS || {};
 
-TestNS.test = {
+TestNS.ByObject = {
 	p1: "p1",
 	p2: "p2",
 
 	f1: function() {
 		if (window.console && console.log)
-			console.log("f1(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.test.p1, TestNS.test.p2);
+			console.log("f1(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.ByObject.p1, TestNS.ByObject.p2);
 	},
 
 	f2: function() {
 		if (window.console && console.log)
-			console.log("f2(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.test.p1, TestNS.test.p2);
+			console.log("f2(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.ByObject.p1, TestNS.ByObject.p2);
 
 		this.f1();
-		TestNS.test.f1();
+		TestNS.ByObject.f1();
 	},
 
 	f3: function() {
 		if (window.console && console.log)
-			console.log("f3(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.test.p1, TestNS.test.p2);
+			console.log("f3(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.ByObject.p1, TestNS.ByObject.p2);
 
 		this.f2();
-		TestNS.test.f2();
+		TestNS.ByObject.f2();
+	}
+};
+
+TestNS.ByFunction = function (arg1, arg2) {
+	this.p1 = arg1;
+	this.p2 = arg2;
+
+	this.f1 = function() {
+		if (window.console && console.log)
+			console.log("f1(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.ByFunction.p1, TestNS.ByFunction.p2);
+	},
+
+	this.f2 = function() {
+		if (window.console && console.log)
+			console.log("f2(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.ByFunction.p1, TestNS.ByFunction.p2);
+
+		this.f1();
+	},
+
+	this.f3 = function() {
+		if (window.console && console.log)
+			console.log("f3(%o) %o %o %o %o %o", arguments, this, this.p1, this.p2, TestNS.ByFunction.p1, TestNS.ByFunction.p2);
+
+		this.f2();
 	}
 };
 
 function DoIt()
 {
-	TestNS.test.f1();
-	TestNS.test.f2();
-	TestNS.test.f3();
+	TestNS.ByObject.f1();
+	TestNS.ByObject.f2();
+	TestNS.ByObject.f3();
+
+	var o = new TestNS.ByFunction("p1", "p2");
+
+	o.f1();
+	o.f2();
+	o.f3();
 }
 		</script>
 	</head>

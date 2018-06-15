@@ -6,10 +6,12 @@ Ext.define("TestRouting.widget.GridPanel", {
         url: null,
     },
 
+    //store: "TestRouting.store.GridStore",
+
     columns: [],
 
     initComponent: function() {
-        store = new TestRouting.store.GridStore({ url: this.getUrl()})
+        this.store = new TestRouting.store.GridStore({ url: this.getUrl(), grid: this })
         this.callParent();
     },
 
@@ -18,6 +20,10 @@ Ext.define("TestRouting.widget.GridPanel", {
             if (window.console && console.log)
                 console.log("afterrender(%o)", arguments);
             grid.getStore().load();
+        },
+        reconfigure: function(grid, eOpts) {
+            if (window.console && console.log)
+                console.log("reconfigure(%o)", arguments);
         }
     }
 });
