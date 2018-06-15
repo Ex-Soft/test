@@ -1,10 +1,13 @@
 ﻿{
+    "success": true,
+    "message": "blah-blah-blah",
     "children": [{
         "id": 1,
         "parentId": 0,
         "text": "Folder# 1",
         "leaf": false,
         "cls": "folder",
+        "expanded": true,
         "children": [
             { "id": 2, "parentId": 1, "text": "Leaf# 1.1", "leaf": true, "cls": "file" },
             { "id": 3, "parentId": 1, "text": "Leaf# 1.2", "leaf": true, "cls": "file" }

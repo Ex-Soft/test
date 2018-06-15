@@ -13,7 +13,8 @@ Ext.application({
     ],
 
     stores: [
-        "TestRouting.store.NavStore"
+        "TestRouting.store.NavStore",
+        "TestRouting.store.GridStore"
     ],
 
     launch: function() {

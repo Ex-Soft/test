@@ -3,7 +3,8 @@ Ext.define("TestRouting.view.Viewport", {
 	layout: "border",
 
 	requires: [
-		"TestRouting.widget.NavPanel"
+		"TestRouting.widget.NavPanel",
+		"TestRouting.widget.MainPanel"
 	],
 
 	items: [{
@@ -11,5 +12,9 @@ Ext.define("TestRouting.view.Viewport", {
 		layout: "fit",
 		xtype: "navpanel",
 		width: 300
+	},{
+		region: "center",
+		layout: "fit",
+		xtype: "mainpanel"
 	}]
 });
