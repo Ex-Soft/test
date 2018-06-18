@@ -8,6 +8,34 @@ Ext.define("TestRouting.widget.GridPanel", {
         url: null,
     },
 
+    tbar: [{
+        xtype: "form",
+        frame: true,
+        style: {
+            border: "none"
+        },
+        layout: {
+            type: "hbox",
+            align: "middle"
+        },
+        defaults: {
+            style : "margin-right: 5px;"
+        },
+        bodyStyle : {
+            background: "none repeat scroll 0 0 transparent;"
+        },
+        items: [{
+            xtype: "label",
+            text: "ID"
+        }, {
+            xtype: "textfield",
+            name: "ID"
+        }, {
+            xtype: "button",
+            text: "Search"
+        }]
+    }],
+
     columns: [],
 
     initComponent: function() {
@@ -19,7 +47,9 @@ Ext.define("TestRouting.widget.GridPanel", {
         afterrender: function(grid, eOpts) {
             if (window.console && console.log)
                 console.log("afterrender(%o)", arguments);
-            grid.getStore().load();
+
+            if (!Ext.isEmpty(grid.getUrl()))
+                grid.getStore().load();
         },
         reconfigure: function(grid, eOpts) {
             if (window.console && console.log)

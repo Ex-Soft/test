@@ -41,6 +41,11 @@ Ext.define("SingletonClass", {
 	singletonClassProp: "simpleSingletonClassProp",
 
 	constructor: function(config) {
+		if(window.console && console.log)
+			console.log("SingletonClass.ctor(%o)", arguments);
+
+		this.callParent([config]);
+
 		return this;
 	}
 });

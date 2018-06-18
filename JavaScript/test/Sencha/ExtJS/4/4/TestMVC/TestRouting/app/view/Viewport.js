@@ -15,5 +15,10 @@ Ext.define("TestRouting.view.Viewport", {
 	}, {
 		region: "center",
 		xtype: "mainpanel"
+	}, {
+		region: "east",
+		xtype: "gridpanel",
+		layout: "fit",
+		width: 500
 	}]
 });

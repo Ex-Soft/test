@@ -40,6 +40,18 @@ require(["dojo/Deferred"], function(Deferred, when){
 	};
 
 	Get("url1", "resolve", 1000)
+	.then(function(result){
+		if (window.console && console.log)
+			console.log("#1 then.resolve %s", result);
+
+		//return Get("url2", "resolve", 1000);
+		return 1;
+	}).then(function(result){
+		if (window.console && console.log)
+			console.log("#2 then.resolve %s", result);
+	});
+
+	Get("url1", "resolve", 1000)
 	//Get("url1", "reject", 1000)
 	.then(function(result){
 		if (window.console && console.log)
