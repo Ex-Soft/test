@@ -39,21 +39,33 @@ Ext.define("TestRouting.widget.GridPanel", {
     columns: [],
 
     initComponent: function() {
-        this.store = new TestRouting.store.GridStore({ url: this.getUrl(), grid: this })
-        this.callParent();
+        var me = this;
+
+        me.store = new TestRouting.store.GridStore({ url: this.getUrl(), grid: me })
+        me.callParent();
+
+        me.addEvents({
+            "navNodeSelected": true
+        });
+
+        me.on("navNodeSelected", me.onNavNodeSelected, me);
     },
 
     listeners: {
-        afterrender: function(grid, eOpts) {
-            if (window.console && console.log)
-                console.log("afterrender(%o)", arguments);
-
-            if (!Ext.isEmpty(grid.getUrl()))
-                grid.getStore().load();
-        },
         reconfigure: function(grid, eOpts) {
             if (window.console && console.log)
                 console.log("reconfigure(%o)", arguments);
         }
+    },
+
+    onNavNodeSelected: function (nodeId) {
+        if (window.console && console.log)
+            console.log("onNavNodeSelected(%o)", arguments);
+
+        var me = this,
+            store = me.getStore();
+
+        if (!Ext.isEmpty(me.getUrl()) && !store.getTotalCount())
+            store.load();
     }
 });

@@ -490,6 +490,19 @@ var
   RegEx=/^(doc|xls|xps)x?$/i;
   if(window.console && console.log)
     console.log("%s%s", RegEx.test(Str) ? "" : "!", RegEx.toString());
+
+  //Str = "blah-blah-blah";
+  //Str = "!/111";
+  Str = "!/111?222";
+  RegEx = /!\/([^?]*)(?:\??)(.*)/;
+  if (arr = RegEx.exec(Str))
+  {
+     console.log("arr.length = %i", arr.length);
+
+     for(var i = 0; i < arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
 // -->
 </script>
     </form>

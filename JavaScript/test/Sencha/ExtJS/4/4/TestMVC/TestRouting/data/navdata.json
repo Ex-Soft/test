@@ -7,10 +7,10 @@
         "text": "Folder# 1",
         "leaf": false,
         "cls": "folder",
-        "expanded": true,
+        //"expanded": true,
         "children": [
-            { "id": 11, "parentId": 1, "text": "Leaf# 1.1", "leaf": true, "cls": "file" },
-            { "id": 12, "parentId": 1, "text": "Leaf# 1.2", "leaf": true, "cls": "file" }
+            { "id": 11, "parentId": 1, "text": "Leaf# 1.1", "leaf": true, "cls": "file", "category": "1" },
+            { "id": 12, "parentId": 1, "text": "Leaf# 1.2", "leaf": true, "cls": "file", "category": "2" }
         ]
     }, {
         "id": 2,
@@ -19,8 +19,8 @@
         "leaf": false,
         "cls": "folder",
         "children": [
-            { "id": 21, "parentId": 4, "text": "Leaf# 2.1", "leaf": true, "cls": "file" },
-            { "id": 22, "parentId": 4, "text": "Leaf# 2.2", "leaf": true, "cls": "file" }
+            { "id": 21, "parentId": 4, "text": "Leaf# 2.1", "leaf": true, "cls": "file", "category": "3" },
+            { "id": 22, "parentId": 4, "text": "Leaf# 2.2", "leaf": true, "cls": "file", "category": "4" }
         ]
     }]
 }

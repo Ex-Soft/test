@@ -17,6 +17,15 @@ Ext.define("TestMixin", {
 		}
 	},
 
+	constructor: function(config) {
+		if (window.lonsole && console.log)
+			console.log("TestMixin.ctor(%o)", arguments);
+
+		this.callParent([config]);
+
+		return this;
+	},
+
 	testMixinFunction: function() {
 		if(window.console && console.log)
 			console.log("TestMixin.testMixinFunction()");

@@ -3,7 +3,8 @@
 	alias: "widget.testpanel2",
 
 	mixins: {
-		testMixin: "TestMixin"
+		testMixin: "TestMixin",
+		testMixinSingleton: "TestMixinSingleton"
 	},
 
 	initComponent: function() {

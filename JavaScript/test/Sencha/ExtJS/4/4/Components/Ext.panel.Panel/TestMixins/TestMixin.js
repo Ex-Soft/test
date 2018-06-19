@@ -1,7 +1,10 @@
 ﻿Ext.define("TestMixin", {
-	single: true,
+	constructor: function(config) {
+		if (window.lonsole && console.log)
+			console.log("TestMixin.ctor(%o)", arguments);
 
-	doSmth: function(){
-		this.html = "blah-blah-blah";
+		this.callParent([config]);
+
+		return this;
 	}
 });

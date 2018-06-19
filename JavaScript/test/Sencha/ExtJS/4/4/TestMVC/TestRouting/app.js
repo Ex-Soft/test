@@ -26,12 +26,12 @@ Ext.application({
         this.callParent([config]);
 
         this.addEvents({
+            "navPanelRendered": true,
             "navNodeSelected": true,
-            "gridRowSelected": true
+            "navNodeChanged": true,
+            "gridRowSelected": true,
+            "gridRowChanged": true
         });
-
-        this.on("navNodeSelected", this.onNavNodeSelected, this);
-        this.on("gridRowSelected", this.onGridRowSelected, this);
     },
 
     launch: function() {
@@ -42,15 +42,5 @@ Ext.application({
 
 	    Ext.create("TestRouting.view.Viewport", {
 	    });
-    },
-
-    onNavNodeSelected: function() {
-        if (window.console && console.log)
-    		console.log("Ext.application.onNavNodeSelected(%o)", arguments);
-    },
-
-    onGridRowSelected: function() {
-        if (window.console && console.log)
-    		console.log("Ext.application.onGridRowSelected(%o)", arguments);
     }
 });

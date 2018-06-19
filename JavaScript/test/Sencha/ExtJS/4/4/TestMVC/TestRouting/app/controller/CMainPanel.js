@@ -26,15 +26,19 @@
         this.application.fireEvent("gridRowSelected", record.getId());
     },
 
-    onNavNodeSelected: function(folderId) {
+    onNavNodeSelected: function(categoryId) {
         if (window.console && console.log)
             console.log("CMainPanel.onNavNodeSelected(%o)", arguments);
 
-        var layout;
+        var mainPanel,
+            layout,
+            gridPanelIdx;
 
-        if (isNaN(folderId) || !(layout = this.getMainPanel().getLayout()) || --folderId >= layout.layoutCount)
+        if (!(mainPanel = this.getMainPanel()) || !(layout = mainPanel.getLayout()) || (gridPanelIdx = mainPanel.items.findIndex("category", categoryId)) == -1)
             return;
 
-        layout.setActiveItem(folderId);
+        layout.setActiveItem(gridPanelIdx);
+
+        layout.getActiveItem().fireEvent("navNodeSelected", categoryId);
     }
 });

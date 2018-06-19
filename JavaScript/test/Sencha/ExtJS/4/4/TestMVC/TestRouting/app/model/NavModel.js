@@ -9,7 +9,8 @@ Ext.define("TestRouting.model.NavModel", {
 		{ name: "parentId", type: "int" },
 		{ name: "leaf", type: "boolean" },
 		"cls",
-		{ name: "expanded", type: "boolean" }
+		{ name: "expanded", type: "boolean" },
+		"category"
 	],
 
 	proxy: {

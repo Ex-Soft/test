@@ -39,7 +39,7 @@
         if (!(store = this.getSubPanel().getStore()))
             return;
 
-        store.getProxy().url = `data/grid${id}data`;
+        store.getProxy().url = `data/grid${id}data.json`;
         store.load();
     }
 });
