@@ -30,7 +30,7 @@
             console.log("CSubPanel.onNavNodeSelected(%o)", arguments);
     },
 
-    onGridRowSelected: function(id) {
+    onGridRowSelected: function(row) {
         if (window.console && console.log)
             console.log("CSubPanel.onGridRowSelected(%o)", arguments);
 
@@ -39,7 +39,7 @@
         if (!(store = this.getSubPanel().getStore()))
             return;
 
-        store.getProxy().url = `data/grid${id}data.json`;
+        store.getProxy().url = `data/grid${row.getId()}data.json`;
         store.load();
     }
 });

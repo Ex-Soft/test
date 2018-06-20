@@ -24,17 +24,22 @@
         me.history.init();
         me.history.on("change", me.onChange, me);
 
-        me.application.on("navPanelRendered", me.onNavPanelRendered, me);
+        me.application.on("navPanelReady", me.onNavPanelReady, me);
         me.application.on("navNodeSelected", me.onNavNodeSelected, me);
         me.application.on("gridRowSelected", me.onGridRowSelected, me);
+        me.application.on("searched", me.onSearched, me);
 
         me.ready = true;
     },
 
-    onNavPanelRendered: function () {
+    getToken: function () {
+        return this.history.getToken();
+    },
+
+    onNavPanelReady: function () {
         var me = this;
 
-        me.onChange(me.history.getToken());
+        me.onChange(me.getToken());
     },
 
     onChange: function (token) {
@@ -53,7 +58,7 @@
         me.application.fireEvent("navNodeChanged", me.parseToken(token));
     },
 
-    onNavNodeSelected: function(nodeId) {
+    onNavNodeSelected: function(category) {
         if (window.console && console.log)
             console.log("Router.onNavNodeSelected(%o)", arguments);
 
@@ -61,37 +66,53 @@
             me = this,
             curToken = me.parseToken(me.history.getToken());
 
-        if (curToken.nodeId == nodeId) {
+        if (curToken.category == category) {
             return;
         }
 
         me.selfProcessing = true;
-        me.history.add(this.tag + nodeId);
+        me.history.add(this.tag + category);
     },
 
-    onGridRowSelected: function(rowId) {
+    onGridRowSelected: function(row) {
         if (window.console && console.log)
             console.log("Router.onGridRowSelected(%o)", arguments);
 
         var
             me = this,
-            curToken = me.parseToken(me.history.getToken());
+            curToken = me.parseToken(me.history.getToken()),
+            idProperty  = row.idField.name,
+            id = row.getId(),
+            params = curToken.params || {};
 
-        if (curToken.rowId == rowId) {
+        if (params[idProperty]  == id) {
             return;
         }
 
         me.selfProcessing = true;
-        me.history.add(me.tag + curToken.nodeId + me.paramsDelimiter + rowId);
+        params[idProperty] = id;
+        me.history.add(me.tag + curToken.category + me.paramsDelimiter + Ext.Object.toQueryString(params));
+    },
+
+    onSearched: function(values) {
+        if (window.console && console.log)
+            console.log("Router.onSearched(%o)", arguments);
+
+        var
+            me = this,
+            curToken = me.parseToken(me.history.getToken());
+
+        me.selfProcessing = true;
+        me.history.add(me.tag + curToken.category + me.paramsDelimiter + Ext.Object.toQueryString(values));
     },
 
     parseToken: function(token) {
         var
             match = this.parseRegexp.exec(token),
             success = !Ext.isEmpty(match) && match.length > 2,
-            nodeIdExists = success && !Ext.isEmpty(match[1]),
-            rowIdExists = success && !Ext.isEmpty(match[2]);
+            categoryExists = success && !Ext.isEmpty(match[1]),
+            paramsExists = success && !Ext.isEmpty(match[2]);
 
-        return { nodeId: nodeIdExists ? match[1] : null, rowId: rowIdExists ? match[2] : null};
+        return { category: categoryExists ? match[1] : null, params: paramsExists ? Ext.Object.fromQueryString(match[2]) : null };
     }
 });

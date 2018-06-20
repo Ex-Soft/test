@@ -19,15 +19,15 @@
         me.control({
             "navpanel": {
                 select: me.onSelect,
-                afterrender: me.onRender
+                viewready: me.onViewReady
             }
         });
 
         app.on("navNodeChanged", me.onNodeChanged, me);
     },
 
-    onRender: function () {
-        this.application.fireEvent("navPanelRendered");
+    onViewReady: function () {
+        this.application.fireEvent("navPanelReady");
     },
 
     onSelect: function (panel, record, index, eOpts) {
@@ -56,12 +56,16 @@
 
         selModel = navPanel.getSelectionModel();
 
-        if (!(newTreeNode = rootNode.findChild("category", token.nodeId, true))) {
+        if (!(newTreeNode = rootNode.findChild("category", token.category, true))) {
             return;
         }
 
-        navPanel.expandPath(me.getPath(newTreeNode));
-        selModel.select(newTreeNode);
+        if (!selModel.isSelected(newTreeNode)) {
+            navPanel.expandPath(me.getPath(newTreeNode));
+            selModel.select(newTreeNode);
+        } else {
+            me.application.fireEvent("gridRowChanged", token);
+        }
     },
 
     getPath: function (node) {

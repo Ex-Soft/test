@@ -26,11 +26,12 @@ Ext.application({
         this.callParent([config]);
 
         this.addEvents({
-            "navPanelRendered": true,
+            "navPanelReady": true,
             "navNodeSelected": true,
             "navNodeChanged": true,
             "gridRowSelected": true,
-            "gridRowChanged": true
+            "gridRowChanged": true,
+            "searched": true
         });
     },
 
