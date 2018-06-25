@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html lang="uk"> <!-- dir="rtl" -->
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Localization</title>
+		<script>
+function DoIt()
+{
+	var
+		num = 123456789.123,
+		dt = new Date("2018-12-31T23:59:59+02:00");
+
+	if(window.console && console.log) {
+		console.log(num.toString());
+		console.log(num.toLocaleString());
+		console.log(dt.toString());
+		console.log(dt.toLocaleString());
+	}
+}
+		</script>
+	</head>
+	<body onload="DoIt()">
+	</body>
+</html>
