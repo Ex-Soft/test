@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>dojo test at</title>
+	</head>
+	<body>
+		<script>
+var dojoConfig = {
+	async: true,
+	parseOnLoad: true,
+	isDebug: true
+};
+		</script>
+
+		<script src="../../dojo/dojo/dojo.js"></script>
+
+		<script>
+function formatFn(value) {
+	if (window.console && console.log)
+		console.log("formatFn(%o)", arguments);
+
+	return value;
+};
+
+function parseFn(value) {
+	if (window.console && console.log)
+		console.log("parseFn(%o)", arguments);
+
+	return value;
+};
+
+require(["dojox/mvc/getStateful", "dojox/mvc/at"], function(GetStateful, at) {
+	var
+		statefulObject = new GetStateful({ p1: "p1", p2: "p2", p3: "p3", p4: 0 }),
+		watcherObject = { p1: at(statefulObject, "p1"), p2: at(statefulObject, "p2"), p3: at(statefulObject, "p3"), p4: at(statefulObject, "p4").transform({ format: formatFn, parse: parseFn }) };
+
+	formatFn("1");
+	parseFn("1");
+
+	statefulObject.set("p1", "p1 (changed)");
+	statefulObject.set("p4", 1);
+
+	if (window.console && console.log)
+		console.log("%o %o", statefulObject.get("p1"), watcherObject.p1);
+});
+		</script>
+
+	</body>
+</html>
