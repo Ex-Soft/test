@@ -10,20 +10,22 @@
 
     searching: false,
 
-    init: function (host) {
+    init: function (cmp) {
         var me = this;
+
+        me.setCmp(cmp);
 
         if (window.console && console.log)
             console.log("ToolbarSearchPlugin.init(%o)", arguments);
 
-        me.cmp.on("viewready", me.onViewReady, me);
+        me.getCmp().on("viewready", me.onViewReady, me);
     },
 
     getFormPanel: function () {
         var me = this;
 
         if (!me.formPanel)
-            me.formPanel = me.cmp.down("form");
+            me.formPanel = me.getCmp().down("form");
 
         return me.formPanel;
     },
@@ -73,28 +75,36 @@
         if (me.searching)
             return;
 
-        me.cmp.fireEvent("searched", me.getValues());
+        me.getCmp().fireEvent("searched", me.getValues());
     },
 
     onStoreLoad: function (store, records, successful, operation, eOpts) {
         if (window.console && console.log)
             console.log("ToolbarSearchPlugin.onStoreLoad(%o)", arguments);
 
-        var me = this;
+        var
+            me = this,
+            cmp;
 
-        if (!me.searching) {
+        if (!me.searching || !(cmp = me.getCmp())) {
             return;
         }
 
         me.searching = false;
-        me.cmp.getSelectionModel().select(me.cmp.getStore().first());
+        cmp.getSelectionModel().select(cmp.getStore().first());
     },
 
     search: function (values) {
-        var me = this;
+        var
+            me = this,
+            btnSearch;
+
+        if (!(btnSearch = me.getBtnSearch())) {
+            return;
+        }
 
         me.setValues(values);
         me.searching = true;
-        me.getBtnSearch().getEl().dom.click();
+        btnSearch.fireEvent("click", btnSearch);
     }
 });
