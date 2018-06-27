@@ -8,13 +8,35 @@ function DoIt()
 {
 	var
 		num = 123456789.123,
-		dt = new Date("2018-12-31T23:59:59+02:00");
+		dt = new Date("2018-12-31T23:59:59+02:00"),
+		locale;
 
 	if(window.console && console.log) {
 		console.log(num.toString());
 		console.log(num.toLocaleString());
+		locale = "it-it";
+		console.log("%s (\"%s\")", num.toLocaleString(locale), locale);
+		locale = "de-de";
+		console.log("%s (\"%s\")", num.toLocaleString(locale), locale);
+		locale = "fr-fr";
+		console.log("%s (\"%s\")", num.toLocaleString(locale), locale);
+		locale = "no-no";
+		console.log("%s (\"%s\")", num.toLocaleString(locale), locale);
+		locale = "fi";
+		console.log("%s (\"%s\")", num.toLocaleString(locale), locale);
+
 		console.log(dt.toString());
 		console.log(dt.toLocaleString());
+		locale = "it-it";
+		console.log("%s (\"%s\")", dt.toLocaleString(locale), locale);
+		locale = "de-de";
+		console.log("%s (\"%s\")", dt.toLocaleString(locale), locale);
+		locale = "fr-fr";
+		console.log("%s (\"%s\")", dt.toLocaleString(locale), locale);
+		locale = "no-no";
+		console.log("%s (\"%s\")", dt.toLocaleString(locale), locale);
+		locale = "fi";
+		console.log("%s (\"%s\")", dt.toLocaleString(locale), locale);
 	}
 }
 		</script>
