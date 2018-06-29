@@ -24,14 +24,22 @@ Ext.define("SimplePlugin", {
 
 		var me = this;
 
+		me.setCmp(cmp);
+
 		cmp.addEvents({
 			"testEvent1": true,
-			"testEvent2": true
+			"testEvent2": true,
+			"testEvent3": true
 		});
 
 		cmp.on("testEvent1", me.onTestEvent1, me);
 		cmp.on({
-			testEvent2: me.onTestEvent1,
+			testEvent2: me.onTestEvent2,
+			scope: me
+		});
+		cmp.on({
+			testEvent3: me.onTestEvent3,
+			single: true,
 			scope: me
 		});
 	},
@@ -39,6 +47,21 @@ Ext.define("SimplePlugin", {
 	destroy: function () {
 		if(window.console && console.log)
 			console.log("SimplePlugin.destroy(%o)", arguments);
+
+		var
+			me = this,
+			cmp = me.getCmp();
+
+		cmp.un("testEvent1", me.onTestEvent1, me);
+		cmp.un({
+			testEvent2: me.onTestEvent2,
+			scope: me
+		});
+		cmp.un({
+			testEvent3: me.onTestEvent3,
+			single: true,
+			scope: me
+		});
 	},
 
 	onTestEvent1: function () {
@@ -49,6 +72,11 @@ Ext.define("SimplePlugin", {
 	onTestEvent2: function () {
 		if(window.console && console.log)
 			console.log("SimplePlugin.onTestEvent2(%o)", arguments);
+	},
+
+	onTestEvent3: function () {
+		if(window.console && console.log)
+			console.log("SimplePlugin.onTestEvent3(%o)", arguments);
 	}
 });
 
@@ -86,7 +114,51 @@ Ext.onReady(function() {
 
 	var
 		p = Ext.create("CustomPanel", {
-			border: 50,
+			tbar: [{
+				xtype: "button",
+				text: "testEvent1",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.fireEvent("testEvent1");
+				}
+			}, {
+				xtype: "button",
+				text: "testEvent2",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.fireEvent("testEvent2");
+				}
+			}, {
+				xtype: "button",
+				text: "testEvent3",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.fireEvent("testEvent3");
+				}
+			}, {
+				xtype: "button",
+				text: "destroy",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.destroy();
+				}
+			}],
 			renderTo: Ext.getBody(),
 			listeners: {
 				render: function(panel, eOpts) {

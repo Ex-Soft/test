@@ -3,107 +3,57 @@
 	disableCaching: false
 });
 
+Ext.define("TestMixin", {
+	mixinConfig: {
+        id: "testmixin"
+	},
+	
+	constructor: function(config) {
+		if (window.console && console.log)
+			console.log("TestMixin.constructor(%o)", arguments);
+
+		this.callParent([config]);
+
+		return this;
+	},
+
+	onClassMixedIn: function (cls) {
+        if (window.console && console.log)
+            console.log("TestMixin.onClassMixedIn(%o)", arguments);
+    }
+});
+
 Ext.define("CustomPanel", {
 	extend: "Ext.panel.Panel",
 	alias : "widget.custompanel",
+
+	mixins: {
+		testMixin: "TestMixin"
+	},
 
 	constructor: function(config) {
 		if(window.console && console.log)
 			console.log("CustomPanel.constructor(%o)", arguments);
 
-		config = config || {};
+		var me = this;
 
-		Ext.applyIf(config, {
-			buttons: [
-				{
-					text: "Button# 1"
-				}
-			]
-			// !!! Ext.apply_If_ !!!
-			/* listeners: {
-				beforeadd: function(panel, eOpts) {
-					if(window.console && console.log)
-						console.log("CustomPanel.beforeadd(%o)", arguments);
-				}
-			}*/
-		});
+		me.callParent([config]);
+		me.mixins.testMixin.constructor.call(me);
 
-		// !!! this.listeners doesn't exist !!!
-		this.listeners = config.listeners;
-
-		// !!! this.events[] doesn't exist !!!
-		/*
-		this.addListener("beforeadd", function(panel, eOpts) {
-			if(window.console && console.log)
-				console.log("CustomPanel.beforeadd(%o)", arguments);
-		});
-		*/
-
-		if(window.console && console.log)
-			console.log("CustomPanel.constructor(): b4 callParent()");
-
-		this.callParent([config]);
-
-		if(window.console && console.log)
-			console.log("CustomPanel.constructor(): after callParent()");
-
-		this.addListener("beforeadd", function(panel, eOpts) {
-			if(window.console && console.log)
-				console.log("CustomPanel.beforeadd(%o)", arguments);
-		});
-
-		return this;
+		return me;
 	},
 
 	initComponent: function() {
 		if(window.console && console.log)
 			console.log("CustomPanel.initComponent(%o)", arguments);
 
-		Ext.apply(this, {
-			tbar: {
-				items: [
-					{
-						xtype: "button",
-						text: "TBar Button #1 (Add)",
-						handler: function(btn, e) {
-							this.add({ xtype: "button", text: "AddedButton" });
-						},
-						scope: this
-					}
-				]
-			}
-			// !!! Ext._apply_ !!!
-			/* listeners: {
-				afterrender: function(panel, eOpts) {
-					if(window.console && console.log)
-						console.log("CustomPanel.afterrender(%o)", arguments);
-				}
-			}*/
-		});
-
-		this.addListener("afterrender", function(panel, eOpts) {
-			if(window.console && console.log)
-				console.log("CustomPanel.afterrender(%o)", arguments);
-		});
-
-		if(window.console && console.log)
-			console.log("CustomPanel.initComponent(): b4 callParent()", arguments);
-
 		this.callParent(arguments);
-
-		if(window.console && console.log)
-			console.log("CustomPanel.initComponent(): after callParent()", arguments);
-
-		this.addListener("beforerender", function(panel, eOpts) {
-			if(window.console && console.log)
-				console.log("CustomPanel.beforerender(%o)", arguments);
-		});
 	}
 });
 
 Ext.onReady(function() {
-	if(window.console && console.clear)
-		console.clear();
+	//if(window.console && console.clear)
+	//	console.clear();
 
 	if(window.console && console.log)
 		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
