@@ -1,5 +1,8 @@
 ﻿<!doctype html>
 <html lang="uk"> <!-- dir="rtl" -->
+<?php
+	header("Content-Language: uk");
+?>
 	<head>
 		<meta charset="utf-8" />
 		<title>Test Localization</title>

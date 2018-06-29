@@ -503,6 +503,17 @@ var
         if(window.console && console.log)
           console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
   }
+
+  Str = "1234567890.123";
+  RegEx = /(\d+)([^\d]|$)/;
+  if (arr = RegEx.exec(Str))
+  {
+     console.log("arr.length = %i", arr.length);
+
+     for(var i = 0; i < arr.length; ++i)
+        if(window.console && console.log)
+          console.log("arr[%i] = %s (%i)", i, arr[i], arr[i].length);
+  }
 // -->
 </script>
     </form>
