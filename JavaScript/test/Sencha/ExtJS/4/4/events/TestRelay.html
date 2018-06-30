@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Relay</title>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("TestObject", {
+	mixins: {
+		observable: "Ext.util.Observable"
+	},
+
+	name: "undefined",
+	
+	config: {
+		name: "undefined"
+	},
+
+	constructor: function(config) {
+		//this.callParent([config]);
+
+		this.initConfig(config);
+
+		this.mixins.observable.constructor.call(this, config);
+
+		this.addEvents("testevent");
+		this.addEvents("prefixtestevent");
+
+		return this;
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		o1 = Ext.create("TestObject", { name: "TestObject1" }),
+		o2 = Ext.create("TestObject", { name: "TestObject2" }),
+		relayers;
+
+	o1.addListener("testevent", function(param) {
+		if(window.console && console.log)
+			console.log("%s.onTestEvent(%o)", this.name, param);
+	}, o1);
+
+	o1.addListener("prefixtestevent", function(param) {
+		if(window.console && console.log)
+			console.log("%s.onPrefixTestEvent(%o)", this.name, param);
+	}, o1);
+
+	relayers = o1.relayEvents(o2, ["testevent"], "prefix");
+	o2.fireEvent("testevent", { eventName: "testevent" });  // TestObject1.onTestEvent(Object { eventName="testevent" })
+
+	if(relayers)
+		Ext.destroy(relayers);
+
+	if(o2.relayers)
+		o2.relayers.destroy();
+
+	o2.fireEvent("testevent", { eventName: "testevent" });
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

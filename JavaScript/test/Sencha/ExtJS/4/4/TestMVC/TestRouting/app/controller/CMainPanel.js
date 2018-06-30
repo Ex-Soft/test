@@ -4,6 +4,9 @@
     refs: [{
         ref: "mainPanel",
         selector: "mainpanel"
+    }, {
+        ref: "gridPanel",
+        selector: "mainpanel gridpanel"
     }],
 
     init: function(app) {
@@ -26,6 +29,8 @@
     onGridRowSelected: function(record) {
         if (window.console && console.log)
             console.log("CMainPanel.onGridRowSelected(%o)", arguments);
+
+        var gridPanel = this.getGridPanel();
 
         this.application.fireEvent("gridrowselected", record);
     },

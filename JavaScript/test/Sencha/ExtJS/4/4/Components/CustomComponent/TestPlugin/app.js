@@ -9,13 +9,19 @@ Ext.define("SimplePlugin", {
 
     ptype: "simpleplugin",
 
+	p1: "p1",
+	p2: "p2",
+	p3: "p3",
+
 	constructor: function (config) {
 		if(window.console && console.log)
 			console.log("SimplePlugin.constructor(%o)", arguments);
 
-		this.callParent([config]);
+		var me = this;
 
-		return this;
+		me.callParent([config]);
+
+		return me;
 	},
 
 	init: function (cmp) {
@@ -67,6 +73,9 @@ Ext.define("SimplePlugin", {
 	onTestEvent1: function () {
 		if(window.console && console.log)
 			console.log("SimplePlugin.onTestEvent1(%o)", arguments);
+
+		if(window.console && console.log)
+			console.log("SimplePlugin {p1:\"%s\",p2:\"%s\",p3:\"%s\"}", this.p1, this.p2, this.p3);
 	},
 
 	onTestEvent2: function () {
@@ -98,7 +107,12 @@ Ext.define("CustomPanel", {
 			console.log("CustomPanel.initComponent(%o)", arguments);
 
 		Ext.apply(this, {
-			plugins: ["simpleplugin"]
+			//plugins: ["simpleplugin"]
+			plugins: [{
+				ptype: "simpleplugin",
+				p1: "p1fromConfig",
+				p2: "p2fromConfig"
+			}]
 		});
 
 		this.callParent();
@@ -106,8 +120,8 @@ Ext.define("CustomPanel", {
 });
 
 Ext.onReady(function() {
-	if(window.console && console.clear)
-		console.clear();
+	//if(window.console && console.clear)
+	//	console.clear();
 
 	if(window.console && console.log)
 		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
