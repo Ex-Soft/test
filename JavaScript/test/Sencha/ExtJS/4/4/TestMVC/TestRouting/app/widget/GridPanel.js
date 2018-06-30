@@ -4,16 +4,14 @@ Ext.define("TestRouting.widget.GridPanel", {
 
     requires: [
         "TestRouting.store.GridStore",
-        "TestRouting.ToolbarSearchPlugin"
+        "TestRouting.RoutingPlugin"
     ],
-
-    mixins: {
-        toolbarSearchMixin: "TestRouting.ToolbarSearchMixin"
-    },
 
     config: {
         url: null,
     },
+
+    plugins: ["routingplugin"],
 
     tbar: [{
         xtype: "form",
@@ -48,17 +46,6 @@ Ext.define("TestRouting.widget.GridPanel", {
 
                 grid.onBtnSearchClick(btn);
             }
-        }, {
-            xtype: "button",
-            text: "Emulate",
-            handler: function (btn) {
-                var grid;
-                
-                if (!(grid = btn.up("grid")))
-                    return;
-
-                grid.emulate();
-            }
         }]
     }],
 
@@ -81,17 +68,6 @@ Ext.define("TestRouting.widget.GridPanel", {
 
         me.store = new TestRouting.store.GridStore({ url: this.getUrl(), grid: me })
         me.callParent();
-
-        me.addPlugin("toolbarSearchPlugin");
-
-        me.addEvents({
-            "navNodeSelected": true,
-            "gridRowChanged": true,
-            "searched": true
-        });
-
-        me.on("navNodeSelected", me.onNavNodeSelected, me);
-        me.on("gridRowChanged", me.onGridRowChanged, me);
     },
 
     listeners: {
@@ -99,46 +75,6 @@ Ext.define("TestRouting.widget.GridPanel", {
             if (window.console && console.log)
                 console.log("reconfigure(%o)", arguments);
         }
-    },
-
-    onNavNodeSelected: function (category) {
-        if (window.console && console.log)
-            console.log("onNavNodeSelected(%o)", arguments);
-
-        var me = this,
-            store = me.getStore();
-
-        if (Ext.isEmpty(me.getUrl())) {
-            return;
-        }
-
-        if (!store.getTotalCount()) {
-            store.load({
-                scope: me,
-                callback: me.onStoreFirstLoad
-            });
-        } else {
-            me.onStoreFirstLoad();
-        }
-    },
-
-    onStoreFirstLoad: function () {
-        this.onGridRowChanged(TestRouting.Router.parseToken(TestRouting.Router.getToken()));
-    },
-
-    onGridRowChanged: function (token) {
-        var plugin;
-
-        if (!(plugin = this.findPlugin("toolbarSearchPlugin"))) {
-            return;
-        }
-
-        var params = token.params || {};
-
-        if (Ext.isEmpty(params.id))
-            params.id = "";
-
-        plugin.search(params);
     },
 
     onBtnSearchClick: function (btn) {
@@ -161,11 +97,5 @@ Ext.define("TestRouting.widget.GridPanel", {
             store.filter({ property: "id", value: values.id });
             store.fireEvent("load");
         }
-    },
-
-    emulate: function () {
-        var plugin = this.findPlugin("toolbarSearchPlugin");
-
-        plugin.search({ id: 1 });
     }
 });

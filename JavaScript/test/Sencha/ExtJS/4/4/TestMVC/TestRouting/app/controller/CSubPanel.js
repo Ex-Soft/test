@@ -17,7 +17,7 @@
         });
     
         app.on("navNodeSelected", this.onNavNodeSelected, this);
-        app.on("gridRowSelected", this.onGridRowSelected, this);
+        app.on("gridrowselected", this.onGridRowSelected, this);
     },
 
     onSubGridRowSelect: function(grid, record, index, eOpts) {

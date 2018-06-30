@@ -8,11 +8,30 @@ Ext.define("TestMixin", {
         id: "testmixin"
 	},
 	
-	constructor: function(config) {
+	constructor: function(cls) {
 		if (window.console && console.log)
 			console.log("TestMixin.constructor(%o)", arguments);
 
-		this.callParent([config]);
+		var me = this;
+
+		me.callParent([cls]);
+
+		cls.addEvents({
+			"testEvent1": true,
+			"testEvent2": true,
+			"testEvent3": true
+		});
+
+		cls.on("testEvent1", me.onTestEvent1, me);
+		cls.on({
+			testEvent2: me.onTestEvent2,
+			scope: me
+		});
+		cls.on({
+			testEvent3: me.onTestEvent3,
+			single: true,
+			scope: me
+		});
 
 		return this;
 	},
@@ -20,7 +39,22 @@ Ext.define("TestMixin", {
 	onClassMixedIn: function (cls) {
         if (window.console && console.log)
             console.log("TestMixin.onClassMixedIn(%o)", arguments);
-    }
+	},
+
+	onTestEvent1: function () {
+		if(window.console && console.log)
+			console.log("TestMixin.onTestEvent1(%o)", arguments);
+	},
+
+	onTestEvent2: function () {
+		if(window.console && console.log)
+			console.log("TestMixin.onTestEvent2(%o)", arguments);
+	},
+
+	onTestEvent3: function () {
+		if(window.console && console.log)
+			console.log("TestMixin.onTestEvent3(%o)", arguments);
+	}
 });
 
 Ext.define("CustomPanel", {
@@ -38,7 +72,8 @@ Ext.define("CustomPanel", {
 		var me = this;
 
 		me.callParent([config]);
-		me.mixins.testMixin.constructor.call(me);
+
+		me.mixins.testMixin.constructor.call(me, me);
 
 		return me;
 	},
@@ -60,7 +95,40 @@ Ext.onReady(function() {
 
 	var
 		p = Ext.create("CustomPanel", {
-			border: 50,
+			tbar: [{
+				xtype: "button",
+				text: "testEvent1",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.fireEvent("testEvent1");
+				}
+			}, {
+				xtype: "button",
+				text: "testEvent2",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.fireEvent("testEvent2");
+				}
+			}, {
+				xtype: "button",
+				text: "testEvent3",
+				handler: function (btn) {
+					var panel;
+
+					if (!(panel = btn.up("panel")))
+						return;
+
+					panel.fireEvent("testEvent3");
+				}
+			}],
 			renderTo: Ext.getBody(),
 			listeners: {
 				render: function(panel, eOpts) {

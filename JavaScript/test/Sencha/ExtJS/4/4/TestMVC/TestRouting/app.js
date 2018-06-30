@@ -28,10 +28,10 @@ Ext.application({
         this.addEvents({
             "navPanelReady": true,
             "navNodeSelected": true,
-            "navNodeChanged": true,
-            "gridRowSelected": true,
-            "gridRowChanged": true,
-            "searched": true
+            "routechanged": true,
+            "gridrowselected": true,
+            "routeparamschanged": true,
+            "gridsearch": true
         });
     },
 

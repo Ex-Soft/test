@@ -14,25 +14,25 @@
 
         me.control({
             "mainpanel gridpanel": {
-                select: me.onGridRowSelect,
-                searched: me.onSearched
+                gridrowselected: me.onGridRowSelected,
+                gridsearch: me.onGridSearch
             }
         });
     
-        app.on("navNodeSelected", this.onNavNodeSelected, this);
-        app.on("gridRowChanged", this.onGridRowChanged, this);
+        app.on("navNodeSelected", this.onParentChanged, this);
+        app.on("routeparamschanged", this.onRouteParamsChanged, this);
     },
 
-    onGridRowSelect: function(grid, record, index, eOpts) {
+    onGridRowSelected: function(record) {
         if (window.console && console.log)
             console.log("CMainPanel.onGridRowSelected(%o)", arguments);
 
-        this.application.fireEvent("gridRowSelected", record);
+        this.application.fireEvent("gridrowselected", record);
     },
 
-    onGridRowChanged: function(token) {
+    onRouteParamsChanged: function(token) {
         if (window.console && console.log)
-            console.log("CMainPanel.onGridRowChanged(%o)", arguments);
+            console.log("CMainPanel.onRouteParamsChanged(%o)", arguments);
 
             var mainPanel,
             layout,
@@ -41,12 +41,12 @@
         if (!(mainPanel = this.getMainPanel()) || !(layout = mainPanel.getLayout()))
             return;
 
-        layout.getActiveItem().fireEvent("gridRowChanged", token);
+        layout.getActiveItem().fireEvent("routeparamschanged", token);
     },
 
-    onNavNodeSelected: function(category) {
+    onParentChanged: function(category) {
         if (window.console && console.log)
-            console.log("CMainPanel.onNavNodeSelected(%o)", arguments);
+            console.log("CMainPanel.onParentChanged(%o)", arguments);
 
         var mainPanel,
             layout,
@@ -57,13 +57,13 @@
 
         layout.setActiveItem(gridPanelIdx);
 
-        layout.getActiveItem().fireEvent("navNodeSelected", category);
+        layout.getActiveItem().fireEvent("parentchanged", category);
     },
 
-    onSearched: function(values) {
+    onGridSearch: function(values) {
         if (window.console && console.log)
-            console.log("CMainPanel.onSearched(%o)", arguments);
+            console.log("CMainPanel.onGridSearch(%o)", arguments);
 
-        this.application.fireEvent("searched", values);
+        this.application.fireEvent("gridsearch", values);
     }
 });

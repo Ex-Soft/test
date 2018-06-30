@@ -23,7 +23,7 @@
             }
         });
 
-        app.on("navNodeChanged", me.onNodeChanged, me);
+        app.on("routechanged", me.onRouteChanged, me);
     },
 
     onViewReady: function () {
@@ -39,9 +39,9 @@
             this.application.fireEvent("navNodeSelected", record.get("category"));
     },
 
-    onNodeChanged: function (token) {
+    onRouteChanged: function (token) {
         if (window.console && console.log)
-            console.log("CNavPanel.onNodeChanged(%o)", arguments);
+            console.log("CNavPanel.onRouteChanged(%o)", arguments);
 
         var me = this,
             navPanel,
@@ -64,7 +64,7 @@
             navPanel.expandPath(me.getPath(newTreeNode));
             selModel.select(newTreeNode);
         } else {
-            me.application.fireEvent("gridRowChanged", token);
+            me.application.fireEvent("routeparamschanged", token);
         }
     },
 

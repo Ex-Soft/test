@@ -26,8 +26,8 @@
 
         me.application.on("navPanelReady", me.onNavPanelReady, me);
         me.application.on("navNodeSelected", me.onNavNodeSelected, me);
-        me.application.on("gridRowSelected", me.onGridRowSelected, me);
-        me.application.on("searched", me.onSearched, me);
+        me.application.on("gridrowselected", me.onGridRowSelected, me);
+        me.application.on("gridsearch", me.onGridSearch, me);
 
         me.ready = true;
     },
@@ -55,7 +55,7 @@
             return;
         }
 
-        me.application.fireEvent("navNodeChanged", me.parseToken(token));
+        me.application.fireEvent("routechanged", me.parseToken(token));
     },
 
     onNavNodeSelected: function(category) {
@@ -74,15 +74,15 @@
         me.history.add(this.tag + category);
     },
 
-    onGridRowSelected: function(row) {
+    onGridRowSelected: function(record) {
         if (window.console && console.log)
             console.log("Router.onGridRowSelected(%o)", arguments);
 
         var
             me = this,
             curToken = me.parseToken(me.history.getToken()),
-            idProperty  = row.idField.name,
-            id = row.getId(),
+            idProperty  = record.idField.name,
+            id = record.getId(),
             params = curToken.params || {};
 
         if (params[idProperty]  == id) {
@@ -94,9 +94,9 @@
         me.history.add(me.tag + curToken.category + me.paramsDelimiter + Ext.Object.toQueryString(params));
     },
 
-    onSearched: function(values) {
+    onGridSearch: function(values) {
         if (window.console && console.log)
-            console.log("Router.onSearched(%o)", arguments);
+            console.log("Router.onGridSearch(%o)", arguments);
 
         var
             me = this,
