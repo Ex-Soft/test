@@ -4,7 +4,7 @@
 		<meta charset="utf-8"/>
 		<title>Test Ext.Object</title>
 		<!-- <script charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all-debug.js"></script> -->
-		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
 		<script>
 Ext.Loader.setConfig({
 	enabled: true,
@@ -20,14 +20,26 @@ Ext.onReady(function() {
 
 	var
 		o={
-			prop1: "prop1",
-			prop2: "prop2",
-			prop3: "prop3"
+			prop1: "prop1value",
+			prop2: "prop2value",
+			prop3: "prop3value",
+			prop4: undefined,
+			prop5: null,
+			prop6: ""
 		},
 		tmpStr,
 		extjs,
 		newStuff,
 		sencha;
+
+	Ext.iterate(o, function (key, value, myself) {
+		if (window.console && console.log)
+			console.log("Ext.iterate(%o)", arguments);
+
+		if (Ext.isEmpty(value)) {
+			delete myself[key];
+		}
+	});
 
 	tmpStr = Ext.Object.toQueryString(o);
 	if(window.console && console.log)
