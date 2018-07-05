@@ -21,6 +21,50 @@ Ext.onReady(function() {
 			}
 
 			return path;
+		},
+		expandPath = function (node, path, field) {
+			var
+				nodes = path.split("/"),
+				len = nodes.length,
+				startIndex;
+
+			field = field || (node.idField ? node.idField.name : (node.idProperty || "id"));
+
+			for (startIndex = 1; startIndex < len; ++startIndex) {
+				if (node.get(field) == nodes[startIndex]) {
+					break;
+				}
+			}
+
+			for (var i = ++startIndex; i < len; ++i) {
+				if (!(node = node.findChild(field, nodes[i], true)) || node.isLeaf()) {
+					continue;
+				}
+
+				node.expand(false);
+			}
+		},
+		select = function (treePanel, id) {
+			var
+				store,
+				rootNode,
+				newTreeNode,
+				selModel;
+
+			if (!treePanel
+				|| !(store = treePanel.getStore())
+				|| !(rootNode = store.getRootNode())
+				|| !(newTreeNode = rootNode.findChild("id", id, true))) {
+				return;
+			}
+
+			selModel = treePanel.getSelectionModel();
+
+			if (!selModel.isSelected(newTreeNode)) {
+				//treePanel.expandPath(getPath(newTreeNode));
+				expandPath(rootNode, newTreeNode.getPath("id"));
+				selModel.select(newTreeNode);
+			}
 		};
 
 	Ext.create("Ext.tree.Panel", {
@@ -93,6 +137,10 @@ Ext.onReady(function() {
 
 				if (window.console && console.log)
 					console.log("Ext.tree.Panel.load(%o)%s", arguments, isRootNode ? " rootNode" : "");
+
+				if (isRootNode) {
+					select(this, 111);
+				}
 			},
 			select: function () {
 				if (window.console && console.log)
@@ -108,32 +156,20 @@ Ext.onReady(function() {
 			dock: "top",
 			items: [{
 				xtype: "numberfield",
-				value: 11
+				value: 311
 			}, {
 				text: "SelectNode",
 				handler: function(btn, e) {
 					var
 						idField,
-						treePanel,
-						store,
-						rootNode,
-						newTreeNode,
-						selModel;
+						treePanel;
 
 					if (!(idField = btn.up("toolbar").down("numberfield"))
-						|| !(treePanel = btn.up("treepanel"))
-						|| !(store = treePanel.getStore())
-						|| !(rootNode = store.getRootNode())
-						|| !(newTreeNode = rootNode.findChild("id", idField.getValue(), true))) {
+						|| !(treePanel = btn.up("treepanel"))) {
 						return;
 					}
 
-					selModel = treePanel.getSelectionModel();
-
-					if (!selModel.isSelected(newTreeNode)) {
-						treePanel.expandPath(getPath(newTreeNode));
-						selModel.select(newTreeNode);
-					}
+					select(treePanel, idField.getValue());
 				}
 			}]
 		}]
