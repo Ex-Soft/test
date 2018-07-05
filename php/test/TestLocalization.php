@@ -17,12 +17,14 @@ function DoIt()
 	document.write(num.toLocaleString(), "<br/>");
 	document.write(dt.toString(), "<br/>");
 	document.write(dt.toLocaleString(), "<br/>");
+	document.write(dt.toGMTString(), "<br/>");
 
 	if(window.console && console.log) {
 		console.log(num.toString());
 		console.log(num.toLocaleString());
 		console.log(dt.toString());
 		console.log(dt.toLocaleString());
+		console.log(dt.toGMTString());
 	}
 }
 		</script>
