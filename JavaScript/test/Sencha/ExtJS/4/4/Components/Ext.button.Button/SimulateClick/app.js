@@ -26,6 +26,16 @@
 				simulateBtnClick(btnWithListeners);
 			}
 		}),
+		btnSimulate2 = Ext.create("Ext.button.Button", {
+			text: "simulate (wo fire(\"click\"))",
+			handler: function (btn, e) {
+				if (window.console && console.log)
+					console.log("simulate2(%o)", arguments);
+
+				simulateBtnClick2(btnWithHandler);
+				simulateBtnClick2(btnWithListeners);
+			}
+		}),
 		simulateBtnClick = function (btn) {
 			var el;
 	
@@ -41,12 +51,26 @@
 				el.dom.click();
 			}
 		},
+		simulateBtnClick2 = function (btn) {
+			var el;
+	
+			if (!btn) {
+				return;
+			}
+	
+			if (btn.handler) {
+				btn.handler(btn);
+			} else if ((el = btn.getEl()) && el.dom && el.dom.click) {
+				el.dom.click();
+			}
+		},
 		panel = Ext.create("Ext.panel.Panel", {
 			renderTo: Ext.getBody(),
 			items: [
 				btnWithHandler,
 				btnWithListeners,
-				btnSimulate
+				btnSimulate,
+				btnSimulate2
 			]
 		});
 
