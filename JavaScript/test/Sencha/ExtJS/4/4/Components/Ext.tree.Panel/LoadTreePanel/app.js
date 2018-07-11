@@ -175,6 +175,6 @@ Ext.onReady(function() {
 		}]
 	});
 
-	Ext.util.Observable.capture(tp, function() { if (window.console && console.log) console.log(arguments); });
-	Ext.util.Observable.capture(tp.getStore(), function() { if (window.console && console.log) console.log(arguments); });
+	//Ext.util.Observable.capture(tp, function() { if (window.console && console.log) console.log(arguments); });
+	//Ext.util.Observable.capture(tp.getStore(), function() { if (window.console && console.log) console.log(arguments); });
 });

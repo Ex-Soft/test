@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Ext.state.LocalStorageProvider</title>
+		<link rel="stylesheet" href="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		localStorageProvider;
+
+	try {
+		localStorageProvider = new Ext.state.LocalStorageProvider({
+			listeners: {
+				statechange: function (lsp, key, value, eOpts) {
+					if (window.console && console.log)
+						console.log("Ext.state.LocalStorageProvider.statechange(%o)", arguments);
+				}
+			}
+		});
+	}
+	catch (e) {
+		if (window.console && console.log)
+			console.log("new Ext.state.LocalStorageProvider() exception: %o", e);
+
+		localStorageProvider = null;
+	}
+
+	var
+		key = "Test_Ext_state_LocalStorageProvider",
+		btnAdd = new Ext.button.Button({
+			text: "get",
+			handler: function () {
+				var
+					value;
+
+				if (!localStorageProvider)
+					return;
+
+				value = localStorageProvider.get(key);
+
+				if (window.console && console.log)
+					console.log(value);
+			},
+			renderTo: Ext.getBody()
+		}),
+		btnAdd = new Ext.button.Button({
+			text: "set",
+			handler: function () {
+				var
+					date = new Date(),
+					value = "Test Ext.state.LocalStorageProvider " + date.toString();
+
+				if (!localStorageProvider)
+					return;
+
+				localStorageProvider.set(key, value);
+			},
+			renderTo: Ext.getBody()
+		})
+		;
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
