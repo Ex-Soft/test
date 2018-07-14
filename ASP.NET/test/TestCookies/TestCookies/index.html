@@ -3,9 +3,37 @@
 <head>
     <meta charset="utf-8" />
     <title>Test Cookies</title>
+    <style>
+td, th {
+    font-family: monospace;
+    padding: 4px;
+    background-color: #ccc;
+}
+
+#items_table {
+    border: 1px dotted blue;
+    padding: 6px;
+    margin-top: 12px;
+    margin-right: 50%;
+}
+
+#items_table h2 {
+    font-size: 18px;
+    margin-top: 0px;
+    font-family: sans-serif;
+}
+
+label {
+    vertical-align: top;
+}
+    </style>
     <script charset="utf-8" src="scripts/app.js"></script>
 </head>
 <body>
-    <input type="button" value="DoIt!" onclick="doRequest()"/>
+    <input type="button" value="DoIt!" onclick="doRequest()" />
+    <div id="items_table">
+        <table id="headers"></table>
+        <table id="cookies"></table>
+    </div>
 </body>
 </html>
