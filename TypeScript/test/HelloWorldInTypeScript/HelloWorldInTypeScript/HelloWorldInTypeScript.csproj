@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\ArrayVariables.ts" />
+    <TypeScriptCompile Include="Scripts\Inheritance.ts" />
     <TypeScriptCompile Include="Scripts\BasicTypeVariables.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithPrivateParameters.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithProtectedParameters.ts" />
