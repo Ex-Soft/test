@@ -12,6 +12,7 @@ Ext.define("SimplePlugin", {
 	p1: "p1",
 	p2: "p2",
 	p3: "p3",
+	p4: "p4",
 
 	constructor: function (config) {
 		if(window.console && console.log)
@@ -28,9 +29,12 @@ Ext.define("SimplePlugin", {
 		if(window.console && console.log)
 			console.log("SimplePlugin.init(%o)", arguments);
 
-		var me = this;
+		var	me = this;
 
-		me.setCmp(cmp);
+		//me.callParent(arguments);
+		//me.setCmp(cmp);
+
+		me.applyPrototypeConfig(me.getCmp().__proto__.plugins);
 
 		cmp.addEvents({
 			"testEvent1": true,
@@ -49,6 +53,32 @@ Ext.define("SimplePlugin", {
 			scope: me
 		});
 	},
+
+    applyPrototypeConfig: function (plugins) {
+        var
+            me = this,
+            prototypeConfig;
+
+        if ((!Ext.isArray(plugins) && !Ext.isObject(plugins)) || Ext.isEmpty(plugins)) {
+            return;
+        }
+
+        if (!Ext.isArray(plugins)) {
+            plugins = [plugins];
+        }
+
+        if (!(prototypeConfig = plugins.find(function (plugin) { return plugin.ptype === me.ptype; }))) {
+            return;
+        }
+
+        Ext.iterate(prototypeConfig, function (key, value, myself) {
+            if (key === "ptype" || me.hasOwnProperty(key)) {
+                return;
+            }
+
+            me[key] = value;
+        });
+    },
 
 	destroy: function () {
 		if(window.console && console.log)
@@ -97,23 +127,42 @@ Ext.define("CustomPanel", {
 		if(window.console && console.log)
 			console.log("CustomPanel.constructor(%o)", arguments);
 
+		/*var
+			plugins,
+			protoConfigPlugin;
+
+		if (!Ext.isEmpty(this.plugins) && !Ext.isEmpty(plugins = config.plugins)) {
+			if (!Ext.isArray(plugins))
+				plugins = [plugins];
+
+			for (var i = 0, l = plugins.length; i < l; ++i) {
+				if (!(protoConfigPlugin = this.plugins.find(function (plugin) {	return plugin.ptype === plugins[i].ptype; }))) {
+					return;
+				}
+
+				Ext.applyIf(plugins[i], protoConfigPlugin);
+			}
+		}*/
+
 		this.callParent([config]);
 
 		return this;
 	},
 
+	plugins: [{ ptype: "simpleplugin", p1: "p1fromConfig", p2: "p2fromConfig", p4: "p4fromConfig" }],
+
 	initComponent: function() {
 		if(window.console && console.log)
 			console.log("CustomPanel.initComponent(%o)", arguments);
 
-		Ext.apply(this, {
+		/*Ext.apply(this, {
 			//plugins: ["simpleplugin"]
 			plugins: [{
 				ptype: "simpleplugin",
 				p1: "p1fromConfig",
 				p2: "p2fromConfig"
 			}]
-		});
+		});*/
 
 		this.callParent();
 	}
@@ -128,6 +177,8 @@ Ext.onReady(function() {
 
 	var
 		p = Ext.create("CustomPanel", {
+			plugins: [{ ptype: "simpleplugin", p3: "p3fromCreate", p4: "p4fromCreate" }],
+
 			tbar: [{
 				xtype: "button",
 				text: "testEvent1",
