@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Override</title>
+		<script>
+function OnLoad()
+{
+	var
+		o = {
+			foo: function() {
+				if(window.console && console.log)
+					console.log("foo(%o) (original)", arguments);
+
+				return arguments;
+			},
+
+			callOverridden: function(args) {
+				//var a = arguments; // without this line this.callOverridden.caller===null
+				return this.callOverridden.caller.$previous.apply(this, args);
+			},
+
+			override: function(overrides) {
+				for(f in overrides)
+					if(typeof this[f] === "function")
+					{
+						overrides[f].$previous = this[f];
+						this[f] = overrides[f];
+					}
+			}
+		};
+
+	o.override({
+		foo: function() {
+			if(window.console && console.log)
+				console.log("foo(%o) (b4 original)", arguments);
+
+			this.callOverridden(arguments);
+
+			if(window.console && console.log)
+				console.log("foo(%o) (after original)", arguments);
+		}
+	});
+
+	o.foo(1, 2, 3);
+
+	var
+		o1 = {
+			p1: "o1.p1",
+			foo: function () {
+				if(window.console && console.log)
+					console.log("o1.foo(%o) p1: \"%s\"", arguments, this.p1);
+
+				var result = "";
+
+				for (var i = 0, l = arguments.length; i < l; ++i) {
+					if (result.length != 0) {
+						result += " ";
+					}
+
+					result += arguments[i].toString();
+				}
+
+				return "{" + result + " p1: \"" + this.p1 + "\"}";
+			}
+		},
+		o2 = {
+			p1: "o2.p1",
+			foo: function () {
+				if(window.console && console.log) {
+					console.log("o2.foo(%o) p1: \"%s\"", arguments, this.p1);
+					console.log("Function.caller \"%s\"", this.foo.caller);
+					console.log("arguments.caller \"%s\"", arguments.caller); // undefined This property has been removed and no longer works.
+					console.log("arguments.callee \"%s\"", arguments.callee);
+				}
+
+				var
+					resultPrevious = this.foo.$previous.fn.apply(this.foo.$previous.scope, arguments),
+					result = "";
+
+					for (var i = 0, l = arguments.length; i < l; ++i) {
+						if (result.length != 0) {
+							result += " ";
+						}
+
+						result += arguments[i].toString();
+					}
+
+				return resultPrevious + " {" + result + " p1: \"" + this.p1 + "\"}";
+			},
+			override: function (obj, originalFnName, overrideFnName) {
+				var me = this;
+
+				me[overrideFnName].$previous = { fn: obj[originalFnName], scope: obj, originalFnName: originalFnName };
+
+				obj[originalFnName] = function () { return me[overrideFnName].apply(me, arguments); };
+			}
+		},
+		result;
+
+	o2.override(o1, "foo", "foo");
+	result = o1.foo(1, 2, 3);
+	if(window.console && console.log)
+		console.log("result: \"%s\"", result);
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

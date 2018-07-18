@@ -1,0 +1,132 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Cookies CORS</title>
+		<style>
+td, th {
+    font-family: monospace;
+    padding: 4px;
+    background-color: #ccc;
+}
+
+#items_table {
+    border: 1px dotted blue;
+    padding: 6px;
+    margin-top: 12px;
+    margin-right: 50%;
+}
+
+#items_table h2 {
+    font-size: 18px;
+    margin-top: 0px;
+    font-family: sans-serif;
+}
+
+label {
+    vertical-align: top;
+}	
+		</style>
+		<script>
+function DoIt()
+{
+	var request = new XMLHttpRequest();
+	request.open("GET", "http://localhost:50227/api/default", true);
+	request.withCredentials = true;
+	request.onreadystatechange = function() {
+		if (request.readyState === 4) {
+			process(request);
+		}
+	};
+
+	//request.setRequestHeader("Accept", "application/json");
+	
+	request.send();
+}
+
+function DoItII()
+{
+	var
+		xhr = new XMLHttpRequest(),
+		params = {
+			method: "authUser",
+			params: {
+				email: "example@greenlancer.com",
+				password: "reallyStrongPassword12345"
+			}
+		},
+		paramsStr = JSON.stringify(params);
+
+	//xhr.open("GET", "http://www.example2.com/hello.json");
+	//xhr.open("GET", "http://aruner.net/resources/access-control-with-get/");
+	xhr.open("POST", "https://mock-api.greenlancer.com/");
+
+	xhr.withCredentials = true;
+
+	xhr.setRequestHeader("Access-Control-Allow-Headers", "*");
+	xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+	xhr.onload = function(e) {
+		var data = JSON.parse(this.response);
+	}
+
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.setRequestHeader("Content-length", paramsStr.length);
+
+	xhr.send(paramsStr);
+}
+
+function process(request) {
+    var data = JSON.parse(request.responseText);
+    list(data, "cookies");
+
+    var headers = request.getAllResponseHeaders();
+    //var headers = request.getResponseHeader("Set-Cookie");
+    var arr = headers.trim().split(/[\r\n]+/);
+
+    data = {};
+    arr.forEach(function (line) {
+        var parts = line.split(': ');
+        var header = parts.shift();
+        var value = parts.join(': ');
+        data[header] = value;
+    });
+
+    list(data, "headers");
+}
+
+function list(data, id) {
+    var
+        p,
+        key = "",
+        pairs = "<tr><th>Name</th><th>Value</th></tr>\n";
+
+    if (!(p = document.getElementById(id)))
+        return;
+
+    if (Array.isArray(data)) {
+        for (var i = 0, l = data.length; i < l; ++i) {
+            pairs += "<tr><td>" + i + "</td>\n<td>" + JSON.stringify(data[i]) + "</td></tr>\n";
+        }
+    } else {
+        for (var item in data) {
+            pairs += "<tr><td>" + item + "</td>\n<td>" + data[item] + "</td></tr>\n";
+        }
+    }
+
+    if (pairs == "<tr><th>Name</th><th>Value</th></tr>\n")
+        pairs += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+    p.innerHTML = pairs;
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!" onclick="DoIt()" />
+		<input type="button" value="DoIt! (II)" onclick="DoItII()" />
+	    <div id="items_table">
+			<table id="headers"></table>
+			<table id="cookies"></table>
+		</div>
+	</body>
+</html>
