@@ -87,6 +87,11 @@ _ReSharper*
 makefile~
 *.[Dd][Bb][Ff]
 
-SELinux
+# SELinux
 *.pp
 *te
+
+# idea
+.idea
+*.iml
+target/
