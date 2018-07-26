@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- https://www.acunetix.com/websitesecurity/cross-site-scripting/ -->
+<!-- https://excess-xss.com/ -->
+﻿<html>
+	<head>
+		<title>Test XSS</title>
+		<script>
+function DoIt() {
+	if (window.console && console.log)
+		console.log("XSS");
+}
+
+function fill() {
+	var inpt;
+	if (inpt = document.getElementById("victim"))
+		inpt.value = "\"><script>\x3c/script><input value=\"";
+}
+		</script>
+	</head>
+	<body onload="DoIt()" background="javascript:DoIt();">
+		<img src="javascript:DoIt();" onerror="javascript:DoIt();">
+		<input type="image" src="javascript:DoIt();"/>
+		<div style="background-image: url(javascript:DoIt())"></div>
+		<div style="width: expression(DoIt());"></div>
+		<input id="victim" type="text" />
+		<input type="button" value="click" onclick="fill()"/>
+	</body>
+</html>
