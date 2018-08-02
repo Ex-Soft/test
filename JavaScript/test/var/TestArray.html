@@ -23,6 +23,10 @@ if(window.console && console.log)
 	console.log(aaa);
 	aaa = aaa.slice(-i);
 	console.log(aaa);
+
+	aaa = [ 0, 1, 2, 3, 4, 5 ];
+	i = aaa.indexOf(3);
+	aaa.splice(i, 1);
 }
 
 aa = [1, 4];

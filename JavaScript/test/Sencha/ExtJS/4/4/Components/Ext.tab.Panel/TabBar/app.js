@@ -24,6 +24,22 @@ Ext.onReady(function() {
 			},
 			html: "Tab# 2"
 		}],
+		fbar: {
+			items: [{
+				text: "Hide",
+				handler: function (btn, e) {
+					var
+						panel,
+						tabBar;
+
+					if (!(panel = btn.up("panel"))
+						|| !(tabBar = panel.getTabBar()))
+						return;
+
+					tabBar[tabBar.isVisible() ? "hide" : "show"]();
+				}
+			}]
+		},
 		listeners: {
 			afterrender: function(panel, eOpts) {
 				var
