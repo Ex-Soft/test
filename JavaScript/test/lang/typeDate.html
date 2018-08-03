@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Date</title>
+		<script>
+function onLoad()
+{
+	var
+		d1,
+		d2,
+		offset;
+
+	if(window.console && console.log) {
+		d1 = new Date(2017, 9, 28),
+		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
+		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
+		console.log("d1.toString() = %s %i", d1.toString(), d1.getTimezoneOffset());
+		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+
+		d1 = new Date(2017, 9, 29),
+		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
+		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
+		console.log("d1.toString() = %s %i %i", d1.toString(), d1.getTimezoneOffset(), d1.getTime());
+		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+
+		if (offset) {
+			d2 = new Date(d2.getTime() + offset * 60 * 1000);
+			console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+		}
+
+		d1 = new Date(2017, 9, 30),
+		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
+		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
+		console.log("d1.toString() = %s %i", d1.toString(), d1.getTimezoneOffset());
+		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+
+		d1 = new Date(2018, 2, 24),
+		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
+		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
+		console.log("d1.toString() = %s %i", d1.toString(), d1.getTimezoneOffset());
+		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+
+		d1 = new Date(2018, 2, 25),
+		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
+		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
+		console.log("d1.toString() = %s %i", d1.toString(), d1.getTimezoneOffset());
+		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+
+		if (offset) {
+			d2 = new Date(d2.getTime() + offset * 60 * 1000);
+			console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+		}
+
+		d1 = new Date(2018, 2, 26),
+		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
+		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
+		console.log("d1.toString() = %s %i", d1.toString(), d1.getTimezoneOffset());
+		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
