@@ -14,25 +14,25 @@ var
 
 var
 	aaa = 1,
-	bbb = 1;
+	bbb = 5;
 	
 if(window.console && console.log)
-	console.log(aaa+bbb);
+	console.log("%o (%s) %o (%s) += %o -= %o *= %o /= %o", aaa, typeof aaa, bbb, typeof bbb, aaa + bbb, aaa - bbb, aaa * bbb, aaa / bbb);
 
 aaa = '1';
-bbb = '1';
+bbb = '5';
 if(window.console && console.log)
-	console.log(aaa+bbb);
+	console.log("%o (%s) %o (%s) += %o -= %o *= %o /= %o", aaa, typeof aaa, bbb, typeof bbb, aaa + bbb, aaa - bbb, aaa * bbb, aaa / bbb);
 
 aaa = 1;
-bbb = '1';
+bbb = '5';
 if(window.console && console.log)
-	console.log(aaa+bbb);
+	console.log("%o (%s) %o (%s) += %o -= %o *= %o /= %o", aaa, typeof aaa, bbb, typeof bbb, aaa + bbb, aaa - bbb, aaa * bbb, aaa / bbb);
 
 aaa = '1';
-bbb = 1;
+bbb = 5;
 if(window.console && console.log)
-	console.log(aaa+bbb);
+	console.log("%o (%s) %o (%s) += %o -= %o *= %o /= %o", aaa, typeof aaa, bbb, typeof bbb, aaa + bbb, aaa - bbb, aaa * bbb, aaa / bbb);
 
 boolStr="true";
 boolVar=Boolean(boolStr);
