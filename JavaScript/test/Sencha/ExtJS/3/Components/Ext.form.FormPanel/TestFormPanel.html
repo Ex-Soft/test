@@ -8,12 +8,12 @@
 		<script type="text/javascript" src="http://dev.sencha.com/deploy/dev/adapter/ext/ext-base.js"></script>
 		<script type="text/javascript" src="http://dev.sencha.com/deploy/dev/ext-all.js"></script>
 		-->
-		<link rel="stylesheet" type="text/css" href="../../../../../ExtJS/resources/css/ext-all.css"/>
-		<script type="text/javascript" charset="windows-1251" src="../../../../../ExtJS/adapter/ext/ext-base-debug.js"></script>
-		<script type="text/javascript" charset="windows-1251" src="../../../../../ExtJS/ext-all-debug.js"></script>
+		<link rel="stylesheet" href="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script type="text/javascript" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
 		<script type="text/javascript">
 //Ext.BLANK_IMAGE_URL="http://dev.sencha.com/deploy/dev/resources/images/default/s.gif";
-Ext.BLANK_IMAGE_URL="../../../../../ExtJS/resources/images/default/s.gif";
+Ext.BLANK_IMAGE_URL="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
 Ext.onReady(function() {
 	Ext.QuickTips.init();
@@ -40,6 +40,7 @@ Ext.onReady(function() {
 			fieldLabel: "TextField3",
 			vtype: "SerialNo"
 			//,vtypeText: "Ext.form.TextField.vtypeText" // if doesn't define the SerialNoText is shown
+			//, preventMark: false
 		}),
 		NumberField1 = new Ext.form.NumberField({
 			fieldLabel: "NumberField"

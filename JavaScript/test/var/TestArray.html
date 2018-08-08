@@ -27,6 +27,12 @@ if(window.console && console.log)
 	aaa = [ 0, 1, 2, 3, 4, 5 ];
 	i = aaa.indexOf(3);
 	aaa.splice(i, 1);
+
+	aa = [ "a.2018-08-07.out", "a.2018-08-08.out", "a.out", "a.2018-08-09.out" ];
+	aaa = aa.filter(function (item) { return item.match(/\d{4}-\d{2}-\d{2}/); });
+	console.log(aaa);
+	aaa = aa.filter(function (item) { return !item.match(/\d{4}-\d{2}-\d{2}/); });
+	console.log(aaa);
 }
 
 aa = [1, 4];
