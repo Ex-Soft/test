@@ -57,6 +57,25 @@ function onLoad()
 		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();
 		console.log("d1.toString() = %s %i", d1.toString(), d1.getTimezoneOffset());
 		console.log("d2.toString() = %s %i", d2.toString(), d2.getTimezoneOffset());
+
+		d1 = new Date(2011,2,31);
+		d2 = new Date(2011,2,31);
+
+		d1.valueOf = function() {
+			if (window.console)
+				console.log("d1.valueOf()");
+
+			return 0;
+		};
+
+		d2.valueOf = function() {
+			if (window.console)
+				console.log("d2.valueOf()");
+
+			return 0;
+		};
+
+		offset = d1 - d2;
 	}
 }
 		</script>
