@@ -3,13 +3,61 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Test float left</title>
+		<style>
+table, th, td {
+	border: 1px solid black;
+}
+
+.aggregate {
+	float: left;
+	margin-bottom: 2px;
+}
+		</style>
 	</head>
 	<body>
 		<div style="border: 1px solid black; width: 100%; overflow: hidden;">
 			<div style="float: left; background-color: green; width: 1000px; height: 100px;">DIV I</div>
 			<div style="float: left; background-color: red; width: 800px; height: 100px;">DIV II</div>
 			<div style="float: left; background-color: blue; width: 650px; height: 100px;">DIV III</div>
-			<div style="float: left; background-color: yellow; width: 900px; height: 100px;">DIV III</div>
+			<div style="float: left; background-color: yellow; width: 900px; height: 100px;">DIV IV</div>
 		</div>
+		<table style="width: 100%;">
+			<tr>
+				<td>
+					<div style="background-color: green; width: 100%;">
+						<div style="background-color: red; width: 100%; text-align: center;">Text</div>
+						<div style="background-color: blue;">
+							<div style="background-color: yellow; color: red; text-align: center; width: 25%;" class="aggregate">Left</div>
+							<div style="width: 75%; height: 18px;" class="aggregate">
+								<div style="background-color: aqua; height: 100%; color: blue; text-align: center;">Right<div style="background-color: lime; width: 80%; margin-top: -18px; color: white;">InnerInnerInnerInnerInnerInnerInnerInnerInnerInner</div></div>
+							</div>
+						</div>
+						<div style="background-color: blue;">
+							<div style="background-color: yellow; color: red; text-align: center; width: 25%;" class="aggregate">Left</div>
+							<div style="width: 75%; height: 18px;" class="aggregate">
+								<div style="background-color: aqua; height: 100%; color: blue; text-align: center;">Right<div style="background-color: lime; width: 80%; margin-top: -18px; color: white;">InnerInnerInnerInnerInnerInnerInnerInnerInnerInner</div></div>
+							</div>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div style="background-color: green; width: 100%;">
+						<div style="background-color: red; width: 100%; text-align: center;">Text</div>
+						<div style="background-color: blue;">
+							<div style="background-color: yellow; color: red; text-align: center; width: 25%;" class="aggregate">Left</div>
+							<div style="width: 75%; height: 18px;" class="aggregate">
+								<div style="background-color: aqua; height: 100%; color: blue; text-align: center;">Right<div style="background-color: lime; width: 80%; margin-top: -18px; color: white;">InnerInnerInnerInnerInnerInnerInnerInnerInnerInner</div></div>
+							</div>
+						</div>
+						<div style="background-color: blue;">
+							<div style="background-color: yellow; color: red; text-align: center; width: 25%;" class="aggregate">Left</div>
+							<div style="width: 75%; height: 18px;" class="aggregate">
+								<div style="background-color: aqua; height: 100%; color: blue; text-align: center;">Right<div style="background-color: lime; width: 80%; margin-top: -18px; color: white;">InnerInnerInnerInnerInnerInnerInnerInnerInnerInner</div></div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</body>
 </html>
