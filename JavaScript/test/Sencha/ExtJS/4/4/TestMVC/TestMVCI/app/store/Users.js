@@ -2,7 +2,18 @@
 	extend: "Ext.data.Store",
 	alias: "store.storeusers",
 	model: "AM.model.User",
+
 	autoLoad: true,
+
+	constructor: function (config) {
+		if (window.console && console.log)
+			console.log("AM.store.Users.constructor(%o)", config);
+
+		this.callParent([config]);
+
+		return this;
+	},
+
 	proxy: {
 		type: "ajax",
 		api: {

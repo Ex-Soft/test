@@ -14,7 +14,19 @@
         }
     ],
 
-    init: function() {
+    constructor: function (config) {
+		if (window.console && console.log)
+			console.log("AM.controller.Users.constructor(%o)", config);
+
+		this.callParent(arguments);
+
+		return this;
+    },
+
+    init: function(app) {
+        if (window.console && console.log)
+            console.log("AM.controller.Users.init(%o)", app);
+
         this.control({
             'viewport > userlist dataview': {
                 itemdblclick: this.editUser
@@ -23,6 +35,8 @@
                 click: this.updateUser
             }
         });
+
+        this.callParent(arguments);
     },
 
     editUser: function(grid, record) {
