@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Class with config (simple)</title>
+		<script charset="utf-8" src="../../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.define("Class", {
+	config: {
+		configProp1: { prop: "defaultConfigProp1" },
+		configProp2: { prop: "defaultConfigProp2" },
+		configProp3: { prop: "defaultConfigProp3" }
+	},
+
+	constructor: function(config) {
+		if(window.console && console.log)
+			console.log("Class.constructor(%o)", arguments);
+
+		config = config || {};
+
+		this.initConfig(config);
+
+		return this;
+	}
+});
+
+Ext.onReady(function() {
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+	var
+		c = Ext.create("Class", { configConfigProp1: { prop: "configConfigProp1" }, configProp2: { prop: "configProp2" }, configProp3: { prop: "configProp3" } }),
+		tmp;
+
+	tmp = c.getConfigProp1();
+	c.setConfigProp1("a");
+
+	tmp = c.getConfigProp2();
+	c.setConfigProp2("b");
+
+	tmp = c.getConfigProp3();
+	c.setConfigProp3("c");
+
+	if(window.console && console.log)
+		console.log("typeof c.resetConfigProp1 = \"%s\"", typeof c.resetConfigProp1);
+
+	if(typeof c.resetConfigProp1 === "function")
+		c.resetConfigProp1();
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
