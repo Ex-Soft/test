@@ -1,0 +1,29 @@
+﻿{
+	"success": true,
+	"message": "blah-blah-blah",
+	"metaData": {
+        "root": "rows",
+        "idProperty": "id",
+        "fields": [
+            { "name": "id", "type": "int" },
+            "value"
+        ],
+        "columns": [
+            { "dataIndex": "id", "header": "id" },
+            { "dataIndex": "value", "header": "value" }
+        ]
+    },
+    "total": 10,
+	"rows": [
+		{ "id": 1, "value": "#1" },
+		{ "id": 2, "value": "#2" },
+		{ "id": 3, "value": "#3" },
+		{ "id": 4, "value": "#4" },
+		{ "id": 5, "value": "#5" },
+		{ "id": 6, "value": "#6" },
+		{ "id": 7, "value": "#7" },
+		{ "id": 8, "value": "#8" },
+		{ "id": 9, "value": "#9" },
+		{ "id": 10, "value": "#10" }
+	]
+}
