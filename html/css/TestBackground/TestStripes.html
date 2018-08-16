@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- https://css-tricks.com/stripes-css/ -->
+<!-- http://theory.phphtml.net/css/repeating-linear-gradient.html -->
+<!-- https://css-tricks.com/why-do-we-have-repeating-linear-gradient-anyway/ -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test background (stripes)</title>
+		<style>
+.container {
+
+}
+
+.outer {
+	background: repeating-linear-gradient(
+        -45deg,
+        #0f0 0px,
+        #0f0 7px,
+        #060 8px,
+        #060 10px
+    );
+}
+
+.inner {
+	background-color: #080;
+}
+		</style>
+	</head>
+	<body>
+		<div class="container" style="height: 50px; width: 100%; border: 5px dashed red; background-color: yellow; color: black; text-align: center;">
+			<div class="outer" style="height: 60px; width: 75%; margin-top: -5px;">
+				<div class="inner" style="height: 100%; width: 75%; "></div>
+			</div>
+		</div>
+		<hr/>
+		<div class="container" style="height: 50px; width: 100%; border-top: 5px dashed red; border-right: 5px dashed red; border-bottom: 5px dashed red; border-left: none; background-color: yellow; color: black; text-align: center;">
+			<div class="outer" style="height: 60px; width: 75%; margin-top: -5px;">
+				<div class="inner" style="height: 100%; width: 75%; "></div>
+			</div>
+		</div>
+		<hr/>
+		<div class="container" style="height: 18px; width: 100%; border-top: 5px dashed lime; border-right: 5px dashed lime; border-bottom: 5px dashed lime; border-left: none; color: black; text-align: right;"><span style="padding-right: 10px;">32GB</span>
+			<div class="outer" style="height: 28px; width: 75%; color: white; margin-top: -23px; text-align: center;">75%
+				<div class="inner" style="height: 100%; width: 75%; margin-top: -18px;"></div>
+			</div>
+		</div>
+		<hr/>
+		<div class="container" style="height: 18px; width: 100%; border-top: 1px solid lime; border-right: 1px solid lime; border-bottom: 1px solid lime; border-left: none; color: black; text-align: right;"><span style="padding-right: 10px;">32GB</span>
+			<div class="outer" style="height: 20px; width: 75%; color: white; margin-top: -19px; text-align: center;">75%
+				<div class="inner" style="height: 100%; width: 75%; margin-top: -18px;"></div>
+			</div>
+		</div>
+	</body>
+</html>
