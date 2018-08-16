@@ -2,7 +2,7 @@
 	"success": true,
     "total": 10,
 	"rows": [
-		{ "id": 1, "fString1": "#1", "fString2": "#1", "fString3": "#1", "fString4": "#1", "fString5": "#1" },
+		{ "id": 1, "fString1": "#1", "fString2": "#1", "fString3": "#1", "fString4": "#1", "fString5": "#1", "fInt1": 100, "fInt2": 70, "fInt3": 40 },
 		{ "id": 2, "fString1": "#2", "fString2": "#2", "fString3": "#2", "fString4": "#2", "fString5": "#2" },
 		{ "id": 3, "fString1": "#3", "fString2": "#3", "fString3": "#3", "fString4": "#3", "fString5": "#3" },
 		{ "id": 4, "fString1": "#4", "fString2": "#4", "fString3": "#4", "fString4": "#4", "fString5": "#4" },

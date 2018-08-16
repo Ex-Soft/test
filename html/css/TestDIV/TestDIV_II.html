@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- https://css-tricks.com/stripes-css/ -->
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
@@ -44,12 +45,53 @@ div span
 	background-color: green;
 }
 
+.aggregate-total-value {
+	width: 100%;
+	color: black;
+	text-align: right;
+	border: 1px solid green;
+}
+
+.aggregate-total-value .indicator {
+    margin-top: -18px;
+    background: #25D500;
+	border: none;
+}
+
+.indicator .indicator {
+	height: 18px;
+	//margin-top: 0;
+	//float: right;
+}
+
+.aggregate-total-value > .indicator {
+	text-align: center;
+	background: repeating-linear-gradient(
+            -45deg,
+            #25D500,
+            #25D500 5px,
+            #07271a 5px,
+            #07271a 10px
+    );
+}
 		</style>
 	</head>
 	<body>
 		<div style="width: 100%; border: none; background-color: yellow; color: black; text-align: center;">100
 			<div style="width: 75%; height: 18px; border: none; background-color: green; margin-top: -18px;">
-				<div style="width: 50%; height: 18px; border: none; background-color: aqua;"></div>
+				<div style="width: 75%; height: 18px; border: none; background-color: aqua;"></div>
+			</div>
+		</div>
+		<hr/>
+		<div style="width: 100%; border: none; background-color: yellow; color: black; text-align: center;">100
+			<div style="width: 75%; height: 18px; border: none; background-color: green; margin-top: -18px;">
+				<div style="width: 75%; height: 18px; border: none; background-color: aqua; float: right;"></div>
+			</div>
+		</div>
+		<hr/>
+		<div class="aggregate-total-value">100
+			<div class="indicator" style="width: 75%;">75%
+				<div class="indicator" style="width: 75%;"></div>
 			</div>
 		</div>
 		<hr/>

@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test Array</title>
-		<!-- <script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-all-debug.js"></script> -->
-		<script charset="utf-8" src="../../../../ExtJS/ExtJS4/ExtJS4.1.1a/ext-debug.js"></script>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
 		<script>
 Ext.Loader.setConfig({
 	enabled: true,
@@ -19,14 +18,31 @@ Ext.onReady(function() {
 		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
 
 	var
-		a1 = ["a1[0]", "a1[1]", "a1[2]", "a1[3]", "a1[4]"],
+		a1 = ["1st", "2nd", "3rd", "4th", "5th"],
 		isarray = Ext.isArray(a1),
 		aa1,
 		aa2,
 		aa,
 		o,
 		i,
-		len;
+		len,
+		wrapper = function (value) {
+			return Ext.String.format("<span>{0}</span>", value);
+		};
+
+	aa = a1.reduce(function (previousValue, currentValue, index, array) {
+		return previousValue + wrapper(currentValue);
+	});
+	if(window.console && console.log)
+		console.log("array.reduce() = \"%s\"", aa);
+
+	aa = a1.reduce(function (previousValue, currentValue, index, array) {
+		return previousValue + wrapper(currentValue);
+	}, "");
+	if(window.console && console.log)
+		console.log("array.reduce() = \"%s\"", aa);
+
+	a1 = ["a1[0]", "a1[1]", "a1[2]", "a1[3]", "a1[4]"];
 
 	if(window.console && console.log)
 		console.log("Ext.Array.each()");
