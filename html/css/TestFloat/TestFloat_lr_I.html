@@ -1,11 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+<!doctype html>
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<meta charset="utf-8" />
 		<title>&laquo;Test float left &amp;&amp; right I&raquo;</title>
+		<style>
+.container {
+	width: 100%;
+}
+
+.container-item {
+	width: 100%;
+}
+
+.container-item span {
+	background-color: blue;
+}
+
+.label {
+	display: inline-block;
+}
+
+.value {
+	display: inline-block;
+    float: right;
+	width: 200px;
+}
+
+.value-left {
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+	padding-right: 5px;
+}
+.value-right {
+}
+		</style>
 	</head>
-	<body>
+	<body>																																																																																																																																																																																																																																																																																																					
 		<div id="Div1" style="float: left; background-color: green; ">Div1</div>
 		<div id="Div2" style="float: right; background-color: red; ">Div2</div>
+		<div style="clear: both;"></div>
+		<div class="container">
+			<div class="container-item"><span class="label">Label</span><span class="value"><span class="value-left">1</span><span class="value-right">GB, 5%</span></span></div>
+			<div class="container-item"><span class="label">Label</span><span class="value"><span class="value-left">123.01</span><span class="value-right">GB, 50.50%</span></span></div>
+			<div class="container-item"><span class="label">Label</span><span class="value"><span class="value-left">123123.01</span><span class="value-right">GB, 100.00%</span></span></div>
+		</div>
 	</body>
 </html>
