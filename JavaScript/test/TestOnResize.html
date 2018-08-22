@@ -28,7 +28,9 @@ function OnLoad()
 {
 	add(window, OnWindowResize);
 	add(document, OnDocumentResize);
+	document.onresize = OnDocumentResize2;
 	add(document.body, OnBodyResize);
+	document.body.onresize = OnBodyResize2;
 	add(document.getElementById("resizableDiv"), OnDivResize);
 	add(document.getElementById("resizableP"), OnPResize);
 }
@@ -59,6 +61,18 @@ function OnBodyResize()
 {
 	if (window.console && console.log)
 		console.log("OnBodyResize(%o)", arguments);
+}
+
+function OnDocumentResize2()
+{
+	if (window.console && console.log)
+		console.log("OnDocumentResize2(%o)", arguments);
+}
+
+function OnBodyResize2()
+{
+	if (window.console && console.log)
+		console.log("OnBodyResize2(%o)", arguments);
 }
 
 function OnDivResize()
