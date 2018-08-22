@@ -1,0 +1,15 @@
+{
+	"success": true,
+	"children": {
+		"text": "Root (loaded)",
+		"leaf": false,
+		"children": [
+			{ "id": 1, "text": "Folder# 1", "leaf": false },
+			{ "id": 2, "text": "Folder# 2", "leaf": false },
+			{ "id": 3, "text": "Folder# 3", "leaf": false },
+			{ "id": 4, "text": "File# 1", "leaf": true },
+			{ "id": 5, "text": "File# 2", "leaf": true }
+		]
+	}
+}
+
