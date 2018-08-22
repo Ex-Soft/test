@@ -8,7 +8,7 @@
 <script type="text/javascript">
 <!--
 var
-  Str="1 2 3",
+  Str,
   AllTrimStr,
   BeginSpace=/^[\s]+/,
   EndSpace=/[\s]+$/,
@@ -20,13 +20,25 @@ var
   RegEx=/\s/g,
   Pos,
   arr,
-  arrarr;
+  arrarr,
+  i;
 
-  if(window.console && console.clear)
-    console.clear();
+	if(window.console && console.clear)
+		console.clear();
 
 	arr = /.*(?=db)/.exec("https://igornozhenko.quickbase.com/db/bktmrw9ve");
 
+	Str ="ROOT/T";
+	RegEx = new RegExp("^((([a-zA-Z0-9])+((-|_|\\.|#{1})([a-zA-Z0-9])+)+)|([a-zA-Z0-9]+))$");
+	arr = Str.match(RegEx);
+	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+	}
+
+  Str="1 2 3";
+  RegEx=/\s/g;
   document.write("Str=\"",Str,"\"","<br>","<br>");
 
   document.write(BeginSpace.toString(),"<br>");
