@@ -24,7 +24,7 @@ Ext.onReady(function() {
 			console.log("body.resize(%o)", arguments);
 	});
 
-	body.dom.onresize = function (w, h) {
+	body.dom.onresize = function (e) {
 		if (window.console && console.log)
 			console.log("body.dom.onresize(%o)", arguments);
 	};
