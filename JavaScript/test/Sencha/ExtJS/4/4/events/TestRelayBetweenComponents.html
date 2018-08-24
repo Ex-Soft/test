@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+        <title>Test Relay (between components)</title>
+        <link rel="stylesheet" href="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS4/ExtJS4/ext-all-debug.js"></script>
+		<script>
+Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
+
+Ext.define("TestPanel",{
+    extend: "Ext.panel.Panel",
+    alias: "widget.testpanel",
+
+    initComponent: function () {
+        this.callParent();
+        this.addEvents("testevent", "relayingtestevent");
+        this.addListener("testevent", this.onTestEvent, this);
+        this.addListener("relayingtestevent", this.onRelayingTestEvent, this);
+    },
+
+    tbar: [{
+        text: "fireEvent",
+        handler: function (btn) {
+            var panel = btn.up("panel");
+            panel.fireEvent("testevent", panel);
+        }
+    }],
+
+    onTestEvent: function () {
+        if (window.console && console.log)
+            console.log("panel[\"%s\"].onTestEvent(%o)", this.region, arguments);
+    },
+
+    onRelayingTestEvent: function () {
+        if (window.console && console.log)
+            console.log("panel[\"%s\"].onRelayingTestEvent(%o)", this.region, arguments);
+    }
+});
+
+Ext.onReady(function() {
+	if(window.console && console.clear)
+		console.clear();
+
+    if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
+
+    var
+        panelWest = new TestPanel({
+			region: "west",
+			width: 200
+        }),
+        panelCenter = new TestPanel({
+			region: "center"
+        }),
+		viewport = new Ext.Viewport({
+			layout: "border",
+            items: [ panelWest, panelCenter ]
+        });
+
+    viewport.addEvents("panelwesttestevent");
+    viewport.addEvents("panelcentertestevent");
+
+    viewport.addListener("panelwesttestevent", function (srcPanel) {
+        if (window.console && console.log)
+            console.log("viewport.onPanelWestTestEvent(%o)", arguments);
+    }, viewport);
+    viewport.addListener("panelcentertestevent", function () {
+        if (window.console && console.log)
+            console.log("viewport.onPanelCenterTestEvent(%o)", arguments);
+    }, viewport);
+
+    viewport.relayEvents(panelWest, ["testevent"], "panelWest");
+    viewport.relayEvents(panelCenter, ["testevent"], "panelCenter");
+
+    panelWest.relayEvents(panelCenter, ["testevent"], "relaying");
+    panelCenter.relayEvents(panelWest, ["testevent"], "relaying");
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
