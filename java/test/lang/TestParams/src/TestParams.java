@@ -15,6 +15,7 @@ public class TestParams {
         TestClass.tripleValue(percent);
 
         TestClass.tripleSalary(employee1);
+        TestClass.triplePublicInt1(employee1);
 
         TestClass.swap(employee1, employee2);
     }

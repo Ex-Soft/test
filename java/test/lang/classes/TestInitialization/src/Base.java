@@ -1,5 +1,10 @@
 public class Base
 {
+    public static int
+        staticInt1,
+        staticInt2 = 2,
+        staticInt3 = 3;
+
     private String
         str1,
         str2 = "str2",
@@ -19,6 +24,11 @@ public class Base
         boolean1,
         boolean2 = true,
         boolean3 = true;
+
+    static
+    {
+        staticInt3 = 33;
+    }
 
     {
         str3 = "str3str3";

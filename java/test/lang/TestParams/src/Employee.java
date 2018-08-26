@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Employee
 {
+    public int publicInt1 = 1;
+
     private String name;
     private double salary;
     private Date hireDay;

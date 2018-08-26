@@ -15,4 +15,9 @@ public class TestClass {
         x = y;
         y = temp;
     }
+
+    public static void triplePublicInt1(Employee x)
+    {
+        x.publicInt1 *= 3;
+    }
 }
