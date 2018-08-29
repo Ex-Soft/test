@@ -18,26 +18,33 @@ function TestArrayStore()
 			listeners: {
 				load: function(store, records, options) {
 					if(window.console && console.info)
-						console.info("Ext.data.ArrayStore.load");
+						console.info("Ext.data.ArrayStore.load(%o)", arguments);
+				},
+				add: function(store, records, index) {
+					if(window.console && console.info)
+						console.info("Ext.data.ArrayStore.add(%o)", arguments);
 				}
 			}
 		}),
 		data=[
-			[ 1, "Иванов Иван Иванович" ],
-			[ 2, "Петров Петр Петрови" ],
-			[ 3, "Сидоров Сидор Сидорович" ],
-			[ 4, "Васильев Василий Василиевич" ]
+			[ 1, "РРІР°РЅРѕРІ РРІР°РЅ РРІР°РЅРѕРІРёС‡" ],
+			[ 2, "РџРµС‚СЂРѕРІ РџРµС‚СЂ РџРµС‚СЂРѕРІРё" ],
+			[ 3, "РЎРёРґРѕСЂРѕРІ РЎРёРґРѕСЂ РЎРёРґРѕСЂРѕРІРёС‡" ],
+			[ 4, "Р’Р°СЃРёР»СЊРµРІ Р’Р°СЃРёР»РёР№ Р’Р°СЃРёР»РёРµРІРёС‡" ]
 		],
 		data2=[
-			[ 11, "Иванов Иван Иванович" ],
-			[ 21, "Петров Петр Петрови" ],
-			[ 31, "Сидоров Сидор Сидорович" ],
-			[ 41, "Васильев Василий Василиевич" ]
+			[ 11, "РРІР°РЅРѕРІ РРІР°РЅ РРІР°РЅРѕРІРёС‡" ],
+			[ 21, "РџРµС‚СЂРѕРІ РџРµС‚СЂ РџРµС‚СЂРѕРІРё" ],
+			[ 31, "РЎРёРґРѕСЂРѕРІ РЎРёРґРѕСЂ РЎРёРґРѕСЂРѕРІРёС‡" ],
+			[ 41, "Р’Р°СЃРёР»СЊРµРІ Р’Р°СЃРёР»РёР№ Р’Р°СЃРёР»РёРµРІРёС‡" ]
 		],
 		tmpRec;
 
 	store.loadData(data);
 	store.loadData(data2);
+
+	rec = new store.recordType({ id: 111, name: "new store.recordType()" });
+	store.add(rec);
 
 	store.each(function(r)
 	{
