@@ -12,8 +12,36 @@ function DoIt() {
 
 function fill() {
 	var inpt;
+
 	if (inpt = document.getElementById("victim"))
 		inpt.value = "\"><script>\x3c/script><input value=\"";
+}
+
+function setDiv1() {
+	var
+		inpt,
+		str = "&lt;img src=x onerror=alert(document.cookie)&gt;";
+
+	if (inpt = document.getElementById("div1"))
+		inpt.innerHTML = "<img src=x onerror=alert(document.cookie)>";
+}
+
+function setDiv2() {
+	var
+		inpt,
+		str = "&lt;img src=x onerror=alert(document.cookie)&gt;";
+
+	if (inpt = document.getElementById("div2"))
+		inpt.innerHTML = "<span>" + str + "</span>";
+}
+
+function setInput1() {
+	var
+		inpt,
+		str = "<img src=x onerror=alert(document.cookie)>";
+
+	if (inpt = document.getElementById("inputTypeText1"))
+		inpt.value = "<img src=x onerror=alert(document.cookie)>";
 }
 		</script>
 	</head>
@@ -24,5 +52,15 @@ function fill() {
 		<div style="width: expression(DoIt());"></div>
 		<input id="victim" type="text" />
 		<input type="button" value="click" onclick="fill()"/>
+		<hr/>
+		<div id="div1"></div>
+		<input type="button" value="set DIV# 1" onclick="setDiv1()"/>
+		<hr/>
+		<div id="div2"></div>
+		<input type="button" value="set DIV# 2" onclick="setDiv2()"/>
+		<hr/>
+		<input type="text" id="inputTypeText1"/>
+		<input type="button" value="set INPUT# 1" onclick="setInput1()"/>
+		<hr/>
 	</body>
 </html>
