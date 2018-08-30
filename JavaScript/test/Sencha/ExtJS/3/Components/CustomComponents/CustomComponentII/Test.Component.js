@@ -1,8 +1,8 @@
 Ext.ns("Test");
 Test.ComponentDebugWComment=Ext.extend(Ext.Component,{
-	id: "TestComponent" /* начальная инициализация */,
-	constructor: function(config /* параметр, который передается из new (м.б. изменен в initComponent) */){
-		config = config || /* если передан параметр из new - не имеет никакого эффекта */ { id: "_Test_constructor_Component_" };
+	id: "TestComponent" /* РЅР°С‡Р°Р»СЊРЅР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */,
+	constructor: function(config /* РїР°СЂР°РјРµС‚СЂ, РєРѕС‚РѕСЂС‹Р№ РїРµСЂРµРґР°РµС‚СЃСЏ РёР· new (Рј.Р±. РёР·РјРµРЅРµРЅ РІ initComponent) */){
+		config = config || /* РµСЃР»Рё РїРµСЂРµРґР°РЅ РїР°СЂР°РјРµС‚СЂ РёР· new - РЅРµ РёРјРµРµС‚ РЅРёРєР°РєРѕРіРѕ СЌС„С„РµРєС‚Р° */ { id: "_Test_constructor_Component_" };
 		config.listeners = config.listeners || {};
 		Ext.applyIf(config.listeners, { /* add listeners config here */	});
 		Ext.apply(config, { /* stuff */ });
@@ -15,9 +15,9 @@ Test.ComponentDebugWComment=Ext.extend(Ext.Component,{
 		if(Ext.isGecko && ("console" in window))
 			console.info("4. after constructor parent");
 	},
-	initComponent: function(config /* всегда undefined */){
+	initComponent: function(config /* РІСЃРµРіРґР° undefined */){
 		config=config || { id: "_Test_initComponent_Component_" };
-		Ext.apply(this, Ext.apply(this.initialConfig, config)); /* изменяет значения, установленные в constructor */
+		Ext.apply(this, Ext.apply(this.initialConfig, config)); /* РёР·РјРµРЅСЏРµС‚ Р·РЅР°С‡РµРЅРёСЏ, СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рµ РІ constructor */
 
 		if(Ext.isGecko && ("console" in window))
 			console.info("2. before initComponent parent");

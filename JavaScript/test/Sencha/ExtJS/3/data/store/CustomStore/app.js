@@ -15,5 +15,6 @@ Ext.onReady(function() {
 	alert(TestComponent2.id);
 
 	var
+		TestStore=new Test.Store(),
 		TestWindow=new Test.Window();
 });
