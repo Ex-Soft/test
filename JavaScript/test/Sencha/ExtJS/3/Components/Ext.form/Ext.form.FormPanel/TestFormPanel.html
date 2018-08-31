@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>&laquo;Test FormPanel&raquo;</title>
+		<!--
+		<link rel="stylesheet" type="text/css" href="http://dev.sencha.com/deploy/dev/resources/css/ext-all.css"/>
+		<script type="text/javascript" src="http://dev.sencha.com/deploy/dev/adapter/ext/ext-base.js"></script>
+		<script type="text/javascript" src="http://dev.sencha.com/deploy/dev/ext-all.js"></script>
+		-->
+		<link rel="stylesheet" href="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script type="text/javascript" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script type="text/javascript">
+//Ext.BLANK_IMAGE_URL="http://dev.sencha.com/deploy/dev/resources/images/default/s.gif";
+Ext.BLANK_IMAGE_URL="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	Ext.apply(Ext.form.VTypes, {
+		SerialNo: function(v) {
+			return /^[A-Z0-9/ ]*$/.test(v);
+		},
+		SerialNoText: "SerialNoText",
+		SerialNoMask: /[A-Z0-9/ ]/
+	});
+	
+	var
+		TextField1 = new Ext.form.TextField({
+			allowBlank: true,
+			fieldLabel: "TextField1"
+		}),
+		TextField2 = new Ext.form.TextField({
+			allowBlank: true,
+			fieldLabel: "TextField2"
+		}),
+		TextField3 = new Ext.form.TextField({
+			allowBlank: true,
+			fieldLabel: "TextField3",
+			vtype: "SerialNo"
+			//,vtypeText: "Ext.form.TextField.vtypeText" // if doesn't define the SerialNoText is shown
+			//, preventMark: false
+		}),
+		NumberField1 = new Ext.form.NumberField({
+			fieldLabel: "NumberField"
+		}),
+		Checkbox1 = new Ext.form.Checkbox({
+			checked: true,
+			fieldLabel: "Set \"allowBlank\"",
+			handler: function(checkbox, checked) {
+				if(Ext.isGecko && window.console)
+					console.log("TextField1.allowBlank=%s", TextField1.allowBlank);
+				
+				TextField1.allowBlank = checked;
+				TextField1.validate();
+
+				if(Ext.isGecko && window.console)
+					console.log("TextField1.allowBlank=%s", TextField1.allowBlank);
+			}
+		}),
+		FieldSet1 = new Ext.form.FieldSet({
+			checkboxToggle: true,
+			title: "FieldSetTitle",
+			autoHeight: true,
+			defaults: {
+				width: 350,
+				labelStyle: "width: 150px"
+			},
+			defaultType: "textfield",
+			collapsed: true,
+			items: [{
+				fieldLabel: "FieldSetTextField# 1"
+			}, {
+				fieldLabel: "FieldSetTextField# 2"
+			}, {
+				fieldLabel: "FieldSetTextField# 3",
+				labelStyle: "width: 200px"
+			}]
+		}),
+		f = new Ext.form.FormPanel({
+			//applyTo: "DivForm",
+			renderTo: "DivForm",
+			frame: true,
+			monitorValid: true,
+			items: [
+				TextField1,
+				TextField2,
+				TextField3,
+				NumberField1,
+				Checkbox1,
+				FieldSet1
+			],
+			buttons: [{
+				text: "test",
+				handler: function() {
+					var
+						tmp=NumberField1.getValue();
+
+					if(Ext.isGecko && window.console)
+						console.log("typeof()=%s Ext.isString()=%s Ext.isNumber()=%s", typeof(tmp), Ext.isString(tmp), Ext.isNumber(tmp));
+				}
+			}, {
+				text: "set",
+				handler: function() {
+					TextField3.setValue("AbC/+*--*+\\123");
+				}
+			}, {
+				text: "submit",
+				formBind: true
+			}]
+		});
+});
+		</script>
+	</head>
+	<body>
+		<div id="DivForm"></div>
+	</body>
+</html>
