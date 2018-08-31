@@ -1,10 +1,28 @@
 <!doctype html>
 <!-- https://www.acunetix.com/websitesecurity/cross-site-scripting/ -->
 <!-- https://excess-xss.com/ -->
-﻿<html>
+<html>
 	<head>
 		<title>Test XSS</title>
 		<script>
+// https://stackoverflow.com/questions/30661497/xss-prevention-and-innerhtml
+function escapeHTML(unsafe_str) {
+    return unsafe_str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/\'/g, '&#39;')
+      .replace(/\//g, '&#x2F;')
+}
+
+// https://gomakethings.com/preventing-cross-site-scripting-attacks-when-using-innerhtml-in-vanilla-javascript/
+function sanitizeHTML(str) {
+	var temp = document.createElement('div');
+	temp.textContent = str;
+	return temp.innerHTML;
+}
+
 function DoIt() {
 	if (window.console && console.log)
 		console.log("XSS");
@@ -19,20 +37,77 @@ function fill() {
 
 function setDiv1() {
 	var
+		divId = "div1",
 		inpt,
-		str = "&lt;img src=x onerror=alert(document.cookie)&gt;";
+		str = "<img src=x onerror=alert(document.cookie)>";
 
-	if (inpt = document.getElementById("div1"))
-		inpt.innerHTML = "<img src=x onerror=alert(document.cookie)>";
+	if (inpt = document.getElementById(divId))
+		inpt.innerHTML = str;
 }
 
 function setDiv2() {
 	var
+		divId = "div2",
 		inpt,
 		str = "&lt;img src=x onerror=alert(document.cookie)&gt;";
 
-	if (inpt = document.getElementById("div2"))
+	if (inpt = document.getElementById(divId))
+		inpt.innerHTML = str;
+}
+
+function setDiv3() {
+	var
+		divId = "div3",
+		inpt,
+		str = "<img src=x onerror=alert(document.cookie)>";
+
+	if (inpt = document.getElementById(divId))
 		inpt.innerHTML = "<span>" + str + "</span>";
+}
+
+function setDiv4() {
+	var
+		divId = "div4",
+		inpt,
+		str = "&lt;img src=x onerror=alert(document.cookie)&gt;";
+
+	if (inpt = document.getElementById(divId))
+		inpt.innerHTML = "<span>" + str + "</span>";
+}
+
+function setDiv5() {
+	var
+		divId = "div5",
+		inpt,
+		str = "<img src=x onerror=alert(document.cookie)>";
+
+	if (inpt = document.getElementById(divId))
+		inpt.innerHTML = "<span>" + escapeHTML(str) + "</span>";
+}
+
+function setDiv6() {
+	var
+		divId = "div6",
+		inpt,
+		str = "<img src=x onerror=alert(document.cookie)>",
+		innerHTML;
+
+	if (!(inpt = document.getElementById(divId)))
+		return;
+
+	// https://gomakethings.com/preventing-cross-site-scripting-attacks-when-using-innerhtml-in-vanilla-javascript/
+	inpt.textContent = str;
+	innerHTML = inpt.innerHTML;
+}
+
+function setDiv7() {
+	var
+		divId = "div7",
+		inpt,
+		str = "<img src=x onerror=alert(document.cookie)>";
+
+	if (inpt = document.getElementById(divId))
+		inpt.innerHTML = sanitizeHTML(str);
 }
 
 function setInput1() {
@@ -58,6 +133,21 @@ function setInput1() {
 		<hr/>
 		<div id="div2"></div>
 		<input type="button" value="set DIV# 2" onclick="setDiv2()"/>
+		<hr/>
+		<div id="div3"></div>
+		<input type="button" value="set DIV# 3" onclick="setDiv3()"/>
+		<hr/>
+		<div id="div4"></div>
+		<input type="button" value="set DIV# 4" onclick="setDiv4()"/>
+		<hr/>
+		<div id="div5"></div>
+		<input type="button" value="set DIV# 5" onclick="setDiv5()"/>
+		<hr/>
+		<div id="div6"></div>
+		<input type="button" value="set DIV# 6" onclick="setDiv6()"/>
+		<hr/>
+		<div id="div7"></div>
+		<input type="button" value="set DIV# 7" onclick="setDiv7()"/>
 		<hr/>
 		<input type="text" id="inputTypeText1"/>
 		<input type="button" value="set INPUT# 1" onclick="setInput1()"/>

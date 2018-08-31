@@ -1,0 +1,377 @@
+<HTML>
+  <HEAD>
+    <TITLE>Test string</TITLE>
+    <meta charset="utf-8">
+    <script src="../../js/misc.js" type="text/javascript"></script>
+  </HEAD>
+  <BODY>
+<script>
+function w(str)
+{
+   document.write(str,"<br>");
+}
+
+var
+  str,
+  str_out,
+  arr,
+  re,
+  start,
+  finish,
+  idx,
+  i,
+  len,
+  o;
+
+// substr deprecated!!!
+
+str = "%(hours):%(minutes) | %(day) %(month) %(year)";
+str = "<img src=x onerror=alert(document.cookie);>.zip";
+o = { day: 30, hours: 13, minutes: "13", month: "Aug", year: 2018};
+str_out = str.replace(/%\(([A-Za-z0-9_|.]*)\)/g, function(t, p) {
+	return o[p] != undefined ? o[p] : t;
+});
+
+str = "0123456789";
+str_out = new String("0123456789");
+
+document.write("str=\""+str+"\"<br>");
+document.write("str_out=new String(\""+str_out+"\")<br>");
+document.write("<hr>");
+
+document.write("typeof(str) = \"", typeof(str), "\"", "<br>");
+document.write("typeof(str) ", typeof(str)=="string" ? "=" : "!", "= \"string\"","<br>");
+document.write("typeof(str) ", typeof(str)==="string" ? "=" : "!", "== \"string\"","<br>");
+document.write(str instanceof String ? "" : "!", "str instanceof String","<br>");
+document.write("str.constructor ", str.constructor==String ? "=" : "!", "= String","<br>");
+document.write(String.prototype.isPrototypeOf(str) ? "" : "!", "String.prototype.isPrototypeOf(str)","<br>");
+document.write("typeof(str_out) = \"", typeof(str_out), "\"", "<br>");
+document.write(str_out instanceof String ? "" : "!", "str_out instanceof String","<br>");
+document.write("str_out.constructor ", str_out.constructor==String ? "=" : "!", "= String","<br>");
+document.write(String.prototype.isPrototypeOf(str_out) ? "" : "!", "String.prototype.isPrototypeOf(str_out)","<br>");
+document.write("<hr>");
+
+document.write(str,"<br>");
+document.write("typeof(undefined)=",typeof(undefined),"<br>");
+document.write("typeof(str[5])=",typeof(str[5]),"<br>");
+document.write("typeof(str.charAt(5))=",typeof(str.charAt(5)),"<br>");
+document.write("str[5]=",str[5]," <b><u>Attention!!! Achtung!!!</u></b> Fucking M$ IE return \"<b><u>undefined</u></b>\"","<br>");
+document.write("str.indexOf(\"5\")=",str.indexOf(5),"<br>");
+document.write("str.substr(0,5)=",str.substr(0,5)," <b><u>substr</u> deprecated!!!</b><br>");
+document.write("str.substr(1,5)=",str.substr(1,5)," <b><u>substr</u> deprecated!!!</b><br>");
+document.write("str.substring(0,5)=",str.substring(0,5),"<br>");
+document.write("str.substring(1,5)=",str.substring(1,5),"<br>");
+str[5]="0"; // doesn't work str=""0123456789""
+document.write("str=",str," (after str[5]=\"0\")<br>");
+document.write("<br>");
+
+str = str_out.toString();
+document.write("typeof(str) = \"", typeof(str), "\"", "<br>");
+document.write("typeof(str) ", typeof(str)=="string" ? "=" : "!", "= \"string\"","<br>");
+document.write("typeof(str) ", typeof(str)==="string" ? "=" : "!", "== \"string\"","<br>");
+document.write(str instanceof String ? "" : "!", "str instanceof String","<br>");
+document.write("str.constructor ", str.constructor==String ? "=" : "!", "= String","<br>");
+document.write(String.prototype.isPrototypeOf(str) ? "" : "!", "String.prototype.isPrototypeOf(str)","<br>");
+document.write("<br>");
+
+str = "parentsUntil";
+str_out = str.slice(-5);
+if (window.console && console.log)
+	console.log("%s", str_out);
+
+str="admin:blah-blah-blah";
+start=new Date();
+if((idx=str.indexOf(":"))!=-1)
+	str_out=str.substring(0,idx);
+finish=new Date();
+if(window.console && console.log)
+	console.log("\"%s\" idx=%i %i", str_out, idx, finish-start);
+
+re=/^(.*?):(?:.*?)$/;
+start=new Date();
+if(arr=str.match(re))
+	str_out=arr[1];
+finish=new Date();
+if(window.console && console.log)
+	console.log("\"%s\" %i", str_out, finish-start);
+
+str="field1, field2, field3, field4, field5";
+str_out=str.split(",");
+for(i=0; i<str_out.length; ++i)
+	document.write("[", i, "] = \"", str_out[i], "\"", "<br/>");
+document.write("<br/>");
+
+str="BrandList";
+str_out="BrandList999";
+document.write(str_out.substr(str.length-1));
+document.write("<br>");
+document.write(str_out.substring(str.length-1));
+document.write("<br>");
+
+str="ABCD".toLowerCase();
+document.write("str=",str);
+document.write("<br>");
+
+str="file:///bla-bla-bla/file_name.html";
+document.write(str,"<br>");
+document.write("str.lastIndexOf(\"/\")=",str_out=str.lastIndexOf("/"),"<br>");
+document.write("str.substr(0,"+str_out+")=",str.substr(0,str_out),"<br>");
+document.write("str.substring(0,"+str_out+")=",str.substring(0,str_out),"<br>");
+document.write("str.substr(0,"+(str_out+1)+")=",str.substr(0,str_out+1),"<br>");
+document.write("str.substring(0,"+(str_out+1)+")=",str.substring(0,str_out+1),"<br>");
+document.write("<br>");
+
+str="file:///bla-bla-bla/file_name.html?param1=1&param2=2&param3=3";
+str_out=str.substring(0,str.indexOf("&param3"));
+document.write(str_out);
+document.write("<br>");
+
+document.write("<br>");
+
+str_out=new RegExp("^(\\d+|\\d*[\\.,-]\\d{0,2})$"); 
+str="55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55,";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55-";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str=".55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str=",55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55,55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55-55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str=" 55.55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.55 ";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.555";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+document.write("<br>");
+
+str_out=/\d+(?:[\.,-]\d{0,2})?/;
+str="55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.5";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="55.55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str="555";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str=".5";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str=".55";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+str=".555";
+document.write(str_out.toString(),".test("+str+")=",str_out.test(str),"<br>");
+
+document.write("<br>");
+
+str="aaa/aaa/aaa";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/\\//g,\"\\\\\")=",str.replace(/\//g,"\\"));
+document.write("<br>");
+
+str=" aaaa  ";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/^\\s+|\\s+$/g,\"\").length=",str.replace(/^\s+|\s+$/g,"").length);
+document.write("<br>");
+
+str='Обов\'язкове страхування';
+document.write(str,"<br>");
+w(str);
+document.write("<br>");
+
+str=("Line#1\r\nLine#2");
+document.write(str,"<br>");
+alert(str);
+str_out=str.replace(/\r\n/g," ");
+document.write("str='",str,"'"," '",str_out,"'","<br>");
+document.write("<br>");
+
+str="first#second#third";
+document.write("str='",str,"'","<br>");
+document.write("ExtractToken(str,\"#\",0)='",ExtractToken(str,"#",0),"'","<br>");
+document.write("ExtractToken(str,\"#\",1)='",ExtractToken(str,"#",1),"'","<br>");
+document.write("ExtractToken(str,\"#\",2)='",ExtractToken(str,"#",2),"'","<br>");
+document.write("ExtractToken(str,\"#\",3)='",ExtractToken(str,"#",3),"'","<br>");
+document.write("<br>");
+
+str="Привет";
+document.write("escape(\"",str,"\")=\"",str=escape(str),"\"<br>");
+document.write("unescape(\"",str,"\")=\"",str=unescape(str),"\"<br>");
+document.write("encodeURIComponent(\"",str,"\")=\"",str=encodeURIComponent(str),"\"<br>");
+document.write("decodeURIComponent(\"",str,"\")=\"",str=decodeURIComponent(str),"\"<br>");
+str="АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯЁҐІЇЄ№";
+document.write("encodeURIComponent(\"",str,"\")=\"",str=encodeURIComponent(str),"\"<br>");
+document.write("decodeURIComponent(\"",str,"\")=\"",str=decodeURIComponent(str),"\"<br>");
+str="абвгдежзийклмнопрстуфхцчшщъыьэюяёґіїє";
+document.write("encodeURIComponent(\"",str,"\")=\"",str=encodeURIComponent(str),"\"<br>");
+document.write("decodeURIComponent(\"",str,"\")=\"",str=decodeURIComponent(str),"\"<br>");
+document.write("<br>");
+
+str="15-12-2006";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/[-,\/]/g,\".\")='",str.replace(/[-,\/]/g,"."),"'","<br>");
+str="15,12,2006";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/[-,\/]/g,\".\")='",str.replace(/[-,\/]/g,"."),"'","<br>");
+str="15/12/2006";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/[-,\/]/g,\".\")='",str.replace(/[-,\/]/g,"."),"'","<br>");
+
+str="<a href=\"excel-group-export.aspx?groupId=0\"><img src=\"images/excel.gif\" alt=\"Сохранить в Excel\" style=\"border-style: none; \"></a>&nbsp;<a href=\"excel-group-export.aspx?groupId=0\">Сохранить в Excel</a>";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/\\d/g,\"999\")='",str.replace(/\d/g,"999"),"'","<br>");
+
+str="<a href=\"excel-group-export.aspx?search=\"><img src=\"images/excel.gif\" alt=\"Сохранить в Excel\" style=\"border-style: none; \"></a>&nbsp;<a href=\"excel-group-export.aspx?search=\">Сохранить в Excel</a>";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/search=.*?\"/g,\"search=halb-halb-halb\\\"\")='",str.replace(/search=.*?"/g,"search=halb-halb-halb\""),"'","<br>");
+
+str="<a href=\"excel-group-export.aspx?search=blah-blah-blah\"><img src=\"images/excel.gif\" alt=\"Сохранить в Excel\" style=\"border-style: none; \"></a>&nbsp;<a href=\"excel-group-export.aspx?search=blah-blah-blah\">Сохранить в Excel</a>";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/search=.*?\"/g,\"search=halb-halb-halb\\\"\")='",str.replace(/search=.*?"/g,"search=halb-halb-halb\""),"'","<br>");
+
+document.write("<br>");
+
+str_out="15.12.2006";
+document.write("str='",str_out,"'","<br>");
+str=str_out.split(".");
+document.write("split(\".\").length=",str.length,"<br>");
+for(i in str)
+  document.write("[",i,"]='",str[i],"'<br>");
+document.write("<br>");
+
+str_out="15-12,2006/XXI/15.12.2006";
+document.write("str='",str_out,"'","<br>");
+str=str_out.split(/[-,\.\/]/);
+document.write("split(/[-,\.\/]/).length=",str.length,"<br>");
+for(i in str)
+  document.write("[",i,"]='",str[i],"'<br>");
+document.write("<br>");
+
+str="0 1 2 3 4 5 6 7 8 9";
+document.write("str='",str,"'","<br>");
+document.write("str.replace(/\s/g,\"\")='",str.replace(/\s/g,""),"'","<br>");
+document.write("<br>");
+
+str_out=",06";
+document.write("str='",str_out,"'","<br>");
+str=str_out.split(/[-,\.\/]/);
+document.write("split(/[-,\.\/]/).length=",str.length,"<br>");
+for(i in str)
+  document.write("[",i,"]='",str[i],"'<br>");
+document.write("<br>");
+
+str_out="06";
+document.write("str='",str_out,"'","<br>");
+str=str_out.split(/[-,\.\/]/);
+document.write("split(/[-,\.\/]/).length=",str.length,"<br>");
+for(i in str)
+  document.write("[",i,"]='",str[i],"'<br>");
+document.write("<br>");
+
+document.write("<h1>","FormatCurrencyStrComma","</h1>");
+str="50,55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50.55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50-55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="- 50,55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="- 50.55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="- 50-55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str=".55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str=",55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="-55";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50,";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50.";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50-";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50,555";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50.555";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50-555";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="  50,555  ";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="  50.555";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="50-555  ";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str="0.5";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+str=",5";
+document.write("FormatCurrencyStrComma(\"",str,"\")=",FormatCurrencyStrComma(str),"<br>");
+document.write("<hr>");
+
+document.write("<h1>","FindDecimalSeparator","</h1>");
+str="0,0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="0.0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="0-0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="-0,0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="-0.0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="-0-0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="-,0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="-.0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+str="-0";
+document.write("FindDecimalSeparator(\"",str,"\")=",FindDecimalSeparator(str),"<br>");
+document.write("<hr>");
+
+document.write("<h1>","Num2Str","</h1>");
+for(str=0; str<=120; str+=1.01)
+{
+   str_out=RoundTo(str,-2);
+   document.write("Num2Str(",str_out,")=",Num2Str(str_out),"<br>");
+}
+document.write("<br>");
+
+document.write("<h1>","fromCharCode","</h1>");
+str_out="";
+for(str=1; str<=100; ++str)
+   str_out+=String.fromCharCode(((str-1)%26)+97, (str%26)+97, ((str+1)%26)+97);
+document.write(str_out,"<br>");
+
+str="/1/2/3/4/5";
+arr=str.split("/");
+str_out="";
+len=arr.length;
+for(i=0; i<len; ++i)
+{
+   if(str_out.length>0)
+     str_out+=", "
+   str_out+="str["+i+"]=\""+arr[i]+"\"";
+}
+document.write(str_out,"<br>");
+
+str="aBcD";
+str_out=str.toLowerCase();
+document.write("str=\"",str,"\"<br>str_out=\"",str_out,"\"<br>");
+</script>
+  </BODY>
+</HTML>
