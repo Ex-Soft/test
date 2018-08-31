@@ -129,25 +129,25 @@ function setInput1() {
 		<input type="button" value="click" onclick="fill()"/>
 		<hr/>
 		<div id="div1"></div>
-		<input type="button" value="set DIV# 1" onclick="setDiv1()"/>
+		<input type="button" value="set div.innerHTML = &lt;img src=x onerror=alert(document.cookie)&gt;" onclick="setDiv1()"/>
 		<hr/>
 		<div id="div2"></div>
-		<input type="button" value="set DIV# 2" onclick="setDiv2()"/>
+		<input type="button" value="set div.innerHTML = &amp;lt;img src=x onerror=alert(document.cookie)&amp;gt;" onclick="setDiv2()"/>
 		<hr/>
 		<div id="div3"></div>
-		<input type="button" value="set DIV# 3" onclick="setDiv3()"/>
+		<input type="button" value="set div.innerHTML = &lt;span&gt;&lt;img src=x onerror=alert(document.cookie)&gt;&lt;/span&gt;" onclick="setDiv3()"/>
 		<hr/>
 		<div id="div4"></div>
-		<input type="button" value="set DIV# 4" onclick="setDiv4()"/>
+		<input type="button" value="set div.innerHTML = &lt;span&gt;&amp;lt;img src=x onerror=alert(document.cookie)&amp;gt;&lt;/span&gt;" onclick="setDiv4()"/>
 		<hr/>
 		<div id="div5"></div>
-		<input type="button" value="set DIV# 5" onclick="setDiv5()"/>
+		<input type="button" value="set div.innerHTML = &lt;span&gt;escapeHTML(&lt;img src=x onerror=alert(document.cookie)&gt;)&lt;/span&gt;" onclick="setDiv5()"/>
 		<hr/>
 		<div id="div6"></div>
-		<input type="button" value="set DIV# 6" onclick="setDiv6()"/>
+		<input type="button" value="set div.textContent = &lt;img src=x onerror=alert(document.cookie)&gt;" onclick="setDiv6()"/>
 		<hr/>
 		<div id="div7"></div>
-		<input type="button" value="set DIV# 7" onclick="setDiv7()"/>
+		<input type="button" value="set div.innerHTML = sanitizeHTML(&lt;img src=x onerror=alert(document.cookie)&gt;)" onclick="setDiv7()"/>
 		<hr/>
 		<input type="text" id="inputTypeText1"/>
 		<input type="button" value="set INPUT# 1" onclick="setInput1()"/>
