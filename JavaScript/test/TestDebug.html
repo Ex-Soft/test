@@ -9,7 +9,7 @@ function onLoad()
 	var
 		result,
 		str = "1+2;\n//@ sourceURL=TestDebug";
-		//str = "1+2;\ndebugger;\n//@ sourceURL=TestDebug";
+		//str = "1+2;\ndebugger;\n//@ sourceURL=TestDebug"; // break at "debugger" inside eval()
 
 	result = eval(str);
 

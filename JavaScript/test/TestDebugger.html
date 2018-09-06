@@ -15,8 +15,58 @@ function onLoad()
 	if(window.console && console.log)
 		console.log("%i", d);
 }
+
+/*
+https://stackoverflow.com/questions/3015197/can-i-break-with-debugger-on-all-changes-to-a-dom-element
+
+In Firebug:
+
+1. Go to HTML tab
+2. Right-click an element you'd like to monitor
+3. Choose "Break On Attribute Change", or "Break On Child Addition Or Removal", or "Break On Element Removal"
+
+In Chrome Developer Tools:
+
+1. Go to Elements tab
+2. Right-click an element you'd like to monitor
+3. Select "Break On ...", then choose "Subtree Modification", or "Attributes Modification", or "Node Removal"
+*/
+function insert()
+{
+	var container,
+		newDiv,
+		content,
+		id = "divVictim";
+
+	if ((div = document.getElementById(id))
+		|| !(container = document.getElementById("container"))
+		|| !(div = document.createElement("div"))
+		|| !(content = document.createTextNode("div")))
+		return;
+
+	div.id = id;
+	div.appendChild(content);
+
+	container.appendChild(div);
+}
+
+function remove()
+{
+	var container,
+		div;
+
+	if (!(container = document.getElementById("container"))
+		|| !(div = document.getElementById("divVictim")))
+		return;
+
+	container.removeChild(div);
+}
 		</script>
 	</head>
 	<body onload="onLoad()">
+		<input type="button" value="Insert DOMElement" onclick="insert()"/>
+		<input type="button" value="Remove DOMElement" onclick="remove()"/>
+		<hr/>
+		<div id="container"></div>
 	</body>
 </html>
