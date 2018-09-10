@@ -110,9 +110,27 @@ Ext.onReady(function() {
 			title: "East Region",
 			width: 200,
 			collapsible: true,
+			collapsed: true,
 			split: true,
 			margins: "5 5 0 0"
 		}],
+		listeners: {
+			afterrender: function(panel) {
+				if (window.console && console.log)
+					console.log("afterrender(%o)", arguments);
+
+				var layout,
+					layoutItems,
+					eastRegion;
+
+				if (!(layout = panel.getLayout())
+					|| Ext.isEmpty(layoutItems = layout.getLayoutItems())
+					|| !(eastRegion = layoutItems.find(item => item.id == "east-region-container")))
+					return;
+
+				eastRegion.expand();
+			}
+		},
 		renderTo: Ext.getBody()
 	});
 });
