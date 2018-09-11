@@ -1,0 +1,42 @@
+<!doctype html>
+<!-- https://css-tricks.com/centering-css-complete-guide/ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test &lt;p&gt; in &lt;div&gt;</title>
+		<style>
+div {
+	background-color: blue;
+	border: solid 1px red;
+}
+
+#div1 {
+	height: 100px;
+	line-height: 100px;
+	white-space: nowrap;
+
+}
+
+#div2 {
+	height: 100px;
+	position: relative;
+}
+
+#div2 a {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<a>link</a>
+		</div>
+		<hr/>
+		<div id="div2">
+			<a>link</a>
+		</div>
+	</body>
+</html>
