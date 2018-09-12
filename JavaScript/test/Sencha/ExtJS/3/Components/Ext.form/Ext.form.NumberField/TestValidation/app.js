@@ -50,7 +50,13 @@ Ext.onReady(function() {
 				items: [{
 					xtype: "customnumberfield",
 					minValue: 10,
-					maxValue: 20
+					maxValue: 20,
+					validator: function(value) {
+						if(window.console && console.log)
+							console.log("CustomNumberField.validator(%o)", arguments);
+
+						return true;
+					}
 				}]
 			}],
 			tbar: [{
@@ -72,11 +78,11 @@ Ext.onReady(function() {
 
 					if(window.console && console.log)
 						console.log("NumberField.isValid()");
-					numberField.isValid(); // isValid() -> validateValue() -> getErrors()
+					numberField.isValid(); // isValid() -> validateValue() -> getErrors() -> validator()
 
 					if(window.console && console.log)
 						console.log("Form.isValid()");
-					form.isValid(); // form.isValid() -> field.validate()-> field.validateValue() -> field.getErrors()
+					form.isValid(); // form.isValid() -> field.validate()-> field.validateValue() -> field.getErrors() -> field.validator()
 				}
 			}],
 			renderTo: Ext.getBody()
