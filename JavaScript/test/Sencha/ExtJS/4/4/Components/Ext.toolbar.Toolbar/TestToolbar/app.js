@@ -1,16 +1,19 @@
-Ext.BLANK_IMAGE_URL = "../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+﻿Ext.Loader.setConfig({
+	enabled: true,
+	disableCaching: false
+});
 
 Ext.onReady(function() {
 	Ext.QuickTips.init();
 
-	if (window.console && console.clear)
+	if(window.console && console.clear)
 		console.clear();
 
-	if (window.console && console.log)
-		console.log(Ext.version);
+	if(window.console && console.log)
+		console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
 
 	var
-		store = new Ext.data.ArrayStore({
+		store = Ext.create("Ext.data.ArrayStore", {
 			autoDestroy: true,
 			fields: [ "id", "value"],
 			data : [
@@ -25,55 +28,49 @@ Ext.onReady(function() {
 				[ 9, "abcdefg" ]
 			]
 		}),
-		combobox1 = new Ext.form.ComboBox({
+		combobox1 = Ext.create("Ext.form.ComboBox", {
+			hideLabel: true,
 			store: store,
 			valueField: "id",
 			displayField: "value",
 			typeAhead: true,
-			mode: "local",
-			forceSelection: true,
+			queryMode: "local",
 			triggerAction: "all",
 			emptyText: "Select...",
 			selectOnFocus: true,
 			width: 135,
-			getListParent: function() {
-				return this.el.up(".x-menu");
-			},
-			iconCls: "no-icon"
+			indent: true,
+			forceSelection: true
 		}),
-		combobox2 = new Ext.form.ComboBox({
+		combobox2 = Ext.create("Ext.form.ComboBox", {
+			hideLabel: true,
 			store: store,
 			valueField: "id",
 			displayField: "value",
 			typeAhead: true,
-			mode: "local",
-			forceSelection: true,
+			queryMode: "local",
 			triggerAction: "all",
 			emptyText: "Select...",
 			selectOnFocus: true,
 			width: 135,
-			getListParent: function() {
-				return this.el.up(".x-menu");
-			},
-			iconCls: "no-icon"
+			indent: true,
+			forceSelection: true
 		}),
-		combobox3 = new Ext.form.ComboBox({
+		combobox3 = Ext.create("Ext.form.ComboBox", {
+			hideLabel: true,
 			store: store,
 			valueField: "id",
 			displayField: "value",
 			typeAhead: true,
-			mode: "local",
-			forceSelection: true,
+			queryMode: "local",
 			triggerAction: "all",
 			emptyText: "Select...",
 			selectOnFocus: true,
 			width: 135,
-			getListParent: function() {
-				return this.el.up(".x-menu");
-			},
-			iconCls: "no-icon"
+			indent: true,
+			forceSelection: true
 		}),
-		menu = new Ext.menu.Menu({
+		menu = Ext.create("Ext.menu.Menu", {
 			items: [
 				combobox2
 			]
