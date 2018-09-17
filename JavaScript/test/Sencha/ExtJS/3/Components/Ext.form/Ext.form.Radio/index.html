@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.form.Radio</title>
+		<link rel="stylesheet" href="../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script charset="utf-8" src="../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script>
+Ext.BLANK_IMAGE_URL = "../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		TestForm=new Ext.FormPanel({
+			url: "SaveFormHandler.aspx",
+			renderTo: document.body,
+			autoHeight: true,
+			//autoWidth: true,
+			width: 400,
+			frame: true,
+			title: "TestForm",
+			items: [{
+				xtype: "radio",
+				fieldLabel: "Radio",
+				id: "Radio1",
+				name: "Radio",
+				inputValue: "Radio1",
+				boxLabel: "Radio# 1"
+			}, {
+				xtype: "radio",
+				hideLabel: false,
+				labelSeparator: "",
+				id: "Radio2",
+				name: "Radio",
+				inputValue: "Radio2",
+				boxLabel: "Radio# 2"
+			}],
+			buttons: [{
+				text: "Check",
+				handler: CheckCtrl
+			}]
+		});
+
+});
+
+function CheckCtrl()
+{
+	var
+		Ctrl,
+		CtrlName;
+
+	if(Ctrl=document.getElementById(CtrlName="Radio1"))
+		alert(CtrlName);
+	if(Ctrl=document.getElementById(CtrlName="Radio2"))
+		alert(CtrlName);
+		
+	if(Ctrl=Ext.getCmp(CtrlName="Radio1"))
+		alert(CtrlName);
+	if(Ctrl=Ext.getCmp(CtrlName="Radio2"))
+		alert(CtrlName);
+}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

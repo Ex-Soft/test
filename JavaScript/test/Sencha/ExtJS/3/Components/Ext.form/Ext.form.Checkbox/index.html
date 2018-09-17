@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Ext.form.CheckBox</title>
+		<link rel="stylesheet" href="../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script charset="utf-8" src="../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script>
+Ext.BLANK_IMAGE_URL = "../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		TestForm=new Ext.FormPanel({
+			url: "SaveFormHandler.aspx",
+			renderTo: Ext.getBody(),
+			autoHeight: true,
+			//autoWidth: true,
+			width: 400,
+			frame: true,
+			title: "TestForm",
+			items: [{
+				xtype: "checkbox",
+				fieldLabel: "CheckBox",
+				id: "CheckBox",
+				name: "CheckBox"
+			}],
+			buttons: [{
+				text: "Check",
+				handler: CheckCtrl
+			}]
+		});
+
+});
+
+function CheckCtrl()
+{
+	var
+		Ctrl,
+		CtrlName;
+
+	if(Ctrl=document.getElementById(CtrlName="CheckBox"))
+		alert(CtrlName);
+		
+	if(Ctrl=Ext.getCmp(CtrlName="CheckBox"))
+	{
+		alert(CtrlName);
+
+		var
+			val=Ctrl.getValue();
+
+		if(val)
+			alert("true");
+		else
+			alert("false");
+			
+		if(Ctrl.getValue())
+			alert("true");
+		else
+			alert("false");
+
+		if(Ctrl.getValue()==true)
+			alert("true");
+		else
+			alert("false");
+
+		if(Ctrl.getValue()===true)
+			alert("true");
+		else
+			alert("false");
+
+		val=true;
+		if(Ctrl.getValue()==val)
+			alert("true");
+		else
+			alert("false");
+		if(Ctrl.getValue()===val)
+			alert("true");
+		else
+			alert("false");
+			
+		val=false;
+		if(Ctrl.getValue()!=val)
+			alert("true");
+		else
+			alert("false");
+		if(Ctrl.getValue()!==val)
+			alert("true");
+		else
+			alert("false");
+	}
+}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

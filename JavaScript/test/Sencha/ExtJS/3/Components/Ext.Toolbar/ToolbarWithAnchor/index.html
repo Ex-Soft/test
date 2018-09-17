@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<title>&laquo;Test Toolbar with Anchor&raquo;</title>
+		<link rel="stylesheet" type="text/css" href="../../ExtJS/resources/css/ext-all.css"/>
+		<script type="text/javascript" charset="windows-1251" src="../../ExtJS/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" charset="windows-1251" src="../../ExtJS/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../ExtJS/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		RegionNorth = new Ext.Toolbar({
+			region: "north",
+			height: 28,
+			items: [
+				" ",
+				"<a href=\"http://google.com/\">google.com</a>",
+				"-",
+			{
+				xtype: "tbtext",
+				text: "<a href=\"http://google.ru/\">google.ru</a>"
+			},
+				"->"
+			]
+		}),
+		viewport = new Ext.Viewport({
+			layout: "border",
+			renderTo: Ext.getBody(),
+			items: [
+				RegionNorth,
+			{
+				region: "center",
+				html: "center"
+			}]
+		});
+});
+// -->
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
