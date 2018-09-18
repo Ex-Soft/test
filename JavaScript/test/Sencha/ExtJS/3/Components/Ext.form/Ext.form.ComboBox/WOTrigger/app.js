@@ -2,49 +2,93 @@ Ext.BLANK_IMAGE_URL = "../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resour
 
 Ext.ns("Test");
 
-Test.ComboBoxWOTrigger = Ext.extend(Ext.form.ComboBox, {
-	constructor: function(config) {
-		if (window.console && console.log)
-			console.log("ComboBoxWOTrigger.constructor(%o)", arguments);
-
-		Test.ComboBoxWOTrigger.superclass.constructor.call(this, config);
-
-		return this;
-	},
-
+Test.ComboBoxWOTriggerV1 = Ext.extend(Ext.form.ComboBox, {
 	initComponent: function () {
 		if (window.console && console.log)
-			console.log("ComboBoxWOTrigger.initComponent(%o)", arguments);
+			console.log("ComboBoxWOTriggerV1.initComponent(%o)", arguments);
 
-		Test.ComboBoxWOTrigger.superclass.initComponent.apply(this, arguments);
+		Test.ComboBoxWOTriggerV1.superclass.initComponent.apply(this, arguments);
 
 		this.on({
 			render: function(cmp) {
 				if (window.console && console.log)
-					console.log("ComboBoxWOTrigger.render(%o)", arguments);
+					console.log("ComboBoxWOTriggerV1.render(%o)", arguments);
 
-				this.getEl().on("click", this.onClick.createDelegate(this, arguments));
+				this.getEl().on("click", Ext.createDelegate(this.onClick, this, arguments));
 			}
 		});
 	},
 
-	onRender: function (ct, position) {
+	onClick: function(cmp) {
 		if (window.console && console.log)
-			console.log("ComboBoxWOTrigger.onRender(%o)", arguments);
+			console.log("ComboBoxWOTriggerV1.onClick(%o)", arguments);
 
-		Test.ComboBoxWOTrigger.superclass.onRender.call(this, ct, position);
+		if (this.isExpanded())
+			return;
+
+		this.onTriggerClick();
 	},
 
-	initEvents: function () {
-		if (window.console && console.log)
-			console.log("ComboBoxWOTrigger.initEvents(%o)", arguments);
+    /**
+     * Execute a query to filter the dropdown list.  Fires the {@link #beforequery} event prior to performing the
+     * query allowing the query action to be canceled if needed.
+     * @param {String} query The SQL query to execute
+     * @param {Boolean} forceAll <tt>true</tt> to force the query to execute even if there are currently fewer
+     * characters in the field than the minimum specified by the <tt>{@link #minChars}</tt> config option.  It
+     * also clears any filter previously saved in the current store (defaults to <tt>false</tt>)
+     */
+    doQuery : function(q, forceAll){
+        q = Ext.isEmpty(q) ? '' : q;
+        var qe = {
+            query: q,
+            forceAll: forceAll,
+            combo: this,
+            cancel:false
+        };
+        if(this.fireEvent('beforequery', qe)===false || qe.cancel){
+            return false;
+        }
+        q = qe.query;
+        forceAll = qe.forceAll;
+        if(forceAll === true || (q.length >= this.minChars)){
+            if(this.lastQuery !== q){
+                this.lastQuery = q;
+                if(this.mode == 'local'){
+                    this.selectedIndex = -1;
+                    if(forceAll){
+                        this.store.clearFilter();
+                    }else{
+                        this.store.filter(this.displayField, new RegExp(Ext.escapeRe(q), "i"), true);
+                    }
+                    this.onLoad();
+                }else{
+                    this.store.baseParams[this.queryParam] = q;
+                    this.store.load({
+                        params: this.getParams(q)
+                    });
+                    this.expand();
+                }
+            }else{
+                this.selectedIndex = -1;
+                this.onLoad();
+            }
+        }
+    }
+});
 
-		Test.ComboBoxWOTrigger.superclass.initEvents.apply(this, arguments);
+Test.ComboBoxWOTriggerV2 = Ext.extend(Ext.form.ComboBox, {
+	onRender: function (ct, position) {
+		if (window.console && console.log)
+			console.log("ComboBoxWOTriggerV2.onRender(%o)", arguments);
+
+		Test.ComboBoxWOTriggerV2.superclass.onRender.call(this, ct, position);
+
+		this.getEl().on("click", Ext.createDelegate(this.onClick, this, arguments));
 	},
 
 	onClick: function(cmp) {
 		if (window.console && console.log)
-			console.log("ComboBoxWOTrigger.onClick(%o)", arguments);
+			console.log("ComboBoxWOTriggerV2.onClick(%o)", arguments);
 
 		if (this.isExpanded())
 			return;
@@ -113,13 +157,21 @@ Ext.onReady(function() {
 			if (window.console && console.log)
 				console.log("f(%o)", arguments);
 
+			if (combobox.isExpanded())
+				return;
+
 			combobox.onTriggerClick();
 		},
 		ff = function(e, el, eOpt) {
 			if (window.console && console.log)
 				console.log("ff(%o)", arguments);
 
-			this.onTriggerClick();
+			var cmp;
+
+			if (Ext.isEmpty(el.id) || !(cmp = Ext.getCmp(el.id)) || cmp.isExpanded())
+				return;
+
+			/*this*/cmp.onTriggerClick();
 		},
 		store = new Ext.data.ArrayStore({
 			autoDestroy: true,
@@ -152,7 +204,7 @@ Ext.onReady(function() {
 					if (!(el = cmp.getEl()))
 						return;
 
-					el.on("click", f.createDelegate(cmp, arguments));
+					el.on("click", Ext.createDelegate(f, cmp, arguments));
 				}
 			}
 		}),
@@ -176,7 +228,14 @@ Ext.onReady(function() {
 				}
 			}
 		}),
-		combobox3 = new Test.ComboBoxWOTrigger({
+		combobox3 = new Test.ComboBoxWOTriggerV1({
+			store: store,
+			valueField: "id",
+			displayField: "value",
+			mode: "local",
+			hideTrigger: true
+		}),
+		combobox4 = new Test.ComboBoxWOTriggerV2({
 			store: store,
 			valueField: "id",
 			displayField: "value",
@@ -190,7 +249,8 @@ Ext.onReady(function() {
 			items: [
 				combobox1,
 				combobox2,
-				combobox3
+				combobox3,
+				combobox4
 			],
 			renderTo: Ext.getBody()
 		});
