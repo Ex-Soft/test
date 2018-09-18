@@ -46,8 +46,57 @@ Test.ComboBoxWOTrigger = Ext.extend(Ext.form.ComboBox, {
 		if (window.console && console.log)
 			console.log("ComboBoxWOTrigger.onClick(%o)", arguments);
 
+		if (this.isExpanded())
+			return;
+
 		this.onTriggerClick();
-	}
+	},
+
+    /**
+     * Execute a query to filter the dropdown list.  Fires the {@link #beforequery} event prior to performing the
+     * query allowing the query action to be canceled if needed.
+     * @param {String} query The SQL query to execute
+     * @param {Boolean} forceAll <tt>true</tt> to force the query to execute even if there are currently fewer
+     * characters in the field than the minimum specified by the <tt>{@link #minChars}</tt> config option.  It
+     * also clears any filter previously saved in the current store (defaults to <tt>false</tt>)
+     */
+    doQuery : function(q, forceAll){
+        q = Ext.isEmpty(q) ? '' : q;
+        var qe = {
+            query: q,
+            forceAll: forceAll,
+            combo: this,
+            cancel:false
+        };
+        if(this.fireEvent('beforequery', qe)===false || qe.cancel){
+            return false;
+        }
+        q = qe.query;
+        forceAll = qe.forceAll;
+        if(forceAll === true || (q.length >= this.minChars)){
+            if(this.lastQuery !== q){
+                this.lastQuery = q;
+                if(this.mode == 'local'){
+                    this.selectedIndex = -1;
+                    if(forceAll){
+                        this.store.clearFilter();
+                    }else{
+                        this.store.filter(this.displayField, new RegExp(Ext.escapeRe(q), "i"), true);
+                    }
+                    this.onLoad();
+                }else{
+                    this.store.baseParams[this.queryParam] = q;
+                    this.store.load({
+                        params: this.getParams(q)
+                    });
+                    this.expand();
+                }
+            }else{
+                this.selectedIndex = -1;
+                this.onLoad();
+            }
+        }
+    }
 });
 
 Ext.onReady(function() {
@@ -93,7 +142,6 @@ Ext.onReady(function() {
 			displayField: "value",
 			mode: "local",
 			hideTrigger: true,
-			triggerAction: "all",
 			listeners: {
 				render: function(cmp) {
 					if (window.console && console.log)
@@ -114,7 +162,6 @@ Ext.onReady(function() {
 			displayField: "value",
 			mode: "local",
 			hideTrigger: true,
-			triggerAction: "all",
 			listeners: {
 				render: function(cmp) {
 					if (window.console && console.log)
@@ -134,8 +181,7 @@ Ext.onReady(function() {
 			valueField: "id",
 			displayField: "value",
 			mode: "local",
-			hideTrigger: true,
-			triggerAction: "all"
+			hideTrigger: true
 		}),
 		panel = new Ext.Panel({
 			layout: {
