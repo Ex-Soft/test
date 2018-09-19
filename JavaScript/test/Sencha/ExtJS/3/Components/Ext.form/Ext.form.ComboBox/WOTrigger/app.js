@@ -143,6 +143,73 @@ Test.ComboBoxWOTriggerV2 = Ext.extend(Ext.form.ComboBox, {
     }
 });
 
+Test.ComboBoxWOTriggerV3 = Ext.extend(Ext.form.ComboBox, {
+	initEvents: function() {
+		if (window.console && console.log)
+			console.log("ComboBoxWOTriggerV3.initEvents(%o)", arguments);
+
+		Test.ComboBoxWOTriggerV3.superclass.initEvents.call(this);
+
+		this.getEl().on("click", Ext.createDelegate(this.onClick, this));
+	},
+
+	onClick: function(e, el, eOpts) {
+		if (window.console && console.log)
+			console.log("ComboBoxWOTriggerV3.onClick(%o)", arguments);
+
+		if (this.isExpanded())
+			return;
+
+		this.onTriggerClick();
+	},
+
+    /**
+     * Execute a query to filter the dropdown list.  Fires the {@link #beforequery} event prior to performing the
+     * query allowing the query action to be canceled if needed.
+     * @param {String} query The SQL query to execute
+     * @param {Boolean} forceAll <tt>true</tt> to force the query to execute even if there are currently fewer
+     * characters in the field than the minimum specified by the <tt>{@link #minChars}</tt> config option.  It
+     * also clears any filter previously saved in the current store (defaults to <tt>false</tt>)
+     */
+    doQuery : function(q, forceAll){
+        q = Ext.isEmpty(q) ? '' : q;
+        var qe = {
+            query: q,
+            forceAll: forceAll,
+            combo: this,
+            cancel:false
+        };
+        if(this.fireEvent('beforequery', qe)===false || qe.cancel){
+            return false;
+        }
+        q = qe.query;
+        forceAll = qe.forceAll;
+        if(forceAll === true || (q.length >= this.minChars)){
+            if(this.lastQuery !== q){
+                this.lastQuery = q;
+                if(this.mode == 'local'){
+                    this.selectedIndex = -1;
+                    if(forceAll){
+                        this.store.clearFilter();
+                    }else{
+                        this.store.filter(this.displayField, new RegExp(Ext.escapeRe(q), "i"), true);
+                    }
+                    this.onLoad();
+                }else{
+                    this.store.baseParams[this.queryParam] = q;
+                    this.store.load({
+                        params: this.getParams(q)
+                    });
+                    this.expand();
+                }
+            }else{
+                this.selectedIndex = -1;
+                this.onLoad();
+            }
+        }
+    }
+});
+
 Ext.onReady(function() {
 	Ext.QuickTips.init();
 
@@ -242,6 +309,13 @@ Ext.onReady(function() {
 			mode: "local",
 			hideTrigger: true
 		}),
+		combobox5 = new Test.ComboBoxWOTriggerV3({
+			store: store,
+			valueField: "id",
+			displayField: "value",
+			mode: "local",
+			hideTrigger: true
+		}),
 		panel = new Ext.Panel({
 			layout: {
 				type: "hbox"
@@ -250,7 +324,8 @@ Ext.onReady(function() {
 				combobox1,
 				combobox2,
 				combobox3,
-				combobox4
+				combobox4,
+				combobox5
 			],
 			renderTo: Ext.getBody()
 		});

@@ -41,7 +41,16 @@ Ext.onReady(function() {
 				Ext.create("Ext.form.field.Text")
 			]*/},
 			{ text: "fdate", dataIndex: "fdate", xtype: "datecolumn", format: "d.m.Y" },
-			{ header: "fdate", dataIndex: "fdate", renderer: Ext.util.Format.dateRenderer("d.m.Y") }
+			{ header: "fdate", dataIndex: "fdate", renderer: Ext.util.Format.dateRenderer("d.m.Y") },
+			{ header: "minWidth", dataIndex: "fstring4", width: 150, minWidth: 100,
+				listeners: {
+					columnresize: function(ct, column, width, eOpts) {
+						if (window.console && console.log)
+							console.log("columnresize(%o)", arguments);
+					}
+				}
+			},
+			{ header: "fstring4", dataIndex: "fstring4" },
 		],
 		renderTo: Ext.getBody()
 	});
