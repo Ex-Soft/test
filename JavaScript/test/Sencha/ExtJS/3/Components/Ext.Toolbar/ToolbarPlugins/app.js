@@ -1,11 +1,34 @@
 Ext.BLANK_IMAGE_URL = "../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
+ButtonWOText = Ext.extend(Ext.Button,{
+	initComponent: function() {
+		ButtonWOText.superclass.initComponent.call(this);
+		this.setTooltip(this.getText());
+		this.setText("");
+	}
+});
+Ext.reg("buttonwotext", ButtonWOText);
+
 ToolbarSearchPlugin = Ext.extend(Object, {
+	target: "extrasTr",
+	position: 0,
+	text: "Search",
+	iconCls: "searchIco",
+
+	constructor: function(config) {
+		if (window.console && console.log)
+			console.log("ToolbarSearchPlugin.constructor(%o)", arguments);
+
+		Ext.apply(this, config);
+
+		return this;
+	},
+
 	init: function(cmp) {
 		if (window.console && console.log)
 			console.log("ToolbarSearchPlugin.init(%o)", arguments);
 
-		if (cmp.getXType() != Ext.Toolbar.xtype)
+		if (cmp.getXType() != Ext.Toolbar.xtype || Ext.isEmpty(this.target))
 			return;
 
 		cmp.on("afterrender", this.onAfterRender, this);
@@ -28,17 +51,24 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 
 		var layout,
 			td,
-			btn;
+			btn,
+			beforeTd,
+			beforeItemIdx;
 
 		if (!(layout = toolbar.getLayout())
-			|| !(btn = new Ext.Button({ text: "btn" }))
-			|| !(td = layout.insertCell(btn, layout.extrasTr, 100)))
+			|| !layout[this.target]
+			|| !(btn = new ButtonWOText({ text: this.text, iconCls: this.iconCls }))
+			|| !layout[this.target]
+			|| !layout[this.target].childNodes
+			|| !(beforeTd = layout[this.target].childNodes[this.position])
+			|| (beforeItemIdx = toolbar.items.indexOfKey(beforeTd.childNodes[0].id)) === -1
+			|| !(td = layout.insertCell(btn, layout[this.target], this.position)))
 			return;
 
 		btn.render(td);
+		toolbar.items.insert(beforeItemIdx, btn);
 	}
 });
-
 Ext.preg("toolbarsearchplugin", ToolbarSearchPlugin);
 
 Ext.onReady(function() {
@@ -57,7 +87,13 @@ Ext.onReady(function() {
 			items: [{
 				xtype: "toolbar",
 				region: "north",
-				plugins: [ "toolbarsearchplugin" ],
+				plugins: [{
+					ptype: "toolbarsearchplugin",
+					//target: "extrasTr",
+					target: "rightTr",
+					position: 1,
+					cls: "searchIco"
+				}],
 				height: 28,
 				items: [{
 					text: "getLayout()",
