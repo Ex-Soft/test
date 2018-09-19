@@ -5,12 +5,37 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 		if (window.console && console.log)
 			console.log("ToolbarSearchPlugin.init(%o)", arguments);
 
+		if (cmp.getXType() != Ext.Toolbar.xtype)
+			return;
+
+		cmp.on("afterrender", this.onAfterRender, this);
 		cmp.on("afterlayout", this.onAfterLayout, this, { single: true });
+	},
+
+	onAfterRender: function(toolbar) {
+		if (window.console && console.log)
+			console.log("ToolbarSearchPlugin.onAfterRender(%o)", arguments);
+
+		var layout;
+
+		if (!(layout = toolbar.getLayout()))
+			return;
 	},
 
 	onAfterLayout: function(toolbar, layout) {
 		if (window.console && console.log)
 			console.log("ToolbarSearchPlugin.onAfterLayout(%o)", arguments);
+
+		var layout,
+			td,
+			btn;
+
+		if (!(layout = toolbar.getLayout())
+			|| !(btn = new Ext.Button({ text: "btn" }))
+			|| !(td = layout.insertCell(btn, layout.extrasTr, 100)))
+			return;
+
+		btn.render(td);
 	}
 });
 
