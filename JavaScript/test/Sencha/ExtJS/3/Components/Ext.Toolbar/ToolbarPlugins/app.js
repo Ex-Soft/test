@@ -1,19 +1,15 @@
 Ext.BLANK_IMAGE_URL = "../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
-ButtonWOText = Ext.extend(Ext.Button,{
-	initComponent: function() {
-		ButtonWOText.superclass.initComponent.call(this);
-		this.setTooltip(this.getText());
-		this.setText("");
-	}
-});
-Ext.reg("buttonwotext", ButtonWOText);
-
 ToolbarSearchPlugin = Ext.extend(Object, {
-	target: "extrasTr",
-	position: 0,
+	target: "rightTr",
+	position: null,
 	text: "Search",
-	iconCls: "searchIco",
+	hideText: true,
+	iconCls: null,
+	store: null,
+	valueField: "id",
+	displayField: "value",
+	callback: null,
 
 	constructor: function(config) {
 		if (window.console && console.log)
@@ -28,11 +24,11 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 		if (window.console && console.log)
 			console.log("ToolbarSearchPlugin.init(%o)", arguments);
 
-		if (cmp.getXType() != Ext.Toolbar.xtype || Ext.isEmpty(this.target))
+		if (!cmp.isXType(Ext.Toolbar.xtype) || Ext.isEmpty(this.target))
 			return;
 
 		cmp.on("afterrender", this.onAfterRender, this);
-		cmp.on("afterlayout", this.onAfterLayout, this, { single: true });
+		cmp.on("afterlayout", this.inject, this, { single: true });
 	},
 
 	onAfterRender: function(toolbar) {
@@ -45,28 +41,144 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 			return;
 	},
 
-	onAfterLayout: function(toolbar, layout) {
+	inject: function(tb, layout) {
 		if (window.console && console.log)
-			console.log("ToolbarSearchPlugin.onAfterLayout(%o)", arguments);
+			console.log("ToolbarSearchPlugin.inject(%o)", arguments);
 
-		var layout,
-			td,
+		var me = this;
+
+		me.addButton(tb, layout);
+		me.addSearchPanel(tb);
+	},
+
+	addButton: function(tb, layout) {
+		var me = this,
+			target,
 			btn,
-			beforeTd,
-			beforeItemIdx;
+			siblingItemIdx,
+			td;
 
-		if (!(layout = toolbar.getLayout())
-			|| !layout[this.target]
-			|| !(btn = new ButtonWOText({ text: this.text, iconCls: this.iconCls }))
-			|| !layout[this.target]
-			|| !layout[this.target].childNodes
-			|| !(beforeTd = layout[this.target].childNodes[this.position])
-			|| (beforeItemIdx = toolbar.items.indexOfKey(beforeTd.childNodes[0].id)) === -1
-			|| !(td = layout.insertCell(btn, layout[this.target], this.position)))
+		if (!(target = layout[me.target]))
+			return;
+
+		btn = new Ext.Button({
+			text: me.text,
+			iconCls: me.iconCls,
+			handler: me.showSearchPanel,
+			scope: me
+		});
+
+		if (me.hideText) {
+			btn.setTooltip(btn.getText());
+			btn.setText("");
+		}
+
+		siblingItemIdx = me.getSiblingItemIdx(tb, target);
+
+		if (!(td = layout.insertCell(btn, target, me.position)))
 			return;
 
 		btn.render(td);
-		toolbar.items.insert(beforeItemIdx, btn);
+		tb.items.insert(siblingItemIdx, btn);
+	},
+
+	getSiblingItemIdx: function(tb, target) {
+		var me = this,
+			position = me.position,
+			insert,
+			id,
+			result;
+
+		position = target.childNodes && target.childNodes.length ? (position != null ? me.constrain(position, 0, target.childNodes.length - 1) : target.childNodes.length -1) : 0;
+		insert = me.position != null ? (position < me.position ? 1 : 0) : 1;
+		id = position < target.childNodes.length ? target.childNodes[position].id : null;
+		result = tb.items ? (id != null ? tb.items.findIndexBy(function(item) { return item.container && item.container.id === id; }) + insert : tb.items.length) : 0;
+
+		return result;
+	},
+
+	constrain: function(number, min, max) {
+		number = parseFloat(number);
+
+		if (!isNaN(min)) {
+			number = Math.max(number, min);
+		}
+		if (!isNaN(max)) {
+			number = Math.min(number, max);
+		}
+		return number;
+	},
+
+	addSearchPanel: function(tb) {
+		var me = this,
+			el = tb.getEl();
+
+		me.searchPanelContainer = document.createElement("div");
+		me.searchPanelContainer.style.display = "none";
+
+		el.dom.insertBefore(me.searchPanelContainer, el.dom.childNodes[0]);
+
+		me.searchComboBox = new Ext.form.ComboBox({
+			store: me.store,
+			valueField: me.valueField,
+			displayField: me.displayField,
+			mode: "local",
+			hideTrigger: true,
+			listeners: {
+				select: me.onSelect,
+				blur: me.hideSearchPanel,
+				keyup: me.onKeyUp,
+				scope: me
+			}
+		});
+
+		me.searchPanel = new Ext.Panel({
+			layout: "fit",
+			items: [ me.searchComboBox ],
+			renderTo: me.searchPanelContainer
+		});
+	},
+
+	showSearchPanel: function() {
+		if (window.console && console.log)
+			console.log("ToolbarSearchPlugin.showSearchPanel(%o)", arguments);
+
+		var me = this;
+
+		me.searchPanelContainer.style.display = "block";
+		me.searchPanel.doLayout();
+		me.searchComboBox.focus();
+	},
+
+	hideSearchPanel: function() {
+		if (window.console && console.log)
+			console.log("ToolbarSearchPlugin.hideSearchPanel(%o)", arguments);
+
+		var me = this;
+
+		me.searchPanelContainer.style.display = "none";
+	},
+
+	onSelect: function(combo, record, index) {
+		if (window.console && console.log)
+			console.log("ToolbarSearchPlugin.onSelect(%o)", arguments);
+
+		var me = this;
+
+		me.hideSearchPanel();
+
+		if (!Ext.isFunction(me.callback))
+			return;
+
+		me.callback(record);
+	},
+
+	onKeyUp: function(combo, e) {
+		if (window.console && console.log)
+			console.log("ToolbarSearchPlugin.onKeyUp(%o)", arguments);
+
+		if (e.getKey() == e.ESC)
+			this.hideSearchPanel();
 	}
 });
 Ext.preg("toolbarsearchplugin", ToolbarSearchPlugin);
@@ -81,6 +193,25 @@ Ext.onReady(function() {
 		console.log(Ext.version);
 
 	var
+		store = new Ext.data.ArrayStore({
+			autoDestroy: true,
+			fields: [ "id", "value"],
+			data : [
+				[ 1, "Line# 1" ],
+				[ 2, "Line# 1" ],
+				[ 3, "aaaaaaa" ],
+				[ 4, "abbbbbb" ],
+				[ 5, "abccccc" ],
+				[ 6, "abcdddd" ],
+				[ 7, "abcdeee" ],
+				[ 8, "abcdeff" ],
+				[ 9, "abcdefg" ]
+			]
+		}),
+		callback = function () {
+			if (window.console && console.log)
+				console.log("callback(%o)", arguments);
+		},
 		viewport = new Ext.Viewport({
 			layout: "border",
 			renderTo: Ext.getBody(),
@@ -90,9 +221,14 @@ Ext.onReady(function() {
 				plugins: [{
 					ptype: "toolbarsearchplugin",
 					//target: "extrasTr",
-					target: "rightTr",
-					position: 1,
-					cls: "searchIco"
+					//target: "rightTr",
+					//target: "leftTr",
+					//position: 0,
+					iconCls: "searchIco",
+					store: store,
+					valueField: "id",
+					displayField: "value",
+					callback: callback
 				}],
 				height: 28,
 				items: [{
@@ -132,7 +268,7 @@ Ext.onReady(function() {
 				{
 					text: "Item# 4.1"
 				}, {
-					text: "Item# 4.1"
+					text: "Item# 4.2"
 				}]
 			}, {
 				region: "center",
