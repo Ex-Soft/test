@@ -53,6 +53,7 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 
 	addButton: function(tb, layout) {
 		var me = this,
+			extrasTr = "extrasTr",
 			target,
 			btn,
 			siblingItemIdx,
@@ -73,13 +74,16 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 			btn.setText("");
 		}
 
-		siblingItemIdx = me.getSiblingItemIdx(tb, target);
+		if (me.target != extrasTr)
+			siblingItemIdx = me.getSiblingItemIdx(tb, target);
 
 		if (!(td = layout.insertCell(btn, target, me.position)))
 			return;
 
 		btn.render(td);
-		tb.items.insert(siblingItemIdx, btn);
+
+		if (me.target != extrasTr)
+			tb.items.insert(siblingItemIdx, btn);
 	},
 
 	getSiblingItemIdx: function(tb, target) {
@@ -221,9 +225,9 @@ Ext.onReady(function() {
 				plugins: [{
 					ptype: "toolbarsearchplugin",
 					//target: "extrasTr",
-					//target: "rightTr",
+					target: "rightTr",
 					//target: "leftTr",
-					//position: 0,
+					position: 1,
 					iconCls: "searchIco",
 					store: store,
 					valueField: "id",
