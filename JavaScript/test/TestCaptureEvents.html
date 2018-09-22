@@ -1,19 +1,21 @@
+<!doctype html>
 <html>
 	<head>
-		<script type="text/javascript">
-<!--
+		<meta charset="utf-8"/>
+		<title>Test capture events</title>
+		<script>
 function OnLoad()
 {
     window.captureEvents(Event.MOUSEMOVE);
-    window.onmousemove=updateIT;
+    window.onmousemove = updateIT;
 }
 
 function updateIT(e)
 {
-    e=e||window.event;
-    alert("e.pageX="+e.pageX+" e.pageY="+ e.pageY);
+	e = e || window.event;
+	if (window.console && console.log)
+    	console.log("e.pageX=%i e.pageY=%i", e.pageX, e.pageY);
 }
-// -->
 		</script>
 	</head>
 	<body onload="OnLoad()">

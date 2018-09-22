@@ -126,10 +126,27 @@ Ext.onReady(function() {
 					text: "Item# 4.1"
 				}, {
 					text: "Item# 4.1"
-				}]
+				}],
+				listeners: {
+					click: function () {
+						if (window.console && console.log)
+							console.log("toolbar.click(%o)", arguments);
+					}
+				}
 			}, {
 				region: "center",
 				html: "center"
 			}]
-		});
+		}),
+		toolbar = viewport.findByType("toolbar"),
+		td = toolbar && toolbar.length ? Ext.query(".x-toolbar-left", toolbar[0].getEl().dom) : null;
+
+	if (td && td.length) {
+		td = td[0];
+
+		Ext.get(td).on("click", function (e, ctrl) {
+			if (window.console && console.log)
+				console.log("td.click(%o)", arguments);
+		})
+	}
 });
