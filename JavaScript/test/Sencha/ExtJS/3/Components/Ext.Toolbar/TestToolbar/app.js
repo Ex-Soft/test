@@ -114,18 +114,34 @@ Ext.onReady(function() {
 				}, {
 					text: "Item# 2.2"
 				}, "-", {
-					text: "Item# 3.1"
+					text: "Item# 3.1",
+					handler: function(btn, e) {
+						if (window.console && console.log)
+							console.log("btn.click(%o)", arguments);
+					}
 				}, " ", {
-					text: "Item# 3.2"
+					text: "Item# 3.2",
+					handler: function(btn, e) {
+						if (window.console && console.log)
+							console.log("btn.click(%o)", arguments);
+					}
 				},
 					"-", 
 					combobox3,
 					"->",
 					"-",
 				{
-					text: "Item# 4.1"
+					text: "Item# 4.1",
+					handler: function(btn, e) {
+						if (window.console && console.log)
+							console.log("btn.click(%o)", arguments);
+					}
 				}, {
-					text: "Item# 4.1"
+					text: "Item# 4.2",
+					handler: function(btn, e) {
+						if (window.console && console.log)
+							console.log("btn.click(%o)", arguments);
+					}
 				}],
 				listeners: {
 					click: function () {
@@ -144,9 +160,9 @@ Ext.onReady(function() {
 	if (td && td.length) {
 		td = td[0];
 
-		Ext.get(td).on("click", function (e, ctrl) {
+		Ext.get(td).on("click", function (e, target, eOpts) {
 			if (window.console && console.log)
-				console.log("td.click(%o)", arguments);
+				console.log("%s.click(%o, %o)", td.id == target.id ? "td" : target.tagName, e, target);
 		})
 	}
 });

@@ -28,7 +28,16 @@ var
 
 	arr = /.*(?=db)/.exec("https://igornozhenko.quickbase.com/db/bktmrw9ve");
 
-	Str ="ROOT/T";
+	Str = "group:value";
+	RegEx = /([^:]+)(:?)(.*)/;
+	arr = Str.match(RegEx);
+	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+	}
+
+	Str = "ROOT/T";
 	RegEx = new RegExp("^((([a-zA-Z0-9])+((-|_|\\.|#{1})([a-zA-Z0-9])+)+)|([a-zA-Z0-9]+))$");
 	arr = Str.match(RegEx);
 	for(i = 0; arr && i < arr.length; ++i)

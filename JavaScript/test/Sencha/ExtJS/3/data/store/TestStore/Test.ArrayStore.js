@@ -77,14 +77,15 @@ function TestArrayStore()
 			[ 41, "Васильев Василий Василиевич" ]
 		],
 		data3 = [
-			[ 1, "#5", "1", "1.2", "1.2.1" ],
-			[ 2, "#4", "1", "1.1", "1.1.1" ],
-			[ 3, "#6", "1", "1.3", "1.3.3" ],
-			[ 4, "#8", "1", "1.3", "1.3.1" ],
-			[ 5, "#7", "1", "1.3", "1.3.2" ],
+			[ 1, "#6", "1", "1.2", "1.2.1" ],
+			[ 2, "#5", "1", "1.1", "1.1.1" ],
+			[ 3, "#7", "1", "1.3", "1.3.3" ],
+			[ 4, "#9", "1", "1.3", "1.3.1" ],
+			[ 5, "#8", "1", "1.3", "1.3.2" ],
 			[ 6, "#3", "2", "2.2", "2.2.1" ],
 			[ 7, "#1", "2", "2.1", "2.1.2" ],
-			[ 8, "#2", "2", "2.1", "2.1.1" ]
+			[ 8, "#2", "2", "2.1", "2.1.1" ],
+			[ 9, "#4", "2", "2.3", "2.3.1" ]
 		],
 		tmpRec;
 
@@ -119,6 +120,23 @@ function TestArrayStore()
 	}
 
 	storeWithSorters.loadData(data3);
+	storeWithSorters.each(function(r)
+	{
+		var
+			id = r.get("id"),
+			name = r.get("name"),
+			f1 = r.get("f1"),
+			f11 = r.get("f11"),
+			f111 = r.get("f111");
+
+		if(window.console && console.log)
+			console.log("id=%i name=\"%s\" f1=\"%s\" f11=\"%s\" f111=\"%s\"", id, name, f1, f11, f111);
+	});
+
+	storeWithSorters.filter([
+		{ property: "f1", value: "2", anyMatch: true, caseSensitive: false, exactMatch: false },
+		{ property: "f11", value: "3", anyMatch: true, caseSensitive: false, exactMatch: false }
+	]);
 	storeWithSorters.each(function(r)
 	{
 		var
