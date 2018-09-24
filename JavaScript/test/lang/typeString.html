@@ -25,6 +25,15 @@ var
 
 // substr deprecated!!!
 
+str = "";
+arr = str.split(":"); // [ "" ]
+str = "part1";
+arr = str.split(":"); // [ "part1" ]
+str = "part1:";
+arr = str.split(":"); // [ "part1", "" ]
+str = "part1:part2";
+arr = str.split(":"); // [ "part1", "part2" ]
+
 str = "%(hours):%(minutes) | %(day) %(month) %(year)";
 str = "<img src=x onerror=alert(document.cookie);>.zip";
 o = { day: 30, hours: 13, minutes: "13", month: "Aug", year: 2018};

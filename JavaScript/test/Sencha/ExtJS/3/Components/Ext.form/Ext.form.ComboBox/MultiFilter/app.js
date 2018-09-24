@@ -1,4 +1,4 @@
-Ext.BLANK_IMAGE_URL = "../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+Ext.BLANK_IMAGE_URL = "../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3.3.1/resources/images/default/s.gif";
 
 Ext.ns("Test");
 
@@ -94,7 +94,14 @@ Ext.onReady(function() {
 				[ 6, "g2", "abcdddd" ],
 				[ 7, "g2", "abcdeee" ],
 				[ 8, "g2", "abcdeff" ],
-				[ 9, "g3", "abcdefg" ]
+				[ 9, "g3", "abcdefg" ],
+				[ 10, "SpringBoot", "SpringBoot" ],
+				[ 11, "SpringBoot", "SpringBoot (4 git)" ],
+				[ 12, "TomCat", "TomCat" ],
+				[ 13, "TomCat", "TomCat (4 git)" ],
+				[ 14, "group", "Item# 1" ],
+				[ 15, "group", "Item# 2" ],
+				[ 16, "group", "Item# 3" ]
 			]
 		}),
 		combobox1 = new Test.ComboBoxWithMultiFilter({
@@ -102,7 +109,8 @@ Ext.onReady(function() {
 			valueField: "id",
 			displayField: "value",
 			groupField: "group",
-			mode: "local"
+			mode: "local",
+			hideTrigger: true
 		})
 		panel = new Ext.Panel({
 			layout: {

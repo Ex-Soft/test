@@ -49,6 +49,7 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 
 		me.addButton(tb, layout);
 		me.addSearchPanel(tb);
+		me.addEventListener(tb);
 	},
 
 	addButton: function(tb, layout) {
@@ -115,12 +116,10 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 
 	addSearchPanel: function(tb) {
 		var me = this,
-			el = tb.getEl();
+			el = tb.getEl(),
+			div = document.createElement("div");
 
-		me.searchPanelContainer = document.createElement("div");
-		me.searchPanelContainer.style.display = "none";
-
-		el.dom.insertBefore(me.searchPanelContainer, el.dom.childNodes[0]);
+		el.dom.insertBefore(div, el.dom.childNodes[0]);
 
 		me.searchComboBox = new Ext.form.ComboBox({
 			store: me.store,
@@ -139,8 +138,25 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 		me.searchPanel = new Ext.Panel({
 			layout: "fit",
 			items: [ me.searchComboBox ],
-			renderTo: me.searchPanelContainer
+			applyTo: div,
+			hidden: true
 		});
+	},
+
+	addEventListener: function (tb) {
+        var me = this,
+            tds = Ext.query(".x-toolbar-left", tb.getEl().dom),
+            td;
+
+        if (!Ext.isEmpty(tds)) {
+            td = tds[0];
+
+            Ext.get(td).on("click", function (e, target) {
+                if (td.id == target.id) {
+                    me.showSearchPanel();
+                }
+            });
+        }
 	},
 
 	showSearchPanel: function() {
@@ -149,8 +165,7 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 
 		var me = this;
 
-		me.searchPanelContainer.style.display = "block";
-		me.searchPanel.doLayout();
+		me.searchPanel.show();
 		me.searchComboBox.focus();
 	},
 
@@ -160,7 +175,7 @@ ToolbarSearchPlugin = Ext.extend(Object, {
 
 		var me = this;
 
-		me.searchPanelContainer.style.display = "none";
+		me.searchPanel.hide();
 	},
 
 	onSelect: function(combo, record, index) {
