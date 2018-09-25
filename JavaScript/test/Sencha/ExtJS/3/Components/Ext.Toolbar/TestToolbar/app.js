@@ -155,7 +155,17 @@ Ext.onReady(function() {
 			}]
 		}),
 		toolbar = viewport.findByType("toolbar"),
-		td = toolbar && toolbar.length ? Ext.query(".x-toolbar-left", toolbar[0].getEl().dom) : null;
+		td = toolbar && toolbar.length ? Ext.query(".x-toolbar-left", toolbar[0].getEl().dom) : null,
+		table = toolbar && toolbar.length ? Ext.query(".x-toolbar-ct", toolbar[0].getEl().dom) : null;
+
+	if (table && table.length) {
+		table = Ext.get(table[0]);
+
+		//table.hide(); // visibility: hidden
+		//table.show();
+		//table.setDisplayed(false); // display: none
+		//table.setDisplayed(true);
+	}
 
 	if (td && td.length) {
 		td = td[0];
