@@ -28,6 +28,12 @@ var
 
 	arr = /.*(?=db)/.exec("https://igornozhenko.quickbase.com/db/bktmrw9ve");
 
+	Str = "aabbccBBddbb";
+	RegEx = new RegExp("bb", "ig");
+	arr = Str.replace(RegEx, "<span>$&</span>"); // "aa<span>bb</span>cc<span>BB</span>dd<span>bb</span>"
+	arr = Str.replace(RegEx, "<span>$`</span>"); // "aa<span>aa</span>cc<span>aabbcc</span>dd<span>aabbccBBdd</span>"
+	arr = Str.replace(RegEx, "<span>$'</span>"); // "aa<span>ccBBddbb</span>cc<span>ddbb</span>dd<span></span>"
+
 	Str = "group:value";
 	RegEx = /([^:]+)(:?)(.*)/;
 	arr = Str.match(RegEx);

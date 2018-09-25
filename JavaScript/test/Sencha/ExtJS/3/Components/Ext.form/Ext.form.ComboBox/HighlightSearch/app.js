@@ -2,9 +2,19 @@ Ext.BLANK_IMAGE_URL = "../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resour
 
 Ext.ns("Test");
 
-Test.ComboBoxWithMultiFilter = Ext.extend(Ext.form.ComboBox, {
-	groupRe: /([^:]+)(:?)(.*)/,
-	groupField: "",
+Test.ComboBoxWithHighlightSearch = Ext.extend(Ext.form.ComboBox, {
+	initComponent: function() {
+		Test.ComboBoxWithHighlightSearch.superclass.initComponent.call(this);
+
+		this.tpl = new Ext.XTemplate("<tpl for=\".\"><div class=\"x-combo-list-item\">{[this.highlightSearch(values."+ this.displayField +")]}</div></tpl>", {
+			highlightSearch: function(value) {
+				if (window.console && console.log)
+					console.log("highlightSearch(%o)", arguments);
+	
+				return !Ext.isEmpty(this.lastQuery) ? value.replace(new RegExp(this.lastQuery, "ig"), "<span class=\"searching\">$&</span>") : value;
+			}
+		});
+	},
 
     /**
      * Execute a query to filter the dropdown list.  Fires the {@link #beforequery} event prior to performing the
@@ -21,7 +31,7 @@ Test.ComboBoxWithMultiFilter = Ext.extend(Ext.form.ComboBox, {
             forceAll: forceAll,
             combo: this,
             cancel:false
-        }, filters;
+        };
         if(this.fireEvent('beforequery', qe)===false || qe.cancel){
             return false;
         }
@@ -29,17 +39,13 @@ Test.ComboBoxWithMultiFilter = Ext.extend(Ext.form.ComboBox, {
         forceAll = qe.forceAll;
         if(forceAll === true || (q.length >= this.minChars)){
             if(this.lastQuery !== q){
-                this.lastQuery = q;
+                this.tpl.lastQuery = this.lastQuery = q;
                 if(this.mode == 'local'){
                     this.selectedIndex = -1;
                     if(forceAll){
                         this.store.clearFilter();
                     }else{
-						if(filters = this.getFilters(q)){
-							this.store.filter(filters);
-						}else{
-							this.store.filter(this.displayField, q, true);
-						}
+                        this.store.filter(this.displayField, q, true);
                     }
                     this.onLoad();
                 }else{
@@ -54,21 +60,6 @@ Test.ComboBoxWithMultiFilter = Ext.extend(Ext.form.ComboBox, {
                 this.onLoad();
             }
         }
-	},
-
-	getFilters: function(q){
-		var me = this,
-			match = q.match(me.groupRe),
-			result = null;
-
-		if (!Ext.isEmpty(me.groupField) && !Ext.isEmpty(match) && match.length > 3 && match[2] == ":") {
-			result = [{ property: me.groupField, value: match[1], anyMatch: true, caseSensitive: false, exactMatch: false }];
-			
-			if (!Ext.isEmpty(match[3]))
-				result.push({ property: me.displayField, value: match[3], anyMatch: true, caseSensitive: false, exactMatch: false });
-		}
-
-		return result;			
 	}
 });
 
@@ -84,33 +75,24 @@ Ext.onReady(function() {
 	var
 		store = new Ext.data.ArrayStore({
 			autoDestroy: true,
-			fields: [ "id", "group", "value"],
+			fields: [ "id", "value"],
 			data : [
-				[ 1, "", "Line# 1" ],
-				[ 2, "", "Line# 1" ],
-				[ 3, "g1", "aaaaaaa" ],
-				[ 4, "g1", "abbbbbb" ],
-				[ 5, "g1", "abccccc" ],
-				[ 6, "g2", "abcdddd" ],
-				[ 7, "g2", "abcdeee" ],
-				[ 8, "g2", "abcdeff" ],
-				[ 9, "g3", "abcdefg" ],
-				[ 10, "SpringBoot", "SpringBoot" ],
-				[ 11, "SpringBoot", "SpringBoot (4 git)" ],
-				[ 12, "TomCat", "TomCat" ],
-				[ 13, "TomCat", "TomCat (4 git)" ],
-				[ 14, "group", "Item# 1" ],
-				[ 15, "group", "Item# 2" ],
-				[ 16, "group", "Item# 3" ]
+				[ 1, "Line# 1" ],
+				[ 2, "Line# 1" ],
+				[ 3, "aaaaaaa" ],
+				[ 4, "abbbbbb" ],
+				[ 5, "abccccc" ],
+				[ 6, "abcdddd" ],
+				[ 7, "abcdeee" ],
+				[ 8, "abcdeff" ],
+				[ 9, "abcdefg" ]
 			]
 		}),
-		combobox1 = new Test.ComboBoxWithMultiFilter({
+		combobox1 = new Test.ComboBoxWithHighlightSearch({
 			store: store,
 			valueField: "id",
 			displayField: "value",
-			groupField: "group",
-			mode: "local",
-			hideTrigger: true
+			mode: "local"
 		})
 		panel = new Ext.Panel({
 			layout: {
