@@ -47,6 +47,7 @@ Ext.onReady(function() {
 				}
 			}),
 			listWidth: 100,
+			title: "title",
 			renderTo: Ext.getBody()
 		});
 });

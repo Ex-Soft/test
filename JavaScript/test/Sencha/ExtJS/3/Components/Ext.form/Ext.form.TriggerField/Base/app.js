@@ -1,5 +1,16 @@
 Ext.BLANK_IMAGE_URL="../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
+Ext.ns("Test");
+
+Test.CustomTriggerField = Ext.extend(Ext.form.TriggerField, {
+	onTriggerClick: function(e, target, eOpts) {
+		Test.CustomTriggerField.superclass.onTriggerClick.apply(this, arguments);
+
+		if(window.console && console.log)
+			console.log("CustomTriggerField.onTriggerClick(%o)", arguments);
+	}
+});
+
 Ext.onReady(function() {
 	Ext.QuickTips.init();
 
@@ -10,13 +21,8 @@ Ext.onReady(function() {
 		console.log(Ext.version);
 
 	var
-		triggerField = new Ext.form.TriggerField({
+		triggerField = new Test.CustomTriggerField({
 			//hideTrigger: true,
 			renderTo: Ext.getBody()
 		});
-
-	triggerField.onTriggerClick = function(e) {
-		if(window.console && console.log)
-			console.log("onTriggerClick(%o)", arguments);
-	};
 });
