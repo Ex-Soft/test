@@ -155,8 +155,10 @@ Ext.onReady(function() {
 			}]
 		}),
 		toolbar = viewport.findByType("toolbar"),
-		td = toolbar && toolbar.length ? Ext.query(".x-toolbar-left", toolbar[0].getEl().dom) : null,
-		table = toolbar && toolbar.length ? Ext.query(".x-toolbar-ct", toolbar[0].getEl().dom) : null;
+		td = toolbar && toolbar.length ? toolbar[0].getEl().query(".x-toolbar-left") : null,
+		//td = toolbar && toolbar.length ? Ext.query(".x-toolbar-left", toolbar[0].getEl().dom) : null,
+		table = toolbar && toolbar.length ? toolbar[0].getEl().query(".x-toolbar-ct") : null;
+		//table = toolbar && toolbar.length ? Ext.query(".x-toolbar-ct", toolbar[0].getEl().dom) : null;
 
 	if (table && table.length) {
 		table = Ext.get(table[0]);

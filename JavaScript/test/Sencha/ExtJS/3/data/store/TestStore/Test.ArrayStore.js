@@ -92,7 +92,9 @@ function TestArrayStore()
 	store.loadData(data);
 	store.loadData(data2);
 
-	rec = new store.recordType({ id: 111, name: "new store.recordType()" });
+	rec = new store.recordType({ id: 999, name: "new store.recordType()" }, 999);
+	store.insert(0, rec);
+	rec = new store.recordType({ id: 111, name: "new store.recordType()" }, 111);
 	store.add(rec);
 
 	store.each(function(r)
