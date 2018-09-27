@@ -28,6 +28,16 @@ var
 
 	arr = /.*(?=db)/.exec("https://igornozhenko.quickbase.com/db/bktmrw9ve");
 
+	Str = "group1:group1value1 group1:group1value2 group2:group2value1";
+	//Str = "group1:group1value1";
+	RegEx = new RegExp("\\b[^:]+?:[^:]+?\\b", "ig");
+	arr = Str.match(RegEx);
+	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+	}
+
 	Str = "aabbccBBddbb";
 	RegEx = new RegExp("bb", "ig");
 	arr = Str.replace(RegEx, "<span>$&</span>"); // "aa<span>bb</span>cc<span>BB</span>dd<span>bb</span>"

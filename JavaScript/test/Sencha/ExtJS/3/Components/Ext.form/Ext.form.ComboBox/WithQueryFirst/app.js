@@ -3,6 +3,8 @@ Ext.BLANK_IMAGE_URL = "../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resour
 Ext.ns("Test");
 
 Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
+	triggerClass: "x-form-clear-trigger",
+
 	queryRecId: -1,
 	groupRe: /([^:]+)(:?)(.*)/,
 	groupField: "",
@@ -16,39 +18,48 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		});
 	},
 
-	onSelectionChange: function(view, selectedElements) {
-		var me = this,
-			rec;
+	/*initTrigger: function() {
+		var me = this;
 
-		if (!me.inKeyMode || !(rec = me.store.getAt(me.selectedIndex)) || rec.get(me.idProperty) == me.queryRecId)
-			return;
-			//this.lastSelectionText = text;
-			//Ext.form.ComboBox.superclass.setValue.call(this, text);
-		me.setValue(/*rec.get(me.displayField) + "blah"*/3);
-	},
+		Test.ComboBox.superclass.initTrigger.apply(me, arguments);
 
-	selectPrev: function() {
+		if (window.console && console.log)
+			console.log("initTrigger(%o)", arguments);
+	},*/
+
+	/*selectPrev: function() {
 		Test.ComboBox.superclass.selectPrev.apply(this, arguments);
 
 		if (window.console && console.log)
 			console.log("selectPrev(%o)", arguments);
-	},
+	},*/
 
-	selectNext: function() {
+	/*selectNext: function() {
 		Test.ComboBox.superclass.selectNext.apply(this, arguments);
 
 		if (window.console && console.log)
 			console.log("selectNext(%o)", arguments);
+	},*/
+
+	onTriggerClick: function(e, target, eOpts) {
+		var me = this,
+			el;
+
+		if (window.console && console.log)
+			console.log("onTriggerClick(%o)", arguments);
+
+		if (!target || !(el = Ext.fly(target)) || !el.hasClass(me.triggerClass)) {
+			if (window.console && console.log)
+				console.log("superclass.onTriggerClick(%o)", arguments);
+
+			Test.ComboBox.superclass.onTriggerClick.apply(me, arguments);
+			return;
+		}
+
+		me.setRawValue();
+		me.collapse();
 	},
 
-    /**
-     * Execute a query to filter the dropdown list.  Fires the {@link #beforequery} event prior to performing the
-     * query allowing the query action to be canceled if needed.
-     * @param {String} query The SQL query to execute
-     * @param {Boolean} forceAll <tt>true</tt> to force the query to execute even if there are currently fewer
-     * characters in the field than the minimum specified by the <tt>{@link #minChars}</tt> config option.  It
-     * also clears any filter previously saved in the current store (defaults to <tt>false</tt>)
-     */
     doQuery : function(q, forceAll){
         q = Ext.isEmpty(q) ? '' : q;
         var qe = {
@@ -56,7 +67,7 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
             forceAll: forceAll,
             combo: this,
             cancel:false
-        }, filters, rec, o;
+        }, filters;
         if(this.fireEvent('beforequery', qe)===false || qe.cancel){
             return false;
         }
@@ -70,15 +81,7 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
                     if(forceAll){
                         this.store.clearFilter();
                     }else{
-						if (!(rec = this.store.getById(this.queryRecId))) {
-							o = {};
-							o[this.store.idProperty] = this.queryRecId;
-							o[this.displayField] = q;
-							this.store.insert(0, new this.store.recordType(o, this.queryRecId));
-						}
-						else
-							rec.set(this.displayField, q);
-
+						this.processWithQueryRecord();
 						if(filters = this.getFilters(q)){
 							this.store.filter(filters);
 						}else{
@@ -100,6 +103,26 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
         }
 	},
 
+	processWithQueryRecord: function() {
+		var me = this,
+			searchQuery = me.getRawValue(),
+			rec = me.store.getById(this.queryRecId);
+
+		if (Ext.isEmpty(searchQuery) && rec) {
+			me.store.remove(rec);
+			return;
+		}
+
+		if (!rec) {
+			o = {};
+			o[this.store.idProperty] = this.queryRecId;
+			o[this.displayField] = searchQuery;
+			this.store.insert(0, new this.store.recordType(o, this.queryRecId));
+		}
+		else
+			rec.set(this.displayField, searchQuery);
+	},
+
 	getFilters: function(q){
 		var me = this,
 			match = q.match(me.groupRe),
@@ -113,6 +136,27 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		}
 
 		return result;			
+	},
+
+	onSelectionChange: function(view, selectedElements) {
+		var me = this,
+			rec;
+
+		if (!me.inKeyMode || !(rec = me.store.getAt(me.selectedIndex)))
+			return;
+
+		//me.setValue(3);
+		me.lastSelectionText = me.getDisplayedText(rec);
+		Ext.form.ComboBox.superclass.setValue.call(me, me.lastSelectionText);
+	},
+
+	getDisplayedText: function(rec) {
+		var me = this,
+			type = rec.get("type"),
+			value = rec.get(me.displayField),
+			queryRec = me.store.getById(me.queryRecId);
+
+		return !Ext.isEmpty(type) ? String.format("{0} {1}:{2}", queryRec.get(me.displayField), type, value) : value;
 	}
 });
 
@@ -126,18 +170,24 @@ Ext.onReady(function() {
 		console.log(Ext.version);
 
 	var
+		onSelect = function(combo, record, index) {
+			if(window.console && console.log)
+				console.log("onSelect(%o)", arguments);
+		},
 		store = new Ext.data.ArrayStore({
 			autoDestroy: true,
 			idIndex: 0,
-			fields: [ "id", "group1", "group2", "group3", "value"],
+			fields: [ "id", "type", "value"],
 			data : [
-				[ 1, "g1", "g11", "g111", "aaaaaaa" ],
-				[ 2, "g1", "g11", "g112", "abbbbbb" ],
-				[ 3, "g1", "g11", "g113", "abccccc" ],
-				[ 4, "g1", "g12", "g121", "abcdddd" ],
-				[ 5, "g1", "g12", "g122", "abcdeee" ],
-				[ 6, "g1", "g12", "g123", "abcdeff" ],
-				[ 7, "g1", "g13", "g131", "abcdefg" ]
+				[ 1, "", "Env1" ],
+				[ 2, "", "Env2" ],
+				[ 3, "", "Env3" ],
+				[ 4, "group", "Group1" ],
+				[ 5, "group", "Group2" ],
+				[ 6, "group", "Group3" ],
+				[ 7, "region", "Region1" ],
+				[ 8, "region", "Region2" ],
+				[ 9, "region", "Region3" ]
 			]
 		}),
 		combobox1 = new Test.ComboBox({
@@ -145,8 +195,7 @@ Ext.onReady(function() {
 			valueField: "id",
 			displayField: "value",
 			groupField: "group",
-			mode: "local",
-			hideTrigger: true
+			mode: "local"
 		})
 		panel = new Ext.Panel({
 			layout: {
@@ -157,4 +206,6 @@ Ext.onReady(function() {
 			],
 			renderTo: Ext.getBody()
 		});
+
+	combobox1.on("select", onSelect);
 });
