@@ -4,8 +4,27 @@
 		<meta charset="utf-8"/>
 		<title>&laquo;Test XTemplate I&raquo;</title>
 		<link rel="stylesheet" href="../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
-		<script type="text/javascript" charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
-		<script type="text/javascript" charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script charset="utf-8" src="../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<style>
+.itemSelector
+{
+	color: red;
+	font-weight: bold;
+}
+
+.itemSelector dd
+{
+	color: blue;
+	margin: 0 10px;
+}
+
+dd
+{
+	display: list-item;
+	list-style-type: square;
+}
+		</style>
 		<script>
 Ext.BLANK_IMAGE_URL="../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
@@ -13,6 +32,75 @@ Ext.onReady(function() {
 	Ext.QuickTips.init();
 
 	var
+		data = [{ 
+			"id": 1,
+			"name": "Record# 1", 
+			"children": [
+				{ "id": 11, "name": "Record# 11" },
+				{ "id": 12, "name": "Record# 12" },
+				{ "id": 13, "name": "Record# 13" },
+				{ "id": 14, "name": "Record# 14" }
+			]
+		}, { 
+			"id": 2,
+			"name": "Record# 2", 
+			"children": [
+				{ "id": 21, "name": "Record# 21" },
+				{ "id": 22, "name": "Record# 22" },
+				{ "id": 23, "name": "Record# 23" },
+				{ "id": 24, "name": "Record# 24" }
+			]
+		}, { 
+			"id": 3,
+			"name": "Record# 3", 
+			"children": [
+				{ "id": 31, "name": "Record# 31" },
+				{ "id": 32, "name": "Record# 32" },
+				{ "id": 33, "name": "Record# 33" },
+				{ "id": 34, "name": "Record# 34" }
+			]
+		}, { 
+			"id": 4,
+			"name": "Record# 4", 
+			"children": [
+				{ "id": 41, "name": "Record# 41" },
+				{ "id": 42, "name": "Record# 42" },
+				{ "id": 43, "name": "Record# 43" },
+				{ "id": 44, "name": "Record# 44" }
+			]
+		}],
+		tpl1 = new Ext.XTemplate(
+			"<tpl for=\".\">",
+				"<div class=\"itemSelector\">",
+					"<dl>",
+						"<dt><dfn>{id} {name}</dfn></dt>",
+						"<tpl for=\"children\">",
+							"<dd>{id} {name} (parent {parent.name})</dd>",
+						"</tpl>",
+					"</dl>",
+				"</div>",
+			"</tpl>"
+		),
+		tpl2 = new Ext.XTemplate(
+			"<tpl for=\".\">",
+				"<div class=\"itemSelector\">",
+					"<dl>",
+						"<dt><dfn>{id} {name}</dfn></dt>",
+						"<tpl for=\"children\">",
+							"<dd id=\"Rec{id}\">{id} {name} (parent {parent.name})</dd>",
+						"</tpl>",
+					"</dl>",
+				"</div>",
+			"</tpl>"
+		),
+		PanelWest = new Ext.Panel({
+			region: "west",
+			width: 300
+		}),
+		PanelEast = new Ext.Panel({
+			region: "east",
+			width: 300
+		}),
 		UserInfo = {
 			Name: "Name",
 			Login: "Login",
@@ -39,10 +127,12 @@ Ext.onReady(function() {
 			layout: "border",
 			border: false,
 			renderTo: Ext.getBody(),
-			items: [ PanelCenter ]
+			items: [ PanelWest, PanelCenter, PanelEast ]
 		});
 
 		tpl.overwrite(PanelCenter.body, UserInfo);
+		tpl1.overwrite(PanelWest.body, data);
+		tpl2.overwrite(PanelEast.body, data);
 });
 		</script>
 	</head>

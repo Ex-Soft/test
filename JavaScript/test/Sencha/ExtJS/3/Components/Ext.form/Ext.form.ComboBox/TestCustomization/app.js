@@ -10,7 +10,7 @@ Ext.onReady(function() {
 		console.log(Ext.version);
 
 	var
-		cb = new Ext.form.ComboBox({
+		combobox = new Ext.form.ComboBox({
 			store: new Ext.data.ArrayStore({
 				autoDestroy: true,
 				idIndex: 0,
@@ -28,7 +28,7 @@ Ext.onReady(function() {
 			displayField: "name",
 			valueField: "id",
 			mode: "local",
-			tpl: new Ext.XTemplate("<tpl for=\".\"><div class=\"x-combo-list-item{[this.getIconClass(values)]}\">{name}</div></tpl>", {
+			tpl: new Ext.XTemplate("<tpl for=\".\"><div class=\"x-combo-list-item{[this.getIconClass(values, parent, xindex, xcount)]}\">{name}</div></tpl>", {
 				getIconClass: function(values) {
 					if (window.console && console.log)
 						console.log("getIconClass(%o)", arguments);
