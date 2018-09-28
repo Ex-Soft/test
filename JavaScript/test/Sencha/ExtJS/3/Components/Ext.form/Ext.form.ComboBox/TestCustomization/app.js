@@ -48,6 +48,8 @@ Ext.onReady(function() {
 			}),
 			listWidth: 100,
 			title: "title",
+			height: 150,
+			width: 250,
 			renderTo: Ext.getBody()
 		});
 });
