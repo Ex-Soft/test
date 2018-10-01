@@ -9,6 +9,7 @@ Ext.onReady(function() {
 	if(window.console && console.log)
 		console.log(Ext.version);
 
+	TestJsonStore();
 	TestArrayStore();
 	TestStore();
 	TestXmlStore();
