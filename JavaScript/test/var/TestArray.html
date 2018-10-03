@@ -14,6 +14,26 @@ if(window.console && console.clear)
 
 if(window.console && console.log)
 {
+	aa = [ 1, 2, 3, 4, 5 ];
+	if (a.reduce) {
+		i = aa.reduce((accumulator, currentValue, currentIndex, array) => {
+			console.log("accumulator=%i, currentValue=%i, currentIndex=%i, array=%o", accumulator, currentValue, currentIndex, array);
+    		return accumulator + currentValue;
+		});
+
+		console.log("reduce()=%i", i);
+	}
+
+	aa = [ 1, 2, 3, 4, 5 ];
+	if (a.reduce) {
+		i = aa.reduce((accumulator, currentValue, currentIndex, array) => {
+			console.log("accumulator=%i, currentValue=%i, currentIndex=%i, array=%o", accumulator, currentValue, currentIndex, array);
+    		return accumulator + currentValue;
+		}, 10);
+
+		console.log("reduce()=%i", i);
+	}
+
 	i = 5;
 	aa = new Array(i);
 	console.log(aa);

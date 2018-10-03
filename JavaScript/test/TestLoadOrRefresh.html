@@ -1,0 +1,19 @@
+﻿<!doctype html>
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigation -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Load or Referesh</title>
+		<script>
+if(window.console && console.log) {
+	console.log("window.performance = %o", window.performance);
+	if (window.performance) {
+		console.log("performance.navigation.type = %i (%s)", performance.navigation.type, (performance.navigation.type == performance.navigation.TYPE_NAVIGATE ? "TYPE_NAVIGATE" : (performance.navigation.type == performance.navigation.TYPE_RELOAD ? "TYPE_RELOAD" : (performance.navigation.type == performance.navigation.TYPE_BACK_FORWARD ? "TYPE_BACK_FORWARD" : (performance.navigation.type == performance.navigation.TYPE_RESERVED ? "TYPE_RESERVED" : "")))));
+	}
+}
+		</script>
+	</head>
+	<body>
+		<a href="http://www.google.com.ua/">www.google.com.ua</a>
+	</body>
+</html>
