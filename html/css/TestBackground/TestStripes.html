@@ -7,6 +7,19 @@
 		<meta charset="utf-8"/>
 		<title>Test background (stripes)</title>
 		<style>
+.test1 {
+	height: 100px;
+	background: repeating-linear-gradient(
+		180deg,
+		blue,
+		blue 10px,
+		yellow 10px,
+		yellow 20px,
+		green 20px,
+		green 30px
+	);
+}
+
 .container {
 
 }
@@ -27,6 +40,8 @@
 		</style>
 	</head>
 	<body>
+		<div class="test1"></div>
+		<hr/>
 		<div class="container" style="height: 50px; width: 100%; border: 5px dashed red; background-color: yellow; color: black; text-align: center;">
 			<div class="outer" style="height: 60px; width: 75%; margin-top: -5px;">
 				<div class="inner" style="height: 100%; width: 75%; "></div>
