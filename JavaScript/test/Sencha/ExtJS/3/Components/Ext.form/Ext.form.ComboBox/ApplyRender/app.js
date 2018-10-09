@@ -54,6 +54,16 @@ Ext.onReady(function() {
 				[ 3, "Rec# 3" ]
 			]
 		}),
+		store4 = new Ext.data.ArrayStore({
+			autoDestroy: true,
+			idIndex: 0,
+			fields: [ "id", "value"],
+			data : [
+				[ 1, "Rec# 1" ],
+				[ 2, "Rec# 2" ],
+				[ 3, "Rec# 3" ]
+			]
+		}),
 		combobox1 = new Test.ComboBox({
 			store: store1,
 			valueField: "id",
@@ -73,7 +83,13 @@ Ext.onReady(function() {
 			valueField: "id",
 			displayField: "value",
 			mode: "local",
-			renderTo: Ext.get("div4render")
+			renderTo: Ext.get("div4render1")
+		}),
+		combobox4 = new Test.ComboBox({
+			store: store3,
+			valueField: "id",
+			displayField: "value",
+			mode: "local"
 		}),
 		panel = new Ext.Panel({
 			layout: {
@@ -93,4 +109,6 @@ Ext.onReady(function() {
 			},
 			renderTo: Ext.getBody()
 		});
+
+	combobox4.render(Ext.get("div4render2"), 0);
 });
