@@ -3,55 +3,107 @@
 Ext.ns("Test");
 
 Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
+	constructor: function (config) {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.constructor(%o)", arguments);
+
+		config = config || {};
+
+		config.enableKeyEvents = true; // enable "keydown"
+		config.autoSelect = false; // require a manual selection from the dropdown list to set the components value
+		
+		Test.ComboBox.superclass.constructor.apply(this, arguments);
+	},
+
 	initComponent: function() {
 		if (window.console && console.log)
-			console.log("initComponent(%o)", arguments);
+			console.log("Ext.form.ComboBox.initComponent(%o)", arguments);
 
         Test.ComboBox.superclass.initComponent.apply(this, arguments);
 
-        if (window.console && console.log)
-            console.log("enableKeyEvents: %o", this.enableKeyEvents);
-
         this.on({
-            keydown: this.on_KeyDown,
-            keyup: this.on_KeyUp,
-            keypress: this.on_KeyPress,
-            specialkey: this.on_SpecialKey,
+            keydown: this.eventListenerOnKeyDown,
+            keyup: this.eventListenerOnKeyUp,
+            keypress: this.eventListenerOnKeyPress,
+			specialkey: this.eventListenerOnSpecialKey,
+			blur: this.eventListenerOnBlur,
             scope: this
         });
     },
 
 	initEvents: function() {
         if (window.console && console.log)
-            console.log("initEvents(%o)", arguments);
+            console.log("Ext.form.ComboBox.initEvents(%o)", arguments);
 
 		Test.ComboBox.superclass.initEvents.apply(this, arguments);
     },
 
 	initTrigger: function() {
         if (window.console && console.log)
-            console.log("initTrigger(%o)", arguments);
+            console.log("Ext.form.ComboBox.initTrigger(%o)", arguments);
 
 		Test.ComboBox.superclass.initTrigger.apply(this, arguments);
 	},
 
 	onTriggerClick: function(e, target, eOpts) {
 		if (window.console && console.log)
-			console.log("onTriggerClick(%o)", arguments);
+			console.log("Ext.form.ComboBox.onTriggerClick(%o)", arguments);
 
     	Test.ComboBox.superclass.onTriggerClick.apply(this, arguments);
     },
 
     onViewClick: function(doFocus) {
 		if (window.console && console.log)
-			console.log("onViewClick(%o)", arguments);
+			console.log("Ext.form.ComboBox.onViewClick(%o)", arguments);
 
     	Test.ComboBox.superclass.onViewClick.apply(this, arguments);
-    },
+	},
+
+	select: function(index, scrollIntoView) {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.select(%o)", arguments);
+
+		Test.ComboBox.superclass.select.apply(this, arguments);
+	},
+
+	selectNext: function() {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.selectNext(%o)", arguments);
+
+		Test.ComboBox.superclass.selectNext.apply(this, arguments);
+	},
+
+	selectPrev: function() {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.selectPrev(%o)", arguments);
+
+		Test.ComboBox.superclass.selectPrev.apply(this, arguments);
+	},
+
+	initQuery: function() {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.initQuery(%o)", arguments);
+
+		Test.ComboBox.superclass.initQuery.apply(this, arguments);
+	},
+
+	doQuery: function(q, forceAll) {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.doQuery(%o)", arguments);
+
+		Test.ComboBox.superclass.doQuery.apply(this, arguments);
+	},
+
+	onLoad: function() {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.onLoad(%o)", arguments);
+
+		Test.ComboBox.superclass.onLoad.apply(this, arguments);
+	},
 
     onSelect: function(record, index) {
 		if (window.console && console.log)
-            console.log("onSelect(%o)", arguments);
+            console.log("Ext.form.ComboBox.onSelect(%o)", arguments);
             
         var
             callerArguments,
@@ -68,45 +120,64 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
                 keyCode = e && Ext.isFunction(e.getKey) ? e.getKey() : null;
 
                 if (window.console && console.log)
-                    console.log("type: \"%s\", keyCode: %i", type, keyCode);
+                    console.log("type: \"%s\", keyCode: %o", type, keyCode);
             }
         }
 
     	Test.ComboBox.superclass.onSelect.apply(this, arguments);
     },
 
-    onKeyDown: function(record, index) {
+    onKeyDown: function(e, target, eOpts) {
 		if (window.console && console.log)
-			console.log("onKeyDown(%o)", arguments);
+			console.log("Ext.form.ComboBox.onKeyDown(%o)", arguments);
 
     	Test.ComboBox.superclass.onKeyDown.apply(this, arguments);
     },
 
-    onKeyUp: function(record, index) {
+    onKeyUp: function(e, target, eOpts) {
 		if (window.console && console.log)
-			console.log("onKeyUp(%o)", arguments);
+			console.log("Ext.form.ComboBox.onKeyUp(%o)", arguments);
 
     	Test.ComboBox.superclass.onKeyUp.apply(this, arguments);
+	},
+
+    triggerBlur: function() {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.triggerBlur(%o)", arguments);
+
+    	Test.ComboBox.superclass.triggerBlur.apply(this, arguments);
+	},
+
+    onBlur: function() {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.onBlur(%o)", arguments);
+
+    	Test.ComboBox.superclass.onBlur.apply(this, arguments);
     },
 
-    on_KeyDown: function(record, index) {
+    eventListenerOnKeyDown: function(combo, e) {
 		if (window.console && console.log)
-			console.log("on_KeyDown(%o)", arguments);
+			console.log("eventListenerOnKeyDown(%o)", arguments);
     },
 
-    on_KeyUp: function(record, index) {
+    eventListenerOnKeyUp: function(combo, e) {
 		if (window.console && console.log)
-			console.log("on_KeyUp(%o)", arguments);
+			console.log("eventListenerOnKeyUp(%o) selectedIndex=%i", arguments, combo.selectedIndex);
     },
 
-    on_KeyPress: function(record, index) {
+    eventListenerOnKeyPress: function(combo, e) {
 		if (window.console && console.log)
-			console.log("on_KeyPress(%o)", arguments);
+			console.log("eventListenerOnKeyPress(%o)", arguments);
     },
 
-    on_SpecialKey: function(record, index) {
+    eventListenerOnSpecialKey: function(combo, e) {
 		if (window.console && console.log)
-			console.log("on_SpecialKey(%o)", arguments);
+			console.log("eventListenerOnSpecialKey(%o)", arguments);
+	},
+
+	eventListenerOnBlur: function(combo, e) {
+		if (window.console && console.log)
+			console.log("eventListenerOnBlur(%o)", arguments);
     }
 });
 Ext.reg("testcombo", Test.ComboBox);
@@ -121,6 +192,14 @@ Ext.onReady(function() {
 		console.log(Ext.version);
 
 	var
+		beforeselect = function(combo, record, index) {
+			if (window.console && console.log)
+				console.log("beforeselect(%o) store.data.length=%i", arguments, combo.store.data.length);
+		},
+		select = function(combo, record, index) {
+			if (window.console && console.log)
+				console.log("select(%o) store.data.length=%i", arguments, combo.store.data.length);
+		},
 		combobox = new Test.ComboBox({
 			store: new Ext.data.ArrayStore({
 				autoDestroy: true,
@@ -133,13 +212,52 @@ Ext.onReady(function() {
 					[ 1, "Record# 1" ],
 					[ 2, "Record# 2" ],
 					[ 3, "Record# 3" ],
-					[ 4, "Record# 4" ]
+					[ 4, "Record# 4" ],
+					[ 5, "aaaaaaaaa" ],
+					[ 6, "abbbbbbbb" ],
+					[ 7, "abccccccc" ]
 				]
 			}),
 			displayField: "name",
 			valueField: "id",
-            mode: "local",
-            enableKeyEvents: true,
+            mode: "local"
+		}),
+		toolBar = new Ext.Toolbar({
+			items: [
+				combobox,
+				"->",
+				{
+					text: "blur()",
+					handler: function(btn, e){
+						combobox.blur();
+					}
+				}, {
+					text: "triggerBlur()",
+					handler: function(btn, e){
+						combobox.triggerBlur();
+					}
+				}
+			],
+			listeners: {
+				afterlayout: function(tb, layout) {
+					var td;
+
+					if (Ext.isEmpty(td = tb.getEl().query(".x-toolbar-left")))
+						return;
+
+					Ext.get(td = td[0]).on("click", function(e, target, opt){
+						if (td.id == target.id) {
+							if (window.console && console.log)
+								console.log(".x-toolbar-left.click(%o)", arguments);
+						}
+					});
+				}
+			},
 			renderTo: Ext.getBody()
 		});
+
+	combobox.on({
+		beforeselect: beforeselect,
+		select: select
+	});
 });

@@ -90,7 +90,8 @@ Ext.onReady(function() {
 			valueField: "id",
 			displayField: "value",
 			mode: "local",
-			hideTrigger: true
+			hideTrigger: true,
+			width: 300
 		})
 		panel = new Ext.Panel({
 			layout: {

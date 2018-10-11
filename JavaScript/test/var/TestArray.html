@@ -63,6 +63,10 @@ if(window.console && console.log)
 	aaa = [ 3, 2, 1 ];
 	console.log(arrayIsEqual(aa, aa));
 	console.log(arrayIsEqual(aa, aaa));
+
+	aa = [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 4 ];
+	aaa = aa.filter((item, index, array) => array.indexOf(item) == index);
+	console.log(aaa);
 }
 
 aa = [1, 4];
@@ -363,6 +367,10 @@ function intersect(arr1, arr2) {
 
 function except(arr1, arr2) {
 	return Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter(function (item) { return arr2.indexOf(item) === -1; }) : [];
+}
+
+function unique(arr) {
+	return Array.isArray(arr) ? aar.filter((item, index, array) => array.indexOf(item) == index) : [];
 }
 		</script>
 	</head>
