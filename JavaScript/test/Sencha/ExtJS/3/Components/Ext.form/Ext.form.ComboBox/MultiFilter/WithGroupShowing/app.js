@@ -8,6 +8,13 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 	groupRe: /([^:]+)(:?)(.*)/,
 	groupField: "",
 
+	setValue: function(record, index) {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.setValue(%o)", arguments);
+
+		Test.ComboBox.superclass.setValue.apply(this, arguments);
+	},
+
 	onSelect: function(record, index) {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.oSelect(%o)", arguments);
@@ -20,7 +27,7 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 
     select: function(index, scrollIntoView) {
 		if (window.console && console.log)
-			console.log("Ext.form.ComboBox.select(%o)", arguments);
+			console.log("Ext.form.ComboBox.select(%o) lastRawValue=\"%s\"", arguments, this.lastRawValue);
 
 		var oldRecord = this.selectedIndex != -1 ? this.store.getAt(this.selectedIndex) : null,
 			newRecord = this.store.getAt(index);
@@ -28,8 +35,10 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		if ((!oldRecord || oldRecord.get("group") != "tag") && newRecord.get("group") == "tag")
 			this.lastRawValue = this.getRawValue();
 
-		if ((!oldRecord || oldRecord.get("group") == "tag") && newRecord.get("group") != "tag")
-			this.setRawValue(this.lastRawValue);
+		if ((!oldRecord || oldRecord.get("group") == "tag") && newRecord.get("group") != "tag") {
+			if (this.lastRawValue != null)
+				this.setRawValue(this.lastRawValue);
+		}
 
 		if (newRecord.get("group") == "tag")
 			this.setRawValue(newRecord.get("value"));

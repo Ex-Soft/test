@@ -68,8 +68,16 @@ var
 	{
 		if (window.console && console.log)
 			console.log(arr[i]);
-	}
-
+  }
+  
+  RegEx = new RegExp("^[^:\\x20]+:$");
+  Str = "group:";
+	arr = RegEx.test(Str);
+  Str = "group :";
+  arr = RegEx.test(Str);
+  Str = "group";
+  arr = RegEx.test(Str);
+  
 	Str = "ROOT/T";
 	RegEx = new RegExp("^((([a-zA-Z0-9])+((-|_|\\.|#{1})([a-zA-Z0-9])+)+)|([a-zA-Z0-9]+))$");
 	arr = Str.match(RegEx);
