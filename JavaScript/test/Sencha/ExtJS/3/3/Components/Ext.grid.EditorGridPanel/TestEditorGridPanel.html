@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>&laquo;Test EditorGridPanel&raquo;</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script type="text/javascript" charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if(window.console && console.clear)
+		console.clear();
+
+	if(window.console && console.log)
+		console.log(Ext.version);
+
+	var
+		store = new Ext.data.ArrayStore({
+			autoDestroy: true,
+			idIndex: 0,
+			fields: [
+				{ name: "id", type: "int" },
+				"name"
+			],
+			data: [
+				[ 1, "Иванов Иван Иванович" ],
+				[ 2, "Петров Петр Петрович" ],
+				[ 3, "Сидоров Сидор Сидорович" ],
+				[ 4, "Васильев Василий Василиевич" ]
+			]
+		}),
+		tbar = new Ext.Toolbar({
+			items: [{
+				text: "Delete",
+				handler: function() {
+					grid.getStore().remove(grid.getSelectionModel().getSelected());
+				}
+			}]
+		}),
+		colModel = new Ext.grid.ColumnModel({
+			columns: [
+				{ dataIndex: "id", header: "Id", width: 50, sortable: true },
+				{ id: "ColName", dataIndex: "name", header: "Name", width: 180, sortable: true }
+			]
+		}),
+		selModel = new Ext.grid.RowSelectionModel({
+			singleSelect: true
+		}), 
+		grid = new Ext.grid.EditorGridPanel({
+			renderTo: Ext.getBody(),
+			store: store,
+			colModel: colModel,
+			selModel: selModel,
+			autoExpandColumn: "ColName",
+			tbar: tbar,
+			height: 500
+		});
+});
+// -->
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

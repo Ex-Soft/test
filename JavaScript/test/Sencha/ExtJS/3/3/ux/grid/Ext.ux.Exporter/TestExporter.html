@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<!-- https://github.com/edspencer/Ext.ux.Exporter -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Ext.ux.Exporter</title>
+		<link rel="stylesheet" href="../../../../../../ExtJS/ExtJS3/ExtJS3.4.0/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../ExtJS/ExtJS3/ExtJS3.4.0/adapter/ext/ext-base.js"></script>
+		<script charset="utf-8" src="../../../../../../ExtJS/ExtJS3/ExtJS3.4.0/ext-all-debug.js"></script>
+		<script charset="utf-8" src="exporter-all.js"></script>
+		<script>
+Ext.BLANK_IMAGE_URL="../../../../../../ExtJS/ExtJS3/ExtJS3.4.0/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		store = new Ext.data.ArrayStore({
+			idIndex: 0,
+			fields: [
+				{ name: "id", type: "int" },
+				"name"
+			],
+			data: [
+				[ 1, "Иванов Иван Иванович" ],
+				[ 2, "Петров Петр Петрови" ],
+				[ 3, "Сидоров Сидор Сидорович" ],
+				[ 4, "Васильев Василий Василиевич" ]
+			]
+		}),
+		grid = new Ext.grid.GridPanel({
+			store: store,
+			colModel: new Ext.grid.ColumnModel({
+				columns: [
+					{ dataIndex: "id", header: "ID", width: 30, sortable: true, hidden: true },
+					{ id: "ColName", dataIndex: "name", header: "Name", width: 180, sortable: true }
+				]
+			}),
+			autoExpandColumn: "ColName",
+			tbar: [/*{
+				xtype: "exportbutton",
+				store: store,
+			}*/],
+			autoHeight: true
+		}),
+		exportButton = new Ext.ux.Exporter.Button({
+			component: grid
+		});
+
+		grid.getTopToolbar().add(exportButton);
+		grid.render(Ext.getBody());
+});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

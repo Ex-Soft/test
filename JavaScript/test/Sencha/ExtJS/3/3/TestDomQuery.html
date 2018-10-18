@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Test Ext.DomQuery</title>
+		<link rel="stylesheet" type="text/css" href="../../../ExtJS/ExtJS3/resources/css/ext-all.css"/>
+		<style type="text/css">
+body
+{
+	background-color: #483d8b;
+}
+
+.classWhite
+{
+	color: white;
+}
+
+.classWhite *
+{
+	margin: 5px 25px;
+	/* padding: 5px 25px; */
+}
+
+.classItalic
+{
+	font-style: italic;
+}
+
+.classUnderline
+{
+	text-decoration: underline;
+}
+
+.classBold
+{
+	font-weight: bold;
+}
+
+.classItalic.classUnderline
+{
+	color: yellow;
+	background-color: #9370db;
+}
+
+.classItalic .classUnderline
+{
+	color: yellow;
+	background-color: #cd5c5c;
+}
+
+.classUnderline .classItalic
+{
+	color: yellow;
+	background-color: #66cdaa;
+}
+		</style>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ExtJS3/ext-all-debug.js"></script>
+		<script type="text/javascript">
+<!--
+Ext.BLANK_IMAGE_URL="../../../ExtJS/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	var
+		Ctrl,
+		className;
+		
+	className="classWhite";
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className); // 1
+	}
+
+	className=".classItalic"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className=".classUnderline"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className=".classBold"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className=".classItalic.classUnderline"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className=".classItalic .classUnderline"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className=".classUnderline .classItalic"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className="[className=\"classItalic classUnderline\"]"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+
+	className="[className=\"classUnderline classItalic\"]"
+	if(Ctrl=Ext.query(className))
+	{
+		if(window.console && console.log)
+			console.log("Ctrl.length=%i (%s)", Ctrl.length, className);
+	}
+	
+	Ctrl=Ext.fly(Ext.getDom("div15"));
+	className="classUnderline";
+	if(!Ctrl.hasClass(className))
+		Ctrl.addClass(className);
+	className="classItalic";
+	if(!Ctrl.hasClass(className))
+		Ctrl.addClass(className);
+});
+// -->
+		</script>
+	</head>
+	<body>
+		<div id="div1" class="classWhite">
+			&lt;div id=&quot;div1&quot; class=&quot;classWhite&quot;&gt;
+			<div id="div11" class="classItalic">
+				&lt;div id=&quot;div11&quot; class=&quot;classItalic&quot;&gt;
+				<div id="div111" class="classBold">
+					&lt;div id=&quot;div111&quot; class=&quot;classBold&quot;&gt;
+					&lt;/div&gt;
+				</div>
+				<div id="div112" class="classUnderline">
+					&lt;div id=&quot;div112&quot; class=&quot;classUnderline&quot;&gt;
+					&lt;/div&gt;
+				</div>
+				&lt;/div&gt;
+			</div>
+			<div id="div12" class="classUnderline">
+				&lt;div id=&quot;div12&quot; class=&quot;classUnderline&quot;&gt;
+				<div id="div121" class="classBold">
+					&lt;div id=&quot;div121&quot; class=&quot;classBold&quot;&gt;
+					&lt;/div&gt;
+				</div>
+				<div id="div122" class="classItalic">
+					&lt;div id=&quot;div122&quot; class=&quot;classItalic&quot;&gt;
+					&lt;/div&gt;
+				</div>
+				&lt;/div&gt;
+			</div>
+			<div id="div13" class="classItalic classUnderline">
+				&lt;div id=&quot;div13&quot; class=&quot;classItalic classUnderline&quot;&gt;
+				<div id="div131" class="classBold">
+					&lt;div id=&quot;div131&quot; class=&quot;classBold&quot;&gt;
+					&lt;/div&gt;
+				</div>
+				&lt;/div&gt;
+			</div>
+			<div id="div14" class="classUnderline classItalic">
+				&lt;div id=&quot;div14&quot; class=&quot;classUnderline classItalic&quot;&gt;
+				<div id="div141" class="classBold">
+					&lt;div id=&quot;div141&quot; class=&quot;classBold&quot;&gt;
+					&lt;/div&gt;
+				</div>
+				&lt;/div&gt;
+			</div>
+			<div id="div15">
+				&lt;div id=&quot;div15&quot; class=&quot;classUnderline classItalic (dynamic)&quot;&gt;
+				&lt;/div&gt;
+			</div>
+			&lt;/div&gt;
+		</div>
+	</body>
+</html>
