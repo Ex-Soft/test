@@ -56,6 +56,16 @@ if(window.console && console.log)
 
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 4 ];
+	console.log(intersect(aa, aaa));
+	console.log(intersect(aaa, aa));
+
+	aa = [ 1, 2, 3 ];
+	aaa = [];
+	console.log(intersect(aa, aaa));
+	console.log(intersect(aaa, aa));
+
+	aa = [ 1, 2, 3 ];
+	aaa = [ 3, 2, 4 ];
 	console.log(except(aa, aaa));
 	console.log(except(aaa, aa));
 

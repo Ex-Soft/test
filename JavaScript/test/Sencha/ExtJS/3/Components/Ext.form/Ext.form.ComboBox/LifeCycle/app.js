@@ -31,6 +31,13 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
         });
     },
 
+    initList: function() {
+        if (window.console && console.log)
+            console.log("Ext.form.ComboBox.initList(%o)", arguments);
+
+        Test.ComboBox.superclass.initList.apply(this, arguments);
+    },
+
 	initEvents: function() {
         if (window.console && console.log)
             console.log("Ext.form.ComboBox.initEvents(%o)", arguments);
@@ -220,7 +227,8 @@ Ext.onReady(function() {
 			}),
 			displayField: "name",
 			valueField: "id",
-            mode: "local"
+			mode: "local",
+			maxHeight: 500
 		}),
 		toolBar = new Ext.Toolbar({
 			items: [

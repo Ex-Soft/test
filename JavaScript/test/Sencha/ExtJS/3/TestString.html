@@ -1,49 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+<!doctype html>
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<meta charset="utf-8"/>
 		<title>&laquo;Test String&raquo;</title>
-		<link rel="stylesheet" type="text/css" href="../../../ExtJS/resources/css/ext-all.css"/>
-		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/adapter/ext/ext-base-debug.js"></script>
-		<script type="text/javascript" charset="windows-1251" src="../../../ExtJS/ext-all-debug.js"></script>
-		<script type="text/javascript">
-<!--
-Ext.BLANK_IMAGE_URL="../../../ExtJS/resources/images/default/s.gif";
+		<link rel="stylesheet" href="../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script charset="utf-8" src="../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script>
+Ext.BLANK_IMAGE_URL = "../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
 Ext.onReady(function() {
 	Ext.QuickTips.init();
+
+	if (window.console && console.clear)
+		console.clear();
+
+	if (window.console && console.log)
+		console.log(Ext.version);
 
 	var
 		longStr,
 		truncatedStr;
 
+	longStr = String.format("{{0}}{{1}}{{2}}", "1st", "2nd", "3rd");
+	if (window.console && console.log)
+		console.log(longStr);
+
 	longStr="     012345     ";
 	truncatedStr=longStr.trim();
-	document.write("\""+longStr+"\"","<br/>");
-	document.write("\""+truncatedStr+"\"","<br/>");
+	if (window.console && console.log)
+		console.log("longStr=\"%s\" truncatedStr=\"%s\"", longStr, truncatedStr);
 	
 	longStr="123456789012345";
 	truncatedStr=Ext.util.Format.ellipsis(longStr,10);
-	document.write(longStr,"<br/>");
-	document.write(truncatedStr,"<br/>");
+	if (window.console && console.log)
+		console.log("longStr=\"%s\" truncatedStr=\"%s\"", longStr, truncatedStr);
 
 	longStr="1234567890";
 	truncatedStr=Ext.util.Format.ellipsis(longStr,10);
-	document.write(longStr,"<br/>");
-	document.write(truncatedStr,"<br/>");
+	if (window.console && console.log)
+		console.log("longStr=\"%s\" truncatedStr=\"%s\"", longStr, truncatedStr);
 
 	longStr="12345";
 	truncatedStr=Ext.util.Format.ellipsis(longStr,10);
-	document.write(longStr,"<br/>");
-	document.write(truncatedStr,"<br/>");
+	if (window.console && console.log)
+		console.log("longStr=\"%s\" truncatedStr=\"%s\"", longStr, truncatedStr);
 
 	longStr="\\\\ \' \" ' balh-blah-blah ' \" \' ///";
 	truncatedStr=String.format("longStr: \"{0}\"",longStr);
 	//alert(truncatedStr);
-	document.write(longStr,"<br/>");
-	document.write(truncatedStr,"<br/>");
+	if (window.console && console.log)
+		console.log("longStr=\"%s\" truncatedStr=\"%s\"", longStr, truncatedStr);
 });
-// -->
 		</script>
 	</head>
 	<body>

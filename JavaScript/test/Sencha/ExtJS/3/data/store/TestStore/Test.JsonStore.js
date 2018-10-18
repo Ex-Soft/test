@@ -21,4 +21,7 @@ function TestJsonStore()
 		});
 
 	store.loadData(data);
+
+	store.filter("id", 1);
+	store.filter({ fn: function(record) { return record.get("id") == 2; }});
 }
