@@ -94,6 +94,13 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		Test.ComboBox.superclass.initQuery.apply(this, arguments);
 	},
 
+	checkTab: function(me, e) {
+		if (window.console && console.log)
+			console.log("Ext.form.ComboBox.checkTab(%o)", arguments);
+
+		Test.ComboBox.superclass.checkTab.apply(this, arguments);
+	},
+
 	doQuery: function(q, forceAll) {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.doQuery(%o)", arguments);
@@ -207,24 +214,42 @@ Ext.onReady(function() {
 			if (window.console && console.log)
 				console.log("select(%o) store.data.length=%i", arguments, combo.store.data.length);
 		},
-		combobox = new Test.ComboBox({
-			store: new Ext.data.ArrayStore({
-				autoDestroy: true,
-				idIndex: 0,
-				fields: [
-					{ name: "id", type: "int" },
-					"name"
-				],
-				data: [
-					[ 1, "Record# 1" ],
-					[ 2, "Record# 2" ],
-					[ 3, "Record# 3" ],
-					[ 4, "Record# 4" ],
-					[ 5, "aaaaaaaaa" ],
-					[ 6, "abbbbbbbb" ],
-					[ 7, "abccccccc" ]
-				]
-			}),
+		data = [
+			[ 1, "Record# 1" ],
+			[ 2, "Record# 2" ],
+			[ 3, "Record# 3" ],
+			[ 4, "Record# 4" ],
+			[ 5, "aaaaaaaaa" ],
+			[ 6, "abbbbbbbb" ],
+			[ 7, "abccccccc" ]
+		],
+		store1 = new Ext.data.ArrayStore({
+			autoDestroy: true,
+			idIndex: 0,
+			fields: [
+				{ name: "id", type: "int" },
+				"name"
+			],
+			data: data
+		}),
+		store2 = new Ext.data.ArrayStore({
+			autoDestroy: true,
+			idIndex: 0,
+			fields: [
+				{ name: "id", type: "int" },
+				"name"
+			],
+			data: data
+		}),
+		combobox1 = new Test.ComboBox({
+			store: store1,
+			displayField: "name",
+			valueField: "id",
+			mode: "local",
+			maxHeight: 500
+		}),
+		combobox2 = new Test.ComboBox({
+			store: store2,
 			displayField: "name",
 			valueField: "id",
 			mode: "local",
@@ -232,17 +257,18 @@ Ext.onReady(function() {
 		}),
 		toolBar = new Ext.Toolbar({
 			items: [
-				combobox,
+				combobox1,
+				combobox2,
 				"->",
 				{
 					text: "blur()",
 					handler: function(btn, e){
-						combobox.blur();
+						combobox1.blur();
 					}
 				}, {
 					text: "triggerBlur()",
 					handler: function(btn, e){
-						combobox.triggerBlur();
+						combobox1.triggerBlur();
 					}
 				}
 			],
@@ -264,7 +290,7 @@ Ext.onReady(function() {
 			renderTo: Ext.getBody()
 		});
 
-	combobox.on({
+	combobox1.on({
 		beforeselect: beforeselect,
 		select: select
 	});

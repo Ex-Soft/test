@@ -1,4 +1,4 @@
-Ext.BLANK_IMAGE_URL="../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+Ext.BLANK_IMAGE_URL="../../../../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
 
 Ext.ns("Test");
 
@@ -91,7 +91,12 @@ Ext.onReady(function() {
 		console.log(Ext.version);
 
 	var
-		triggerField = new Test.CustomTwinTriggerField({
+		triggerField1 = new Test.CustomTwinTriggerField({
+			//hideTrigger: true, // (all)
+			//hideTrigger5: true,
+			renderTo: Ext.getBody()
+		}),
+		triggerField2 = new Test.CustomTwinTriggerField({
 			//hideTrigger: true, // (all)
 			//hideTrigger5: true,
 			renderTo: Ext.getBody()
