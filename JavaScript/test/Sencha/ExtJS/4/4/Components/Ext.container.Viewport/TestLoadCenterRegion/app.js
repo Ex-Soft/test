@@ -3,7 +3,7 @@
 		l = function(btn, e) {
 			var vp = btn.findParentByType("viewport"),
 				layout = vp ? vp.getLayout() : null,
-				centerRegion = layout.centerRegion;
+				centerRegion = layout ? layout.centerRegion : null;
 
 			if (centerRegion)
 				centerRegion.getLoader().load({ url: btn.text });
