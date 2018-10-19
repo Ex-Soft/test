@@ -1,7 +1,12 @@
 ﻿Ext.onReady(function() {
 	var
 		l = function(btn, e) {
-			btn.ownerCt.ownerCt.getLayout().regions.center.getLoader().load({ url: btn.text });
+			var vp = btn.findParentByType("viewport"),
+				layout = vp ? vp.getLayout() : null,
+				centerRegion = layout.centerRegion;
+
+			if (centerRegion)
+				centerRegion.getLoader().load({ url: btn.text });
 		},
 		vp = Ext.create("Ext.container.Viewport", {
 			layout: "border",
@@ -10,11 +15,11 @@
 				height: 26,
 				items: [{
 					xtype: "button",
-					text: "DataII.html",
+					text: "dataII.html",
 					handler: l
 				}, {
 					xtype: "button",
-					text: "DataIII.html",
+					text: "dataIII.html",
 					handler: l
 				}]
 			}, {
