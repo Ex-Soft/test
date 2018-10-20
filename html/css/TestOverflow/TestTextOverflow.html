@@ -4,11 +4,62 @@
 		<meta charset="utf-8"/>
 		<title>Test text-overflow</title>
 		<style>
+.overflowClip
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: clip;
+}
+
+.overflowEllipsis
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.overflowEllipsisWord
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis-word;
+}
 		</style>
 	</head>
 	<body>
 		<div style="height: 18px; width: 100%; border: 1px solid lime; color: black;">
 			<div style="height: 100%; width: 90%; border: 1px solid blue; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">very very long string very very long string very very long string very very long string very very long string</div>
 		</div>
+		<hr/>
+		<div class="overflowClip" style="width: 300px; border: 1px solid black; color: white; background-color: blue;">
+			very very long string very very long string very very long string very very long string very very long string
+		</div>
+		<hr/>
+		<div class="overflowEllipsis" style="width: 300px; border: 1px solid black; color: white; background-color: blue;">
+			very very long string very very long string very very long string very very long string very very long string
+		</div>
+		<hr/>
+		<div class="overflowEllipsisWord" style="width: 300px; border: 1px solid black; color: white; background-color: blue;">
+			very very long string very very long string very very long string very very long string very very long string
+		</div>
+		<hr/>
+		<div style="height: 50px; width: 300px; border: 1px solid black; background-color: blue">
+			<div class="overflowEllipsis" style="float:left; border: 1px solid red; background-color:aqua; text-align: left;">
+				Left Left Left Left Left Left
+			</div>
+			<div class="overflowEllipsis" style="float:right; border: 1px solid green; background-color:lime; text-align: right;">
+				Right Right Right Right Right Right
+			</div>
+		</div>
+		<hr/>
+		<div style="height: 22px; width: 300px; border: 1px solid black; background-color: blue">
+			<div class="overflowEllipsis" style="float:left; border: 1px solid red; background-color:aqua; text-align: left;">
+				Left Left Left Left Left Left
+			</div>
+			<div class="overflowEllipsis" style="float:right; border: 1px solid green; background-color:lime; text-align: right;">
+				Right Right Right Right Right Right
+			</div>
+		</div>
+		<hr/>
 	</body>
 </html>

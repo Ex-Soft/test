@@ -45,6 +45,22 @@ var
 			console.log(arr[i]);
 	}
 
+	RegEx = new RegExp("((\\()([^\\)]+?)(\\))|[^()]+?)\\s+?(.*)", "i");
+  Str = "(group name) value";
+	arr = Str.match(RegEx); // length=6 [0]="(group name) value" [1]="(group name)" [2]="(" [3]="group name" [4]=")" [5]="value"
+	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+	}
+  Str = "group name value";
+	arr = Str.match(RegEx); // length=6 [0]="group name value" [1]="group" [2,3,4]=undefined [5]="name value"
+ 	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+	}
+
 	Str = "group1:group1value1 group1:group1value2 group2:group2value1";
 	//Str = "group1:group1value1";
 	RegEx = new RegExp("(\\b[^\\x20:]+?:[^:]+?\\b)*", "ig");
