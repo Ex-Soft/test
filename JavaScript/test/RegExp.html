@@ -35,6 +35,40 @@ var
 
 	arr = /.*(?=db)/.exec("https://someone.quickbase.com/db/bktmrw9ve");
 
+  RegEx = /(\(?)([^()]+)(\)?)/;
+  Str = "1st 2nd 3rd";
+  arr = Str.match(RegEx); // length=4 [0]="1st 2nd 3rd" [1]="" [2]="1st 2nd 3rd" [3]=""
+  for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+  }
+  Str = "(1st 2nd 3rd";
+  arr = Str.match(RegEx); // length=4 [0]="(1st 2nd 3rd" [1]="(" [2]="1st 2nd 3rd" [3]=""
+  for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+  }
+  Str = "(1st 2nd 3rd)";
+  arr = Str.match(RegEx); // length=4 [0]="(1st 2nd 3rd)" [1]="(" [2]="1st 2nd 3rd" [3]=")"
+  for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+  }
+
+  RegEx = /(?!^tag$)(^.*$)/i;
+  Str = "tag";
+  arrarr = RegEx.test(Str); // false
+  Str = "tags";
+  arrarr = RegEx.test(Str); // true
+  RegEx = /(^.*$)(?!^tag$)/i;
+  Str = "tag";
+  arrarr = RegEx.test(Str); // true
+  Str = "tags";
+  arrarr = RegEx.test(Str); // true
+
   RegEx = /.*(?=\b\s*?<span)/i;
   Str = "Node Node <span";
   arr = Str.match(RegEx);
@@ -52,10 +86,22 @@ var
 	{
 		if (window.console && console.log)
 			console.log(arr[i]);
-	}
+  }
+  Str = "group";
+  arr = Str.match(RegEx); // arr === null
   Str = "group name value";
 	arr = Str.match(RegEx); // length=6 [0]="group name value" [1]="group" [2,3,4]=undefined [5]="name value"
  	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log(arr[i]);
+  }
+
+	Str = "group1:group1value1 group2:(group2 value2) group3:group3value3 group4:(group4 value4) value";
+	//Str = "group1:group1value1";
+	RegEx = new RegExp("[^\\x20:]+?:(\\([^:()]+\\)|[^\\x20:]+)", "ig");
+	arr = Str.match(RegEx);
+	for(i = 0; arr && i < arr.length; ++i)
 	{
 		if (window.console && console.log)
 			console.log(arr[i]);

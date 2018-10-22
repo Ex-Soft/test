@@ -1,18 +1,57 @@
+<!doctype html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-		<title>Test Object</title>
-		<script type="text/javascript">
+		<meta charset="utf-8" />
+		<title>Object</title>
+		<script>
 var
-	a = {
-		pa: "a",
-		oa: {
-			pb: this.pa
-		}
-	};
+	o,
+	result;
 
-document.write(a.pa,"<br />");
-document.write(a.oa.pb,"<br />");
+try
+{
+	result = Object.keys(o); // "Cannot convert undefined or null to object"
+	if (window.console && console.log)
+		console.log("Object.keys(undefined)=%o", result);
+}
+catch (e)
+{
+	if (window.console && console.log)
+		console.log(e);
+}
+
+try
+{
+	o = null;
+	result = Object.keys(o);  // "Cannot convert undefined or null to object"
+	if (window.console && console.log)
+		console.log("Object.keys(null)=%o", result);
+}
+catch (e)
+{
+	if (window.console && console.log)
+		console.log(e);
+}
+
+o = {};
+result = Object.keys(o);
+if (window.console && console.log)
+	console.log("Object.keys({})=%o", result);
+
+o = { p1: "p1" };
+result = Object.keys(o);
+if (window.console && console.log)
+	console.log("Object.keys({...})=%o", result);
+
+o = {
+	pa: "a",
+	oa: {
+		pb: this.pa
+	}
+};
+
+document.write(o.pa,"<br />");
+document.write(o.oa.pb,"<br />");
 
 function TestObject()
 {
