@@ -57,8 +57,8 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 			console.log("Ext.form.ComboBox.onTriggerClick(%o)", arguments);
 
     	Test.ComboBox.superclass.onTriggerClick.apply(this, arguments);
-    },
-
+	},
+	
     onViewClick: function(doFocus) {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.onViewClick(%o)", arguments);
