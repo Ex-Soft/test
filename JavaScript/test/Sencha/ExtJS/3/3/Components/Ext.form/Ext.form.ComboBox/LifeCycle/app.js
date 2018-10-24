@@ -241,6 +241,15 @@ Ext.onReady(function() {
 			],
 			data: data
 		}),
+		store3 = new Ext.data.ArrayStore({
+			autoDestroy: true,
+			idIndex: 0,
+			fields: [
+				{ name: "id", type: "int" },
+				"name"
+			],
+			data: data
+		}),
 		combobox1 = new Test.ComboBox({
 			store: store1,
 			displayField: "name",
@@ -256,6 +265,8 @@ Ext.onReady(function() {
 			maxHeight: 500
 		}),
 		toolBar = new Ext.Toolbar({
+			region: "north",
+			height: 25,
 			items: [
 				combobox1,
 				combobox2,
@@ -286,8 +297,33 @@ Ext.onReady(function() {
 						}
 					});
 				}
-			},
-			renderTo: Ext.getBody()
+			}
+		}),
+		colModel = new Ext.grid.ColumnModel({
+			columns: [
+				{ dataIndex: "id", header: "Id" },
+				{ dataIndex: "name", header: "name" }
+			]
+		}),
+		grid = new Ext.grid.GridPanel({
+			region: "center",
+			store: store3,
+			colModel: colModel,
+			listeners: {
+				columnresize: function (columnIndex, newSize) {
+					if (window.console && console.log)
+						console.log("Ext.grid.GridPanel.columnresize(%o)", arguments);
+
+					combobox1.setWidth(newSize);
+				}
+			}
+		}),
+		viewport = new Ext.Viewport({
+			layout: "border",
+			items: [
+				toolBar,
+				grid
+			]
 		});
 
 	combobox1.on({

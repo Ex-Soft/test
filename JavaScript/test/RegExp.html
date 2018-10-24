@@ -35,29 +35,31 @@ var
 
 	arr = /.*(?=db)/.exec("https://someone.quickbase.com/db/bktmrw9ve");
 
+  Str = "{0}{1}";
+  RegEx = /(\{)([^}]+)(})/;
+  arr = Str.match(RegEx); // length=4 [0]="{0}" [1]="{" [2]="0" [3]="}"
+  arrarr = RegEx.exec(Str); // length=4 [0]="{0}" [1]="{" [2]="0" [3]="}"
+  RegEx = /(\{)([^}]+)(})/g;
+  arr = Str.match(RegEx); // length=2 [0]="{0}" [1]="{1}"
+  arrarr = RegEx.exec(Str); // length=4 [0]="{0}" [1]="{" [2]="0" [3]="}"
+
   RegEx = /(\(?)([^()]+)(\)?)/;
   Str = "1st 2nd 3rd";
   arr = Str.match(RegEx); // length=4 [0]="1st 2nd 3rd" [1]="" [2]="1st 2nd 3rd" [3]=""
-  for(i = 0; arr && i < arr.length; ++i)
-	{
-		if (window.console && console.log)
-			console.log(arr[i]);
-  }
   Str = "(1st 2nd 3rd";
   arr = Str.match(RegEx); // length=4 [0]="(1st 2nd 3rd" [1]="(" [2]="1st 2nd 3rd" [3]=""
-  for(i = 0; arr && i < arr.length; ++i)
-	{
-		if (window.console && console.log)
-			console.log(arr[i]);
-  }
   Str = "(1st 2nd 3rd)";
   arr = Str.match(RegEx); // length=4 [0]="(1st 2nd 3rd)" [1]="(" [2]="1st 2nd 3rd" [3]=")"
-  for(i = 0; arr && i < arr.length; ++i)
-	{
-		if (window.console && console.log)
-			console.log(arr[i]);
-  }
 
+  RegEx = new RegExp("[^\\x20:]+:.*?(?=\\s+[^\\x20:]+:|$)", "g");
+  //RegEx = new RegExp("[^\\x20:]+:(?:\\([^()]+\\)|[^()\\x20]+)?(?:\\s+.+?)*?(?=\\s+[^\\x20:]+:|$)", "g");
+  Str = "tag1:tag1value tag1value1 tag1value2 tag13: tag15:tag15value tag2:(tag2 value) tag2value1 tag2value2 tag23: tag25:tag25value tag3:tag3value tag3value1 tag3value2";
+  arr = Str.match(RegEx);
+  Str = "tag0:tag0value tag1:(tag1 value) tag1value1 tag1value2 tag15:tag15value tag2:tag2value tag2value1 tag2value2 tag25:tag25value tag3:(tag3 value) tag3value1 tag3value2 tag4:tag4value";
+  arr = Str.match(RegEx);
+  Str = "blah-blah-blah";
+  arr = Str.match(RegEx);
+  
   RegEx = /(?!^tag$)(^.*$)/i;
   Str = "tag";
   arrarr = RegEx.test(Str); // false
