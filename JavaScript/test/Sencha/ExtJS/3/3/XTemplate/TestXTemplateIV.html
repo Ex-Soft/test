@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>&laquo;Test XTemplate IV&raquo;</title>
+		<link rel="stylesheet" href="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/css/ext-all.css"/>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/adapter/ext/ext-base-debug.js"></script>
+		<script charset="utf-8" src="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/ext-all-debug.js"></script>
+		<script>
+Ext.BLANK_IMAGE_URL="../../../../../../Sencha/ExtJS/ExtJS3/ExtJS3/resources/images/default/s.gif";
+
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+
+	if (window.console && console.clear)
+		console.clear();
+
+	if (window.console && console.log)
+		console.log(Ext.version);
+
+	var
+		data1 = [
+            { "id":1, "name":"Record# 1" },
+            { "id":2, "name":"Record# 2", optional:"optional2" },
+            { "id":3, "name":"Record# 3", optional:"optional3" },
+            { "id":4, "name":"Record# 4" }
+		],
+		tpl1 = new Ext.XTemplate(
+            "<tpl for=\".\">",
+                "<div>{id} {name} {optional}</div>",
+                "<tpl if=\"!Ext.isEmpty(name)\"><div>{name}</div></tpl>",
+                "<tpl if=\"!Ext.isEmpty(values.optional)\"><div>{optional}</div></tpl>",
+                "<tpl if=\"!Ext.isEmpty(values['optional'])\"><div>{optional}</div></tpl>",
+			"</tpl>"
+		);
+
+		tpl1.overwrite(Ext.get("div1"), data1);
+});
+		</script>
+	</head>
+	<body>
+        <div id="div1"></div>
+	</body>
+</html>

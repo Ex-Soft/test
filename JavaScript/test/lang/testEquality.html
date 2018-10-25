@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>test equality</title>
+		<script>
+function onLoad()
+{
+	var a,
+		b = null;
+
+	if(window.console && console.log)
+	{
+		console.log("undefined %s= undefined", undefined == undefined ? "=" : "!"); // ==
+		console.log("undefined %s== undefined", undefined === undefined ? "=" : "!"); // ===
+		
+		console.log("null %s= null", null == null ? "=" : "!"); // ==
+		console.log("null %s== null", null === null ? "=" : "!"); // ===
+		
+		console.log("undefined %s= null", undefined == null ? "=" : "!"); // ==
+		console.log("undefined %s== null", undefined === null ? "=" : "!"); // !==
+		
+		console.log("null %s= undefined", null == undefined ? "=" : "!"); // ==
+		console.log("null %s== undefined", null === undefined ? "=" : "!"); // !==
+
+		console.log("a %s= undefined", a == undefined ? "=" : "!"); // ==
+		console.log("a %s== undefined", a === undefined ? "=" : "!"); // ===
+		console.log("a %s= null", a == null ? "=" : "!"); // ==
+		console.log("a %s== null", a === null ? "=" : "!"); // !==
+
+		console.log("b %s= undefined", b == undefined ? "=" : "!"); // ==
+		console.log("b %s== undefined", b === undefined ? "=" : "!"); // !==
+		console.log("b %s= null", b == null ? "=" : "!"); // ==
+		console.log("b %s== null", b === null ? "=" : "!"); // ===
+	}
+}		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
