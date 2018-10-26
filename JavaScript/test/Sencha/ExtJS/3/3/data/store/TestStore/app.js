@@ -71,7 +71,22 @@ Ext.onReady(function() {
 			}
 		}),
 		record,
-		tmp;
+		tmp,
+		isStore = function (store) {
+			var result = false;
+
+			for (var c = store; c && c.constructor; c = c.constructor.superclass) {
+				if (result = c.constructor.xtype == "store") {
+					break;
+				}
+			}
+
+			return result;
+		};
+
+	tmp = store.constructor.xtype;
+	tmp = store.constructor.superclass.constructor.xtype;
+	tmp = isStore(store);
 
 	store.loadData(data1);
 
