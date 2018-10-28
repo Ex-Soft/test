@@ -24,6 +24,18 @@ try {
 	echo 'phpversion() ' . phpversion();
 	echo "<br/><br/>";
 
+	$data = array();
+	$data[0] = (object)["offset" => 0, "counter" => 0];
+	$data[1] = (object)["offset" => 2, "counter" => 2];
+
+	if (isset($data[0]))
+		echo 'isset($data[0])<br/>';
+	else
+		echo '!isset($data[0])<br/>';
+
+	$data[0]->counter++;
+	echo "{$data[0]->counter}<br>";
+
 	$a = (object)["p1" => 0, "p2" => "p2 (a)"];
 	$b = $a;
 
