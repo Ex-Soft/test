@@ -272,6 +272,14 @@ Ext.onReady(function() {
 				combobox2,
 				"->",
 				{
+					text: "getRawValue()",
+					handler: function(btn, e){
+						var rawValue = combobox1.getRawValue();
+						
+						if (window.console && console.log)
+							console.log("typeof(getRawValue()) = \"%s\"", typeof(rawValue));
+					}
+				}, {
 					text: "blur()",
 					handler: function(btn, e){
 						combobox1.blur();

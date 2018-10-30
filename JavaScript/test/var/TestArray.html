@@ -77,6 +77,9 @@ if(window.console && console.log)
 	aa = [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 4 ];
 	aaa = aa.filter((item, index, array) => array.indexOf(item) == index);
 	console.log(aaa);
+
+	aaa = unique(aa);
+	console.log("unique = %o", aaa);
 }
 
 aa = [1, 4];
@@ -380,7 +383,7 @@ function except(arr1, arr2) {
 }
 
 function unique(arr) {
-	return Array.isArray(arr) ? aar.filter((item, index, array) => array.indexOf(item) == index) : [];
+	return Array.isArray(arr) ? arr.filter((item, index, array) => array.indexOf(item) == index) : [];
 }
 		</script>
 	</head>

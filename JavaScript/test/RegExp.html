@@ -35,6 +35,14 @@ var
 
 	arr = /.*(?=db)/.exec("https://someone.quickbase.com/db/bktmrw9ve");
 
+  Str = "1st 2nd,abc,cba,3rd 4th,abcd,1st,dcba,5th 6th";
+  RegEx = new RegExp("(^|,)abc(,|$)","i");
+  arr = Str.match(RegEx);
+  RegEx = new RegExp("\\b1st\\b","ig");
+  arr = Str.match(RegEx);
+  RegEx = new RegExp("(^|,)1st(,|$)","i");
+  arr = Str.match(RegEx);
+
   Str = "{0}{1}";
   RegEx = /(\{)([^}]+)(})/;
   arr = Str.match(RegEx); // length=4 [0]="{0}" [1]="{" [2]="0" [3]="}"
@@ -80,6 +88,28 @@ var
 		if (window.console && console.log)
 			console.log(arr[i]);
 	}
+
+  Str = "blah \"blah \\\"blah blah\\\" blah\" blah";
+  RegEx = /"(?:[^"\\]|\\.)*"/;
+  arr = Str.match(RegEx);
+
+  RegEx = /^("?)((?:[^"\\]|\\.)*)("?)$/;
+  Str = "blah \\\"blah blah\\\" blah\"";
+  arr = Str.match(RegEx); // length=4 [0]="blah \"blah blah\" blah"" [1]="" [2]="blah \"blah blah\" blah" [3]="""
+  Str = "\"blah \\\"blah blah\\\" blah\"";
+  arr = Str.match(RegEx); // length=4 [0]=""blah \"blah blah\" blah"" [1]=""" [2]="blah \"blah blah\" blah" [3]="""
+  Str = "\"blah \\\"blah blah\\\" blah";
+  arr = Str.match(RegEx); // length=4 [0]=""blah \"blah blah\" blah" [1]=""" [2]="blah \"blah blah\" blah" [3]=""
+  Str = "blah \\\"blah blah\\\" blah";
+  arr = Str.match(RegEx); // length=4 [0]="blah \"blah blah\" blah" [1]="" [2]="blah \"blah blah\" blah" [3]=""
+
+  RegEx = new RegExp("((\")((?:[^\"\\\\]|\\\\.)+?)(\")|[^\"]+?)\\s+?(.*)", "i");
+  Str = "\"group \\\" name\" value";
+  arr = Str.match(RegEx);
+
+  RegEx = new RegExp("((\")([^\"]+?)(\")|[^\"]+?)\\s+?(.*)", "i");
+  Str = "\"group name\" value";
+	arr = Str.match(RegEx); // length=6 [0]=""group name" value" [1]=""group name"" [2]=""" [3]="group name" [4]=""" [5]="value"
 
 	RegEx = new RegExp("((\\()([^\\)]+?)(\\))|[^()]+?)\\s+?(.*)", "i");
   Str = "(group name) value";

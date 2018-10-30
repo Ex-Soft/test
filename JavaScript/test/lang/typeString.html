@@ -25,6 +25,13 @@ var
 
 // substr deprecated!!!
 
+str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"
+str_out = str.replace("\"", "\\\"");  // "blah \"blah blah" blah"
+str_out = str.replace(/"/g, "\\\"");  // "blah \"blah blah\" blah"
+str = "blah \\\"blah blah\\\" blah";  // "blah \"blah blah\" blah"
+str_out = str.replace("\\\"", "\"");  // "blah "blah blah\" blah"
+str_out = str.replace(/\\"/g, "\"");  // "blah "blah blah" blah"
+
 str = "";
 arr = str.split(":"); // [ "" ]
 str = "part1";
