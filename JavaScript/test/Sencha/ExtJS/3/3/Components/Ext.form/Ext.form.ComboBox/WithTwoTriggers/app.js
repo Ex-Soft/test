@@ -20,7 +20,7 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		Test.ComboBox.superclass.initComponent.apply(this, arguments);
 
 		this.triggerConfig = {
-            tag:'span', cls:'x-form-twin-triggers', cn:[
+            tag: "span", cls: "x-form-twin-triggers", cn: [
 			{tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.trigger1Class},
 			{tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.trigger2Class}
         ]};
@@ -30,7 +30,7 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.getTrigger(%o)", arguments);
 
-        return this.triggers[index];
+        return Array.isArray(this.triggers) && this.triggers.length > index ? this.triggers[index] : undefined;
 	},
 
     afterRender: function(){
@@ -44,7 +44,7 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
             len = triggers.length;
             
         for(; i < len; ++i){
-            if(this['hideTrigger' + (i + 1)]){
+            if(this["hideTrigger" + (i + 1)]){
                 triggers[i].hide();
             }
         }    
@@ -54,28 +54,31 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
         if (window.console && console.log)
             console.log("Ext.form.ComboBox.initTrigger(%o)", arguments);
 
-		//Test.ComboBox.superclass.initTrigger.apply(this, arguments);
+		// Test.ComboBox.superclass.initTrigger.apply(this, arguments);
 
-		var ts = this.trigger.select('.x-form-trigger', true),
+		var ts = this.trigger.select(".x-form-trigger", true),
 			triggerField = this;
 		
 		ts.each(function(t, all, index){
-			var triggerIndex = 'Trigger'+(index+1);
+			var triggerIndex = "Trigger" + (index + 1);
+
 			t.hide = function(){
 				var w = triggerField.wrap.getWidth();
-				this.dom.style.display = 'none';
-				triggerField.el.setWidth(w-triggerField.trigger.getWidth());
-				triggerField['hidden' + triggerIndex] = true;
+				this.dom.style.display = "none";
+				triggerField.el.setWidth(w - triggerField.trigger.getWidth());
+				triggerField["hidden" + triggerIndex] = true;
 			};
+
 			t.show = function(){
 				var w = triggerField.wrap.getWidth();
-				this.dom.style.display = '';
-				triggerField.el.setWidth(w-triggerField.trigger.getWidth());
-				triggerField['hidden' + triggerIndex] = false;
+				this.dom.style.display = "";
+				triggerField.el.setWidth(w - triggerField.trigger.getWidth());
+				triggerField["hidden" + triggerIndex] = false;
 			};
-			this.mon(t, 'click', this['on'+triggerIndex+'Click'], this, {preventDefault:true});
-			t.addClassOnOver('x-form-trigger-over');
-			t.addClassOnClick('x-form-trigger-click');
+
+			this.mon(t, "click", this["on" + triggerIndex + "Click"], this, { preventDefault: true });
+			t.addClassOnOver("x-form-trigger-over");
+			t.addClassOnClick("x-form-trigger-click");
 		}, this);
 		this.triggers = ts.elements;
 	},
@@ -84,18 +87,23 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.getTriggerWidth(%o)", arguments);
 
-		var width = Test.ComboBox.superclass.getTriggerWidth.apply(this, arguments);
+		var widthBySpanGetWidth = Test.ComboBox.superclass.getTriggerWidth.apply(this, arguments);
 
         var tw = 0;
         Ext.each(this.triggers, function(t, index){
-            var triggerIndex = 'Trigger' + (index + 1),
-                w = t.getWidth();
-            if(w === 0 && !this['hidden' + triggerIndex]){
+            var triggerIndex = "Trigger" + (index + 1),
+				w = t.getWidth();
+
+            if (w === 0 && !this["hidden" + triggerIndex]){
                 tw += this.defaultTriggerWidth;
-            }else{
+            } else {
                 tw += w;
             }
-        }, this);
+		}, this);
+		
+		if (window.console && console.log)
+			console.log("widthBySpanGetWidth %s= tw", widthBySpanGetWidth == tw ? "=" : "!");
+
         return tw;
 	},
 
@@ -170,21 +178,28 @@ Ext.onReady(function() {
 			mode: "local",
 			maxHeight: 500
 		}),
+		numberFieldWidth = new Ext.form.NumberField({
+			value: 300
+		}),
+		numberFieldTriggerNo = new Ext.form.NumberField({
+			value: 0
+		}),
 		toolBar = new Ext.Toolbar({
 			region: "north",
 			height: 25,
 			items: [
 				combobox,
+				"-",
+				"Width",
+				numberFieldWidth,
+				"-",
+				"Trigger#",
+				numberFieldTriggerNo,
 				"->",
 				{
-					text: "setWidth(300)",
+					text: "setWidth()",
 					handler: function(btn, e){
-						combobox.setWidth(300);
-					}
-				}, {
-					text: "setWidth(500)",
-					handler: function(btn, e){
-						combobox.setWidth(500);
+						combobox.setWidth(numberFieldWidth.getValue());
 					}
 				}, {
 					text: "show()",
@@ -197,14 +212,24 @@ Ext.onReady(function() {
 						combobox.hide();
 					}
 				}, {
-					text: "show(0)",
+					text: "trigger.show()",
 					handler: function(btn, e){
-						combobox.getTrigger(0).show();
+						var trigger;
+
+						if (!(trigger = combobox.getTrigger(numberFieldTriggerNo.getValue())))
+							return;
+
+						trigger.show();
 					}
 				}, {
-					text: "hide(0)",
+					text: "trigger.hide()",
 					handler: function(btn, e){
-						combobox.getTrigger(0).hide();
+						var trigger;
+
+						if (!(trigger = combobox.getTrigger(numberFieldTriggerNo.getValue())))
+							return;
+
+						trigger.hide();
 					}
 				}, {
 					text: "destroy()",
