@@ -159,14 +159,26 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.triggerBlur(%o)", arguments);
 
-    	Test.ComboBox.superclass.triggerBlur.apply(this, arguments);
+		if (window.console && console.log)
+			console.log("b4 Ext.form.ComboBox.triggerBlur()", document.activeElement); // <body>
+
+		Test.ComboBox.superclass.triggerBlur.apply(this, arguments);
+		
+		if (window.console && console.log)
+			console.log("after Ext.form.ComboBox.triggerBlur()", document.activeElement); // <body>
 	},
 
-    onBlur: function() {
+    onBlur: function(e, target, eOpts) {
 		if (window.console && console.log)
 			console.log("Ext.form.ComboBox.onBlur(%o)", arguments);
 
-    	Test.ComboBox.superclass.onBlur.apply(this, arguments);
+		if (window.console && console.log)
+			console.log("b4 Ext.form.ComboBox.onBlur()", document.activeElement); // <body>
+
+		Test.ComboBox.superclass.onBlur.apply(this, arguments);
+
+		if (window.console && console.log)
+			console.log("after Ext.form.ComboBox.onBlur()", document.activeElement); // <body>
     },
 
     eventListenerOnKeyDown: function(combo, e) {
@@ -177,6 +189,32 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
     eventListenerOnKeyUp: function(combo, e) {
 		if (window.console && console.log)
 			console.log("eventListenerOnKeyUp(%o) selectedIndex=%i", arguments, combo.selectedIndex);
+
+		switch (e.getKey()) {
+			case e.ESC: {
+				if (window.console && console.log)
+					console.log("b4 blur()", document.activeElement); // <input>
+
+				combo.blur(); // -> Ext.form.ComboBox.onBlur()
+
+				if (window.console && console.log)
+					console.log("after blur()", document.activeElement); // <body>
+
+				break;
+			}
+			case e.ENTER: {
+				if (window.console && console.log)
+					console.log("b4 triggerBlur()", document.activeElement); // <input>
+
+				combo.triggerBlur(); // -> eventListenerOnBlur()
+				//combo.blur();
+
+				if (window.console && console.log)
+					console.log("after triggerBlur()", document.activeElement); // <input>
+
+				break;
+			}
+		}
     },
 
     eventListenerOnKeyPress: function(combo, e) {
@@ -189,9 +227,9 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 			console.log("eventListenerOnSpecialKey(%o)", arguments);
 	},
 
-	eventListenerOnBlur: function(combo, e) {
+	eventListenerOnBlur: function(combo) {
 		if (window.console && console.log)
-			console.log("eventListenerOnBlur(%o)", arguments);
+			console.log("eventListenerOnBlur(%o) activeElement=%o", arguments, document.activeElement);
     }
 });
 Ext.reg("testcombo", Test.ComboBox);
@@ -257,7 +295,7 @@ Ext.onReady(function() {
 			mode: "local",
 			maxHeight: 500
 		}),
-		combobox2 = new Test.ComboBox({
+		combobox2 = new Ext.form.ComboBox({
 			store: store2,
 			displayField: "name",
 			valueField: "id",
