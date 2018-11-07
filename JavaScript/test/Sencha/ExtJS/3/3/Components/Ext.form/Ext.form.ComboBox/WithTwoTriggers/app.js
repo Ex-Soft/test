@@ -21,8 +21,8 @@ Test.ComboBox = Ext.extend(Ext.form.ComboBox, {
 
 		this.triggerConfig = {
             tag: "span", cls: "x-form-twin-triggers", cn: [
-			{tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.trigger1Class},
-			{tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.trigger2Class}
+			{tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.trigger1Class + " testClass"},
+			{tag: "img", src: Ext.BLANK_IMAGE_URL, alt: "", cls: "x-form-trigger " + this.trigger2Class + " testClass"}
         ]};
 	},
 
