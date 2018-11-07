@@ -2,5 +2,14 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="a.cpp" />
+    <ClCompile Include="container.cpp" />
+    <ClCompile Include="c.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="a.h" />
+    <ClInclude Include="b.h" />
+    <ClInclude Include="container.h" />
+    <ClInclude Include="c.h" />
   </ItemGroup>
 </Project>
