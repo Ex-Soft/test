@@ -5,11 +5,13 @@
     <ClCompile Include="a.cpp" />
     <ClCompile Include="container.cpp" />
     <ClCompile Include="c.cpp" />
+    <ClCompile Include="d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="a.h" />
     <ClInclude Include="b.h" />
     <ClInclude Include="container.h" />
     <ClInclude Include="c.h" />
+    <ClInclude Include="d.h" />
   </ItemGroup>
 </Project>

@@ -3,10 +3,16 @@
 
 #include "a.h"
 #include "c.h"
+#include "d.h"
 #include "container.h"
 
 int main(int argc, char **argv)
 {
+	D d1;
+	D d2(1);
+	D d3(1, 2);
+	D d4(1, 2, 3);
+
 	C c1(1, 2);	// A::A(int = 0, int = 0) C::C(int = 0, int = 0)
 	C c2(c1);	// A::A(int = 0, int = 0) C::C(const C&)
 				// A::A(int = 0, int = 0) C::C(const C&) A::operator = (const A&)
