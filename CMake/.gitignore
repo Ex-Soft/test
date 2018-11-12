@@ -5,5 +5,5 @@
 CMakeCache.txt
 DartConfiguration.tcl
 
-CMakeFiles
-Testing
+CMakeFiles/
+Testing/
