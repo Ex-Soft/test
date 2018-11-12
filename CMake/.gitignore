@@ -1,9 +1,6 @@
 *.vcxproj
 *.vcxproj.filters
 *.sln
-*.cmake
-CMakeCache.txt
 DartConfiguration.tcl
-
-CMakeFiles/
-Testing/
+Makefile
+hello
