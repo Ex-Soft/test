@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="env" content="meta with name env" />
 		<title>Test jQuery selectors (II)</title>
-		<script charset="utf-8" src="../../jQuery/2/jquery.js"></script>
+		<script charset="utf-8" src="../../jQuery/3/jquery.js"></script>
 		<style>
 .class1
 {
@@ -34,10 +35,17 @@ $(document).ready(function() {
 		parents = el.parents(".class1"),
 		p2 = $(".class4eq:eq(2)"),
 		p4 = $(".class4eq:eq(4)"),
-		pMustBeEmpty = $(".test_Wrong_ClassName");
+		pMustBeEmpty = $(".test_Wrong_ClassName"),
+		meta = $('meta[name="env"]'),
+		metaContent = $('meta[name="env"]').attr("content"),
+		metaContentVal = "string.val() -> error"; // $('meta[name="env"]').attr("content").val(); // $(...).attr(...).val is not a function (typeof content "string")
+
+	if (window.console && console.clear)
+		console.clear();
 
 	if (window.console && console.log)
 	{
+		console.log("jquery: %s", $.fn.jquery);
 		console.log("el: %o", el);
 		console.log("closest: %o", closest);
 		console.log("parent: %o", parent);
@@ -47,6 +55,9 @@ $(document).ready(function() {
 		console.log("p4: %o", p4);
 		console.log("p4: \"%s\"", p4.html());
 		console.log("pMustBeEmpty.length = %i", pMustBeEmpty.length);
+		console.log("meta: %o", meta);
+		console.log("meta.attr(\"content\"): \"%s\" typeof: \"%s\"", metaContent, typeof metaContent);
+		console.log("meta.attr(\"content\").val(): \"%s\" typeof: \"%s\"", metaContentVal, typeof metaContentVal);
 	}
 });
 		</script>
