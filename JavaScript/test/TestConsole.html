@@ -1,19 +1,166 @@
 ﻿<!doctype html>
+<!-- https://medium.com/@mattburgess/beyond-console-log-2400fdf4a9d8 -->
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Test Console</title>
 		<script>
+class MyClass {
+	constructor(dataAccess) {
+		if(window.console) {
+			if(console.group)
+				console.group('Constructor');
+			if(console.log)
+				console.log('Constructor executed');
+			if(console.assert)
+				console.assert(typeof dataAccess === 'object', 'Potentially incorrect dataAccess object');
+		}
+
+		this.initializeEvents();
+
+		if(console.groupEnd)
+		console.groupEnd();
+	}
+
+	initializeEvents() {
+		if(console.group)
+			console.group('events');
+		if(console.log)
+			console.log('Initialising events');
+		if(console.groupEnd)
+			console.groupEnd();
+	}
+}
+
+function foo()
+{
+	if(window.console) {
+		if(console.time) {
+			console.time("foo()");
+		}
+
+		if(console.trace) {
+			console.trace();
+		}
+
+		if(console.timeEnd) {
+			console.timeEnd("foo()");
+		}
+	}
+}
+
 function DoIt()
 {
 	var
-		a = "a";
+		s = "a",
+		o = { prop1:"prop1", prop2:"prop2" },
+		element = document.getElementById('2x-container'),
+		transactions = [{
+				id: "7cb1-e041b126-f3b8",
+				seller: "WAL0412",
+				buyer: "WAL3023",
+				price: 203450,
+				time: 1539688433
+			}, {
+				id: "1d4c-31f8f14b-1571",
+				seller: "WAL0452",
+				buyer: "WAL3023",
+				price: 348299,
+				time: 1539688433
+			}, {
+				id: "b12c-b3adf58f-809f",
+				seller: "WAL0012",
+				buyer: "WAL2025",
+				price: 59240,
+				time: 1539688433
+		}];
 
-	if(window.console && console.log)
-		console.log("a = \"" + a + "\" \"%s\"", a);
+	let number = 1;
+
+	if(window.console) {
+		if(console.log) {
+			console.log("s = \"" + s + "\" \"%s\"", s);
+			console.log('I am a %cbutton', 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px');
+			console.log('I am a %cbutton%c but I am not', 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px');
+			console.log(o);
+			console.log(element);
+			console.log(transactions);
+		}
+		
+		if(console.dir) {
+			console.dir(o);
+			console.dir(element);
+		}
+
+		if(console.warn) {
+			console.warn("console.warn()");
+		}
+
+		if(console.table) {
+			console.table(transactions);
+			console.table(transactions, [ "id", "price" ]);
+		}
+
+		if(console.assert) {
+			console.assert(false, "console.assert(false, ...)");
+			console.assert(true, "console.assert(true, ...)"); // doesn't output
+		}
+
+		if(console.count) {
+			for(let i = 0; i < 10; i++) {
+				console.count(); // default
+
+  				if(i % 2) {
+    				console.count('odds');
+  				}
+  				if(!(i % 5)) {
+    				console.count('multiplesOfFive');
+  				}
+			}
+
+			if(console.countReset) {
+				console.countReset(); // without console.count() warning: Counter “default” doesn’t exist.
+			}
+		}
+
+		if(console.time) {
+			console.time();
+		}
+
+		foo();
+
+		if(console.timeEnd) {
+			console.timeEnd();
+		}
+
+		if(console.group) {
+			console.group('OutsideLoop');
+			if(console.log)
+				console.log(number);
+			console.group('Loop');
+
+			for(let i = 0; i < 5; i++) {
+  				number = i + number;
+				if(console.log)
+  					console.log(number);
+			}
+
+			if(console.groupEnd)
+				console.groupEnd();
+			if(console.log)
+				console.log(number);
+			if(console.groupEnd)
+				console.groupEnd();
+			if(console.log)
+				console.log('All done now');
+		}
+
+		let myClass = new MyClass(false);
+	}
 }
 		</script>
 	</head>
 	<body onload="DoIt()">
+		<div id="2x-container"></div>
 	</body>
 </html>
