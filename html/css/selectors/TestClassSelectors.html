@@ -1,12 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+<!doctype html>
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<meta charset="utf-8" />
 		<title>&laquo;Test Class Selectors&raquo;</title>
-		<style type="text/css">
+		<style>
 .class_red
 {
 	color: red;
+}
+
+.class_red[name="left"]
+{
+	text-align: left;
+}
+
+.class_red[name="center"]
+{
+	text-align: center;
+}
+
+.class_red[name="right"]
+{
+	text-align: right;
 }
 
 .class_bold
@@ -37,6 +52,9 @@
 	</head>
 	<body>
 		<p class="class_red">class_red</p>
+		<p name="left" class="class_red">name=left class_red</p>
+		<p name="center" class="class_red">name=center class_red</p>
+		<p name="right" class="class_red">name=right class_red</p>
 		<p class="class_bold">class_red</p>
 		<p class="class_red class_bold">class_red class_bold</p>
 		<p class="class_bold class_red">class_bold class_red</p>
