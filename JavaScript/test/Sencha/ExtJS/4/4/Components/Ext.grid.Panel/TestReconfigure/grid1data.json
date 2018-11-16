@@ -1,0 +1,24 @@
+﻿{
+    "success": true,
+    "message": "blah-blah-blah",
+    "metaData": {
+        "root": "rows",
+        "idProperty": "id",
+        "fields": [
+            { "name": "id", "type": "int" },
+            "value"
+        ],
+        "columns": [
+            { "dataIndex": "id", "header": "id" },
+            { "dataIndex": "value", "header": "value" }
+        ]
+    },
+    "total": 5,
+    "rows": [
+        { "id": 1, "value": "Record# 11" },
+        { "id": 2, "value": "Record# 12" },
+        { "id": 3, "value": "Record# 13" },
+        { "id": 4, "value": "Record# 14" },
+        { "id": 5, "value": "Record# 15" }
+    ]
+}
