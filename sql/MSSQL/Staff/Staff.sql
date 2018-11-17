@@ -48,14 +48,3 @@ if not exists (select 1
 else
   print N'Staff.NullField already exists!!!'
 go
-
-if not exists (select 1
-               from
-                 sys.columns
-               where
-                 object_id = object_id(N'Staff')
-                 and name=N'NullField')
-  alter table Staff add NullField numeric(18,0) null
-else
-  print N'Staff.NullField already exists!!!'
-go
