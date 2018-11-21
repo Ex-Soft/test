@@ -1,7 +1,12 @@
-Ext.define('TestMVCI.Application', {
+/**
+ * The main application class. An instance of this class is created by app.js when it
+ * calls Ext.application(). This is the ideal place to handle application launch and
+ * initialization details.
+ */
+Ext.define('UniView.Application', {
     extend: 'Ext.app.Application',
 
-    name: 'TestMVCI',
+    name: 'UniView',
 
     quickTips: false,
     platformConfig: {
@@ -11,14 +16,11 @@ Ext.define('TestMVCI.Application', {
     },
 
     stores: [
+        // TODO: add global / shared stores here
     ],
 
     launch: function () {
-	    if(window.console && console.log)
-		    console.log("core: %s, extjs: %s", Ext.versions.core.version, Ext.versions.extjs.version);
-
-        if (window.console && console.log)
-            console.log("launch(%o)", arguments);
+        // TODO - Launch the application
     },
 
     onAppUpdate: function () {

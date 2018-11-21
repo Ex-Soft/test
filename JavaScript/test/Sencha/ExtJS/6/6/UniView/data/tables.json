@@ -1,0 +1,23 @@
+{
+    "success": true,
+    "message": "tables",
+    "metaData": {
+        "root": "rows",
+        "clientIdProperty": "id",
+        "fields": [
+            { "name": "id", "type": "int" },
+            { "name": "name", "type": "string" },
+            { "name": "description", "type": "string" }
+        ],
+        "columns": [
+            { "dataIndex": "id", "header": "id" },
+            { "dataIndex": "description", "header": "Table", "flex": 1, "align": "left" }
+        ]
+    },
+    "total": 3,
+    "rows": [
+        { "id": 1, "name": "table1", "description": "Table# 1" },
+        { "id": 2, "name": "table2", "description": "Table# 2" },
+        { "id": 3, "name": "table3", "description": "Table# 3" }
+    ]
+}

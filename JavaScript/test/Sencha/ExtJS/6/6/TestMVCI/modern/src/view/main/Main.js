@@ -1,24 +1,12 @@
-/**
- * This class is the main view for the application. It is specified in app.js as the
- * "mainView" property. That setting causes an instance of this class to be created and
- * added to the Viewport container.
- *
- * TODO - Replace the content of this view to suit the needs of your application.
- */
 Ext.define('TestMVCI.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
 
     requires: [
-        'Ext.MessageBox',
-
-        'TestMVCI.view.main.MainController',
-        'TestMVCI.view.main.MainModel',
-        'TestMVCI.view.main.List'
+        'TestMVCI.view.main.MainController'
     ],
 
     controller: 'main',
-    viewModel: 'main',
 
     defaults: {
         tab: {
@@ -34,28 +22,41 @@ Ext.define('TestMVCI.view.main.Main', {
             title: 'Home',
             iconCls: 'x-fa fa-home',
             layout: 'fit',
-            // The following grid shares a store with the classic version's grid as well!
             items: [{
-                xtype: 'mainlist'
+                xtype: "grid",
+                store: new Ext.data.Store({
+                    fields:[ 'name', 'email', 'phone'],
+                    data: [
+                        { name: 'Lisa', email: 'lisa@simpsons.com', phone: '555-111-1224' },
+                        { name: 'Bart', email: 'bart@simpsons.com', phone: '555-222-1234' },
+                        { name: 'Homer', email: 'homer@simpsons.com', phone: '555-222-1244' },
+                        { name: 'Marge', email: 'marge@simpsons.com', phone: '555-222-1254' }
+                    ]
+                }),
+                columns: [
+                    { text: 'Name', dataIndex: 'name' },
+                    { text: 'Email', dataIndex: 'email', flex: 1 },
+                    { text: 'Phone', dataIndex: 'phone' }
+                ]
             }]
         },{
             title: 'Users',
-            iconCls: 'x-fa fa-user',
+            iconCls: 'x-fa fa-user'/*,
             bind: {
                 html: '{loremIpsum}'
-            }
+            }*/
         },{
             title: 'Groups',
-            iconCls: 'x-fa fa-users',
+            iconCls: 'x-fa fa-users'/*,
             bind: {
                 html: '{loremIpsum}'
-            }
+            }*/
         },{
             title: 'Settings',
-            iconCls: 'x-fa fa-cog',
+            iconCls: 'x-fa fa-cog'/*,
             bind: {
                 html: '{loremIpsum}'
-            }
+            }*/
         }
     ]
 });

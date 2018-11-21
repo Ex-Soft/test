@@ -1,21 +1,31 @@
-/**
- * This class is the controller for the main view for the application. It is specified as
- * the "controller" of the Main view class.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('TestMVCI.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.main',
 
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    listen: {
+        global: {
+            globalEvent: "onGlobalEvent"
+        }
     },
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
-        }
+    onNavButton1Click: function () {
+        if (window.console && console.log)
+            console.log("onNavButton1Click(%o)", arguments);
+    },
+
+    onNavButton2Click: function () {
+        if (window.console && console.log)
+            console.log("onNavButton2Click(%o)", arguments);
+    },
+
+    onCustomEvent: function () {
+        if (window.console && console.log)
+            console.log("onCustomEvent(%o)", arguments);
+    },
+
+    onGlobalEvent: function () {
+        if (window.console && console.log)
+            console.log("onGlobalEvent(%o)", arguments);
     }
 });
