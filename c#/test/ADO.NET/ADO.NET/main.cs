@@ -1,6 +1,6 @@
-﻿#define TEST_DUPLICATES
+﻿//#define TEST_DUPLICATES
 //#define TEST_SERIALIZATION
-//#define TEST_NULL
+#define TEST_NULL
 //#define TEST_SELECT
 //#define TEST_DATA_SET
 //#define TEST_COLUMN_NAME
@@ -383,6 +383,10 @@ namespace ADONET
 
 					tmpDataRows=tmpDataTable.Select("BirthDate is null");
 					tmpString=tmpDataRows.Length.ToString();
+
+                    tmpDataRow = tmpDataTable.NewRow();
+                    tmpDataTable.Rows.Add(tmpDataRow);
+                    tmpString = Convert.ToString(tmpDataRow["Name"]);
 				#endif
 
                 #if TEST_DATA_SET
