@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Linq.Dynamic;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace TestDynamic
 {
@@ -49,9 +51,39 @@ namespace TestDynamic
             var compiledModel = model.Compile();
             var context = new TestDbContext(con, compiledModel, false);
             var query = context.Set(typeOfStaff);
+            var expression = query.AsQueryable().Expression;
             var nodeType = query.AsQueryable().Expression.NodeType;
             //query.Load();
-            var local = query.Local;
+            //var local = query.Local;
+
+            PropertyInfo
+                propertyInfoName = typeOfStaff.GetProperty("Name"),
+                propertyInfoBirthDate = typeOfStaff.GetProperty("BirthDate");
+
+            var result = query.AsQueryable().Where("ID = @0", 1);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(propertyInfoName.GetValue(item));
+            }
+
+            result = query.AsQueryable().OrderBy("ID").Skip(2).Take(3);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(propertyInfoName.GetValue(item));
+            }
+
+            result = query.AsQueryable().Where("ID = @0", 13);
+            foreach (var item in result)
+            {
+                propertyInfoBirthDate.SetValue(item, DateTime.Now);
+            }
+            context.SaveChanges();
+
+            var staff = Activator.CreateInstance(typeOfStaff);
+            propertyInfoName.SetValue(staff, "Newbie");
+            propertyInfoBirthDate.SetValue(staff, DateTime.Now);
+            query.Add(staff);
+            context.SaveChanges();
         }
 
         static IEnumerable<Field> GetFields(string connectionString, string tableName)
