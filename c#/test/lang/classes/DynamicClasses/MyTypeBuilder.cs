@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -22,6 +23,7 @@ namespace DynamicClasses
         public static object CreateNewObject(IEnumerable<Field> listOfFields)
         {
             var myType = CompileResultType(listOfFields);
+            Debug.WriteLine(myType.FullName);
             return Activator.CreateInstance(myType);
         }
 

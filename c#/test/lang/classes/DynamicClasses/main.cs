@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DynamicClasses
 {
@@ -12,6 +13,10 @@ namespace DynamicClasses
             };
 
             var o = MyTypeBuilder.CreateNewObject(listOfFields);
+            var type = o.GetType();
+            var myType = Type.GetType("MyDynamicType");
+            myType = Type.GetType("MyDynamicType.MyDynamicType");
+            var o2 = MyTypeBuilder.CreateNewObject(listOfFields);
         }
     }
 }
