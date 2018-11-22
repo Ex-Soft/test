@@ -25,6 +25,8 @@ themes/
 
 **/Scripts/dojo
 
+App_Data/
+
 #bootstrap
 bootstrap*.js
 bootstrap*.css
