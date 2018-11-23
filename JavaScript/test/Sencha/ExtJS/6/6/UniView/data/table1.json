@@ -8,21 +8,23 @@
             { "name": "id", "type": "int" },
             { "name": "value1", "type": "string" },
             { "name": "value2", "type": "string" },
-            { "name": "value3", "type": "string" }
+            { "name": "value3", "type": "string" },
+            { "name": "value4", "type": "boolean" }
         ],
         "columns": [
             { "dataIndex": "id", "header": "id", "flex": 1 },
             { "dataIndex": "value1", "header": "value1", "editor": "textfield", "flex": 1 },
             { "dataIndex": "value2", "header": "value2", "editor": "textfield", "flex": 1 },
-            { "dataIndex": "value3", "header": "value3", "editor": "textfield", "flex": 1 }
+            { "dataIndex": "value3", "header": "value3", "editor": "textfield", "flex": 1 },
+            { "dataIndex": "value4", "header": "value4", "editor": { "xtype": "checkbox", "uncheckedValue": "false" }, "flex": 1 }
         ]
     },
     "total": 5,
     "rows": [
-        { "id": 1, "value1": "Record# 1 [1, 1]", "value2": "Record# 1 [1, 2]", "value3": "Record# 1 [1, 3]" },
-        { "id": 2, "value1": "Record# 1 [2, 1]", "value2": "Record# 1 [2, 2]", "value3": "Record# 1 [2, 3]" },
-        { "id": 3, "value1": "Record# 1 [3, 1]", "value2": "Record# 1 [3, 2]", "value3": "Record# 1 [3, 3]" },
-        { "id": 4, "value1": "Record# 1 [4, 1]", "value2": "Record# 1 [4, 2]", "value3": "Record# 1 [4, 3]" },
+        { "id": 1, "value1": "Record# 1 [1, 1]", "value2": "Record# 1 [1, 2]", "value3": "Record# 1 [1, 3]", "value4": true },
+        { "id": 2, "value1": "Record# 1 [2, 1]", "value2": "Record# 1 [2, 2]", "value3": "Record# 1 [2, 3]", "value4": false },
+        { "id": 3, "value1": "Record# 1 [3, 1]", "value2": "Record# 1 [3, 2]", "value3": "Record# 1 [3, 3]", "value4": true },
+        { "id": 4, "value1": "Record# 1 [4, 1]", "value2": "Record# 1 [4, 2]", "value3": "Record# 1 [4, 3]", "value4": false },
         { "id": 5, "value1": "Record# 1 [5, 1]", "value2": "Record# 1 [5, 2]", "value3": "Record# 1 [5, 3]" }
     ]
 }
