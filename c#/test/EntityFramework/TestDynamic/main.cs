@@ -84,6 +84,22 @@ namespace TestDynamic
             propertyInfoBirthDate.SetValue(staff, DateTime.Now);
             query.Add(staff);
             context.SaveChanges();
+
+            var awaiter = query.AsQueryable().Where("ID = @0", 13).ToListAsync().GetAwaiter();
+            awaiter.OnCompleted(() => {
+                var _list_ = awaiter.GetResult();
+
+                Debug.WriteLine("OnCompleted()");
+
+                for (var i = 0; i < _list_.Count; ++i)
+                    Debug.WriteLine($"{{Name: \"{propertyInfoName.GetValue(_list_[i])}\", BirthDate: \"{propertyInfoBirthDate.GetValue(_list_[i])}\"}}");
+            });
+
+            var _query_ = query.AsQueryable().Where("ID = @0", 13).ToListAsync();
+            _query_.Wait();
+            var list = _query_.Result;
+            for (var i = 0; i < list.Count; ++i)
+                Debug.WriteLine($"{{Name: \"{propertyInfoName.GetValue(list[i])}\", BirthDate: \"{propertyInfoBirthDate.GetValue(list[i])}\"}}");
         }
 
         static IEnumerable<Field> GetFields(string connectionString, string tableName)
