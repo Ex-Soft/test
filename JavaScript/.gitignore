@@ -19,6 +19,7 @@ tinymce/**
 UnitTesting/**
 YUI/**
 dojo/**
+vue/**
 emsdk
 
 *_out.dbf
