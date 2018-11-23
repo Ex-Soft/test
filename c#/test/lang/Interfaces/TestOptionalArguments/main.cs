@@ -11,6 +11,7 @@ namespace TestOptionalArguments
         void FooI(int pInt = 13);
 		void FooII(int pIntI = 13, int pIntII = 26);
 		void FooIII(int pInt);
+        void FooIV(int pInt = 13);
 	}
 
 	public class A : IA
@@ -29,6 +30,11 @@ namespace TestOptionalArguments
 		{
 			System.Diagnostics.Debug.WriteLine("pInt = {0}", pInt);
 		}
+
+        public void FooIV(int pInt)
+        {
+            System.Diagnostics.Debug.WriteLine("pInt = {0}", pInt);
+        }
 	}
 
 	class Program
@@ -54,6 +60,11 @@ namespace TestOptionalArguments
 			a.FooIII(26);	// 26
 			//ia.FooIII();	// Error	1	No overload for method 'FooIII' takes 0 arguments
 			ia.FooIII(26);	// 26
-		}
+
+            //a.FooIV();      // Error CS7036  There is no argument given that corresponds to the required formal parameter 'pInt' of 'A.FooIV(int)'
+            a.FooIV(26);    // 26
+            ia.FooIV();     // 13
+            ia.FooIV(26);   // 26
+        }
 	}
 }
