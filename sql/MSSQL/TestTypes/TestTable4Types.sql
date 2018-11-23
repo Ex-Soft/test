@@ -38,6 +38,10 @@ if not exists (select 1 from sys.columns where object_id = object_id(N'TestTable
   alter table TestTable4Types add FDecimal_7_6 decimal(7, 6) null
 go
 
+if col_length(N'TestTable4Types', N'FXml') is null
+  alter table TestTable4Types add FXml xml null
+go
+
 if not exists (select 1 from sys.columns where object_id = object_id(N'TestTable4Types') and name = N'FVarBinary_Max')
   alter table TestTable4Types add FVarBinary_Max varbinary(max) null
 go
