@@ -140,6 +140,36 @@ namespace LambdaVsQuery
         }
     }
 
+    class Field
+    {
+        public string Name { get; set; }
+        public Type Type { get; set; }
+        public string Description { get; set; }
+
+        public Field(string name, Type type, string description = "")
+        {
+            Name = name;
+            Type = type;
+            Description = description;
+        }
+
+        public override string ToString()
+        {
+            return $"{{Name:\"{Name}\", Type:\"{Type.GetTypeCode(Type)}\", Description\"{Description}\"}}";
+        }
+    }
+
+    class FieldWithDescription
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return $"{{Name:\"{Name}\", Description\"{Description}\"}}";
+        }
+    }
+
     class Program
 	{
 		static void Main(string[] args)
@@ -341,6 +371,21 @@ namespace LambdaVsQuery
 		        .GroupJoin(pets, person => person, pet => pet.Owner, (outerListPeoples, innerListPets) => new {outerListPeoples.FirstName, PetName = innerListPets.Select(pet => pet.Name)})
 		        .SelectMany(groupJoinItem => groupJoinItem.PetName.DefaultIfEmpty(), (groupJoinItem, PetName) => new {groupJoinItem.FirstName, PetName }).ToArray();
 
+            var dbFields = new List<Field>
+            {
+                new Field("Field# 1", typeof(string)),
+                new Field("Field# 2", typeof(int)),
+                new Field("Field# 3", typeof(string))
+            };
+
+            var fieldsDescriptions = new List<FieldWithDescription>
+            {
+                new FieldWithDescription { Name = "Field# 1", Description = "Description of Field# 1" },
+                new FieldWithDescription { Name = "Field# 2", Description = "Description of Field# 2" }
+            };
+
+            var lefJoinResultByLambdaSyntax2 = dbFields.GroupJoin(fieldsDescriptions, dbField => dbField.Name, fieldDescription => fieldDescription.Name, (outerListDbFields, innerListFieldsDescriptions) => new { outerListDbFields.Name, outerListDbFields.Type, Description = innerListFieldsDescriptions.Select(field => field.Description) })
+                .SelectMany(groupJoinItem => groupJoinItem.Description.DefaultIfEmpty(), (groupJoinItem, Description) => new Field(groupJoinItem.Name, groupJoinItem.Type, Description)).ToArray();
 
             tmpIntsI = new[] { 2, 5, 5, 51, 2, 54, 54, 41, 1, 1, 1, 451 };
 		    var result = tmpIntsI.GroupBy(d => d).Select(d => new {Value = d.Key, Count = d.Count()}).OrderBy(d => d.Value);
