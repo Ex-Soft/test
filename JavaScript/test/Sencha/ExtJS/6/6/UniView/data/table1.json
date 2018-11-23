@@ -16,7 +16,9 @@
             { "dataIndex": "value1", "header": "value1", "editor": "textfield", "flex": 1 },
             { "dataIndex": "value2", "header": "value2", "editor": "textfield", "flex": 1 },
             { "dataIndex": "value3", "header": "value3", "editor": "textfield", "flex": 1 },
-            { "dataIndex": "value4", "header": "value4", "editor": { "xtype": "checkbox", "uncheckedValue": "false" }, "flex": 1 }
+            { "dataIndex": "value4", "header": "value4", "editor": { "xtype": "checkbox", "uncheckedValue": "false" 
+                
+                }, "flex": 1 }
         ]
     },
     "total": 5,
