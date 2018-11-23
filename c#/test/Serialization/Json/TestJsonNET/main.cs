@@ -1,12 +1,15 @@
-﻿#define TEST_CLASS_WITH_OBJECT_PROPERTY
+﻿//#define TEST_CLASS_WITH_OBJECT_PROPERTY
 //#define TEST_DATE
+#define TEST_POST
 
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Converters;
 
 namespace TestJsonNET
 {
@@ -17,6 +20,9 @@ namespace TestJsonNET
             string
                 tmpString;
 
+            int
+                tmpInt;
+
             DateTime
                 dateTime1,
                 dateTime2;
@@ -25,8 +31,49 @@ namespace TestJsonNET
                 dateTimeOffset1,
                 dateTimeOffset2;
 
+            JArray
+                jArray;
+
+            JObject
+                jObject;
+
+            JToken
+                jToken;
+
+            JProperty
+                jProperty;
+
             try
             {
+                #if TEST_POST
+                    tmpString = "[ { \"f_string\": \"string\", \"f_int\": 5, \"f_bit\": true, \"id\": 1 }, { \"f_int\": 8, \"id\": 2 } ]";
+                    jObject = JsonConvert.DeserializeObject(tmpString) as JObject;
+                    if (jObject != null)
+                    {
+                    }
+
+                    jArray = JsonConvert.DeserializeObject(tmpString) as JArray;
+                    if (jArray != null)
+                    {
+                        for (var i = 0; i < jArray.Count; ++i)
+                        {
+                            jToken = jArray[i];
+                            for (var _jTocken_ = jToken.First; _jTocken_ != null; _jTocken_ = _jTocken_.Next)
+                            {
+                                jProperty = _jTocken_.ToObject<JProperty>();
+                                Debug.WriteLine($"{{Name:\"{jProperty.Name}\", Value.Type:{jProperty.Value.Type}, Value:{jProperty.Value}}}");
+                            }
+
+                            dynamic idValue = jToken["id"];
+                            if (idValue == null)
+                                continue;
+
+                            dynamic value = idValue.Value;
+                            tmpInt = idValue.ToObject(typeof(int));
+                        }
+                    }
+                #endif
+
                 #if TEST_DATE
                     // http://www.newtonsoft.com/json/help/html/DatesInJSON.htm
 
