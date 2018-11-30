@@ -38,8 +38,11 @@
 			</ul>
 		</div>
 
-		<script charset="utf-8" src="../../angular/angular.js"></script>
+		<script charset="utf-8" src="../../../angular/1.2.32/angular.js"></script>
 		<script>
+if (window.console && console.log)
+	console.log(angular.version.full);
+
 function SimpleController($scope)
 {
 	$scope.namesObj = [

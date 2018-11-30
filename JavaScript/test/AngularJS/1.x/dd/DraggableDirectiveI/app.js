@@ -1,3 +1,6 @@
+if (window.console && console.log)
+  console.log(angular.version.full);
+
 angular.module('test', [])
 
 .directive('ngDraggable', function($document) {
