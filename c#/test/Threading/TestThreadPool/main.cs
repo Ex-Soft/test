@@ -165,6 +165,8 @@ namespace TestThreadPool
 				ThreadPool.QueueUserWorkItem(StartThread, state);
 			}
 
+            //Console.ReadLine();
+
 			sw.WriteLine("{0}\tMain thread finished", DateTime.Now.ToString("HH:mm:ss.fffffff"));
 		}
 
