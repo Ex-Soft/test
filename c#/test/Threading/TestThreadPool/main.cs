@@ -51,18 +51,18 @@ namespace TestThreadPool
 
 			public void run()
 			{
-				file.WriteLine("{0}\tThread Id: {1} started...", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id);
+				file.WriteLine("{0}\tThread Id: {1} Thread.ManagedThreadId: {2} started...", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, Thread.CurrentThread.ManagedThreadId);
 
 				Random
-					rnd = new Random(System.AppDomain.GetCurrentThreadId());
+					rnd = new Random(Thread.CurrentThread.ManagedThreadId);
 
 				for (int i = 0; i < 10; ++i)
 				{
-					file.WriteLine("{0}\tThread Id: {1} i={2}", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, i);
+					file.WriteLine("{0}\tThread Id: {1} Thread.ManagedThreadId: {2} i={3}", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, Thread.CurrentThread.ManagedThreadId, i);
 					Thread.Sleep(mSec * rnd.Next(10));
 				}
 
-				file.WriteLine("{0}\tThread Id: {1} finished", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id);
+				file.WriteLine("{0}\tThread Id: {1} Thread.ManagedThreadId: {2} finished", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, Thread.CurrentThread.ManagedThreadId);
 			}
 
 			~TestThreadPoolFull()
@@ -115,18 +115,18 @@ namespace TestThreadPool
 				if (!file.AutoFlush)
 					file.AutoFlush = true;
 
-				file.WriteLine("{0}\tThreadPool Id: {1} started...", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id);
+				file.WriteLine("{0}\tThreadPool Id: {1} Thread.ManagedThreadId: {2} started...", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, Thread.CurrentThread.ManagedThreadId);
 
 				Random
-					rnd = new Random(System.AppDomain.GetCurrentThreadId());
+					rnd = new Random(Thread.CurrentThread.ManagedThreadId);
 
 				for (int i = 0; i < 10; ++i)
 				{
-					file.WriteLine("{0}\tThreadPool Id: {1} i={2}", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, i);
+					file.WriteLine("{0}\tThreadPool Id: {1} Thread.ManagedThreadId: {2} i={3}", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, Thread.CurrentThread.ManagedThreadId, i);
 					Thread.Sleep(mSec * rnd.Next(10));
 				}
 
-				file.WriteLine("{0}\tThreadPool Id: {1} finished", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id);
+				file.WriteLine("{0}\tThreadPool Id: {1} Thread.ManagedThreadId: {2} finished", DateTime.Now.ToString("HH:mm:ss.fffffff"), Id, Thread.CurrentThread.ManagedThreadId);
 
 				file.Close();
 			}
