@@ -1,6 +1,7 @@
 ﻿using System;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
+using CommonServiceLocator;
+using Unity;
+using Unity.ServiceLocation;
 
 namespace TestSimple
 {
