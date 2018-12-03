@@ -3,10 +3,10 @@
  * calls Ext.application(). This is the ideal place to handle application launch and
  * initialization details.
  */
-Ext.define('UniView.Application', {
+Ext.define('DbView.Application', {
     extend: 'Ext.app.Application',
 
-    name: 'UniView',
+    name: 'DbView',
 
     quickTips: false,
     platformConfig: {

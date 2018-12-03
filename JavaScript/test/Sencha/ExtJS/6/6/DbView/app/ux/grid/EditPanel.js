@@ -1,5 +1,5 @@
-Ext.define("UniView.ux.grid.EditPanel", {
-    extend: "UniView.ux.grid.AutoReconfigurePanel",
+Ext.define("DbView.ux.grid.EditPanel", {
+    extend: "DbView.ux.grid.AutoReconfigurePanel",
     alias: ["widget.editgridpanel", "widget.editgrid"],
 
     multiColumnSort: true,

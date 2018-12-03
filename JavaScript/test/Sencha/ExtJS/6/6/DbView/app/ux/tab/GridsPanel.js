@@ -1,8 +1,8 @@
-Ext.define("UniView.ux.tab.GridsPanel", {
+Ext.define("DbView.ux.tab.GridsPanel", {
     extend: "Ext.tab.Panel",
     alias: ["widget.gridstabpanel"],
     
-    requires: ["UniView.ux.grid.EditPanel"],
+    requires: ["DbView.ux.grid.EditPanel"],
 
     initComponent: function() {
         var me = this;

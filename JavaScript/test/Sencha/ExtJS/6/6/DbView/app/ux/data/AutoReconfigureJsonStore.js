@@ -1,4 +1,4 @@
-Ext.define("UniView.ux.data.AutoReconfigureJsonStore", {
+Ext.define("DbView.ux.data.AutoReconfigureJsonStore", {
     extend: "Ext.data.JsonStore",
     alias : "store.autoreconfigurejson",
 

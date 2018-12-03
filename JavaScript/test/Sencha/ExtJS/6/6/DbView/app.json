@@ -1,6 +1,6 @@
 {
-    "name": "UniView",
-    "namespace": "UniView",
+    "name": "DbView",
+    "namespace": "DbView",
     "version": "1.0.0.0",
     "framework": "ext",
     "toolkit": "classic",
@@ -64,13 +64,13 @@
     "sass": {
         /**
          * The root namespace to use when mapping *.scss files to classes in the
-         * sass/src and sass/var directories. For example, "UniView.view.Foo" would
-         * map to "sass/src/view/Foo.scss". If we changed this to "UniView.view" then
+         * sass/src and sass/var directories. For example, "DbView.view.Foo" would
+         * map to "sass/src/view/Foo.scss". If we changed this to "DbView.view" then
          * it would map to "sass/src/Foo.scss". To style classes outside the app's
          * root namespace, change this to "". Doing so would change the mapping of
-         * "UniView.view.Foo" to "sass/src/UniView/view/Foo.scss".
+         * "DbView.view.Foo" to "sass/src/DbView/view/Foo.scss".
          */
-        "namespace": "UniView",
+        "namespace": "DbView",
 
         /**
          * Generated sass source settings

@@ -1,9 +1,9 @@
-Ext.define("UniView.ux.grid.AutoReconfigurePanel", {
+Ext.define("DbView.ux.grid.AutoReconfigurePanel", {
     extend: "Ext.grid.Panel",
     alias: ["widget.autoreconfiguregridpanel", "widget.autoreconfiguregrid"],
     
     requires: [
-        "UniView.ux.data.AutoReconfigureJsonStore"
+        "DbView.ux.data.AutoReconfigureJsonStore"
     ],
 
     config: {

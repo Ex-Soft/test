@@ -1,4 +1,4 @@
-Ext.define("UniView.view.main.MainController", {
+Ext.define("DbView.view.main.MainController", {
     extend: "Ext.app.ViewController",
 
     alias: "controller.main",

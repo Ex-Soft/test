@@ -1,11 +1,11 @@
-Ext.define("UniView.view.main.Main", {
+Ext.define("DbView.view.main.Main", {
     extend: "Ext.container.Viewport",
     xtype: "app-main",
 
     requires: [
-        "UniView.view.main.MainController",
-        "UniView.ux.grid.NavigatePanel",
-        "UniView.ux.tab.GridsPanel"
+        "DbView.view.main.MainController",
+        "DbView.ux.grid.NavigatePanel",
+        "DbView.ux.tab.GridsPanel"
     ],
 
     controller: "main",

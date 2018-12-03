@@ -1,5 +1,5 @@
-Ext.define("UniView.ux.grid.NavigatePanel", {
-    extend: "UniView.ux.grid.AutoReconfigurePanel",
+Ext.define("DbView.ux.grid.NavigatePanel", {
+    extend: "DbView.ux.grid.AutoReconfigurePanel",
     alias: ["widget.navigategridpanel", "widget.navigategrid"],
     
     doReconfigure: function (store, meta) {
