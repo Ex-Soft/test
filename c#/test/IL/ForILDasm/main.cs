@@ -1,4 +1,7 @@
-﻿//using System;
+﻿//#define TEST_CALL_VALUE
+#define TEST_CALL_REFERENCE
+
+//using System;
 
 namespace ForILDasm
 {
@@ -11,9 +14,19 @@ namespace ForILDasm
 
         static void Main(string[] args)
         {
-            int a = 1234;
-            int b = 5678;
-            int c = Add(a, b);
+            #if TEST_CALL_VALUE
+                int a = 1234;
+                int b = 5678;
+                int c = Add(a, b);
+            #endif
+
+            #if TEST_CALL_REFERENCE
+                object o1 = new object();
+                object o2;
+                TestCallVoidReference(o1);
+                o2 = TestCallObjectReference(o1); 
+            #endif
+
             //var a= new A();
             //var b = a?.s?.Length;
 
@@ -40,9 +53,24 @@ namespace ForILDasm
             
         }*/
 
-        static int Add(int a, int b)
-        {
-            return a + b;
-        }
+        #if TEST_CALL_VALUE
+            static int Add(int a, int b)
+            {
+                return a + b;
+            }
+        #endif
+
+        #if TEST_CALL_REFERENCE
+            static void TestCallVoidReference(object o)
+            {
+                o.ToString();
+            }
+
+            static object TestCallObjectReference(object o)
+            {
+                o.ToString();
+                return o;
+            }
+        #endif
     }
 }
