@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace TestFinalize
 {
@@ -15,7 +17,9 @@ namespace TestFinalize
 
 			public ClassWithFinalize()
 			{
-				string
+                Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}");
+
+                string
 					FileName = "log.log";
 
 				if (File.Exists(FileName))
@@ -44,18 +48,24 @@ namespace TestFinalize
 			
 			~ClassWithFinalize()
 			{
-				Dispose(false);
+                Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}");
+
+                Dispose(false);
 			}
 			
 			public void Dispose()
 			{
-				Dispose(true);
+                Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}()");
+
+                Dispose(true);
 				GC.SuppressFinalize(this);
 			}
 
-			private void Dispose(bool disposing)
+			protected virtual void Dispose(bool disposing)
 			{
-				if (!disposed)
+                Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}({disposing})");
+
+                if (!disposed)
 				{
 					if (disposing)
 					{
