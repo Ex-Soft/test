@@ -42,8 +42,10 @@ $(document).ready(function() {
 		metaContent = $('meta[name="env"]').attr("content"),
 		metaContentVal = "string.val() -> error", // $('meta[name="env"]').attr("content").val(); // $(...).attr(...).val is not a function (typeof content "string")
 		tables = $("table"),
+		table,
 		table1 = $("table")[0],
-		table2 = $("table")[1];
+		table2 = $("table")[1],
+		td = $("table").eq(1).find("td");
 
 	if (window.console && console.clear)
 		console.clear();
@@ -65,15 +67,20 @@ $(document).ready(function() {
 		console.log("meta.attr(\"content\").val(): \"%s\" typeof: \"%s\"", metaContentVal, typeof metaContentVal);
 		console.log("tables: %o", tables);
 		console.log("table: %o", table1);
-		for (var i = 0, l = table2.rows.length; i < l; ++i)
+
+		table = table1;
+		for (var i = 0, l = table.rows.length; i < l; ++i)
 		{
-			var row = table2.rows[i];
+			var row = table.rows[i];
 			for (var ii = 0, ll = row.cells.length; ii < ll; ++ii)
 			{
 				var cell = row.cells[ii];
 				cell.innerHTML = `[${i}, ${ii}]`;
 			}
 		}
+
+		console.log(td);
+		td.append("<p>blah-blah-blah</p>");
 	}
 });
 		</script>
@@ -94,8 +101,8 @@ $(document).ready(function() {
 		<p class="testWrongClassName">&lt;p&gt;</p>
 		<table>
 			<tr>
-				<td>[0, 0]</td>
-				<td>[0, 1]</td>
+				<td></td>
+				<td></td>
 			</tr>
 		</table>
 		<table>
