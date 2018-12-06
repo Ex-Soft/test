@@ -65,13 +65,13 @@ $(document).ready(function() {
 		console.log("meta.attr(\"content\").val(): \"%s\" typeof: \"%s\"", metaContentVal, typeof metaContentVal);
 		console.log("tables: %o", tables);
 		console.log("table: %o", table1);
-		for (var i = 0, l = table1.rows.length; i < l; ++i)
+		for (var i = 0, l = table2.rows.length; i < l; ++i)
 		{
-			var row = table1.rows[i];
+			var row = table2.rows[i];
 			for (var ii = 0, ll = row.cells.length; ii < ll; ++ii)
 			{
 				var cell = row.cells[ii];
-				console.log(cell.innerHTML);
+				cell.innerHTML = `[${i}, ${ii}]`;
 			}
 		}
 	}
