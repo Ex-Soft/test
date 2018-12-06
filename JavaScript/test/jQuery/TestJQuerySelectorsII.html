@@ -40,7 +40,10 @@ $(document).ready(function() {
 		pMustBeEmpty = $(".test_Wrong_ClassName"),
 		meta = $('meta[name="env"]'),
 		metaContent = $('meta[name="env"]').attr("content"),
-		metaContentVal = "string.val() -> error"; // $('meta[name="env"]').attr("content").val(); // $(...).attr(...).val is not a function (typeof content "string")
+		metaContentVal = "string.val() -> error", // $('meta[name="env"]').attr("content").val(); // $(...).attr(...).val is not a function (typeof content "string")
+		tables = $("table"),
+		table1 = $("table")[0],
+		table2 = $("table")[1];
 
 	if (window.console && console.clear)
 		console.clear();
@@ -60,6 +63,15 @@ $(document).ready(function() {
 		console.log("meta: %o", meta);
 		console.log("meta.attr(\"content\"): \"%s\" typeof: \"%s\"", metaContent, typeof metaContent);
 		console.log("meta.attr(\"content\").val(): \"%s\" typeof: \"%s\"", metaContentVal, typeof metaContentVal);
+		console.log("tables: %o", tables);
+		console.log("table: %o", table1);
+		for (var row in table1.rows)
+		{
+			for (var cell in row.cells)
+			{
+				
+			}
+		}
 	}
 });
 		</script>
@@ -78,5 +90,17 @@ $(document).ready(function() {
 		<p class="class4eq">&lt;p&gt; #3</p>
 		<p class="class4eq">&lt;p&gt; #4</p>
 		<p class="testWrongClassName">&lt;p&gt;</p>
+		<table>
+			<tr>
+				<td>[0, 0]</td>
+				<td>[0, 1]</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
 	</body>
 </html>
