@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using TestPartialClass.Pure;
 
 namespace TestPartialClass
 {
@@ -7,6 +8,11 @@ namespace TestPartialClass
     {
         static void Main(string[] args)
         {
+            var b = new B();
+            b.Foo1();
+            b.Foo2();
+            b.Foo34();
+
             ShowPropertyAttributes(typeof(A), "FStringI");
             ShowPropertyAttributes(typeof(A), "FStringII");
         }
