@@ -54,6 +54,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <Label x:Name="labelRenderingTier" Grid.Column="0">
+        </Label>
+        
         <Label Grid.Column="1" Style="{StaticResource headerTextStyle}">
             View Expense Report
         </Label>

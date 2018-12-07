@@ -23,6 +23,8 @@ namespace ExpenseIt
         public ExpenseItHome()
         {
             InitializeComponent();
+
+            this.labelRenderingTier.Content = $"RenderCapability.Tier: {RenderCapability.Tier >> 16}";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -20,13 +20,13 @@ namespace TestPartialClass
             Console.WriteLine(new string('-', 60));
 
             foreach (var attribute in Attribute.GetCustomAttributes(pi))
-                Console.WriteLine("Type: \"{0}\" Attribute.Type: \"{1}\"{2}", type.Name, attribute.GetType().Name, attribute);
+                Console.WriteLine($"Type: \"{type.Name}\" Attribute.Type: \"{attribute.GetType().Name}\" {attribute}");
             Console.WriteLine();
 
             Console.WriteLine(new string('-', 60));
 
             foreach (var attribute in pi.GetCustomAttributes(typeof(CustomAttribute), true))
-                Console.WriteLine("Type: \"{0}\" Attribute.Type: \"{1}\"{2}", type.Name, attribute.GetType().Name, attribute);
+                Console.WriteLine($"Type: \"{type.Name}\" Attribute.Type: \"{attribute.GetType().Name}\" {attribute}");
             Console.WriteLine();
 
             Console.WriteLine(new string('-', 60));
