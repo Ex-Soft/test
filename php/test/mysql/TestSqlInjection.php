@@ -1,28 +1,17 @@
 ﻿<!doctype html>
-<!-- https://websitebeaver.com/prepared-statements-in-php-mysqli-to-prevent-sql-injection -->
+<!-- http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet -->
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Test MySQL</title>
+		<title>Test SQL injection</title>
 	</head>
 	<body>
 <?php
-$victimText = "";
-$victimNumber = "0";
-
-if (isset($_POST["victimText"])) {
-	$victimText = $_POST["victimText"];
-}
-
-if (isset($_POST["victimNumber"])) {
-	$victimNumber = $_POST["victimNumber"];
-}
-
-echo "<form action=\"TestMySQL.php\" method=\"post\" enctype=\"multipart/form-data\">
+echo "Иванов Иван Иванович' union select 1 as id, @@datadir as name; #";
+echo "<form action=\"TestSqlInjection.php\" method=\"post\" enctype=\"multipart/form-data\">
 <label>Text: <input type=\"text\" name=\"victimText\" value=\"". $victimText ."\"></label><br/>
-<label>Number: <input type=\"number\" name=\"victimNumber\" value=\"". $victimNumber ."\"></label><br/>
 <input type=\"submit\" value=\"submit\" name=\"submit\">
 </form>";
 
@@ -51,31 +40,27 @@ echo "Host information: " . mysqli_get_host_info($con) . "<br/>";
 
 $sql = "select id, name from staff";
 
-if (is_string($victimText) && strlen($victimText = trim($victimText)) > 0) {
-	$sql = $sql ." where name = ? or id > ?";
+if (isset($_POST["victimText"])) {
+	$victimText = $_POST["victimText"];
 
-	if ($stmt = mysqli_prepare($con, $sql)) {
-		mysqli_stmt_bind_param($stmt, "si", $victimText, $victimNumber);
-		$stmt->execute();
-		$retval = $stmt->get_result();
+	if (is_string($victimText) && strlen($victimText = trim($victimText)) > 0) {
+		$sql = $sql ." where name = '". $victimText ."'";
 	}
-} else {
-	$retval = mysqli_query($con, $sql);
 }
 
-if (!$retval ) {
+echo $sql ."<br/>";
+
+$retval = mysqli_query($con, $sql);
+
+if(!$retval ) {
 	die("Could not get data: " . mysqli_error($con));
 }
  
-while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
+while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 	echo "id: {$row['id']}" . " name: \"{$row['name']}\"<br/>";
 }
- 
-echo "Fetched data successfully\n";
 
-if (isset($stmt)) {
-	$stmt->close();
-}
+echo "Fetched data successfully\n";
 
 mysqli_close($con);
 ?>
