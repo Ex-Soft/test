@@ -19,10 +19,10 @@ namespace Equality
             Debug.WriteLine($"TestClassIComparableFull(TestClassIComparableFull {aObj})");
         }
 
-        public TestClassIComparableFull(int pA = 0)
+        public TestClassIComparableFull(int fieldInt = 0)
         {
-            Debug.WriteLine($"TestClassIComparableFull(int pA = {pA})");
-            FieldInt = pA;
+            Debug.WriteLine($"TestClassIComparableFull(int fieldInt = {fieldInt})");
+            FieldInt = fieldInt;
         }
 
         public static bool operator == (TestClassIComparableFull left, TestClassIComparableFull right)
@@ -104,7 +104,7 @@ namespace Equality
 
         public override int GetHashCode()
         {
-            Debug.WriteLine("override int GetHashCode()");
+            Debug.WriteLine($"override int GetHashCode({FieldInt})");
             return FieldInt.GetHashCode();
         }
 
