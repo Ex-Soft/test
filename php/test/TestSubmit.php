@@ -34,7 +34,9 @@ if (isset($_POST["victimNumber"])) {
 	echo 'is_numeric($victimNumber) = "'. is_numeric($victimNumber) ."\"<br/>";
 }
 
-echo "&quot;&gt;&lt;img src=x onerror=alert(document.cookie)&gt;";
+echo "&quot;&gt;&lt;img src=&quot;x&quot; onerror=&quot;alert(document.cookie)&quot;&gt;";
+echo "<br/>";
+echo "&quot;&gt;&lt;script src=&quot;app.js&quot; onerror=&quot;alert(document.cookie)&quot;&gt;&lt;/script&gt;";
 
 echo "<form action=\"TestSubmit.php\" method=\"post\" enctype=\"multipart/form-data\">
 <label>Text: <input type=\"text\" name=\"victimText\" value=\"". $victimText ."\"></label><br/>
