@@ -1,8 +1,11 @@
 ﻿#define TEST_THREAD_POOL
 #define TEST_THREAD_POOL_FULL
+#define TEST_CONTEXT
 
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 
@@ -149,7 +152,18 @@ namespace TestThreadPool
 	{
 		static void Main(string[] args)
 		{
-			StreamWriter
+            #if TEST_CONTEXT
+                CallContext.LogicalSetData("ContextData", "ContextDataValue");
+
+                ThreadPool.QueueUserWorkItem(state => Debug.WriteLine($"ContextData=\"{CallContext.LogicalGetData("ContextData")}\""));
+
+                ExecutionContext.SuppressFlow();
+                ThreadPool.QueueUserWorkItem(state => Debug.WriteLine($"ContextData=\"{CallContext.LogicalGetData("ContextData")}\""));
+
+                ExecutionContext.RestoreFlow();
+            #endif
+
+            StreamWriter
 				sw = new StreamWriter("main.txt", false, Encoding.GetEncoding(1251));
 
 			if (!sw.AutoFlush)
