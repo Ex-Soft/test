@@ -151,6 +151,34 @@ namespace TestTaskWinForm
             WriteToLog($"{methodName} finished");
         }
 
+        private async void ButtonStartTaskTAPAsyncClick(object sender, EventArgs e)
+        {
+            const string methodName = "ButtonStartTaskTAPAsyncClick()";
+
+            WriteToLog($"{methodName} starting...");
+
+            int result = await TaskTAPAsync(new TaskParam(0, GetValue(tbmSec, MSec)));
+
+            WriteToLog($"{methodName} finished result = {result}");
+        }
+
+        private async Task<int> TaskTAPAsync(object param)
+        {
+            if (!(param is TaskParam taskParam))
+                return 0;
+
+            WriteToLog($"{DateTime.Now.ToString("HH:mm:ss.fffffff")}\t{taskParam.i} started...");
+
+            var rnd = new Random(Thread.CurrentThread.ManagedThreadId);
+            var result = taskParam.mSec * rnd.Next(10);
+
+            await Task.Delay(result);
+
+            WriteToLog($"{DateTime.Now.ToString("HH:mm:ss.fffffff")}\t{taskParam.i} finished result = {result}");
+
+            return result;
+        }
+
         private void ButtonStartTaskTAPClick(object sender, EventArgs e)
         {
             //https://msdn.microsoft.com/en-us/library/hh873177(v=vs.110).aspx
@@ -168,7 +196,7 @@ namespace TestTaskWinForm
                 WriteToLog($"{methodName} result = {result}");
             });
 
-            WriteToLog($"{methodName} finished");
+            WriteToLog($"{methodName} finished task.Status = {task.Status}");
         }
 
         private Task<int> TaskTAP(object param)

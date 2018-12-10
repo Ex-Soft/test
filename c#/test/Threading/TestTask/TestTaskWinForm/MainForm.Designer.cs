@@ -40,11 +40,12 @@
             this.tbmSec = new System.Windows.Forms.TextBox();
             this.btnStartTaskNotAsync = new System.Windows.Forms.Button();
             this.buttonStartTaskTAP = new System.Windows.Forms.Button();
+            this.buttonStartTaskTAPAsync = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnStartTaskWithChildren
             // 
-            this.btnStartTaskWithChildren.Location = new System.Drawing.Point(723, 191);
+            this.btnStartTaskWithChildren.Location = new System.Drawing.Point(723, 220);
             this.btnStartTaskWithChildren.Name = "btnStartTaskWithChildren";
             this.btnStartTaskWithChildren.Size = new System.Drawing.Size(170, 23);
             this.btnStartTaskWithChildren.TabIndex = 0;
@@ -54,7 +55,7 @@
             // 
             // btnCancelTaskWithChildren
             // 
-            this.btnCancelTaskWithChildren.Location = new System.Drawing.Point(723, 220);
+            this.btnCancelTaskWithChildren.Location = new System.Drawing.Point(723, 249);
             this.btnCancelTaskWithChildren.Name = "btnCancelTaskWithChildren";
             this.btnCancelTaskWithChildren.Size = new System.Drawing.Size(170, 23);
             this.btnCancelTaskWithChildren.TabIndex = 1;
@@ -64,7 +65,7 @@
             // 
             // btnStartTask
             // 
-            this.btnStartTask.Location = new System.Drawing.Point(723, 133);
+            this.btnStartTask.Location = new System.Drawing.Point(723, 162);
             this.btnStartTask.Name = "btnStartTask";
             this.btnStartTask.Size = new System.Drawing.Size(170, 23);
             this.btnStartTask.TabIndex = 2;
@@ -74,7 +75,7 @@
             // 
             // btnCancelTask
             // 
-            this.btnCancelTask.Location = new System.Drawing.Point(723, 162);
+            this.btnCancelTask.Location = new System.Drawing.Point(723, 191);
             this.btnCancelTask.Name = "btnCancelTask";
             this.btnCancelTask.Size = new System.Drawing.Size(170, 23);
             this.btnCancelTask.TabIndex = 3;
@@ -87,12 +88,12 @@
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(22, 12);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(675, 264);
+            this.listBoxLog.Size = new System.Drawing.Size(675, 290);
             this.listBoxLog.TabIndex = 4;
             // 
             // btnClearLog
             // 
-            this.btnClearLog.Location = new System.Drawing.Point(723, 257);
+            this.btnClearLog.Location = new System.Drawing.Point(723, 278);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(170, 23);
             this.btnClearLog.TabIndex = 5;
@@ -134,7 +135,7 @@
             // 
             // btnStartTaskNotAsync
             // 
-            this.btnStartTaskNotAsync.Location = new System.Drawing.Point(723, 104);
+            this.btnStartTaskNotAsync.Location = new System.Drawing.Point(723, 133);
             this.btnStartTaskNotAsync.Name = "btnStartTaskNotAsync";
             this.btnStartTaskNotAsync.Size = new System.Drawing.Size(170, 23);
             this.btnStartTaskNotAsync.TabIndex = 10;
@@ -144,7 +145,7 @@
             // 
             // buttonStartTaskTAP
             // 
-            this.buttonStartTaskTAP.Location = new System.Drawing.Point(723, 75);
+            this.buttonStartTaskTAP.Location = new System.Drawing.Point(723, 104);
             this.buttonStartTaskTAP.Name = "buttonStartTaskTAP";
             this.buttonStartTaskTAP.Size = new System.Drawing.Size(170, 23);
             this.buttonStartTaskTAP.TabIndex = 11;
@@ -152,11 +153,22 @@
             this.buttonStartTaskTAP.UseVisualStyleBackColor = true;
             this.buttonStartTaskTAP.Click += new System.EventHandler(this.ButtonStartTaskTAPClick);
             // 
+            // buttonStartTaskTAPAsync
+            // 
+            this.buttonStartTaskTAPAsync.Location = new System.Drawing.Point(723, 75);
+            this.buttonStartTaskTAPAsync.Name = "buttonStartTaskTAPAsync";
+            this.buttonStartTaskTAPAsync.Size = new System.Drawing.Size(170, 23);
+            this.buttonStartTaskTAPAsync.TabIndex = 12;
+            this.buttonStartTaskTAPAsync.Text = "Start Task (TAP) (async)";
+            this.buttonStartTaskTAPAsync.UseVisualStyleBackColor = true;
+            this.buttonStartTaskTAPAsync.Click += new System.EventHandler(this.ButtonStartTaskTAPAsyncClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 292);
+            this.ClientSize = new System.Drawing.Size(905, 321);
+            this.Controls.Add(this.buttonStartTaskTAPAsync);
             this.Controls.Add(this.buttonStartTaskTAP);
             this.Controls.Add(this.btnStartTaskNotAsync);
             this.Controls.Add(this.tbmSec);
@@ -191,6 +203,7 @@
         private System.Windows.Forms.TextBox tbmSec;
         private System.Windows.Forms.Button btnStartTaskNotAsync;
         private System.Windows.Forms.Button buttonStartTaskTAP;
+        private System.Windows.Forms.Button buttonStartTaskTAPAsync;
     }
 }
 
