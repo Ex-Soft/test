@@ -13,6 +13,7 @@
 	<body>
 <?php
 $victimText = "";
+$victimText2 = "";
 $victimNumber = "";
 
 if (isset($_POST["victimText"])) {
@@ -25,6 +26,10 @@ if (isset($_POST["victimText"])) {
 	}
 	echo (0 + $victimText) ."<br/>";
 	echo '($victimText '. ($victimText < 5 ? "<" : ">=") ." 5)<br/>";
+}
+
+if (isset($_POST["victimText2"])) {
+	$victimText2 = $_POST["victimText2"];
 }
 
 if (isset($_POST["victimNumber"])) {
@@ -40,6 +45,7 @@ echo "&quot;&gt;&lt;script src=&quot;app.js&quot; onerror=&quot;alert(document.c
 
 echo "<form action=\"TestSubmit.php\" method=\"post\" enctype=\"multipart/form-data\">
 <label>Text: <input type=\"text\" name=\"victimText\" value=\"". $victimText ."\"></label><br/>
+<label>Text: <input type=\"text\" name=\"victimText2\" value=\"". htmlspecialchars($victimText2) ."\"></label><br/>
 <label>Number: <input type=\"number\" name=\"victimNumber\" value=\"". $victimNumber ."\"></label><br/>
 <input type=\"submit\" value=\"submit\" name=\"submit\">
 </form>";
