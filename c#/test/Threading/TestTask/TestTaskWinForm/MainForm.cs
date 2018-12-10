@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,7 +31,7 @@ namespace TestTaskWinForm
             int tmpInt;
 
             int.TryParse(tb.Text, out tmpInt);
-            if (tmpInt == default(int))
+            if (tmpInt == default)
                 tmpInt = defaultValue;
 
             return tmpInt;
@@ -153,7 +155,48 @@ namespace TestTaskWinForm
         {
             //https://msdn.microsoft.com/en-us/library/hh873177(v=vs.110).aspx
 
+            string methodName = $"{MethodBase.GetCurrentMethod().Name}()";
 
+            WriteToLog($"{methodName} starting...");
+
+            Task<int> task = TaskTAP(new TaskParam(0, GetValue(tbmSec, MSec)));
+
+            TaskAwaiter<int> awaiter = task.GetAwaiter();
+
+            awaiter.OnCompleted(() => {
+                int result = awaiter.GetResult();
+                WriteToLog($"{methodName} result = {result}");
+            });
+
+            WriteToLog($"{methodName} finished");
+        }
+
+        private Task<int> TaskTAP(object param)
+        {
+            if (!(param is TaskParam taskParam))
+                return null;
+
+            WriteToLog($"{DateTime.Now.ToString("HH:mm:ss.fffffff")}\t{taskParam.i} started...");
+
+            var tcs = new TaskCompletionSource<int>();
+            var rnd = new Random(Thread.CurrentThread.ManagedThreadId);
+            var result = taskParam.mSec * rnd.Next(10);
+
+            Thread.Sleep(result);
+
+            try
+            {
+                WriteToLog($"{DateTime.Now.ToString("HH:mm:ss.fffffff")}\t{taskParam.i} SetResult({result})");
+                tcs.SetResult(result);
+            }
+            catch (Exception e)
+            {
+                tcs.SetException(e);
+            }
+
+            WriteToLog($"{DateTime.Now.ToString("HH:mm:ss.fffffff")}\t{taskParam.i} finished");
+
+            return tcs.Task;
         }
 
         private void BtnClearLogClick(object sender, EventArgs e)
