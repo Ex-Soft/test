@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define TEST_PERFORMANCE
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -212,6 +214,79 @@ namespace Equality
             result = listLeft.Intersect(listRight, new Comparer()).ToList();
             result = listLeft.Except(listRight, new Comparer()).ToList();
             result = listRight.Except(listLeft, new Comparer()).ToList();
+
+            #if TEST_PERFORMANCE
+
+                var array = new[] {
+                    new TestClassIComparableFull(5),
+                    new TestClassIComparableFull(-1),
+                    new TestClassIComparableFull(0),
+                    new TestClassIComparableFull(3),
+                    new TestClassIComparableFull(5),
+                    new TestClassIComparableFull(2)
+                };
+
+                //Debug.WriteLine("sort");
+                //var sort = array.OrderByDescending(item => item).ToArray();
+                Debug.WriteLine("sort -> distinct");
+                var sortDistinct = array.OrderByDescending(item => item).Distinct().ToArray();
+                /*
+                sort -> distinct
+
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: -1})
+                int CompareTo(object {FiledInt: 2})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 3})
+                int CompareTo(object {FiledInt: 3})
+                int CompareTo(object {FiledInt: -1})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 3})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 5})
+
+                override int GetHashCode(5)
+                override int GetHashCode(5)
+                override bool Equals(object {FiledInt: 5})
+                operator == (TestClassIComparableFull {FiledInt: 5}, TestClassIComparableFull {FiledInt: 5})
+                override int GetHashCode(3)
+                override int GetHashCode(2)
+                override int GetHashCode(0)
+                override int GetHashCode(-1)
+
+                */
+
+                //Debug.WriteLine("distinct");
+                //var distinct = array.Distinct().ToArray();
+                Debug.WriteLine("distinct -> sort");
+                var distinctSort = array.Distinct().OrderByDescending(item => item).ToArray();
+                /*
+                distinct -> sort
+
+                override int GetHashCode(5)
+                override int GetHashCode(-1)
+                override int GetHashCode(0)
+                override int GetHashCode(3)
+                override int GetHashCode(5)
+                override bool Equals(object {FiledInt: 5})
+                operator == (TestClassIComparableFull {FiledInt: 5}, TestClassIComparableFull {FiledInt: 5})
+                override int GetHashCode(2)
+
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: -1})
+                int CompareTo(object {FiledInt: 2})
+                int CompareTo(object {FiledInt: 3})
+                int CompareTo(object {FiledInt: -1})
+                int CompareTo(object {FiledInt: 5})
+                int CompareTo(object {FiledInt: 3})
+                int CompareTo(object {FiledInt: 3})
+
+                */
+
+            #endif
         }
     }
 }
