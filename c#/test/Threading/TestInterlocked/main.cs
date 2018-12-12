@@ -48,12 +48,16 @@ namespace TestInterlocked
 
         private static void ExchangeCompareExchangeLong()
         {
-            // Replace value with 10.
-            var resultExchange = Interlocked.Exchange(ref _value1, 10L);
+            // Replace value with 10L
+            var resultExchange = Interlocked.Exchange(ref _value1, 10L); // resultExchange = 0 _value1 = 10L
             Console.WriteLine($"resultExchange: {resultExchange}");
 
-            // CompareExchange: if 10, change to 20.
-            var resultCompareExchange = Interlocked.CompareExchange(ref _value1, 20L, 10L);
+            // CompareExchange: if _value1 == 10L -> change to 20L
+            var resultCompareExchange = Interlocked.CompareExchange(ref _value1, 20L, 10L); // resultExchange = 10L _value1 = 20L
+            Console.WriteLine($"resultCompareExchange: {resultCompareExchange}");
+
+            // CompareExchange: if _value1 == 10L -> change to 40L
+            resultCompareExchange = Interlocked.CompareExchange(ref _value1, 40L, 10L); // resultExchange = 20L _value1 = 20L
             Console.WriteLine($"resultCompareExchange: {resultCompareExchange}");
         }
     }
