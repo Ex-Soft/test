@@ -13,7 +13,7 @@
 
 #ifdef TEST_NEW_IN_FUNCTION
 
-char *getBuffOfChar();
+	char *getBuffOfChar();
 
 #endif
 
