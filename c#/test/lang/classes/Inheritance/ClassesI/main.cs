@@ -41,7 +41,7 @@ namespace ClassesI
 			Console.WriteLine();
 
 			_a_=new B();
-			_a_.Test();
+			_a_.Test(); // A
 			Console.WriteLine();
 		}
 	}
