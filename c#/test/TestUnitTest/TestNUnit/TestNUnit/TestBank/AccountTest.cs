@@ -29,10 +29,9 @@ namespace TestBank
         }
 
         [Test]
-        [ExpectedException(typeof(InsufficientFundsException))]
         public void TransferWithInsufficientFunds()
         {
-            _source.TransferFunds(_destination, 300m);
+            Assert.That(() => _source.TransferFunds(_destination, 300m), Throws.TypeOf<InsufficientFundsException>());
         }
 
         [Test]
