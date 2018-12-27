@@ -1,0 +1,269 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test GeneratorMethod</title>
+		<script>
+function* countAppleSales () {
+    var saleList = [3, 7, 5];
+
+    for (var i = 0; i < saleList.length; i++) {
+        yield saleList[i];
+    }
+}
+
+function* idMaker() {
+    var index = 0;
+
+    while (index < index+1)
+        yield index++;
+}
+
+function* anotherGenerator(i) {
+    yield i + 1;
+    yield i + 2;
+    yield i + 3;
+}
+
+function* generator(i) {
+    yield i;
+    yield* anotherGenerator(i);
+    yield i + 10;
+}
+
+function* logGenerator() {
+    console.log(0);
+    console.log(1, yield);
+    console.log(2, yield);
+    console.log(3, yield);
+}
+
+function* yieldAndReturn() {
+    yield "Y";
+    return "R";
+    yield "unreachable";
+}
+
+function* f() {}
+
+// http://www.pvsm.ru/javascript/303372
+function* adder(initialValue) {
+    let sum = initialValue;
+    
+    while (true) {
+        sum += yield sum;
+    }
+}
+
+function emulateAdder(initialValue) {
+    let state = 'initial';
+    let done = false;
+    let sum = initialValue;
+
+    function go(input) {
+        let result;
+
+        switch (state) {
+            case 'initial':
+                result = initialValue;
+                state = 'loop';
+                break;
+            case 'loop':
+                sum += input;
+                result = sum;
+                state = 'loop';
+                break;
+            default:
+                break;
+        }
+
+        return {done: done, value: result};
+    }
+
+    return {
+        next: go
+    }
+}
+
+function* adderWithExceptionControl(initialValue) {
+    let sum = initialValue;
+    let lastSum = initialValue;
+    let temp;
+    
+    while (true) {
+        try {
+            temp = sum;
+            sum += yield sum;
+            lastSum = temp;
+        }
+        catch (e) {
+            sum = lastSum;
+        }
+    }
+}
+
+// emulate
+function counts(start) {
+    let state = 0;
+    let done = false;
+
+    function go() {
+        let result;
+
+        switch (state) {
+            case 0:
+                result = start + 1;
+                state = 1;
+                break;
+            case 1:
+                result = start + 2;
+                state = 2;
+                break;
+            case 2:
+                result = start + 3;
+                state = 3;
+                break;
+            case 3:
+                result = start + 4;
+                done = true;
+                state = -1;
+                break;
+            default:
+                break;
+        }
+
+        return {done: done, value: result};
+    }
+
+    return {
+        next: go
+    }
+}
+
+function printer(start) {
+    let state = 0;
+    let done = false;
+
+    function go(input) {
+        let result;
+
+        switch (state) {
+            case 0:
+                console.log("We are starting!");
+                state = 1;
+                break;
+            case 1:
+                console.log(input);
+                state = 2;
+                break;
+            case 2:
+                console.log(input);
+                state = 3;
+                break;
+            case 3:
+                console.log(input);
+                console.log("We are done!");
+                done = true;
+                state = -1;
+                break;
+            default:
+                break;
+        }
+
+        return {done: done, value: result};
+    }
+
+    return {
+        next: go
+    }
+}
+
+function onLoad()
+{
+    if(window.console && console.clear)
+        console.clear();
+
+	var gen;
+    //var obj = new f; // throws "TypeError: f is not a constructor
+
+    const foo = function* () {
+        yield 10;
+        yield 20;
+    }
+
+    const bar = foo();
+
+	if(window.console && console.log) {
+        gen = countAppleSales();                    // Generator { }
+        console.log("gen.next() = %o", gen.next()); // { value: 3, done: false }
+        console.log("gen.next() = %o", gen.next()); // { value: 7, done: false }
+        console.log("gen.next() = %o", gen.next()); // { value: 5, done: false }
+        console.log("gen.next() = %o", gen.next()); // { value: undefined, done: true }
+
+        gen = idMaker();
+        console.log("gen.next().value = %i", gen.next().value); // 0
+        console.log("gen.next().value = %i", gen.next().value); // 1
+        console.log("gen.next().value = %i", gen.next().value); // 2
+        console.log("gen.next().value = %i", gen.next().value); // 3
+
+        gen = generator(10);
+        console.log("gen.next().value = %i", gen.next().value); // 10
+        console.log("gen.next().value = %i", gen.next().value); // 11
+        console.log("gen.next().value = %i", gen.next().value); // 12
+        console.log("gen.next().value = %i", gen.next().value); // 13
+        console.log("gen.next().value = %i", gen.next().value); // 20
+
+        gen = logGenerator();
+        gen.next();             // 0
+        gen.next('pretzel');    // 1 pretzel
+        gen.next('california'); // 2 california
+        gen.next('mayonnaise'); // 3 mayonnaise
+
+        gen = yieldAndReturn();
+        console.log("gen.next() = %o", gen.next()); // { value: "Y", done: false }
+        console.log("gen.next() = %o", gen.next()); // { value: "R", done: true }
+        console.log("gen.next() = %o", gen.next()); // { value: undefined, done: true }
+
+        console.log("bar.next() = %o", bar.next()); // {value: 10, done: false}
+    }
+
+    if(window.console && console.log) {
+        gen = counts(0);
+        console.log("gen.next() = %o", gen.next()); // {value: 1, done: false}
+        console.log("gen.next() = %o", gen.next()); // {value: 2, done: false}
+        console.log("gen.next() = %o", gen.next()); // {value: 3, done: false}
+        console.log("gen.next() = %o", gen.next()); // {value: 4, done: true}
+        console.log("gen.next() = %o", gen.next()); // {value: undefined, done: true}
+
+        gen = printer();
+        gen.next(1); // We are starting!
+        gen.next(2); // 2
+        gen.next(3); // 3
+        gen.next(4); // 4
+        gen.next(5); // We are done!
+
+        gen = adder(0);
+        console.log("gen.next() = %o", gen.next());     // {value: 0, done: false}
+        console.log("gen.next(1) = %o", gen.next(1));   // {value: 1, done: false}
+        console.log("gen.next(2) = %o", gen.next(2));   // {value: 3, done: false}
+        console.log("gen.next(3) = %o", gen.next(3));   // {value: 6, done: false}
+
+        gen = emulateAdder(0);
+        console.log("gen.next() = %o", gen.next());     // {value: 0, done: false}
+        console.log("gen.next(1) = %o", gen.next(1));   // {value: 1, done: false}
+        console.log("gen.next(2) = %o", gen.next(2));   // {value: 3, done: false}
+        console.log("gen.next(3) = %o", gen.next(3));   // {value: 6, done: false}
+
+        gen = adderWithExceptionControl(0);
+        console.log("gen.next() = %o", gen.next());     // {value: 0, done: false}
+        console.log("gen.next(1) = %o", gen.next(1));   // {value: 1, done: false}
+        console.log("gen.next(2) = %o", gen.next(2));   // {value: 3, done: false}
+        console.log("gen.throw(new Error(\"BOO)!\")) = %o", gen.throw(new Error("BOO)!")));   // {value: 1, done: false}
+        console.log("gen.next(2) = %o", gen.next(4));   // {value: 5, done: false}
+    }
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

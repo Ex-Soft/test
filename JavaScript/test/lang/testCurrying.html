@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<!-- https://learn.javascript.ru/bind -->
+<!-- https://blog.benestudio.co/currying-in-javascript-es6-540d2ad09400 -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Currying</title>
+		<script>
+function mul(a, b) {
+    return a * b;
+};
+
+function onLoad()
+{
+    if(window.console && console.clear)
+        console.clear();
+
+    var
+        double = mul.bind(null, 2),
+        triple = mul.bind(null, 3);
+
+	if(window.console && console.log) {
+        console.log("double(3) = %i", double(3)); // = mul (2, 3) = 6
+        console.log("double(4) = %i", double(4)); // = mul (2, 4) = 8
+        console.log("double(5) = %i", double(5)); // = mul (2, 5) = 10
+
+        console.log("triple(3) = %i", triple(3)); // = mul (3, 3) = 9
+        console.log("triple(4) = %i", triple(4)); // = mul (3, 4) = 12
+        console.log("triple(5) = %i", triple(5)); // = mul (3, 5) = 15
+    }
+
+    // Currying
+    var
+        multiply = (n, m) => (n * m),
+        curryedMultiply = (n) => ( (m) => multiply(n, m) );
+
+    triple = curryedMultiply(3);
+
+    if(window.console && console.log) {
+        console.log("triple(4) = %i", triple(4)); // 12
+    }
+
+    // Uncurrying
+    curryedMultiply = (n) => (m) => n * m;
+    multiply = (n, m) => curryedMultiply(n)(m);
+    if(window.console && console.log) {
+        console.log("multiply(3, 4) = %i", multiply(3, 4)); // 12
+    }
+
+    // Partial function
+    multiply = (n, m) => n * m;
+    triple = (m) => multiply(3, m);
+    if(window.console && console.log) {
+        console.log("triple(4) = %i", triple(4)); // 12
+    }
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
