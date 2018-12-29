@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional>
 
 void Parameters1(void);
 void Parameters2(void);
@@ -10,6 +11,9 @@ void CaptureMix3(void);
 
 int main(int argc, char **argv)
 {
+    std::function<int(int)> fib = [&fib](int n) -> int {return n < 2 ? 1 : fib(n-1) + fib(n-2);};
+    std::cout << fib(5) << std::endl << std::endl;
+
     Parameters1();
     Parameters2();
     CaptureByValueAll();
