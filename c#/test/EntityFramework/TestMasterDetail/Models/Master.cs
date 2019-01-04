@@ -10,7 +10,7 @@ namespace TestMasterDetail.Models
         public string Val { get; set; }
 
         [XmlElement("Detail")]
-        public List<Detail> Details { get; set; }
+        public ICollection<Detail> Details { get; set; }
 
         public Master()
         {
