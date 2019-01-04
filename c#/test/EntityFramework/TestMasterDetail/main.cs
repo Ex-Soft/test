@@ -1,9 +1,10 @@
-﻿#define WITH_SERIALIZE
-#define WITH_DESERIALIZE
+﻿//#define WITH_SERIALIZE
+//#define WITH_DESERIALIZE
 
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
+using TestMasterDetail.Models;
 
 namespace TestMasterDetail
 {
