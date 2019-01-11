@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using ABC.Models;
-using ABC.Models.Mapping;
 
 namespace ABC
 {
@@ -28,16 +26,5 @@ namespace ABC
     {
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
-
-        public DbSet<TestTable4TestPivotStore> TestTable4TestPivotStores { get; set; }
-        public DbSet<TestTable4TestPivotProduct> TestTable4TestPivotProducts { get; set; }
-        public DbSet<TestTable4TestPivotList> TestTable4TestPivotList { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Configurations.Add(new TestTable4TestPivotStoreMap());
-            modelBuilder.Configurations.Add(new TestTable4TestPivotProductMap());
-            modelBuilder.Configurations.Add(new TestTable4TestPivotListMap());
-        }
     } 
 }
