@@ -12,8 +12,7 @@ extern "C" {
  * Method:    sayHello
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_HelloJNI_sayHello
-  (JNIEnv *, jobject);
+JNIEXPORT void JNICALL Java_HelloJNI_sayHello(JNIEnv *, jobject);
 
 #ifdef __cplusplus
 }

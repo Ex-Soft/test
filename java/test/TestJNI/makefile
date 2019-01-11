@@ -1,7 +1,7 @@
-IDIR=/etc/alternatives/java_sdk_1.8.0/include
+IDIR=/usr/lib/jvm/java/include
 CC=gcc
 PROGS=libhello
-CFLAGS=-Wall -I$(IDIR) -I$(IDIR)/linux
+CFLAGS=-Wall -I$(IDIR) -I$(IDIR)/linux -fPIC
 LDFLAGS=-shared
 
 all: $(PROGS)
