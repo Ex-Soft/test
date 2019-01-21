@@ -17,10 +17,15 @@ namespace TestSelenium
 
                 MainPage mainPage = new MainPage(webDriver);
 
-                var div = MainPageSelectors.ByIdSelector("div1").ElementExists().Invoke(webDriver);
+                IWebElement
+                    div = MainPageSelectors.ByIdSelector("div1").ElementExists().Invoke(webDriver),
+                    input;
+
                 if (div != null)
                 {
-                    var input = MainPageSelectors.InputSelector.ElementExists().Invoke(webDriver);
+                    var children = div.FindElements(By.XPath("./div"));
+
+                    input = MainPageSelectors.InputSelector.ElementExists().Invoke(webDriver);
                     if (input != null)
                     {
                         input.SendKeys("blah-blah-blah");
