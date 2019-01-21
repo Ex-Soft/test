@@ -1,0 +1,11 @@
+﻿using System;
+using OpenQA.Selenium;
+
+namespace TestSelenium.ElementSelectors
+{
+    public static class MainPageSelectors
+    {
+        public static Func<string, By> ByIdSelector = id => By.XPath($"//*[@id='{id}']");
+        public static By InputSelector = By.XPath("//input[@type='text']");
+    }
+}
