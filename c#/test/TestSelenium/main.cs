@@ -27,6 +27,18 @@ namespace TestSelenium
 
                 if (root != null)
                 {
+                    foreach (IWebElement node in root.AsDepthFirst())
+                    {
+                        var text = node.Text;
+                        int index;
+
+                        if ((index = text.IndexOf("\r\n")) != -1)
+                            text = text.Substring(0, index);
+
+                        Debug.WriteLine(text);
+                    }
+                    Debug.WriteLine(new string('-', 10));
+
                     var nodes = root.FindElements(By.XPath("./li"));
 
                     foreach(IWebElement node in nodes)
@@ -38,7 +50,7 @@ namespace TestSelenium
                         }
                     }
 
-                    foreach(IWebElement node in root.AsBreadthFirst() /*AsBreadthFirst(root)*/)
+                    foreach (IWebElement node in root.AsBreadthFirst() /*AsBreadthFirst(root)*/)
                     {
                         var text = node.Text;
                         int index;
@@ -103,6 +115,20 @@ namespace TestSelenium
 
     public static class IWebElementExtensions
     {
+        public static IEnumerable<IWebElement> AsDepthFirst(this IWebElement node)
+        {
+            var children = node.FindElements(By.XPath(node.TagName == "ul" ? "./li" : "./ul/li"));
+
+            if (children != null && children.Count() > 0)
+                yield return children[0];
+            else
+                yield return node;
+            
+            foreach (var node1 in children)
+                foreach (var node2 in node1.AsDepthFirst())
+                    yield return node2;
+        }
+
         public static IEnumerable<IWebElement> AsBreadthFirst(this IWebElement node)
         {
             var q = new Queue<IWebElement>();
