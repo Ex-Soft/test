@@ -25,6 +25,7 @@ namespace TestSelenium
 
                     if ((codeMirror = webDriver.FindElement(By.Id("code"))) != null)
                     {
+                        codeMirror = codeMirror.FindElement(By.XPath(".."));
                         var js = (IJavaScriptExecutor)webDriver;
                         var cmValue = (string)js.ExecuteScript("return arguments[0].CodeMirror.getValue();", codeMirror);
                         Debug.WriteLine(cmValue);
@@ -66,18 +67,6 @@ namespace TestSelenium
                         }
                         Debug.WriteLine(new string('-', 10));
 
-                        foreach (IWebElement node in root.AsDepthFirst())
-                        {
-                            var text = node.Text;
-                            int index;
-
-                            if ((index = text.IndexOf("\r\n")) != -1)
-                                text = text.Substring(0, index);
-
-                            Debug.WriteLine(text);
-                        }
-                        Debug.WriteLine(new string('-', 10));
-
                         var nodes = root.FindElements(By.XPath("./li"));
 
                         foreach(IWebElement node in nodes)
@@ -86,6 +75,10 @@ namespace TestSelenium
                             if (toggler != null)
                             {
                                 var nodeNode = node.FindElement(By.XPath("./ul[contains(@class, 'tree-node')]"));
+                                var parent1 = toggler.FindElement(By.XPath("./parent::*"));
+                                var parent2 = toggler.FindElement(By.XPath(".."));
+
+                                var sibling = toggler.FindElement(By.XPath("./following-sibling::ul"));
                             }
                         }
 
@@ -126,23 +119,23 @@ namespace TestSelenium
 
         public static IEnumerable<IWebElement> AsDepthFirst(IWebElement node)
         {
-            var result = new List<IWebElement>();
-
             foreach (var childNode in node.FindElements(By.XPath("./li")))
             {
-                result.Add(childNode);
+                yield return childNode;
+
+                IWebElement innerNode = null;
 
                 try
                 {
-                    var innerNode = childNode.FindElement(By.XPath("./ul"));
-                    if (innerNode != null)
-                        result.AddRange(AsDepthFirst(innerNode));
+                    innerNode = childNode.FindElement(By.XPath("./ul"));
                 }
                 catch (NoSuchElementException)
                 {}
-            }
 
-            return result;
+                if (innerNode != null)
+                    foreach (var childChildNode in innerNode.AsDepthFirst())
+                        yield return childChildNode;
+            }
         }
 
         public static IEnumerable<IWebElement> AsBreadthFirst(IWebElement node)
@@ -192,9 +185,8 @@ namespace TestSelenium
                 {}
 
                 if (innerNode != null)
-                    foreach(var childChildNode in innerNode.FindElements(By.XPath("./li")))
-                        foreach(var childChildChildNode in childChildNode.AsDepthFirst())
-                            yield return childChildChildNode;
+                    foreach(var childChildNode in innerNode.AsDepthFirst())
+                        yield return childChildNode;
             }
         }
 
