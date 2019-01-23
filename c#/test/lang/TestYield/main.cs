@@ -1,10 +1,11 @@
 ﻿// http://csharpindepth.com/Articles/Chapter6/IteratorBlockImplementation.aspx
 // http://csharpindepth.com/Articles/Chapter11/StreamingAndIterators.aspx
 // http://www.dotnetperls.com/yield
-//#define SHOW_TRACE
+#define SHOW_TRACE
 #define TEST_SIMPLE
 //#define TEST_SIMPLE_SIMPLE
 //#define TEST_I //http://www.programminginterviews.info/2012/05/explain-c-yield-keyword-with-example.html
+//#define TEST_II //http://blogs.microsoft.co.il/arnona/2010/12/21/traversing-binary-tree-using-an-iterator/
 
 using System;
 using System.Collections;
@@ -56,6 +57,13 @@ namespace TestYield
                     chunks.ForEach(Console.WriteLine);
                 }
                 Console.WriteLine();
+            #endif
+
+            #if TEST_II
+                foreach (string element in Enumerate()) 
+                { 
+                    Console.WriteLine("element = '{0}'", element); 
+                } 
             #endif
         }
 
@@ -137,6 +145,24 @@ namespace TestYield
                     yield return currentChunk;
                     Console.WriteLine("GetChunk() after yield return currentChunk; (currentChunkStart={0})", currentChunkStart);
                 }
+            }
+        #endif
+
+        #if TEST_II
+            static IEnumerable<string> Enumerate()
+            {
+                Console.WriteLine("yield return \"this\"");
+                yield return "This";
+                Console.WriteLine("yield return \"is\"");
+                yield return "is";
+                Console.WriteLine("yield return \"a\"");
+                yield return "a";
+                Console.WriteLine("yield return \"very\"");
+                yield return "very";
+                Console.WriteLine("yield return \"simple\"");
+                yield return "simple";
+                Console.WriteLine("yield return \"iterator\"");
+                yield return "iterator.";
             }
         #endif
     }
