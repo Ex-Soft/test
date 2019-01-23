@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿//#define TEST_CODEMIRROR
+
+using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,50 +18,76 @@ namespace TestSelenium
 
             try
             {
-                webDriver = WebDriverFactory.CreateChromeDriver("http://localhost/html/TestXPath.html");
+                #if TEST_CODEMIRROR
+                    webDriver = WebDriverFactory.CreateChromeDriver("http://localhost/JavaScript/test/codemirror/TestCodeMirror.html");
 
-                MainPage mainPage = new MainPage(webDriver);
+                    IWebElement codeMirror;
 
-                IWebElement
-                    root = MainPageSelectors.RootSelector.ElementExists().Invoke(webDriver),
-                    div = MainPageSelectors.ByIdSelector("div1").ElementExists().Invoke(webDriver),
-                    input;
-
-                if (root != null)
-                {
-                    var nodes = root.FindElements(By.XPath("./li"));
-
-                    foreach(IWebElement node in nodes)
+                    if ((codeMirror = webDriver.FindElement(By.Id("code"))) != null)
                     {
-                        var toggler = node.FindElement(By.XPath("./span[contains(@class, 'node-toggler')]"));
-                        if (toggler != null)
+                        var js = (IJavaScriptExecutor)webDriver;
+                        var cmValue = (string)js.ExecuteScript("return arguments[0].CodeMirror.getValue();", codeMirror);
+                        Debug.WriteLine(cmValue);
+                    }
+                #else
+                    webDriver = WebDriverFactory.CreateChromeDriver("http://localhost/html/TestXPath.html");
+
+                    MainPage mainPage = new MainPage(webDriver);
+
+                    IWebElement
+                        root = MainPageSelectors.RootSelector.ElementExists().Invoke(webDriver),
+                        div,
+                        divDiv,
+                        input;
+
+                    string
+                        tmpString;
+
+                    if ((div = MainPageSelectors.ByIdSelector("div111").ElementExists().Invoke(webDriver)) != null)
+                    {
+                        divDiv = div.FindElement(By.XPath("./parent::*"));
+                        tmpString = divDiv.GetAttribute("id");
+
+                        divDiv = div.FindElement(By.XPath(".."));
+                        tmpString = divDiv.GetAttribute("id");
+                    }
+
+                    if (root != null)
+                    {
+                        var nodes = root.FindElements(By.XPath("./li"));
+
+                        foreach(IWebElement node in nodes)
                         {
-                            var nodeNode = node.FindElement(By.XPath("./ul[contains(@class, 'tree-node')]"));
+                            var toggler = node.FindElement(By.XPath("./span[contains(@class, 'node-toggler')]"));
+                            if (toggler != null)
+                            {
+                                var nodeNode = node.FindElement(By.XPath("./ul[contains(@class, 'tree-node')]"));
+                            }
+                        }
+
+                        foreach(IWebElement node in root.AsBreadthFirst() /*AsBreadthFirst(root)*/)
+                        {
+                            var text = node.Text;
+                            int index;
+
+                            if ((index = text.IndexOf("\r\n")) != -1)
+                                text = text.Substring(0, index);
+
+                            Debug.WriteLine(text);
                         }
                     }
 
-                    foreach(IWebElement node in root.AsBreadthFirst() /*AsBreadthFirst(root)*/)
+                    if ((div = MainPageSelectors.ByIdSelector("div1").ElementExists().Invoke(webDriver)) != null)
                     {
-                        var text = node.Text;
-                        int index;
+                        var children = div.FindElements(By.XPath("./div"));
 
-                        if ((index = text.IndexOf("\r\n")) != -1)
-                            text = text.Substring(0, index);
-
-                        Debug.WriteLine(text);
+                        input = MainPageSelectors.InputSelector.ElementExists().Invoke(webDriver);
+                        if (input != null)
+                        {
+                            input.SendKeys("blah-blah-blah");
+                        }
                     }
-                }
-
-                if (div != null)
-                {
-                    var children = div.FindElements(By.XPath("./div"));
-
-                    input = MainPageSelectors.InputSelector.ElementExists().Invoke(webDriver);
-                    if (input != null)
-                    {
-                        input.SendKeys("blah-blah-blah");
-                    }
-                }
+                #endif
             }
             finally
             {

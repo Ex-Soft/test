@@ -53,6 +53,18 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";
+            r = new Regex("(?<=201)8(?=-\\d\\d-\\d\\d)");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "9");
+
+            srcString = "https://www.emiratesholidays.com/gb_en/tours/wildlife-and-safari";
+            r = new Regex("(?<=http.*\\/)gb_en(?=\\/)");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "dk_da");
+
             srcString = "[1st] = '1st' Or [2nd] = '2nd' Or [3rd] = '3rd' Or [4th] = '4th'";
             r = new Regex("\\[[^\\[\\]]+?]");
             var matches = r.Matches(srcString);
