@@ -54,6 +54,12 @@ namespace TestRegEx
             #endif
 
             srcString = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";
+            r = new Regex("(?<=depAir=)(LHR|LGW)(?=[^a-zA-Z])");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "CPH");
+
+            srcString = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";
             r = new Regex("(?<=201)8(?=-\\d\\d-\\d\\d)");
             match = r.Match(srcString);
             if (match.Success)
