@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ElementSelectors\MainPageSelectors.cs" />
     <Compile Include="Extensions\Expectation.cs" />
+    <Compile Include="Extensions\WebElementExtensions.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Pages\MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

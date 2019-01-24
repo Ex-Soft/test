@@ -104,6 +104,14 @@ namespace TestSelenium
                             input.SendKeys("blah-blah-blah");
                         }
                     }
+
+                    if ((div = MainPageSelectors.ByIdSelector("div121").ElementExists().Invoke(webDriver)) != null)
+                    {
+                        if ((input = div.GetWebElement(By.XPath("./input[@type = 'text']"))) != null)
+                        {
+                            tmpString = input.GetAttribute("class");
+                        }
+                    }
                 #endif
             }
             finally
