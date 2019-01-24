@@ -68,7 +68,7 @@ window.onload = function() {
   var te_html = document.getElementById("code-html");
   te_html.value = "<html>\n  " + document.documentElement.innerHTML + "\n</html>";
 
-  var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
+  //var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
   //MPV можно определить сразу как для Ctrl+Q, но у нас оно и при . используется 
   CodeMirror.commands.autocomplete = function(cm) {
 	CodeMirror.simpleHint(cm, CodeMirror.javascriptHint);
@@ -87,11 +87,11 @@ window.onload = function() {
     mode: "text/javascript",
     lineNumbers: true,
     lineWrapping: true,
-    onGutterClick: foldFunc,
+    //onGutterClick: foldFunc,
     matchBrackets: true,
     extraKeys: {
 		"Ctrl-Q": function(cm) {
-			foldFunc(cm, cm.getCursor().line);
+			//foldFunc(cm, cm.getCursor().line);
 		},
 		"Ctrl-Space": "autocomplete",
 		".": "autohint" 
@@ -100,36 +100,36 @@ window.onload = function() {
 		cm.matchHighlight("CodeMirror-matchhighlight");
 	}
   });
-  foldFunc(editor, 11);
-  foldFunc(editor, 22);
+  //foldFunc(editor, 11);
+  //foldFunc(editor, 22);
   
   window.editorJSON = CodeMirror.fromTextArea(jsn, {
     mode: 'text/x-m3-command',
     lineNumbers: true,
     lineWrapping: true,
-    onGutterClick: foldFunc,
+    //onGutterClick: foldFunc,
     matchBrackets: true,
     extraKeys: {
 		"Ctrl-Q": function(cm) {
-			foldFunc(cm, cm.getCursor().line);
+			//foldFunc(cm, cm.getCursor().line);
 		}
 	}
   });
 
-  var foldFunc_html = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder);
+  //var foldFunc_html = CodeMirror.newFoldFunction(CodeMirror.tagRangeFinder);
   window.editor_html = CodeMirror.fromTextArea(te_html, {
     mode: "text/html",
     lineNumbers: true,
     lineWrapping: true,	
-    onGutterClick: foldFunc_html,
+    //onGutterClick: foldFunc_html,
     extraKeys: {
 		"Ctrl-Q": function(cm) {
-			foldFunc_html(cm, cm.getCursor().line);
+			//foldFunc_html(cm, cm.getCursor().line);
 		}
 	}
   })
-  foldFunc_html(editor_html, 1);
-  foldFunc_html(editor_html, 15);
+  //foldFunc_html(editor_html, 1);
+  //foldFunc_html(editor_html, 15);
 };
 </script>
   </body>

@@ -23,12 +23,13 @@ namespace TestSelenium
 
                     IWebElement codeMirror;
 
-                    if ((codeMirror = webDriver.FindElement(By.Id("code"))) != null)
+                    if ((codeMirror = webDriver.FindElement(By.XPath("//div[contains(@class, 'CodeMirror') and contains(@class, 'CodeMirror-wrap')]"))) != null)
                     {
-                        codeMirror = codeMirror.FindElement(By.XPath(".."));
                         var js = (IJavaScriptExecutor)webDriver;
                         var cmValue = (string)js.ExecuteScript("return arguments[0].CodeMirror.getValue();", codeMirror);
                         Debug.WriteLine(cmValue);
+
+                        js.ExecuteScript("arguments[0].CodeMirror.setValue(arguments[1]);", codeMirror, "arguments[0].CodeMirror.setValue(arguments[1]);");
                     }
                 #else
                     webDriver = WebDriverFactory.CreateChromeDriver("http://localhost/html/TestXPath.html");
