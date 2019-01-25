@@ -15,6 +15,13 @@ namespace TestSelenium
         static void Main(string[] args)
         {
             IWebDriver webDriver = null;
+            IJavaScriptExecutor js = null;
+
+            string
+                tmpString;
+
+            object
+                tmpObject;
 
             try
             {
@@ -25,7 +32,7 @@ namespace TestSelenium
 
                     if ((codeMirror = webDriver.FindElement(By.XPath("//div[contains(@class, 'CodeMirror') and contains(@class, 'CodeMirror-wrap')]"))) != null)
                     {
-                        var js = (IJavaScriptExecutor)webDriver;
+                        js = (IJavaScriptExecutor)webDriver;
                         var cmValue = (string)js.ExecuteScript("return arguments[0].CodeMirror.getValue();", codeMirror);
                         Debug.WriteLine(cmValue);
 
@@ -33,6 +40,7 @@ namespace TestSelenium
                     }
                 #else
                     webDriver = WebDriverFactory.CreateChromeDriver("http://localhost/html/TestXPath.html");
+                    js = (IJavaScriptExecutor)webDriver;
 
                     MainPage mainPage = new MainPage(webDriver);
 
@@ -41,9 +49,6 @@ namespace TestSelenium
                         div,
                         divDiv,
                         input;
-
-                    string
-                        tmpString;
 
                     if ((div = MainPageSelectors.ByIdSelector("div111").ElementExists().Invoke(webDriver)) != null)
                     {
@@ -103,6 +108,9 @@ namespace TestSelenium
                         if (input != null)
                         {
                             input.SendKeys("blah-blah-blah");
+
+                            if (js != null)
+                               tmpObject = js.ExecuteScript("return arguments[0].value;", input);
                         }
                     }
 
@@ -111,6 +119,9 @@ namespace TestSelenium
                         if ((input = div.GetWebElement(By.XPath("./input[@type = 'text']"))) != null)
                         {
                             tmpString = input.GetAttribute("class");
+
+                            if (js != null)
+                                js.ExecuteScript("return arguments[0].setAttribute('value', 'blah-blah-blah');", input);
                         }
                     }
                 #endif
