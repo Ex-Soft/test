@@ -1,6 +1,7 @@
 ﻿//#define TEST_CODEMIRROR
 
 using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -107,10 +108,13 @@ namespace TestSelenium
                         input = MainPageSelectors.InputSelector.ElementExists().Invoke(webDriver);
                         if (input != null)
                         {
-                            input.SendKeys("blah-blah-blah");
+                            input.SendKeys("blah-blah-blah-1");
 
                             if (js != null)
-                               tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                            { 
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input)); // empty // https://javascript.info/dom-attributes-and-properties
+                            }
                         }
                     }
 
@@ -121,7 +125,30 @@ namespace TestSelenium
                             tmpString = input.GetAttribute("class");
 
                             if (js != null)
-                                js.ExecuteScript("return arguments[0].setAttribute('value', 'blah-blah-blah');", input);
+                            {
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input));
+                                js.ExecuteScript("arguments[0].setAttribute(\"value\", arguments[1]);", input, "blah-blah-blah-2");
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input));
+                            }
+                        }
+                    }
+
+                    if ((div = MainPageSelectors.ByIdSelector("div122").ElementExists().Invoke(webDriver)) != null)
+                    {
+                        if ((input = div.GetWebElement(By.XPath("./input[@type = 'text']"))) != null)
+                        {
+                            tmpString = input.GetAttribute("class");
+
+                            if (js != null)
+                            {
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input));
+                                js.ExecuteScript("arguments[0].setAttribute(\"value\", arguments[1]);", input, "blah-blah-blah-3");
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input));
+                            }
                         }
                     }
                 #endif
