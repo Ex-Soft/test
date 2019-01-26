@@ -6,6 +6,16 @@ using static System.Console;
 
 namespace cs72
 {
+    class SmthClass
+    {
+        public string FString { get; set; }
+
+        public SmthClass(string fString = "")
+        {
+            FString = fString;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -35,6 +45,9 @@ namespace cs72
             Write($"Sum of {a} and {b} is: ");
             Add(a, b, ref c);
             WriteLine($"{c}");
+
+            SmthClass smthClass = new SmthClass("halb-halb-halb");
+            Modify(smthClass);
         }
 
         static void PrintOrderDetails(string sellerName, int orderNum, string productName)
@@ -47,9 +60,15 @@ namespace cs72
             WriteLine($"Seller: {sellerName}, Order #: {orderNum}, Product: {productName}");
         }
 
-        public static void Add(ref readonly int x, ref readonly int y, ref int z)
+        public static void Add(in /*ref readonly*/ int x, in /*ref readonly*/ int y, ref int z) // https://www.c-sharpcorner.com/article/c-sharp-7-2-in-parameter-and-performance/ 
         {
             z = x + y + z;
+        }
+
+        public static void Modify(in SmthClass smthClass)
+        {
+            //smthClass = new SmthClass(); // Error CS8331 Cannot assign to variable 'in SmthClass' because it is a readonly variable
+            smthClass.FString = "blah-blah-blah";
         }
     }
 }
