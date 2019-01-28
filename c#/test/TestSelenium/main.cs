@@ -111,10 +111,27 @@ namespace TestSelenium
                             input.SendKeys("blah-blah-blah-1");
 
                             if (js != null)
-                            { 
+                            {
                                 tmpObject = js.ExecuteScript("return arguments[0].value;", input);
-                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input)); // empty // https://javascript.info/dom-attributes-and-properties
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input)); // string.Empty // https://javascript.info/dom-attributes-and-properties
                             }
+                        }
+                    }
+
+                    if ((div = MainPageSelectors.ByIdSelector("div112").ElementExists().Invoke(webDriver)) != null)
+                    {
+                        if ((input = div.GetWebElement(By.XPath("./input[@type = 'text']"))) != null)
+                        {
+                            tmpString = input.GetAttribute("class");
+
+                            if (js != null)
+                            {
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input));
+                                js.ExecuteScript("arguments[0].value = arguments[1];", input, "blah-blah-blah-112");
+                                tmpObject = js.ExecuteScript("return arguments[0].value;", input);
+                                tmpString = Convert.ToString(js.ExecuteScript("return arguments[0].getAttribute(\"value\");", input)); // string.Empty // https://javascript.info/dom-attributes-and-properties
+                        }
                         }
                     }
 
