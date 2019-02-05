@@ -1,6 +1,7 @@
 ﻿//#define TEST_CODEMIRROR
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,6 +51,11 @@ namespace TestSelenium
                         div,
                         divDiv,
                         input;
+
+                    if ((input = By.XPath("//div/select").FindElement(webDriver)) != null)
+                    {
+                        var selectElement = /*new SelectElement(*/input/*)*/;
+                    }
 
                     if ((div = MainPageSelectors.ByIdSelector("div111").ElementExists().Invoke(webDriver)) != null)
                     {
