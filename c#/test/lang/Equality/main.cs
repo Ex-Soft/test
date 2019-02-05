@@ -165,6 +165,23 @@ namespace Equality
     {
         static void Main(string[] args)
         {
+            List<TestClassIEquatable>
+                listTestClassIEquatable = new List<TestClassIEquatable>();
+
+            TestClassIEquatableComparer
+                testClassIEquatableComparer = new TestClassIEquatableComparer();
+
+            listTestClassIEquatable.Insert(new TestClassIEquatable(), testClassIEquatableComparer);
+            listTestClassIEquatable.Insert(new TestClassIEquatable { PInt3 = 1 }, testClassIEquatableComparer);
+            listTestClassIEquatable.Insert(new TestClassIEquatable { PInt2 = 1, PInt3 = 1 }, testClassIEquatableComparer);
+            listTestClassIEquatable.Insert(new TestClassIEquatable { PInt1 = 1, PInt2 = 1, PInt3 = 1 }, testClassIEquatableComparer);
+
+            TestClassIEquatable
+                testClassIEquatable1 = new TestClassIEquatable { PInt2 = 1, PInt3 = 1 },
+                testClassIEquatable2;
+
+            testClassIEquatable2 = listTestClassIEquatable.FirstOrDefault(item => IsMatch(testClassIEquatable1, item));
+
             SimpleClass
                 simpleClassLeft = new SimpleClass {FInt = 13},
                 simpleClassRight = simpleClassLeft;
@@ -287,6 +304,13 @@ namespace Equality
                 */
 
             #endif
+        }
+
+        public static bool IsMatch(TestClassIEquatable key, TestClassIEquatable value)
+        {
+            return (value.PInt1 == null || key.PInt1 == value.PInt1)
+                && (value.PInt2 == null || key.PInt2 == value.PInt2)
+                && (value.PInt3 == null || key.PInt3 == value.PInt3);
         }
     }
 }
