@@ -1,15 +1,16 @@
 ﻿//#define TEST_CODEMIRROR
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using TestSelenium.ElementSelectors;
-using TestSelenium.Extensions;
-using TestSelenium.Pages;
+using TestSeleniumCore.ElementSelectors;
+using TestSeleniumCore.Extensions;
+using TestSeleniumCore.Pages;
 
-namespace TestSelenium
+namespace TestSeleniumCore
 {
     class Program
     {
@@ -49,7 +50,28 @@ namespace TestSelenium
                         root = MainPageSelectors.RootSelector.ElementExists().Invoke(webDriver),
                         div,
                         divDiv,
-                        input;
+                        input,
+                        webElement;
+
+                    if ((webElement = By.XPath("//div/select").FindElement(webDriver)) != null)
+                    {
+                        SelectElement selectElement;
+
+                        if ((selectElement = new SelectElement(webElement)) != null)
+                        {
+                            try
+                            {
+                                webElement = selectElement.SelectedOption;
+                            }
+                            catch (NoSuchElementException)
+                            { }
+
+                            var options = selectElement.Options.Select(o => new { Value = o.GetAttribute("value"), o.Text });
+                            var option = options.FirstOrDefault(o => o.Value == "0");
+                            if (option != null)
+                                selectElement.SelectByValue(option.Value);
+                        }
+                    }
 
                     if ((div = MainPageSelectors.ByIdSelector("div111").ElementExists().Invoke(webDriver)) != null)
                     {
