@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWCF5", "TestWCF5\TestWCF5.csproj", "{3F71F64E-E819-406F-9CDF-55F8D6594B69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWCF5Client", "TestWCF5Client\TestWCF5Client.csproj", "{6D96A285-14B2-4E3C-8650-6B487B6F0EC0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F71F64E-E819-406F-9CDF-55F8D6594B69} = {3F71F64E-E819-406F-9CDF-55F8D6594B69}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F71F64E-E819-406F-9CDF-55F8D6594B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F71F64E-E819-406F-9CDF-55F8D6594B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F71F64E-E819-406F-9CDF-55F8D6594B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F71F64E-E819-406F-9CDF-55F8D6594B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D96A285-14B2-4E3C-8650-6B487B6F0EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D96A285-14B2-4E3C-8650-6B487B6F0EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D96A285-14B2-4E3C-8650-6B487B6F0EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D96A285-14B2-4E3C-8650-6B487B6F0EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BEA780D1-127E-422A-B3DA-5CD864612023}
+	EndGlobalSection
+EndGlobal
