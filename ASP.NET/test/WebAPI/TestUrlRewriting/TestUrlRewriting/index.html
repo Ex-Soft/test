@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test URL Rewriting</title>
+    <script charset="utf-8" src="scripts/jquery-3.3.1.js"></script>
+    <script>
+function route1() {
+    $.getJSON("api/victim/route1")
+        .done(function (data) {
+            if (window.console && console.log)
+                console.log("%o", data);
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            if (window.console && console.log)
+                console.log("%o", jqXHR.responseJSON);
+        });
+}
+
+function route2() {
+    $.getJSON("api/victim/route2")
+        .done(function (data) {
+            if (window.console && console.log)
+                console.log("%o", data);
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            if (window.console && console.log)
+                console.log("%o", jqXHR.responseJSON);
+        });
+}
+    </script>
+</head>
+<body>
+    <input type="button" value="Route1" onclick="route1();" />
+    <input type="button" value="Route2" onclick="route2();" />
+</body>
+</html>
