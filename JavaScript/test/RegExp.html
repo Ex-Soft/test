@@ -24,6 +24,34 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	Str = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";
+	RegEx=/(depAir=)(LHR|LGW)(?=[^a-zA-Z])/gi;
+	arrarr = Str.replace(RegEx, "$1CPH");
+	if (window.console && console.log) {
+		console.log("\"%s\"", Str);
+		console.log("\"%s\"", arrarr);
+	}
+	arr = RegEx.exec(Str);
+	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log("[%i] = \"%s\"", i, arr[i]);
+	}
+
+	RegEx=/(201)(5|6|7|8)(?=-\d\d-\d\d)/gi;
+	i = Str.match(RegEx);
+	arrarr = Str.replace(RegEx, "$19");
+	if (window.console && console.log) {
+		console.log("\"%s\"", Str);
+		console.log("\"%s\"", arrarr);
+	}
+	arr = RegEx.exec(Str);
+	for(i = 0; arr && i < arr.length; ++i)
+	{
+		if (window.console && console.log)
+			console.log("[%i] = \"%s\"", i, arr[i]);
+	}
+
 	Str = "nfa not";
 	RegEx = /nfa|nfa not/;
 	arr = RegEx.exec(Str);
