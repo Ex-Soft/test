@@ -53,12 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassWithCtorWithParameters.cs" />
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="ConsoleWriter.cs" />
+    <Compile Include="IClassWithCtorWithParameters.cs" />
     <Compile Include="ICompositionRoot.cs" />
     <Compile Include="IConsoleWriter.cs" />
+    <Compile Include="ISingletonDemo.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingletonDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
