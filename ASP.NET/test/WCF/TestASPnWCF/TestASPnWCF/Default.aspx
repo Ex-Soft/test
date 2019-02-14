@@ -8,6 +8,7 @@
 <body>
     <form id="DefaultForm" method="post" runat="server">
         <asp:Button ID="btnDoWork" Text="DoWork()" OnClick="BtnDoWorkClick" runat="server"/>
+        <asp:Button ID="btnDoWork2" Text="DoWork2()" OnClick="BtnDoWork2Click" runat="server"/>
     </form>
 </body>
 </html>
