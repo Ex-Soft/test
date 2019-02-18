@@ -22,7 +22,7 @@ namespace TestSimple
 
             container.Register(Component.For<IClassWithCtorWithParameters>().ImplementedBy<ClassWithCtorWithParameters>()
                 .LifestyleTransient()
-                .DynamicParameters((kernel, parameters) =>
+                .DynamicParameters((kernel, parameters) => // !!! reassign container.Resolve<T>(Arguments)
                 {
                     parameters["pInt"] = 13;
                     parameters["pString"] = "SmthString";
