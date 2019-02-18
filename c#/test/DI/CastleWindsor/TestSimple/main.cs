@@ -21,7 +21,7 @@ namespace TestSimple
             container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>().LifestyleTransient());
 
             container.Register(Component.For<IClassWithCtorWithParameters>().ImplementedBy<ClassWithCtorWithParameters>().DynamicParameters((kernel, parameters) => { parameters["pInt"] = 13; parameters["pString"] = "SmthString"; }));
-            container.Register(Component.For<IClassWithCtorWithParameters2>().ImplementedBy<ClassWithCtorWithParameters2>());
+            container.Register(Component.For<IClassWithCtorWithParameters2>().ImplementedBy<ClassWithCtorWithParameters2>().DependsOn(Property.ForKey<int>().Eq(13), Property.ForKey<string>().Eq("SmthString")));
 
             // Resolve an object of type ICompositionRoot (ask the container for an instance)
             // This is analagous to calling new() in a non-IoC application.
