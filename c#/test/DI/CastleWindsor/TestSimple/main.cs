@@ -21,6 +21,13 @@ namespace TestSimple
 
             container.Register(Component.For<IClassWithCtorWithParameters>().ImplementedBy<ClassWithCtorWithParameters>().DynamicParameters((kernel, parameters) => { parameters["pInt"] = 13; parameters["pString"] = "SmthString"; }));
 
+            foreach (var handler in container.Kernel.GetAssignableHandlers(typeof(object)))
+            {
+                Console.WriteLine("{0} {1}",
+                    handler.ComponentModel.Services,
+                    handler.ComponentModel.Implementation);
+            }
+
             // Resolve an object of type ICompositionRoot (ask the container for an instance)
             // This is analagous to calling new() in a non-IoC application.
             var root = container.Resolve<ICompositionRoot>();
