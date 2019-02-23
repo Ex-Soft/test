@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassWithCtorWithParameters.cs" />
+    <Compile Include="ClassWithCtorWithParameters2.cs" />
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="ConsoleWriter.cs" />
     <Compile Include="IClassWithCtorWithParameters.cs" />
+    <Compile Include="IClassWithCtorWithParameters2.cs" />
     <Compile Include="ICompositionRoot.cs" />
     <Compile Include="IConsoleWriter.cs" />
     <Compile Include="ISingletonDemo.cs" />

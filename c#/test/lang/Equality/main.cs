@@ -165,6 +165,41 @@ namespace Equality
     {
         static void Main(string[] args)
         {
+            int?
+                tmpIntNullable1,
+                tmpIntNullable2;
+
+            int
+                compareResult;
+
+            tmpIntNullable1 = null;
+            tmpIntNullable2 = null;
+            compareResult = Nullable.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = Nullable.Compare(tmpIntNullable2, tmpIntNullable1);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable2, tmpIntNullable1);
+
+            tmpIntNullable1 = 1;
+            tmpIntNullable2 = null;
+            compareResult = Nullable.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = Nullable.Compare(tmpIntNullable2, tmpIntNullable1);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable2, tmpIntNullable1);
+
+            tmpIntNullable1 = null;
+            tmpIntNullable2 = 2;
+            compareResult = Nullable.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = Nullable.Compare(tmpIntNullable2, tmpIntNullable1);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable2, tmpIntNullable1);
+
+            tmpIntNullable1 = 1;
+            tmpIntNullable2 = 2;
+            compareResult = Nullable.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable1, tmpIntNullable2);
+            compareResult = Nullable.Compare(tmpIntNullable2, tmpIntNullable1);
+            compareResult = TestClassIEquatableComparer.NullComparer<int?>.Compare(tmpIntNullable2, tmpIntNullable1);
+
             List<TestClassIEquatable>
                 listTestClassIEquatable = new List<TestClassIEquatable>();
 

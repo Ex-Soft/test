@@ -1,11 +1,11 @@
 ﻿namespace TestSimple
 {
-    public class ClassWithCtorWithParameters : IClassWithCtorWithParameters
+    public class ClassWithCtorWithParameters2 : IClassWithCtorWithParameters2
     {
         public int PInt { get; set; }
         public string PString { get; set; }
 
-        public ClassWithCtorWithParameters(int pInt = 0, string pString = "")
+        public ClassWithCtorWithParameters2(int pInt = 0, string pString = "")
         {
             PInt = pInt;
             PString = pString;
