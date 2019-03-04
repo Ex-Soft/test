@@ -54,7 +54,8 @@ for (let person of people) {
     result += person.FullName + "\n";
 }
 
-alert(result);
+if (window.console && console.log)
+    console.log(result);
 
 let PrintFullName = (person: IPerson) => {
     let result: string = "";
@@ -71,7 +72,8 @@ let PrintFullName = (person: IPerson) => {
         result += person.LastName;
     }
 
-    alert(result);
+    if (window.console && console.log)
+        console.log(result);
 }
 
 PrintFullName(new Person("Joe", "Doe"));

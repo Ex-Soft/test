@@ -20,7 +20,8 @@
 // function that takes Person object
 // and displays it within alert dialog
 function PrintPersonFullName(person: Person): void {
-    alert(person.FullName);
+    if (window.console && console.log)
+        console.log(person.FullName);
 }
 
 // create Employee object
