@@ -34,9 +34,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TypeScriptTarget>ES2015</TypeScriptTarget>
+    <TypeScriptTarget>ESNext</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptModuleKind>None</TypeScriptModuleKind>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
@@ -98,6 +98,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\BaseClass.ts" />
+    <TypeScriptCompile Include="Scripts\DerivedClass.ts" />
     <TypeScriptCompile Include="Scripts\ITestInterface.ts" />
     <TypeScriptCompile Include="Scripts\TestClass.ts" />
     <TypeScriptCompile Include="Scripts\TestClassWithInterface.ts" />
