@@ -1,5 +1,6 @@
 ﻿class HelloWorldPrinter {
     static Print(): void {
-        alert("Hello World!");
+        if (window.console && console.log)
+            console.log("Hello World!");
     }
 }

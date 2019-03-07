@@ -155,3 +155,82 @@ when not matched
 	then insert (DocumentTypeId,JobStatusId,StateId) values (src.DocumentTypeId, src.JobStatusId, src.StateId);
 
 select * from @DocumentConfiguration
+
+------------------------------------------------------------
+
+declare @src table (id int identity primary key, f1 int null, f2 int null);
+declare @tgt table (id int identity primary key, f1 int null, f2 int null);
+declare @log table (oldId int, oldF1 int null, oldF2 int null, action nvarchar(256), [newId] int, newF1 int null, newF2 int null);
+
+insert into @src
+(f1, f2)
+select f1, f2
+from
+(
+	values
+		(0, 0),
+		(0, 1),
+		(1, 0),
+		(1, 1)
+) tmp (f1, f2);
+
+insert into @tgt
+(f1, f2)
+select f1, f2
+from
+(
+	values
+		(0, 0),
+		(1, 1),
+		(2, 2)
+) tmp (f1, f2);
+
+--select * from @src;select * from @tgt;select * from @log;
+
+;merge into @tgt as tgt
+using
+(
+	select
+		f1,
+		f2
+	from
+		@src
+) as src
+on tgt.f1 = src.f1 and tgt.f2 = src.f2
+when matched
+	then
+		delete
+when not matched by target
+	then
+		insert (f1, f2)
+		values (src.f1, src.f2)
+when not matched by source
+	then
+		delete
+output deleted.*, $action, inserted.* into @log;
+
+select * from @src;select * from @tgt;select * from @log;
+
+;merge into @tgt as tgt
+using
+(
+	values
+		(0, 0),
+		(0, 1),
+		(1, 0),
+		(1, 1)
+) as src (f1, f2)
+on tgt.f1 = src.f1 and tgt.f2 = src.f2
+when matched
+	then
+		delete
+when not matched by target
+	then
+		insert (f1, f2)
+		values (src.f1, src.f2)
+when not matched by source
+	then
+		delete
+output deleted.*, $action, inserted.* into @log;
+
+select * from @src;select * from @tgt;select * from @log;
