@@ -7,6 +7,10 @@ declare
   @s1 nvarchar(256),
   @s2 nvarchar(256)
 
+set @s1 = N'123 567'
+set @s2 = stuff(@s1, 4, 1, '') -- '123567'
+print N'''' + @s2 + N''''
+
 set @s1 = N'1st/2nd/3rd'
 select right(@s1, charindex(N'/', reverse(@s1)) - 1)
 
