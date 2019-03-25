@@ -1,48 +1,47 @@
 ﻿namespace TestComponent {
     "use strict";
 
-    class ComboBox {
+    export interface IMyScope extends ng.IScope {
+        dataUrl: string;
+        options: Array<any>;
+    }
+
+    export class ComboBox implements angular.IController {
         static $inject = ["$scope", "$http"];
 
-        private _scope: ng.IScope;
-        private _httpService: ng.IHttpService;
-
-        constructor($scope: ng.IScope, $http: ng.IHttpService) {
+        constructor(private $scope: IMyScope, private $http: ng.IHttpService) {
             if (window.console && console.log)
-                console.log("ctor(%o)", arguments);
-
-            this._scope = $scope;
-            this._httpService = $http;
+                console.log("controller: ctor(%o)", arguments);
         }
 
-        $onInit = function () {
+        $onInit() {
             if (window.console && console.log)
-                console.log("$onInit(%o) $scope.dataUrl = \"%o\"", arguments, this._scope);
+                console.log("controller: $onInit(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope);
         }
 
-        $onChanges = function () {
+        $onChanges(onChangesObj: ng.IOnChangesObject) {
             if (window.console && console.log)
-                console.log("$onChanges(%o) $scope.dataUrl = \"%o\"", arguments, this._scope);
+                console.log("controller: $onChanges(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope);
         }
 
-        $onDestroy = function () {
+        $onDestroy() {
             if (window.console && console.log)
-                console.log("$onDestroy(%o) $scope.dataUrl = \"%o\"", arguments, this._scope);
+                console.log("controller: $onDestroy(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope);
         }
 
         $postLink() {
             let me = this;
 
             if (window.console && console.log)
-                console.log("$postLink(%o) $scope.dataUrl = \"%s\"", arguments, this._scope.dataUrl);
+                console.log("controller: $postLink(%o) $scope.dataUrl = \"%s\"", arguments, this.$scope.dataUrl);
 
-            if (this._scope.dataUrl) {
-                this._httpService.get(this._scope.dataUrl).then(
+            if (this.$scope.dataUrl) {
+                this.$http.get(this.$scope.dataUrl).then(
                     function (response) {
                         if (window.console && console.log)
                             console.log("successCallback(%o)", arguments);
 
-                        me._scope.options = response.data;
+                        me.$scope.options = response.data as Array<any>;
                     },
                     function (response) {
                         if (window.console && console.log)
@@ -63,20 +62,20 @@
                 controller: ComboBox,
                 compile: (tElem, tAttrs) => {
                     if (window.console && console.log) {
-                        console.log(": compile");
+                        console.log("directive: compile");
                         console.log(tElem.html());
                     }
 
                     return {
-                        pre: (scope: ng.IScope, iElem: ng.IAugmentedJQuery, iAttrs: ng.IAttributes): void => {
+                        pre: (scope: IMyScope, iElem: ng.IAugmentedJQuery, iAttrs: ng.IAttributes): void => {
                             if (window.console && console.log) {
-                                console.log(": pre link");
+                                console.log("directive: pre link");
                                 console.log(iElem.html());
                             }
                         },
-                        post: (scope: ng.IScope, iElem: ng.IAugmentedJQuery, iAttrs: ng.IAttributes): void => {
+                        post: (scope: IMyScope, iElem: ng.IAugmentedJQuery, iAttrs: ng.IAttributes): void => {
                             if (window.console && console.log) {
-                                console.log(": post link");
+                                console.log("directive: post link");
                                 console.log(iElem.html());
                             }
 
@@ -86,7 +85,7 @@
                                 if (!newValue || !elem.options)
                                     return;
 
-                                for (var i = 0; i < scope.options.length; ++i)
+                                for (let i = 0; i < scope.options.length; ++i)
                                     elem.options.add(new Option(scope.options[i].value, scope.options[i].id, false, false));
                             });
                         }
