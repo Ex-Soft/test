@@ -1,10 +1,10 @@
 ﻿/*
     https://developerhandbook.com/typescript/writing-angularjs-1-x-with-typescript/
 
-    install-package angularjs.core
-    install-package angularjs.TypeScript.DefinitelyTyped
-    update-package jquery.TypeScript.DefinitelyTyped
-    install-package Microsoft.AspNet.Web.Optimization
+    install-package angularjs.core || update-package -reinstall angularjs.core
+    install-package angularjs.TypeScript.DefinitelyTyped || update-package -reinstall angularjs.TypeScript.DefinitelyTyped
+    update-package jquery.TypeScript.DefinitelyTyped || update-package -reinstall jquery.TypeScript.DefinitelyTyped
+    install-package Microsoft.AspNet.Web.Optimization || update-package -reinstall Microsoft.AspNet.Web.Optimization
 
 */
 
