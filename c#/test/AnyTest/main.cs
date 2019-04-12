@@ -3,7 +3,7 @@
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
-#define TEST_FILE_TIME
+//#define TEST_FILE_TIME
 //#define TEST_OPERATOR
 //#define TEST_STRING_BUILDER
 //#define TEST_HASH_CODE
@@ -27,7 +27,7 @@
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
 //#define TEST_ENUM
-//#define TEST_GET_STRING
+#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
