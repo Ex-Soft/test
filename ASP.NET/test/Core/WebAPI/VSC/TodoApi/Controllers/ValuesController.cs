@@ -12,9 +12,17 @@ namespace TodoApi.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<PersonnelResponse> Get()
         {
-            return new string[] { "value1", "value2" };
+            var data = new Personnel[]
+            {
+                new Personnel(1, "Jean Luc", "jeanluc.picard@enterprise.com", "555-111-1111"),
+                new Personnel(2, "Worf", "worf.moghsson@enterprise.com", "555-222-2222"),
+                new Personnel(3, "Deanna", "deanna.troi@enterprise.com", "555-333-3333"),
+                new Personnel(4, "Data", "mr.data@enterprise.com", "555-444-4444")
+            };
+
+            return new PersonnelResponse(true, data, data.Length, "message");
         }
 
         // GET api/values/5
