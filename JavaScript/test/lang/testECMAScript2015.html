@@ -5,6 +5,15 @@
 		<meta charset="utf-8" />
 		<title>Test ECMAScript 2015</title>
 		<script>
+var a = 1;
+let b = 2;
+
+if (window.console && console.log)
+	console.log(a, b);
+
+if (window.console && console.log)
+	console.log(this.a, this.b);
+
 function onLoad()
 {
 	TestDefaultParameter(1);
@@ -80,7 +89,6 @@ function TestStringInterpolation()
 	if(window.console && console.log)
 		console.log(s);
 }
-
 		</script>
 	</head>
 	<body onload="onLoad()">
