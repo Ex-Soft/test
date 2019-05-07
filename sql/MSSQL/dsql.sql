@@ -1,4 +1,4 @@
--- http://www.sommarskog.se/dynamic_sql.html
+п»ї-- http://www.sommarskog.se/dynamic_sql.html
 -- http://support.microsoft.com/kb/262499
 -- http://www.simple-talk.com/sql/learn-sql-server/pop-rivetts-sql-server-faq/
 
@@ -16,23 +16,28 @@ declare
 
 /*
 set @a=999
-set @cmd=N'select @a = id from Staff where (Name = N''Хрущев Никита Сергеевич'')'
+set @cmd=N'select @a = id from Staff where (Name = N''РҐСЂСѓС‰РµРІ РќРёРєРёС‚Р° РЎРµСЂРіРµРµРІРёС‡'')'
 execute (@cmd) -- Error: Must declare the scalar variable "@a".
 select @a -- 999
 */
 
-set @cmd=N'select @aout = id from Staff where (Name = N''Хрущев Никита Сергеевич'')'
+set @cmd = N'select @fInt, @fBit from Victim where id = @id'
+set @prm = N'@fInt int, @fBit int, @id bigint'
+insert into Victim (f_Int, f_Bit) exec sp_executesql @cmd, @prm, @fInt = 2, @fBit = 1, @id = 1
+select * from Victim
+
+set @cmd=N'select @aout = id from Staff where (Name = N''РҐСЂСѓС‰РµРІ РќРёРєРёС‚Р° РЎРµСЂРіРµРµРІРёС‡'')'
 set @prm=N'@aout bigint output'
 exec sp_executesql @cmd, @prm, @aout=@a output
 select @a
 
 set @cmd=N'select @aout = id from Staff where (Name = @name)'
 set @prm=N'@aout bigint output, @name nvarchar(255)'
-set @name = N'Вашингтон Джордж'
+set @name = N'Р’Р°С€РёРЅРіС‚РѕРЅ Р”Р¶РѕСЂРґР¶'
 exec @result = sp_executesql @cmd, @prm, @aout=@a output, @name=@name
 select @a as [Id], @result as [RETURN_VALUE]
 
-set @cmd=N'select * from Staff where (Name = N''Хрущев Никита Сергеевич'')'
+set @cmd=N'select * from Staff where (Name = N''РҐСЂСѓС‰РµРІ РќРёРєРёС‚Р° РЎРµСЂРіРµРµРІРёС‡'')'
 execute (@cmd)
 
 set @cmd=N'select id from Staff where (dep=@dep)'
