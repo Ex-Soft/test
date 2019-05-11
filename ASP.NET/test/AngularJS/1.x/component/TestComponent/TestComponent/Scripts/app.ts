@@ -16,17 +16,22 @@
 
         $onInit() {
             if (window.console && console.log)
-                console.log("controller: $onInit(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope);
+                console.log("controller: $onInit(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope.dataUrl);
+        }
+
+        $doCheck() {
+            if (window.console && console.log)
+                console.log("controller: $doCheck(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope.dataUrl);
         }
 
         $onChanges(onChangesObj: ng.IOnChangesObject) {
             if (window.console && console.log)
-                console.log("controller: $onChanges(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope);
+                console.log("controller: $onChanges(%o) $scope.dataUrl = \"%o\"", onChangesObj, this.$scope.dataUrl);
         }
 
         $onDestroy() {
             if (window.console && console.log)
-                console.log("controller: $onDestroy(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope);
+                console.log("controller: $onDestroy(%o) $scope.dataUrl = \"%o\"", arguments, this.$scope.dataUrl);
         }
 
         $postLink() {
@@ -61,23 +66,17 @@
                 },
                 controller: ComboBox,
                 compile: (tElem, tAttrs) => {
-                    if (window.console && console.log) {
-                        console.log("directive: compile");
-                        console.log(tElem.html());
-                    }
+                    if (window.console && console.log)
+                        console.log("directive: compile(tElem=%o, tAttrs=%o)", tElem, tAttrs);
 
                     return {
                         pre: (scope: IMyScope, iElem: ng.IAugmentedJQuery, iAttrs: ng.IAttributes): void => {
-                            if (window.console && console.log) {
-                                console.log("directive: pre link");
-                                console.log(iElem.html());
-                            }
+                            if (window.console && console.log)
+                                console.log("directive: pre link (scope=%o, iElem=%o, iAttrs=%o)", scope, iElem, iAttrs);
                         },
                         post: (scope: IMyScope, iElem: ng.IAugmentedJQuery, iAttrs: ng.IAttributes): void => {
-                            if (window.console && console.log) {
-                                console.log("directive: post link");
-                                console.log(iElem.html());
-                            }
+                            if (window.console && console.log)
+                                console.log("directive: post link (scope=%o, iElem=%o, iAttrs=%o)", scope, iElem, iAttrs);
 
                             const elem = iElem[0] as HTMLSelectElement;
 
