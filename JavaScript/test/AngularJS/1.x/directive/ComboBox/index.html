@@ -7,7 +7,21 @@
 	<body ng-app="myApp">
 		<select combo-box data-url="data1.json"></select>
 		<combo-box data-url="data2.json"></combo-box>
-		
+
+		<hr/>
+		<div ng-controller="userinfoController">
+			<userinfo user="jakob"></userinfo>
+			<userinfo user="john"></userinfo>
+		</div>
+
+		<hr/>
+		<div ng-controller="NaomiController">
+			<my-customer></my-customer>
+		</div>
+		<div ng-controller="IgorController">
+			<my-customer></my-customer>
+		</div>
+  
 		<script charset="utf-8" src="../../../../../jquery/3/jquery.js"></script>
 		<script charset="utf-8" src="../../../../../angular/1.7.5/angular.js"></script>
 		<script charset="utf-8" src="app.js"></script>		
