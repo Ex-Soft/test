@@ -1,9 +1,9 @@
+﻿<!doctype html>
 <html>
 	<head>
 		<title>Test &lt;input type="file"&gt;</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-		<script type="text/javascript">
-<!--
+		<meta charset="utf-8"/>
+		<script>
 function Show()
 {
 	var
@@ -88,7 +88,51 @@ function Add()
 	if(Ctrl=document.getElementById("HtmlInputFile5"))
 		alert(Ctrl.name);
 }
-// -->
+
+function Read() {
+	if (!window.File || !window.FileReader || !window.FileList || !window.Blob)
+		return;
+
+	let	ctrl;
+
+	if(!(ctrl = document.getElementById("HtmlInputFile"))
+		|| !ctrl.files
+		|| !ctrl.files.length)
+		return;
+
+	for(let i = 0, l = ctrl.files.length; i < l; ++i) {
+		let
+			file = ctrl.files[i],
+			reader = new FileReader();
+
+		reader.onloadstart = function(e) {
+			if (window.console && console.log)
+				console.log("reader.onloadstart(%o)", e);
+		};
+
+		reader.onload = function(e) {
+			if (window.console && console.log)
+				console.log("reader.onload(%o)", e);
+		};
+
+		reader.onloadend = function(e) {
+			if (window.console && console.log)
+				console.log("reader.onloadend(%o)", e);
+
+			let str = reader.result;
+
+			if (window.console && console.log)
+				console.log(str);
+		};
+
+		reader.onprogress = function(e) {
+			if (window.console && console.log)
+				console.log("reader.onprogress(%o)", e);
+		};
+
+		reader.readAsText(file);
+	}
+}
 		</script>
 	</head>
 	<body>
@@ -98,5 +142,6 @@ function Add()
 		<input type="file" id="HtmlInputFile4"><input type="button" value="On/Off" onclick="document.getElementById('HtmlInputFile4').style.display = document.getElementById('HtmlInputFile4').style.display=='' ? 'none' : ''">
 		<input type="button" value="Show" onclick="Show()">
 		<input type="button" value="Add" onclick="Add()">
+		<input type="button" value="Read" onclick="Read()"/>
 	</body>
 </html>
