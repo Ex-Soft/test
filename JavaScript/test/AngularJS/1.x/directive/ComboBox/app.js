@@ -91,6 +91,10 @@ app.controller("comboBoxController", ["$scope", "$http", function($scope, $http)
 					});
 				}
 			}
+		},
+		link: function() {
+			if(window.console && console.log)
+				console.log("directive: link(%o)", arguments);
 		}
 	};
 });
