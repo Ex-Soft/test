@@ -26,8 +26,8 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
-#define TEST_GET_STRING
+#define TEST_ENUM
+//#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
