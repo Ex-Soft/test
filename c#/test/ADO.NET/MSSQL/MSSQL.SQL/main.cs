@@ -1,4 +1,5 @@
-﻿#define TEST_BATCH
+﻿#define TEST_DATA_ADAPTER
+//#define TEST_BATCH
 //#define TEST_DATE_TYPES
 //#define ANY_TEST
 //#define Determining_SET_Options_for_Current_Session // https://www.mssqltips.com/sqlservertip/1415/determining-set-options-for-a-current-session-in-sql-server/
@@ -135,8 +136,8 @@ namespace MSSQLSQL
                         //ConnectionString = "Server=.;Database=ch;User ID=test_login;Password=12==3";
                         //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
                         //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
-                        ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
-						//ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
+                        //ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
+						ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensions;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensionsav;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=fobos_web;Initial Catalog=CMS_Connect;User Id=sa;Pwd=developer";
@@ -219,6 +220,68 @@ namespace MSSQLSQL
                     #endif
 
 					conn.Open();
+
+                    #if TEST_DATA_ADAPTER
+                        if (tmpDataTable == null)
+							tmpDataTable = new DataTable("Victim");
+						else
+							tmpDataTable.Reset();
+
+						tmpDataColumn = tmpDataTable.Columns.Add("id", typeof(long)); 
+						tmpDataColumn.AllowDBNull = false;
+						tmpDataColumn.Unique = true;
+						tmpDataColumn.AutoIncrement = true;
+						tmpDataColumn.AutoIncrementSeed = -1;
+						tmpDataColumn.AutoIncrementStep = -1;
+						tmpDataTable.Columns.Add("f_int", typeof(int));
+                        tmpDataTable.Columns.Add("f_bit", typeof(bool));
+
+                        tmpDataRow = tmpDataTable.NewRow();
+						tmpDataRow["id"] = 1;
+						tmpDataRow["f_int"] = 1;
+                        tmpDataRow["f_bit"] = true;
+                        tmpDataTable.Rows.Add(tmpDataRow);
+
+                        if (da == null)
+                            da = new SqlDataAdapter();
+
+                        /*var tblMap = da.TableMappings.Add("Victim", "Victim");
+                        tblMap.ColumnMappings.Add("id", "id");
+                        tblMap.ColumnMappings.Add("f_int", "f_int");
+                        tblMap.ColumnMappings.Add("f_bit", "f_bit");*/
+
+                        da.SelectCommand = conn.CreateCommand();
+                        da.SelectCommand.CommandType = CommandType.Text;
+                        da.SelectCommand.CommandText = "select id, f_int, f_bit from victim";
+
+                        /*var cb = new SqlCommandBuilder(da);
+
+                        da.InsertCommand = cb.GetInsertCommand(true);
+                        da.UpdateCommand = cb.GetUpdateCommand(true);
+                        da.DeleteCommand = cb.GetDeleteCommand(true);*/
+
+                        
+                        da.InsertCommand = conn.CreateCommand();
+                        da.InsertCommand.CommandType = CommandType.Text;
+                        da.InsertCommand.CommandText = "insert into victim (f_int, f_bit) values (@f_int, @f_bit)";
+                        da.InsertCommand.Parameters.Add("@f_int", SqlDbType.Int);
+                        da.InsertCommand.Parameters.Add("@f_bit", SqlDbType.Bit);
+
+                        da.UpdateCommand = conn.CreateCommand();
+                        da.UpdateCommand.CommandType = CommandType.Text;
+                        da.UpdateCommand.CommandText = "update victim set f_int = @f_int, f_bit = @f_bit where id = @id";
+                        da.UpdateCommand.Parameters.Add("@f_int", SqlDbType.Int);
+                        da.UpdateCommand.Parameters.Add("@f_bit", SqlDbType.Bit);
+                        da.UpdateCommand.Parameters.Add("@id", SqlDbType.BigInt);
+
+                        da.DeleteCommand = conn.CreateCommand();
+                        da.DeleteCommand.CommandType = CommandType.Text;
+                        da.DeleteCommand.CommandText = "delete from victim where id = @id";
+                        da.DeleteCommand.Parameters.Add("@id", SqlDbType.BigInt);
+                        
+
+                        da.Update(tmpDataTable);
+                    #endif
 
                     #if TEST_BATCH
                         if (cmd == null)
