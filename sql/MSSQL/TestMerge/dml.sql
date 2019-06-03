@@ -234,3 +234,48 @@ when not matched by source
 output deleted.*, $action, inserted.* into @log;
 
 select * from @src;select * from @tgt;select * from @log;
+
+------------------------------------------------------------
+
+declare @src table (id int identity primary key, f1 int null, f2 int null, f3 int null, f4 int null, f5 int null);
+declare @tgt table (id int identity primary key, f1 int null, f2 int null, f3 int null, f4 int null, f5 int null);
+declare @log table (oldId int, oldF1 int null, oldF2 int null, oldF3 int null, oldF4 int null, oldF5 int null, action nvarchar(256), [newId] int, newF1 int null, newF2 int null, newF3 int null, newF4 int null, newF5 int null);
+
+insert into @src
+(f1, f2, f3, f4, f5)
+select f1, f2, f3, f4, f5
+from
+(
+	values
+		(0, 0, 0, 0, 0)
+) tmp (f1, f2, f3, f4, f5);
+
+insert into @tgt
+(f1, f2, f3, f4, f5)
+select f1, f2, f3, f4, f5
+from
+(
+	values
+		(0, 0, 0, 0, 0)
+) tmp (f1, f2, f3, f4, f5);
+
+;merge into @tgt as tgt
+using
+(
+	select
+		f1,	f2, f3, f4, f5
+	from
+		@src
+) as src
+on tgt.f1 = src.f1 and tgt.f2 = src.f2
+when matched
+	then
+		delete
+when not matched by target
+	then
+		insert (f1, f2, f3, f4, f5)
+		values (src.f1, src.f2, src.f3, src.f4, src.f5)
+when not matched by source
+	then
+		delete
+output deleted.*, $action, inserted.* into @log;
