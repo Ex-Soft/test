@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,6 +24,9 @@ namespace TestExtensions
     {
         static void Main(string[] args)
         {
+            var request = new Request("en-gb");
+            Debug.WriteLine($"{{PreferredLanguage: \"{request.PreferredLanguage}\", LanguageCode:\"{request.GetLanguageCode()}\", Country:\"{request.GetCountry()}\"}}");
+
             StringBuilder
                 sb = null;
 
