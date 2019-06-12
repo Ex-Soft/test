@@ -18,7 +18,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-//#define TEST_STRING
+#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -26,7 +26,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-#define TEST_ENUM
+//#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -769,6 +769,9 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+                tmpString = "   \r\n   string   \r\n   ";
+                tmpStringII = tmpString.Trim();
+
                 tmpString = string.Join("\r\n", new[] { "Line #1", "Line #2", "Line #3" });
                 tmpString = string.Join("\r\n", new[] { "Line #1" });
                 tmpString = string.Join("\r\n", new string[0]);
