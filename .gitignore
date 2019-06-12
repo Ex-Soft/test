@@ -101,3 +101,6 @@ target/
 CMakeFiles/
 CMakeCache.txt
 *.cmake
+
+# python
+*.pyc
