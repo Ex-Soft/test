@@ -1,6 +1,6 @@
 public class Base
 {
-    private int
+    public int
         int1,
         int2;
 
