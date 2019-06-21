@@ -21,7 +21,7 @@ namespace TestCulture
 
             var cultureName = "fr-FR";
             var culture = CultureInfo.CreateSpecificCulture(cultureName);
-            var culture = CultureInfo.GetCultureInfo(cultureName);
+            //var culture = CultureInfo.GetCultureInfo(cultureName);
 
             Console.WriteLine($"culture.NumberFormat.NumberGroupSeparator: \"{culture.NumberFormat.NumberGroupSeparator}\"");
             Console.WriteLine($"culture.NumberFormat.NumberDecimalSeparator: \"{culture.NumberFormat.NumberDecimalSeparator}\"");
