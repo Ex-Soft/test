@@ -24,7 +24,7 @@
 //#define TEST_AD
 //#define TEST_PARAMS
 //#define TEST_THERMO
-#define TEST_DATE_TIME
+//#define TEST_DATE_TIME
 //#define TEST_SPLIT
 //#define TEST_ENUM
 //#define TEST_GET_STRING
@@ -32,7 +32,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-//#define TEST_NULLABLE_TYPES
+#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -1332,6 +1332,11 @@ namespace AnyTest
 			#endif
 
 			#if TEST_NULLABLE_TYPES
+                DateTime?
+                    tmpDateTimeNullable = null;
+
+                tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable);
+
                 bool?
                     tmpBoolNullable = null;
 
