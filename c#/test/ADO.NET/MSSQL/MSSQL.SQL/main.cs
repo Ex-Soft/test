@@ -1,4 +1,4 @@
-﻿#define TEST_DATA_ADAPTER
+﻿//#define TEST_DATA_ADAPTER
 //#define TEST_BATCH
 //#define TEST_DATE_TYPES
 //#define ANY_TEST
@@ -24,7 +24,7 @@
 //#define TEST_XML_PARAMETERS
 //#define TEST_XML
 //#define TEST_TABLE_VALUED_PARAMETERS
-//#define TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT // http://msdn.microsoft.com/en-us/library/bb675163%28v=vs.110%29.aspx
+#define TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT // http://msdn.microsoft.com/en-us/library/bb675163%28v=vs.110%29.aspx
 //#define GET_STORED_PROCEDURE_PARAMETERS
 //#define TEST_BLOB
 //#define TEST_BLOB_SAVE
@@ -34,6 +34,8 @@
 //#define TEST_FUNCTION
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlTypes;
 using System.IO;
@@ -42,6 +44,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using Microsoft.SqlServer.Server;
 
 namespace MSSQLSQL
 {
@@ -745,7 +748,7 @@ where
 /*
 create type dbo.IdsTableType as table (id bigint not null primary key)
 */
-                    if (tmpDataTableII == null)
+                        if (tmpDataTableII == null)
                             tmpDataTableII = new DataTable();
                         else
                             tmpDataTableII.Reset();
@@ -773,7 +776,7 @@ select
     *
 from
     dbo.Staff staff
-    join @ids ids on ids.id=staff.ID 
+    join @ids ids on ids.id = staff.ID 
 ";
 
                         //sqlParameter = new SqlParameter("@ids", SqlDbType.Structured);
@@ -781,8 +784,8 @@ from
                         //cmd.Parameters["@ids"].TypeName = "dbo.IdsTableType";
                         //cmd.Parameters["@ids"].Value = tmpDataTableII;
 
-                        cmd.Parameters.AddWithValue("@ids", tmpDataTableII);
-                        //cmd.Parameters["@ids"].SqlDbType = SqlDbType.Structured;
+                        cmd.Parameters.AddWithValue("@ids", CreateSqlDataRecords(new[] { 1L, 2, 3 }) /*tmpDataTableII*/);
+                        cmd.Parameters["@ids"].SqlDbType = SqlDbType.Structured;
                         cmd.Parameters["@ids"].TypeName = "dbo.IdsTableType";
 
                         if (da == null)
@@ -1156,16 +1159,16 @@ from
 					#endif
 				}
                 #if INCLUDE_SQL_EXCEPTION
-                catch (SqlException eException)
-                {
-                    Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
-                    Console.WriteLine("ErrorCode={0} Class={1} Number={2} State={3} Server=\"{4}\"", eException.ErrorCode, eException.Class, eException.Number, eException.State, eException.Server);
-                    // ErrorCode=-2146232060 Class=20 Number=53     State=0 Server="" - invalid server
-                    // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 's_a'." - invalid login
-                    // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 'sa'." - invalid password
-                    // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"chicago_2_11_\" requested by the login. The login failed.\r\nLogin failed for user 'sa'."
-                    // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"testdbtestdb\" requested by the login. The login failed.\r\nLogin failed for user 'test_login'." (Orphaned Users)
-                }
+                    catch (SqlException eException)
+                    {
+                        Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+                        Console.WriteLine("ErrorCode={0} Class={1} Number={2} State={3} Server=\"{4}\"", eException.ErrorCode, eException.Class, eException.Number, eException.State, eException.Server);
+                        // ErrorCode=-2146232060 Class=20 Number=53     State=0 Server="" - invalid server
+                        // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 's_a'." - invalid login
+                        // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 'sa'." - invalid password
+                        // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"chicago_2_11_\" requested by the login. The login failed.\r\nLogin failed for user 'sa'."
+                        // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"testdbtestdb\" requested by the login. The login failed.\r\nLogin failed for user 'test_login'." (Orphaned Users)
+                    }
                 #endif
 				catch (Exception eException)
 				{
@@ -1186,6 +1189,7 @@ from
 					fstr_out.Close();
 			}
 		}
+
         #if TEST_CONNECTION_STATE
             static void ConnStateChange(object sender, StateChangeEventArgs e)
             {
@@ -1195,6 +1199,20 @@ from
                     return;
 
                 System.Diagnostics.Debug.WriteLine(string.Format("{0} -> {1}", e.OriginalState, e.CurrentState));
+            }
+        #endif
+
+        #if TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT
+            static IEnumerable<SqlDataRecord> CreateSqlDataRecords(IEnumerable<long> ids)
+            {
+                SqlMetaData[] metaData = new SqlMetaData[1];
+                metaData[0] = new SqlMetaData("id", SqlDbType.BigInt);
+                SqlDataRecord record = new SqlDataRecord(metaData);
+                foreach (long id in ids)
+                {
+                    record.SetInt64(0, id);
+                    yield return record;
+                }
             }
         #endif
 	}

@@ -26,13 +26,13 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
+#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-#define TEST_NULLABLE_TYPES
+//#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -53,6 +53,7 @@ using System.IO;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Security.Permissions;
@@ -1088,6 +1089,9 @@ namespace AnyTest
 			#endif
 
 			#if TEST_ENUM
+                var values = Enum.GetValues(typeof(SmthEnum));
+                var valuesArray = values.Cast<SmthEnum>().ToArray();
+
                 tmpObject = Enum.Parse(typeof(TestEnum), "1", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "Second", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);

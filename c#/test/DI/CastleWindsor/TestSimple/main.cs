@@ -1,6 +1,7 @@
 ﻿// https://www.codementor.io/copperstarconsulting/getting-started-with-dependency-injection-using-castle-windsor-4meqzcsvh
 
 using System;
+using System.Collections.Generic;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -40,8 +41,8 @@ namespace TestSimple
 
             IClassWithCtorWithParameters
                 classWithCtorWithParameters1 = container.Resolve<IClassWithCtorWithParameters>(),
-                classWithCtorWithParameters2 = container.Resolve<IClassWithCtorWithParameters>(new { pInt = 26, pString = "SmthStringSmthString" }),
-                classWithCtorWithParameters3 = container.Resolve<IClassWithCtorWithParameters>(new Arguments(new { pInt = 39, pString = "SmthStringSmthStringSmthString" }));
+                classWithCtorWithParameters2 = container.Resolve<IClassWithCtorWithParameters>(new [] { new KeyValuePair<string, object>("pInt", 26), new KeyValuePair<string, object>("pString", "SmthStringSmthString") }),
+                classWithCtorWithParameters3 = container.Resolve<IClassWithCtorWithParameters>(new Arguments { { "pInt", 39 }, { "pString", "SmthStringSmthStringSmthString" } });
 
             Console.WriteLine(new String('-', 60));
             root.LogMessage(classWithCtorWithParameters1.ToString()); // {pInt:13, pString:"SmthString"}
@@ -50,8 +51,8 @@ namespace TestSimple
 
             IClassWithCtorWithParameters2
                 classWithCtorWithParameters21 = container.Resolve<IClassWithCtorWithParameters2>(),
-                classWithCtorWithParameters22 = container.Resolve<IClassWithCtorWithParameters2>(new { pInt = 26, pString = "SmthStringSmthString" }),
-                classWithCtorWithParameters23 = container.Resolve<IClassWithCtorWithParameters2>(new Arguments(new { pInt = 39, pString = "SmthStringSmthStringSmthString" }));
+                classWithCtorWithParameters22 = container.Resolve<IClassWithCtorWithParameters2>(new [] { new KeyValuePair<string, object>("pInt", 26), new KeyValuePair<string, object>("pString", "SmthStringSmthString") }),
+                classWithCtorWithParameters23 = container.Resolve<IClassWithCtorWithParameters2>(new Arguments { { "pInt", 39}, {"pString", "SmthStringSmthStringSmthString" }});
 
             Console.WriteLine(new string('-', 60));
             root.LogMessage(classWithCtorWithParameters21.ToString()); // {pInt:13, pString:"SmthString"}
