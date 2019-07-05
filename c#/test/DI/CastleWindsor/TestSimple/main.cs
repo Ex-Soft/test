@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
 namespace TestSimple
@@ -13,25 +12,7 @@ namespace TestSimple
         static void Main(string[] args)
         {
             var container = new WindsorContainer();
-
-            // Register the CompositionRoot type with the container
-            container.Register(Component.For<ICompositionRoot>().ImplementedBy<CompositionRoot>());
-            container.Register(Component.For<IConsoleWriter>().ImplementedBy<ConsoleWriter>());
-
-            //container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>());
-            container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>().LifestyleTransient());
-
-            container.Register(Component.For<IClassWithCtorWithParameters>().ImplementedBy<ClassWithCtorWithParameters>()
-                .LifestyleTransient()
-                .DynamicParameters((kernel, parameters) => // !!! reassign container.Resolve<T>(Arguments)
-                {
-                    parameters["pInt"] = 13;
-                    parameters["pString"] = "SmthString";
-                }));
-
-            container.Register(Component.For<IClassWithCtorWithParameters2>().ImplementedBy<ClassWithCtorWithParameters2>()
-                .LifestyleTransient()
-                .DependsOn(Property.ForKey<int>().Eq(13), Property.ForKey<string>().Eq("SmthString")));
+            container.Install(new WindsorInstaller());
 
             // Resolve an object of type ICompositionRoot (ask the container for an instance)
             // This is analagous to calling new() in a non-IoC application.
@@ -59,8 +40,11 @@ namespace TestSimple
             root.LogMessage(classWithCtorWithParameters22.ToString()); // {pInt:26, pString:"SmthStringSmthString"}
             root.LogMessage(classWithCtorWithParameters23.ToString()); // {pInt:39, pString:"SmthStringSmthStringSmthString"}
 
-            // Wait for user input so they can check the program's output.
-            Console.ReadLine();
+            IClassForAppSetting
+                classForAppSetting1 = container.Resolve<IClassForAppSetting>(),
+                classForAppSetting2 = container.Resolve<IClassForAppSetting>();
+
+            Console.ReadKey();
         }
     }
 }

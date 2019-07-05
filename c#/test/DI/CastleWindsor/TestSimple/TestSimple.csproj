@@ -54,10 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassForAppSettings.cs" />
     <Compile Include="ClassWithCtorWithParameters.cs" />
     <Compile Include="ClassWithCtorWithParameters2.cs" />
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="ConsoleWriter.cs" />
+    <Compile Include="IClassForAppSetting.cs" />
     <Compile Include="IClassWithCtorWithParameters.cs" />
     <Compile Include="IClassWithCtorWithParameters2.cs" />
     <Compile Include="ICompositionRoot.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonDemo.cs" />
+    <Compile Include="WindsorInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
