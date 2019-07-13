@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- https://dev.to/kepta/a-toddlers-guide-to-memory-leaks-in-javascript-25lf -->
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Test 1</title>
+  <script>
+function sayHi() {
+    var allNames = [];
+    return name => {
+            allNames.push(name);
+            return '👋 ' + name;
+        }
+}
+
+var hello = sayHi();
+
+function do1() {
+    hello('Gandhi');
+
+    if (window.console && console.log)
+        console.log('do1()');
+}
+
+function do2() {
+    for(var i=0; i<1000000; i++)
+        hello('Gandhi');
+
+    if (window.console && console.log)
+        console.log('do2()');
+}
+  </script>
+</head>
+<body>
+  <input type="button" value="1st" onclick="do1()"/>
+  <input type="button" value="2nd" onclick="do2()"/>
+</body>
+</html>

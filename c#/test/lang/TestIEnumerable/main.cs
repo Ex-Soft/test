@@ -332,6 +332,9 @@ namespace TestIEnumerable
                 listOfIntII = new List<int> { 2, 3 },
                 listOfIntIII;
 
+            string
+                tmpString = listOfInt.Aggregate("", (str, next) => $"{str} , {next.ToString()}");
+
             listOfIntIII = (from i in listOfInt
                             where
                                 listOfIntII.Contains(i)
@@ -686,9 +689,7 @@ namespace TestIEnumerable
                 Console.WriteLine(eException.Message);
             }
 
-            string
-                tmpString = "1st 2nd 3rd 4th 5th";
-
+            tmpString = "1st 2nd 3rd 4th 5th";
             tmpStrings = tmpString.Split(' ');
             tmpString = tmpStrings.Aggregate((str, next) => {
                 if (!string.IsNullOrEmpty(str))

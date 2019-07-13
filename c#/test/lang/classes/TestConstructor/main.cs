@@ -6,6 +6,27 @@ using System.Diagnostics;
 
 namespace TestConstructor
 {
+    /*
+    public class Base
+    {
+        private int
+            int1,
+            int2;
+
+        public Base(int i1, int i2)
+        {
+            int1 = i1;
+            int2 = i2;
+        }
+
+        public void Base(int i1, int i2) // Error CS0542 'base': member names cannot be the same as their enclosing type
+        {
+            int1 = i1;
+            int2 = i2;
+        }
+    }
+    */
+
     #if TEST_OVERLOADING
         public class TestClassWithConstructorOverloading
         {
@@ -24,7 +45,7 @@ namespace TestConstructor
     #endif
 
     #if TEST_CLASS_INITIALIZATION
-   		public class MyClass1
+		public class MyClass1
 		{
 			public MyClass1() : this("DefaultValue1", "DefaultValue2", "DefaultValue3")
 			{}

@@ -1,8 +1,8 @@
 ﻿// https://www.codementor.io/copperstarconsulting/getting-started-with-dependency-injection-using-castle-windsor-4meqzcsvh
 
 using System;
+using System.Collections.Generic;
 using Castle.MicroKernel;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
 namespace TestSimple
@@ -12,25 +12,7 @@ namespace TestSimple
         static void Main(string[] args)
         {
             var container = new WindsorContainer();
-
-            // Register the CompositionRoot type with the container
-            container.Register(Component.For<ICompositionRoot>().ImplementedBy<CompositionRoot>());
-            container.Register(Component.For<IConsoleWriter>().ImplementedBy<ConsoleWriter>());
-
-            //container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>());
-            container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>().LifestyleTransient());
-
-            container.Register(Component.For<IClassWithCtorWithParameters>().ImplementedBy<ClassWithCtorWithParameters>()
-                .LifestyleTransient()
-                .DynamicParameters((kernel, parameters) => // !!! reassign container.Resolve<T>(Arguments)
-                {
-                    parameters["pInt"] = 13;
-                    parameters["pString"] = "SmthString";
-                }));
-
-            container.Register(Component.For<IClassWithCtorWithParameters2>().ImplementedBy<ClassWithCtorWithParameters2>()
-                .LifestyleTransient()
-                .DependsOn(Property.ForKey<int>().Eq(13), Property.ForKey<string>().Eq("SmthString")));
+            container.Install(new WindsorInstaller());
 
             foreach (var handler in container.Kernel.GetAssignableHandlers(typeof(object)))
             {
@@ -47,8 +29,8 @@ namespace TestSimple
 
             IClassWithCtorWithParameters
                 classWithCtorWithParameters1 = container.Resolve<IClassWithCtorWithParameters>(),
-                classWithCtorWithParameters2 = container.Resolve<IClassWithCtorWithParameters>(new { pInt = 26, pString = "SmthStringSmthString" }),
-                classWithCtorWithParameters3 = container.Resolve<IClassWithCtorWithParameters>(new Arguments(new { pInt = 39, pString = "SmthStringSmthStringSmthString" }));
+                classWithCtorWithParameters2 = container.Resolve<IClassWithCtorWithParameters>(new [] { new KeyValuePair<string, object>("pInt", 26), new KeyValuePair<string, object>("pString", "SmthStringSmthString") }),
+                classWithCtorWithParameters3 = container.Resolve<IClassWithCtorWithParameters>(new Arguments { { "pInt", 39 }, { "pString", "SmthStringSmthStringSmthString" } });
 
             Console.WriteLine(new String('-', 60));
             root.LogMessage(classWithCtorWithParameters1.ToString()); // {pInt:13, pString:"SmthString"}
@@ -57,16 +39,19 @@ namespace TestSimple
 
             IClassWithCtorWithParameters2
                 classWithCtorWithParameters21 = container.Resolve<IClassWithCtorWithParameters2>(),
-                classWithCtorWithParameters22 = container.Resolve<IClassWithCtorWithParameters2>(new { pInt = 26, pString = "SmthStringSmthString" }),
-                classWithCtorWithParameters23 = container.Resolve<IClassWithCtorWithParameters2>(new Arguments(new { pInt = 39, pString = "SmthStringSmthStringSmthString" }));
+                classWithCtorWithParameters22 = container.Resolve<IClassWithCtorWithParameters2>(new [] { new KeyValuePair<string, object>("pInt", 26), new KeyValuePair<string, object>("pString", "SmthStringSmthString") }),
+                classWithCtorWithParameters23 = container.Resolve<IClassWithCtorWithParameters2>(new Arguments { { "pInt", 39}, {"pString", "SmthStringSmthStringSmthString" }});
 
             Console.WriteLine(new string('-', 60));
             root.LogMessage(classWithCtorWithParameters21.ToString()); // {pInt:13, pString:"SmthString"}
             root.LogMessage(classWithCtorWithParameters22.ToString()); // {pInt:26, pString:"SmthStringSmthString"}
             root.LogMessage(classWithCtorWithParameters23.ToString()); // {pInt:39, pString:"SmthStringSmthStringSmthString"}
 
-            // Wait for user input so they can check the program's output.
-            Console.ReadLine();
+            IClassForAppSetting
+                classForAppSetting1 = container.Resolve<IClassForAppSetting>(),
+                classForAppSetting2 = container.Resolve<IClassForAppSetting>();
+
+            Console.ReadKey();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿//#define TEST_CLASS_WITH_OBJECT_PROPERTY
+﻿#define TEST_CLASS_WITH_OBJECT_PROPERTY
 //#define TEST_DATE
-#define TEST_POST
+//#define TEST_POST
 
 using System;
 using System.Collections.Generic;
@@ -130,7 +130,7 @@ namespace TestJsonNET
                     var licenseObject = JsonConvert.DeserializeObject<LicenseObject>(raw);
                     var licenseKey = licenseObject.LicenseKey as Newtonsoft.Json.Linq.JObject;
 
-                    Newtonsoft.Json.Linq.JToken jToken;
+                    //Newtonsoft.Json.Linq.JToken jToken;
                     if (licenseKey.TryGetValue("ExpirationDate", out jToken))
                     {
                         DateTime dateTime = (DateTime)licenseKey["ExpirationDate"]; // Kind == Utc

@@ -1,8 +1,8 @@
 ﻿// http://minddotout.wordpress.com/2012/12/27/the-c-using-statement-breaks-exception-handling/
 // http://www.digitallycreated.net/Blog/51/c%23-using-blocks-can-swallow-exceptions
-//#define TEST_FINALLY
+#define TEST_FINALLY
 //#define TEST_USING
-#define TEST_THROW
+//#define TEST_THROW
 
 using System;
 
@@ -94,6 +94,27 @@ namespace ExceptionI
 			{
                 Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
 			}
+            Console.WriteLine(separator);
+            Console.WriteLine();
+
+            Console.WriteLine(separator);
+            try
+            {
+                try
+                {
+                    c = a / b;
+                }
+                finally
+                {
+                    Console.WriteLine("finally");
+                    Console.WriteLine();
+                    throw new ArgumentException();
+                }
+            }
+            catch (Exception eException) // ArgumentException
+            {
+                Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
             Console.WriteLine(separator);
             Console.WriteLine();
 

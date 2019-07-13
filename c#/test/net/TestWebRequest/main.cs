@@ -1,9 +1,9 @@
-﻿#define TEST_SERVICE_API
+﻿//#define TEST_SERVICE_API
 //#define TEST_HTTP_REQUEST_POST_BINARY
-#define TEST_HTTP_REQUEST_GET_BINARY
+//#define TEST_HTTP_REQUEST_GET_BINARY
 //#define TEST_KS
 //#define TEST_HTTP_REQUEST
-//#define TEST_HTTP_REQUEST_GET
+#define TEST_HTTP_REQUEST_GET
 //#define WITH_PROXY
 //#define WITH_AUTHENTICATION
 
@@ -49,7 +49,7 @@ namespace TestWebRequest
                     StreamWriter
                         OutputFile;
 
-                    strURL = "http://www.sql.ru/forum/actualthread.aspx?bid=34&tid=531725&pg=1";
+                    strURL = "https://www.sql.ru/forum/dotnet";
                     objWebRequest = (HttpWebRequest)WebRequest.Create(strURL);
                     objWebRequest.Method = "GET";
                     try
@@ -68,7 +68,9 @@ namespace TestWebRequest
                         Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
                     }
 
-                    objWebRequest.Abort();
+                    //objWebRequest.Abort();
+
+                    // [RST, ACK]
                 #endif
 
 				#if TEST_HTTP_REQUEST

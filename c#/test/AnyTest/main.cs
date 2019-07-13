@@ -3,7 +3,7 @@
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
-#define TEST_FILE_TIME
+//#define TEST_FILE_TIME
 //#define TEST_OPERATOR
 //#define TEST_STRING_BUILDER
 //#define TEST_HASH_CODE
@@ -26,7 +26,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
+#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -53,6 +53,7 @@ using System.IO;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Security.Permissions;
@@ -769,6 +770,9 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+                tmpString = "   \r\n   string   \r\n   ";
+                tmpStringII = tmpString.Trim();
+
                 tmpString = string.Join("\r\n", new[] { "Line #1", "Line #2", "Line #3" });
                 tmpString = string.Join("\r\n", new[] { "Line #1" });
                 tmpString = string.Join("\r\n", new string[0]);
@@ -1085,6 +1089,9 @@ namespace AnyTest
 			#endif
 
 			#if TEST_ENUM
+                var values = Enum.GetValues(typeof(SmthEnum));
+                var valuesArray = values.Cast<SmthEnum>().ToArray();
+
                 tmpObject = Enum.Parse(typeof(TestEnum), "1", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "Second", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
@@ -1329,6 +1336,11 @@ namespace AnyTest
 			#endif
 
 			#if TEST_NULLABLE_TYPES
+                DateTime?
+                    tmpDateTimeNullable = null;
+
+                tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable);
+
                 bool?
                     tmpBoolNullable = null;
 

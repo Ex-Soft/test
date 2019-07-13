@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html dir="rtl">
+	<head>
+		<meta charset="utf-8" />
+		<title>Test RTL</title>
+		<script>
+function DoIt()
+{
+	let
+		line1 = "هذه الجملة 1. هذه الجملة 2.",
+		line2 = "هذه الجملة 3. هذه الجملة 4.",
+		line3 = "هذه الجملة 5. هذه الجملة 6.",
+		ctrl;
+
+	if (ctrl = document.getElementById("div2"))
+		ctrl.innerHTML = line1 + "<br/>" + line2 + "<br/>" + line3;
+	if (ctrl = document.getElementById("div3"))
+		ctrl.innerHTML = line3 + "<br/>" + line2 + "<br/>" + line1;
+}
+		</script>
+	</head>
+	<body onload="DoIt()">
+		<div id="div1">
+			هذه الجملة 1. هذه الجملة 2.<br/>
+			هذه الجملة 3. هذه الجملة 4.<br/>
+			هذه الجملة 5. هذه الجملة 6.
+		</div>
+		<div id="div2">
+		</div>
+		<div id="div3">
+		</div>
+		<div>
+			. يجب أن يكون العمر لواحد على الأقل من الركاب 21 عاما أو أكثر   إذا كان أعمار جميع المسافرين تحت 21 عاما ، يرجى الاتصال بفريق المبيعات {0} على  <br />.يجب أن تكون جميع جوازات السفر صالحة لمدة لا تقل عن ستة أشهر من تاريخ العودة من عطلتك. يرجى التحقق من ذلك قبل تأكيد عطلتك
+		</div>
+	</body>
+</html>

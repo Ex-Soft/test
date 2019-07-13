@@ -1,4 +1,5 @@
-﻿#define TEST_BATCH
+﻿//#define TEST_DATA_ADAPTER
+//#define TEST_BATCH
 //#define TEST_DATE_TYPES
 //#define ANY_TEST
 //#define Determining_SET_Options_for_Current_Session // https://www.mssqltips.com/sqlservertip/1415/determining-set-options-for-a-current-session-in-sql-server/
@@ -23,7 +24,7 @@
 //#define TEST_XML_PARAMETERS
 //#define TEST_XML
 //#define TEST_TABLE_VALUED_PARAMETERS
-//#define TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT // http://msdn.microsoft.com/en-us/library/bb675163%28v=vs.110%29.aspx
+#define TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT // http://msdn.microsoft.com/en-us/library/bb675163%28v=vs.110%29.aspx
 //#define GET_STORED_PROCEDURE_PARAMETERS
 //#define TEST_BLOB
 //#define TEST_BLOB_SAVE
@@ -33,6 +34,8 @@
 //#define TEST_FUNCTION
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlTypes;
 using System.IO;
@@ -41,6 +44,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using Microsoft.SqlServer.Server;
 
 namespace MSSQLSQL
 {
@@ -135,8 +139,8 @@ namespace MSSQLSQL
                         //ConnectionString = "Server=.;Database=ch;User ID=test_login;Password=12==3";
                         //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
                         //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
-                        ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
-						//ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
+                        //ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
+						ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensions;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=alpha_web;Initial Catalog=pretensionsav;User Id=sa;Pwd=developer";
 						//ConnectionString = "server=fobos_web;Initial Catalog=CMS_Connect;User Id=sa;Pwd=developer";
@@ -219,6 +223,68 @@ namespace MSSQLSQL
                     #endif
 
 					conn.Open();
+
+                    #if TEST_DATA_ADAPTER
+                        if (tmpDataTable == null)
+							tmpDataTable = new DataTable("Victim");
+						else
+							tmpDataTable.Reset();
+
+						tmpDataColumn = tmpDataTable.Columns.Add("id", typeof(long)); 
+						tmpDataColumn.AllowDBNull = false;
+						tmpDataColumn.Unique = true;
+						tmpDataColumn.AutoIncrement = true;
+						tmpDataColumn.AutoIncrementSeed = -1;
+						tmpDataColumn.AutoIncrementStep = -1;
+						tmpDataTable.Columns.Add("f_int", typeof(int));
+                        tmpDataTable.Columns.Add("f_bit", typeof(bool));
+
+                        tmpDataRow = tmpDataTable.NewRow();
+						tmpDataRow["id"] = 1;
+						tmpDataRow["f_int"] = 1;
+                        tmpDataRow["f_bit"] = true;
+                        tmpDataTable.Rows.Add(tmpDataRow);
+
+                        if (da == null)
+                            da = new SqlDataAdapter();
+
+                        /*var tblMap = da.TableMappings.Add("Victim", "Victim");
+                        tblMap.ColumnMappings.Add("id", "id");
+                        tblMap.ColumnMappings.Add("f_int", "f_int");
+                        tblMap.ColumnMappings.Add("f_bit", "f_bit");*/
+
+                        da.SelectCommand = conn.CreateCommand();
+                        da.SelectCommand.CommandType = CommandType.Text;
+                        da.SelectCommand.CommandText = "select id, f_int, f_bit from victim";
+
+                        /*var cb = new SqlCommandBuilder(da);
+
+                        da.InsertCommand = cb.GetInsertCommand(true);
+                        da.UpdateCommand = cb.GetUpdateCommand(true);
+                        da.DeleteCommand = cb.GetDeleteCommand(true);*/
+
+                        
+                        da.InsertCommand = conn.CreateCommand();
+                        da.InsertCommand.CommandType = CommandType.Text;
+                        da.InsertCommand.CommandText = "insert into victim (f_int, f_bit) values (@f_int, @f_bit)";
+                        da.InsertCommand.Parameters.Add("@f_int", SqlDbType.Int);
+                        da.InsertCommand.Parameters.Add("@f_bit", SqlDbType.Bit);
+
+                        da.UpdateCommand = conn.CreateCommand();
+                        da.UpdateCommand.CommandType = CommandType.Text;
+                        da.UpdateCommand.CommandText = "update victim set f_int = @f_int, f_bit = @f_bit where id = @id";
+                        da.UpdateCommand.Parameters.Add("@f_int", SqlDbType.Int);
+                        da.UpdateCommand.Parameters.Add("@f_bit", SqlDbType.Bit);
+                        da.UpdateCommand.Parameters.Add("@id", SqlDbType.BigInt);
+
+                        da.DeleteCommand = conn.CreateCommand();
+                        da.DeleteCommand.CommandType = CommandType.Text;
+                        da.DeleteCommand.CommandText = "delete from victim where id = @id";
+                        da.DeleteCommand.Parameters.Add("@id", SqlDbType.BigInt);
+                        
+
+                        da.Update(tmpDataTable);
+                    #endif
 
                     #if TEST_BATCH
                         if (cmd == null)
@@ -682,7 +748,7 @@ where
 /*
 create type dbo.IdsTableType as table (id bigint not null primary key)
 */
-                    if (tmpDataTableII == null)
+                        if (tmpDataTableII == null)
                             tmpDataTableII = new DataTable();
                         else
                             tmpDataTableII.Reset();
@@ -710,7 +776,7 @@ select
     *
 from
     dbo.Staff staff
-    join @ids ids on ids.id=staff.ID 
+    join @ids ids on ids.id = staff.ID 
 ";
 
                         //sqlParameter = new SqlParameter("@ids", SqlDbType.Structured);
@@ -718,8 +784,8 @@ from
                         //cmd.Parameters["@ids"].TypeName = "dbo.IdsTableType";
                         //cmd.Parameters["@ids"].Value = tmpDataTableII;
 
-                        cmd.Parameters.AddWithValue("@ids", tmpDataTableII);
-                        //cmd.Parameters["@ids"].SqlDbType = SqlDbType.Structured;
+                        cmd.Parameters.AddWithValue("@ids", CreateSqlDataRecords(new[] { 1L, 2, 3 }) /*tmpDataTableII*/);
+                        cmd.Parameters["@ids"].SqlDbType = SqlDbType.Structured;
                         cmd.Parameters["@ids"].TypeName = "dbo.IdsTableType";
 
                         if (da == null)
@@ -1093,16 +1159,16 @@ from
 					#endif
 				}
                 #if INCLUDE_SQL_EXCEPTION
-                catch (SqlException eException)
-                {
-                    Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
-                    Console.WriteLine("ErrorCode={0} Class={1} Number={2} State={3} Server=\"{4}\"", eException.ErrorCode, eException.Class, eException.Number, eException.State, eException.Server);
-                    // ErrorCode=-2146232060 Class=20 Number=53     State=0 Server="" - invalid server
-                    // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 's_a'." - invalid login
-                    // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 'sa'." - invalid password
-                    // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"chicago_2_11_\" requested by the login. The login failed.\r\nLogin failed for user 'sa'."
-                    // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"testdbtestdb\" requested by the login. The login failed.\r\nLogin failed for user 'test_login'." (Orphaned Users)
-                }
+                    catch (SqlException eException)
+                    {
+                        Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+                        Console.WriteLine("ErrorCode={0} Class={1} Number={2} State={3} Server=\"{4}\"", eException.ErrorCode, eException.Class, eException.Number, eException.State, eException.Server);
+                        // ErrorCode=-2146232060 Class=20 Number=53     State=0 Server="" - invalid server
+                        // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 's_a'." - invalid login
+                        // ErrorCode=-2146232060 Class=14 Number=18456  State=1 Server="server_name" Message "Login failed for user 'sa'." - invalid password
+                        // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"chicago_2_11_\" requested by the login. The login failed.\r\nLogin failed for user 'sa'."
+                        // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"testdbtestdb\" requested by the login. The login failed.\r\nLogin failed for user 'test_login'." (Orphaned Users)
+                    }
                 #endif
 				catch (Exception eException)
 				{
@@ -1123,6 +1189,7 @@ from
 					fstr_out.Close();
 			}
 		}
+
         #if TEST_CONNECTION_STATE
             static void ConnStateChange(object sender, StateChangeEventArgs e)
             {
@@ -1132,6 +1199,20 @@ from
                     return;
 
                 System.Diagnostics.Debug.WriteLine(string.Format("{0} -> {1}", e.OriginalState, e.CurrentState));
+            }
+        #endif
+
+        #if TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT
+            static IEnumerable<SqlDataRecord> CreateSqlDataRecords(IEnumerable<long> ids)
+            {
+                SqlMetaData[] metaData = new SqlMetaData[1];
+                metaData[0] = new SqlMetaData("id", SqlDbType.BigInt);
+                SqlDataRecord record = new SqlDataRecord(metaData);
+                foreach (long id in ids)
+                {
+                    record.SetInt64(0, id);
+                    yield return record;
+                }
             }
         #endif
 	}

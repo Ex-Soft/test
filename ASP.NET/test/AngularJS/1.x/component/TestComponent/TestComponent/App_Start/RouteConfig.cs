@@ -13,6 +13,8 @@ namespace TestComponent
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.IgnoreRoute("api/{*path}");
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
