@@ -64,10 +64,19 @@
     <Compile Include="IClassWithCtorWithParameters2.cs" />
     <Compile Include="ICompositionRoot.cs" />
     <Compile Include="IConsoleWriter.cs" />
+    <Compile Include="ILifeStyleDefault.cs" />
+    <Compile Include="ILifestyleTransient.cs" />
     <Compile Include="ISingletonDemo.cs" />
+    <Compile Include="ISmthOuterInterface.cs" />
+    <Compile Include="ISmthInnerInterface.cs" />
+    <Compile Include="ILifestyle.cs" />
+    <Compile Include="LifestyleDefault.cs" />
+    <Compile Include="LifestyleTransient.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonDemo.cs" />
+    <Compile Include="SmthInnerClass.cs" />
+    <Compile Include="SmthOuterClass.cs" />
     <Compile Include="WindsorInstaller.cs" />
   </ItemGroup>
   <ItemGroup>

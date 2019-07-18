@@ -44,6 +44,25 @@ namespace TestSimple
                 classForAppSetting1 = container.Resolve<IClassForAppSetting>(),
                 classForAppSetting2 = container.Resolve<IClassForAppSetting>();
 
+            ISmthOuterInterface
+                smthOuterInterface = container.Resolve<ISmthOuterInterface>();
+
+            smthOuterInterface.Foo1();
+
+            ILifeStyleDefault
+                lifeStyleDefault1 = container.Resolve<ILifeStyleDefault>(),
+                lifeStyleDefault2 = container.Resolve<ILifeStyleDefault>();
+
+            lifeStyleDefault1.PString1 = "PString1 from lifeStyleDefault1";
+            root.LogMessage(lifeStyleDefault2.PString1);
+
+            ILifestyleTransient
+                lifestyleTransient1 = container.Resolve<ILifestyleTransient>(),
+                lifestyleTransient2 = container.Resolve<ILifestyleTransient>();
+
+            lifestyleTransient1.PString1 = "PString1 from lifestyleTransient1";
+            root.LogMessage(lifestyleTransient2.PString1);
+
             Console.ReadKey();
         }
     }
