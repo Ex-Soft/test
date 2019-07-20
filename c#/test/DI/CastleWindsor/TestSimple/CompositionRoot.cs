@@ -15,7 +15,7 @@
         public void LogMessage(string message)
         {
             consoleWriter.LogMessage($"CompositionRoot.LogMessage: singletonDemo.ObjectId = {singletonDemo.ObjectId}");
-            consoleWriter.LogMessage(message);
+            consoleWriter.LogMessage(message ?? "null");
         }
     }
 }

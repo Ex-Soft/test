@@ -12,6 +12,10 @@ namespace TestSimple
             // Register the CompositionRoot type with the container
             container.Register(Component.For<ICompositionRoot>().ImplementedBy<CompositionRoot>());
             container.Register(Component.For<IConsoleWriter>().ImplementedBy<ConsoleWriter>());
+            container.Register(Component.For<ISmthOuterInterface>().ImplementedBy<SmthOuterClass>().LifestyleTransient());
+            container.Register(Component.For<ISmthInnerInterface>().ImplementedBy<SmthInnerClass>().LifestyleTransient());
+            container.Register(Component.For<ILifeStyleDefault>().ImplementedBy<LifestyleDefault>());
+            container.Register(Component.For<ILifestyleTransient>().ImplementedBy<LifestyleTransient>().LifestyleTransient());
 
             //container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>());
             container.Register(Component.For<ISingletonDemo>().ImplementedBy<SingletonDemo>().LifestyleTransient());
