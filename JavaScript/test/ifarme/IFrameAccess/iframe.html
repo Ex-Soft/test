@@ -4,19 +4,9 @@
 		<meta charset="utf-8" />
 		<title>Test &lt;IFRAME&gt; (access) (iframe)</title>
 		<script>
-function btnOnClick()
-{
-	if (window.console && console.log) {
+function btnOnClick() {
+	if (window.console && console.log)
 		console.log("iframe.btnOnClick(%o)", arguments);
-		console.log("window: %o", window);
-		console.log("window.top: %o", window.top);
-		console.log("window.top.trp: %o", window.top.trp);
-		console.log("window.top.trp.bookingView: %o", window.top.trp.bookingView);
-		console.log("window.top.tpr: %o", window.top.tpr);
-		//console.log("window.top.tpr.bookingView: %o", window.top.tpr.bookingView);
-	}
-
-	window.top.trp.bookingView.ContinueThreeDSecure();
 }
 		</script>
 	<body>
