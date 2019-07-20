@@ -1,0 +1,28 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="iframe.aspx.cs" Inherits="iframe" %>
+<!doctype html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IFRAME</title>
+    <script>
+function btnOnClick() {
+	if (window.console && console.log)
+        console.log("iframe.btnOnClick(%o)", arguments);
+
+    if (window.top && window.top.smthObj && window.top.smthObj.smthMetod)
+        window.top.smthObj.smthMetod(`Hello from IFRAME #${getUrlSearchParam("frameNo")}`);
+}
+
+function getUrlSearchParam(paramName) {
+    var searchParams = new URLSearchParams(location.search);
+    return searchParams.get(paramName);
+}
+    </script>
+</head>
+<body>
+    <h1>IFRAME #<asp:Label ID="labelFrameNo" runat="server"/></h1>
+    <button id="btnVictim" onclick="btnOnClick(this)">DoIt!</button>
+</body>
+</html>

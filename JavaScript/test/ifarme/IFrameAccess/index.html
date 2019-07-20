@@ -4,13 +4,11 @@
 		<meta charset="utf-8" />
 		<title>Test &lt;IFRAME&gt; (access) (main)</title>
 		<script>
-
-/*window.trp = window.trp || {};
-window.trp.bookingView = {};
-window.trp.bookingView.ContinueThreeDSecure = function() {
+window.smthObj = {};
+window.smthObj.smthMethod = function(msg) {
 	if(window.console && console.log)
-		console.log("trp.bookingView.ContinueThreeDSecure(%o)", arguments);
-}*/
+		console.log("window.smthObj.smthMethod(%o)", arguments);
+}
 
 function onLoad()
 {
@@ -38,6 +36,7 @@ function btnOnClick()
 		</script>
 	</head>
 	<body> <!-- onload="onLoad()" -->
-		<iframe src="iframe.html" onload="onLoad()"></iframe>
+		<iframe src="iframe.html?frameNo=1" onload="onLoad()"></iframe>
+		<iframe src="http://localhost:22763/iframe.aspx?frameNo=2"></iframe>
 	</body>
 </html>

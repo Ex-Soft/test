@@ -4,19 +4,17 @@
 		<meta charset="utf-8" />
 		<title>Test &lt;IFRAME&gt; (access) (iframe)</title>
 		<script>
-function btnOnClick()
-{
-	if (window.console && console.log) {
+function btnOnClick() {
+	if (window.console && console.log)
 		console.log("iframe.btnOnClick(%o)", arguments);
-		console.log("window: %o", window);
-		console.log("window.top: %o", window.top);
-		console.log("window.top.trp: %o", window.top.trp);
-		console.log("window.top.trp.bookingView: %o", window.top.trp.bookingView);
-		console.log("window.top.tpr: %o", window.top.tpr);
-		//console.log("window.top.tpr.bookingView: %o", window.top.tpr.bookingView);
-	}
+	
+	if (window.top && window.top.smthObj && window.top.smthObj.smthMethod)
+    	window.top.smthObj.smthMethod(`Hello from IFRAME #${getUrlSearchParam("frameNo")}`);
+}
 
-	window.top.trp.bookingView.ContinueThreeDSecure();
+function getUrlSearchParam(paramName) {
+    var searchParams = new URLSearchParams(location.search);
+    return searchParams.get(paramName);
 }
 		</script>
 	<body>
