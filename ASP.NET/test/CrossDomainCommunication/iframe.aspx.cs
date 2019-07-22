@@ -13,9 +13,9 @@ public partial class iframe : System.Web.UI.Page
                 labelFrameNo.Text = frameNo.ToString();
         }
 
-        Response.Headers["Access-Control-Allow-Headers"] = "access-control-allow-headers,access-control-allow-methods,access-control-allow-origin";
-        Response.Headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, DELETE";
+        //Response.Headers["Access-Control-Allow-Headers"] = "access-control-allow-headers,access-control-allow-methods,access-control-allow-origin";
+        //Response.Headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, DELETE";
         //Response.Headers["Access-Control-Allow-Origin"] ="*";
-        Response.Headers["Access-Control-Allow-Origin"] = "http://localhost:22763";
+        //Response.Headers["Access-Control-Allow-Origin"] = "http://localhost:22763";
     }
 }

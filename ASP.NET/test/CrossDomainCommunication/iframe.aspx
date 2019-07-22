@@ -11,8 +11,15 @@ function btnOnClick() {
 	if (window.console && console.log)
         console.log("iframe.btnOnClick(%o)", arguments);
 
-    if (window.top && window.top.smthObj && window.top.smthObj.smthMetod)
-        window.top.smthObj.smthMetod(`Hello from IFRAME #${getUrlSearchParam("frameNo")}`);
+    if (window.top && window.top.postMessage)
+        window.top.postMessage(`Hello from IFRAME #${getUrlSearchParam("frameNo")} (window.top.postMessage())`, "*");
+
+    if (window.parent && window.parent.postMessage)
+        window.parent.postMessage(`Hello from IFRAME #${getUrlSearchParam("frameNo")} (window.parent.postMessage())`, "*");
+
+    // doesn't work (Access-Control-Allow-Origin is used only for XHR)
+    // if (window.top && window.top.smthObj && window.top.smthObj.smthMetod)
+    //    window.top.smthObj.smthMetod(`Hello from IFRAME #${getUrlSearchParam("frameNo")}`);
 }
 
 function getUrlSearchParam(paramName) {

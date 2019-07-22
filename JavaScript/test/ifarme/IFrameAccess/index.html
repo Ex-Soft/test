@@ -4,20 +4,40 @@
 		<meta charset="utf-8" />
 		<title>Test &lt;IFRAME&gt; (access) (main)</title>
 		<script>
+var
+    iframeNo = 0;
+
 window.smthObj = {};
 window.smthObj.smthMethod = function(msg) {
 	if(window.console && console.log)
 		console.log("window.smthObj.smthMethod(%o)", arguments);
 }
 
-function onLoad()
-{
+function bindEvent(element, eventName, handler) {
+	if(element.addEventListener)
+		element.addEventListener(eventName, handler, false);
+	else if(element.attachEvent)
+		element.attachEvent("on" + eventName, handler);
+	else
+		element.onload = handler;
+}
+
+function onBodyLoad() {
+	bindEvent(window, "message", onMessage);
+}
+
+function onMessage(e) {
+	if(window.console && console.log)
+		console.log("main.onMessage(%o) \"%s\"", arguments, e.data);
+}
+
+function onIFrameLoad() {
 	var
-		frms=document.getElementsByTagName("iframe"),
+		frms = document.getElementsByTagName("iframe"),
 		ctrl;
 
-	for(var i=0, len=frms.length; i<len; ++i)
-		if(ctrl=frms[i].contentWindow.document.getElementById("btnVictim"))
+	for(var i = 0, len = frms.length; i < len; ++i)
+		if(ctrl = frms[i].contentWindow.document.getElementById("btnVictim"))
 		{
 			if(ctrl.addEventListener)
 				ctrl.addEventListener("click", btnOnClick, false);
@@ -33,10 +53,27 @@ function btnOnClick()
 	if(window.console && console.log)
 		console.log("main.btnOnClick(%o)", arguments);
 }
+
+function btnNewIFrameClick(e) {
+	var
+		main,
+		frm;
+	
+	if (!(main = document.querySelector("main")) || !(frm = document.createElement("iframe")))
+		return;
+
+	frm.scrolling = "no";
+	frm.src = `http://localhost:22763/iframe.aspx?frameNo=${++iframeNo}`; // ASP.NET\test\CrossDomainCommunication
+	main.appendChild(frm);
+}
 		</script>
 	</head>
-	<body> <!-- onload="onLoad()" -->
-		<iframe src="iframe.html?frameNo=1" onload="onLoad()"></iframe>
-		<iframe src="http://localhost:22763/iframe.aspx?frameNo=2"></iframe>
+	<body onload="onBodyLoad()">
+		<header>
+			<input id="btnNewIFrame" type="button" value="New IFRAME" onclick="btnNewIFrameClick()"/>
+		</header>
+		<main>
+			<iframe src="iframe.html?frameNo=1" onload="onIFrameLoad()"></iframe>
+		</main>
 	</body>
 </html>
