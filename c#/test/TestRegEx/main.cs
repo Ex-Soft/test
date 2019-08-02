@@ -1,12 +1,34 @@
 ﻿//#define TEST_XML
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.IO;
 
 namespace TestRegEx
 {
+    class MatchComparer : IEqualityComparer<Match>
+    {
+        public bool Equals(Match x, Match y)
+        {
+            if (ReferenceEquals(x, y))
+                return true;
+
+            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+                return false;
+
+            return x.Success && y.Success && x.Value == y.Value /*&& x.Groups.Count == 2 && x.Groups.Count == y.Groups.Count && x.Groups[1].Value == y.Groups[1].Value*/;
+        }
+
+        public int GetHashCode(Match obj)
+        {
+            return obj.Value.GetHashCode();
+        }
+    }
+
     class Program
     {
         static string TestMatchEvaluator(Match m)
@@ -36,11 +58,8 @@ namespace TestRegEx
             Match
                 match;
 
-            CaptureCollection
-                capturecollection;
-
-            GroupCollection
-                groupcollection;
+            MatchCollection
+                matches;
 
             #if TEST_XML
                 if (File.Exists(fileName = Path.Combine(currentDirectory, "Chicago2.Core.ch2res")))
@@ -52,6 +71,36 @@ namespace TestRegEx
                         tmpString = r.Replace(srcString, string.Empty);
                 }
             #endif
+
+            srcString = "b4 *{resource:TELEPHONENUMBER}* **{resource:ADDRESS}**\r\n*{resource:OPENINGHOURS}* *{resource:TELEPHONENUMBER}* after";
+            r = new Regex("(?:{resource:)(.+?)(?:})");
+            match = r.Match(srcString);
+            if (match.Success)
+            {
+                WriteGroup(match);
+                tmpString = r.Replace(srcString, "blah-blah-blah");
+            }
+
+            matches = r.Matches(srcString);
+            var _matches_ = matches.OfType<Match>().Distinct(new MatchComparer());
+
+            foreach (Match _match_ in _matches_)
+            {
+                if (match.Groups.Count != 2)
+                    continue;
+
+                srcString = Regex.Replace(srcString, _match_.Groups[0].Value, _match_.Groups[1].Value);
+            }
+
+            srcString = "b4 *{resource:TELEPHONENUMBER}* **{resource:ADDRESS}**\r\n*{resource:OPENINGHOURS}* *{resource:TELEPHONENUMBER}* after";
+            match = r.Match(srcString);
+            while (match.Success)
+            {
+                if (match.Groups.Count == 2 && match.Groups[1].Success)
+                    srcString = Regex.Replace(srcString, r.ToString(), "-$&-");
+
+                match = match.NextMatch();
+            }
 
             srcString = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";
             r = new Regex("(?<=depAir=)(LHR|LGW)(?=[^a-zA-Z])");
@@ -73,7 +122,7 @@ namespace TestRegEx
 
             srcString = "[1st] = '1st' Or [2nd] = '2nd' Or [3rd] = '3rd' Or [4th] = '4th'";
             r = new Regex("\\[[^\\[\\]]+?]");
-            var matches = r.Matches(srcString);
+            matches = r.Matches(srcString);
             if (matches.Count > 0)
                 tmpString = matches[0].Value;
 
@@ -286,40 +335,9 @@ namespace TestRegEx
             srcString = "ABCdeFgh";
             r = new Regex(@"(\p{Ll})(\p{Lu})", RegexOptions.Compiled);
             match = r.Match(srcString);
+            WriteGroup(match);
             if (match.Success)
             {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-
                 tmpString = r.Replace(srcString, "$1 $2");
                 r1 = new Regex(@"(\p{Lu}{2})(\p{Lu}\p{Ll}{2})", RegexOptions.Compiled);
                 match = r1.Match(tmpString);
@@ -746,41 +764,7 @@ namespace TestRegEx
             r = new Regex("([A-Za-z\\d() :]+)(.*)");
             match = r.Match(srcString);
             tmpString = match.Groups!=null && match.Groups.Count>2 ? match.Groups[2].Value.Trim() : string.Empty;
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             r = new Regex("Save\\(\\d+\\) finished");
             tmpString = "12121 Save(12345) finished 12121";
@@ -797,41 +781,7 @@ namespace TestRegEx
             r = new Regex("(</[a-z]+>)");
             tmpString = "1<a>2<b>3</c>4</d>5 <e>6<f>7</g>8</h>9  <e></e>";
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
             tmpString = r.Replace(tmpString, "$1!$2");
 
             r = new Regex("[\\D]");
@@ -864,42 +814,7 @@ namespace TestRegEx
             r = new Regex(@"(\w+)\s+(car)", RegexOptions.IgnoreCase);
             r = new Regex(@"((\w+\s+)car)", RegexOptions.IgnoreCase);
             match = r.Match(tmpString);
-
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             MatchCollection
                 matchcollection = r.Matches(tmpString);
@@ -920,120 +835,18 @@ namespace TestRegEx
             //r = new Regex("\\x7b\\d+\\x7d");
             r = new Regex("\\u007b\\d+\\u007d");
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             tmpString = "<a id=\"SmthId\" href=\"blah-blah-blah\" class=\"SmthCSSClass\">blah-blah-blah</a> <a id=\"SmthId\" href=\"blah-blah-blah\" class=\"SmthCSSClass\">blah-blah-blah</a>";
             r = new Regex("(?<=href=['\"]).+?(?=['\"])");
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             tmpString = "sdfsd sdf \"P.P.U.H. \"COLD\" Sp.J.\" sdfsdfs sdfsd \"AAABBB\" sdfsdfsd";
             r = new Regex("(?<=\").*?\".+?\".*?(?=\")");
             //r = new Regex("(?<=\").*?(?=\")");
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             tmpString = "<b title=\"test\">test</b>";
             r = new Regex("(?<=>)test(?=<)");
@@ -1042,119 +855,17 @@ namespace TestRegEx
             tmpString = "sadasdas123456789.12234455dasdasdas s9.12as s9as s9.as s.12as";
             r = new Regex("(?<=[\\D])\\d*?\\.\\d*?(?=[\\D])");
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             tmpString = "Внимание! Используйте следующие рекомендации Сайт - такой то, вариант такой то [5]";
             r = new Regex("(?<=\\[)\\d+?(?=\\])");
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             tmpString = "<a href=\"?tur=1111111111&hash=2222222222\"><img src=\"turing.inc.php?tur=40404040404040\" border=0></a><a href=\"?tur=3333333333&hash=4444444444\"><img src=\"turing.inc.php?tur=50505050505050\" border=0></a>";
             r = new Regex("<a href=\"\\?tur=(\\d+?)&hash=(\\d+?)\"><img src=\"turing.inc.php\\?tur=(\\d+?)\".*?></a>");
             match = r.Match(tmpString);
-            while (match.Success)
-            {
-                capturecollection = match.Captures;
-                Console.WriteLine("Match.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                for (int i = 0; i < capturecollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + capturecollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + capturecollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + capturecollection[i].Value);
-                }
-
-                groupcollection = match.Groups;
-                Console.WriteLine("Match.Groups -> GroupCollection.Count: " + groupcollection.Count);
-                for (int i = 0; i < groupcollection.Count; ++i)
-                {
-                    Console.WriteLine("Capture.Index: " + groupcollection[i].Index);
-                    Console.WriteLine("Capture.Length: " + groupcollection[i].Length);
-                    Console.WriteLine("Capture.Value: " + groupcollection[i].Value);
-                    Console.WriteLine("Capture.Success: " + groupcollection[i].Success);
-
-                    capturecollection = groupcollection[i].Captures;
-                    Console.WriteLine("\tMatch.Captures -> CaptureCollection.Count: " + capturecollection.Count);
-                    for (int _ii_ = 0; _ii_ < capturecollection.Count; ++_ii_)
-                    {
-                        Console.WriteLine("\tCapture.Index: " + capturecollection[_ii_].Index);
-                        Console.WriteLine("\tCapture.Length: " + capturecollection[_ii_].Length);
-                        Console.WriteLine("\tCapture.Value: " + capturecollection[_ii_].Value);
-                    }
-                }
-                Console.WriteLine("Match.Index: " + match.Index);
-                Console.WriteLine("Match.Length: " + match.Length);
-                Console.WriteLine("Match.Value: " + match.Value);
-                Console.WriteLine();
-                match = match.NextMatch();
-            }
+            WriteGroup(match);
 
             tmpString = "<html><div class=\"olol\">блаблабла</div><div class=\"olol\">блаблабла</div></html>";
             r = new Regex("(?<=<div.*?>)(.*?)(?=<\\/div>)", RegexOptions.IgnoreCase);
@@ -1163,6 +874,43 @@ namespace TestRegEx
             tmpString = "<html><div class=\"olol\">блаблабла</div><div class=\"olol\">блаблабла</div></html>";
             r = new Regex("(<div.*?>)(.*?)(?=<\\/div>)", RegexOptions.IgnoreCase);
             tmpString = r.Replace(tmpString, /*"blah-blah-blah"*/ "$1$2<img src=\"http://www.sql.ru/forum/images/smoke.gif\">");
+        }
+
+        static void WriteGroup(Match match)
+        {
+            while (match.Success)
+            {
+                Console.WriteLine("Match.Index: " + match.Index);
+                Console.WriteLine("Match.Length: " + match.Length);
+                Console.WriteLine("Match.Value: " + match.Value);
+
+                Console.WriteLine($"Match.Captures.Count: {match.Captures.Count}");
+                for (int i = 0; i < match.Captures.Count; ++i)
+                {
+                    Console.WriteLine($"Match.Captures[{i}].Index: {match.Captures[i].Index}");
+                    Console.WriteLine($"Match.Captures[{i}].Length: {match.Captures[i].Length}");
+                    Console.WriteLine($"Match.Captures[{i}].Value: {match.Captures[i].Value}");
+                }
+
+                Console.WriteLine($"Match.Groups.Count: {match.Groups.Count}");
+                for (int i = 0; i < match.Groups.Count; ++i)
+                {
+                    Console.WriteLine($"Match.Groups[{i}].Index: {match.Groups[i].Index}");
+                    Console.WriteLine($"Match.Groups[{i}].Length: {match.Groups[i].Length}");
+                    Console.WriteLine($"Match.Groups[{i}].Value: {match.Groups[i].Value}");
+                    Console.WriteLine($"Match.Groups[{i}].Success: {match.Groups[i].Success}");
+
+                    Console.WriteLine($"\tMatch.Groups[{i}].Captures.Count: {match.Groups[i].Captures.Count}");
+                    for (int _ii_ = 0; _ii_ < match.Groups[i].Captures.Count; ++_ii_)
+                    {
+                        Console.WriteLine($"\tMatch.Groups[{i}].Captures[{_ii_}].Index: {match.Groups[i].Captures[_ii_].Index}");
+                        Console.WriteLine($"\tMatch.Groups[{i}].Captures[{_ii_}].Length: {match.Groups[i].Captures[_ii_].Length}");
+                        Console.WriteLine($"\tMatch.Groups[{i}].Captures[{_ii_}].Value: {match.Groups[i].Captures[_ii_].Value}");
+                    }
+                }
+                Console.WriteLine();
+                match = match.NextMatch();
+            }
         }
     }
 }

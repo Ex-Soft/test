@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace ClassLibrary
+namespace ClassLibrary1
 {
     public class Derived : Base
     {

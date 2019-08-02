@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using ClassLibrary;
+using ClassLibrary1;
 
 namespace ConsoleApplication1
 {

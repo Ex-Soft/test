@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static System.Console;
 
 namespace ConsoleApplication1
 {
@@ -6,21 +7,44 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var libraryBase = new ClassLibrary.Base();
+            string msg;
+            var libraryBase = new ClassLibrary1.Base();
 
-            Debug.WriteLine($"GetExecutingAssemblyName(): \"{libraryBase.GetExecutingAssemblyName()}\"");
-            Debug.WriteLine($"GetCallingAssemblyName(): \"{libraryBase.GetCallingAssemblyName()}\"");
-            Debug.WriteLine($"GetEntryAssemblyName(): \"{libraryBase.GetEntryAssemblyName()}\"");
+            WriteLine(msg = $"GetExecutingAssemblyName(): \"{libraryBase.GetExecutingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetCallingAssemblyName(): \"{libraryBase.GetCallingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetEntryAssemblyName(): \"{libraryBase.GetEntryAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine();
 
-            var libraryDerived = new ClassLibrary.Derived();
-            Debug.WriteLine($"GetExecutingAssemblyName(): \"{libraryDerived.GetExecutingAssemblyName()}\"");
-            Debug.WriteLine($"GetCallingAssemblyName(): \"{libraryDerived.GetCallingAssemblyName()}\"");
-            Debug.WriteLine($"GetEntryAssemblyName(): \"{libraryDerived.GetEntryAssemblyName()}\"");
+            WriteLine(msg = $"GetExecutingAssemblyName(): \"{libraryBase.Library2GetExecutingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetCallingAssemblyName(): \"{libraryBase.Library2GetCallingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetEntryAssemblyName(): \"{libraryBase.Library2GetEntryAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine();
+
+            var libraryDerived = new ClassLibrary1.Derived();
+            WriteLine(msg = $"GetExecutingAssemblyName(): \"{libraryDerived.GetExecutingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetCallingAssemblyName(): \"{libraryDerived.GetCallingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetEntryAssemblyName(): \"{libraryDerived.GetEntryAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine();
 
             var derived = new Derived();
-            Debug.WriteLine($"GetExecutingAssemblyName(): \"{derived.GetExecutingAssemblyName()}\"");
-            Debug.WriteLine($"GetCallingAssemblyName(): \"{derived.GetCallingAssemblyName()}\"");
-            Debug.WriteLine($"GetEntryAssemblyName(): \"{derived.GetEntryAssemblyName()}\"");
+            WriteLine(msg = $"GetExecutingAssemblyName(): \"{derived.GetExecutingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetCallingAssemblyName(): \"{derived.GetCallingAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine(msg = $"GetEntryAssemblyName(): \"{derived.GetEntryAssemblyName()}\"");
+            Debug.WriteLine(msg);
+            WriteLine();
+
+            ReadKey();
         }
     }
 }
