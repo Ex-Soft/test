@@ -16,10 +16,13 @@ namespace TestMarkdownDeep
                 var md = new MarkdownDeep.Markdown();
                 md.ExtraMode = true;
 
-                input = "## Welcome to MarkdownDeep";
+                //input = "## Welcome to MarkdownDeep";
+                input = "<a name=\"C1\"></a>Chapter 1";
                 output = md.Transform(input, out var definition);
 
                 WriteLine(output);
+
+                ReadKey();
             }
             catch (Exception eException)
             {
