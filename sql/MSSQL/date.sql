@@ -4,7 +4,30 @@ declare
   @t_datetime2 datetime2,
   @t_smalldatetime smalldatetime,
   @t_datetimeoffset datetimeoffset,
-  @t_datetimeoffset2 datetimeoffset
+  @t_datetimeoffset2 datetimeoffset,
+  @t2_date date,
+  @t3_date date,
+  @t2_datetime datetime,
+  @t3_datetime datetime
+
+set @t_date = '20190101'
+set @t2_date = '20190102'
+--set @t3_date = @t2_date - @t_date -- !!! Operand data type date is invalid for subtract operator !!!
+set @t3_date = cast(@t2_date as datetime) - cast(@t_date as datetime)
+print convert(varchar, @t2_date, 120) + ' - ' + convert(varchar, @t_date, 120) + ' = ' + convert(varchar, @t3_date, 120)
+set @t_date = '20190102'
+set @t2_date = '20190101'
+set @t3_date = cast(@t_date as datetime) - cast(@t2_date as datetime)
+print convert(varchar, @t2_date, 120) + ' - ' + convert(varchar, @t_date, 120) + ' = ' + convert(varchar, @t3_date, 120)
+set @t_date = '20190101'
+set @t2_date = '20190101'
+set @t3_date = cast(@t_date as datetime) - cast(@t2_date as datetime)
+print convert(varchar, @t2_date, 120) + ' - ' + convert(varchar, @t_date, 120) + ' = ' + convert(varchar, @t3_date, 120)
+
+set @t_datetime = getdate()
+set @t2_datetime = getdate()
+set @t3_datetime = @t2_datetime - @t_datetime
+print convert(varchar, @t2_datetime, 120) + ' - ' + convert(varchar, @t_datetime, 120) + ' = ' + convert(varchar, @t3_datetime, 120)
 
 set @t_date=getdate()
 set @t_datetime=getdate()
