@@ -17,7 +17,7 @@ namespace TestRegEx
             if (ReferenceEquals(x, y))
                 return true;
 
-            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+            if (x == null || y == null)
                 return false;
 
             return x.Success && y.Success && x.Value == y.Value /*&& x.Groups.Count == 2 && x.Groups.Count == y.Groups.Count && x.Groups[1].Value == y.Groups[1].Value*/;
