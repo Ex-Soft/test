@@ -72,8 +72,8 @@ namespace TestRegEx
                 }
             #endif
 
-            srcString = "b4 *{resource:TELEPHONENUMBER}* **{resource:ADDRESS}**\r\n*{resource:OPENINGHOURS}* *{resource:TELEPHONENUMBER}* after";
-            r = new Regex("(?:{resource:)(.+?)(?:})");
+            srcString = "b4 *{resource:TELEPHONENUMBER}* **{resource:ADDRESS}**\r\n*{resource:OPENINGHOURS}* *{resource:}* *{resource:TELEPHONENUMBER}* after";
+            r = new Regex("(?:{resource:)([^}]+?)(?:})");
             match = r.Match(srcString);
             if (match.Success)
             {
