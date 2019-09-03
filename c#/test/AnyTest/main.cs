@@ -1090,6 +1090,9 @@ namespace AnyTest
 
 			#if TEST_ENUM
                 var values = Enum.GetValues(typeof(SmthEnum));
+                foreach (SmthEnum value in values)
+                    tmpString = value.ToString();
+
                 var valuesArray = values.Cast<SmthEnum>().ToArray();
 
                 tmpObject = Enum.Parse(typeof(TestEnum), "1", true);
