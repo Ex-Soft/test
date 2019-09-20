@@ -33,3 +33,21 @@ function testArrayByGet(useStr) {
                 console.log(data);
         });
 }
+
+function testArrayByGetIHttpActionResult(useStr) {
+    var values = (useStr ? smthEnumStr : smthEnum).reduce((accumulator, currentValue, currentIndex, array) => {
+        if ((useStr && currentIndex % 2 === 0) || (!useStr && currentIndex % 2 !== 0))
+            return accumulator;
+
+        if (accumulator.length)
+            accumulator += "&";
+
+        return accumulator + `Values=${currentValue}`;
+    }, "");
+
+    $.getJSON(`api/anytest/testarraybygetihttpactionresult?${values}`)
+        .done(function (data) {
+            if (window.console && console.log)
+                console.log(data);
+        });
+}

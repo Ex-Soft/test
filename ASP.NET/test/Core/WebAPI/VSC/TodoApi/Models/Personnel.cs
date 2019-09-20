@@ -1,4 +1,4 @@
-namespace TodoApi
+namespace TodoApi.Models
 {
     public class Personnel
     {
