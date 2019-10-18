@@ -4,11 +4,58 @@ declare	@t1 table (id int, f1 nvarchar(255), f2 nvarchar(255))
 declare	@t2 table (id int, f1 nvarchar(255), f2 nvarchar(255))
 declare @log table (UpdatedId int, OldF1 nvarchar(255), OldF2 nvarchar(255), ActionTaken nvarchar(10), InsertedId int, NewF1 nvarchar(255), NewF2 nvarchar(255))
 
+insert into @t1
+(id, f1, f2)
+select id, f1, f2
+from
+(
+	values
+		(1, N'117', N'117.1'),
+		(2, N'117', N'117.2'),
+		(3, N'118', N'118.Victim.1'),
+		(4, N'118', N'118.Victim.2'),
+		(5, N'119', N'119.1'),
+		(6, N'119', N'119.2')
+) t (id, f1, f2)
+
+insert into @t2
+(id, f1, f2)
+select id, f1, f2
+from
+(
+	values
+		(3, N'118', N'118.1'),
+		(4, N'118', N'118.2')
+) t (id, f1, f2)
+
+;merge into @t1 as tgt
+using
+(
+	select id, f1, f2
+	from @t2
+) as src
+on tgt.f1 = src.f1 and tgt.f2 = src.f2
+when not matched by target
+then
+	insert (id, f1, f2)
+	values (src.id, src.f1, src.f2)
+when not matched by source and tgt.f1 = '118'
+then
+	delete
+output deleted.id, deleted.f1, deleted.f2, $action, inserted.id, inserted.f1, inserted.f2 into @log;
+
+select * from @t1
+select * from @log
+
+------------------------------------------------------------
+
+delete from @t1
 insert into @t1 (id, f1, f2) values (1, N'f1', N'f2')
 insert into @t1 (id, f1, f2) values (2, N'f1 from @t1', N'f2')
 insert into @t1 (id, f1, f2) values (3, N'f1', N'f2 from @t1')
 insert into @t1 (id, f1, f2) values (4, N'f1 from @t1', N'f2 from @t1')
 
+delete from @t2
 insert into @t2 (id, f1, f2) values (1, N'f1', N'f2')
 insert into @t2 (id, f1, f2) values (2, N'f1 from @t2', N'f2')
 insert into @t2 (id, f1, f2) values (3, N'f1', N'f2 from @t2')
