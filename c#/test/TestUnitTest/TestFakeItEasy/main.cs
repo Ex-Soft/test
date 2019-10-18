@@ -22,10 +22,39 @@ namespace TestFakeItEasy
         string IntToStr(int _int);
     }
 
+    public interface IWithOptionalParameters
+    {
+        string Get1(string key, string defaultValue = null, int? nullableInt = null);
+        string Get2(string key, string defaultValue = null, int? nullableInt = null);
+        string Get3(string key, string defaultValue = null, int? nullableInt = null);
+        string Get4(string key, string defaultValue = null, int? nullableInt = null);
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
+            string resultStr;
+
+            var withOptionalParameters = A.Fake<IWithOptionalParameters>();
+            A.CallTo(() => withOptionalParameters.Get1("key", null, null)).Returns("key, null, null");
+            A.CallTo(() => withOptionalParameters.Get2("key", A<string>.Ignored, A<int?>.Ignored)).Returns("key, A<string>.Ignored, A<int?>.Ignored");
+            A.CallTo(() => withOptionalParameters.Get3("key3", null, null)).ReturnsLazily((string key, string defaultValue, int? nullableInt) => $"{key}, {(defaultValue != null ? $"\"{defaultValue}\"" : "null")}, {(nullableInt.HasValue ? $"{nullableInt.Value}" : "null")}");
+            A.CallTo(() => withOptionalParameters.Get4("key4", A<string>.Ignored, A<int?>.Ignored)).ReturnsLazily((string key, string defaultValue, int? nullableInt) => $"{key}, {(defaultValue != null ? $"\"{defaultValue}\"" : "null")}, {(nullableInt.HasValue ? $"{nullableInt.Value}" : "null")}");
+
+            resultStr = withOptionalParameters.Get1("key"); // "key, null, null"
+            resultStr = withOptionalParameters.Get1("key", null); // "key, null, null"
+            resultStr = withOptionalParameters.Get1("key", null, null); // "key, null, null"
+            resultStr = withOptionalParameters.Get2("key"); // "key, A<string>.Ignored, A<int?>.Ignored"
+            resultStr = withOptionalParameters.Get2("key", null); // "key, A<string>.Ignored, A<int?>.Ignored"
+            resultStr = withOptionalParameters.Get2("key", null, null); // "key, A<string>.Ignored, A<int?>.Ignored"
+            resultStr = withOptionalParameters.Get3("key3"); // "key3, null, null"
+            resultStr = withOptionalParameters.Get3("key3", null); // "key3, null, null"
+            resultStr = withOptionalParameters.Get3("key3", null, null); // "key3, null, null"
+            resultStr = withOptionalParameters.Get4("key4"); // "key4, null, null"
+            resultStr = withOptionalParameters.Get4("key4", null); // "key4, null, null"
+            resultStr = withOptionalParameters.Get4("key4", null, null); // "key4, null, null"
+
             var math = A.Fake<IMath>();
             //A.CallTo(() => math.Add(5, 5)).MustHaveHappened();
             A.CallTo(() => math.Add(1, 2)).Returns(3);
@@ -42,8 +71,6 @@ namespace TestFakeItEasy
             A.CallTo(() => convert.IntToStr(1)).Returns("1st");
             A.CallTo(() => convert.IntToStr(2)).Returns("2nd");
             A.CallTo(() => convert.IntToStr(3)).Returns("3rd");
-
-            string resultStr;
 
             resultStr = convert.IntToStr(1); // "1st"
             resultStr = convert.IntToStr(2); // "2nd"
