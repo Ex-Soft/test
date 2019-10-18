@@ -128,7 +128,7 @@ namespace TestRegEx
 
             foreach (Match _match_ in _matches_)
             {
-                if (match.Groups.Count != 2)
+                if (_match_.Groups.Count != 2)
                     continue;
 
                 srcString = Regex.Replace(srcString, _match_.Groups[0].Value, _match_.Groups[1].Value);
