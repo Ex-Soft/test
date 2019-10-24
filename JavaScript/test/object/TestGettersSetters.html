@@ -49,6 +49,38 @@ function OnLoad()
 			}
 		};
 
+	Object.defineProperty(document, "_title", {
+		configurable: true,
+		//enumerable: true,
+		enumerable: false,
+		value: document.title,
+		writable: true
+	});
+
+	Object.defineProperty(document, "title", {
+		enumerable: true,
+		get: function() {
+			if(window.console && console.log)
+				console.log("get()");
+
+			return this._title
+		},
+		set: function(value) {
+			if(window.console && console.log)
+				console.log("set(\"%s\")", value);
+
+			this._title = value;
+		}
+	});
+
+	if(window.console && console.log)
+		console.log("document.title = \"%s\"", document.title);
+
+	document.title = "blah-blah-blah";
+
+	if(window.console && console.log)
+		console.log("document.title = \"%s\"", document.title);
+
 	v=o.property;
 
 	if(window.console && console.log)
