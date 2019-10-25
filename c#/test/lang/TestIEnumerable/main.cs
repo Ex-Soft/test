@@ -268,6 +268,20 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfString = new List<string>
+            {
+                "1st",
+                "2nd",
+                "3rd"
+            };
+
+            var tmpString = "/3rd";
+            var tmpBool = listOfString.Any(item => tmpString.StartsWith($"/{item}"));
+            tmpBool = listOfString.All(item => !tmpString.StartsWith($"/{item}"));
+            tmpString = "/4th";
+            tmpBool = listOfString.Any(item => tmpString.StartsWith($"/{item}"));
+            tmpBool = listOfString.All(item => !tmpString.StartsWith($"/{item}"));
+
             var listOfClassWithNullable = new List<ClassWithNullable>
             {
                 new ClassWithNullable {Id = 1},
@@ -332,8 +346,7 @@ namespace TestIEnumerable
                 listOfIntII = new List<int> { 2, 3 },
                 listOfIntIII;
 
-            string
-                tmpString = listOfInt.Aggregate("", (str, next) => $"{str} , {next.ToString()}");
+            tmpString = listOfInt.Aggregate("", (str, next) => $"{str} , {next.ToString()}");
 
             listOfIntIII = (from i in listOfInt
                             where
@@ -371,7 +384,7 @@ namespace TestIEnumerable
 				Debug.WriteLine(a);
 
             List<bool> listOfBool = new List<bool> { true, true, true };
-            bool tmpBool = listOfBool.Aggregate(true, (val, next) => { return val && next; });
+            tmpBool = listOfBool.Aggregate(true, (val, next) => { return val && next; });
             listOfBool = new List<bool> { true, false, true };
             tmpBool = listOfBool.Aggregate(true, (val, next) => { return val && next; });
 
@@ -545,9 +558,7 @@ namespace TestIEnumerable
 
             tmpInts = new [] { 1, 3, 5, 3 };
 
-            List<string>
-                listOfString = tmpInts.OfType<string>().ToList(); // listOfString.Count == 0
-
+            listOfString = tmpInts.OfType<string>().ToList(); // listOfString.Count == 0
             listOfString = tmpInts.Select(item => item.ToString(CultureInfo.InvariantCulture)).ToList();
 
             var groups = tmpInts.GroupBy(x => x).Where(g => g.Count() > 1);

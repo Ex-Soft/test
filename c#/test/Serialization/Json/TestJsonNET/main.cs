@@ -1,5 +1,5 @@
-﻿#define TEST_CLASS_WITH_OBJECT_PROPERTY
-//#define TEST_DATE
+﻿//#define TEST_CLASS_WITH_OBJECT_PROPERTY
+#define TEST_DATE
 //#define TEST_POST
 
 using System;
@@ -24,11 +24,11 @@ namespace TestJsonNET
                 tmpInt;
 
             DateTime
-                dateTime1,
+                dateTime1 = default,
                 dateTime2;
 
             DateTimeOffset
-                dateTimeOffset1,
+                dateTimeOffset1 = default,
                 dateTimeOffset2;
 
             JArray
@@ -81,9 +81,8 @@ namespace TestJsonNET
                     tmpString = "{\"FDateTimeOffset\":\"\\/Date(1508321380535+0300)\\/\"}";
                     //tmpString = "{\"FDateTimeOffset\":\"\\/Date(1508325572835+0300)\\/\"}";
 
-                    Newtonsoft.Json.Linq.JObject jObject = JsonConvert.DeserializeObject(tmpString) as Newtonsoft.Json.Linq.JObject;
-                    Newtonsoft.Json.Linq.JToken jToken;
-                
+                    jObject = JsonConvert.DeserializeObject(tmpString) as Newtonsoft.Json.Linq.JObject;
+                    
                     if(jObject != null && jObject.TryGetValue("FDateTimeOffset", out jToken))
                     {
                         dateTime1 = (DateTime)jToken;
