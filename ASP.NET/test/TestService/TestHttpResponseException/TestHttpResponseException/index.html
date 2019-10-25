@@ -1,0 +1,19 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test HttpResponseException</title>
+    <script charset="utf-8" src="scripts/jquery-3.4.1.js"></script>
+    <script>
+function doIt(url) {
+    $.get({
+        url:url
+    });
+}
+    </script>
+</head>
+<body>
+    <input type="button" value="DoIt1" onclick="doIt('api/test/route1');" />
+    <input type="button" value="DoIt2" onclick="doIt('api/test/route2');" />
+</body>
+</html>
