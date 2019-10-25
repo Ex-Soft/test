@@ -8,7 +8,7 @@ function DoIt()
 {
 	var request = new XMLHttpRequest();
 	var params = "action=something";
-	request.open("POST", "http://localhost:1209/data.aspx", true);
+	request.open("POST", "http://localhost:1209/data.aspx", true); // ASP.NET\test\jQuery\TestJQueryAJAX
 
 	request.onreadystatechange = function() {
 		if (request.readyState === 4)
