@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9141DE7E-81A4-4119-A0D9-F9562A39B828}</ProjectGuid>
+    <ProjectGuid>{B0A1E4AB-1905-4F3A-8C0D-06C515935635}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnyTest</RootNamespace>
-    <AssemblyName>AnyTest</AssemblyName>
+    <RootNamespace>AnyTest2</RootNamespace>
+    <AssemblyName>AnyTest2</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,6 +84,7 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\anytest.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,11 +93,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetSmthEnumResponse.cs" />
-    <Compile Include="Models\GetSmthEnumStrResponse.cs" />
+    <Compile Include="Models\GetTestArrayByIHttpActionResultResponse.cs" />
     <Compile Include="Models\SmthClass.cs" />
-    <Compile Include="Models\SmthEnum.cs" />
-    <Compile Include="Models\TestArrayByGetRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +120,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54722</DevelopmentServerPort>
+          <DevelopmentServerPort>65437</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54722/</IISUrl>
+          <IISUrl>http://localhost:65437/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

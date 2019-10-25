@@ -14,6 +14,12 @@ namespace TestConfig
     {
         static void Main(string[] args)
         {
+            string tmpString;
+
+            tmpString = ConfigurationManager.AppSettings["AppSettings1"]; // "AppSettings1Value"
+            tmpString = ConfigurationManager.AppSettings["AppSettings2"]; // "AppSettings2Value"
+            tmpString = ConfigurationManager.AppSettings["AppSettings3"]; // null
+
             FileExtension fileExtensionsSection;
             if ((fileExtensionsSection = ConfigurationManager.GetSection(FileExtension.SectionName) as FileExtension) != null)
             {

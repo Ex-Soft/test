@@ -1,4 +1,5 @@
-﻿// http://www.c-sharpcorner.com/article/c-sharp-7-2-new-features-with-visual-studio-2017/
+﻿// https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7-2
+// http://www.c-sharpcorner.com/article/c-sharp-7-2-new-features-with-visual-studio-2017/
 
 using System;
 

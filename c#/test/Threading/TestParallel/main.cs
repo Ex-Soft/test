@@ -11,6 +11,13 @@ namespace TestParallel
 {
     class Program
     {
+        private const int
+            OuterMinRange = 0,
+            OuterMaxRange = 10,
+            InnerMinRange = 0,
+            InnerMaxRange = 10,
+            msec = 100;
+
         static void Main(string[] args)
         {
             TestDictionary();
@@ -44,10 +51,10 @@ namespace TestParallel
 
             try
             {
-                Parallel.ForEach(Enumerable.Range(0, 10), item =>
+                Parallel.ForEach(Enumerable.Range(OuterMinRange, OuterMaxRange), item =>
                 {
-                    //dictionary[item] = GetValue(item, Enumerable.Range(1, 124));
-                    dictionary.Add(item, GetValue(item, Enumerable.Range(1, 124)));
+                    //dictionary[item] = GetValue(item, Enumerable.Range(InnerMinRange, InnerMaxRange));
+                    dictionary.Add(item, GetValue(item, Enumerable.Range(InnerMinRange, InnerMaxRange)));
                 });
             }
             catch (AggregateException e)
@@ -66,9 +73,9 @@ namespace TestParallel
 
             try
             {
-                Parallel.ForEach(Enumerable.Range(0, 10), item =>
+                Parallel.ForEach(Enumerable.Range(OuterMinRange, OuterMaxRange), item =>
                 {
-                    dictionary.TryAdd(item, GetValue(item, Enumerable.Range(1, 124)));
+                    dictionary.TryAdd(item, GetValue(item, Enumerable.Range(InnerMinRange, InnerMaxRange)));
                 });
             }
             catch (AggregateException e)
@@ -83,25 +90,31 @@ namespace TestParallel
         
         private static IEnumerable<string> GetValue(int item, IEnumerable<int> items)
         {
-            Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}({item}) ManagedThreadId:{Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}({item}) ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}");
 
             return items
                 .AsParallel()
-                .Select(i => GetItemValue(i))
-                .Where(i => !string.IsNullOrEmpty(i))
+                .Select(i => SelectItemValue(i))
+                .Where(i => WhereItemValue(i))
                 .Distinct()
                 .ToArray();
         }
 
-        private static string GetItemValue(int item)
+        private static string SelectItemValue(int item)
         {
-            Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}({item}) ManagedThreadId:{Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}({item}) ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}");
 
             var rnd = new Random(Thread.CurrentThread.ManagedThreadId);
 
-            Thread.Sleep(100 * rnd.Next(10));
+            Thread.Sleep(msec * rnd.Next(10));
 
-            return $"{MethodBase.GetCurrentMethod().Name}() ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}";
+            return $"{MethodBase.GetCurrentMethod().Name}({item}) ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}";
+        }
+
+        private static bool WhereItemValue(string item)
+        {
+            Debug.WriteLine($"{MethodBase.GetCurrentMethod().Name}({item}) ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}");
+            return !string.IsNullOrEmpty(item);
         }
     }
 }

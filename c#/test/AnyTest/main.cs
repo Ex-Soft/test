@@ -1,4 +1,5 @@
-﻿//#define TEST_EQUALS
+﻿#define TEST_URI
+//#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
@@ -26,7 +27,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-#define TEST_ENUM
+//#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -53,13 +54,14 @@ using System.IO;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Security.Permissions;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-
+using System.Web;
 using static System.Console;
 
 namespace AnyTest
@@ -312,6 +314,27 @@ namespace AnyTest
 
 			if (currentDirectory.IndexOf("bin", StringComparison.Ordinal) != -1)
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
+
+            #if TEST_URI
+                tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1";
+                var uri = new Uri(tmpString, UriKind.Absolute);
+                tmpStringII = uri.AbsolutePath; // "/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html"
+                tmpStringIII = uri.AbsoluteUri; // "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1"
+
+                var nameValueCollection = new NameValueCollection {["fid"] = "154", ["tm"] = "1"};
+                tmpStringII = nameValueCollection.Count > 0 ? $"?{nameValueCollection}" : string.Empty; // "?System.Collections.Specialized.NameValueCollection"
+
+                var queryString = HttpUtility.ParseQueryString(uri.Query);
+                tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+                tmpString = "?fid=154&tm=1";
+                queryString = HttpUtility.ParseQueryString(tmpString);
+                tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+                tmpString = "fid=154&tm=1";
+                queryString = HttpUtility.ParseQueryString(tmpString);
+                tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+                queryString = new NameValueCollection();
+                tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+            #endif
 
             #if TEST_EQUALS
                 tmpInt = 1;

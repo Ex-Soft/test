@@ -28,5 +28,16 @@ namespace AnyTest.Controllers
         {
             return new GetSmthEnumStrResponse { SmthEnumStr = request.Values.Select(item => item.ToString()).ToArray() };
         }
+
+        [HttpGet]
+        [Route("testarraybygetihttpactionresult")]
+        public IHttpActionResult TestArrayByGetIHttpActionResult([FromUri] TestArrayByGetRequest request)
+        {
+            return Ok(new SmthClass[] {
+                new SmthClass { PString = "PString# 1", PArrayOfString = new string[] { "PString# 1.1", "PString# 1.2", "PString# 1.3" } },
+                new SmthClass { PString = "PString# 2", PArrayOfString = new string[] { "PString# 2.1", "PString# 2.2", "PString# 2.3" } },
+                new SmthClass { PString = "PString# 3", PArrayOfString = new string[] { "PString# 3.1", "PString# 3.2", "PString# 3.3" } }
+            });
+        }
     }
 }

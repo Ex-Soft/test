@@ -72,6 +72,48 @@ namespace TestRegEx
                 }
             #endif
 
+            r = new Regex("(?<=(^|/))([a-zA-Z]{2}_[a-zA-Z]{2})(.*)");
+            srcString = "se_sv/blah-blah-blah/blah-blah-blah";
+            match = r.Match(srcString);
+            srcString = "blah-blah-blah/se_sv/blah-blah-blah/blah-blah-blah";
+            match = r.Match(srcString);
+
+            r = new Regex("([a-zA-Z]{2}_[a-zA-Z]{2})(.*)");
+            srcString = "se_sv/blah-blah-blah/blah-blah-blah";
+            match = r.Match(srcString);
+            srcString = "blah-blah-blah/se_sv/blah-blah-blah/blah-blah-blah";
+            match = r.Match(srcString);
+
+            r = new Regex("(?<=(^|/))[a-zA-Z]{2}_[a-zA-Z]{2}(?=($|/))");
+            srcString = "blah/se_sv/blah";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "se_sv/blah";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+            srcString = "blah/se_sv";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, string.Empty);
+
+            r = new Regex("(\\?)(.*)(tm=)(.*)");
+            srcString = "html?fid=10&tm=20&id=30";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "$1${3}1");
+            srcString = "html?tm=40&id=50";
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = r.Replace(srcString, "$1${3}2");
+            srcString = "html?fid=60&tm=70";
+            tmpString = r.Replace(srcString, "$1${3}3");
+            srcString = "html?fid=10&id=30";
+            match = r.Match(srcString);
+            if (!match.Success)
+                tmpString = Regex.Replace(srcString, "\\?.*", string.Empty);
+
             srcString = "b4 *{resource:TELEPHONENUMBER}* **{resource:ADDRESS}**\r\n*{resource:OPENINGHOURS}* *{resource:}* *{resource:TELEPHONENUMBER}* after";
             r = new Regex("(?:{resource:)([^}]+?)(?:})");
             match = r.Match(srcString);
@@ -86,20 +128,10 @@ namespace TestRegEx
 
             foreach (Match _match_ in _matches_)
             {
-                if (match.Groups.Count != 2)
+                if (_match_.Groups.Count != 2)
                     continue;
 
                 srcString = Regex.Replace(srcString, _match_.Groups[0].Value, _match_.Groups[1].Value);
-            }
-
-            srcString = "b4 *{resource:TELEPHONENUMBER}* **{resource:ADDRESS}**\r\n*{resource:OPENINGHOURS}* *{resource:TELEPHONENUMBER}* after";
-            match = r.Match(srcString);
-            while (match.Success)
-            {
-                if (match.Groups.Count == 2 && match.Groups[1].Success)
-                    srcString = Regex.Replace(srcString, r.ToString(), "-$&-");
-
-                match = match.NextMatch();
             }
 
             srcString = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";

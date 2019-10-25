@@ -264,16 +264,38 @@ namespace TestIEnumerable
         public long? fLong { get; set; }
     }
 
+    class ClassWithIList
+    {
+        public string fString { get; set; }
+        public IList<string> fIListOfString { get; set; }
+    }
+
     class Program
     {
         static void Main()
         {
-            var listOfString = new List<string>
+            IList<string> iListOfString = new List<string> { "1st", "2nd", "3rd" };
+            IEnumerable<string> iEnumerableOfString = iListOfString.AsEnumerable();
+
+            Dictionary<string, IList<string>> dictionaryOfIList = new Dictionary<string, IList<string>>
             {
-                "1st",
-                "2nd",
-                "3rd"
+                { "1st", new List<string> { "1st", "2nd", "3rd" }},
+                { "2nd", new List<string> { "1st", "2nd", "3rd" }},
+                { "3rd", new List<string> { "1st", "2nd", "3rd" }}
             };
+
+            Dictionary<string, IEnumerable<string>>
+                dictionaryOfIEnumerable1 = dictionaryOfIList
+                    .Select(item => new { item.Key, Value = item.Value.Cast<string>() })
+                    .ToDictionary(item => item.Key, item => item.Value),
+                dictionaryOfIEnumerable2 = dictionaryOfIList
+                    .Select(item => new { item.Key, Value = item.Value.OfType<string>() })
+                    .ToDictionary(item => item.Key, item => item.Value),
+                dictionaryOfIEnumerable3 = dictionaryOfIList
+                    .Select(item => new { item.Key, Value = item.Value.AsEnumerable() })
+                    .ToDictionary(item => item.Key, item => item.Value);
+
+            var listOfString = new List<string> { "1st", "2nd", "3rd" };
 
             var tmpString = "/3rd";
             var tmpBool = listOfString.Any(item => tmpString.StartsWith($"/{item}"));

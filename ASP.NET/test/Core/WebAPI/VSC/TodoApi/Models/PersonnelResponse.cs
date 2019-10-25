@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TodoApi
+namespace TodoApi.Models
 {
     public class PersonnelResponse
     {
