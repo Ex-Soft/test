@@ -3,6 +3,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Test &lt;a ... &gt;</title>
+		<style>
+a[name] + h2 + div, h2[id] + div {
+	height: 300px;
+	border: 2px solid black;
+}
+		</style>
 	</head>
 	<body>
 		<a href="http://google.com/">
@@ -16,5 +22,21 @@
 			</div>
 			<span>Description</span>
 		</a>
+		<hr/>
+		<ol>
+			<li><a href="#C1">Chapter 1</a></li>
+			<li><a href="#C2">Chapter 2</a></li>
+			<li><a href="#C3">Chapter 3</a></li>
+			<li><a href="#C4">Chapter 4</a></li>
+		</ol>
+		<hr/>
+		<h2 id="C1">Chapter #1</h2>
+		<div>Chapter #1</div>
+		<h2 id="C2">Chapter #2</h2>
+		<div>Chapter #2</div>
+		<h2 id="C3">Chapter #3</h2>
+		<div>Chapter #3</div>
+		<a name="C4"></a><h2>Chapter #4</h2>
+		<div>Chapter #4</div>
 	</body>
 </html>
