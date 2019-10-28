@@ -1,0 +1,21 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test testAccidentalGlobalVariables</title>
+		<script>
+function foo(){
+	let a = b = 0; // equ let a; window.b = 0; a = window.b;
+	++a;
+}
+
+function onLoad(){
+	foo();
+	if(window.console && console.log)
+		console.log("typeof a = \"%s\" typeof b = \"%s\"", typeof a, typeof b);
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
