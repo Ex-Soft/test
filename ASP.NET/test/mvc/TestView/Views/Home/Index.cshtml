@@ -3,6 +3,11 @@
 @{
     Layout = null;
 }
+
+@{
+    var handlingController = this.ViewContext.RouteData.Values["controller"].ToString();
+    var requestedController = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +16,9 @@
         <title>Test View</title>
     </head>
     <body>
+        handlingController = @Html.Raw(handlingController)<br/>
+        requestedController = @Html.Raw(requestedController)
+        <hr/>
         @using (Html.BeginForm())
         {
             <p>StringFieldI: @Html.TextBoxFor(x => x.StringFieldI)</p>
