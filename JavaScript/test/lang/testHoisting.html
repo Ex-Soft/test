@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<!-- https://dmitripavlutin.com/javascript-hoisting-in-details/ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test hoisting</title>
+		<script>
+function HoistingAndVar(){
+    if(window.console && console.log)
+        console.log("a = \"%s\" b = \"%s\"", a, b);
+
+    var
+        a,
+        b = "SmthValue";
+
+    if(window.console && console.log)
+        console.log("a = \"%s\" b = \"%s\"", a, b);
+}
+
+function HoistingAndLet(){
+    //if(window.console && console.log)
+    //    console.log("a = \"%s\" b = \"%s\"", a, b); // ReferenceError: can't access lexical declaration `a' before initialization
+
+    let
+        a,
+        b = "SmthValue";
+
+    if(window.console && console.log)
+        console.log("a = \"%s\" b = \"%s\"", a, b);
+}
+
+function HoistingAndConst(){
+    //if(window.console && console.log)
+    //    console.log("a = \"%s\" b = \"%s\"", a, b); // ReferenceError: can't access lexical declaration `a' before initialization
+
+    const
+        a = "SmthValue",
+        b = "SmthValue";
+
+    if(window.console && console.log)
+        console.log("a = \"%s\" b = \"%s\"", a, b);
+}
+
+function onLoad(){
+    HoistingAndVar();
+    HoistingAndLet();
+    HoistingAndConst();
+    HoistingAndFunction();
+}
+
+function HoistingAndFunction(){
+    if(window.console && console.log)
+        console.log("%s()", arguments.callee.name);
+}
+
+// HoistingAndFunctionExpression(); // TypeError: HoistingAndFunctionExpression is not a function
+
+var HoistingAndFunctionExpression = function() {
+    if(window.console && console.log)
+        console.log("%s()", arguments.callee.name);
+}
+
+// var apple = new Company('Apple'); // ReferenceError: can't access lexical declaration `Company' before initialization
+
+class Company {
+  constructor(name) {
+    this.name = name;    
+  }
+}
+
+var microsoft = new Company('Microsoft');
+
+if(window.console && console.log)
+    console.log(typeof Square);   // => 'undefined'
+
+// var mySquare = new Square(10); // TypeError: Square is not a constructor
+
+var Square = class {
+  constructor(sideLength) {
+    this.sideLength = sideLength;    
+  }
+  getArea() {
+    return Math.pow(this.sideLength, 2);
+  }
+};
+
+var otherSquare = new Square(5);
+	</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
