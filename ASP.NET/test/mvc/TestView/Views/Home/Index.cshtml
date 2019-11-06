@@ -1,4 +1,5 @@
-﻿@model TestView.Models.ViewResponse
+﻿@using System.Web.UI.HtmlControls
+@model TestView.Models.ViewResponse
 
 @{
     Layout = null;
@@ -16,13 +17,16 @@
         <title>Test View</title>
     </head>
     <body>
-        handlingController = @Html.Raw(handlingController)<br/>
+        handlingController = @Html.Raw(handlingController)<br />
         requestedController = @Html.Raw(requestedController)
-        <hr/>
+        <hr />
         @using (Html.BeginForm())
         {
             <p>StringFieldI: @Html.TextBoxFor(x => x.StringFieldI)</p>
             <input type="submit" value="Submit" />
         }
+        <hr />
+        @Html.ActionLink("Test1", "Index", "Test1")
+        @Html.ActionLink("Test2", "Index", "Test2")
     </body>
 </html>

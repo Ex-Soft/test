@@ -1,0 +1,21 @@
+﻿@model TestView.Models.Test1Model
+
+@{
+    ViewBag.Title = "Test1";
+}
+
+@{
+    var handlingController = this.ViewContext.RouteData.Values["controller"].ToString();
+    var requestedController = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+<h1>Test1</h1>
+<h2>Index</h2>
+
+handlingController = @Html.Raw(handlingController)<br/>
+requestedController = @Html.Raw(requestedController)
+<hr/>
+&#64;Model.PString = @Html.Raw(@Model.PString)
+<hr/>
+@Html.ActionLink("Home", "Index", "Home")
+@Html.ActionLink("Test2", "Index", "Test2")
