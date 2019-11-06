@@ -25,18 +25,6 @@ namespace TestTree
                     yield return node2;
         }
 
-        public IEnumerable<TreeNode> AsDepthFirstChildrenOnly()
-        {
-            if (_children == null || _children.Count == 0)
-                yield break;
-
-            yield return _children[0];
-
-            for (var i = 1; i < _children.Count; ++i)
-                foreach (var node2 in _children[i].AsDepthFirst())
-                    yield return node2;
-        }
-
         public IEnumerable<TreeNode> AsBreadthFirst()
         {
             var q = new Queue<TreeNode>();
@@ -80,11 +68,6 @@ namespace TestTree
                 tmpNode.Children.AddRange(new[] { new TreeNode { Name = "1.1.1.1.1" }, new TreeNode { Name = "1.1.1.1.2" }, new TreeNode { Name = "1.1.1.1.3" } });
 
             foreach (var node in root.AsDepthFirst())
-                Console.WriteLine(node.Name);
-
-            Console.WriteLine();
-
-            foreach (var node in root.AsDepthFirstChildrenOnly())
                 Console.WriteLine(node.Name);
 
             Console.WriteLine();
