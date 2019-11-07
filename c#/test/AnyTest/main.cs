@@ -1,4 +1,4 @@
-﻿#define TEST_URI
+﻿//#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -27,7 +27,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
+#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -1120,6 +1120,17 @@ namespace AnyTest
 
                 tmpObject = Enum.Parse(typeof(TestEnum), "1", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "Second", true);
+                tmpObject = Enum.Parse(typeof(TestEnum), "tEn", true);
+
+                try
+                {
+                    tmpObject = Enum.Parse(typeof(TestEnum), "fOuRtH", false); // System.ArgumentException: "Requested value 'fOuRtH' was not found."
+                }
+                catch (ArgumentException e)
+                {
+                    WriteLine($"{e.GetType()}: \"{e.Message}\"");
+                }
+
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
 
                 TestEnum testEnum;
