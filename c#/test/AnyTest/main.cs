@@ -27,7 +27,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-#define TEST_ENUM
+//#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -41,7 +41,7 @@
 //#define TEST_FOR
 //#define TEST_REF
 //#define TEST_PATH
-//#define TEST_FORMAT
+#define TEST_FORMAT
 
 using System;
 using System.Globalization;
@@ -1394,17 +1394,21 @@ namespace AnyTest
                     tmpIntNullableI = null,
                     tmpIntNullableII = null;
 
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(null) {0}= int?(null)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // true ==
 
                 tmpIntNullableI = 1;
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(1) {0}= int?(null)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // false !=
 
                 tmpIntNullableI = null;
                 tmpIntNullableII = 1;
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(null) {0}= int?(1)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // false !=
 
                 tmpIntNullableI = 1;
                 tmpIntNullableII = 1;
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(1) {0}= int?(1)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // true ==
 
                 tmpObject = null;
@@ -1655,6 +1659,10 @@ namespace AnyTest
 			#endif
 
 			#if TEST_FORMAT
+                tmpStringII = null;
+                tmpStringIII = null;
+                tmpString = $"\"{tmpStringII}\"_\"{tmpStringIII}\"";
+
                 objects = new[] { (object)1, 2, 3 };
                 tmpString = string.Format("{0} {1} {2}", objects);
                 var listOfObject = new List<object> { 11, 22, 33 };
