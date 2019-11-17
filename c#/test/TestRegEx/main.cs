@@ -72,6 +72,12 @@ namespace TestRegEx
                 }
             #endif
 
+            r = new Regex("\"[a-zA-Z]{2}\":null,?");
+            srcString = "{\"en\":null,\"de\":\"str\",\"da\":null,\"sv\":\"str\",\"ua\":null}";
+            tmpString = r.Replace(srcString, string.Empty);
+            r = new Regex(",(?=})");
+            tmpStringII = r.Replace(tmpString, string.Empty);
+
             r = new Regex("(?<=(^|/))([a-zA-Z]{2}_[a-zA-Z]{2})(.*)");
             srcString = "se_sv/blah-blah-blah/blah-blah-blah";
             match = r.Match(srcString);
