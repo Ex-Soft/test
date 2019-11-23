@@ -1,0 +1,35 @@
+﻿@model TestView.Models.Test2Model
+
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "Test2";
+}
+
+@{
+    var handlingController = this.ViewContext.RouteData.Values["controller"].ToString();
+    var requestedController = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Test2</title>
+</head>
+<body>
+    <h1>Test2</h1>
+    <h2>Index</h2>
+
+    handlingController = @Html.Raw(handlingController)<br />
+    requestedController = @Html.Raw(requestedController)
+    <hr />
+    &#64;Model.PString = @Html.Raw(@Model.PString)
+    <hr/>
+    @Html.ActionLink("Home", "Index", "Home")
+    @Html.ActionLink("Test1", "Index", "Test1")
+</body>
+</html>

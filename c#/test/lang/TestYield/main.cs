@@ -1,11 +1,12 @@
 ﻿// http://csharpindepth.com/Articles/Chapter6/IteratorBlockImplementation.aspx
 // http://csharpindepth.com/Articles/Chapter11/StreamingAndIterators.aspx
 // http://www.dotnetperls.com/yield
-#define SHOW_TRACE
-#define TEST_SIMPLE
+//#define SHOW_TRACE
+//#define TEST_SIMPLE
 //#define TEST_SIMPLE_SIMPLE
 //#define TEST_I //http://www.programminginterviews.info/2012/05/explain-c-yield-keyword-with-example.html
-//#define TEST_II //http://blogs.microsoft.co.il/arnona/2010/12/21/traversing-binary-tree-using-an-iterator/
+#define TEST_II //http://blogs.microsoft.co.il/arnona/2010/12/21/traversing-binary-tree-using-an-iterator/
+#define TEST_III
 
 using System;
 using System.Collections;
@@ -60,9 +61,16 @@ namespace TestYield
             #endif
 
             #if TEST_II
-                foreach (string element in Enumerate()) 
+                foreach (string element in Enumerate2()) 
                 { 
                     Console.WriteLine("element = '{0}'", element); 
+                } 
+            #endif
+
+            #if TEST_III
+                foreach (var element in Enumerate3()) 
+                { 
+                    Console.WriteLine("element = {0}", element); 
                 } 
             #endif
         }
@@ -149,7 +157,7 @@ namespace TestYield
         #endif
 
         #if TEST_II
-            static IEnumerable<string> Enumerate()
+            static IEnumerable<string> Enumerate2()
             {
                 Console.WriteLine("yield return \"this\"");
                 yield return "This";
@@ -165,5 +173,25 @@ namespace TestYield
                 yield return "iterator.";
             }
         #endif
+
+        #if TEST_III
+            static IEnumerable<int> Enumerate3()
+            {
+                for (var i = 0; i < 10; ++i)
+                {
+                    switch (i)
+                    {
+                        case 3:
+                            continue;
+                        case 8:
+                            yield break;
+                        default:
+                            yield return i;
+                            break;
+                    }
+                }
+            }
+        #endif
+
     }
 }

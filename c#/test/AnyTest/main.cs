@@ -1,4 +1,4 @@
-﻿#define TEST_URI
+﻿//#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -41,7 +41,7 @@
 //#define TEST_FOR
 //#define TEST_REF
 //#define TEST_PATH
-//#define TEST_FORMAT
+#define TEST_FORMAT
 
 using System;
 using System.Globalization;
@@ -1120,6 +1120,17 @@ namespace AnyTest
 
                 tmpObject = Enum.Parse(typeof(TestEnum), "1", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "Second", true);
+                tmpObject = Enum.Parse(typeof(TestEnum), "tEn", true);
+
+                try
+                {
+                    tmpObject = Enum.Parse(typeof(TestEnum), "fOuRtH", false); // System.ArgumentException: "Requested value 'fOuRtH' was not found."
+                }
+                catch (ArgumentException e)
+                {
+                    WriteLine($"{e.GetType()}: \"{e.Message}\"");
+                }
+
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
 
                 TestEnum testEnum;
@@ -1383,17 +1394,21 @@ namespace AnyTest
                     tmpIntNullableI = null,
                     tmpIntNullableII = null;
 
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(null) {0}= int?(null)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // true ==
 
                 tmpIntNullableI = 1;
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(1) {0}= int?(null)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // false !=
 
                 tmpIntNullableI = null;
                 tmpIntNullableII = 1;
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(null) {0}= int?(1)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // false !=
 
                 tmpIntNullableI = 1;
                 tmpIntNullableII = 1;
+                tmpString = $"{tmpIntNullableI} {tmpIntNullableII}";
                 Console.WriteLine("int?(1) {0}= int?(1)", tmpIntNullableI == tmpIntNullableII ? "=" : "!"); // true ==
 
                 tmpObject = null;
@@ -1644,6 +1659,10 @@ namespace AnyTest
 			#endif
 
 			#if TEST_FORMAT
+                tmpStringII = null;
+                tmpStringIII = null;
+                tmpString = $"\"{tmpStringII}\"_\"{tmpStringIII}\"";
+
                 objects = new[] { (object)1, 2, 3 };
                 tmpString = string.Format("{0} {1} {2}", objects);
                 var listOfObject = new List<object> { 11, 22, 33 };

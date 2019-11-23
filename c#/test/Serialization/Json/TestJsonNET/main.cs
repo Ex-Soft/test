@@ -1,5 +1,6 @@
-﻿//#define TEST_CLASS_WITH_OBJECT_PROPERTY
-#define TEST_DATE
+﻿#define TEST_MIX
+//#define TEST_CLASS_WITH_OBJECT_PROPERTY
+//#define TEST_DATE
 //#define TEST_POST
 
 using System;
@@ -11,6 +12,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
 
+using static System.Console;
+
 namespace TestJsonNET
 {
     class Program
@@ -18,7 +21,8 @@ namespace TestJsonNET
         static void Main(string[] args)
         {
             string
-                tmpString;
+                tmpString,
+                tmpString2;
 
             int
                 tmpInt;
@@ -30,6 +34,12 @@ namespace TestJsonNET
             DateTimeOffset
                 dateTimeOffset1 = default,
                 dateTimeOffset2;
+
+            object
+                tmpObject1;
+
+            MultiLanguagesText
+                multiLanguagesText1;
 
             JArray
                 jArray;
@@ -45,6 +55,64 @@ namespace TestJsonNET
 
             try
             {
+                string
+                    currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+                if (currentDirectory.IndexOf("bin") != -1)
+                    currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
+
+                string
+                    outputFileName;
+
+                #if TEST_MIX
+                    multiLanguagesText1 = new MultiLanguagesText
+                    {
+                        En = "{\"en\":\"\"English\" string with path \"c:\\windows\\system32\\drivers\\etc\\hosts\"\"}",
+                        De = "{\"en\":\"\"Deutsche\" Zeichenfolge mit URL \"http://www.lmgtfy.com/?q=json+escape\"\"}"
+                    };
+                    WriteLine(multiLanguagesText1.En);
+                    WriteLine(multiLanguagesText1.De);
+                    tmpString = multiLanguagesText1.ToJson();
+
+                    if (File.Exists(outputFileName = Path.Combine(currentDirectory, "MultiLanguagesText.json")))
+                        File.Delete(outputFileName);
+
+                    File.WriteAllText(outputFileName, tmpString);
+
+                    multiLanguagesText1 = null;
+                    multiLanguagesText1 = JsonConvert.DeserializeObject<MultiLanguagesText>(tmpString);
+
+                    tmpString = "{ \"en\": \"english\", \"de\": \"german\" }";
+                    tmpObject1 = JsonConvert.DeserializeObject<object>(tmpString);
+
+                    try
+                    {
+                        jObject = tmpObject1 as JObject;
+                        multiLanguagesText1 = jObject.Root.ToObject<MultiLanguagesText>();
+                    }
+                    catch (Exception eException)
+                    {
+                        Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message);
+                    }
+
+                    tmpString = "{ \"en\": \"english\" }";
+                    tmpObject1 = JsonConvert.DeserializeObject<object>(tmpString);
+
+                    try
+                    {
+                        jObject = tmpObject1 as JObject;
+                        if (jObject != null && jObject.TryGetValue("en", out jToken))
+                        {
+                            tmpString2 = (string)jToken;
+                        }
+                    }
+                    catch (Exception eException)
+                    {
+                        Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message);
+                    }
+
+                #endif
+
                 #if TEST_POST
                     tmpString = "[ { \"f_string\": \"string\", \"f_int\": 5, \"f_bit\": true, \"id\": 1 }, { \"f_int\": 8, \"id\": 2 } ]";
                     jObject = JsonConvert.DeserializeObject(tmpString) as JObject;
@@ -181,16 +249,6 @@ namespace TestJsonNET
                         FTestEnum = TestEnum.Second,
                         FGenderEnum = GenderEnum.Male
                     };
-
-                string
-                    currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location;
-
-                if (currentDirectory.IndexOf("bin") != -1)
-                    currentDirectory = currentDirectory.Substring(0,
-                        currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
-
-                string
-                    outputFileName;
 
                 tmpString = JsonConvert.SerializeObject(testObject4Serialize);
 
