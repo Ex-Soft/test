@@ -70,6 +70,8 @@ namespace TestXPath
             // https://stackoverflow.com/questions/2407781/get-nth-child-of-a-node-using-xpath/2407881 -> http://saxon.sourceforge.net/saxon6.5.3/expressions.html
             var pathToConfigurationFile = doc.DocumentElement.SelectSingleNode("//pathToConfigurationFiles[position()=3]");
             pathToConfigurationFile = doc.DocumentElement.SelectSingleNode("//pathToConfigurationFiles[4]");
+
+            var tmpPath = doc.DocumentElement.SelectSingleNode("//testCondition/item[@smthAttr='smthAttr2']");
         }
     }
 }
