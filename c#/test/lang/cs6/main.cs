@@ -81,16 +81,20 @@ namespace cs6
             tmpInt = tmpString?.Length ?? -1;
 
             // Index initializers
-            var numbers = new Dictionary<int, string>
+            var numbers = new Dictionary<string, string>
             {
-                [7] = "seven",
-                [9] = "nine",
-                [13] = "thirteen"
+                ["null"] = null,
+                ["seven"] = "seven",
+                ["nine"] = "nine",
+                ["thirteen"] = "thirteen"
             };
 
             // String interpolation
             var tmpCustomer = new Customer();
             tmpString = $"{tmpCustomer.First} {tmpCustomer.Last}"; // equ tmpString = string.Format("{1} {0}", tmpCustomer.First, tmpCustomer.Last);
+            tmpString = $"dictionary[\"thirteen\"] = \"{numbers["thirteen"]}\""; // equ string.Format("dictionary[\"thirteen\"] = \"{0}\"", numbers["thirteen"]);
+            tmpString = $"dictionary[\"thirteen\"] = {$"{(numbers.ContainsKey("null") && numbers["null"] != null ? $"\"{numbers["null"]}\"" : "null")}"}"; // equ string.Format("dictionary[\"thirteen\"] = {0}", string.Format("{0}", numbers.ContainsKey("null") && numbers["null"] != null ? string.Format("\"{0}\"", numbers["null"]) : "null"));
+            tmpString = $"dictionary[\"thirteen\"] = {(numbers.ContainsKey("null") && numbers["null"] != null ? $"\"{numbers["null"]}\"" : "null")}"; // equ string.Format("dictionary[\"thirteen\"] = {0}", string.Format("{0}", numbers.ContainsKey("null") && numbers["null"] != null ? string.Format("\"{0}\"", numbers["null"]) : "null"));
 
             NameOf_UsingNameofExpressionInArgumentNullException();
 

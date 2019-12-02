@@ -1,4 +1,4 @@
-﻿//#define TEST_URI
+﻿#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -41,7 +41,7 @@
 //#define TEST_FOR
 //#define TEST_REF
 //#define TEST_PATH
-#define TEST_FORMAT
+//#define TEST_FORMAT
 
 using System;
 using System.Globalization;
@@ -1661,7 +1661,7 @@ namespace AnyTest
 			#if TEST_FORMAT
                 tmpStringII = null;
                 tmpStringIII = null;
-                tmpString = $"\"{tmpStringII}\"_\"{tmpStringIII}\"";
+                tmpString = $"\"{tmpStringII}\"_\"{tmpStringIII}\""; // "\"\"_\"\""
 
                 objects = new[] { (object)1, 2, 3 };
                 tmpString = string.Format("{0} {1} {2}", objects);
