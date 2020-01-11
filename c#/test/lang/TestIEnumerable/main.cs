@@ -274,6 +274,15 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfListOfInt = new List<List<int>>
+            {
+                new List<int> { 1, 2, 3},
+                new List<int> { 4, 5, 6},
+                new List<int> { 7, 8, 9}
+            };
+
+            var listOfInt = listOfListOfInt.SelectMany(i => i).ToList();
+
             IList<string> iListOfString = new List<string> { "1st", "2nd", "3rd" };
             IEnumerable<string> iEnumerableOfString = iListOfString.AsEnumerable();
 
@@ -363,8 +372,9 @@ namespace TestIEnumerable
             var test1 = listOfD.Where(level1 => level1.LD.Any(level2 => level2.LD.Any(level3 => level3.PBool2))).ToList();
             var test2 = listOfD.Where(level1 => level1.LD.SelectMany(level2 => level2.LD).Any(level3 => level3.PBool2)).ToList();
 
+            listOfInt = new List<int> {1, 2, 3, 4, 5};
+
             List<int>
-                listOfInt = new List<int> { 1, 2, 3, 4, 5 },
                 listOfIntII = new List<int> { 2, 3 },
                 listOfIntIII;
 
