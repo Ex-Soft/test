@@ -61,6 +61,9 @@ namespace TestRegEx
             MatchCollection
                 matches;
 
+            bool
+                tmpBool;
+
             #if TEST_XML
                 if (File.Exists(fileName = Path.Combine(currentDirectory, "Chicago2.Core.ch2res")))
                 {
@@ -71,6 +74,25 @@ namespace TestRegEx
                         tmpString = r.Replace(srcString, string.Empty);
                 }
             #endif
+
+            r = new Regex("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-z\\d]{5}$");
+            match = r.Match("12345"); tmpBool = match.Success; // false
+            match = r.Match("abcde"); tmpBool = match.Success; // false
+            match = r.Match("ABCDE"); tmpBool = match.Success; // false
+            match = r.Match("1a3B5"); tmpBool = match.Success; // true
+
+            r = new Regex("(?=Jeffrey)");
+            match = r.Match("by Jeffrey Friedl"); tmpBool = match.Success; // true
+            r = new Regex("(?=Jeffrey)Jeff");
+            match = r.Match("by Jeffrey Friedl"); tmpBool = match.Success; // true
+            match = r.Match("by Thomas Jefferson"); tmpBool = match.Success; // false
+            r = new Regex("Jeff(?=rey)");
+            match = r.Match("by Jeffrey Friedl"); tmpBool = match.Success; // true
+            match = r.Match("by Thomas Jefferson"); tmpBool = match.Success; // false
+            r = new Regex("Jeff(?=Jeffrey)");
+            match = r.Match("by Jeffrey Friedl"); tmpBool = match.Success; // false
+            match = r.Match("by Thomas Jefferson"); tmpBool = match.Success; // false
+            match = r.Match("by JeffJeffrey Friedl"); tmpBool = match.Success; // true
 
             r = new Regex("\"[a-zA-Z]{2}\":null,?");
             srcString = "{\"en\":null,\"de\":\"str\",\"da\":null,\"sv\":\"str\",\"ua\":null}";
