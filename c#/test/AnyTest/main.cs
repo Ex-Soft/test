@@ -1,4 +1,4 @@
-﻿#define TEST_URI
+﻿//#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -27,7 +27,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
+#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -334,6 +334,11 @@ namespace AnyTest
                 tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
                 queryString = new NameValueCollection();
                 tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+
+                tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html";
+                uri = new Uri(tmpString, UriKind.Absolute);
+                queryString = HttpUtility.ParseQueryString(uri.Query);
+                tmpInt = queryString.AllKeys.Except(new []{ "tm" }).Count();
             #endif
 
             #if TEST_EQUALS
@@ -1112,6 +1117,9 @@ namespace AnyTest
 			#endif
 
 			#if TEST_ENUM
+                tmpString = SmthEnum.Second.ToString(); // "Second"
+                tmpStringII = nameof(SmthEnum.Second); // "Second"
+
                 var values = Enum.GetValues(typeof(SmthEnum));
                 foreach (SmthEnum value in values)
                     tmpString = value.ToString();

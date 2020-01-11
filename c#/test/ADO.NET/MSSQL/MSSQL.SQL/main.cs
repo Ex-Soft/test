@@ -1,7 +1,7 @@
 ﻿//#define TEST_DATA_ADAPTER
 //#define TEST_BATCH
 //#define TEST_DATE_TYPES
-//#define ANY_TEST
+#define ANY_TEST
 //#define Determining_SET_Options_for_Current_Session // https://www.mssqltips.com/sqlservertip/1415/determining-set-options-for-a-current-session-in-sql-server/
 //#define TEST_COLUMN_TYPES_BY_SP
 //#define TEST_COLUMN_TYPES
@@ -24,7 +24,7 @@
 //#define TEST_XML_PARAMETERS
 //#define TEST_XML
 //#define TEST_TABLE_VALUED_PARAMETERS
-#define TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT // http://msdn.microsoft.com/en-us/library/bb675163%28v=vs.110%29.aspx
+//#define TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT // http://msdn.microsoft.com/en-us/library/bb675163%28v=vs.110%29.aspx
 //#define GET_STORED_PROCEDURE_PARAMETERS
 //#define TEST_BLOB
 //#define TEST_BLOB_SAVE
@@ -45,6 +45,8 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using Microsoft.SqlServer.Server;
+
+using static System.Console;
 
 namespace MSSQLSQL
 {
@@ -98,6 +100,7 @@ namespace MSSQLSQL
 
 			string
 				tmpString="log.log",
+                tmpString2,
 				fieldName;
 
 		    StringBuilder
@@ -360,7 +363,8 @@ commit transaction;
                             cmd.Parameters.Clear();
 
                         cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = string.Format("select idDistr, LastID + {0} as LastID, cast({1} as bigint) as Cnt from chgetid where idRoute = 0", UpdateInterval, UpdateInterval);
+                        //cmd.CommandText = string.Format("select idDistr, LastID + {0} as LastID, cast({1} as bigint) as Cnt from chgetid where idRoute = 0", UpdateInterval, UpdateInterval);
+                        cmd.CommandText = "select FNVarCharMax from TestTable4Types";
 
                         if (da == null)
                             da = new SqlDataAdapter();
@@ -372,6 +376,16 @@ commit transaction;
                             tmpDataTable.Reset();
 
                         da.Fill(tmpDataTable);
+
+                        foreach (DataRow row in tmpDataTable.Rows)
+                        {
+                            if (row.IsNull(0))
+                                continue;
+
+                            tmpString = Convert.ToString(row[0]);
+                            tmpString2 = string.Format(tmpString, "800 4969");
+                            WriteLine(tmpString2);
+                        }
                     #endif
 
                     #if Determining_SET_Options_for_Current_Session
