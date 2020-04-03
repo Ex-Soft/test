@@ -75,6 +75,11 @@ namespace TestRegEx
                 }
             #endif
 
+            r = new Regex("\x20{2,}");
+            srcString = "1 2  3   4    5";
+            tmpString = r.Replace(srcString, "\x20"); // System.ArgumentNullException
+            tmpStringII = Regex.Replace(srcString, "\x20{2,}", "\x20"); // System.ArgumentNullException
+
             r = new Regex("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-z\\d]{5}$");
             match = r.Match("12345"); tmpBool = match.Success; // false
             match = r.Match("abcde"); tmpBool = match.Success; // false

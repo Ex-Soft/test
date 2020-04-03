@@ -1,10 +1,39 @@
-﻿//#define TEST_INTERFACE
+﻿#define TEST_INTERFACE
 
 using System;
 
 namespace TestNew
 {
     #if TEST_INTERFACE
+
+        interface IPrintable
+        {
+            void PrintSelf();
+        }
+
+        class Base : IPrintable
+        {
+            public virtual void PrintSelf()
+            {
+                Console.WriteLine("Base");
+            }
+        }
+
+        class AA : Base
+        {
+            public override void PrintSelf()
+            {
+                Console.WriteLine("AA");
+            }
+        }
+ 
+        class BB : AA
+        {
+            public new void PrintSelf()
+            {
+                Console.WriteLine("BB");
+            }
+        }
 
         public interface II
         {
@@ -62,9 +91,34 @@ namespace TestNew
 
     class Program
     {
+        #if TEST_INTERFACE
+            public static void PrintObject<T>(T obj) where T : IPrintable
+            {
+                obj.PrintSelf();
+            }
+        #endif
+
         static void Main(string[] args)
         {
             #if TEST_INTERFACE
+                Base bs = new Base();
+                IPrintable iPrintable = bs as IPrintable;
+                bs.PrintSelf();
+                iPrintable.PrintSelf();
+                PrintObject(bs);
+
+                AA aa = new AA();
+                iPrintable = aa as IPrintable;
+                aa.PrintSelf();
+                iPrintable.PrintSelf();
+                PrintObject(aa);
+
+                BB bb = new BB();
+                iPrintable = bb as IPrintable;
+                bb.PrintSelf();
+                iPrintable.PrintSelf();
+                PrintObject(bb);
+
                 II
                     iiPtr;
 
