@@ -23,6 +23,8 @@ namespace ExceptionI
 		static void Main(string[] args)
 		{
             #if TEST_FINALLY
+                TestFinaly();
+
 		        try
 		        {
 		            for (var i = 0; i < 5; ++i)
@@ -297,5 +299,26 @@ namespace ExceptionI
         {
             throw new NotImplementedException();
         }
+
+        #if TEST_FINALLY
+            static void TestFinaly()
+            {
+                try
+                {
+                    try
+                    {
+                        throw new Exception("1");
+                    }
+                    finally
+                    {
+                        throw new Exception("2");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        #endif
     }
 }

@@ -33,7 +33,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-//#define TEST_NULLABLE_TYPES
+#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -41,7 +41,7 @@
 //#define TEST_FOR
 //#define TEST_REF
 //#define TEST_PATH
-#define TEST_FORMAT
+//#define TEST_FORMAT
 
 using System;
 using System.Globalization;
@@ -1389,6 +1389,18 @@ namespace AnyTest
                 {
                     Console.WriteLine("Nullable object must have a value. ({0}: {1})", eException.GetType().FullName, eException.Message);
                 }
+
+                try
+                {
+                    //tmpString = tmpBoolNullable.Value ? "true" : "false";
+                    tmpString = tmpBoolNullable.Value == true ? "true" : "false";
+                }
+                catch (InvalidOperationException eException)
+                {
+                    Console.WriteLine("Nullable object must have a value. ({0}: {1})", eException.GetType().FullName, eException.Message);
+                }
+
+                tmpString = tmpBoolNullable.HasValue && tmpBoolNullable.Value ? "true" : "false";
 
                 int?
                     tmpIntNullableI = null,
