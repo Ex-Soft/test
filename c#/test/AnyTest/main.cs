@@ -1,4 +1,4 @@
-﻿//#define TEST_URI
+﻿#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -27,7 +27,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-#define TEST_ENUM
+//#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -316,7 +316,7 @@ namespace AnyTest
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
 
             #if TEST_URI
-                tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1";
+                tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1&geoip=&withoutvalue";
                 var uri = new Uri(tmpString, UriKind.Absolute);
                 tmpStringII = uri.AbsolutePath; // "/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html"
                 tmpStringIII = uri.AbsoluteUri; // "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1"
@@ -326,6 +326,11 @@ namespace AnyTest
 
                 var queryString = HttpUtility.ParseQueryString(uri.Query);
                 tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+                tmpStringIII = queryString.Get("fid"); // "154"
+                tmpStringIII = queryString.Get("tm"); // "1"
+                tmpStringIII = queryString.Get("geoip"); // ""
+                tmpStringIII = queryString.Get("withoutvalue"); // null
+                tmpStringIII = queryString.Get("nonexistent"); // null
                 tmpString = "?fid=154&tm=1";
                 queryString = HttpUtility.ParseQueryString(tmpString);
                 tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;

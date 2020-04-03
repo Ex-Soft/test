@@ -101,6 +101,8 @@ namespace MSSQLSQL
 			string
 				tmpString="log.log",
                 tmpString2,
+                tmpString3,
+                tmpString4,
 				fieldName;
 
 		    StringBuilder
@@ -112,6 +114,9 @@ namespace MSSQLSQL
 		    string
 		        tmpFieldName = null;
 
+
+            char[]
+                tmpChars = null;
 
 		    byte[]
 		        tmpBytes = null;
@@ -364,7 +369,7 @@ commit transaction;
 
                         cmd.CommandType = CommandType.Text;
                         //cmd.CommandText = string.Format("select idDistr, LastID + {0} as LastID, cast({1} as bigint) as Cnt from chgetid where idRoute = 0", UpdateInterval, UpdateInterval);
-                        cmd.CommandText = "select FNVarCharMax from TestTable4Types";
+                        cmd.CommandText = "select Id, FNVarCharMax from TestTable4Types";
 
                         if (da == null)
                             da = new SqlDataAdapter();
@@ -379,12 +384,14 @@ commit transaction;
 
                         foreach (DataRow row in tmpDataTable.Rows)
                         {
-                            if (row.IsNull(0))
+                            if (row.IsNull("Id") || row.IsNull("FNVarCharMax"))
                                 continue;
 
-                            tmpString = Convert.ToString(row[0]);
+                            tmpInt = Convert.ToInt32(row["Id"]);
+                            tmpString = Convert.ToString(row["FNVarCharMax"]);
                             tmpString2 = string.Format(tmpString, "800 4969");
-                            WriteLine(tmpString2);
+                            tmpString3 = string.Format(tmpString, "800\u00a04969");
+                            WriteLine($"\"{tmpString2}\" \"{tmpString3}\"");
                         }
                     #endif
 

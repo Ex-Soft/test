@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace TestMarkdownDeep
@@ -17,8 +18,15 @@ namespace TestMarkdownDeep
                 md.ExtraMode = true;
 
                 //input = "## Welcome to MarkdownDeep";
-                input = "<a name=\"C1\"></a>Chapter 1";
+                //input = "<a name=\"C1\"></a>Chapter 1";
+                input = "[text](url)^";
                 output = md.Transform(input, out var definition);
+
+                var r = new Regex(@"(<a[^>]*)(>)([^<]*</a>)(\^)");
+                output = r.Replace(output, match => string.Format("{0}{1}{2}",
+                    match.Groups[1],
+                    " target=\"_blank\">",
+                    match.Groups[3]));
 
                 WriteLine(output);
 
