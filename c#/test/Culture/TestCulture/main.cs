@@ -8,6 +8,17 @@ namespace TestCulture
     {
         static void Main(string[] args)
         {
+            try
+            {
+                var ri = new RegionInfo("de");
+                ri = new RegionInfo("ar");
+                ri = new RegionInfo("en");
+            }
+            catch (Exception eException)
+            {
+                Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
+
             Console.WriteLine($"Thread.CurrentThread.CurrentCulture: \"{Thread.CurrentThread.CurrentCulture}\"");
             Console.WriteLine($"Thread.CurrentThread.CurrentUICulture: \"{Thread.CurrentThread.CurrentUICulture}\"");
             Console.WriteLine($"CultureInfo.CurrentCulture: \"{CultureInfo.CurrentCulture}\"");

@@ -45,6 +45,7 @@ namespace TestRegEx
                 srcString,
                 tmpString = string.Empty,
                 tmpStringII,
+                tmpStringIII,
                 currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location,
                 fileName;
 
@@ -74,6 +75,12 @@ namespace TestRegEx
                         tmpString = r.Replace(srcString, string.Empty);
                 }
             #endif
+
+            srcString = "01-02-03-04-05-06-07-08-09-10-11-12-13";
+            r = new Regex("(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})-(\\d{2})");
+            tmpString = r.Replace(srcString, "$111-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15");      // "$111-$122-$133-$144-$155-06-07-08-09-10-11-12-13-$14-$15"
+            tmpStringII = r.Replace(srcString, "$0111-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15");   // "$0111-$122-$133-$144-$155-06-07-08-09-10-11-12-13-$14-$15"
+            tmpStringIII = r.Replace(srcString, "${1}11-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15"); // "0111-$122-$133-$144-$155-06-07-08-09-10-11-12-13-$14-$15"
 
             r = new Regex("\x20{2,}");
             srcString = "1 2  3   4    5";

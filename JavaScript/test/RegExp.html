@@ -24,6 +24,17 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	Str = "01-02-03-04-05-06-07-08-09-10-11-12-13";
+	RegEx = /(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/gi;
+	i = Str.match(RegEx);
+	arrarr = Str.replace(RegEx,     "$111-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15");
+	AllTrimStr = Str.replace(RegEx, "$0111-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15");
+	if (window.console && console.log) {
+		console.log("\"%s\"", Str);
+		console.log("\"%s\"", arrarr);     // "111-122-133-0144-0155-06-07-08-09-10-11-12-13-014-015"
+		console.log("\"%s\"", AllTrimStr); // "0111-122-133-0144-0155-06-07-08-09-10-11-12-13-014-015"
+	}
+	
 	Str = "depAir=LHR/LGW/STN&startDate=2018-05-15&endDate=2018-05-22";
 	RegEx=/(depAir=)(LHR|LGW)(?=[^a-zA-Z])/gi;
 	arrarr = Str.replace(RegEx, "$1CPH");

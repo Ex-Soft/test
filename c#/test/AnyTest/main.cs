@@ -1,4 +1,4 @@
-﻿//#define TEST_URI
+﻿#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -33,7 +33,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-//#define TEST_NULLABLE_TYPES
+#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -316,7 +316,7 @@ namespace AnyTest
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
 
             #if TEST_URI
-                tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1";
+                tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1&geoip=&withoutvalue";
                 var uri = new Uri(tmpString, UriKind.Absolute);
                 tmpStringII = uri.AbsolutePath; // "/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html"
                 tmpStringIII = uri.AbsoluteUri; // "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1"
@@ -326,6 +326,11 @@ namespace AnyTest
 
                 var queryString = HttpUtility.ParseQueryString(uri.Query);
                 tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
+                tmpStringIII = queryString.Get("fid"); // "154"
+                tmpStringIII = queryString.Get("tm"); // "1"
+                tmpStringIII = queryString.Get("geoip"); // ""
+                tmpStringIII = queryString.Get("withoutvalue"); // null
+                tmpStringIII = queryString.Get("nonexistent"); // null
                 tmpString = "?fid=154&tm=1";
                 queryString = HttpUtility.ParseQueryString(tmpString);
                 tmpStringII = queryString.Count > 0 ? $"?{queryString}" : string.Empty;
@@ -1401,6 +1406,18 @@ namespace AnyTest
                 {
                     Console.WriteLine("Nullable object must have a value. ({0}: {1})", eException.GetType().FullName, eException.Message);
                 }
+
+                try
+                {
+                    //tmpString = tmpBoolNullable.Value ? "true" : "false";
+                    tmpString = tmpBoolNullable.Value == true ? "true" : "false";
+                }
+                catch (InvalidOperationException eException)
+                {
+                    Console.WriteLine("Nullable object must have a value. ({0}: {1})", eException.GetType().FullName, eException.Message);
+                }
+
+                tmpString = tmpBoolNullable.HasValue && tmpBoolNullable.Value ? "true" : "false";
 
                 int?
                     tmpIntNullableI = null,

@@ -10,6 +10,19 @@
 	@ltr nchar = nchar(0x200e),
 	@rtl nchar = nchar(0x200f)
 
+print format(12345678,  N'مجموع' + N' 0 00 ' + N'ع.ت')
+print format(12345678,  N'مجموع' + @ltr + N' 0 00 ' + @rtl + N'ع.ت')
+
+set @s = N'كلمة قبل {0} كلمة بعد.'
+set @s = replace(@s, N'{0}', N'800 4969')
+print @s
+
+set @s = N'كلمة قبل {0} كلمة بعد.'
+set @s = replace(@s, N'{0}', N'800' + nchar(0x00a0) + '4969')
+print @s
+
+set @s = N'قبل {0} بعد'
+
 set @r = @before + N' {0} ' + @after
 select N'''' + @r + N''' ' + iif(@r = @s, N'=', N'!') + N'=' + N' ''' + @s + N''''
 
@@ -43,7 +56,41 @@ declare
 	@len2 int,
 	@len int,
 	@nchar1 nchar(1),
-	@nchar2 nchar(1)
+	@nchar2 nchar(1),
+	@str nvarchar(max),
+	@msg nvarchar(max)
+
+select @str = N'800 4969', @i = 1
+print N'''' + @str + N''''
+set @len = len(@str)
+while @i <= @len
+	begin
+		set @nchar1 = substring(@str, @i, 1)
+		set @msg = @str + N'[' + cast(@i as nvarchar(10)) + N'] = ''' + @nchar1 + N''' (' + cast(master.dbo.fn_varbintohexstr(unicode(@nchar1)) as nvarchar(10)) + N')'
+		print @msg
+		set @i += 1
+	end
+
+select @str = replace(@str, nchar(0x0020), nchar(0x00a0)), @i = 1
+print N'''' + @str + N''''
+set @len = len(@str)
+while @i <= @len
+	begin
+		set @nchar1 = substring(@str, @i, 1)
+		set @msg = @str + N'[' + cast(@i as nvarchar(10)) + N'] = ''' + @nchar1 + N''' (' + cast(master.dbo.fn_varbintohexstr(unicode(@nchar1)) as nvarchar(10)) + N')'
+		print @msg
+		set @i += 1
+	end
+
+select @str = FNVarCharMax from TestTable4Types where Id = 4
+set @len = len(@str)
+while @i <= @len
+	begin
+		set @nchar1 = substring(@str, @i, 1)
+		print @nchar1
+		print unicode(@nchar1)
+		set @i += 1
+	end
 
 set @result2 = @s1 + N' '+ @s2 + N' ' + @s3;
 
@@ -61,6 +108,7 @@ if @len1 <= @len2
 else
 	set @len = @len2
 
+set @i = 1
 while @i <= @len
 	begin
 		set @nchar1 = substring(@result1, @i, 1)
@@ -74,6 +122,3 @@ while @i <= @len
 			end
 		set @i += 1
 	end
-
-N'رقم السطر 1. رقم السطر 2. رقم السطر 3. رقم السطر 4. رقم السطر 5. رقم السطر 6.'
-N'هذه الجملة 1. هذه الجملة 2. هذه الجملة 3. هذه الجملة 4. هذه الجملة 5. هذه الجملة 6.'

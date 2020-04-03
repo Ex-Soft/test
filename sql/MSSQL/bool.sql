@@ -5,95 +5,100 @@ declare
 	@d bit,
 	@tmpStr nvarchar(255)
 
+print N'A and B or C = (A and B) or C'
+print N'-----------------------------'
+
+set @a=0
+set @b=0
+set @c=0
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true'
+else
+  set @tmpStr=@tmpStr+' = false' -- FALSE
+print @tmpStr
+
+set @a=0
+set @b=0
+set @c=1
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true' -- TRUE
+else
+  set @tmpStr=@tmpStr+' = false'
+print @tmpStr
+
+set @a=0
+set @b=1
+set @c=0
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true'
+else
+  set @tmpStr=@tmpStr+' = false' -- FALSE
+print @tmpStr
+
+set @a=0
+set @b=1
+set @c=1
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true' -- TRUE
+else
+  set @tmpStr=@tmpStr+' = false'
+print @tmpStr
+
+set @a=1
+set @b=0
+set @c=0
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true'
+else
+  set @tmpStr=@tmpStr+' = false' -- FALSE
+print @tmpStr
+
+set @a=1
+set @b=0
+set @c=1
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true' -- TRUE
+else
+  set @tmpStr=@tmpStr+' = false'
+print @tmpStr
+
+set @a=1
+set @b=1
+set @c=0
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true' -- TRUE
+else
+  set @tmpStr=@tmpStr+' = false'
+print @tmpStr
+
+set @a=1
+set @b=1
+set @c=1
+set @tmpStr = convert(nvarchar(1),@a) + N' and '+convert(nvarchar(1),@b) + N' or ' +convert(nvarchar(1),@c)
+if @a=1 and @b=1 or @c=1
+  set @tmpStr=@tmpStr+' = true' -- TRUE
+else
+  set @tmpStr=@tmpStr+' = false'
+print @tmpStr
+
+print N'-----------------------------'
+
 set @a = 1
 set @b = 0
 set @c = 1
 set @d = 1
-set @tmpStr = convert(varchar(1), @a) + N' and not ' + convert(varchar(1), @b) + N' and ' + convert(varchar(1), @c) + N' and ' + convert(varchar(1), @d)
+set @tmpStr = convert(nvarchar(1), @a) + N' and not ' + convert(nvarchar(1), @b) + N' and ' + convert(nvarchar(1), @c) + N' and ' + convert(nvarchar(1), @d)
 if (@a=1) and not (@b=1) and (@c=1) and (@d=1)
 	set @tmpStr = @tmpStr + ' = true' -- TRUE
 else
 	set @tmpStr = @tmpStr + ' = false'
-print @tmpStr
-
-set @a=0
-set @b=0
-set @c=0
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=0
-set @b=0
-set @c=1
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=0
-set @b=1
-set @c=0
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=0
-set @b=1
-set @c=1
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=1
-set @b=0
-set @c=0
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=1
-set @b=0
-set @c=1
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=1
-set @b=1
-set @c=0
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
-print @tmpStr
-
-set @a=1
-set @b=1
-set @c=1
-set @tmpStr=convert(varchar(1),@a)+convert(varchar(1),@b)+convert(varchar(1),@c)
-if @a=1 and @b=1 or @c=1
-  set @tmpStr=@tmpStr+' true'
-else
-  set @tmpStr=@tmpStr+' false'
 print @tmpStr
 
 ------------------------------------------------------------

@@ -263,3 +263,45 @@ print @diff
 print eomonth(getdate(), -1)
 print eomonth(getdate())
 print eomonth(getdate(), 1)
+
+------------------------------------------------------------
+
+declare @t table (dt datetime)
+
+insert into @t (dt)
+values
+	(dateadd(d, -1, getdate())),
+	(getdate()),
+	(dateadd(d, 1, getdate()))
+
+declare
+	@dateBegin date = null,
+	--@dateBegin date = dateadd(d, -1, getdate()),
+	--@dateEnd date = null,
+	@dateEnd date = dateadd(d, 1, getdate()),
+	@countOfDays int = null
+	--@countOfDays int = 2
+
+if @dateEnd is not null
+	select @dateEnd = dateadd(d, 1, @dateEnd)
+
+if @dateBegin is null and @dateEnd is null and @countOfDays is null -- +
+	select @dateBegin = getdate(), @dateEnd = dateadd(d, 1, getdate())
+
+if @dateBegin is null and @dateEnd is null and @countOfDays is not null -- +
+	select @dateEnd = dateadd(d, 1, getdate()), @dateBegin = dateadd(d, -@countofdays+1, getdate())
+
+if @dateBegin is null and @dateEnd is not null and @countOfDays is not null -- +
+	select @dateBegin = dateadd(d, -@countOfDays, @dateEnd)
+
+if @dateBegin is not null and @dateEnd is null and @countOfDays is not null -- +
+	select @dateEnd = dateadd(d, @countOfDays, @dateBegin)
+
+if @dateBegin is not null and @dateEnd is null and @countOfDays is null -- +
+	select @dateEnd = dateadd(d, 1, @dateBegin)
+
+if @dateBegin is null and @dateEnd is not null and @countOfDays is null -- +
+	select @dateBegin = dateadd(d, -1, @dateEnd)
+
+select @dateBegin as dateBegin, @dateEnd as dateEnd
+select * from @t where dt >= @dateBegin and dt < @dateEnd
