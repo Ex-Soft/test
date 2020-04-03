@@ -18,7 +18,9 @@ create table TestTable4Types
 	FVarBinary_28 varbinary(28) null,
 	FDecimal_7_6 decimal(7, 6) null,
 	FXml xml null,
-	FVarBinary_Max varbinary(max) null
+	FVarBinary_Max varbinary(max) null,
+	FVarCharMax varchar(max) null,
+	FNVarCharMax nvarchar(max) null
 )
 go
 
@@ -51,3 +53,9 @@ if col_length(N'TestTable4Types', N'FVarBinary_28_Length') is null
 
 if col_length(N'TestTable4Types', N'FVarBinary_Max_Length') is null
 	alter table TestTable4Types add FVarBinary_Max_Length as datalength(FVarBinary_Max);
+
+if col_length(N'TestTable4Types', N'FVarCharMax') is null
+	alter table TestTable4Types add FVarCharMax varchar(max) null;
+
+if col_length(N'TestTable4Types', N'FNVarCharMax') is null
+	alter table TestTable4Types add FNVarCharMax nvarchar(max) null;

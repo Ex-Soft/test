@@ -1,11 +1,11 @@
 ﻿select @@version, @@servername
 
-(localhost)\v11.0		Microsoft SQL Server 2012
-(localhost)\Projects		Microsoft SQL Server 2012
+(localdb)\v11.0		Microsoft SQL Server 2012
+(localdb)\Projects		Microsoft SQL Server 2012
 
-(localhost)\v12.0		doesn't exist
-(localhost)\MSSQLLocalDB	Microsoft SQL Server 2014
-(localhost)\ProjectsV12		Microsoft SQL Server 2014
+(localdb)\v12.0		doesn't exist
+(localdb)\MSSQLLocalDB	Microsoft SQL Server 2014
+(localdb)\ProjectsV12		Microsoft SQL Server 2014
 
-(localhost)\v13.0		doesn't exist
-(localhost)\ProjectsV13		Microsoft SQL Server 2016
+(localdb)\v13.0		doesn't exist
+(localdb)\ProjectsV13		Microsoft SQL Server 2016
