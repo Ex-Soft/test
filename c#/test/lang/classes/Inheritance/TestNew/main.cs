@@ -1,4 +1,5 @@
 ﻿#define TEST_INTERFACE
+#define TEST_IPRINTABLE
 
 using System;
 
@@ -6,34 +7,52 @@ namespace TestNew
 {
     #if TEST_INTERFACE
 
-        interface IPrintable
-        {
-            void PrintSelf();
-        }
+        #if TEST_IPRINTABLE
 
-        class Base : IPrintable
-        {
-            public virtual void PrintSelf()
+            // .class interface private abstract auto ansi
+            interface IPrintable
             {
-                Console.WriteLine("Base");
+                 // .method public hidebysig virtual newslot abstract instance void
+                void PrintSelf();
             }
-        }
 
-        class AA : Base
-        {
-            public override void PrintSelf()
+            // .class private auto ansi beforefieldinit
+            // TestNew.Base
+            // extends [mscorlib]System.Object
+            // implements TestNew.IPrintable
+            class Base : IPrintable
             {
-                Console.WriteLine("AA");
+                // .method public hidebysig virtual newslot instance void
+                public virtual void PrintSelf()
+                {
+                    Console.WriteLine("Base");
+                }
             }
-        }
+
+            // .class private auto ansi beforefieldinit
+            // TestNew.AA
+            // extends TestNew.Base
+            class AA : Base
+            {
+                // .method public hidebysig virtual instance void
+                public override void PrintSelf()
+                {
+                    Console.WriteLine("AA");
+                }
+            }
  
-        class BB : AA
-        {
-            public new void PrintSelf()
+            // .class private auto ansi beforefieldinit
+            // TestNew.BB
+            // extends TestNew.AA
+            class BB : AA /*, IPrintable*/
             {
-                Console.WriteLine("BB");
+                // .method public hidebysig instance void
+                public new void PrintSelf()
+                {
+                    Console.WriteLine("BB");
+                }
             }
-        }
+        #endif
 
         public interface II
         {
@@ -91,7 +110,7 @@ namespace TestNew
 
     class Program
     {
-        #if TEST_INTERFACE
+        #if TEST_INTERFACE && TEST_IPRINTABLE
             public static void PrintObject<T>(T obj) where T : IPrintable
             {
                 obj.PrintSelf();
@@ -101,23 +120,25 @@ namespace TestNew
         static void Main(string[] args)
         {
             #if TEST_INTERFACE
-                Base bs = new Base();
-                IPrintable iPrintable = bs as IPrintable;
-                bs.PrintSelf();
-                iPrintable.PrintSelf();
-                PrintObject(bs);
+                #if TEST_IPRINTABLE
+                    Base bs = new Base();
+                    IPrintable iPrintable = bs as IPrintable;
+                    bs.PrintSelf();         // Base
+                    iPrintable.PrintSelf(); // Base
+                    PrintObject(bs);        // Base
 
-                AA aa = new AA();
-                iPrintable = aa as IPrintable;
-                aa.PrintSelf();
-                iPrintable.PrintSelf();
-                PrintObject(aa);
+                    AA aa = new AA();
+                    iPrintable = aa as IPrintable;
+                    aa.PrintSelf();         // AA
+                    iPrintable.PrintSelf(); // AA
+                    PrintObject(aa);        // AA
 
-                BB bb = new BB();
-                iPrintable = bb as IPrintable;
-                bb.PrintSelf();
-                iPrintable.PrintSelf();
-                PrintObject(bb);
+                    BB bb = new BB();
+                    iPrintable = bb as IPrintable;
+                    bb.PrintSelf();         // BB
+                    iPrintable.PrintSelf(); // AA
+                    PrintObject(bb);        // AA
+                #endif
 
                 II
                     iiPtr;
@@ -140,6 +161,8 @@ namespace TestNew
                 xx.TestTestTest();
             #endif
 
+            Console.WriteLine($"A {new string('-', 30)}");
+
             A
                 a = new A(),
                 aPtrB = new B(),
@@ -147,7 +170,7 @@ namespace TestNew
                 aPtrD = new D();
 
             a.Test(); // A
-            Console.WriteLine("{{P: {0}}}", a.P); // A
+            Console.WriteLine("A.P {{P: {0}}}", a.P); // A
             #if TEST_INTERFACE
                 a.X = new XX();
                 a.X.Test();
@@ -162,7 +185,7 @@ namespace TestNew
             #endif
 
             aPtrB.Test(); // B
-            Console.WriteLine("{{P: {0}}}", aPtrB.P); // B
+            Console.WriteLine("aPtrB.P {{P: {0}}}", aPtrB.P); // B
             #if TEST_INTERFACE
                 aPtrB.X = new XX();
                 aPtrB.X.Test();
@@ -177,7 +200,7 @@ namespace TestNew
             #endif
 
             aPtrC.Test(); // B
-            Console.WriteLine("{{P: {0}}}", aPtrC.P); // B
+            Console.WriteLine("aPtrC.P {{P: {0}}}", aPtrC.P); // B
             #if TEST_INTERFACE
                 aPtrC.X = new XX();
                 aPtrC.X.Test();
@@ -192,7 +215,7 @@ namespace TestNew
             #endif
 
             aPtrD.Test(); // B
-            Console.WriteLine("{{P: {0}}}", aPtrD.P); // B
+            Console.WriteLine("aPrtD.P {{P: {0}}}", aPtrD.P); // B
             #if TEST_INTERFACE
                 aPtrD.X = new XX();
                 aPtrD.X.Test();
@@ -206,7 +229,9 @@ namespace TestNew
                 iiPtr.TestTest();
             #endif
 
+            Console.WriteLine($"A {new string('-', 30)}");
             Console.WriteLine();
+            Console.WriteLine($"B {new string('-', 30)}");
 
             B
                 b = new B(),
@@ -229,7 +254,7 @@ namespace TestNew
             #endif
 
             bPtrC.Test(); // B
-            Console.WriteLine("{{P: {0}}}", bPtrC.P); // B
+            Console.WriteLine("bPtrC.P {{P: {0}}}", bPtrC.P); // B
             #if TEST_INTERFACE
                 bPtrC.X = new XX();
                 bPtrC.X.Test();
@@ -244,7 +269,7 @@ namespace TestNew
             #endif
 
             bPtrD.Test(); // B
-            Console.WriteLine("{{P: {0}}}", bPtrD.P); // B
+            Console.WriteLine("bPtrD.P {{P: {0}}}", bPtrD.P); // B
             #if TEST_INTERFACE
                 bPtrD.X = new XX();
                 bPtrD.X.Test();
@@ -258,7 +283,9 @@ namespace TestNew
                 iiPtr.TestTest();
             #endif
 
+            Console.WriteLine($"B {new string('-', 30)}");
             Console.WriteLine();
+            Console.WriteLine($"C {new string('-', 30)}");
 
             C
                 c = new C(),
@@ -284,7 +311,7 @@ namespace TestNew
             #endif
 
             cPtrD.Test(); // D
-            Console.WriteLine("{{P: {0}}}", cPtrD.P); // D
+            Console.WriteLine("cPtrD.P {{P: {0}}}", cPtrD.P); // D
             #if TEST_INTERFACE
                 cPtrD.X = new XX();
                 cPtrD.X.Test();
@@ -294,7 +321,9 @@ namespace TestNew
                 //cPtrD.X.TestTest();
             #endif
 
+            Console.WriteLine($"C {new string('-', 30)}");
             Console.WriteLine();
+            Console.WriteLine($"D {new string('-', 30)}");
 
             D
                 d = new D();
@@ -310,6 +339,7 @@ namespace TestNew
                 //d.X.TestTest();
             #endif
 
+            Console.WriteLine($"D {new string('-', 30)}");
             Console.WriteLine();
 
             bool
