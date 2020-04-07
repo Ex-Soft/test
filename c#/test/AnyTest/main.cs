@@ -19,7 +19,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-//#define TEST_STRING
+#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -803,6 +803,10 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+                tmpString = "test String.Intern()";
+                tmpStringII = string.Intern(tmpString);
+                tmpStringIII = string.IsInterned(tmpString);
+
                 tmpString = "   \r\n   string   \r\n   ";
                 tmpStringII = tmpString.Trim();
 

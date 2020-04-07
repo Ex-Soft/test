@@ -82,6 +82,11 @@ namespace TestRegEx
             tmpStringII = r.Replace(srcString, "$0111-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15");   // "$0111-$122-$133-$144-$155-06-07-08-09-10-11-12-13-$14-$15"
             tmpStringIII = r.Replace(srcString, "${1}11-$122-$133-$144-$155-$6-$7-$8-$9-$10-$11-$12-$13-$14-$15"); // "0111-$122-$133-$144-$155-06-07-08-09-10-11-12-13-$14-$15"
 
+            r = new Regex("\x20{2,}");
+            srcString = "1 2  3   4    5";
+            tmpString = r.Replace(srcString, "\x20"); // System.ArgumentNullException
+            tmpStringII = Regex.Replace(srcString, "\x20{2,}", "\x20"); // System.ArgumentNullException
+
             r = new Regex("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-z\\d]{5}$");
             match = r.Match("12345"); tmpBool = match.Success; // false
             match = r.Match("abcde"); tmpBool = match.Success; // false

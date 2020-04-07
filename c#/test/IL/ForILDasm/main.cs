@@ -1,5 +1,6 @@
-﻿//#define TEST_CALL_VALUE
-#define TEST_CALL_REFERENCE
+﻿#define TEST_STRING_LITERAL
+//#define TEST_CALL_VALUE
+//#define TEST_CALL_REFERENCE
 
 //using System;
 
@@ -14,6 +15,10 @@ namespace ForILDasm
 
         static void Main(string[] args)
         {
+            #if TEST_STRING_LITERAL
+                string str1 = "this is a string literal";
+                string str2 = "this is a string literal";
+            #endif
             #if TEST_CALL_VALUE
                 int a = 1234;
                 int b = 5678;
