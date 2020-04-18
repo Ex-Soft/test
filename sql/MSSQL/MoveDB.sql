@@ -13,4 +13,5 @@ alter database [TestPlanogram] modify file (name = [TestPlanogram_log], filename
 --alter database [TestPlanogram] set online;
 
 --NT SERVICE\MSSQLSERVER 
---create database ch on (filename = N'd:\db\ch.mdf'), (filename = 'd:\db\ch_log.ldf') for attach;
+--create database testdb on (filename = N'd:\db\testdb.mdf'), (filename = 'd:\db\testdb_log.ldf') for attach;
+--create database testlocaldb on (filename = N'd:\db\testlocaldb.mdf'), (filename = 'd:\db\testlocaldb_log.ldf') for attach;
