@@ -2,13 +2,17 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
+using static System.Console;
 
 namespace TestFactory
 {
 	class TestFactory
 	{
 		static void Main(string[] args)
-		{
+        {
+            GetProviderFactoryClasses();
+
 			string
 				ProviderName = ConfigurationManager.AppSettings["Provider"];
 
@@ -103,5 +107,23 @@ namespace TestFactory
 					con.Close();
 			}
 		}
+
+        static DataTable GetProviderFactoryClasses()
+        {
+            DataTable table = DbProviderFactories.GetFactoryClasses();
+
+            foreach (DataRow row in table.Rows)
+            {
+                WriteLine(table.Columns.OfType<DataColumn>().Aggregate(string.Empty, (str, column) =>
+                {
+                    if (!string.IsNullOrEmpty(str))
+                        str += "\t";
+
+                    return str += row[column.ColumnName];
+                }));
+            }
+
+            return table;
+        }
 	}
 }
