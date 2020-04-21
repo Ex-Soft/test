@@ -1,8 +1,8 @@
-create table if not exists Staff (
-    Id int not null auto_increment,
-    Name varchar(256) null,
-    Salary decimal(18, 4) null,
-    Dep int null,
-    BirthDate date null,
-    constraint pkStaff primary key (Id)
+create table if not exists staff (
+    id int not null auto_increment,
+    name varchar(256) null,
+    salary decimal(18, 4) null,
+    dep int null,
+    birth_date date null,
+    constraint pkStaff primary key (id)
 ) character set 'utf8';
