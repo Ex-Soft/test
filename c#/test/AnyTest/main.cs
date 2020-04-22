@@ -1,4 +1,5 @@
-﻿#define TEST_URI
+﻿#define TEST_HTML_ENCODE_DECODE
+//#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
@@ -19,7 +20,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-#define TEST_STRING
+//#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -33,7 +34,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-#define TEST_NULLABLE_TYPES
+//#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -314,6 +315,12 @@ namespace AnyTest
 
 			if (currentDirectory.IndexOf("bin", StringComparison.Ordinal) != -1)
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
+
+            #if TEST_HTML_ENCODE_DECODE
+                tmpString = "& < > / Æ æ Ø ø Åå";
+                tmpStringII = HttpUtility.HtmlEncode(tmpString);
+                tmpStringIII = HttpUtility.HtmlDecode(tmpStringII);
+            #endif
 
             #if TEST_URI
                 tmpString = "http://localhost/de_de/hotels/malaysia/kuala-lumpur/kuala-lumpur/the-majestic-hotel.html?fid=154&tm=1&geoip=&withoutvalue";

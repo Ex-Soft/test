@@ -13,6 +13,14 @@ namespace Inside
             SortedDictionary<string, string> sortedDictionaryStringString = new SortedDictionary<string, string>();
             HashSet<string> hashSet = new HashSet<string>();
 
+            listOfInt.Add(1);
+            
+            dictionaryStringString.Add("1st", "first");
+            string tmpString = dictionaryStringString["1st"];
+            
+            sortedDictionaryStringString.Add("1st", "first");
+            tmpString = sortedDictionaryStringString["1st"];
+            
             IEnumerable<int> iEnumerableInt = listOfInt;
             IEnumerator<int> iEnumeratorInt = iEnumerableInt.GetEnumerator();
             iEnumeratorInt.Dispose();
