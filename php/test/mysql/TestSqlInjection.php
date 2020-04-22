@@ -15,7 +15,7 @@ echo "<form action=\"TestSqlInjection.php\" method=\"post\" enctype=\"multipart/
 <input type=\"submit\" value=\"submit\" name=\"submit\">
 </form>";
 
-$dbname = "test";
+$dbname = "testdb";
 $dbuser = "root";
 $dbpass = "";
 $dbhost = "localhost";

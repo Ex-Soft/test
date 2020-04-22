@@ -26,7 +26,7 @@ echo "<form action=\"TestMySQL.php\" method=\"post\" enctype=\"multipart/form-da
 <input type=\"submit\" value=\"submit\" name=\"submit\">
 </form>";
 
-$dbname = "test";
+$dbname = "testdb";
 $dbuser = "root";
 $dbpass = "";
 $dbhost = "localhost";
