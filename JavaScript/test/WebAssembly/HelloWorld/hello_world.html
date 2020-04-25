@@ -37,7 +37,7 @@
     loadWebAssembly('hello_world.wasm')
       .then(instance => {
         var exports = instance.exports; // the exports of that instance
-        var doubler = exports._doubler; // the "doubler" function (note "_" prefix)
+        var doubler = exports.doubler; //_doubler; // the "doubler" function (note "_" prefix)
         // now we are ready, set up the button so the user can run the code
         var button = document.getElementById('run');
         button.value = 'Call a method in the WebAssembly module';
