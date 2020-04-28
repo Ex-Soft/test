@@ -1,4 +1,4 @@
-﻿#define TEST_HTML_ENCODE_DECODE
+﻿//#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
@@ -28,7 +28,7 @@
 //#define TEST_THERMO
 //#define TEST_DATE_TIME
 //#define TEST_SPLIT
-//#define TEST_ENUM
+#define TEST_ENUM
 //#define TEST_GET_STRING
 //#define TEST_BIG_ENDIAN
 //#define TEST_BIT_OPERATIONS
@@ -118,7 +118,10 @@ namespace AnyTest
 				Fifth,
 				Ten = 10,
 				Thirteen = 13,
-				Fifteen = 15
+				Fifteen = 15,
+                MinusFirst = -1,
+                MinusSecond = -2,
+                MinusThird
 			}
 
             enum SmthEnum : long
@@ -1156,6 +1159,7 @@ namespace AnyTest
                 }
 
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
+                tmpObject = Enum.Parse(typeof(TestEnum), "-13", true);
 
                 TestEnum testEnum;
 

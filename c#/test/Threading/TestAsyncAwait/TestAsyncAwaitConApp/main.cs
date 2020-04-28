@@ -1,9 +1,4 @@
-﻿//#define USE_TASK_COMPLETION_SOURCE
-//#define USE_TASK_FROM_RESULT
-//#define USE_TASK_RUN
-#define USE_TASK_FACTORY_STARTNEW
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,92 +16,109 @@ namespace TestAsyncAwaitConApp
                 int.TryParse(args[0], out exitCode);
 
             string message;
-            Debug.WriteLine(message = $"Main({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine(message = $"Main({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): Before await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            Debug.WriteLine(message = $"Main({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+            int result = 0;
+
+            switch (exitCode)
+            {
+                case 0:
+                {
+                    result = await DoAsyncWorkUseTaskCompletionSource(exitCode);
+                    break;
+                }
+                case 1:
+                {
+                    result = await DoAsyncWorkUseTaskFromResult(exitCode);
+                    break;
+                }
+                case 2:
+                {
+                    result = await DoAsyncWorkUseTaskRun(exitCode);
+                    break;
+                }
+                case 3:
+                {
+                    result = await DoAsyncWorkUseTaskFactoryStartNew(exitCode);
+                    break;
+                }
+            }
+
+            Debug.WriteLine(message = $"Main({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): After await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            return await DoAsyncWork(exitCode);
+            return result;
         }
 
-        #if USE_TASK_COMPLETION_SOURCE
-
-        static async Task<int> DoAsyncWork(int exitCode)
+        static async Task<int> DoAsyncWorkUseTaskCompletionSource(int exitCode)
         {
             string message;
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskCompletionSource({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): Before await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
             TaskCompletionSource<int> taskCompletionSource = new TaskCompletionSource<int>();
             taskCompletionSource.SetResult(Foo(exitCode));
 
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+            var result = await taskCompletionSource.Task;
+
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskCompletionSource({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): After await  Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            return await taskCompletionSource.Task;
+            return result;
         }
 
-        #endif
-
-        #if USE_TASK_FROM_RESULT
-
-        static async Task<int> DoAsyncWork(int exitCode)
+        static async Task<int> DoAsyncWorkUseTaskFromResult(int exitCode)
         {
             string message;
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskFromResult({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): Before await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+            var result = await Task.FromResult(Foo(exitCode));
+
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskFromResult({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): After await  Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            return await Task.FromResult(Foo(exitCode));
+            return result;
         }
 
-        #endif
-
-        #if USE_TASK_RUN
-
-        static async Task<int> DoAsyncWork(int exitCode)
+        static async Task<int> DoAsyncWorkUseTaskRun(int exitCode)
         {
             string message;
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskRun({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): Before await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+            var result = await Task.Run(() => Foo(exitCode));
+
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskRun({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): After await  Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            return await Task.Run(() => Foo(exitCode));
+            return result;
         }
 
-        #endif
-        
-
-        #if USE_TASK_FACTORY_STARTNEW
-
-        static async Task<int> DoAsyncWork(int exitCode)
+        static async Task<int> DoAsyncWorkUseTaskFactoryStartNew(int exitCode)
         {
             string message;
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskFactoryStartNew({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): Before await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+            var result = await Task<int>.Factory.StartNew(() => Foo(exitCode));
+
+            Debug.WriteLine(message = $"DoAsyncWorkUseTaskFactoryStartNew({exitCode}) {MethodBase.GetCurrentMethod().Name}({exitCode}): After await Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
-            return await Task<int>.Factory.StartNew(() => Foo(exitCode));
+            return result;
         }
-
-        #endif
 
         static int Foo(int exitCode)
         {
             string message;
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} starting...");
+            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}): Before sleep Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
             Thread.Sleep(5000);
 
-            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}) Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+            Debug.WriteLine(message = $"{MethodBase.GetCurrentMethod().Name}({exitCode}): After sleep Thread.CurrentThread.ManagedThreadId: {Thread.CurrentThread.ManagedThreadId}");
             WriteLine(message);
 
             return exitCode;
