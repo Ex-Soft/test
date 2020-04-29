@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void -->
+<!-- Syntax -->
+<!-- void expression -->
+<!-- The void operator evaluates the given expression and then returns undefined. -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>test void</title>
+	</head>
+	<body>
+		<script>
+void function test() {
+	console.log('boo!');
+	// expected output: "boo!"
+}();
+
+try {
+	test();
+}
+catch(e) {
+	console.log(e);
+	// expected output: ReferenceError: test is not defined
+}
+
+void function iife() {
+	if (window.console && console.log)
+		console.log("Executed!");
+}();
+
+// function iifeWithSyntaxError() {
+// 	if (window.console && console.log)
+// 		console.log("Executed!");
+// }(); // SyntaxError: expected expression, got ')'
+
+if (window.console && console.log) {
+	console.log("void 2 == '2' returns ", void 2 == '2'); // (void 2) == '2', returns false
+	console.log("void (2 == '2') returns ", void (2 == '2')); // void (2 == '2'), returns undefined
+}
+		</script>
+		<!-- When a browser follows a javascript: URI, it evaluates the code in the URI and then replaces the contents of the page with the returned value, unless the returned value is undefined. The void operator can be used to return undefined. -->
+		<a href="javascript:void(0);">
+			Click here to do nothing
+		</a>
+		<br/>
+		<a href="javascript:void(document.body.style.backgroundColor='green');">
+			Click here for green background
+		</a>
+		<br/>
+		<a href="javascript:(1 + 2);">
+			Click here to replace the contents of the page with the returned value
+		</a>
+		<br/>
+		<input type="button" id="btnDoSmth" value="doSmth()">
+		<input type="button" id="btnVoidDoSmth" value="void doSmth()">
+		<script>
+var btn;
+if (btn = document.getElementById("btnDoSmth"))
+	btn.onclick = () => doSmth();
+if (btn = document.getElementById("btnVoidDoSmth"))
+	btn.onclick = () => void doSmth();
+
+function doSmth() {
+	if (window.console && console.log)
+		console.log("doSmth(%o)", arguments);
+
+	return true;
+}
+		</script>
+	</body>
+</html>
