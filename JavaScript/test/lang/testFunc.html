@@ -21,6 +21,24 @@ function helloWorld() {
 	if (window.console && console.log)
 		console.log("helloWorld");
 };
+
+var
+	a = Person('a'), // undefined
+	b = new Person('b'), // Person
+	c = Person; // function
+
+function Person(first_name)
+{
+	this.first_name = first_name;
+}
+
+if (window.console && console.log) {
+	console.log("typeof a = \"%s\"", typeof a); // undefined
+	//console.log(a.first_name); // TypeError: a is undefined
+	console.log(b.first_name); // 'b'
+	console.log("typeof c = \"%s\"", typeof c); // function
+	console.log(c.first_name); // undefined
+}
 		</script>
 	</body>
 </html>

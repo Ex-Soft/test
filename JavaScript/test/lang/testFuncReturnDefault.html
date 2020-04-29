@@ -9,7 +9,7 @@
 function functionWOReturn() {
 };
 
-var result = functionWOReturn();
+var result = functionWOReturn(); // undefined
 
 if (window.console && console.log)
 	console.log(result);
@@ -18,11 +18,10 @@ function functionWEmptyReturn() {
 	return;
 };
 
-var result = functionWEmptyReturn();
+var result = functionWEmptyReturn(); // undefined
 
 if (window.console && console.log)
 	console.log(result);
-
 		</script>
 	</body>
 </html>
