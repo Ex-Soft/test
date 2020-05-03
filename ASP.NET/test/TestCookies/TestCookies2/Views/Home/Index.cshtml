@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Test cookies</h1>
+    <input type="button" value="SetCookie()" onclick="setCookie()"/>
+    <hr/>
+    <form asp-controller="Home" asp-action="Submit" method="post">
+        <label>Text: <input type="text"/></label>
+        <hr/>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>

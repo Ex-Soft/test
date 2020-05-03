@@ -1,10 +1,7 @@
-// https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code
-// dotnet tool install --global dotnet-ef
-// dotnet tool install --global dotnet-aspnet-codegenerator
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace WebApp1
+namespace TestCookies2
 {
     public class Program
     {

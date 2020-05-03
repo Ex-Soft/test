@@ -1,0 +1,24 @@
+﻿@model SubmitViewModel
+@{
+    ViewData["Title"] = "Submit";
+}
+
+<h1>Cookies</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var key in Model.Cookies.Keys)
+        {
+            <tr>
+                <td>@key</td>
+                <td>@Model.Cookies[key]</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
