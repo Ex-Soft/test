@@ -1,8 +1,8 @@
-﻿<html>
+﻿<!doctype html>
+<html>
 	<head>
 		<title>Test Cookies</title>
-		<script type="text/javascript">
-<!--
+		<script>
 var
 	CookieName="CookieName";
 
@@ -63,10 +63,14 @@ function WriteCookie(aName, aValue)
 	NextYear.setFullYear(NextYear.getFullYear()+1);
 	document.cookie=aName+aValue+";expires="+NextYear.toGMTString()+";path=/";
 }
-// -->
 		</script>
 	</head>
 	<body onload="Load()">
 		<input type="text" id="InputText1"><input type="button" id="InputButtonSave" value="Save" onclick="Save()"><input type="button" id="InputButtonLoad" value="Load" onclick="Load()">
+		<hr/>
+		<form action="http://localhost:59433/home/submit" method="post">
+			<label>Text: <input type="text"/></label><br/>
+			<input type="submit" value="Submit"/>
+		</form>
 	</body>
 </html>
