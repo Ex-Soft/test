@@ -107,3 +107,6 @@ CMakeCache.txt
 
 # python
 *.pyc
+
+# nodejs
+package-lock.json
