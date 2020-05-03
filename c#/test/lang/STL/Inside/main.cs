@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +12,7 @@ namespace Inside
             List<int> listOfInt = new List<int>();
             Dictionary<string, string> dictionaryStringString = new Dictionary<string, string>();
             SortedDictionary<string, string> sortedDictionaryStringString = new SortedDictionary<string, string>();
+            ConcurrentDictionary<string, string> concurrentDictionaryStringString = new ConcurrentDictionary<string, string>();
             HashSet<string> hashSet = new HashSet<string>();
 
             listOfInt.Add(1);
@@ -20,7 +22,10 @@ namespace Inside
             
             sortedDictionaryStringString.Add("1st", "first");
             tmpString = sortedDictionaryStringString["1st"];
-            
+
+            concurrentDictionaryStringString.TryAdd("1st", "first");
+            tmpString = concurrentDictionaryStringString.GetOrAdd("1st", "first");
+
             IEnumerable<int> iEnumerableInt = listOfInt;
             IEnumerator<int> iEnumeratorInt = iEnumerableInt.GetEnumerator();
             iEnumeratorInt.Dispose();
