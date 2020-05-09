@@ -38,6 +38,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageLog = new System.Windows.Forms.TabPage();
             this.listBoxLog = new System.Windows.Forms.ListBox();
+            this.btnAsyncAwaitDeadLock = new System.Windows.Forms.Button();
             this.pnlBottom.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageLog.SuspendLayout();
@@ -45,6 +46,7 @@
             // 
             // pnlBottom
             // 
+            this.pnlBottom.Controls.Add(this.btnAsyncAwaitDeadLock);
             this.pnlBottom.Controls.Add(this.btnThreadInfo);
             this.pnlBottom.Controls.Add(this.btnSyncTaskRunResult);
             this.pnlBottom.Controls.Add(this.btnSyncGetAwaiterGetResult);
@@ -147,6 +149,16 @@
             this.listBoxLog.Size = new System.Drawing.Size(970, 479);
             this.listBoxLog.TabIndex = 0;
             // 
+            // btnAsyncAwaitDeadLock
+            // 
+            this.btnAsyncAwaitDeadLock.Location = new System.Drawing.Point(556, 14);
+            this.btnAsyncAwaitDeadLock.Name = "btnAsyncAwaitDeadLock";
+            this.btnAsyncAwaitDeadLock.Size = new System.Drawing.Size(131, 23);
+            this.btnAsyncAwaitDeadLock.TabIndex = 6;
+            this.btnAsyncAwaitDeadLock.Text = "async await (deadlock)";
+            this.btnAsyncAwaitDeadLock.UseVisualStyleBackColor = true;
+            this.btnAsyncAwaitDeadLock.Click += new System.EventHandler(this.BtnAsyncAwaitDeadLockClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +188,7 @@
         private System.Windows.Forms.Button btnSyncGetAwaiterGetResult;
         private System.Windows.Forms.Button btnSyncTaskRunResult;
         private System.Windows.Forms.Button btnThreadInfo;
+        private System.Windows.Forms.Button btnAsyncAwaitDeadLock;
     }
 }
 

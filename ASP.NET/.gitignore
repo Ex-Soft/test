@@ -48,6 +48,7 @@ angular*.js
 jszip*.js
 knockout*.js
 
+jquery
 jquery*.js
 jquery*.map
 jquery*.css

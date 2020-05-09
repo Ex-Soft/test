@@ -11,7 +11,7 @@ namespace TestAsyncAwaitWinApp
     public partial class MainForm : Form
     {
         private const string
-            Uri = "http://www.goo_gle.com.ua",
+            Uri = "http://www.google.com.ua",
             DateTimeFormat = "HH:mm:ss.fffffff";
 
         public MainForm()
@@ -19,28 +19,52 @@ namespace TestAsyncAwaitWinApp
             InitializeComponent();
         }
 
-        private async void BtnAsyncAwaitClick(object sender, EventArgs e)
+        private void BtnAsyncAwaitDeadLockClick(object sender, EventArgs e)
         {
-            var methodName = $"{MethodBase.GetCurrentMethod().Name} (private async void BtnAsyncAwaitClick(object, EventArgs))";
+            var methodName = $"{MethodBase.GetCurrentMethod().Name} (private void BtnAsyncAwaitDeadLockClick(object, EventArgs))";
 
-            WriteToLog($"1. {methodName} started...");
+            WriteToLog($"1. {methodName} ThreadId: {Thread.CurrentThread.ManagedThreadId} started...");
 
             try
             {
-                WriteToLog("2. Before result = await LoadAsync()");
-                var result = await LoadAsync(Uri);
-                WriteToLog("9. After result = await LoadAsync()");
+                WriteToLog($"2. Before result = LoadAsync().Result ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+                var result = LoadAsync(Uri).Result;
+                WriteToLog($"7. After result = LoadAsync().Result ThreadId: {Thread.CurrentThread.ManagedThreadId}");
 
-                WriteToLog("10. Before Debug.WriteLine(result)");
+                WriteToLog($"8. Before Debug.WriteLine(result) ThreadId: {Thread.CurrentThread.ManagedThreadId}");
                 Debug.WriteLine(result);
-                WriteToLog("11. After Debug.WriteLine(result)");
+                WriteToLog($"9. After Debug.WriteLine(result) ThreadId: {Thread.CurrentThread.ManagedThreadId}");
             }
             catch (Exception eException)
             {
                 Debug.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
             }
 
-            WriteToLog($"12. {methodName} finished");
+            WriteToLog($"10. {methodName} ThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
+        }
+
+        private async void BtnAsyncAwaitClick(object sender, EventArgs e)
+        {
+            var methodName = $"{MethodBase.GetCurrentMethod().Name} (private async void BtnAsyncAwaitClick(object, EventArgs))";
+
+            WriteToLog($"1. {methodName} ThreadId: {Thread.CurrentThread.ManagedThreadId} started...");
+
+            try
+            {
+                WriteToLog($"2. Before result = await LoadAsync() ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+                var result = await LoadAsync(Uri);
+                WriteToLog($"7. After result = await LoadAsync() ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+
+                WriteToLog($"8. Before Debug.WriteLine(result) ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+                Debug.WriteLine(result);
+                WriteToLog($"9. After Debug.WriteLine(result) ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+            }
+            catch (Exception eException)
+            {
+                Debug.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
+
+            WriteToLog($"10. {methodName} ThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
         }
 
         // https://stackoverflow.com/questions/9343594/how-to-call-asynchronous-method-from-synchronous-method-in-c
@@ -144,7 +168,9 @@ namespace TestAsyncAwaitWinApp
 
         private async Task<int> LoadAsync(string uri)
         {
-            WriteToLog("3. LoadAsync started...");
+            var methodName = $"{MethodBase.GetCurrentMethod().Name}() LoadAsync()";
+
+            WriteToLog($"3. {methodName} ThreadId: {Thread.CurrentThread.ManagedThreadId} started...");
 
             var content = string.Empty;
 
@@ -152,20 +178,16 @@ namespace TestAsyncAwaitWinApp
             {
                 var client = new HttpClient();
 
-                WriteToLog("4. Before client.GetStringAsync(uri)");
-                var getStringTask = client.GetStringAsync(uri);
-                WriteToLog("5. After client.GetStringAsync(uri)");
-
-                WriteToLog("6. Before await getStringTask");
-                content = await getStringTask;
-                WriteToLog("7. After await getStringTask");
+                WriteToLog($"4. Before client.GetStringAsync(uri) ThreadId: {Thread.CurrentThread.ManagedThreadId}");
+                content = await client.GetStringAsync(uri);
+                WriteToLog($"5. After client.GetStringAsync(uri) ThreadId: {Thread.CurrentThread.ManagedThreadId}");
             }
             catch (Exception eException)
             {
                 Debug.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
             }
 
-            WriteToLog("8. LoadAsync finished");
+            WriteToLog($"6. {methodName} ThreadId: {Thread.CurrentThread.ManagedThreadId} finished");
 
             return content.Length;
         }

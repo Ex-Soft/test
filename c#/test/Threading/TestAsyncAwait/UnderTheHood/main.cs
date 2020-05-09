@@ -15,19 +15,12 @@ namespace UnderTheHood
     public class MyAwaiter : INotifyCompletion
     {
         public void GetResult()
-        {
+        {}
 
-        }
-
-        public bool IsCompleted
-        {
-            get { return false; }
-        }
+        public bool IsCompleted => false;
 
         public void OnCompleted(Action continuation)
-        {
-
-        }
+        {}
     }
 
     class Program
@@ -41,11 +34,6 @@ namespace UnderTheHood
             MyAwaitableClass awaitableObject = new MyAwaitableClass();
 
             await awaitableObject;
-        }
-
-        static async Task FooAsync()
-        {
-
         }
     }
 }
