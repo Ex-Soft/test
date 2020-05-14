@@ -1,5 +1,15 @@
+struct TestStruct
+{
+	int
+		fInt1,
+		fInt2,
+		fInt3;
+};
+
 int fooC(int, int, int *, int &);
 void fooAsm(int, int, int *, int &);
+TestStruct fooCWTestStruct(TestStruct);
+void fooAsmWTestStruct(TestStruct);
 
 int main(int argc, char **argv)
 {
@@ -15,7 +25,15 @@ int main(int argc, char **argv)
 	}
 	
 	result = fooC(1, 2, &param1, param2);
-	
+
+	TestStruct testStructIn = TestStruct();
+	testStructIn.fInt1 = 0xaa;
+	testStructIn.fInt2 = 0xbb;
+	testStructIn.fInt3 = 0xcc;
+	TestStruct testStructOut = fooCWTestStruct(testStructIn);
+
+	fooAsmWTestStruct(testStructIn);
+
 	return 0;
 }
 
@@ -42,3 +60,27 @@ void fooAsm(int a, int b, int *c, int &d)
 	}
 }
 
+TestStruct fooCWTestStruct(TestStruct testStruct)
+{
+	testStruct.fInt1 += testStruct.fInt1;
+	testStruct.fInt2 += testStruct.fInt2;
+	testStruct.fInt3 += testStruct.fInt3;
+
+	return testStruct;
+}
+
+void fooAsmWTestStruct(TestStruct testStruct)
+{
+	__asm
+	{
+		mov eax, dword ptr [ebp + 08h]
+		add eax, 0aa00h
+		mov dword ptr[ebp + 08h], eax
+		mov eax, dword ptr [ebp + 0ch]
+		add eax, 0bb00h
+		mov dword ptr[ebp + 0ch], eax
+		mov eax, dword ptr [ebp + 010h]
+		add eax, 0cc00h
+		mov dword ptr[ebp + 010h], eax
+	}
+}
