@@ -112,6 +112,14 @@ namespace TestStruct
     {
         static void Main(string[] args)
         {
+            TestStructII testStructIIin = new TestStructII();
+            testStructIIin.i = 10;
+            testStructIIin.d = 20;
+            testStructIIin.s = "str";
+            TestStructII testStructIIout = FWithTestStructII(testStructIIin);
+            Console.WriteLine($"{{i: {testStructIIin.i}, d: {testStructIIin.d}, s: \"{testStructIIin.s}\"}}");
+            Console.WriteLine($"{{i: {testStructIIout.i}, d: {testStructIIout.d}, s: \"{testStructIIout.s}\"}}");
+
             #if TEST_SET_PRIVATE_FIELD
                 TestStructWithPrivateField
                     testStructWithPrivateField = new TestStructWithPrivateField();
@@ -202,6 +210,15 @@ namespace TestStruct
             {
                 Console.WriteLine(x.Items.Current);
             }
+        }
+
+        static TestStructII FWithTestStructII(TestStructII testStructII)
+        {
+            testStructII.i += testStructII.i;
+            testStructII.d += testStructII.d;
+            testStructII.s += testStructII.s;
+
+            return testStructII;
         }
     }
 }
