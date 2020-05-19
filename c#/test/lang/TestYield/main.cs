@@ -2,11 +2,11 @@
 // http://csharpindepth.com/Articles/Chapter11/StreamingAndIterators.aspx
 // http://www.dotnetperls.com/yield
 //#define SHOW_TRACE
-//#define TEST_SIMPLE
+#define TEST_SIMPLE
 //#define TEST_SIMPLE_SIMPLE
 //#define TEST_I //http://www.programminginterviews.info/2012/05/explain-c-yield-keyword-with-example.html
-#define TEST_II //http://blogs.microsoft.co.il/arnona/2010/12/21/traversing-binary-tree-using-an-iterator/
-#define TEST_III
+//#define TEST_II //http://blogs.microsoft.co.il/arnona/2010/12/21/traversing-binary-tree-using-an-iterator/
+//#define TEST_III
 
 using System;
 using System.Collections;

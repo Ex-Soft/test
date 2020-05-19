@@ -26,7 +26,7 @@ namespace TestAutoResetEvent
                 var t = new Thread(ThreadProc);
                 t.Name = "Thread_" + i;
                 t.Start();
-                Console.WriteLine("Thrad {0} has started.", t.Name);
+                Console.WriteLine("Thread {0} has started.", t.Name);
             }
             Thread.Sleep(250);
 
