@@ -59,7 +59,7 @@ namespace TestLockForm
                 //taskParam.MasterForm.EndInvoke(taskParam.MasterForm.BeginInvoke(new Action(taskParam.MasterForm.Show), new object[] { taskParam.MainForm }));
 
                 if (!taskParam.MasterForm.IsHandleCreated)
-                    taskParam.MasterForm.CreateHandle();
+                    /*taskParam.MasterForm.CreateHandle()*/;
                 taskParam.MasterForm.Invoke(new Action(taskParam.MasterForm.Show), new object[] {taskParam.MainForm});
                 
                 //else
