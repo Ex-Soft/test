@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Centering DIV with CANVAS</title>
+		<style>
+html, body
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.parent
+{
+	height: 400px;
+	width: 100%;
+}
+
+canvas
+{
+    background: grey;
+    /*border:1px solid #000000;*/
+}
+		</style>
+	</head>
+	<body onload="onLoad()">
+		<header>
+		</header>
+		<main>
+			<div id="parent" class="parent">
+				<canvas id="victimCanvas">
+                    Your browser does not support the canvas tag.
+                </canvas>
+			</div>
+		</main>
+		<footer>
+		</footer>
+    </body>
+    <script>
+function onLoad() {
+    let parent, canvas;
+    if(!(parent = document.getElementById("parent")) || !(canvas = document.getElementById("victimCanvas")))
+        return;
+
+    canvas.height = parseInt(getComputedStyle(parent).height);
+    canvas.width = parseInt(getComputedStyle(parent).width);
+}
+    </script>
+</html>
