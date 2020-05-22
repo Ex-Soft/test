@@ -888,6 +888,12 @@ namespace TestIEnumerable
 
             var itemsOfA = from itemOfC in listOfC where itemOfC.FI == 1 from itemOfA in itemOfC.LA select itemOfA;
 
+            var listOfC2 = listOfC.Select(x =>
+            {
+                x.LA = x.LA.Where(a => a.FC).ToList();
+                return x;
+            }).ToList();
+
             DateTime
                 tmpDateTimeI = new DateTime(2017, 1, 1),
                 tmpDateTimeII = new DateTime(2017, 1, 5);
