@@ -888,7 +888,17 @@ namespace TestIEnumerable
 
             var itemsOfA = from itemOfC in listOfC where itemOfC.FI == 1 from itemOfA in itemOfC.LA select itemOfA;
 
-            var listOfC2 = listOfC.Select(x =>
+            listOfC.Add(new C(5, new List<A>
+            {
+                new A { FA = 1, FB = true, FC = true },
+                new A { FA = 2, FB = true, FC = true },
+                new A { FA = 3, FB = true, FC = true },
+                new A { FA = 4, FB = true, FC = true }
+            }));
+
+            var listOfC2 = listOfC.Where(c => c.LA.All(a => a.FC)).ToList();
+
+            listOfC2 = listOfC.Select(x =>
             {
                 x.LA = x.LA.Where(a => a.FC).ToList();
                 return x;

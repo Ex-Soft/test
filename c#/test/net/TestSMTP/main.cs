@@ -1,7 +1,7 @@
-﻿#define TEST_LINK_TO_IMG
+﻿//#define TEST_LINK_TO_IMG
 //#define TEST_DISPOSE
 //#define TEST_DISPOSE_WITH_USING
-//#define TEST_MAIL_RU
+#define TEST_SMTP_SERVER
 //#define TEST_HEADER
 //#define TEST_IMG_IN_BODY
 
@@ -173,15 +173,13 @@ namespace TestSMTP
                     }
                 #endif
 
-                #if TEST_MAIL_RU
-				    NetworkCredential
-					    credential = new NetworkCredential("4others@mail.ru", "password");
+                #if TEST_SMTP_SERVER
+				    var credential = new NetworkCredential("4others@ukr.net", "password");
 
-                    smtp = new SmtpClient("smtp.mail.ru", /*25*/ 587);
-				    smtp.Credentials = credential;
-                    mailMessage = new MailMessage("4others@mail.ru", "4others@ua.fm", "Test SmtpClient", "Test SmtpClient");
-                    smtp.Send(mailMessage);
-                    //smtp.Send("4others@mail.ru", "4others@ua.fm", "Test SmtpClient", "Test SmtpClient");
+                    smtpClient = new SmtpClient("smtp.ukr.net", 465);
+				    smtpClient.Credentials = credential;
+                    mailMessage = new MailMessage("4others@ukr.net", "4others@ua.fm", "Test Smtp Server", "Test Smtp Server");
+                    smtpClient.Send(mailMessage);
                 #endif
                 
                 #if TEST_HEADER

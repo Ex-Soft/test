@@ -1,6 +1,8 @@
-﻿//#define TEST_CLOSURE // http://weblogs.asp.net/fbouma/archive/2009/06/25/linq-beware-of-the-access-to-modified-closure-demon.aspx
+﻿#define IENUMERABLE_VS_IQUERYABLE
+//#define TEST_CLOSURE // http://weblogs.asp.net/fbouma/archive/2009/06/25/linq-beware-of-the-access-to-modified-closure-demon.aspx
 
 using System;
+using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 
@@ -10,10 +12,31 @@ namespace TestLINQ2SQLII
     {
         static void Main(string[] args)
         {
-            var db = new DataContext("Data Source=nozhenko-s8\\SQLEXPRESS;Initial Catalog=testdb;Integrated Security=SSPI;");
-            //var db = new DataContext("Data Source=nozhenko-s8\\SQLEXPRESS;Initial Catalog=testdb;User Id=testuser;Password=123456");
+            var db = new DataContext("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True;");
 
-            Table<Staff>
+            #if IENUMERABLE_VS_IQUERYABLE
+                IEnumerable<Staff> queryIEnumerable;
+
+                // SELECT [t0].[ID], [t0].[Name], [t0].[Salary], [t0].[Dep], [t0].[BirthDate], [t0].[NullField] FROM [Staff] AS[t0]
+                queryIEnumerable = from s in db.GetTable<Staff>() select s;
+                queryIEnumerable = queryIEnumerable.Where(s => s.Dep == 1).ToList();
+
+                // exec sp_executesql N'SELECT [t0].[ID], [t0].[Name], [t0].[Salary], [t0].[Dep], [t0].[BirthDate], [t0].[NullField] FROM [Staff] AS[t0] WHERE[t0].[Dep] = @p0',N'@p0 int',@p0=1
+                queryIEnumerable = from s in db.GetTable<Staff>() where s.Dep == 1 select s;
+                queryIEnumerable = queryIEnumerable.Where(s => s.Dep == 1).ToList();
+
+                IQueryable<Staff> queryIQueryable;
+
+                // exec sp_executesql N'SELECT [t0].[ID], [t0].[Name], [t0].[Salary], [t0].[Dep], [t0].[BirthDate], [t0].[NullField] FROM [Staff] AS[t0] WHERE[t0].[Dep] = @p0',N'@p0 int',@p0=1
+                queryIQueryable = from s in db.GetTable<Staff>() where s.Dep == 1 select s;
+                var resultOfQueryIQueryable = queryIQueryable.ToList();
+
+                // IQueryable<Staff>
+                var query = from s in db.GetTable<Staff>() select s;
+                var result = query.ToList();
+            #endif
+
+            Table <Staff>
                 tableStaff = db.GetTable<Staff>();
 
             #if TEST_CLOSURE
@@ -56,7 +79,7 @@ namespace TestLINQ2SQLII
                 Console.WriteLine("{{ID: {0}, Name: {1}, Salary: {2}, Dep: {3}, BirthDate: {4}, NullField: {5}}}", s.ID, s.Name, s.Salary.HasValue ? s.Salary.Value.ToString() : "NULL", s.Dep.HasValue ? s.Dep.Value.ToString() : "NULL", s.BirthDate.HasValue ? s.BirthDate.Value.ToString() : "NULL", s.NullField.HasValue ? s.NullField.Value.ToString() : "NULL");
 
             Staff
-                staff = new Staff {ID = 3, Name = "blah-blah-blah"};
+                staff = new Staff {ID = 333, Name = "blah-blah-blah"};
 
             //tableStaff.InsertOnSubmit(staff);
             //db.SubmitChanges();

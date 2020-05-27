@@ -362,7 +362,20 @@ namespace LambdaVsQuery
             var people = new List<Person> { magnus, terry, charlotte, arlene };
             var pets = new List<Pet> { barley, boots, whiskers, bluemoon, daisy };
 
-		    var lefJoinResultByQuerySyntax = (from person in people
+            var joinResultByQuerySyntax = (
+                from person in people
+                join pet in pets on person equals pet.Owner
+                select person)
+                .ToArray();
+
+            var joinResultByLambdaSyntax = people
+                .Join(pets,
+                    person => person,
+                    pet => pet.Owner,
+                    (person, pet) => person)
+                .ToArray();
+
+            var lefJoinResultByQuerySyntax = (from person in people
 		        join pet in pets on person equals pet.Owner into gj
 		        from subpet in gj.DefaultIfEmpty()
 		        select new {person.FirstName, PetName = (subpet == null ? String.Empty : subpet.Name)}).ToArray();

@@ -1,5 +1,5 @@
-﻿//#define TEST_LIST
-#define TEST_DICTIONARY
+﻿#define TEST_LIST
+//#define TEST_DICTIONARY
 
 using System;
 using System.Collections;
@@ -13,23 +13,30 @@ using static System.Console;
 namespace STLIII
 {
     #if TEST_DICTIONARY
+
         class Victim
         {
             public string FString { get; set; }
         }
+
     #endif
 
     #if TEST_LIST
+
         class A : IEquatable<A>
         {
             public int FA { get; set; }
+            public bool FB { get; set; }
+            public bool FC { get; set; }
 
-            public A(A obj) : this(obj.FA)
+            public A(A obj) : this(obj.FA, obj.FB, obj.FC)
             {}
 
-            public A(int fA = default(int))
+            public A(int fA = default, bool fB = default, bool fC = default)
             {
                 FA = fA;
+                FB = fB;
+                FC = fC;
             }
 
             #region IEquatable<A> Members
@@ -42,7 +49,7 @@ namespace STLIII
                 if (ReferenceEquals(other, null))
                     return false;
 
-                return FA == other.FA;
+                return FA == other.FA && FB == other.FB && FC == other.FC;
             }
 
             #endregion
@@ -96,6 +103,25 @@ namespace STLIII
                 return 0;
             }
         }
+
+        class C
+        {
+            public int FI { get; set; }
+            public List<A> LA { get; set; }
+
+            public C() : this(default(int), new List<A>())
+            {}
+
+            public C(C obj) : this(obj.FI, obj.LA)
+            {}
+
+            public C(int fi, List<A> la)
+            {
+                FI = fi;
+                LA = la;
+            }
+        }
+
     #endif
 
     class Program
@@ -103,6 +129,7 @@ namespace STLIII
         static void Main(string[] args)
         {
             #if TEST_DICTIONARY
+
                 var dicLongLong = new Dictionary<long, long>
                 {
                     { 1L, 1L },
@@ -303,6 +330,7 @@ namespace STLIII
             #endif
 
             #if TEST_LIST
+
                 List<StringStringPair>
                     listOfStringStringPair = new List<StringStringPair>(new StringStringPair[] { new StringStringPair("aa", "bb") });
 
@@ -347,6 +375,33 @@ namespace STLIII
                     if (i%2 == 0)
                         listOfIntI.Remove(i);
                 }
+
+                listOfAI = new List<A>(new[]
+		        {
+		            new A {FA = 1, FB = true, FC = false},
+                    new A {FA = 2, FB = true, FC = true},
+		            new A {FA = 3, FB = true, FC = false},
+                    new A {FA = 4, FB = true, FC = false}
+		        });
+
+                var listOfC = new List<C>
+                {
+                    new C(1, listOfAI),
+                    new C(2, listOfAI),
+                    new C(3, listOfAI),
+                    new C(4, listOfAI),
+                    new C(5,
+                        new List<A>
+                        {
+                            new A {FA = 1, FB = true, FC = true},
+                            new A {FA = 2, FB = true, FC = true},
+                            new A {FA = 3, FB = true, FC = true},
+                            new A {FA = 4, FB = true, FC = true}
+                        })
+                };
+
+                var listOfC2 = listOfC.FindAll(c => c.LA.All(_a_ => _a_.FC));
+
             #endif
         }
     }
