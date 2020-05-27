@@ -8,3 +8,19 @@ div[data-url] {
     color: white;
     background-color: blue;
 }
+
+.outer-div {
+    background-color: blue;
+}
+
+.inner-div {
+    background-color: red;
+}
+
+.outer-div .inner-div {
+    color: yellow;
+}
+
+.outer-div {
+    color: white;
+}

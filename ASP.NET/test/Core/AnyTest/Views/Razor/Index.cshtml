@@ -1,0 +1,25 @@
+﻿@model RazorViewModel
+<hr />
+<h1>Views/Razor/Index.cshtml</h1>
+<h2>Index</h2>
+
+@if (Model.CreateOuterDiv)
+{
+    @:<div@(!string.IsNullOrWhiteSpace(Model.OuterDivCssClass) ? $" class={Model.OuterDivCssClass}" : string.Empty)>
+}
+@if (Model.CreateInnerDiv)
+{
+    @Html.Raw(string.Format("<div{0}>", !string.IsNullOrWhiteSpace(Model.InnerDivCssClass) ? $" class=\"{Model.InnerDivCssClass}\"" : string.Empty));
+}
+@if (!string.IsNullOrWhiteSpace(Model.Content))
+{
+    <p>@Model.Content</p>
+}
+@if (Model.CreateInnerDiv)
+{
+    @Html.Raw("</div>");
+}
+@if (Model.CreateOuterDiv)
+{
+    @:</div>
+}
