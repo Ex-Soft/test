@@ -1,8 +1,9 @@
+<!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8" />
 		<title>Test Msxml2.XMLHTTP</title>
-		<script type="text/javascript">
-<!--
+		<script>
 function OnLoad()
 {
 	var
@@ -15,25 +16,27 @@ function OnLoad()
 
 	for(var i=0; i<progIDs.length; ++i)
 	{
-		alert(progIDs[i]);
-
 		var
 			r;
 
 		try
 		{
 			r=new ActiveXObject(progIDs[i]);
-			alert("oB!");
+			if (window.console && console.log)
+				console.log("\"%s\" - oB!", progIDs[i]);
 		}
 		catch(e)
 		{
-			alert(e.name+": "+e.message);
+			if (window.console && console.log)
+				console.log("\"%s\" \"%s\": \"%s\"", progIDs[i], e.name, e.message);
 		}
 
 		r=null;
 	}
+	
+	if (window.console && console.log)
+		console.log("%sXMLHttpRequest", window.XMLHttpRequest ? "" : "!");
 }
-// -->
 		</script>
 	</head>
 	<body onload="OnLoad()">
