@@ -1,0 +1,21 @@
+﻿<hr />
+<h1>Views/Home/Index.cshtml</h1>
+<h2>Home</h2>
+
+@{
+    await Html.RenderPartialAsync("_PartialView1");
+    await Html.RenderPartialAsync("~/Views/PartialViews/_PartialViewsPartialView1.cshtml");
+    await Html.RenderPartialAsync("_HomePartialView1");
+    await Html.RenderPartialAsync("_HomePartialView2");
+}
+<hr />
+<div data-url="@Url.Action("PopulatePartialView1", "Home")"></div>
+<div data-url="@Url.Action("PopulatePartialView2", "Home")"></div>
+<hr />
+@{
+    await Html.RenderPartialAsync("_HomePartialView1", new PartialViewModel { PString1 = "_HomePartialView1.PString1Value", PString2 = "_HomePartialView1.PString2Value" }, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "ViewDataKey1", "ViewDataKey1Value" }, { "ViewDataKey2", "ViewDataKey2Value" } });
+    await Html.RenderPartialAsync("_HomePartialView2", new PartialViewModel { PString1 = "_HomePartialView2.PString1Value", PString2 = "_HomePartialView2.PString2Value" }, new ViewDataDictionary(ViewData) { { "ViewDataKey1", "ViewDataKey1Value" }, { "ViewDataKey2", "ViewDataKey2Value" } });
+}
+<hr />
+<div data-url="@Url.Action("PopulatePartialViewWithModel1", "Home")"></div>
+<div data-url="@Url.Action("PopulatePartialViewWithModel2", "Home")"></div>

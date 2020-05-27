@@ -53,3 +53,6 @@ jquery*.js
 jquery*.map
 jquery*.css
 jquery*.css.map
+
+*.min.js
+*.min.css

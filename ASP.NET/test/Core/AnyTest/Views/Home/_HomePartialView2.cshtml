@@ -1,0 +1,20 @@
+﻿@model PartialViewModel
+<div>
+    &quot;_HomePartialView2&quot; (&quot;Views/Home/_HomePartialView2&quot;)
+    @if (ViewData != null)
+    {
+        @if (ViewData["ViewDataKey1"] != null)
+        {
+            <p>ViewData[&quot;ViewDataKey1&quot;]: @ViewData["ViewDataKey1"]</p>
+        }
+        @if (ViewData["ViewDataKey2"] != null)
+        {
+            <p>ViewData[&quot;ViewDataKey2&quot;]: @ViewData["ViewDataKey2"]</p>
+        }
+    }
+    @if (Model != null)
+    {
+        <p>PString1: @Model.PString1</p>
+        <p>PString2: @Model.PString2</p>
+    }
+</div>
