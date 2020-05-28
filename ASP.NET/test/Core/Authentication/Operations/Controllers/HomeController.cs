@@ -1,21 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Operations.CustomPolicyProvider;
 
-namespace Authorization.Controllers
+namespace Operations.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IAuthorizationService _authorizationService;
-
-        public HomeController(IAuthorizationService authorizationService)
-        {
-            _authorizationService = authorizationService;
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -26,20 +19,19 @@ namespace Authorization.Controllers
         {
             return View();
         }
-        
-        [Authorize(Policy = "Claim.DoB")]
-        public IActionResult SecretPolicy()
+
+        [SecurityLevel(5)]
+        public IActionResult SecretLevel()
         {
             return View("Secret");
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult SecretRole()
+        [SecurityLevel(10)]
+        public IActionResult SecretHigherLevel()
         {
             return View("Secret");
         }
 
-        [AllowAnonymous] // filter
         public IActionResult Authenticate()
         {
             var grandmaClaims = new List<Claim>
@@ -47,7 +39,7 @@ namespace Authorization.Controllers
                 new Claim(ClaimTypes.Name, "Bob"),
                 new Claim(ClaimTypes.Email, "bob@mailinator.com"),
                 new Claim(ClaimTypes.DateOfBirth, "11/11/2000"),
-                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(DynamicPolicies.SecurityLevel, "7"),
                 new Claim("Grandma.Says", "Very nice boy.")
             };
 
@@ -65,34 +57,6 @@ namespace Authorization.Controllers
             HttpContext.SignInAsync(userPrincipal);
 
             return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> DoStuff()
-        {
-            var builder = new AuthorizationPolicyBuilder();
-            var customPolicy = builder.RequireClaim("Hello").Build();
-
-            var authResult = await _authorizationService.AuthorizeAsync(User, customPolicy);
-            if (authResult.Succeeded)
-            {
-                return View("Index");
-            }
-
-            return View("Index");
-        }
-
-        public async Task<IActionResult> DoOtherStuff([FromServices] IAuthorizationService authorizationService)
-        {
-            var builder = new AuthorizationPolicyBuilder();
-            var customPolicy = builder.RequireClaim("Hello").Build();
-
-            var authResult = await authorizationService.AuthorizeAsync(User, customPolicy);
-            if (authResult.Succeeded)
-            {
-                return View("Index");
-            }
-
-            return View("Index");
         }
     }
 }

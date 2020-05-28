@@ -11,8 +11,3 @@ else
 
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService authorizationService
-
-@if ((await authorizationService.AuthorizeAsync(User, "Claim.DoB")).Succeeded)
-{
-    <h1>User has DoB Claim</h1>
-}
