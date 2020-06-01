@@ -4,9 +4,9 @@
 
 //#define TEST_DUPLICATES
 //#define TEST_MEMBER_EXPRESSION
-#define TEST_PARSE
+//#define TEST_PARSE
 //#define TEST_CREATE_ACCESSOR
-//#define TEST_CLOSURE
+#define TEST_CLOSURE
 //#define ANY_TEST
 
 using System;
@@ -212,6 +212,18 @@ namespace TestLambda
 
 					var item = listInt.FirstOrDefault(ii => ii == i);
 					listIntII.Add(item);
+				}
+
+                funcs.Clear();
+				for (int i = 0; i < 5; ++i)
+                {
+                    int ii = i;
+				    funcs.Add(() => ii);
+				    //funcs.Add(() => i);
+			    }
+				foreach (var f in funcs)
+				{
+					Console.WriteLine(f());
 				}
 			#endif
 		}

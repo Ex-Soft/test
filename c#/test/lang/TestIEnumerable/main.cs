@@ -389,6 +389,19 @@ namespace TestIEnumerable
             listOfIntIII = listOfInt.Intersect(listOfIntII).ToList();
             listOfIntIII = listOfIntII.Intersect(listOfInt).ToList();
 
+            #region GroupBy
+
+            listOfInt = new List<int> { 1, 2, 1, 3, 4, 4, 4, 5, 5, 5 };
+
+            var max = listOfInt
+                .GroupBy(x => x)
+                .Select(x => new { value = x.Key, count = x.Count() })
+                .OrderByDescending(x => x.value)
+                .FirstOrDefault();
+
+            var tmpInt = listOfInt
+                .Count(x => x == listOfInt.Max(x => x));
+
             List<A> listOfA = new List<A>
 			{
 				new A { FA = 1, FB = true },
@@ -399,7 +412,7 @@ namespace TestIEnumerable
 
 			var doubles = listOfA.GroupBy(item => new {item.FA, item.FB});
 	        var keys = doubles.Select(g => g.Key);
-	        int tmpInt = keys.Count();
+	        tmpInt = keys.Count();
 
 			listOfA.Add(new A { FA = 1 });
 			doubles = listOfA.GroupBy(item => new { item.FA, item.FB });
@@ -414,6 +427,8 @@ namespace TestIEnumerable
 			doublesII = listOfA.GroupBy(a => a.FA).Where(ga => ga.GroupBy(b => b.FB).Select(gb => gb.Key).Count() > 1);
 			foreach (A a in doublesII.SelectMany(g => g))
 				Debug.WriteLine(a);
+
+            #endregion
 
             List<bool> listOfBool = new List<bool> { true, true, true };
             tmpBool = listOfBool.Aggregate(true, (val, next) => { return val && next; });

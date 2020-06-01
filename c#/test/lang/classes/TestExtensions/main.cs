@@ -24,6 +24,11 @@ namespace TestExtensions
     {
         static void Main(string[] args)
         {
+            SmthClass smthClass = null;
+            smthClass.TestNull();
+            smthClass = new SmthClass();
+            smthClass.GetPublicString();
+
             var request = new Request("en-gb");
             Debug.WriteLine($"{{PreferredLanguage: \"{request.PreferredLanguage}\", LanguageCode:\"{request.GetLanguageCode()}\", Country:\"{request.GetCountry()}\"}}");
 

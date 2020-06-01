@@ -65,6 +65,10 @@ namespace TestFunc
             FuncWithOutParam(2, out tmpString);
             Console.WriteLine(tmpString);
 
+            var str = "1234";
+            var f = MakeLooper(str);
+            for (var i = 0; i < 10; ++i)
+                Console.Write($"{f()} ");
 
             Console.ReadLine();
         }
@@ -134,6 +138,17 @@ namespace TestFunc
                         break;
                     }
             }
+        }
+
+        static Func<char> MakeLooper(string str)
+        {
+            int current = 0, length = str.Length;
+            return () =>
+            {
+                var result = str[current++];
+                if (current == length) current = 0;
+                return result;
+            };
         }
     }
 }
