@@ -64,17 +64,21 @@ namespace TestBase64
             #endif
 
 		    string
-				//str = "663390";
-		        str = "Administrator:123";
+		        str = "{\"sub\":\"some_id\",\"granny\":\"cookie\",\"nbf\":1591013209,\"exp\":1591016809,\"iss\":\"http://localhost:56218/\",\"aud\":\"http://localhost:56218/\"}";
 
-			encbuff = System.Text.Encoding.UTF8.GetBytes(str);
+            encbuff = System.Text.Encoding.UTF8.GetBytes(str);
 			strBase64 = Convert.ToBase64String(encbuff);
 
-            strIn = "QWRtaW5pc3RyYXRvcjoxMjM=";
+            strIn = "eyJzdWIiOiJzb21lX2lkIiwiZ3Jhbm55IjoiY29va2llIiwibmJmIjoxNTkxMDEzMjA5LCJleHAiOjE1OTEwMTY4MDksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTYyMTgvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1NjIxOC8ifQ==";
 
             Console.WriteLine("\"{0}\" {1}= \"{2}\"", strBase64, strBase64 != strIn ? "!" : "=", strIn);
 
-		    var charArray = strIn.ToCharArray();
+            decbuff = Convert.FromBase64String(strIn);
+            strOutUTF = System.Text.Encoding.UTF8.GetString(decbuff);
+            decbuff = Convert.FromBase64String(strBase64);
+            strOutUTF = System.Text.Encoding.UTF8.GetString(decbuff);
+
+            var charArray = strIn.ToCharArray();
 
 		    //decbuff = Convert.FromBase64String(strIn);
 		    decbuff = Convert.FromBase64CharArray(charArray, 0, charArray.Length);
