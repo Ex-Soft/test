@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test grid-auto-flow</title>
+		<style>
+#grid {
+    height: 200px;
+    width: 200px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+    grid-auto-flow: column;  /* or 'row', 'row dense', 'column dense' */
+}
+
+#item1 {
+    background-color: lime;
+    grid-row-start: 3;
+}
+
+#item2 {
+    background-color: yellow;
+}
+
+#item3 {
+    background-color: blue;
+}
+
+#item4 {
+    grid-column-start: 2;
+  background-color: red;
+}
+
+#item5 {
+    background-color: aqua;
+}
+    	</style>
+	</head>
+	<body>
+        <div id="grid">
+            <div id="item1">1</div>
+            <div id="item2">2</div>
+            <div id="item3">3</div>
+            <div id="item4">4</div>
+            <div id="item5">5</div>
+        </div>
+        <select id="direction" onchange="changeGridAutoFlow()">
+            <option value="column">column</option>
+            <option value="row">row</option>
+        </select>
+        <input id="dense" type="checkbox" onchange="changeGridAutoFlow()">
+        <label for="dense">dense</label>
+		<script>
+function changeGridAutoFlow() {
+    let grid, direction, dense, gridAutoFlow;
+	if (!(grid = document.getElementById("grid"))
+	       || !(direction = document.getElementById("direction"))
+		   || !(dense = document.getElementById("dense")))
+	    return;
+
+	gridAutoFlow = direction.value === "row" ? "row" : "column";
+
+    if (dense.checked) {
+        gridAutoFlow += " dense";
+    }
+
+    grid.style.gridAutoFlow = gridAutoFlow;
+}
+		</script>
+	</body>
+</html>
