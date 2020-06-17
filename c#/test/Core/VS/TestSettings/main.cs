@@ -15,6 +15,7 @@ namespace TestSettings
                 .Build();
 
             WriteLine($"config[\"AppSettings:DbConnectionName\"] = \"{config["AppSettings:DbConnectionName"]}\"");
+            WriteLine($"config[\"AppSettings:Victim\"] = \"{config["AppSettings:Victim"]}\"");
 
             WriteLine($"config[\"ConnectionStrings:MsSqlDbConnection:ConnectionString\"] = \"{config["ConnectionStrings:MsSqlDbConnection:ConnectionString"]}\"");
             WriteLine($"config[\"ConnectionStrings:MsSqlDbConnection:ProviderName\"] = \"{config["ConnectionStrings:MsSqlDbConnection:ProviderName"]}\"");
