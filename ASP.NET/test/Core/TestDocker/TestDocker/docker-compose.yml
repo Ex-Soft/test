@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+
+    mongo:
+        image: mongo:latest
+        restart: always
+        ports:
+            - 27017:27017
+
+    dbservice:
+        build: ./DbService
+        restart: always
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://+:60368
+        ports:
+            - 60368:60368
+        depends_on:
+            - mongo
+        links:
+            - mongo
+
+    webapp:
+        build: ./WebApp
+        restart: always
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://+:54816
+        ports:
+            - 54816:54816
+        depends_on:
+            - dbservice
+        links:
+            - dbservice

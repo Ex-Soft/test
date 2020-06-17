@@ -1,0 +1,36 @@
+﻿@model List<Staff>
+<h1>Staff</h1>
+<hr/>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Dep</th>
+            <th>Birth date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var staff in Model)
+    {
+        <tr>
+            <td>@staff.Id</td>
+            <td>@staff.Name</td>
+            <td>@staff.Salary</td>
+            <td>@staff.Dep</td>
+            <td>@staff.BirthDate</td>
+            <td><input type="button" data-url="/staff/delete" data-id="@staff.Id" value="Del" /></td>
+        </tr>
+    }
+    </tbody>
+</table>
+<hr/>
+<form action="/staff/create" method="post">
+    <label>Name: <input type="text" name="name" value="" placeholder="Name" required="required" /></label>
+    <label>Salary: <input type="number" name="salary" /></label>
+    <label>Dep: <input type="number" name="dep" /></label>
+    <label>Birth date: <input type="date" name="birthdate" /></label>
+    <button type="submit">Add</button>
+</form>
