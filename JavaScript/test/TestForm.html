@@ -1,24 +1,46 @@
+<!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8" />
 		<title>Test Form</title>
-		<script type="text/javascript">
-<!--
+		<script>
 function DoIt()
 {
-	var
-		Ctrl;
+	let ctrl;
 
-	if(!(Ctrl=document.getElementById("TestForm")))
+	if(!(ctrl = document.getElementById("TestForm")))
 		return;
 
-	Ctrl=Ctrl.getElementsByTagName("input");
-	for(var i=0; i<Ctrl.length; ++i)
-		alert("id=\""+Ctrl[i].id+"\" type=\""+Ctrl[i].type+"\"");
+	send(ctrl);
 
-	if(Ctrl=document.getElementById("TextArea"))
-		Ctrl=Ctrl.value.split("\r\n");
+	ctrl = ctrl.getElementsByTagName("input");
+	for(let i = 0; i < ctrl.length; ++i)
+		if (window.console && console.log)
+			console.log("id=\"%s\" type=\"%s\"", ctrl[i].id, ctrl[i].type);
+
+	if(ctrl = document.getElementById("TextArea"))
+		ctrl = ctrl.value.split("\r\n");
 }
-// -->
+
+function send(form)
+{
+	let xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === XMLHttpRequest.DONE) {
+			if (xhr.status === 200) {
+				div.innerHTML = xhr.responseText;
+			} else {
+				if (window.console && console.log)
+					console.log(xhr);
+			}
+
+			xhr = null;
+		}
+	};
+	xhr.open("POST", "http://localhost", true);
+	xhr.send(new FormData(form));
+}
 		</script>
 	</head>
 	<body>
