@@ -33,8 +33,8 @@
 
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            div.innerHTML = xhr.responseText;
+                        if (xhr.status === 201) {
+                            location.reload();
                         } else {
                             if (window.console && console.log)
                                 console.log(xhr);
@@ -64,7 +64,7 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
-                            div.innerHTML = xhr.responseText;
+                            location.reload();
                         } else {
                             if (window.console && console.log)
                                 console.log(xhr);

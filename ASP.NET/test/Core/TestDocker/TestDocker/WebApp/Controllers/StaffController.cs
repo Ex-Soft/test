@@ -50,36 +50,23 @@ namespace WebApp.Controllers
             var response = await HttpClient.PostAsync(_uri, new StringContent(JsonConvert.SerializeObject(staff), Encoding.UTF8, "application/json"));
 
             response.EnsureSuccessStatusCode();
+            var staffCreated = JsonConvert.DeserializeObject<Staff>(await response.Content.ReadAsStringAsync());
 
-            var result = await HttpClient.GetAsync(_uri);
-
-            if (result.IsSuccessStatusCode)
-            {
-                return View("Index",JsonConvert.DeserializeObject<List<Staff>>(await result.Content.ReadAsStringAsync()));
-            }
-
-            return BadRequest();
+            return Created($"/{ControllerContext.ActionDescriptor.ControllerName}/{staffCreated.Id}", staffCreated);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
-                return BadRequest();
+                return NotFound();
 
             var response = await HttpClient.DeleteAsync(new Uri(_uri, id));
 
             if (response.StatusCode != HttpStatusCode.NoContent)
-                return BadRequest();
+                return NotFound();
 
-            var result = await HttpClient.GetAsync(_uri);
-
-            if (result.IsSuccessStatusCode)
-            {
-                return View("Index", JsonConvert.DeserializeObject<List<Staff>>(await result.Content.ReadAsStringAsync()));
-            }
-
-            return BadRequest();
+            return Ok();
         }
     }
 }
