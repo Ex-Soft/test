@@ -4,7 +4,8 @@
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                div.innerHTML = xhr.responseText;
+                if (window.console && console.log)
+                    console.log(xhr);
             } else {
                 if (window.console && console.log)
                     console.log(xhr);
