@@ -27,10 +27,10 @@
     </tbody>
 </table>
 <hr/>
-<form action="/staff/create" method="post">
+<form id="formAdd" action="/staff/create" method="post">
     <label>Name: <input type="text" name="name" value="" placeholder="Name" required="required" /></label>
     <label>Salary: <input type="number" name="salary" /></label>
     <label>Dep: <input type="number" name="dep" /></label>
     <label>Birth date: <input type="date" name="birthdate" /></label>
-    <button type="submit">Add</button>
+    <input id="btnAdd" type="button" value="Add" />
 </form>

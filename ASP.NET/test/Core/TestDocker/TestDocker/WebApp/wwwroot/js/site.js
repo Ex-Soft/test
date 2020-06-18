@@ -14,15 +14,40 @@
 
             me.onLoad = function (e) {
                 let btns;
-                if (!(btns = document.querySelectorAll("input[data-url]")))
-                    return;
+                if (btns = document.getElementById("btnAdd"))
+                    me.addEventListener(btns, "click", me.onAddClick);
 
-                for (let btn of btns) {
-                    me.addEventListener(btn, "click", me.onClick);
+                if (btns = document.querySelectorAll("input[data-url]")) {
+                    for (let btn of btns) {
+                        me.addEventListener(btn, "click", me.onDelClick);
+                    }
                 }
             };
 
-            me.onClick = function (e) {
+            me.onAddClick = function (e) {
+                let form;
+                if (!(form = document.getElementById("formAdd")))
+                    return;
+
+                let xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            div.innerHTML = xhr.responseText;
+                        } else {
+                            if (window.console && console.log)
+                                console.log(xhr);
+                        }
+
+                        xhr = null;
+                    }
+                };
+                xhr.open("POST", form.action, true);
+                xhr.send(new FormData(form));
+            };
+
+            me.onDelClick = function (e) {
                 let btn, url, id;
 
                 if (!e
