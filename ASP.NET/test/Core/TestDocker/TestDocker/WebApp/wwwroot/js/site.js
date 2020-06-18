@@ -17,6 +17,9 @@
                 if (btns = document.getElementById("btnAdd"))
                     me.addEventListener(btns, "click", me.onAddClick);
 
+                if (btns = document.getElementById("btnGetIP"))
+                    me.addEventListener(btns, "click", me.onGetIPClick);
+
                 if (btns = document.querySelectorAll("input[data-url]")) {
                     for (let btn of btns) {
                         me.addEventListener(btn, "click", me.onDelClick);
@@ -74,6 +77,26 @@
                     }
                 };
                 xhr.open("DELETE", `${url}${(url.charAt(url.length - 1) !== "/" ? "/" : "")}${id}`, true);
+                xhr.send();
+            };
+
+            me.onGetIPClick = function (e) {
+                let xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            if (window.console && console.log)
+                                console.log(xhr);
+                        } else {
+                            if (window.console && console.log)
+                                console.log(xhr);
+                        }
+
+                        xhr = null;
+                    }
+                };
+                xhr.open("GET", "/staff/getip", true);
                 xhr.send();
             };
         })();

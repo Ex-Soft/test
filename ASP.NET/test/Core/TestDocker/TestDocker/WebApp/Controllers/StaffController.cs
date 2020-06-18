@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -67,6 +68,18 @@ namespace WebApp.Controllers
                 return NotFound();
 
             return Ok();
+        }
+
+        [HttpGet]
+        public string GetIP()
+        {
+            return $"{GetIP(Dns.GetHostName())};{GetIP("webapp")};{GetIP("dbservice")};{GetIP("mongo")}";
+        }
+
+        private string GetIP(string hostName)
+        {
+            var ips = Dns.GetHostAddresses(hostName);
+            return $"{hostName};{string.Join(';', ips.Select(ip => ip.ToString()))}";
         }
     }
 }
