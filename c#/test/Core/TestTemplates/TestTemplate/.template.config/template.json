@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "classifications": [ "Common", "Console" ],
+    "identity": "ConsoleTestTemplate.CSharp",
+    "name": "Console Application from Test Template",
+    "shortName": "consolefromtemplate",
+    "sourceName": "Test",
+    "preferNameDirectory" : "true",
+    "symbols": {
+        "EnableType":{
+            "type": "parameter",
+            "dataType":"bool",
+            "defaultValue": "false"
+        },
+        "sources": [
+            {
+                "modifiers": [
+                    {
+                        "condition": "(!EnableType)",
+                        "exclude": [ "TestType.cs" ]
+                    }
+                ]
+            }
+        ]
+    }
+}
