@@ -17,7 +17,7 @@
                 "modifiers": [
                     {
                         "condition": "(!EnableType)",
-                        "exclude": [ "TestType.cs" ]
+                        "exclude": [ "{sourceName}Type.cs" ]
                     }
                 ]
             }
