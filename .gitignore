@@ -90,6 +90,7 @@ _ReSharper*
 *.cpp~
 makefile~
 *.[Dd][Bb][Ff]
+*.jar
 
 # SELinux
 *.pp
