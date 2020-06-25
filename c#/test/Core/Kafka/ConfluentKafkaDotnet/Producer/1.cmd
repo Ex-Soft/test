@@ -1,0 +1,1 @@
+avrogen -s customer.avsc . --namespace org.example:Producer
