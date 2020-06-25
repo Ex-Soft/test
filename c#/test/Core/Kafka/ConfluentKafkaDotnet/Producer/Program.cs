@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Avro.Generic;
 using Confluent.Kafka;
+using Confluent.SchemaRegistry.Serdes;
 
 namespace Producer
 {
@@ -40,7 +41,7 @@ namespace Producer
             #if TEST_AVRO
                 topic = "customer-avro";
 
-                var conf = new Dictionary<string, object>
+                var config = new Dictionary<string, object>
                 {
                     {"bootstrap.servers", bootstrapServer},
                     {"schema.registry.url", "localhost:8081"}
