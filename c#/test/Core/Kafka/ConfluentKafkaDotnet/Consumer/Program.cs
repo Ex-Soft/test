@@ -1,52 +1,76 @@
-﻿using System;
-using System.Threading;
+﻿//#define TEST_SIMPLE
+#define TEST_AVRO
+
+using System;
 using Confluent.Kafka;
+using Confluent.SchemaRegistry;
+using Confluent.SchemaRegistry.Serdes;
 
 namespace Consumer
 {
+    public class AvroDeserializerWrapper<T> : IDeserializer<T>
+    {
+        private readonly AvroDeserializer<T> _avroDeserializer;
+
+        public AvroDeserializerWrapper(AvroDeserializer<T> avroDeserializer)
+        {
+            _avroDeserializer = avroDeserializer;
+        }
+
+        public T Deserialize(ReadOnlySpan<byte> data, bool isNull, SerializationContext context)
+        {
+            var result = _avroDeserializer.DeserializeAsync(new System.ReadOnlyMemory<byte>(data.ToArray()), isNull, context).Result;
+            return result;
+        }
+    }
+
     class Program
     {
         public static void Main(string[] args)
         {
-            const string topic = "test"; // "customer-avro";
+            string
+                topic,
+                bootstrapServers = "localhost:9092",
+                schemaRegistryUrl = "localhost:8081";
 
-            var conf = new ConsumerConfig
-            {
-                GroupId = "test-consumer-group",
-                BootstrapServers = "localhost:9092",
-                AutoOffsetReset = AutoOffsetReset.Earliest
-            };
+            #if TEST_AVRO
+                topic = "customer-avro";
 
-            using (var c = new ConsumerBuilder<Ignore, string>(conf).Build())
-            {
-                c.Subscribe(topic);
-
-                CancellationTokenSource cts = new CancellationTokenSource();
-                Console.CancelKeyPress += (_, e) => {
-                    e.Cancel = true; // prevent the process from terminating.
-                    cts.Cancel();
+                var schemaRegistryConfig = new SchemaRegistryConfig
+                {
+                    Url = schemaRegistryUrl
                 };
 
-                try
+                var consumerConfig = new ConsumerConfig
                 {
-                    while (true)
+                    BootstrapServers = bootstrapServers,
+                    GroupId = "avro-specific-example-group"
+                };
+
+                using (var schemaRegistry = new CachedSchemaRegistryClient(schemaRegistryConfig))
+                {
+                    var keyDeserializer = new AvroDeserializerWrapper<string>(new AvroDeserializer<string>(schemaRegistry));
+                    var valueDeserializer = new AvroDeserializerWrapper<Customer>(new AvroDeserializer<Customer>(schemaRegistry));
+
+                    using (var consumer =
+                        new ConsumerBuilder<string, Customer>(consumerConfig)
+                            .SetKeyDeserializer(keyDeserializer)
+                            .SetValueDeserializer(valueDeserializer)
+                            .SetErrorHandler((_, e) => Console.WriteLine($"Error: {e.Reason}"))
+                            .Build())
                     {
                         try
                         {
-                            var cr = c.Consume(cts.Token);
-                            Console.WriteLine($"Consumed message '{cr.Message.Value}' at: '{cr.TopicPartitionOffset}'.");
+                            consumer.Subscribe(topic);
+                            var resurl = consumer.Consume();
                         }
-                        catch (ConsumeException e)
+                        catch (Exception e)
                         {
-                            Console.WriteLine($"Error occured: {e.Error.Reason}");
+                            consumer.Close();
                         }
                     }
                 }
-                catch (OperationCanceledException)
-                {
-                    c.Close();
-                }
-            }
+            #endif
         }
     }
 }
