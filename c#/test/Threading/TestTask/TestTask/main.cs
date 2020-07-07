@@ -1,7 +1,7 @@
 ﻿//#define TEST_LIST
-//#define TEST_CONTINUE_WITH
+#define TEST_CONTINUE_WITH
 //#define TEST_AWAITER
-#define TEST_TASK_COMPLETION_SOURCE
+//#define TEST_TASK_COMPLETION_SOURCE
 
 using System;
 using System.Collections.Generic;
