@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,6 +35,7 @@ namespace Server
 
                     config.TokenValidationParameters = new TokenValidationParameters
                     {
+                        ClockSkew = TimeSpan.Zero,
                         ValidIssuer = Constants.Issuer,
                         ValidAudience = Constants.Audience,
                         IssuerSigningKey = key
