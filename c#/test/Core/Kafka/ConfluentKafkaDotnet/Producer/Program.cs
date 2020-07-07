@@ -1,13 +1,17 @@
-﻿// https://github.com/confluentinc/confluent-kafka-dotnet
+﻿// https://github.com/confluentinc/confluent-kafka-dotnet/
 
 //#define TEST_SIMPLE
 #define TEST_AVRO
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
+using org.example;
+
+using static System.Console;
 
 namespace Producer
 {
@@ -70,6 +74,11 @@ namespace Producer
                         .ContinueWith(task => task.IsFaulted
                             ? $"error producing message: {task.Exception.Message}"
                             : $"produced to: {task.Result.TopicPartitionOffset}");
+
+                    producer.Flush(TimeSpan.FromSeconds(30));
+
+                    Debug.WriteLine(result);
+                    WriteLine(result);
                 }
             #endif
         }
