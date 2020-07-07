@@ -1,11 +1,17 @@
-﻿//#define TEST_SIMPLE
+﻿// https://github.com/confluentinc/confluent-kafka-dotnet/
+
+//#define TEST_SIMPLE
 #define TEST_AVRO
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
+using org.example;
+
+using static System.Console;
 
 namespace Producer
 {
@@ -64,10 +70,15 @@ namespace Producer
                     .Build())
                 {
                     var customer = new Customer { first_name = "FirstName", last_name = "LastName", age = 13, payment = PaymentTypes.Mastercard, height = 13, weight = 13, automated_email = false };
-                    await producer.ProduceAsync(topic, new Message<string, Customer> { Key = Guid.NewGuid().ToString(), Value = customer })
+                    var result = await producer.ProduceAsync(topic, new Message<string, Customer> { Key = Guid.NewGuid().ToString(), Value = customer })
                         .ContinueWith(task => task.IsFaulted
                             ? $"error producing message: {task.Exception.Message}"
                             : $"produced to: {task.Result.TopicPartitionOffset}");
+
+                    producer.Flush(TimeSpan.FromSeconds(30));
+
+                    Debug.WriteLine(result);
+                    WriteLine(result);
                 }
             #endif
         }

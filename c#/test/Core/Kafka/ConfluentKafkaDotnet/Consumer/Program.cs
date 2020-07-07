@@ -2,9 +2,13 @@
 #define TEST_AVRO
 
 using System;
+using System.Diagnostics;
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
+using org.example;
+
+using static System.Console;
 
 namespace Consumer
 {
@@ -44,7 +48,8 @@ namespace Consumer
                 var consumerConfig = new ConsumerConfig
                 {
                     BootstrapServers = bootstrapServers,
-                    GroupId = "avro-specific-example-group"
+                    GroupId = "avro-specific-example-group",
+                    AutoOffsetReset = AutoOffsetReset.Earliest
                 };
 
                 using (var schemaRegistry = new CachedSchemaRegistryClient(schemaRegistryConfig))
@@ -56,16 +61,19 @@ namespace Consumer
                         new ConsumerBuilder<string, Customer>(consumerConfig)
                             .SetKeyDeserializer(keyDeserializer)
                             .SetValueDeserializer(valueDeserializer)
-                            .SetErrorHandler((_, e) => Console.WriteLine($"Error: {e.Reason}"))
+                            .SetErrorHandler((_, e) => WriteLine($"Error: {e.Reason}"))
                             .Build())
                     {
                         try
                         {
                             consumer.Subscribe(topic);
-                            var resurl = consumer.Consume();
+                            var result = consumer.Consume();
+                            WriteLine($"Topic: {result.Topic} Offset: {result.Offset} Key: {result.Message.Key} Value: {result.Message.Value}");
                         }
                         catch (Exception e)
                         {
+                            Debug.WriteLine(e);
+                            WriteLine(e.Message);
                             consumer.Close();
                         }
                     }
