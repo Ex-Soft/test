@@ -1,4 +1,6 @@
-﻿//#define TEST_SIMPLE
+﻿// https://github.com/confluentinc/confluent-kafka-dotnet
+
+//#define TEST_SIMPLE
 #define TEST_AVRO
 
 using System;
