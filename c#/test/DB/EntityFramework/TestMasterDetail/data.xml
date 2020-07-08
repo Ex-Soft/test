@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Master xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Val>Master Val</Val>
+  <Detail>
+    <Val>Detail Val# 1</Val>
+  </Detail>
+  <Detail>
+    <Val>Detail Val# 2</Val>
+  </Detail>
+  <Detail>
+    <Val>Detail Val# 3</Val>
+  </Detail>
+</Master>
