@@ -18,18 +18,21 @@ namespace TestSimple
 
                 using var connection = new SqlConnection(connectionString).EnsureOpen();
                 var staffs = connection.ExecuteQuery<Staff>("select * from Staff");
+                // select * from Staff
                 foreach (var item in staffs)
                 {
                     WriteLine($"{{ID: {item.ID}}}");
                 }
 
                 staffs = connection.QueryAll<Staff>();
+                // SELECT [ID], [Name], [Salary], [Dep], [BirthDate], [NullField] FROM [Staff] ;
                 foreach (var item in staffs)
                 {
                     WriteLine($"{{ID: {item.ID}}}");
                 }
 
                 var staff = connection.Query<Staff>(s => s.ID == 1);
+                // exec sp_executesql N'SELECT [ID], [Name], [Salary], [Dep], [BirthDate], [NullField] FROM [Staff] WHERE ([ID] = @ID) ;',N'@ID bigint',@ID=1
             }
             catch (Exception eException)
             {

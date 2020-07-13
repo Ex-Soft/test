@@ -17,6 +17,15 @@ namespace WebApi.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+        [FromHeader]
+        public string Code { get; set; }
+
+        [FromHeader]
+        public string Env { get; set; }
+
+        [FromHeader(Name = "X-Extra")]
+        public string Extra { get; set; }
+
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
@@ -33,6 +42,18 @@ namespace WebApi.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+        
+        [HttpGet("/group/{id}/users")]
+        public IActionResult GroupList(int id, [FromQuery] string sort)
+        {
+            return Ok($"{{id: {id}{(!string.IsNullOrWhiteSpace(sort) ? $", sort: \"{sort}\"" : string.Empty)}{(!string.IsNullOrWhiteSpace(Code) ? $", Code: \"{Code}\"" : string.Empty)}{(!string.IsNullOrWhiteSpace(Env) ? $", Env: \"{Env}\"" : string.Empty)}{(!string.IsNullOrWhiteSpace(Extra) ? $", Extra: \"{Extra}\"" : string.Empty)}}}");
+        }
+
+        [HttpGet("/group/{id}/users/{userId}")]
+        public IActionResult GroupList(int id, int userId)
+        {
+            return Ok($"{{id: {id}, userId: {userId}}}");
         }
     }
 }

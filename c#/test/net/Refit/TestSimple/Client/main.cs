@@ -15,8 +15,16 @@ namespace Client
             {
                 var client = RestService.For<IWeatherForecast>("http://localhost:65208");
 
-                var weatherForecasts = client.GetAsync().Result;
+                var resultStr = client.GroupList(13).Result;
+                WriteLine(resultStr);
 
+                resultStr = client.GroupList(new UserGroupRequest {groupId = 13, userId = 26}).Result;
+                WriteLine(resultStr);
+
+                resultStr = client.GroupList(13, "desc").Result;
+                WriteLine(resultStr);
+
+                var weatherForecasts = client.GetAsync().Result;
                 foreach (var item in weatherForecasts)
                 {
                     WriteLine($"{item.Date}");
