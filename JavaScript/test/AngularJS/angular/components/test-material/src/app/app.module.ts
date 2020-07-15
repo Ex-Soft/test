@@ -1,26 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppComponent } from './app.component';
-import { TestlistComponent } from './testlist/testlist.component';
-import { TestlistitemsComponent } from './testlist/testlistitems.component';
+import { TestCheckboxComponent } from './material/testcheckbox/testcheckbox.component';
+import { TestSliderComponent } from './material/testslider/testslider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestlistComponent,
-    TestlistitemsComponent
+    TestCheckboxComponent,
+    TestSliderComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSliderModule,
     MatCheckboxModule
   ],
   providers: [],

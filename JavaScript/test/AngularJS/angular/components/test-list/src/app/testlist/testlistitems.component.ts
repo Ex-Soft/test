@@ -11,8 +11,6 @@ export class TestlistitemsComponent implements OnInit {
   allChecked = false;
   btnEnabled = false;
 
-  name = new FormControl('');
-  
   constructor() { }
 
   @Input() items: IItem[];
@@ -22,7 +20,8 @@ export class TestlistitemsComponent implements OnInit {
   }
 
   checkBoxAllChange(e: any): void {
-    this.items.map(item => item.checked = e.target.checked);
+    const newVal = typeof e === 'boolean' ? e : e.target.checked;
+    this.items.map(item => item.checked = newVal);
     this.setBtnEnabled();
   }
 
