@@ -1,0 +1,34 @@
+<div class="list-items">
+    <div class="list-items-summary">
+        Total: <span>{{items.length}}</span>
+    </div>
+    <div class="list-items-details">
+        <div class="list-items-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" [formControl]="name" (change)="checkBoxAllChange($event)"></th>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>price</th>
+                        <th>count</th>
+                        <th>total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items">
+                        <td><input type="checkbox" [(checked)]="item.checked" (change)="checkBoxChange($event)"></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.count}}</td>
+                        <td>{{item.total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="list-items-button">
+            <button (click)="btnClick($event)" [disabled]="!btnEnabled">DoIt!</button>
+        </div>
+    </div>
+</div>
