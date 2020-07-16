@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<!-- https://hacks.mozilla.org/2015/08/es6-in-depth-modules/ -->
+<!-- https://exploringjs.com/es6/ch_modules.html -->
+<!-- https://www.sitepoint.com/understanding-es6-modules/ -->
+<!-- https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/ -->
+<!-- https://stackoverflow.com/questions/44590393/es6-modules-undefined-onclick-function-after-import -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test modules</title>
+		<script src="main.js" type="module"></script>
+		<script type="module">
+import { DoIt, DoIt2 } from "./module2.js";
+
+let btn;
+
+if (btn = document.querySelector("input[type=\"button\"]")) {
+	if (btn.addEventListener)
+		btn.addEventListener("click", DoIt, false);
+	else if (btn.attachEvent)
+		btn.attachEvent("onclick", DoIt);
+	else
+		btn.onclick = DoIt;
+}
+
+window.DoIt2 = DoIt2;
+		</script>
+	</head>
+	<body>
+		<input type="button" value="DoIt!">
+		<input type="button" value="DoIt! (2)" onclick="DoIt2()">
+	</body>
+</html>
