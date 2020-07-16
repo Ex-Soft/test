@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test querySelector</title>
+		<script>
+function onLoad()
+{
+	TestQuerySelector("input");
+	TestQuerySelectorAll("input");
+	TestQuerySelector("input[type=text]");
+	TestQuerySelectorAll("input[type=text]");
+	TestQuerySelector("app-parent");
+	TestQuerySelectorAll("app-parent");
+}
+
+function TestQuerySelector(selector) {
+	let ctrl;
+
+	if (ctrl = document.querySelector(selector)) {
+		if (window.console && console.log)
+			console.log(ctrl);
+	}
+}
+
+function TestQuerySelectorAll(selector) {
+	let ctrls;
+
+	if (ctrls = document.querySelectorAll(selector)) {
+		if (window.console && console.log)
+			console.log(ctrls.length);
+
+		for (let i = 0, l = ctrls.length; i < l; ++i)
+			if (window.console && console.log)
+				console.log(ctrls[i]);
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		<input type="button">
+		<input type="button">
+		<input type="button">
+		<hr>
+		<app-parent></app-parent>
+		<app-parent></app-parent>
+		<app-parent></app-parent>
+	</body>
+</html>

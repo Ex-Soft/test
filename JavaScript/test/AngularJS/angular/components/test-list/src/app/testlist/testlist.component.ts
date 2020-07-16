@@ -8,7 +8,8 @@ import { Order } from '../models/Order';
 @Component({
   selector: 'app-testlist',
   templateUrl: './testlist.component.html',
-  styleUrls: ['./testlist.component.css']
+  styleUrls: ['./testlist.component.css'],
+  providers: [ OrderService ]
 })
 export class TestlistComponent implements OnInit {
   order: IOrder;
