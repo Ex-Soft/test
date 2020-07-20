@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { OrderApiResponse } from '../types/order-api-response.type';
 import { OrderService } from '../services/order.service';
 import { Item } from '../models/Item';
@@ -13,10 +13,11 @@ import { Order } from '../models/Order';
 })
 export class TestlistComponent implements OnInit {
   order: IOrder;
+  url: string;
 
-  constructor(private orderService: OrderService) { }
-
-  @Input() url: string;
+  constructor(private hostElement: ElementRef, private orderService: OrderService) {
+    this.url = hostElement.nativeElement?.dataset?.url;
+  }
 
   ngOnInit(): void {
     this.getOrder(this.url);
