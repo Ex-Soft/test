@@ -99,6 +99,7 @@ makefile~
 # idea
 .idea
 *.iml
+dependency-reduced-pom.xml
 target/
 
 # CMake
