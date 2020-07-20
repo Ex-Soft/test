@@ -12,10 +12,9 @@ export class TestcomboboxComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  @Input("data-url")
-  url: string;
+  @Input("data-url") url: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getData();
   }
 
