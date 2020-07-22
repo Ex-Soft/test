@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IItem } from '../models/IItem';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-testlistitems',
@@ -11,12 +10,14 @@ export class TestlistitemsComponent implements OnInit {
   allChecked = false;
   btnEnabled = false;
 
-  constructor() { }
+  constructor() {
+    console.log('.ctor(): this = %o', this);
+  }
 
   @Input() items: IItem[];
 
   ngOnInit(): void {
-    console.log(this);
+    console.log('ngOnInit(): this = %o', this);
   }
 
   checkBoxAllChange(e: any): void {
