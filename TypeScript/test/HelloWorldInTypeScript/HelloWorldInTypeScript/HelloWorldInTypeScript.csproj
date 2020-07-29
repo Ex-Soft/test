@@ -118,6 +118,7 @@
     <TypeScriptCompile Include="Scripts\ISmthInterface2.ts" />
     <TypeScriptCompile Include="Scripts\Person.ts" />
     <TypeScriptCompile Include="Scripts\SmthClass.ts" />
+    <TypeScriptCompile Include="Scripts\Generic.ts" />
     <TypeScriptCompile Include="Scripts\TupleVariables.ts" />
     <TypeScriptCompile Include="Scripts\UniqueIdContainerItemsCache.ts" />
     <TypeScriptCompile Include="Scripts\UtilityTypes\ClassForTestPartial.ts" />
