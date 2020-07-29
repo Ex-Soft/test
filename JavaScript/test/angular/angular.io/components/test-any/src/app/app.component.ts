@@ -16,4 +16,10 @@ export class AppComponent {
     { id: 2, name: 'Name #2', price: 10, count: 10 },
     { id: 3, name: 'Name #3', price: 100, count: 100 }
   ] as IDto[];
+
+  allChecked: boolean = true;
+
+  allCheckedChange(newValue: boolean): void {
+    this.allChecked = newValue;
+  }
 }
