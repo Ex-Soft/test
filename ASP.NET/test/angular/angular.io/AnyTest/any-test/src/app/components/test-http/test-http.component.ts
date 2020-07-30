@@ -41,6 +41,10 @@ export class TestHttpComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClickInspect(): void {
+    console.log(this.data);
+  }
+
   onClickTestOneSubscribe(): void {
     const result = this.get1service.getData(this.baseUrl)
       .subscribe(data => {
@@ -181,7 +185,10 @@ export class TestHttpComponent implements OnInit {
     .subscribe(() => {});
   }
 
-  onClickInspect(): void {
-    console.log(this.data);
+  onClickTestFullResponse(): void {
+    this.http.get<DtoObject1>(`${this.baseUrl}getdtoobject1`, { observe: 'response' })
+      .subscribe(resp => {
+        console.log(resp.body);
+      });
   }
 }

@@ -1,6 +1,4 @@
-﻿//https://blog.angular-university.io/angular-http/
-
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApi.Models;
