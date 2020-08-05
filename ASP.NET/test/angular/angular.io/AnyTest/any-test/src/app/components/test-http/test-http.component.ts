@@ -17,7 +17,7 @@ import { TestHttpGet3Service } from '../../services/test-http-get-3.service';
 import { TestHttpGetDtoObject1Service } from '../../services/test-http-get-dto-object-1.service';
 import { TestHttpGetDtoObject2Service } from '../../services/test-http-get-dto-object-2.service';
 import { TestHttpGetDtoObject3Service } from '../../services/test-http-get-dto-object-3.service';
-import { DtoObject1 } from 'src/app/models/dto-object1';
+import { DtoObject1, StatusCodeResponse } from 'src/app/models';
 
 @Component({
   selector: 'app-test-http',
@@ -190,5 +190,20 @@ export class TestHttpComponent implements OnInit {
       .subscribe(resp => {
         console.log(resp.body);
       });
+  }
+
+  onClickXXX(e: Event): void {
+    const btn = e.target as HTMLInputElement;
+    this.http.get<StatusCodeResponse>(`${this.baseUrl}get${btn.value}`).subscribe(
+      resp => {
+        console.log('next(%o)', resp);
+      },
+      error => {
+        console.log('error(%o)', error.error);
+      },
+      () => {
+        console.log('complete()');
+      }
+    );
   }
 }
