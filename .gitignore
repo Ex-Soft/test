@@ -90,6 +90,7 @@ _ReSharper*
 *.cpp~
 makefile~
 *.[Dd][Bb][Ff]
+*.jar
 
 # SELinux
 *.pp
@@ -98,6 +99,7 @@ makefile~
 # idea
 .idea
 *.iml
+dependency-reduced-pom.xml
 target/
 
 # CMake

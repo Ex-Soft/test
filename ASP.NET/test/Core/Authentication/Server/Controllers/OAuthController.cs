@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -21,7 +22,7 @@ namespace Server.Controllers
             string state) // random string generated to confirm what we are going to back to the same client
         {
             var query = new QueryBuilder();
-            query.Add("redirectUri", redirect_uri);
+            query.Add("redirect_uri", redirect_uri);
             query.Add("state", state);
 
             return View(model: query.ToString());
@@ -30,7 +31,7 @@ namespace Server.Controllers
         [HttpPost]
         public IActionResult Authorize(
             string username,
-            string redirectUri,
+            string redirect_uri,
             string state)
         {
             const string code = "BABABABABA";
@@ -39,14 +40,15 @@ namespace Server.Controllers
             query.Add("code", code);
             query.Add("state", state);
 
-            return Redirect($"{redirectUri}{query.ToString()}");
+            return Redirect($"{redirect_uri}{query.ToString()}");
         }
 
         public async Task<IActionResult> Token(
             string grant_type, // flow of access_token request
             string code, // confirmation of the authentication process
             string redirect_uri,
-            string client_id)
+            string client_id,
+            string refresh_token)
         {
             // some mechanism for validating code
             var claims = new[]
@@ -66,7 +68,7 @@ namespace Server.Controllers
                 Constants.Audience,
                 claims,
                 DateTime.Now,
-                DateTime.Now.AddHours(1),
+                grant_type == "refresh_token" ? DateTime.Now.AddMinutes(5) : DateTime.Now.AddMilliseconds(1),
                 signingCredentials
             );
 
@@ -76,7 +78,8 @@ namespace Server.Controllers
             {
                 access_token,
                 token_type = "Bearer",
-                raw_claim = "oathTutorial"
+                raw_claim = "oathTutorial",
+                refresh_token = "RefreshTokenSampleValueSomething77"
             };
 
             var responseJson = JsonConvert.SerializeObject(responseObject);
@@ -85,6 +88,17 @@ namespace Server.Controllers
             await Response.Body.WriteAsync(responseBytes, 0, responseBytes.Length);
 
             return Redirect(redirect_uri);
+        }
+
+        [Authorize]
+        public IActionResult Validate()
+        {
+            if (HttpContext.Request.Query.TryGetValue("access_token", out var accessToken))
+            {
+                return Ok();
+            }
+
+            return BadRequest();
         }
     }
 }

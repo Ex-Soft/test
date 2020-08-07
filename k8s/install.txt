@@ -1,0 +1,4 @@
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+https://kubernetes.io/docs/tasks/tools/install-minikube/
+https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html

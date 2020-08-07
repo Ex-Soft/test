@@ -1,0 +1,27 @@
+<ng-container>
+  <div>
+    Test @Input()<br>
+    <label>parentValue: <input type="text" [(ngModel)]="parentValue"></label>
+  </div>
+  <app-test-input [valueWithGetterAndSetter]="'valueWithGetterAndSetterValue'" [value]="'valueValue'" [parentValue]="parentValue"></app-test-input>
+  <hr/>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test @Pipe()<br>
+  </div>
+  <app-test-pipe [items]="dto | dto2view"></app-test-pipe>
+  <hr/>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test @Input() @Output<br>
+    <input type="checkbox" [(ngModel)]="allChecked" />
+  </div>
+  <app-test-input-output [(allChecked)]="allChecked" (allCheckedChangeEvent)="allCheckedChange($event)"></app-test-input-output>
+  <app-test-input-output [(allChecked)]="allChecked" (allCheckedChangeEvent)="allCheckedChange($event)"></app-test-input-output>
+  <app-test-input-output [(allChecked)]="allChecked" (allCheckedChangeEvent)="allChecked=$event"></app-test-input-output>
+  <hr/>
+</ng-container>

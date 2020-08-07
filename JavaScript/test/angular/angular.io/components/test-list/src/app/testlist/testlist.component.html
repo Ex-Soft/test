@@ -1,0 +1,7 @@
+<div *ngIf="order">
+    <div>
+        id: {{order?.id}} date: {{order?.date}} total: {{order?.total}}
+    </div>
+    <hr/>
+    <app-testlistitems [items]="order?.items"></app-testlistitems>
+</div>

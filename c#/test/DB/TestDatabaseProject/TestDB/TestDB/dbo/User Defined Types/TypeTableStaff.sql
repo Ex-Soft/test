@@ -1,0 +1,5 @@
+﻿CREATE TYPE [dbo].[TypeTableStaff] AS TABLE (
+    [ID]   NUMERIC (18)  NOT NULL,
+    [NAME] VARCHAR (254) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC));
+
