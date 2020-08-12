@@ -1,0 +1,5 @@
+{
+    Foo(smthValues):: {
+      smthValues: smthValues
+    }
+}
