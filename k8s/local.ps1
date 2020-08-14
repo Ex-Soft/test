@@ -2,13 +2,19 @@ minikube version
 kubectl version
 kubectl version --client
 
+kubectl config view
 kubectl config get-contexts
-
 kubectl config use-context docker-desktop
 
 minikube start
 minikube start --cpus=2 --memory=2gb --disk-size=50gb
 minikube start -p MYSUPERCLUSTER
+minikube start --vm=true ## ingress
+
+minikube addons list
+minikube addons enable dashboard
+
+minikube dashboard
 
 minikube ssh
 

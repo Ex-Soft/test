@@ -1,3 +1,5 @@
+### https://medium.com/faun/hello-world-of-kubernetes-part-1-d1153fc2fc37
+
 apiVersion: v1
 kind: Pod
 metadata:
