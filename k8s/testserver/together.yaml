@@ -34,4 +34,5 @@ spec:
   ports:
   - port: 1337
     targetPort: 1337
+    nodePort: 30001
 

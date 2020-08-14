@@ -23,5 +23,5 @@ kubectl describe service/testserver-entrypoint
 kubectl exec --stdin --tty testserver-7c5b96dbff-52mmk -- /bin/bash
 kubectl delete -f together.yaml
 
-kubectl apply -f pod.yaml
+kubectl apply -f pod.yaml ### https://www.scalyr.com/blog/kubernetes-tutorial-learn-basics/
 docker inspect pid
