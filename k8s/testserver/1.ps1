@@ -1,6 +1,6 @@
 ### https://medium.com/faun/hello-world-of-kubernetes-part-1-d1153fc2fc37
 
-### eval $(minikube docker-env) https://stackoverflow.com/questions/38979231/imagepullbackoff-local-repository-with-minikube
+### eval $(minikube docker-env) https://stackoverflow.com/questions/38979231/imagepullbackoff-local-repository-with-minikube https://minikube.sigs.k8s.io/docs/handbook/pushing/
 docker build --tag testserver .
 docker save node | (eval $(minikube docker-env) && docker load)
 docker save testserver | (eval $(minikube docker-env) && docker load)
