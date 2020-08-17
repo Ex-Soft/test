@@ -22,6 +22,7 @@ kubectl get componentstatuses
 kubectl cluster-info
 kubectl get nodes
 kubectl api-resources
+kubectl get pods -n kube-system
 
 kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
 kubectl get deployments

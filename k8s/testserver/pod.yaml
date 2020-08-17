@@ -3,11 +3,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-    labels:
-        app: testserver
+  name: testserver
+  namespace: default
+  labels:
+    app: testserver
 spec:
-    containers:
-    - name: testserver
-      image: testserver
-      ports:
-      - containerPort: 1337
+  containers:
+  - name: testserver
+    image: testserver
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 1337
