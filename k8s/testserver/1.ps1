@@ -1,6 +1,6 @@
 ### https://medium.com/faun/hello-world-of-kubernetes-part-1-d1153fc2fc37
 
-### eval $(minikube docker-env) https://stackoverflow.com/questions/38979231/imagepullbackoff-local-repository-with-minikube
+### eval $(minikube docker-env) https://stackoverflow.com/questions/38979231/imagepullbackoff-local-repository-with-minikube https://minikube.sigs.k8s.io/docs/handbook/pushing/
 docker build --tag testserver .
 docker save node | (eval $(minikube docker-env) && docker load)
 docker save testserver | (eval $(minikube docker-env) && docker load)
@@ -23,7 +23,7 @@ kubectl describe service/testserver-entrypoint
 kubectl exec --stdin --tty testserver-7c5b96dbff-52mmk -- /bin/bash
 kubectl delete -f together.yaml
 
-kubectl apply -f pod.yaml
+kubectl apply -f pod.yaml  ### https://www.scalyr.com/blog/kubernetes-tutorial-learn-basics/
 kubectl apply -f service.yaml
 kubectl port-forward -n default service/testserver-service 1337:1337
 kubectl describe service/testserver-service
