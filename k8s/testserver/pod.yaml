@@ -1,5 +1,6 @@
 ### https://medium.com/faun/hello-world-of-kubernetes-part-1-d1153fc2fc37
 ### https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/
+### https://www.scalyr.com/blog/kubernetes-tutorial-learn-basics/
 
 apiVersion: v1
 kind: Pod
