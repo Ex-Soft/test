@@ -4,8 +4,8 @@ import { Injector } from '@angular/core';
 import { TestTestInjectComponent } from './test-test-inject.component';
 import { VICTIM_INJECTION_TOKEN } from './victim';
 import { SmthClass } from '../../classes';
-import { IAppConfig } from 'src/app/classes/iapp-config';
-import { APP_CONFIG } from 'src/app/app.config';
+import { IAppConfig } from '../../classes/iapp-config';
+import { APP_CONFIG } from '../../app.config';
 
 const dataMockSmthClass: SmthClass = new SmthClass('dataMockSmthClass');
 const dataMockAppConfig: IAppConfig = { p1: 'dataMockAppConfig' };
