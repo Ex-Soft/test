@@ -13,4 +13,7 @@ summerNumber = Season.Summer;
 let summerName: string;
 
 // summerName = "Summer"
-summerName = Season[Season.Summer];  
+summerName = Season[Season.Summer];
+
+let season: Season;
+season = Season["Fall"];

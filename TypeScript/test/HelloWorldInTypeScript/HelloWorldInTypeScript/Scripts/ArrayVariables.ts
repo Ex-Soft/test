@@ -23,3 +23,18 @@ let arrayOfStrings2: Array<string>;
 arrayOfStrings2 = [...arrayOfStrings, "str4"];
 
 let i = 5;
+
+let complexObject = {
+    groups: [
+        {
+            items: [{ id: 1 }, { id: 2 }]
+        },
+        {
+            items: [{ id: 3 }, { id: 4 }]
+        }
+    ]
+};
+
+let items = complexObject.groups.reduce((acc, val) => acc.concat(val.items), []);
+if (window.console && console.log)
+    console.log(items);
