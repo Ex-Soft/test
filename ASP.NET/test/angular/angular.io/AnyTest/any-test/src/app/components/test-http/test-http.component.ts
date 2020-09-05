@@ -5,11 +5,13 @@
 // https://www.positronx.io/handle-angular-http-requests-with-observables/
 // https://coryrylan.com/blog/subscribing-to-multiple-observables-in-angular-components
 // https://codecraft.tv/courses/angular/http/http-with-observables/
+// https://www.techiediaries.com/angular-10-tutorial-example-rest-crud-http-get-httpclient/
+// https://www.techiediaries.com/angular-http-client/
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { combineLatest, Observable, UnaryFunction, forkJoin, of, throwError } from 'rxjs';
-import { map, switchMap, mergeMap, flatMap, retry, catchError } from 'rxjs/operators';
+import { combineLatest, Observable, UnaryFunction, forkJoin, of, throwError, Subject } from 'rxjs';
+import { map, switchMap, mergeMap, flatMap, retry, catchError, takeUntil, tap } from 'rxjs/operators';
 
 import { TestHttpGet1Service } from '../../services/test-http-get-1.service';
 import { TestHttpGet2Service } from '../../services/test-http-get-2.service';
@@ -24,7 +26,9 @@ import { DtoObject1, StatusCodeResponse } from 'src/app/models';
   templateUrl: './test-http.component.html',
   styleUrls: ['./test-http.component.css']
 })
-export class TestHttpComponent implements OnInit {
+export class TestHttpComponent implements OnInit, OnDestroy {
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   baseUrl = 'http://localhost:51102/api/testhttp/';
   data: any;
 
@@ -39,6 +43,17 @@ export class TestHttpComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.http.get(`${this.baseUrl}health`)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    // Unsubscribe from the subject
+    this.destroy$.unsubscribe();
   }
 
   onClickInspect(): void {
@@ -205,5 +220,13 @@ export class TestHttpComponent implements OnInit {
         console.log('complete()');
       }
     );
+  }
+
+  onTestTap(): void {
+    this.http.get<DtoObject1>(`${this.baseUrl}getdtoobject1`, { observe: 'response' })
+    .pipe(tap(resp => {
+      console.log(resp, typeof resp.body);
+    }))
+    .subscribe();
   }
 }

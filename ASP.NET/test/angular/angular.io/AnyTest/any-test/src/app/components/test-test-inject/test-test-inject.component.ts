@@ -3,7 +3,7 @@
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { SmthClass, IAppConfig } from '../../classes';
-import { VICTIM_INJECTION_TOKEN} from './victim';
+import { VICTIM_INJECTION_TOKEN, VICTIM_VALUE } from './victim';
 import { APP_CONFIG } from '../../app.config';
 
 @Component({

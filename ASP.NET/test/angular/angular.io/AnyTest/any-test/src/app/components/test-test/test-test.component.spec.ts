@@ -8,7 +8,7 @@ import { TestHttpGetDtoObject2Service } from '../../services/test-http-get-dto-o
 import { DtoObject1 } from 'src/app/models/dto-object1';
 import { DtoObject2 } from 'src/app/models/dto-object2';
 
-describe('TestTestComponent', () => {
+fdescribe('TestTestComponent', () => {
   let component: TestTestComponent;
   let fixture: ComponentFixture<TestTestComponent>;
   let nativeElement: HTMLElement;
@@ -43,7 +43,7 @@ describe('TestTestComponent', () => {
     })
     .compileComponents()
     .then(() => {
-      console.log('.compileComponents().then(%o)');
+      console.log('.compileComponents().then()');
     });
   }));
 

@@ -1,0 +1,16 @@
+<ng-container>
+    <input type="button" value="Check" (click)="onClickCheck()">
+    <hr>
+    <ng-container *ngIf="!!complexObject; else loading">
+        {{complexObject.id}}
+        <ng-container *ngFor="let group of complexObject.groups; index as groupIdx">
+            {{group.id}}
+            <ng-container *ngFor="let item of group.items; index as itemIdx">
+                {{item.id}}
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <ng-template #loading>
+        loading
+    </ng-template>
+</ng-container>

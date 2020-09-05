@@ -18,6 +18,13 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("health")]
+        public IActionResult GetGetHealth()
+        {
+            return Ok("{\"status\":\"ok\"}");
+        }
+
+        [HttpGet]
         [Route("get1")]
         public async Task<IActionResult> Get1()
         {

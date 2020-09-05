@@ -8,7 +8,7 @@ import { IAppConfig } from '../../classes/iapp-config';
 import { APP_CONFIG } from '../../app.config';
 
 const dataMockSmthClass: SmthClass = new SmthClass('dataMockSmthClass');
-const dataMockAppConfig: IAppConfig = { p1: 'dataMockAppConfig' };
+const dataMockAppConfig: IAppConfig = { p1: 'dataMockAppConfig' } as IAppConfig;
 
 describe('TestTestInjectComponent', () => {
   let component: TestTestInjectComponent;
@@ -47,5 +47,14 @@ describe('TestTestInjectComponent', () => {
     const config = injectorAppConfig.get(APP_CONFIG);
     expect(config.p1).toEqual('dataMockAppConfig');
     expect(component.p1).toEqual('dataMockAppConfig');
+  });
+
+  it('blah', () => {
+    TestBed.overrideProvider(VICTIM_INJECTION_TOKEN, { useValue: new SmthClass('dataMockSmthClass (overriden)') });
+    TestBed.compileComponents();
+    fixture = TestBed.createComponent(TestTestInjectComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component.name).toEqual('dataMockSmthClass (overriden)');
   });
 });
