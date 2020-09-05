@@ -1,0 +1,435 @@
+﻿<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test Array</title>
+		<script>
+var
+	a=[0,1,3,4,5],
+	aa,
+	aaa,
+	i,
+	o1,
+	o2,
+	o3;
+
+if(window.console && console.clear)
+	console.clear();
+
+if(window.console && console.log)
+{
+	i = [].findIndex(item => item === 13);
+	console.log("[].findIndex() %i", i);
+
+	o1 = {id:1};
+	o2 = {id:2};
+	o3 = {id:3};
+	aa = [ o1, o2, o3 ];
+	aa.splice(aa.indexOf(o2), 1);
+	console.log(aa);
+
+	aa = [{
+		items: [{ id: 1 }, { id: 2 }]
+	}, {
+		items: [{ id: 3 }, { id: 4 }]
+	}];
+	if (aa.reduce) {
+		aaa = aa.reduce((acc, val) => acc.concat(val.items), []);
+		console.log("reduce() %o", aaa);
+	}
+
+	aa = [[{id:1}, {id:2}, {id:3}], [{id:4}, {id:5}, {id:6}]];
+	if (aa.flat) {
+		aaa = aa.flat();
+		console.log("flat() %o", aaa);
+		aaa[2].name = "name";
+		console.log(aaa[2], aa[0][2]);
+	}
+	if (aa.reduce) {
+		aaa = aa.reduce((acc, val) => acc.concat(val), []);
+		console.log("reduce() %o", aaa);
+		aaa[3].name = "name";
+		console.log(aaa[3], aa[1][0]);
+	}
+	if (aa.concat) {
+		aaa = [].concat(...aa);
+		console.log("concat() %o", aaa);
+		aaa[4].name = "name";
+		console.log(aaa[4], aa[1][1]);
+	}
+	
+	aa = [ 1, 2, 3, 4, 5 ];
+	if (a.reduce) {
+		i = aa.reduce((accumulator, currentValue, currentIndex, array) => {
+			console.log("accumulator=%i, currentValue=%i, currentIndex=%i, array=%o", accumulator, currentValue, currentIndex, array);
+    		return accumulator + currentValue;
+		});
+
+		console.log("reduce()=%i", i);
+	}
+
+	aa = [ 1, 2, 3, 4, 5 ];
+	if (a.reduce) {
+		i = aa.reduce((accumulator, currentValue, currentIndex, array) => {
+			console.log("accumulator=%i, currentValue=%i, currentIndex=%i, array=%o", accumulator, currentValue, currentIndex, array);
+    		return accumulator + currentValue;
+		}, 10);
+
+		console.log("reduce()=%i", i);
+	}
+
+	i = 5;
+	aa = new Array(i);
+	console.log(aa);
+	aaa = aa.concat(["2"]);
+	console.log(aaa);
+	aaa = aaa.join("0");
+	console.log(aaa);
+	aaa = aaa.slice(-i);
+	console.log(aaa);
+
+	aaa = [ 0, 1, 2, 3, 4, 5 ];
+	i = aaa.indexOf(3);
+	aaa.splice(i, 1);
+
+	aa = [ "a.2018-08-07.out", "a.2018-08-08.out", "a.out", "a.2018-08-09.out" ];
+	aaa = aa.filter(function (item) { return item.match(/\d{4}-\d{2}-\d{2}/); });
+	console.log(aaa);
+	aaa = aa.filter(function (item) { return !item.match(/\d{4}-\d{2}-\d{2}/); });
+	console.log(aaa);
+
+	aa = [ 1, 2, 3 ];
+	aaa = [ 3, 2, 4 ];
+	console.log(intersect(aa, aaa));
+	console.log(intersect(aaa, aa));
+
+	aa = [ 1, 2, 3 ];
+	aaa = [];
+	console.log(intersect(aa, aaa));
+	console.log(intersect(aaa, aa));
+
+	aa = [ 1, 2, 3 ];
+	aaa = [ 3, 2, 4 ];
+	console.log(except(aa, aaa));
+	console.log(except(aaa, aa));
+
+	aa = [ 1, 2, 3 ];
+	aaa = [ 3, 2, 1 ];
+	console.log(arrayIsEqual(aa, aa));
+	console.log(arrayIsEqual(aa, aaa));
+
+	aa = [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 4 ];
+	aaa = aa.filter((item, index, array) => array.indexOf(item) == index);
+	console.log(aaa);
+
+	aaa = unique(aa);
+	console.log("unique = %o", aaa);
+}
+
+aa = [1, 4];
+aaa = a.filter(function(item) { return aa.indexOf(item) !== -1; });
+if(window.console && console.log)
+	console.log("intersect = %o", aaa);
+aaa = a.filter(function(item) { return aa.indexOf(item) === -1; });
+if(window.console && console.log)
+	console.log("except = %o", aaa);
+
+aa = [
+	{ id: 1, value: "1st" },
+	{ id: 2, value: "2nd" },
+	{ id: 3, value: "3rd" }
+];
+
+function getIndexOfElementBy(array, property, value) {
+	var findByObject = (typeof(property) === "object");
+
+	for (var i = 0; i < array.length; i++) {
+		if (findByObject) {
+			var
+				isAllEqual = true,
+				item = array[i];
+
+			for (var p in property) {
+				if (!(isAllEqual &= (p in item) && item[p] === property[p]))
+					break;
+			}
+
+			if (isAllEqual)
+				return i;
+		}
+		else {
+			if (array[i][property] === value)
+				return i;
+		}
+	}
+
+	return -1;
+}
+
+if(window.console && console.log)
+{
+	console.log(getIndexOfElementBy(aa, { id: 2, value: "2nd" }));
+	console.log(getIndexOfElementBy(aa, { id: 1, value: "1st" }));
+	console.log(getIndexOfElementBy(aa, "id", 3));
+}
+
+// [0, 1, 3, 4, 5]
+a.splice(2, 0, 2); // [0, 1, 2, 3, 4, 5]
+a.splice(6, 0, 6); // [0, 1, 2, 3, 4, 5, 6]
+a.splice(1, 3); // [0, 4, 5, 6]
+a.splice.apply(a, [1, 0].concat([1, 2, 3])); // [1, 0, 1, 2, 3] is arguments -> result [0, 1, 2, 3, 4, 5, 6]
+a.splice(0, 0, -1); // [-1, 0, 1, 2, 3, 4, 5, 6]
+a.splice(10, 0, 10); // [-1, 0, 1, 2, 3, 4, 5, 6, 10] a[8] = 10
+a.splice(3); // [-1, 0, 1]
+a.splice(-1, 0, 99); // [-1, 0, 99, 1]
+a.splice(a.length-1, 0, 999); // [-1, 0, 99, 999, 1]
+a.splice(a.length, 0, 9999); // [-1, 0, 99, 999, 1, 9999]
+
+a = ["1st","2nd","3rd"];
+if(a.find)
+{
+	aa = a.find(function(element, index, array) {
+		return element === "2nd";
+	});
+
+	aa = a.find(function(element, index, array) {
+		return element === "5th";
+	});
+}
+
+a = [ { name: "1st", value: 1} , { name: "2nd", value: 2 }, { name: "3rd", value: 3 }];
+if(a.find)
+{
+	aa = a.find(function(element, index, array) {
+		return element.name === "2nd";
+	});
+}
+
+if(a.every)
+{
+	aa = a.every(function(element, index, array) {
+		return element.name !== "2nd";
+	});
+}
+
+if(a.some)
+{
+	aa = a.some(function(element, index, array) {
+		return element.name === "2nd";
+	});
+}
+
+a=[];
+if(window.console && console.log)
+	console.log("typeof a.length=\"%s\", a.length=%i", typeof a.length, a.length);
+
+a=[0,1,2,3,4,5];
+
+document.write("a = [", a.toString(), "]", "<br />");
+document.write("<hr />");
+
+document.write("a.slice(1)", "<br />");
+aa=a.slice(1);
+for(i=0; i<aa.length; ++i)
+	document.write("aa["+i+"]=",aa[i], "<br />");
+document.write("<hr />");
+
+document.write("a.slice(1,4)", "<br />");
+aa=a.slice(1,4);
+for(i=0; i<aa.length; ++i)
+	document.write("aa["+i+"]=",aa[i], "<br />");
+document.write("<hr />");
+
+document.write("a.slice(-3)", "<br />");
+aa=a.slice(-3);
+for(i=0; i<aa.length; ++i)
+	document.write("aa["+i+"]=",aa[i], "<br />");
+document.write("<hr />");
+
+document.write("a.slice(-3,5)", "<br />");
+aa=a.slice(-3,5);
+for(i=0; i<aa.length; ++i)
+	document.write("aa["+i+"]=",aa[i], "<br />");
+document.write("<hr />");
+
+a=[0,1,2,3,4,5];
+for(i=a.length-1; i>=0; --i)
+	if(a[i]%2)
+		a.splice(i, 1);
+
+a=[0,1,2,3,4,5];
+for(i=a.length-1; i>=0; --i)
+	if(!(a[i]%2))
+		a.splice(i, 1);
+
+a=[0,1,2,3,4,5];
+
+document.write("Array.prototype.slice.call(a)", "<br />");
+aa=Array.prototype.slice.call(a);
+for(i=0; i<aa.length; ++i)
+	document.write("aa["+i+"]=",aa[i], "<br />");
+document.write("<hr />");
+
+a=[0,1,2,3,4,5];
+aa=a.join();
+document.write("a.join() = \"",aa, "\"", "<br />");
+
+a=["0","1","2","3","4","5"];
+aa=a.join();
+document.write("a.join() = \"",aa, "\"", "<br />");
+
+a=["0","1",2,"3",4,"5"];
+aa=a.join();
+document.write("a.join() = \"",aa, "\"", "<br />");
+
+document.write("<hr />");
+
+a="1,2,3,4,5".split(",");
+for(i=a.length; i--;)
+	if(window.console && console.log)
+		console.log("a[%i] = \"%s\"", i, a[i]);
+
+a="1, 2, 3, 4, 5".split(",");
+for(i=a.length; i--;)
+	if(window.console && console.log)
+		console.log("a[%i] = \"%s\"", i, a[i]);
+
+a = [];
+a.splice(3, 0, 3);
+
+a = new Array(10);
+a.splice(3, 0, 3);
+
+a=[[0,1,2,3,4,5]];
+
+a=[0,1,2];
+aa=a.slice(1);
+//i = aa.length;
+i = aa.join("/");
+if(window.console && console.log)
+	console.log("\"%s\"", i);
+
+a=[0,1,2];
+aa=a.concat([3,4,5]);
+
+a=[0,1,2];
+aa=a.concat(undefined); // [0, 1, 2, undefined]
+
+a=[0,1,2];
+aa=a.concat(null); // [0, 1, 2, null]
+
+a=[0,1,2,3,4,5];
+for(i=a.length; i--;)
+	if(window.console && console.log)
+		console.log("a[%i] = %i", i, a[i]);
+
+i=a.length;
+while(i--)
+	if(window.console && console.log)
+		console.log("a[%i] = %i", i, a[i]);
+
+a=[12, 5, 8, 130, 44];
+if(a.every)
+{
+	i = a.every(isBigEnough);
+	if(window.console && console.log)
+		console.log("Array.every() = %s", i);
+}
+
+a=[12, 54, 18, 130, 44];
+if(a.every)
+{
+	i = a.every(isBigEnough);
+	if(window.console && console.log)
+		console.log("Array.every() = %s", i);
+}
+
+a=[2, 5, 8, 1, 4];
+if(a.some)
+{
+	i = a.some(isBigEnough);
+	if(window.console && console.log)
+		console.log("Array.some() = %s", i);
+}
+
+a=[12, 5, 8, 1, 4];
+if(a.some)
+{
+	i = a.some(isBigEnough);
+	if(window.console && console.log)
+		console.log("Array.some() = %s", i);
+}
+
+a = [{id:1, name: "name# 1", value: "value# 1"}, {id:2, name: "name# 2"}, {id:3, value: "value# 3"}];
+if(a.map)
+{
+	aa = a.map(function(item) { return {id: item.id, name: item.value || item.name}; });
+	if(window.console && console.log)
+		console.log("Array.map() = %o", aa);
+}
+
+a=[];
+//a=[1,2,3];
+a["z"]=9;
+a["b"]=7;
+a["c"]=5;
+
+if(typeof Array.isArray === "function")
+	if(window.console && console.log)
+		console.log("Array.isArray(a) = %s", Array.isArray(a));
+
+if(typeof a.length !== "undefined")
+	if(window.console && console.log)
+		console.log("a.length = %i", a.length); // 0
+
+a.sort();
+for(i in a)
+	if(window.console && console.log)
+		console.log("a[%s] = %i", i, a[i]); // ["z", "b", "c"]
+
+delete a["b"];
+for(i in a)
+	if(window.console && console.log)
+		console.log("a[%s] = %i", i, a[i]); // ["z", "c"]
+
+if(window.JSON)
+	if(window.console && console.log)
+		console.log("JSON.stringify(a) = \"%s\"", JSON.stringify(a));
+
+a=[0,1,2,3,4,5];
+for(i=a.length-1; i>=0; --i)
+	if(a[i]%2)
+	{
+		if(window.console && console.log)
+			console.log("a[%s] = %i", i, a[i]);
+
+		a.splice(i,1);
+
+		if(window.console && console.log)
+			console.log("a[%s] = %i", i, a[i]);
+	}
+
+function isBigEnough(element, index, array)
+{  
+   return (element >= 10);  
+}
+
+function arrayIsEqual(arr1, arr2) {
+	return Array.isArray(arr1) && Array.isArray(arr2) && ((arr1 === arr2) || (arr1.length == arr2.length && !except(arr1, arr2).length));
+}
+
+function intersect(arr1, arr2) {
+	return Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter(function (item) { return arr2.indexOf(item) !== -1; }) : [];
+}
+
+function except(arr1, arr2) {
+	return Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter(function (item) { return arr2.indexOf(item) === -1; }) : [];
+}
+
+function unique(arr) {
+	return Array.isArray(arr) ? arr.filter((item, index, array) => array.indexOf(item) == index) : [];
+}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

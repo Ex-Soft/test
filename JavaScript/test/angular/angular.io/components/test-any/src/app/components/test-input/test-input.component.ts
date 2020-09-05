@@ -21,7 +21,7 @@ export class TestInputComponent implements OnInit, OnChanges {
 
   @Input() set valueWithGetterAndSetter(newValue: string) {
     if (window.console && console.log) {
-      console.log('set(\"%s\"', newValue);
+      console.log('set(\"%s\")', newValue);
     }
 
     this._valueWithGetterAndSetter = newValue;
@@ -32,13 +32,13 @@ export class TestInputComponent implements OnInit, OnChanges {
 
   constructor(private hostElement: ElementRef) {
     if (window.console && console.log) {
-      console.log('TestInputComponent.ctor(%o) %o', hostElement, this);
+      console.log('TestInputComponent.ctor(%o) %o @Input()value=\"%s\"', hostElement, this, this.value);
     }
   }
 
   ngOnInit(): void {
     if (window.console && console.log) {
-      console.log('TestInputComponent.ngOnInit(%o) %o', arguments, this);
+      console.log('TestInputComponent.ngOnInit(%o) %o @Input()value=\"%s\"', arguments, this, this.value);
     }
   }
 

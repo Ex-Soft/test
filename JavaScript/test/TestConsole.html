@@ -76,9 +76,11 @@ function DoIt()
 		}];
 
 	let number = 1;
+	let dateTime = Date.now();
 
 	if(window.console) {
 		if(console.log) {
+			console.log("%%o=%o %%i=%i %%d=%d %%f=%f", dateTime, dateTime, dateTime, dateTime);
 			console.log("s = \"" + s + "\" \"%s\"", s);
 			console.log('I am a %cbutton', 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px');
 			console.log('I am a %cbutton%c but I am not', 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px');

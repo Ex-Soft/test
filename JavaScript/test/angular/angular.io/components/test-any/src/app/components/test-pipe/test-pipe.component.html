@@ -20,3 +20,38 @@
         </tr>
     </tbody>
 </table>
+<hr/>
+{{ complexObject.id }} {{complexObject.name }}
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>items</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let group of complexObject.groups">
+            <td>{{group.id}}</td>
+            <td>{{group.name}}</td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>checked</th>
+                            <th>id</th>
+                            <th>name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of group.items">
+                            <td><input type="checkbox" [(ngModel)]="item.checked"></td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
