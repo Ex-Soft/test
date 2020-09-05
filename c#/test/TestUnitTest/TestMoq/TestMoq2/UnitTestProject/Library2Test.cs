@@ -8,6 +8,21 @@ namespace UnitTestProject
     public class Library2Test
     {
         [TestMethod]
+        public void TestIfMulWasCalled()
+        {
+            //System.Diagnostics.Debugger.Launch();
+
+            var mock = new Mock<ISmthInterface>();
+            mock.Setup(o => o.Mul(2, 3)).Returns(5);
+
+            var smthClass = new SmthClass();
+
+            var actual = smthClass.Mul(mock.Object, 3, 3);
+            Assert.AreEqual(0, actual);
+            mock.Verify(o => o.Mul(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+        }
+
+        [TestMethod]
         public void TestMulWithSpecificValues()
         {
             //System.Diagnostics.Debugger.Launch();
