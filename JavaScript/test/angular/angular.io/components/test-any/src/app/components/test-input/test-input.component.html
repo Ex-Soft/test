@@ -16,3 +16,9 @@
     <input type="text" [value]="parentValue" /><br/>
     <input type="text" [(ngModel)]="parentValue" /><br/>
 </fieldset>
+<fieldset>
+    <legend>&nbsp;booleanParentValue&nbsp;</legend>
+    {{booleanParentValue}} (typeof "{{getTypeOf(booleanParentValue)}}")<br/>
+    <input type="checkbox" [value]="booleanParentValue" /><br/>
+    <input type="checkbox" [(ngModel)]="booleanParentValue" /><br/>
+</fieldset>

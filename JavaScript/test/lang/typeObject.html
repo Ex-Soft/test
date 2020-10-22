@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Object</title>
+		<script>
+function onLoad()
+{
+	let
+		o1,
+		o2;
+
+	if(window.console && console.log) {
+		console.log("1. Using Spread");
+		o1 = { pString1: "o1.pString1" };
+		o2 = { ...o1 };
+		console.log("o1=%o o2=%o", o1, o2);
+		o2.pString1 = "o2.pString1";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		o1.pString1 = "o1.pString1 (updated)";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		console.log("o1=%o o2=%o", o1, o2);
+		
+		console.log("2. Using Object.assign");
+		o1 = { pString1: "o1.pString1" };
+		o2 = Object.assign({}, o1);
+		console.log("o1=%o o2=%o", o1, o2);
+		o2.pString1 = "o2.pString1";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		o1.pString1 = "o1.pString1 (updated)";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		console.log("o1=%o o2=%o", o1, o2);
+
+		console.log("3. Using JSON");
+		o1 = { pString1: "o1.pString1" };
+		o2 = JSON.parse(JSON.stringify(o1));
+		console.log("o1=%o o2=%o", o1, o2);
+		o2.pString1 = "o2.pString1";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		o1.pString1 = "o1.pString1 (updated)";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		console.log("o1=%o o2=%o", o1, o2);
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
