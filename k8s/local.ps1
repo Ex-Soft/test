@@ -18,6 +18,8 @@ minikube dashboard
 
 minikube ssh
 
+kubelogin login aws-nonprod
+
 kubectl get componentstatuses
 kubectl cluster-info
 kubectl get nodes
