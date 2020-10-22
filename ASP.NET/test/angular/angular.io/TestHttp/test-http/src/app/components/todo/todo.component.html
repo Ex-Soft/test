@@ -1,7 +1,8 @@
 <ng-container>
     <input type="button" value="getTodos()" (click)="onClickGetTodos()">
-    <input type="button" value="selectAll()" (click)="onClickSelectAll()">
+    <input type="button" value="selectAll() (calls getAll())" (click)="onClickSelectAll()">
     <input type="button" value="getAll()" (click)="onClickGetAll()">
+    <input type="button" value="update()" (click)="onClickUpdate()">
     <hr>
     <ng-container *ngIf="!!todo; else loading">
         {{todo.id}} {{todo.name}}
@@ -35,6 +36,60 @@
                             </tbody>
                         </table>
                     </td> 
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+    <ng-template #loading>
+        loading
+    </ng-template>
+    <hr>
+    <ng-container *ngIf="!!todoDtos; else loading">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>groups</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let todoDto of todoDtos; index as Idx">
+                    <td>{{todoDto.id}}</td>
+                    <td>{{todoDto.name}}</td>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let group of todoDto.groups; index as groupIdx">
+                                    <td>{{group.id}}</td>
+                                    <td>{{group.name}}</td>
+                                    <td>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>name</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of group.items; index as itemIdx">
+                                                    <td>{{item.id}}</td>
+                                                    <td>{{item.name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
             </tbody>
         </table>
