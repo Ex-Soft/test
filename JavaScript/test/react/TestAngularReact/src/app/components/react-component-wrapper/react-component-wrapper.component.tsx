@@ -1,3 +1,5 @@
+// https://medium.com/@zacky_14189/embedding-react-components-in-angular-the-easy-way-60f796b68aef
+
 import { Component, OnInit, OnChanges, OnDestroy, AfterViewInit, Input, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
