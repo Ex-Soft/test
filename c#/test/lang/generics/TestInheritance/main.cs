@@ -74,6 +74,16 @@ namespace TestInheritance
             Console.WriteLine("Base<A>.IsAssignableFrom(Derived<A>) (Base<A>->Derived<A>): {0}", bA.IsAssignableFrom(dA));
             Console.WriteLine("Derived<A>.IsAssignableFrom(Base<A>) (Derived<A>->Base<A>): {0}", dA.IsAssignableFrom(bA));
 
+            DerivedConcrete derivedConcrete = new DerivedConcrete(new A(100, 100), new A(200, 200), new A(300, 300));
+            Type dConcrete = derivedConcrete.GetType();
+            Console.WriteLine("Base<A>.IsAssignableFrom(DerivedConcrete) (Base<A>->DerivedConcrete): {0}", bA.IsAssignableFrom(dConcrete)); // true
+            Console.WriteLine("DerivedConcrete.IsAssignableFrom(Base<A>) (DerivedConcrete->Base<A>): {0}", dConcrete.IsAssignableFrom(bA)); // false
+
+            Console.WriteLine($"DerivedConcrete is Base<A> {(derivedConcrete is Base<A>)}"); // true
+            Console.WriteLine($"Base<A> is DerivedConcrete {(bA1 is DerivedConcrete)}"); // false
+            Console.WriteLine($"DerivedConcrete as Base<A> {((bA1 = derivedConcrete as Base<A>) != null ? "!" : "=")}= null"); // !=
+            Console.WriteLine($"Base<A> as DerivedConcrete {((derivedConcrete = bA1 as DerivedConcrete) != null ? "!" : "=")}= null"); // !=
+
             Console.ReadLine();
         }
     }

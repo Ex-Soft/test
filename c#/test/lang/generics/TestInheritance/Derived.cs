@@ -6,16 +6,16 @@ namespace TestInheritance
     {
         public T Z { get; set; }
 
-        public Derived(T x = default(T), T y = default(T), T z = default(T)) : base(x, y)
+        public Derived(T x = default, T y = default, T z = default) : base(x, y)
         {
-            Console.WriteLine("Base<T>.Base(T x=default(T), T y=default(T), T z=default(T))");
+            Console.WriteLine("Derived<T>.ctor(T x=default, T y=default, T z=default)");
 
             Z = z;
         }
 
         public Derived(Derived<T> obj) : this(obj.X, obj.Y, obj.Z)
         {
-            Console.WriteLine("Base<T>.Base(Base<T> obj)");
+            Console.WriteLine("Derived<T>.ctor(Derived<T> obj)");
         }
 
         public override void Test()
@@ -25,7 +25,7 @@ namespace TestInheritance
 
         public override string ToString()
         {
-            return string.Format("{{ x: {0}, y: {1}, z: {2} }}", X != null ? X.ToString() : "null", Y != null ? Y.ToString() : "null", Z != null ? Z.ToString() : "null");
+            return $"{{ x: {(X != null ? X.ToString() : "null")}, y: {(Y != null ? Y.ToString() : "null")}, z: {(Z != null ? Z.ToString() : "null")} }}";
         }
     }
 }
