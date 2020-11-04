@@ -102,6 +102,24 @@ namespace TestMultiCall
     {
         static void Main(string[] args)
         {
+            Wrapper1 wrapperConcrete1 = new Wrapper1();
+            if (wrapperConcrete1 is Wrapper<Container1> wrapperGeneric1)
+            {
+                wrapperGeneric1.Entity = new Container1(); // +
+            }
+
+            Wrapper<Container2> wrapperGeneric2 = new Wrapper<Container2>();
+            if (wrapperGeneric2 is Wrapper2 wrapperConcrete2)
+            {
+                wrapperConcrete2.Entity = new Container2(); // -
+            }
+
+            Wrapper2 wrapperConcrete22;
+            if ((wrapperConcrete22 = wrapperGeneric2 as Wrapper2) != null)
+            {
+                wrapperConcrete22.Entity = new Container2(); // -
+            }
+
             var smthClass = new SmthClass();
             var wrapper1 = smthClass.GetWrapper1();
             var wrapper2 = smthClass.GetWrapper2();

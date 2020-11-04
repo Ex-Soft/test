@@ -81,8 +81,8 @@ namespace TestInheritance
 
             Console.WriteLine($"DerivedConcrete is Base<A> {(derivedConcrete is Base<A>)}"); // true
             Console.WriteLine($"Base<A> is DerivedConcrete {(bA1 is DerivedConcrete)}"); // false
-            Console.WriteLine($"DerivedConcrete as Base<A> {((bA1 = derivedConcrete as Base<A>) != null ? "!" : "=")}= null"); // !=
-            Console.WriteLine($"Base<A> as DerivedConcrete {((derivedConcrete = bA1 as DerivedConcrete) != null ? "!" : "=")}= null"); // !=
+            Console.WriteLine($"DerivedConcrete as Base<A> {((bA2 = derivedConcrete as Base<A>) != null ? "!" : "=")}= null"); // !=
+            Console.WriteLine($"Base<A> as DerivedConcrete {((derivedConcrete = bA1 as DerivedConcrete) != null ? "!" : "=")}= null"); // ==
 
             Console.ReadLine();
         }
