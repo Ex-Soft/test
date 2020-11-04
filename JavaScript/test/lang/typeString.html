@@ -25,6 +25,28 @@ var
 
 // substr deprecated!!!
 
+if (window.console && console.log) {
+  console.log("typeof(str)=%o str=%o", typeof(str), str);
+  str_out = !str;
+  console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
+  str_out = !!str;
+  console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  
+  str = null;
+  console.log("typeof(str)=%o str=%o", typeof(str), str);
+  str_out = !str;
+  console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
+  str_out = !!str;
+  console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  
+  str = "";
+  console.log("typeof(str)=%o str=\"%s\"", typeof(str), str);
+  str_out = !str;
+  console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
+  str_out = !!str;
+  console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+}
+
 str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"
 str_out = str.replace("\"", "\\\"");  // "blah \"blah blah" blah"
 str_out = str.replace(/"/g, "\\\"");  // "blah \"blah blah\" blah"
