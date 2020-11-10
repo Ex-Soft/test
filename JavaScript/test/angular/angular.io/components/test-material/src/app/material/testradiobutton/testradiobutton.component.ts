@@ -11,6 +11,7 @@ import { radiobuttonOptions } from './testradiobutton.constants';
 export class TestRadiobuttonComponent implements OnInit {
   selected: OptionType = OptionType.OptionType1;
   options: Option[] = radiobuttonOptions;
+  filter = (item: Option) => item.type !== OptionType.OptionType4;
 
   constructor() { }
 

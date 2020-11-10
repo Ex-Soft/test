@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestRadiobuttonComponent } from './testradiobutton.component';
+import { CustomFilterPipe } from '../../pipes/custom-filter.pipe';
 
 describe('TestradiobuttonComponent', () => {
   let component: TestRadiobuttonComponent;
@@ -8,7 +9,7 @@ describe('TestradiobuttonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestRadiobuttonComponent ]
+      declarations: [ TestRadiobuttonComponent, CustomFilterPipe ]
     })
     .compileComponents();
   }));

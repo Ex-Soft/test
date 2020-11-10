@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { TestCheckboxComponent } from './material/testcheckbox/testcheckbox.component';
 import { TestSliderComponent } from './material/testslider/testslider.component';
 import { TestRadiobuttonComponent } from './material/testradiobutton/testradiobutton.component';
+import { CustomFilterPipe } from './pipes/custom-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestCheckboxComponent,
     TestSliderComponent,
-    TestRadiobuttonComponent
+    TestRadiobuttonComponent,
+    CustomFilterPipe
   ],
   imports: [
     BrowserModule,

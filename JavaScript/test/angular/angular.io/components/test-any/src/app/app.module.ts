@@ -8,6 +8,8 @@ import { Dto2ViewPipe } from './pipes/dto2view.pipe';
 import { ComplexObjectDto2ViewPipe } from './pipes/complexObjectDto2view.pipe';
 import { TestPipeComponent } from './components/test-pipe/test-pipe.component';
 import { TestInputOutputComponent } from './components/test-input-output/test-input-output.component';
+import { TestTestInputComponent } from './components/test/test-test-input/test-test-input.component';
+import { SmthItemComponent } from './components/test/test-test-input/smth-item/smth-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { TestInputOutputComponent } from './components/test-input-output/test-in
     Dto2ViewPipe,
     ComplexObjectDto2ViewPipe,
     TestPipeComponent,
-    TestInputOutputComponent
+    TestInputOutputComponent,
+    TestTestInputComponent,
+    SmthItemComponent
   ],
   imports: [
     BrowserModule,
