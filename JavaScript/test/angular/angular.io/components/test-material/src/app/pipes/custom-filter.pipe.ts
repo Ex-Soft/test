@@ -4,11 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'customFilter'
 })
 export class CustomFilterPipe implements PipeTransform {
-  transform(items: any[], filter: any): any[] {
-    if (!items || !filter) {
+  transform(items: any[], predicate: (item: any) => boolean): any[] {
+    if (!items || !predicate) {
       return items;
     }
 
-    return items.filter(filter);
+    return items.filter(predicate);
   }
 }
