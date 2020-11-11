@@ -5,4 +5,7 @@ export type SmthType = {
   pNumber1: number;
   pNumber2: number;
   pNumber3: number;
+  pSubString1?: string;
+  pSubString2?: string;
+  pSubString3?: string;
 };

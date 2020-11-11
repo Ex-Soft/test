@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Class with Closures</title>
+		<script>
+if(window.console && console.clear)
+	console.clear();
+
+var ClassWithId = (function() {
+    function ClassWithId(id) {
+        this.id = id;
+    }
+    return ClassWithId;
+}());
+
+var ClassWithClosures = (function() {
+    var me;
+
+    function ClassWithClosures(id) {
+	    me = this;
+        this.id = id;
+    }
+
+    ClassWithClosures.prototype.isMatch = function(num) {
+        return (function(_num) {
+            return !!me.id.id && _num % 2 === 0;
+        })(num);
+    };
+    return ClassWithClosures;
+}());
+
+var arrayOfInt = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+var classWithClosure = new ClassWithClosures(new ClassWithId("blah"));
+var resultOfFilter = arrayOfInt.filter(classWithClosure.isMatch);
+for (var i = 0, l = resultOfFilter.length; i < l; i++) {
+    if (window.console && console.log) {
+        console.log(resultOfFilter[i]);
+    }
+}
+
+class ClassWithClosuresNewStyle {
+	constructor(id) {
+		this.id = id;
+	}
+	
+	isMatch = (num) => {
+		return !!this.id.id && num %2 === 0;
+	}
+}
+
+var classWithClosureNewStyle = new ClassWithClosuresNewStyle(new ClassWithId("blah"));
+resultOfFilter = arrayOfInt.filter(classWithClosureNewStyle.isMatch);
+for (var i = 0, l = resultOfFilter.length; i < l; i++) {
+    if (window.console && console.log) {
+        console.log(resultOfFilter[i]);
+    }
+}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

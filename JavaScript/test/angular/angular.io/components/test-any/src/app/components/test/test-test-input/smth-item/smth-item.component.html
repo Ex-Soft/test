@@ -5,4 +5,11 @@
     <div>{{smthItem.pNumber1}}</div>
     <div *ngIf="smthItem.pNumber2">{{smthItem.pNumber2}}</div>
     <div *ngIf="smthItem.pNumber3">{{smthItem.pNumber3}}</div>
+    <div *ngIf="smthItem.pSubString1 || smthItem.pSubString2 || smthItem.pSubString3">
+        <span *ngIf="smthItem.pSubString1">{{smthItem.pSubString1}}</span>
+        <span *ngIf="smthItem.pSubString1 && smthItem.pSubString2">&nbsp;</span>
+        <span *ngIf="smthItem.pSubString2">{{smthItem.pSubString2}}</span>
+        <span *ngIf="(smthItem.pSubString1 || smthItem.pSubString2) && smthItem.pSubString3">,&nbsp;</span>
+        <span *ngIf="smthItem.pSubString3">{{smthItem.pSubString3}}</span>
+    </div>
 </div>
