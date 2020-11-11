@@ -100,6 +100,7 @@
     <TypeScriptCompile Include="Scripts\ArrayVariables.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithInterfaceWithPartImplementation.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithSmthInterface2.ts" />
+    <TypeScriptCompile Include="Scripts\ClassWithClosures.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithStatic.ts" />
     <TypeScriptCompile Include="Scripts\IInterfaceWithPartImplementation.ts" />
     <TypeScriptCompile Include="Scripts\Inheritance.ts" />
