@@ -1,5 +1,6 @@
 ﻿<!doctype html>
 <!-- https://github.com/DrkSephy/es6-cheatsheet -->
+<!-- https://www.javascripttutorial.net/es6/destructuring/ -->
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -41,6 +42,30 @@ function onLoad()
 	var { o1, o2, o3 } = { o1: 1, o2: 2, o3: 3 };
 	if(window.console && console.log)
 		console.log("o1 = %i, o2 = %i, o3 = %i", o1, o2, o3);
+
+	let xyz = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("xyz=%o (typeof(xyz)=\"%s\" Array.isArray(xyz)=%s)", xyz, typeof(xyz), Array.isArray(xyz).toString());
+	
+	let [xx, yy, zz] = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("xx = %i, yy = %i, zz = %i", xx, yy, zz);
+
+	let [www, xxx, yyy, zzz] = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("www = %i, xxx = %i, yyy = %i, zzz = %o", www, xxx, yyy, zzz);
+
+	let [xxxx, ...args] = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("xxxx = %i, args = %o", xxx, args);
+
+	let fullName = TestDestructuringAssignmentByObject();
+	if(window.console && console.log)
+		console.log("fullName=%o (typeof(fullName)=\"%s\")", fullName, typeof(fullName));
+
+	let { firstName, lastName, middleName} = TestDestructuringAssignmentByObject();
+	if(window.console && console.log)
+		console.log("firstName = \"%s\", lastName = \"%s\", middleName = \"%s\"", firstName, lastName, middleName);
 }
 
 function TestDefaultParameter(x, y = 2, z = 3)
@@ -88,6 +113,23 @@ function TestStringInterpolation()
 	s = String.raw({raw: "test"}, "1st", "2nd");
 	if(window.console && console.log)
 		console.log(s);
+}
+
+function TestDestructuringAssignmentByArray() {
+	return [1, 2, 3];
+}
+
+function TestDestructuringAssignmentByObject() {
+	const
+		firstName = "FirstName",
+		lastName = "LastName",
+		middleName = "MiddleName";
+
+	return {
+		firstName,
+		lastName,
+		middleName
+	};
 }
 		</script>
 	</head>

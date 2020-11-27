@@ -5,12 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { TestCheckboxComponent } from './material/testcheckbox/testcheckbox.component';
 import { TestSliderComponent } from './material/testslider/testslider.component';
 import { TestRadiobuttonComponent } from './material/testradiobutton/testradiobutton.component';
 import { CustomFilterPipe } from './pipes/custom-filter.pipe';
+import { TestIconComponent } from './material/testicon/testicon.component';
+import { TestinputComponent } from './material/testinput/testinput.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { CustomFilterPipe } from './pipes/custom-filter.pipe';
     TestCheckboxComponent,
     TestSliderComponent,
     TestRadiobuttonComponent,
-    CustomFilterPipe
+    CustomFilterPipe,
+    TestIconComponent,
+    TestinputComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,9 @@ import { CustomFilterPipe } from './pipes/custom-filter.pipe';
     BrowserAnimationsModule,
     MatSliderModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

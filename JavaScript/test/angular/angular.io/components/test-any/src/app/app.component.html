@@ -1,4 +1,36 @@
 <ng-container>
+  <div class="content">
+    <p><span>test-any app is running!</span></p>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test inheritance<br>
+    <app-custom-derived></app-custom-derived>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test ng-content<br>
+    <app-custom-button>
+      <ng-container ngProjectAs="app-custom-icon">
+        <app-custom-icon></app-custom-icon>
+      </ng-container>
+      Button
+    </app-custom-button>
+    <app-custom-button (click)="toggleIcon()">
+      <div *ngIf="showIcon" ngProjectAs="app-custom-icon">
+        <app-custom-icon></app-custom-icon>
+      </div>
+      Button
+    </app-custom-button>
+  </div>
+  <hr/>
+</ng-container>
+
+<ng-container>
   <div>
     Test @Input()<br>
     <label>parentValue: <input type="text" [(ngModel)]="parentValue"></label>

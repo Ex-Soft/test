@@ -1,0 +1,12 @@
+.arrowBackContainer {
+    border: 1px solid black;
+    height: 24px;
+    position: relative;
+}
+
+.arrowBackContainer span {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

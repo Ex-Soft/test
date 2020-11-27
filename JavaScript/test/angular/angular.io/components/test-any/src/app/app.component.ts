@@ -12,6 +12,8 @@ export class AppComponent {
 
   parentValue: string;
 
+  showIcon = true;
+
   dto: IDto[] = [
     { id: 1, name: 'Name #1', price: 1, count: 1 },
     { id: 2, name: 'Name #2', price: 10, count: 10 },
@@ -43,9 +45,13 @@ export class AppComponent {
     ] as IComplexObjectGroupDto[]
   } as IComplexObjectDto;
 
-  allChecked: boolean = true;
+  allChecked = true;
 
   allCheckedChange(newValue: boolean): void {
     this.allChecked = newValue;
+  }
+
+  toggleIcon(): void {
+    this.showIcon = !this.showIcon;
   }
 }

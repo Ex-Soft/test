@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestTestInputComponent } from './test-test-input.component';
+import { SmthItemComponent } from './smth-item/smth-item.component';
 
 describe('TestTestInputComponent', () => {
   let component: TestTestInputComponent;
@@ -8,7 +9,10 @@ describe('TestTestInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestTestInputComponent ]
+      declarations: [
+        TestTestInputComponent,
+        SmthItemComponent
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +20,7 @@ describe('TestTestInputComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestTestInputComponent);
     component = fixture.componentInstance;
+    component.items = [];
     fixture.detectChanges();
   });
 
