@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DialogWrapperComponent } from './dialog-wrapper.component';
 
@@ -6,7 +6,7 @@ describe('DialogWrapperComponent', () => {
   let component: DialogWrapperComponent;
   let fixture: ComponentFixture<DialogWrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DialogWrapperComponent ]
     })
