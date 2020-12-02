@@ -1,3 +1,10 @@
+// https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet
+// https://blog.ploeh.dk/2010/10/19/Convention-basedCustomizationswithAutoFixture/
+// https://stackoverflow.com/questions/15531321/how-do-i-use-autofixture-v3-with-icustomization-ispecimenbuilder-to-deal-with/15561752
+// https://stackoverflow.com/questions/38688932/how-to-use-autofixture-to-build-with-customized-properties-while-keeping-type-cu
+// https://stackoverflow.com/questions/36365147/autofixture-create-a-list-of-email-addresses
+
+using System.Linq;
 using AutoFixture;
 using ClassLibrary;
 using TestXUnit.Fixtures.DataAttributes;
@@ -95,6 +102,38 @@ namespace TestXUnit
             Assert.Contains("BString2", result);
             Assert.Contains(inlineAutoMoqData3, result);
             Assert.Contains("BString3", result);
+        }
+
+        [Theory, CustomerData]
+        [Trait("ClassLibrary", "AutoFixture")]
+        public void TestComplexObject(string str1, string str2, Customer customer)
+        {
+            Assert.Contains("str1", str1);
+            Assert.Contains("str2", str2);
+
+            Assert.Contains("FirstName", customer.FirstName);
+            Assert.Equal("MiddleName_MiddleName", customer.MiddleName);
+
+            Assert.Equal(5, customer.Addresses.Count);
+            Assert.Equal("CA", customer.Addresses[0].CountryCode);
+            Assert.Contains("PostalCode", customer.Addresses[0].PostalCode);
+            Assert.Equal(5, customer.Addresses.Count(item => item.CountryCode == "CA"));
+        }
+
+        [Theory, CustomerDataWithRandomCountryCode]
+        [Trait("ClassLibrary", "AutoFixture")]
+        public void TestComplexObjectWithRandomValues(string str1, string str2, Customer customer)
+        {
+            Assert.Contains("str1", str1);
+            Assert.Contains("str2", str2);
+
+            Assert.Contains("FirstName", customer.FirstName);
+
+            Assert.Equal(5, customer.Addresses.Count);
+            Assert.Equal("US", customer.Addresses[0].CountryCode);
+            Assert.Equal("CA", customer.Addresses[1].CountryCode);
+            Assert.Equal(3, customer.Addresses.Count(item => item.CountryCode == "US"));
+            Assert.Equal(2, customer.Addresses.Count(item => item.CountryCode == "CA"));
         }
     }
 }

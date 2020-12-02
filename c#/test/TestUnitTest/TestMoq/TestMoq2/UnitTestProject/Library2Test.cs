@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// https://github.com/Moq/moq4/wiki/Quickstart
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ClassLibrary2;
 
@@ -68,6 +70,24 @@ namespace UnitTestProject
 
             var actual = smthClass.Mul(mock.Object, 3, 3);
             Assert.AreEqual(6, actual);
+
+            actual = smthClass.Mul(mock.Object, 2, 3);
+            Assert.AreEqual(5, actual);
+        }
+
+        [TestMethod]
+        public void TestMulWithUsedItValues()
+        {
+            //System.Diagnostics.Debugger.Launch();
+
+            var mock = new Mock<ISmthInterface>();
+            mock.Setup(o => o.Mul(It.Is<int>(x => x == 2), It.Is<int>(x => x == 3))).Returns<int, int>((right, left) => right + left);
+
+            var smthClass = new SmthClass();
+
+            var actual = smthClass.Mul(mock.Object, 3, 3);
+            Assert.AreNotEqual(6, actual);
+            Assert.AreEqual(0, actual);
 
             actual = smthClass.Mul(mock.Object, 2, 3);
             Assert.AreEqual(5, actual);
