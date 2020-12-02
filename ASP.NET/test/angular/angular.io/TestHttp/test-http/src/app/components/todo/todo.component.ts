@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { TodoDtoToViewPipe } from '../../pipes/todo-dto-to-view.pipe';
 import { TodosQuery, TodoService, TodosStore, ITodoDto, ITodoGroupDto, ITodoGroupItemDto, createTodo } from '../../core/state/todo';
 import { ITodoView } from '../../models/ITodoView';
+import { Order } from '@datorama/akita';
 
 @Component({
   selector: 'app-todo',
@@ -58,7 +59,7 @@ export class TodoComponent implements OnInit, OnDestroy {
   }
 
   onClickGetAll(): void {
-    console.log(this.query.getAll());
+    console.log(this.query.getAll({ sortBy: 'id', sortByOrder: Order.DESC }));
   }
 
   onClickUpdate(): void {

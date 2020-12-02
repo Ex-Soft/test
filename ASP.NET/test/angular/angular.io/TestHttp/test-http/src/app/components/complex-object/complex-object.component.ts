@@ -17,20 +17,16 @@ export class ComplexObjectComponent implements OnInit, OnDestroy {
   constructor(private query: ComplexObjectQuery, private service: ComplexObjectService) { }
 
   ngOnInit(): void {
-    this.query.state$.subscribe(state => {
-      console.log(state);
-    });
-
-    this.service.getComplexObjects();
-
     this.query
-      .selectActive()
+      .selectAll()
       .pipe(
         untilDestroyed(this),
-        tap(complexObject => {
-          if (complexObject) {
+        tap(complexObjects => {
+          if (Array.isArray(complexObjects) && complexObjects.length) {
             const pipe = new ComplexObjectDtoToViewPipe();
-            this.complexObject = pipe.transform(complexObject as Partial<IComplexObjectView>);
+            this.complexObject = pipe.transform(complexObjects[0] as Partial<IComplexObjectView>);
+          } else {
+            this.service.getComplexObjects();
           }
         })
       )
@@ -40,8 +36,6 @@ export class ComplexObjectComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   onClickCheck(): void {
-    this.query.isLoading$.subscribe(result => {
-      console.log(result);
-    });
+    console.log(this.query);
   }
 }

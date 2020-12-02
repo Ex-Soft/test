@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Test RadioButton</h2>
+<mat-dialog-content>
+  <div class="test-radio-group-container" *ngIf="!isLoading; else loading">
+    <mat-radio-group class="test-radio-group" [(ngModel)]="selectedOption">
+      <mat-radio-button class="test-radio-button" *ngFor="let option of options"
+        [value]="option.id">
+        <label>{{option.name}}</label>
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+</mat-dialog-content>
+<ng-template #loading>
+  <div class="test-radio-progress-spinner-container">
+    <mat-progress-spinner
+      class="test-radio-progress-spinner"
+      color="primary"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+  </div>
+</ng-template>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions> 

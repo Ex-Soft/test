@@ -1,0 +1,24 @@
+.test-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.test-radio-button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.test-radio-group-container {
+    margin-top: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.test-radio-progress-spinner-container {
+    height: 120px;
+}
+
+.test-radio-progress-spinner {
+    margin: 10px auto;
+}

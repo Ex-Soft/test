@@ -1,0 +1,18 @@
+.modal-header-container {
+    position: relative;
+}
+
+.modal-icon-close {
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    right: 0;
+}
+
+.progress-spinner-container {
+    height: 120px;
+}
+
+.progress-spinner {
+    margin: 10px auto;
+}
