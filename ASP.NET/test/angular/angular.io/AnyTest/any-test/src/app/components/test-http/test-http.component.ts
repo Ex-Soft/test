@@ -43,21 +43,23 @@ export class TestHttpComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`${this.baseUrl}health`)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(resp => {
-      console.log(resp);
-    });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
-    // Unsubscribe from the subject
     this.destroy$.unsubscribe();
   }
 
   onClickInspect(): void {
     console.log(this.data);
+  }
+
+  onClickHealth(): void {
+    this.http.get(`${this.baseUrl}health`)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(resp => {
+      console.log(resp);
+    });
   }
 
   onClickTestOneSubscribe(): void {
