@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CustomDerivedComponent } from './custom-derived.component';
 
@@ -6,7 +6,7 @@ describe('CustomDerivedComponent', () => {
   let component: CustomDerivedComponent;
   let fixture: ComponentFixture<CustomDerivedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CustomDerivedComponent ]
     })

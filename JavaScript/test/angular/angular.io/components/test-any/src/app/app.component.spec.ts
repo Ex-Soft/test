@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Dto2ViewPipe } from './pipes/dto2view.pipe';
 import { ComplexObjectDto2ViewPipe } from './pipes/complexObjectDto2view.pipe';
@@ -10,7 +10,7 @@ import { SmthItemComponent } from './components/test/test-test-input/smth-item/s
 import { IComplexObjectDto, IComplexObjectGroupDto, IComplexObjectGroupItemDto } from './models/IComplexObjectDto';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
