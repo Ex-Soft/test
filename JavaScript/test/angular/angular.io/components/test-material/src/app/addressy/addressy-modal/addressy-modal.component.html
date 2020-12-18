@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Addressy</h2>
+<mat-dialog-content>
+  <form>
+    <app-addressy
+        country='US'
+        key='BJ23-BX33-AH88-FB69'
+        (addressSelectedEvent)="onAddressSelected($event)"
+        (enterAddressManuallyEvent)="onEnterAddressManually()"
+        (errorEvent)="onError($event)"
+    ></app-addressy>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions> 

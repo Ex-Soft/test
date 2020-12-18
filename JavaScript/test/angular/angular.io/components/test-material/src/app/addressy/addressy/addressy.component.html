@@ -1,0 +1,20 @@
+<mat-form-field appearance="outline" class="addressy-full-width">
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+        #autoCompleteInput
+        type="text"
+        placeholder="Quickly find your address"
+        matInput
+        [formControl]="controlInput"
+        [matAutocomplete]="auto">
+    <mat-icon *ngIf="controlInput.value && controlInput.value.length" matSuffix class="addressy-clear" title="Clear" (click)="onClearClick()">close</mat-icon>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let address of addresses" [value]="address">
+            {{address.Text}}
+            <ng-container *ngIf="!!address.Description"><br>{{address.Description}}</ng-container>
+            <ng-container *ngIf="address.Id === enterAddressManuallyOptionId">
+                &nbsp;<span class="addressy-fake-link">Enter address manually</span>
+            </ng-container>
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

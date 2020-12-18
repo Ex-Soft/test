@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Custom component validation ver. #1</h2>
+<mat-dialog-content>
+  <form [formGroup]="reactiveForm">
+      <app-custom-component-validation-one formControlName="result"></app-custom-component-validation-one>
+  </form>
+  <p>form is valid: {{ reactiveForm.valid ? 'true' : 'false' }}</p>
+  <p>Value:</p>
+  <pre>{{ reactiveForm.value | json }}</pre>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions>

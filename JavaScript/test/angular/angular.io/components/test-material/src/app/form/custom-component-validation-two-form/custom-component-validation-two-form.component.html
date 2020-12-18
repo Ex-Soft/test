@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Custom component validation ver. #2</h2>
+<mat-dialog-content>
+  <form [formGroup]="group" #form="ngForm">
+      <app-custom-component-validation-two formControlName="captcha"></app-custom-component-validation-two>
+      <div *ngIf="group.get('captcha').hasError('invalid')">
+          Wrong answer...
+      </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions> 

@@ -1,0 +1,19 @@
+.addressy-full-width {
+    width: 100%;
+}
+
+.addressy-clear {
+    cursor: pointer;
+}
+
+.mat-option {
+    height: auto;
+    line-height: normal;
+    padding: 5px;
+}
+
+.addressy-fake-link {
+    color: blue;
+    text-decoration: underline;
+}
+  
