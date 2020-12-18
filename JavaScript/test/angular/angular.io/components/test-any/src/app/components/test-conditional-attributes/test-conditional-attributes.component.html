@@ -1,0 +1,13 @@
+<div>
+    <input type="checkbox" [attr.checked]="isCkecked1 ? '' : null">
+    <input type="checkbox" [attr.checked]="isCkecked2 ? 'checked' : null">
+    <input type="checkbox" [attr.checked]="isCkecked3 ? '' : null">
+    <input type="checkbox" [attr.checked]="isCkecked4 ? 'checked' : null">
+    <input type="text" [attr.required]="isInputText1Required ? '' : null">
+    <input type="text" [attr.required]="isInputText2Required ? '' : null">
+    <input type="text" [class.step1-class]="step1 === 'step1'">
+    <input type="text" [ngClass]="{'step2-class': step2 === 'step2'}">
+    <input type="text" [ngClass]="{'step1-class': step3 === 'step1', 'step2-class': step3 === 'step2', 'step3-class': step3 === 'step3'}">
+    <!--input type="text" [ngClass]="{1:'step1-class',2:'step2-class',3:'step3-class'}[step]"-->
+    <input type="text" [ngClass]="(step4 === 'step1') ? 'step1-class' : 'step2-class'">
+</div>

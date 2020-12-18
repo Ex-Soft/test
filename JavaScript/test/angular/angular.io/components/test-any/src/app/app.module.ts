@@ -15,6 +15,7 @@ import { CustomButtonComponent } from './components/custom-button/custom-button.
 import { CustomButtonSimpleComponent } from './components/custom-button-simple/custom-button-simple.component';
 import { CustomBaseComponent } from './components/inheritance/custom-base/custom-base.component';
 import { CustomDerivedComponent } from './components/inheritance/custom-derived/custom-derived.component';
+import { TestConditionalAttributesComponent } from './components/test-conditional-attributes/test-conditional-attributes.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CustomDerivedComponent } from './components/inheritance/custom-derived/
     CustomButtonComponent,
     CustomButtonSimpleComponent,
     CustomBaseComponent,
-    CustomDerivedComponent
+    CustomDerivedComponent,
+    TestConditionalAttributesComponent
   ],
   imports: [
     BrowserModule,

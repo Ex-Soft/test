@@ -6,6 +6,24 @@
 
 <ng-container>
   <div>
+    Test conditional attributes<br>
+    <app-test-conditional-attributes
+      [isCkecked1]=true
+      [isCkecked2]=true
+      [isCkecked3]=false
+      [isCkecked4]=false
+      [isInputText1Required]=true
+      [isInputText2Required]=false
+      [step1]="'step1'"
+      [step2]="'step2'"
+      [step3]="'step3'"
+      [step4]="'step3'"
+    ></app-test-conditional-attributes>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
     Test inheritance<br>
     <app-custom-derived></app-custom-derived>
   </div>
