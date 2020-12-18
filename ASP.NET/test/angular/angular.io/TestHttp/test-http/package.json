@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~11.0.2",
     "@angular/platform-browser-dynamic": "~11.0.2",
     "@angular/router": "~11.0.2",
-    "@datorama/akita": "^5.2.3",
+    "@datorama/akita": "^5.3.0",
     "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

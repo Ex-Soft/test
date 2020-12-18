@@ -22,6 +22,7 @@ import { DialogWrapperComponent } from './components/dialog-wrapper/dialog-wrapp
 import { ModalBaseComponent } from './modals/modal-base/modal-base.component';
 import { ModalDerivedComponent } from './modals/modal-derived/modal-derived.component';
 import { TestStoreComponent } from './components/test-store/test-store.component';
+import { TestAsyncComponent } from './components/test-async/test-async.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TestStoreComponent } from './components/test-store/test-store.component
     DialogWrapperComponent,
     ModalBaseComponent,
     ModalDerivedComponent,
-    TestStoreComponent
+    TestStoreComponent,
+    TestAsyncComponent
   ],
   imports: [
     BrowserModule,
