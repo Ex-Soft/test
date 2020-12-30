@@ -17,6 +17,15 @@ if(window.console && console.clear)
 
 if(window.console && console.log)
 {
+	aa = [ 0, 1, 2 ];
+	aaa = [ 3, 4, 5 ];
+	[].push.apply(aa, aaa);
+	console.log("[].push.apply(arr1, arr2) %o", aa);
+
+	aa = [ "1st", "3rd", "2nd", "4th", "2nd", "1st" ];
+	aaa = new Set(aa);
+	console.log("new Set(arr) %o", aaa);
+
 	i = [].findIndex(item => item === 13);
 	console.log("[].findIndex() %i", i);
 

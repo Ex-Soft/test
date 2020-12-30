@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/36745734/how-to-add-conditional-attribute-in-angular-2
+
 import { Component, Input } from '@angular/core';
 
 @Component({

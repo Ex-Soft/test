@@ -40,6 +40,9 @@ function onLoad()
 		o1.pString1 = "o1.pString1 (updated)";
 		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
 		console.log("o1=%o o2=%o", o1, o2);
+		
+		o1 = { 1: '1st', 2: '2nd', 3: '3rd' }[2];
+		console.log("%s", o1);
 	}
 }
 		</script>

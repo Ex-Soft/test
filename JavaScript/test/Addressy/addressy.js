@@ -1,3 +1,8 @@
+// https://www.loqate.com/resources/support/apis/capture/
+// https://www.loqate.com/resources/support/apis/Capture/Interactive/Find/1.1/
+// https://www.loqate.com/resources/support/apis/Capture/Interactive/Retrieve/1/
+// https://www.loqate.com/resources/support/sandbox/
+
 function showClear() {
 	document.getElementById("clearButton").style.display = "block";
 }
