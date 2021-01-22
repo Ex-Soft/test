@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>kafka-avro-example</artifactId>
+    <artifactId>test-schema</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,8 +13,9 @@
         <avro.version>1.10.1</avro.version>
         <kafka.version>2.7.0</kafka.version>
         <confluent.version>6.0.1</confluent.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
     <repositories>
         <repository>
             <id>confluent</id>

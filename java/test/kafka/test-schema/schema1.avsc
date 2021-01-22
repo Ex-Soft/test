@@ -1,0 +1,30 @@
+{
+	"fields": [
+		{
+			"name": "InnerComplexValue",
+			"type": [
+				"null",
+				{
+					"fields": [
+						{
+							"name": "id",
+							"type": [
+								"null",
+								"int"
+							]
+						},
+						{
+							"name": "value",
+							"type": "string"
+						}
+					],
+					"name": "InnerType1",
+					"type": "record"
+				}
+			]
+		}
+	],
+	"name": "RootType",
+	"namespace": "com.mycorp.mynamespace",
+	"type": "record"
+}

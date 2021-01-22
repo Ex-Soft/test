@@ -1,6 +1,6 @@
-package org.example;
-
+import com.mycorp.mynamespace.RootType;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,14 +19,14 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class KafkaAvroProducer {
+public class TestSchema {
     public static void main(String[] args) {
         //produce();
         consume();
     }
 
-    public static void produce() {
-        Logger logger = LoggerFactory.getLogger(KafkaAvroProducer.class);
+    /* public static void produce() {
+        Logger logger = LoggerFactory.getLogger(TestSchema.class);
         logger.info("This is how you configure Java Logging with SLF4J");
 
         Properties properties = new Properties();
@@ -38,20 +38,19 @@ public class KafkaAvroProducer {
         properties.setProperty("value.serializer", KafkaAvroSerializer.class.getName());
         properties.setProperty("schema.registry.url", "http://127.0.0.1:8081");
 
-        KafkaProducer<String, Customer> kafkaProducer = new KafkaProducer<String, Customer>(properties);
-        String topic = "customer-avro";
+        KafkaProducer<String, RootType> kafkaProducer = new KafkaProducer<>(properties);
+        String topic = "test-topic";
 
-        Customer customer = Customer.newBuilder()
-                .setFirstName("FirstName")
-                .setLastName("LastName")
-                .setAge(13)
-                .setPayment(PaymentTypes.Mastercard)
-                .setHeight(13)
-                .setWeight(13)
-                .setAutomatedEmail(true)
+        RootType rootType = RootType.newBuilder()
+                .setInnerComplexValue(
+                        com.mycorp.mynamespace.InnerType1.newBuilder()
+                                .setId(1)
+                                .setValue("1st")
+                                .build()
+                )
                 .build();
 
-        ProducerRecord<String, Customer> producerRecord = new ProducerRecord<String, Customer>(topic, java.util.UUID.randomUUID().toString(), customer);
+        ProducerRecord<String, RootType> producerRecord = new ProducerRecord<String, RootType>(topic, "1", rootType);
 
         try {
             kafkaProducer.send(producerRecord, new Callback() {
@@ -73,10 +72,10 @@ public class KafkaAvroProducer {
             kafkaProducer.flush();
             kafkaProducer.close();
         }
-    }
+    } */
 
     public static void consume() {
-        Logger logger = LoggerFactory.getLogger(KafkaAvroProducer.class);
+        Logger logger = LoggerFactory.getLogger(TestSchema.class);
         logger.info("This is how you configure Java Logging with SLF4J");
 
         Properties properties = new Properties();
@@ -87,17 +86,24 @@ public class KafkaAvroProducer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
         properties.setProperty("schema.registry.url", "http://localhost:8081");
 
+        properties.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
+
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-        KafkaConsumer<String, Customer> kafkaConsumer = new KafkaConsumer<>(properties);
-        String topic = "customer-avro";
+        KafkaConsumer<String, RootType> kafkaConsumer = new KafkaConsumer<>(properties);
+        String topic = "test-topic";
 
         kafkaConsumer.subscribe(Arrays.asList(topic));
 
         try {
             while (true) {
-                ConsumerRecords<String, Customer> records = kafkaConsumer.poll(Duration.ofMillis(100));
-                for (ConsumerRecord<String, Customer> record : records) {
+                ConsumerRecords<String, RootType> records = kafkaConsumer.poll(Duration.ofMillis(100));
+
+                if (records.isEmpty()) {
+                    continue;
+                }
+
+                for (ConsumerRecord<String, RootType> record : records) {
                     System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(), record.value());
                 }
             }
