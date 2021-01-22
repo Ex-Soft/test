@@ -1,4 +1,5 @@
 ﻿<!doctype html>
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment -->
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -8,7 +9,9 @@ function onLoad()
 {
 	let
 		o1,
-		o2;
+		o2,
+		foo,
+		bar;
 
 	if(window.console && console.log) {
 		console.log("1. Using Spread");
@@ -43,7 +46,32 @@ function onLoad()
 		
 		o1 = { 1: '1st', 2: '2nd', 3: '3rd' }[2];
 		console.log("%s", o1);
+
+		o1 = { p1: '1st', p2: '2nd', p3: '3rd' };
+		o2 = { p1: 'p1',  p2: 'p2',  p3: 'p3', p4: 'p4', p5: 'p5', ...o1 };
+		console.log("%o", o2);
+		
+		o1 = {p: 42, q: true};
+		const {p: foo, q: bar} = o1;
+		console.log("foo=%o bar=%o", foo, bar);
+		
+		console.log("%o", createNewObject());
+		console.log("%o", createNewObject({p1: "p1"}));
+		console.log("%o", createNewObject({p1: "p1", p2: "p2"}));
+		console.log("%o", createNewObject({p1: "p1", p2: "p2", p3: "p3"}));
 	}
+}
+
+function createNewObject(controlledValues) {
+	return {
+		id: "id",
+		p1: "1st",
+		p2: "2nd",
+		p3: "3rd",
+		p4: "4th",
+		p5: "5th",
+		...controlledValues
+	};
 }
 		</script>
 	</head>

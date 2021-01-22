@@ -16,6 +16,7 @@ import { CustomButtonSimpleComponent } from './components/custom-button-simple/c
 import { CustomBaseComponent } from './components/inheritance/custom-base/custom-base.component';
 import { CustomDerivedComponent } from './components/inheritance/custom-derived/custom-derived.component';
 import { TestConditionalAttributesComponent } from './components/test-conditional-attributes/test-conditional-attributes.component';
+import { TestFackerComponent } from './components/test-facker/test-facker.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TestConditionalAttributesComponent } from './components/test-conditiona
     CustomButtonSimpleComponent,
     CustomBaseComponent,
     CustomDerivedComponent,
-    TestConditionalAttributesComponent
+    TestConditionalAttributesComponent,
+    TestFackerComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,16 @@ if(window.console && console.log)
 	aaa = [ 3, 4, 5 ];
 	[].push.apply(aa, aaa);
 	console.log("[].push.apply(arr1, arr2) %o", aa);
+	
+	aa = [ 0, 1, 2 ];
+	aaa = [ 3, 4, 5 ];
+	i = aa.concat(aaa);
+	console.log("newArr = arr1.concat(arr2) %o %o %o", aa, aaa, i);
+
+	aa = [ 0, 1, 2 ];
+	aaa = [ 3, 4, 5 ];
+	aa = aa.concat(aaa);
+	console.log("arr1.concat(arr2) %o %o", aa, aaa);
 
 	aa = [ "1st", "3rd", "2nd", "4th", "2nd", "1st" ];
 	aaa = new Set(aa);
@@ -417,6 +427,28 @@ for(i=a.length-1; i>=0; --i)
 			console.log("a[%s] = %i", i, a[i]);
 	}
 
+a = [
+	{ id: 1, priority: 5},
+	{ id: 2, priority: 4},
+	{ id: 3, priority: 1},
+	{ id: 4, priority: 3},
+	{ id: 5, priority: 2},
+];
+a.sort((a, b) => a.priority - b.priority );
+aa = a.map(item => item.id);
+if (window.console && console.log)
+	console.log("%o %o", a, aa);
+
+a = [1, 2, 3];
+aa = [2, 4, 5];
+aaa = [2, 6, 7];
+i = unique(a.concat(aa, aaa));
+i = intersect(i, a);
+i = intersect(i, aa);
+i = intersect(i, aaa);
+if (window.console && console.log)
+	console.log("%o", i);
+
 function isBigEnough(element, index, array)
 {  
    return (element >= 10);  
@@ -435,7 +467,7 @@ function except(arr1, arr2) {
 }
 
 function unique(arr) {
-	return Array.isArray(arr) ? arr.filter((item, index, array) => array.indexOf(item) == index) : [];
+	return Array.isArray(arr) ? arr.filter((item, index, array) => array.indexOf(item) === index) : [];
 }
 		</script>
 	</head>
