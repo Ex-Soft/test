@@ -67,7 +67,7 @@ using static System.Console;
 
 namespace AnyTest
 {
-    #if TEST_YIELD
+    #if TEST_YIELD || TEST_STRING
         class A
         {
             public string Level;
@@ -76,7 +76,7 @@ namespace AnyTest
             public A(A obj) : this(obj.Level, obj.Parent)
             {}
 
-            public A(string level="", A parent=null)
+            public A(string level = "", A parent = null)
             {
                 Level = level;
                 Parent = parent;
@@ -121,7 +121,7 @@ namespace AnyTest
 				Fifteen = 15,
                 MinusFirst = -1,
                 MinusSecond = -2,
-                MinusThird
+                MinusThird /* -2 + 1 = -1 equ MinusFirst */
 			}
 
             enum SmthEnum : long
@@ -813,6 +813,13 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+                var a = new A((string)null);
+                tmpString = a.Level?.ToUpper() == "NULL" ? null : a.Level;
+                a.Level = "null";
+                tmpString = a.Level?.ToUpper() == "NULL" ? null : a.Level;
+                a.Level = "blah-blah-blah";
+                tmpString = a.Level?.ToUpper() == "NULL" ? null : a.Level;
+
                 tmpString = "blah-blah-blah";
                 tmpStringII =  $"<div{(!string.IsNullOrWhiteSpace(tmpString) ? $" class=\"{tmpString}\"" : string.Empty)}>";
                 tmpString = "test String.Intern()";
@@ -1163,7 +1170,12 @@ namespace AnyTest
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "-13", true);
 
-                TestEnum testEnum;
+                TestEnum
+                    testEnum = TestEnum.MinusFirst,
+                    testEnumII = TestEnum.MinusThird; /* testEnumII == TestEnum.MinusFirst */
+
+                Console.WriteLine($"TestEnum.{testEnum} {(testEnum == testEnumII ? "=" : "!")}= TestEnum.{testEnumII}"); // ==
+                Console.WriteLine($"TestEnum.{testEnum} {((int)testEnum == (int)testEnumII ? "=" : "!")}= TestEnum.{testEnumII}"); // ==
 
 				tmpStrings = Enum.GetNames(typeof(TestEnum));
 				foreach(var str in tmpStrings)
