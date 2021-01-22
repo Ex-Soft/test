@@ -23,6 +23,7 @@ import { ModalBaseComponent } from './modals/modal-base/modal-base.component';
 import { ModalDerivedComponent } from './modals/modal-derived/modal-derived.component';
 import { TestStoreComponent } from './components/test-store/test-store.component';
 import { TestAsyncComponent } from './components/test-async/test-async.component';
+import { TestItemWithEnumComponent } from './components/test-item-with-enum/test-item-with-enum.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TestAsyncComponent } from './components/test-async/test-async.component
     ModalBaseComponent,
     ModalDerivedComponent,
     TestStoreComponent,
-    TestAsyncComponent
+    TestAsyncComponent,
+    TestItemWithEnumComponent
   ],
   imports: [
     BrowserModule,

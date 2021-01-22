@@ -1,0 +1,22 @@
+<ng-container>
+  <input type="button" value="check()" (click)="onClickCheck()"> 
+  <ng-container *ngIf="!!itemsWithEnum; else loading">
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let itemWithEnum of itemsWithEnum">
+            <td>{{itemWithEnum.id}}</td>
+            <td>{{itemWithEnum.value}}</td>
+        </tr>
+        </tbody>
+    </table>
+  </ng-container>
+  <ng-template #loading>
+    loading
+  </ng-template>
+</ng-container>
