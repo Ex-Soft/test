@@ -28,3 +28,37 @@ interface IBear extends Animal {
 type Bear = Animal & {
     honey: Boolean
 }
+
+interface ICar {
+    manufacturer: string;
+    model: string;
+    year: number;
+}
+
+let taxi: ICar = {
+    manufacturer: "Toyota",
+    model: "Camry",
+    year: 2014,
+};
+
+let carProps: keyof ICar;
+
+interface IPersonSubset {
+    name?: string;
+    age?: number;
+}
+
+interface IPersonReadonly {
+    readonly name: string;
+    readonly age: number;
+}
+
+type DeepPartial<T> = T extends object ? { [K in keyof T]?: DeepPartial<T[K]> } : T;
+
+let personalSubset = {} as DeepPartial<IPersonSubset>;
+
+let o2: IPersonSubset = { age: 99 } as IPersonSubset;
+let o1: IPersonSubset = { age: 33, ...o2 };
+if (window.console && console.log) {
+    console.log("%o", o1);
+};

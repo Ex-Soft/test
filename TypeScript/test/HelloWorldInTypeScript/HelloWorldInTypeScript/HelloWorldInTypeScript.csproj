@@ -37,7 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
-    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptTarget>ES2020</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
     <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
@@ -121,6 +121,7 @@
     <TypeScriptCompile Include="Scripts\SmthClass.ts" />
     <TypeScriptCompile Include="Scripts\Generic.ts" />
     <TypeScriptCompile Include="Scripts\TestCast.ts" />
+    <TypeScriptCompile Include="Scripts\TestSet.ts" />
     <TypeScriptCompile Include="Scripts\TupleVariables.ts" />
     <TypeScriptCompile Include="Scripts\TypeAliases.ts" />
     <TypeScriptCompile Include="Scripts\UniqueIdContainerItemsCache.ts" />
