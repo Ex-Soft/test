@@ -17,10 +17,10 @@
 //#define TEST_FILE
 //#define TEST_CLONE
 //#define ANY_TEST
-//#define TEST_TYPES
+#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-#define TEST_STRING
+//#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -729,6 +729,16 @@ namespace AnyTest
             #endif
 
             #if TEST_TYPES
+                try
+                { 
+                    tmpObject = null;
+                    tmpBool = (bool)(tmpObject);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
                 try
                 {
                     tmpType = Type.GetType("System.Int32");
