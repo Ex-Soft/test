@@ -1,6 +1,6 @@
 <div class="test-async-container">
     <div>
-        <input type="button" value="async && subscribe() together (2 calls)" (click)="onLoadAsyncAndSubscribeTogetherClick()" />
+        <input type="button" value="async && subscribe() together (2 calls because async && subscribe() together)" (click)="onLoadAsyncAndSubscribeTogetherClick()" />
         <p *ngFor="let item of itemsAsyncAndSubscribeTogether | async">{{item.name}}</p>
     </div>
     <div>
@@ -14,5 +14,13 @@
     <div>
         <input type="button" value="BehaviorSubject (async && subscribe() together)" (click)="onLoadBehaviorSubjectClick()" />
         <p *ngFor="let item of itemsBehaviorSubject | async">{{item.name}}</p>
+    </div>
+    <div>
+        <div *ngIf="activeItem$ | async; else loading">
+            <p>&#123;id:{{activeItem.id}}, name:&quot;{{activeItem.name}}&quot;&#125;</p>
+        </div>
+        <ng-template #loading>
+            <input type="button" value="load and setActive()" (click)="onLoadAndSetActiveClick()" />
+        </ng-template>
     </div>
 </div>
