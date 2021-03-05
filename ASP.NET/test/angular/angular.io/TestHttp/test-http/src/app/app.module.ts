@@ -24,6 +24,7 @@ import { ModalDerivedComponent } from './modals/modal-derived/modal-derived.comp
 import { TestStoreComponent } from './components/test-store/test-store.component';
 import { TestAsyncComponent } from './components/test-async/test-async.component';
 import { TestItemWithEnumComponent } from './components/test-item-with-enum/test-item-with-enum.component';
+import { TestObservableComponent } from './components/rxjs/test-observable/test-observable.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TestItemWithEnumComponent } from './components/test-item-with-enum/test
     ModalDerivedComponent,
     TestStoreComponent,
     TestAsyncComponent,
-    TestItemWithEnumComponent
+    TestItemWithEnumComponent,
+    TestObservableComponent
   ],
   imports: [
     BrowserModule,

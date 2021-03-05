@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Observable } from 'rxjs';
 
 import { IItemDto, ItemsQuery, ItemService } from '../../core/state/item';
 
@@ -22,16 +23,28 @@ export class TestRadioButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.query.items$.pipe(untilDestroyed(this)).subscribe(state => {
-      this.isLoading = state.loading;
-      const length: number = Array.isArray(state.ids) ? state.ids.length : 0;
-      if (length) {
-        this.options = this.query.getAll();
-        this.selectedOption = state.ids[0];
-      } else {
-        this.service.getItems();
+    this.query.items$.pipe(untilDestroyed(this)).subscribe(
+      state => {
+        this.isLoading = state.loading;
+        const length: number = Array.isArray(state.ids) ? state.ids.length : 0;
+        if (length) {
+          this.options = this.query.getAll();
+          this.selectedOption = state.ids[0];
+        } else {
+          this.service.getItems();
+        }
+      },
+      error => {
+        if (window.console && console.log) {
+          console.log('error: %o', error);
+        }
+      },
+      () => {
+        if (window.console && console.log) {
+          console.log('complete');
+        }
       }
-    });
+    );
   }
 
   ngOnDestroy(): void { }
