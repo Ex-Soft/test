@@ -23,7 +23,7 @@
     "@angular/router": "~11.2.4",
     "@datorama/akita": "^6.0.1",
     "ngx-take-until-destroy": "^5.4.0",
-    "rxjs": "~6.5.5",
+    "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
