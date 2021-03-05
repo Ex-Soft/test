@@ -1,0 +1,41 @@
+<ng-container>
+    <table>
+        <thead>
+            <th>Date</th>
+            <th>getTimezoneOffset()</th>
+            <th>toUTCString()</th>
+            <th>toISOString()</th>
+            <th>DatePipe</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{dateUtc}}</td>
+                <td>{{dateUtc.getTimezoneOffset()}}</td>
+                <td>{{dateUtc.toUTCString()}}</td>
+                <td>{{dateUtc.toISOString()}}</td>
+                <td>{{dateUtc | date: 'full' : '-08:00' : 'en-US' }}</td>
+            </tr>
+            <tr>
+                <td>{{dateWithTimezone}}</td>
+                <td>{{dateWithTimezone.getTimezoneOffset()}}</td>
+                <td>{{dateWithTimezone.toUTCString()}}</td>
+                <td>{{dateWithTimezone.toISOString()}}</td>
+                <td>{{dateWithTimezone | date: 'full' : '-08:00' : 'en-US' }}</td>
+            </tr>
+            <tr>
+                <td>{{dateNowLocal}}</td>
+                <td>{{dateNowLocal.getTimezoneOffset()}}</td>
+                <td>{{dateNowLocal.toUTCString()}}</td>
+                <td>{{dateNowLocal.toISOString()}}</td>
+                <td>{{dateNowLocal | date: 'full' : '-08:00' : 'en-US' }}</td>
+            </tr>
+            <tr>
+                <td>{{dateNowUtc}}</td>
+                <td>{{dateNowUtc.getTimezoneOffset()}}</td>
+                <td>{{dateNowUtc.toUTCString()}}</td>
+                <td>{{dateNowUtc.toISOString()}}</td>
+                <td>{{dateNowUtc | date: 'full' : '-08:00' : 'en-US' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

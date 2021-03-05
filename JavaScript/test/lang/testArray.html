@@ -17,6 +17,26 @@ if(window.console && console.clear)
 
 if(window.console && console.log)
 {
+	aa = [ { id:1, val: '1' }, { id:1, val: '1' }, { id:3, val: '3' } ];
+	aaa = [ ...new Set(aa) ];
+	console.log(aaa);
+
+	o1 = { id:1, val: '1' };
+	o2 = { id:1, val: '1' };
+	o3 = { id:3, val: '3' };
+	
+	aa = [ o1, o2, o3 ];
+	aaa = [ ...new Set(aa) ];
+	console.log(aaa);
+	
+	aa = [ o1, o1, o3 ];
+	aaa = [ ...new Set(aa) ];
+	console.log(aaa);
+
+	aa = [ 1, 2, 3, 4, 3, 2, 1 ];
+	aaa = aa.filter((currentValue, index, array) => array.indexOf(currentValue) === index);
+	console.log("unique %o",aaa);
+
 	aa = [ 0, 1, 2 ];
 	aaa = [ 3, 4, 5 ];
 	[].push.apply(aa, aaa);
@@ -186,9 +206,10 @@ function getIndexOfElementBy(array, property, value) {
 
 if(window.console && console.log)
 {
-	console.log(getIndexOfElementBy(aa, { id: 2, value: "2nd" }));
-	console.log(getIndexOfElementBy(aa, { id: 1, value: "1st" }));
-	console.log(getIndexOfElementBy(aa, "id", 3));
+	console.log("getIndexOfElementBy(array, { id: 2, value: \"2nd\" }) = %i", getIndexOfElementBy(aa, { id: 2, value: "2nd" }));
+	console.log("getIndexOfElementBy(array, { id: 1, value: \"1st\" }) = %i", getIndexOfElementBy(aa, { id: 1, value: "1st" }));
+	console.log("getIndexOfElementBy(array, { id: 1, value: \"1st\", additionalValue: \"1st\" }) = %i", getIndexOfElementBy(aa, { id: 1, value: "1st", additionalValue: "1st" }));
+	console.log("getIndexOfElementBy(array, \"id\", 3) = %i", getIndexOfElementBy(aa, "id", 3));
 }
 
 // [0, 1, 3, 4, 5]

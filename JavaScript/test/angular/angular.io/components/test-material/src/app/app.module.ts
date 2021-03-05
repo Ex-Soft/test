@@ -10,6 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { TestCheckboxComponent } from './material/testcheckbox/testcheckbox.component';
@@ -31,6 +32,7 @@ import { CustomComponentValidationTwoFormComponent } from './form/custom-compone
 import { FormSimpleComponent } from './form/form-simple/form-simple.component';
 import { SimpleComponentComponent } from './form/simple-component/simple-component.component';
 import { TestValidationComponent } from './form/test-validation/test-validation.component';
+import { TestspinnerComponent } from './material/testspinner/testspinner.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { TestValidationComponent } from './form/test-validation/test-validation.
     CustomComponentValidationTwoFormComponent,
     FormSimpleComponent,
     SimpleComponentComponent,
-    TestValidationComponent
+    TestValidationComponent,
+    TestspinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ import { TestValidationComponent } from './form/test-validation/test-validation.
     MatRadioModule,
     MatIconModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

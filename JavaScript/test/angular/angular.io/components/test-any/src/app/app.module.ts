@@ -17,6 +17,7 @@ import { CustomBaseComponent } from './components/inheritance/custom-base/custom
 import { CustomDerivedComponent } from './components/inheritance/custom-derived/custom-derived.component';
 import { TestConditionalAttributesComponent } from './components/test-conditional-attributes/test-conditional-attributes.component';
 import { TestFackerComponent } from './components/test-facker/test-facker.component';
+import { TestSimpleComponent } from './components/test-simple/test-simple.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TestFackerComponent } from './components/test-facker/test-facker.compon
     CustomBaseComponent,
     CustomDerivedComponent,
     TestConditionalAttributesComponent,
-    TestFackerComponent
+    TestFackerComponent,
+    TestSimpleComponent
   ],
   imports: [
     BrowserModule,
