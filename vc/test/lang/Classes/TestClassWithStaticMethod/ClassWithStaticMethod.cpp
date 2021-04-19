@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include "ClassWithStaticMethod.h"
 
@@ -52,3 +54,30 @@ int ClassWithStaticMethod::GetStatic(void)
 }
 //---------------------------------------------------------------------------
 
+void ClassWithStaticMethod::PrintMethodAddress(void)
+{
+	void (ClassWithStaticMethod::*f_ptr)(void) = &ClassWithStaticMethod::Foo;
+	char address[32];
+	sprintf(address, "%p", f_ptr);
+	cout << "&ClassWithStaticMethod::Foo=" << address << endl;
+}
+//---------------------------------------------------------------------------
+
+void ClassWithStaticMethod::PrintStaticMethodAddress(void)
+{
+	void (* f_ptr)(void) = &ClassWithStaticMethod::StaticMethod;
+	char address[32];
+	sprintf(address, "%p", f_ptr);
+	cout << "&ClassWithStaticMethod::StaticMethod=" << address << endl;
+}
+//---------------------------------------------------------------------------
+
+void ClassWithStaticMethod::Foo(void)
+{
+	int i;
+	int* int_ptr = &i;
+	char address[32];
+	sprintf(address, "%p", int_ptr);
+	cout << "&i=" << address << endl;
+}
+//---------------------------------------------------------------------------

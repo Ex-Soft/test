@@ -13,13 +13,18 @@ public:
   static int
     staticX;
 
-   ClassWithStaticMethod(int = 0);
-   ClassWithStaticMethod(const ClassWithStaticMethod&);
-   virtual ~ClassWithStaticMethod(void);
+  ClassWithStaticMethod(int = 0);
+  ClassWithStaticMethod(const ClassWithStaticMethod&);
+  virtual ~ClassWithStaticMethod(void);
 
-   static void StaticMethod(void);
-   static void SetStatic(int);
-   static int GetStatic(void);
+  static void StaticMethod(void);
+  static void SetStatic(int);
+  static int GetStatic(void);
+
+  void PrintMethodAddress(void);
+  void PrintStaticMethodAddress(void);
+
+  void Foo(void);
 };
 //---------------------------------------------------------------------------
 
