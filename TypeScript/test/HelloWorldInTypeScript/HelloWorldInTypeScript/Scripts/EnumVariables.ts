@@ -25,6 +25,14 @@ enum Direction {
     Right = "Right"
 }
 
+let direction1: Direction;
+let direction2: Direction;
+direction1 = Direction["Down"];
+direction2 = Direction["Middle"];
+if (window.console && console.log) {
+    console.log("direction1=%o direction2=%o", direction1, direction2);
+}
+
 let directionStr1 = Direction.Right;
 let directionStr2 = Direction[Direction.Right];
 if (window.console && console.log) {
