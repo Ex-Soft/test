@@ -55,6 +55,10 @@ if (window.console && console.log) {
   Line #2
   Line #3`;
   console.log("%s %i(\"%s\") %i(\"%s\") %i %i(\"%s\") %i(\"%s\") %i(\"%s\")", str, str.charCodeAt(5), String.fromCharCode(35), str.charCodeAt(6), String.fromCharCode(49), str.charCodeAt(7), str.charCodeAt(8), String.fromCharCode(32), str.charCodeAt(9), String.fromCharCode(32), str.charCodeAt(10), String.fromCharCode(76));
+
+  str = "abc, def , ghi, jkl";
+  arr = str.split(",");
+  console.log(`"${arr[0]}" "${arr[1]}" "${arr[2]}" "${arr[3]}"`); // "abc" " def " " ghi" " jkl"
 }
 
 str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"

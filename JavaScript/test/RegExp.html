@@ -19,10 +19,68 @@ var
 	Pos,
 	arr,
 	arrarr,
-	i;
+	i,
+	ii;
 
 	if(window.console && console.clear)
 		console.clear();
+
+	arr = ["1 : [ NprReversalAlreadySubmitted , NprReversalLacksSettlementSucceeded ]", "3:[NprItemLacksRefundSucceededStatus,PriceAdjustmentPending]"];
+	RegEx = /^([a-z0-9]+)\s*:\s*\[\s*([a-z, ]+)\s*]$/i;
+	for (i = 0; i < arr.length; ++i) {
+		let matches = RegEx.exec(arr[i]);
+		if (Array.isArray(matches) && matches.length) {
+			for(ii = 0; ii < matches.length; ++ii) {
+				if (window.console && console.log) {
+					console.log(`RegExp.exec(\/i) [${ii}] = "${matches[ii]}"`);
+				}
+			}
+		}
+	}
+	
+	RegEx = /^([a-z0-9]+)\s*:\s*\[\s*([a-z, ]+)\s*]$/i;
+	for (i = 0; i < arr.length; ++i) {
+		let matches = arr[i].match(RegEx);
+		if (Array.isArray(matches) && matches.length) {
+			for(ii = 0; ii < matches.length; ++ii) {
+				if (window.console && console.log) {
+					console.log(`String.match(\/i) [${ii}] = "${matches[ii]}"`);
+				}
+			}
+		}
+	}
+	
+	RegEx = /^([a-z0-9]+)\s*:\s*\[\s*([a-z, ]+)\s*]$/gi;
+	for (i = 0; i < arr.length; ++i) {
+		let matches = RegEx.exec(arr[i]);
+		if (Array.isArray(matches) && matches.length) {
+			for(ii = 0; ii < matches.length; ++ii) {
+				if (window.console && console.log) {
+					console.log(`RegExp.exec(\/gi)[${ii}] = "${matches[ii]}"`);
+				}
+			}
+		}
+	}
+	
+	RegEx = /^([a-z0-9]+)\s*:\s*\[\s*([a-z, ]+)\s*]$/gi;
+	for (i = 0; i < arr.length; ++i) {
+		let matches = arr[i].match(RegEx);
+		if (Array.isArray(matches) && matches.length) {
+			for(ii = 0; ii < matches.length; ++ii) {
+				if (window.console && console.log) {
+					console.log(`String.match(\/gi) [${ii}] = "${matches[ii]}"`);
+				}
+			}
+		}
+	}
+	
+	RegEx = /\s*(\d{5})(?:-?\d+)?\s*/gi;
+	Str = "   12345-1234   ";
+	arrarr = Str.replace(RegEx, "$1");
+	Str = "   123451234   ";
+	arrarr = Str.replace(RegEx, "$1");
+	Str = "   A1B 2C3   ";
+	arrarr = Str.replace(RegEx, "$1");
 
 	Str = "01-02-03-04-05-06-07-08-09-10-11-12-13";
 	RegEx = /(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})/gi;
