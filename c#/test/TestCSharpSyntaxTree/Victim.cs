@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+
 using static System.Console;
 
 namespace TestCSharpSyntaxTree
@@ -12,14 +13,14 @@ namespace TestCSharpSyntaxTree
     {
         public void Foo1()
         {
-            WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}()");
+            WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod()?.Name}()");
         }
     }
     public class Victim2 : IVictim
     {
         public void Foo1()
         {
-            WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}()");
+            WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod()?.Name}()");
         }
     }
 
@@ -27,7 +28,7 @@ namespace TestCSharpSyntaxTree
     {
         public void Foo1()
         {
-            WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}()");
+            WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod()?.Name}()");
         }
     }
 }

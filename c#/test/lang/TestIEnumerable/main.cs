@@ -274,6 +274,32 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfA = new List<A>();
+            A tmpA;
+
+            try
+            {
+                tmpA = listOfA.Last();
+            }
+            catch (InvalidOperationException e)
+            {
+                WriteLine(e.Message);
+            }
+
+            listOfA = new List<A>
+            {
+                new A { FA = 1, FB = true },
+                new A { FA = 1, FB = true },
+                new A { FA = 2 },
+                new A { FA = 2 }
+            };
+
+            tmpA = listOfA.FirstOrDefault(item => item.FB);
+            if (tmpA != null)
+            {
+                tmpA.FA = 13;
+            }
+
             var listOfListOfInt = new List<List<int>>
             {
                 new List<int> { 1, 2, 3},
@@ -402,7 +428,7 @@ namespace TestIEnumerable
             var tmpInt = listOfInt
                 .Count(x => x == listOfInt.Max(x => x));
 
-            List<A> listOfA = new List<A>
+            listOfA = new List<A>
 			{
 				new A { FA = 1, FB = true },
 				new A { FA = 1, FB = true },
@@ -561,8 +587,9 @@ namespace TestIEnumerable
             tmpBool = tmpInts.Any(itemOuter => tmpInts.Any(itemInner => itemInner != itemOuter));
             tmpBool = tmpInts.Distinct().Count() != 1;
 
+            tmpA = new A {FA = 1, FB = false, FC = false};
+
             A
-                tmpA = new A() { FA = 1, FB = false, FC = false },
                 tmpAII = new A() { FA = 2, FB = false, FC = false },
                 tmpAIII = new A() { FA = 3, FB = false, FC = false };
 

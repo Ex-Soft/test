@@ -35,9 +35,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bar.cs" />
+    <Compile Include="Baz.cs" />
     <Compile Include="ClassWithMethods.cs" />
     <Compile Include="IInterfaceWithMethodsExtensions.cs" />
     <Compile Include="IInterfaceWithMethods.cs" />
+    <Compile Include="IInterfaceWithProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmthClass.cs" />
   </ItemGroup>

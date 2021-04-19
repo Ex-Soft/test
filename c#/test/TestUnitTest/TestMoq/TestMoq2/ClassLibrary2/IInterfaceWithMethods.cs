@@ -3,5 +3,6 @@
     public interface IInterfaceWithMethods
     {
         void Foo1();
+        void Foo2(string str);
     }
 }

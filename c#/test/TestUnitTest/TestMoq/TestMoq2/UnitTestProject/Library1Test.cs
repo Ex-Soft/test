@@ -56,6 +56,8 @@ namespace UnitTestProject
             mock.Verify(o => o.FooIntIntIntException(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
         }
 
+        // https://codethug.com/2017/09/09/Mocking-Extension-Methods/
+        // http://adventuresdotnet.blogspot.com/2011/03/mocking-static-methods-for-unit-testing.html
         [TestMethod]
         public void TestExtensionMethod()
         {

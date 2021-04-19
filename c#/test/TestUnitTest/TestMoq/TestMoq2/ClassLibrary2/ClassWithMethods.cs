@@ -9,5 +9,10 @@ namespace ClassLibrary2
         {
             Debug.WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}");
         }
+
+        public void Foo2(string str)
+        {
+            Debug.WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}({str})");
+        }
     }
 }

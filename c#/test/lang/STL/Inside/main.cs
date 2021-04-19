@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,10 @@ namespace Inside
             
             dictionaryStringString.Add("1st", "first");
             string tmpString = dictionaryStringString["1st"];
+
+            IDictionary<string, string> iDictionaryStringString = dictionaryStringString;
+            tmpString = iDictionaryStringString.Keys.First();
+            tmpString = iDictionaryStringString[tmpString];
             
             sortedDictionaryStringString.Add("1st", "first");
             tmpString = sortedDictionaryStringString["1st"];

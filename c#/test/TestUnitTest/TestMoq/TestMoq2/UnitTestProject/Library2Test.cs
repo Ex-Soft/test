@@ -1,4 +1,5 @@
 ﻿// https://github.com/Moq/moq4/wiki/Quickstart
+// https://hamidmosalla.com/2017/08/03/moq-working-with-setupget-verifyget-setupset-verifyset-setupproperty/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
