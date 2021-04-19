@@ -42,3 +42,13 @@ from
 		where
 			detail.id_master = master.id
 	) t on true;
+
+select
+	*
+from
+	testdb.master master
+	left join testdb.detail detail1 on detail1.id_master = master.id
+	left join testdb.detail detail2 on detail2.id_master = master.id
+where
+	detail1.f_int = 2
+	and detail2.f_int = 3;
