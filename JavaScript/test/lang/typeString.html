@@ -25,6 +25,42 @@ var
 
 // substr deprecated!!!
 
+if (window.console && console.log) {
+  console.log("typeof(str)=%o str=%o", typeof(str), str);
+  str_out = !str;
+  console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
+  str_out = !!str;
+  console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  
+  str = null;
+  console.log("typeof(str)=%o str=%o", typeof(str), str);
+  str_out = !str;
+  console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
+  str_out = !!str;
+  console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  
+  str = "";
+  console.log("typeof(str)=%o str=\"%s\"", typeof(str), str);
+  str_out = !str;
+  console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
+  str_out = !!str;
+  console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+
+  arr = ['1st', '2nd', '3rd', '4th', '5th'];
+  str = arr.join();
+  str_out = arr.join('~');
+  console.log("\"%s\" \"%s\"", str, str_out);
+
+  str = `Line #1
+  Line #2
+  Line #3`;
+  console.log("%s %i(\"%s\") %i(\"%s\") %i %i(\"%s\") %i(\"%s\") %i(\"%s\")", str, str.charCodeAt(5), String.fromCharCode(35), str.charCodeAt(6), String.fromCharCode(49), str.charCodeAt(7), str.charCodeAt(8), String.fromCharCode(32), str.charCodeAt(9), String.fromCharCode(32), str.charCodeAt(10), String.fromCharCode(76));
+
+  str = "abc, def , ghi, jkl";
+  arr = str.split(",");
+  console.log(`"${arr[0]}" "${arr[1]}" "${arr[2]}" "${arr[3]}"`); // "abc" " def " " ghi" " jkl"
+}
+
 str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"
 str_out = str.replace("\"", "\\\"");  // "blah \"blah blah" blah"
 str_out = str.replace(/"/g, "\\\"");  // "blah \"blah blah\" blah"

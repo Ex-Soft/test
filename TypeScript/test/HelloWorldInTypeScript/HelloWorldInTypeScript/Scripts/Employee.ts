@@ -9,6 +9,10 @@
         return "SuperCaleFlageolisticExpialodocios";
     }
 
+    set LastName(newValue: string) {
+
+    }
+
     constructor(employeeNumber: number, firstName: string, lastName: string) {
         // call constructor of the super class
         super(firstName, lastName);

@@ -1,5 +1,6 @@
-﻿//#define TEST_LIST
-#define TEST_CONTINUE_WITH
+﻿#define TEST_TUPLE
+//#define TEST_LIST
+//#define TEST_CONTINUE_WITH
 //#define TEST_AWAITER
 //#define TEST_TASK_COMPLETION_SOURCE
 
@@ -43,6 +44,14 @@ namespace TestTask
         static void Main(string[] args)
         {
             Task task;
+
+            #if TEST_TUPLE
+
+                bool tmpBool;
+                TaskAwaiter<bool> taskAwaiterBool = CallCheckSmth().GetAwaiter();
+                taskAwaiterBool.OnCompleted(() => tmpBool = taskAwaiterBool.GetResult());
+
+            #endif
 
             #if TEST_TASK_COMPLETION_SOURCE
 
@@ -271,6 +280,25 @@ namespace TestTask
                 WriteLine(message);
 
                 return taskCompletionSource.Task;
+            }
+
+        #endif
+
+        #if TEST_TUPLE
+
+            static async Task<(bool, List<int>)> CheckSmth(int millisecondsDelay)
+            {
+                await Task.Delay(millisecondsDelay);
+                return (true, new List<int> { 1, 2, 3});
+            }
+
+            static async Task<bool> CallCheckSmth()
+            {
+                bool result;
+                List<int> listOfInt;
+                (result, listOfInt) = await CheckSmth(1000);
+
+                return result && listOfInt.Count != 0;
             }
 
         #endif

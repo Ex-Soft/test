@@ -6,10 +6,18 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-   /*
    ClassWithStaticMethod
-     c(0);
-   */
+     c1(1),
+	 c2(2);
+
+   c1.PrintMethodAddress();
+   c2.PrintMethodAddress();
+
+   c1.PrintStaticMethodAddress();
+   c2.PrintStaticMethodAddress();
+
+   c1.Foo();
+   c2.Foo();
 
    ClassWithStaticMethod::staticX=13;
 

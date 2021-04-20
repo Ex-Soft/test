@@ -12,6 +12,10 @@ function onLoad()
 		offset;
 
 	if(window.console && console.log) {
+		d1 = Date.now(),
+		d2 = new Date(d1);
+		console.log("Date.now() %o %s %s", d1, d2.toString(), d2.toUTCString());
+
 		d1 = new Date(2017, 9, 28),
 		d2 = new Date(d1.getTime() + 60 * 60 * 24 * 1000);
 		offset = d2.getTimezoneOffset() - d1.getTimezoneOffset();

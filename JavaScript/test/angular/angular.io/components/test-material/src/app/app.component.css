@@ -1,0 +1,11 @@
+.flex-container {
+    display: flex;
+}
+
+.addressy-container {
+    width: 300px;
+}
+
+.test-autocomplete-first-option-container {
+    width: 400px;
+}

@@ -1,3 +1,4 @@
+using AnyTest.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,11 @@ namespace AnyTest
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ISmthService, SmthService>();
+            services.AddScoped<ActionFilterExample>();
+            services.AddScoped<AsyncActionFilterExample>();
+            services.AddScoped<ActionFilterDIExample>();
+            services.AddScoped<AsyncActionFilterDIExample>();
             services.AddControllers();
         }
 

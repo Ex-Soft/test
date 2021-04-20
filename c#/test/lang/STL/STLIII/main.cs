@@ -122,12 +122,19 @@ namespace STLIII
             }
         }
 
+        class SmthClassWithListOfString
+        {
+            public List<string> ListOfString { get; set; }
+        }
     #endif
 
     class Program
     {
         static void Main(string[] args)
         {
+            bool tmpBool;
+            object tmpObject;
+
             #if TEST_DICTIONARY
 
                 var dicLongLong = new Dictionary<long, long>
@@ -330,6 +337,23 @@ namespace STLIII
             #endif
 
             #if TEST_LIST
+                var classWithListOfString = new SmthClassWithListOfString();
+                try
+                { 
+                    tmpBool = (bool)(classWithListOfString.ListOfString?.Contains("blah-blah-blah")); // mscorlib.dll!bool?.Value.get()
+                }
+                catch (InvalidOperationException e)
+                {
+                    WriteLine(e.Message);
+                }
+
+                tmpObject = classWithListOfString.ListOfString?.Contains("blah-blah-blah");
+                tmpBool = classWithListOfString.ListOfString?.Contains("blah-blah-blah") == true;
+                
+                classWithListOfString.ListOfString = new List<string> { "1st", "2nd", "3rd" };
+                tmpBool = (bool)(classWithListOfString.ListOfString?.Contains("3rd"));
+                tmpObject = classWithListOfString.ListOfString?.Contains("2nd");
+                tmpBool = classWithListOfString.ListOfString?.Contains("1st") == true;
 
                 List<StringStringPair>
                     listOfStringStringPair = new List<StringStringPair>(new StringStringPair[] { new StringStringPair("aa", "bb") });

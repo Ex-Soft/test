@@ -15,5 +15,14 @@
         <input type="button" value="Post" onclick="testPost()" />
         <input type="button" value="Put" onclick="testPut()" />
         <input type="button" value="Delete" onclick="testDelete()" />
+        <hr />
+        <label for="checkboxBadRequest">BadRequest</label>
+        <input type="checkbox" id="checkboxBadRequest">
+        <input type="button" value="Action Filter (by ServiceFilter)" onclick="testActionFilterByServiceFilter(document.getElementById('checkboxBadRequest'))" />
+        <input type="button" value="Async Action Filter (by ServiceFilter)" onclick="testAsyncActionFilterByServiceFilter(document.getElementById('checkboxBadRequest'))" />
+        <input type="button" value="Action Filter (by Attribute)" onclick="testActionFilterByAttribute(document.getElementById('checkboxBadRequest'))" />
+        <input type="button" value="Async Action Filter (by Attribute)" onclick="testAsyncActionFilterByAttribute(document.getElementById('checkboxBadRequest'))" />
+        <input type="button" value="Action Filter (DI)" onclick="testActionFilterDI(document.getElementById('checkboxBadRequest'))" />
+        <input type="button" value="Async Action Filter (DI)" onclick="testAsyncActionFilterDI(document.getElementById('checkboxBadRequest'))" />
     </body>
 </html>

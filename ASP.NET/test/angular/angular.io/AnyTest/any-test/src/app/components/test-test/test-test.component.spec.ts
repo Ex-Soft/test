@@ -1,4 +1,4 @@
-import { async, ComponentFixture, ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
+import { ComponentFixture, ComponentFixtureAutoDetect, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
@@ -24,7 +24,7 @@ describe('TestTestComponent', () => {
     }
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     console.log('beforeEach(async(() => {}))');
     service2 = jasmine.createSpyObj('TestHttpGetDtoObject2Service', [ 'getData' ]);
     getDataSpy = service2.getData.and.returnValue(of( { name: 'name (from spy)' } as DtoObject2 ));
@@ -43,7 +43,7 @@ describe('TestTestComponent', () => {
     })
     .compileComponents()
     .then(() => {
-      console.log('.compileComponents().then(%o)');
+      console.log('.compileComponents().then()');
     });
   }));
 

@@ -1,5 +1,8 @@
 ﻿<!doctype html>
 <!-- https://medium.com/@mattburgess/beyond-console-log-2400fdf4a9d8 -->
+<!-- https://dmitripavlutin.com/console-log-tips/ -->
+<!-- https://dmitripavlutin.com/console-log-tips/#2-advanced-formatting -->
+<!-- https://levelup.gitconnected.com/add-styles-and-formatting-to-your-console-log-messages-in-javascript-5f14819b1c5d -->
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -76,9 +79,11 @@ function DoIt()
 		}];
 
 	let number = 1;
+	let dateTime = Date.now();
 
 	if(window.console) {
 		if(console.log) {
+			console.log("%%o=%o %%i=%i %%d=%d %%f=%f", dateTime, dateTime, dateTime, dateTime);
 			console.log("s = \"" + s + "\" \"%s\"", s);
 			console.log('I am a %cbutton', 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px');
 			console.log('I am a %cbutton%c but I am not', 'color: white; background-color: orange; padding: 2px 5px; border-radius: 2px');

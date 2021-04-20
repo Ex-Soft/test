@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Test validation</h2>
+<mat-dialog-content>
+  <form [formGroup]="testValidationForm">
+    <mat-form-field appearance="outline" class="test-validation-input-full-width">
+      <mat-label>First name <span class="test-validation-label-required">*</span></mat-label>
+      <input type="text" matInput formControlName="firstName" [errorStateMatcher]="matcher" />
+      <mat-error *ngIf="firstName.hasError('required')">
+        Enter the first name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="test-validation-input-full-width">
+      <mat-label>Last name <span class="test-validation-label-required">*</span></mat-label>
+      <input type="text" matInput formControlName="lastName" [errorStateMatcher]="matcher" />
+      <mat-error *ngIf="lastName.hasError('required')">
+        Enter the last name
+      </mat-error>
+    </mat-form-field>
+    <div class="test-validation-enter-address" (click)="enterAddress = !enterAddress">Enter address<mat-icon class="enter-address-expand-icon" *ngIf="!enterAddress">expand_more</mat-icon><mat-icon class="enter-address-expand-icon" *ngIf="enterAddress">expand_less</mat-icon></div>
+    <mat-form-field appearance="outline" class="test-validation-input-full-width" *ngIf="enterAddress">
+      <mat-label>Line #1<span class="test-validation-label-required">*</span></mat-label>
+      <input type="text" matInput formControlName="line1" [errorStateMatcher]="matcher" />
+      <mat-error *ngIf="lastName.hasError('required')">
+        Enter the line #1
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="test-validation-input-full-width" *ngIf="enterAddress">
+      <mat-label>Line #2</mat-label>
+      <input type="text" matInput formControlName="line2" />
+    </mat-form-field>
+  </form>
+  <div>
+    <table>
+      <tbody>
+        <tr>
+            <td rowspan="2">form: {{testValidationForm.valid}}</td>
+            <td>firstName: {{firstName.status}}</td>
+            <td>lastName: {{lastName.status}}</td>
+        </tr>
+        <tr>
+            <td>line1: {{line1.status}}</td>
+            <td>line2: {{line2.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions> 

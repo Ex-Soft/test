@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestXPO</RootNamespace>
     <AssemblyName>TestXPO</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -34,20 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <Choose>
-    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2017'">
+    <When Condition=" '$(VisualStudioEdition)' == 'Microsoft Visual Studio Community 2019'">
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v17.2">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v17.2.dll</HintPath>
+        <Reference Include="DevExpress.Data.v19.1">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Data.v19.1.dll</HintPath>
         </Reference>
-        <Reference Include="DevExpress.Xpo.v17.2">
-          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v17.2.dll</HintPath>
+        <Reference Include="DevExpress.Xpo.v19.1">
+          <HintPath>..\..\DevExpress.asm\DevExpress.Xpo.v19.1.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="DevExpress.Data.v17.2, Version=17.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-        <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Data.v19.1, Version=19.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+        <Reference Include="DevExpress.Xpo.v19.1, Version=19.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -71,6 +71,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>echo '$(VisualStudioEdition)'</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

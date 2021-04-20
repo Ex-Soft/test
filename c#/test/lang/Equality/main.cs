@@ -1,4 +1,6 @@
-﻿#define TEST_PERFORMANCE
+﻿// https://docs.microsoft.com/en-us/dotnet/standard/base-types/best-practices-strings
+
+#define TEST_PERFORMANCE
 
 using System;
 using System.Collections.Generic;

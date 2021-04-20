@@ -13,9 +13,12 @@ export class TestTestComponent implements OnInit {
   value2: string;
   dtoObject1: DtoObject1;
 
-  constructor(private getDtoObject1Service: TestHttpGetDtoObject1Service) { }
+  constructor(private getDtoObject1Service: TestHttpGetDtoObject1Service) {
+    console.log('TestTestComponent.ctor()');
+  }
 
   ngOnInit(): void {
+    console.log('TestTestComponent.ngOnInit()');
     this.getDtoObject1Service.getData(this.baseUrl).subscribe(dtoObj => this.dtoObject1 = dtoObj);
   }
 

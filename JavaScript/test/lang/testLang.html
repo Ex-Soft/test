@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<!-- https://habr.com/ru/post/513990/ -->
+<!-- https://proglib.io/p/12-javascript-tricks/ -->
+<!-- https://bool.dev/blog/detail/poleznye-tryuki-v-javascript -->
+<!-- https://abcinblog.blogspot.com/2018/10/javascript.html -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test language</title>
+		<script>
+function onLoad()
+{
+	const dynamic = "dynamicProperty";
+
+	const getO = (includeDynamicProperty) => {
+		return {
+			p1: "valueOfP1",
+			p2: {
+				p1: "p2.valueOfP1"
+			},
+			...includeDynamicProperty && { [dynamic]: "dynamicPropertyValue" }
+		};
+	};
+
+	let
+		o1,
+		o2,
+		o3,
+		tmp;
+
+	if(window.console && console.log) {
+		o1 = getO();
+		console.log("%o", o1);
+
+		o1 = getO(true);
+		console.log("%o", o1);
+
+		tmp = o1.undefinedProperty;
+		console.log("%o", tmp);
+
+		tmp = o1.undefinedProperty || "defaultValue";
+		console.log("%o", tmp);
+
+		tmp = o1.p1 || "defaultValue";
+		console.log("%o", tmp);
+		
+		tmp = o1.p2?.p1 || "defaultValue";
+		console.log("%o", tmp);
+		
+		tmp = o1.p3?.p1 || "defaultValue";
+		console.log("%o", tmp);
+		
+		o2 = o3 = {};
+		({p1: o2.p1, ...o3} = o1);
+		console.log("%o %o", o2, o3);
+	}
+	
+	doSomething1({});
+	doSomething1({ foo: 'Hello' });
+	doSomething1({ foo: 'Hello', bar: 'Hey!' });
+	doSomething1({ foo: 'Hello', bar: 'Hey!', baz: 42 });
+	
+	doSomething2();
+	doSomething2({});
+	doSomething2({ foo: 'Hello' });
+	doSomething2({ foo: 'Hello', bar: 'Hey!' });
+	doSomething2({ foo: 'Hello', bar: 'Hey!', baz: 42 });
+	
+	console.log(getWaterState(-10));
+	console.log(getWaterState(99));
+	console.log(getWaterState(150));
+}
+
+function doSomething1({ foo = 'Hi', bar = 'Yo!', baz = 13 }) {
+	if(window.console && console.log) {
+		console.log("doSomething1(): foo = %o bar = %o baz = %o", foo, bar, baz);
+	}
+}
+
+function doSomething2({ foo = 'Hi', bar = 'Yo!', baz = 13 } = {}) {
+	if(window.console && console.log) {
+		console.log("doSomething2(): foo = %o bar = %o baz = %o", foo, bar, baz);
+	}
+}
+
+function getWaterState(tempInCelsius) {
+  let state;
+  
+  switch (true) {
+    case (tempInCelsius <= 0): 
+      state = 'Solid';
+      break;
+    case (tempInCelsius > 0 && tempInCelsius < 100): 
+      state = 'Liquid';
+      break;
+    default: 
+      state = 'Gas';
+  }
+  return state;
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

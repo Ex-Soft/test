@@ -9,9 +9,12 @@ export class TestInputOutputComponent implements OnInit {
   @Input() allChecked: boolean;
   @Output() allCheckedChangeEvent = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {
+    console.log('TestInputOutputComponent.ctor()');
+  }
 
   ngOnInit(): void {
+    console.log('TestInputOutputComponent.ngOnInit()');
   }
 
   allCheckedChange(): void {

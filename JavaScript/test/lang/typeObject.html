@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Object</title>
+		<script>
+function onLoad()
+{
+	let
+		o1,
+		o2,
+		foo,
+		bar;
+
+	if(window.console && console.log) {
+		o1 = { id: 1 };
+		console.log("object.hasOwnProperty(\"id\") = ", o1.hasOwnProperty("id"));
+		console.log("object.hasOwnProperty(\"hasOwnProperty\") = ", o1.hasOwnProperty("hasOwnProperty"));
+
+		console.log("1. Using Spread");
+		o1 = { pString1: "o1.pString1" };
+		o2 = { ...o1, pString2: "o2.pString2" };
+		console.log("o1=%o o2=%o", o1, o2);
+		o2.pString1 = "o2.pString1";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		o1.pString1 = "o1.pString1 (updated)";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		console.log("o1=%o o2=%o", o1, o2);
+		
+		console.log("2. Using Object.assign");
+		o1 = { pString1: "o1.pString1" };
+		o2 = Object.assign({}, o1);
+		console.log("o1=%o o2=%o", o1, o2);
+		o2.pString1 = "o2.pString1";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		o1.pString1 = "o1.pString1 (updated)";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		console.log("o1=%o o2=%o", o1, o2);
+
+		console.log("3. Using JSON");
+		o1 = { pString1: "o1.pString1" };
+		o2 = JSON.parse(JSON.stringify(o1));
+		console.log("o1=%o o2=%o", o1, o2);
+		o2.pString1 = "o2.pString1";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		o1.pString1 = "o1.pString1 (updated)";
+		console.log("o1.pString1=\"%s\" o2.pString1=\"%s\"", o1.pString1, o2.pString1);
+		console.log("o1=%o o2=%o", o1, o2);
+		
+		o1 = { 1: '1st', 2: '2nd', 3: '3rd' }[2];
+		console.log("%s", o1);
+
+		o1 = { p1: '1st', p2: '2nd', p3: '3rd' };
+		o2 = { p1: 'p1',  p2: 'p2',  p3: 'p3', p4: 'p4', p5: 'p5', ...o1 };
+		console.log("%o", o2);
+		
+		o1 = {p: 42, q: true};
+		const {p: foo, q: bar} = o1;
+		console.log("foo=%o bar=%o", foo, bar);
+		
+		console.log("%o", createNewObject());
+		console.log("%o", createNewObject({p1: "p1"}));
+		console.log("%o", createNewObject({p1: "p1", p2: "p2"}));
+		console.log("%o", createNewObject({p1: "p1", p2: "p2", p3: "p3"}));
+	}
+}
+
+function createNewObject(controlledValues) {
+	return {
+		id: "id",
+		p1: "1st",
+		p2: "2nd",
+		p3: "3rd",
+		p4: "4th",
+		p5: "5th",
+		...controlledValues
+	};
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

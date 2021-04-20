@@ -1,4 +1,5 @@
-﻿//#define TEST_HTML_ENCODE_DECODE
+﻿//#define TEST_ELVIS_OPERATOR
+//#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
 //#define TEST_BIT_CONVERTER
@@ -67,7 +68,14 @@ using static System.Console;
 
 namespace AnyTest
 {
-    #if TEST_YIELD
+    #if TEST_ELVIS_OPERATOR
+        class B
+        {
+            public List<string> ListOfString { get; set; } = null;
+        }
+    #endif
+
+    #if TEST_YIELD || TEST_STRING
         class A
         {
             public string Level;
@@ -76,7 +84,7 @@ namespace AnyTest
             public A(A obj) : this(obj.Level, obj.Parent)
             {}
 
-            public A(string level="", A parent=null)
+            public A(string level = "", A parent = null)
             {
                 Level = level;
                 Parent = parent;
@@ -121,7 +129,7 @@ namespace AnyTest
 				Fifteen = 15,
                 MinusFirst = -1,
                 MinusSecond = -2,
-                MinusThird
+                MinusThird /* -2 + 1 = -1 equ MinusFirst */
 			}
 
             enum SmthEnum : long
@@ -318,6 +326,16 @@ namespace AnyTest
 
 			if (currentDirectory.IndexOf("bin", StringComparison.Ordinal) != -1)
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
+
+            #if TEST_ELVIS_OPERATOR
+                B b = new B();
+                WriteLine($"ListOfString?.Count {(b.ListOfString?.Count != 0 ? "!" : "=")}= 0 ({b.ListOfString?.Count})"); // != 0 (int? == null)
+                WriteLine($"ListOfString?.Count {(b.ListOfString?.Count > 0 ? ">" : "<=")} 0 ({b.ListOfString?.Count})"); // <=
+                b.ListOfString = new List<string>();
+                WriteLine($"ListOfString?.Count {(b.ListOfString?.Count != 0 ? "!" : "=")}= 0 ({b.ListOfString?.Count})"); // == 0
+                b.ListOfString.Add("1st");
+                WriteLine($"ListOfString?.Count {(b.ListOfString?.Count != 0 ? "!" : "=")}= 0 ({b.ListOfString?.Count})"); // != 0
+            #endif
 
             #if TEST_HTML_ENCODE_DECODE
                 tmpString = "& < > / Æ æ Ø ø Åå";
@@ -730,6 +748,16 @@ namespace AnyTest
 
             #if TEST_TYPES
                 try
+                { 
+                    tmpObject = null;
+                    tmpBool = (bool)(tmpObject);
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                try
                 {
                     tmpType = Type.GetType("System.Int32");
                 }
@@ -813,6 +841,24 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+                tmpString = "blah-blah-blah";
+                tmpStringII = tmpString.Substring(0, 4);
+                tmpStringIII = tmpString[..4]; // range indexer
+
+                tmpStrings = new string[0];
+                tmpString = string.Join(",", tmpStrings);
+                tmpStrings = new[] {"1st"};
+                tmpString = string.Join(",", tmpStrings);
+                tmpStrings = new[] { "1st", "2nd", "3rd" };
+                tmpString = string.Join(",", tmpStrings);
+                
+                var a = new A((string)null);
+                tmpString = a.Level?.ToUpper() == "NULL" ? null : a.Level;
+                a.Level = "null";
+                tmpString = a.Level?.ToUpper() == "NULL" ? null : a.Level;
+                a.Level = "blah-blah-blah";
+                tmpString = a.Level?.ToUpper() == "NULL" ? null : a.Level;
+
                 tmpString = "blah-blah-blah";
                 tmpStringII =  $"<div{(!string.IsNullOrWhiteSpace(tmpString) ? $" class=\"{tmpString}\"" : string.Empty)}>";
                 tmpString = "test String.Intern()";
@@ -967,6 +1013,24 @@ namespace AnyTest
             #endif
 
 			#if TEST_DATE_TIME
+                tmpString = "1583020799000"; // 2020-02-29 23:59:59 GMT || 2020-03-01 01:59:59 GMT+02
+                tmpDateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
+                tmpDateTime = tmpDateTimeOffset.DateTime;
+                tmpDateTimeI = tmpDateTimeOffset.UtcDateTime;
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI ? "=" : "!")}= tmpDateTimeI";
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI.ToUniversalTime() ? "=" : "!")}= tmpDateTimeI.ToUniversalTime()";
+                tmpString = $"DateTime.Equals(tmpDateTime, tmpDateTimeI) = {DateTime.Equals(tmpDateTime, tmpDateTimeI)}";
+                tmpDateTimeI = tmpDateTime.ToUniversalTime();
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI ? "=" : "!")}= tmpDateTimeI";
+                tmpString = $"tmpDateTime {(tmpDateTime == tmpDateTimeI.ToUniversalTime() ? "=" : "!")}= tmpDateTimeI.ToUniversalTime()";
+                tmpString = $"DateTime.Equals(tmpDateTime, tmpDateTimeI) = {DateTime.Equals(tmpDateTime, tmpDateTimeI)}";
+
+                tmpString = "1583013599000"; // 2020-02-29 23:59:59 GMT+02 || 2020-02-29 21:59:59 GMT
+                tmpDateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
+                tmpDateTime = tmpDateTimeOffset.DateTime;
+                tmpDateTimeI = tmpDateTimeOffset.UtcDateTime;
+                tmpDateTimeI = tmpDateTime.ToUniversalTime();
+
                 tmpDateTime = DateTime.UtcNow;
                 tmpString = "1970-01-01T17:30:00.0000000Z";
                 tmpDateTimeI = DateTime.Parse(tmpString);
@@ -1163,7 +1227,12 @@ namespace AnyTest
                 tmpObject = Enum.Parse(typeof(TestEnum), "-1", true);
                 tmpObject = Enum.Parse(typeof(TestEnum), "-13", true);
 
-                TestEnum testEnum;
+                TestEnum
+                    testEnum = TestEnum.MinusFirst,
+                    testEnumII = TestEnum.MinusThird; /* testEnumII == TestEnum.MinusFirst */
+
+                Console.WriteLine($"TestEnum.{testEnum} {(testEnum == testEnumII ? "=" : "!")}= TestEnum.{testEnumII}"); // ==
+                Console.WriteLine($"TestEnum.{testEnum} {((int)testEnum == (int)testEnumII ? "=" : "!")}= TestEnum.{testEnumII}"); // ==
 
 				tmpStrings = Enum.GetNames(typeof(TestEnum));
 				foreach(var str in tmpStrings)
@@ -2414,7 +2483,7 @@ namespace AnyTest
             }
 
         #endif
-	}
+    }
 
     #if TEST_DECIMAL
 

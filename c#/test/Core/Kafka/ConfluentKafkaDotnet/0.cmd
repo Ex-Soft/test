@@ -1,1 +1,2 @@
-dotnet tool install --global Confluent.Apache.Avro.AvroGen
+dotnet tool install --global Apache.Avro.Tools
+

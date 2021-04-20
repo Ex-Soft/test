@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline" class="simple-component-input-full-width">
+  <input type="text" matInput [formControl]="lastName" [errorStateMatcher]="matcher" />
+  <mat-error *ngIf="lastName.hasError('required')">
+      Enter the last name
+  </mat-error>
+</mat-form-field>

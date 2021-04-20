@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Number</title>
+		<script>
+function roundTo(value, precision)
+{
+	const factor = precision ? Math.pow(10, -precision) : 1;
+    value *= factor;
+    return Math.floor(value < 0 ? value - 0.5 : value + 0.5) / factor;
+}
+
+function onLoad()
+{
+	let num1 = 1.23456789;
+
+	if(window.console && console.log) {
+		for (let i = 0; i < 10; ++i)
+			console.log("num=%o roundTo()=%o toFixed()=%o toPrecision()=%o", num1, roundTo(num1, -i), num1.toFixed(i), i ? num1.toPrecision(i) : "");
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

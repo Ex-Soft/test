@@ -14,6 +14,12 @@ namespace TestReflection
 
             tmpType = typeof(BaseClass);
 
+			FieldInfo[]
+                fieldInfos = tmpType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+
+            FieldInfo
+                fieldInfo = tmpType.GetField("_pInt", BindingFlags.Instance | BindingFlags.NonPublic);
+
             MethodInfo[]
                 methodInfos = tmpType.GetMethods(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 

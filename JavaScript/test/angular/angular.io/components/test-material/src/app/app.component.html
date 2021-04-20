@@ -1,3 +1,26 @@
+<div class="content">
+  <span>test-material app is running!</span>
+</div>
+<ng-container>
+  <div>Spinner</div>
+  <app-test-spinner></app-test-spinner>
+</ng-container>
+<div>
+  <input type="button" value="Addressy" (click)="onAddressyClick()" />
+</div>
+<div>
+  <input type="button" value="CustomComponentValidationOne" (click)="onCustomComponentValidationOneClick()" />
+  <input type="button" value="CustomComponentValidationTwo" (click)="onCustomComponentValidationTwoClick()" />
+  <input type="button" value="FormSimple" (click)="onFormSimpleClick()" />
+  <input type="button" value="TestValidation" (click)="onTestValidationClick()" />
+</div>
+<div class="flex-container">
+  <div>Autocomplete:</div>
+  <div><app-test-autocomplete></app-test-autocomplete></div>
+  <div><app-test-autocomplete-different-element></app-test-autocomplete-different-element></div>
+  <div><app-test-autocomplete-trigger></app-test-autocomplete-trigger></div>
+  <div class="test-autocomplete-first-option-container"><app-test-autocomplete-first-option></app-test-autocomplete-first-option></div>
+</div>
 <div>
   <span>Slider:</span>&nbsp;
   <app-testslider></app-testslider>
@@ -5,4 +28,16 @@
 <div>
   <span>Checkbox:</span>&nbsp;
   <app-testcheckbox></app-testcheckbox>
+</div>
+<div>
+  <span>Radio button:</span>
+  <app-testradiobutton></app-testradiobutton>
+</div>
+<div>
+  <span>Icon:</span>
+  <app-test-icon></app-test-icon>
+</div>
+<div>
+  <span>Input:</span>
+  <app-test-input></app-test-input>
 </div>

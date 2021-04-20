@@ -1,0 +1,9 @@
+.test-spinner-wrapper {
+    border: 1px solid black;
+    height: 200px;
+}
+
+.test-spinner {
+    margin: 50px auto;
+}
+  

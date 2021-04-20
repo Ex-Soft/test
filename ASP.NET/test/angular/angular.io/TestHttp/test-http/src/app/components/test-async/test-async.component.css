@@ -1,0 +1,9 @@
+.test-async-container {
+    display: flex;
+}
+
+.test-async-container div {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}

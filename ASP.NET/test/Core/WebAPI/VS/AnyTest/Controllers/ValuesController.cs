@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using AnyTest.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnyTest.Controllers
@@ -42,10 +43,5 @@ namespace AnyTest.Controllers
         {
             Debug.WriteLine($"Delete: {{id:{id}}}");
         }
-    }
-
-    public class Victim
-    {
-        public string Value { get; set; }
     }
 }

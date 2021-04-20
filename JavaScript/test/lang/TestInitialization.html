@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Initialization</title>
+		<script>
+function OnLoad()
+{
+	if(window.console && console.clear)
+		console.clear();
+
+	var
+		o = {
+			get propertyName1() {
+				if(window.console && console.log)
+					console.log("propertyName1 gotten!");
+
+				return this.propertyName1_value;
+			},
+			set propertyName1(v) {
+				if(window.console && console.log)
+					console.log("propertyName1 sotten! \"%s\"", v);
+
+				this.propertyName1_value=v;
+			},
+
+			get propertyName2() {
+				if(window.console && console.log)
+					console.log("propertyName2 gotten!");
+
+				return this.propertyName2_value;
+			},
+			set propertyName2(v) {
+				if(window.console && console.log)
+					console.log("propertyName2 sotten! \"%s\"", v);
+
+				this.propertyName2_value=v;
+			},
+
+			get property3() {
+				if(window.console && console.log)
+					console.log("property3 gotten!");
+
+				return this.property3_value;
+			},
+			set property3(v) {
+				if(window.console && console.log)
+					console.log("property3 sotten! \"%s\"", v);
+
+				this.property3_value=v;
+			}
+		},
+		fieldName1,
+		fieldName2,
+		fieldName3,
+		fieldName4;
+
+	o[fieldName1="fieldName1"] = foo(fieldName1); // o.fieldName1="fieldName1"
+	o[fieldName2] = foo(fieldName2="fieldName2"); // o.undefined="fieldName2"
+	o[fieldName3="fieldName3"] = { fieldName3: fieldName3 }; // o.fieldName3={ fieldName3="fieldName3" }
+	o[fieldName4] = { fieldName4: fieldName4="fieldName4" }; // o.undefined={ fieldName4="fieldName4" }
+	
+	o[o.propertyName1="property1"] = foo(o.propertyName1); //o.property1="property1"
+	o[o.propertyName2] = foo(o.propertyName2="property2"); //o.undefined="property2"
+
+	o.property3 = foo();
+
+	if(window.console && console.log)
+		console.log("%o", o);
+}
+
+function foo(param)
+{
+	//if(window.console && console.log)
+	//	console.log("foo(%o)", arguments);
+
+	return param || "oops";
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

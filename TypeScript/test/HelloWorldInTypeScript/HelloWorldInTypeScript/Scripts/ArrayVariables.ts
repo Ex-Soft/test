@@ -23,3 +23,66 @@ let arrayOfStrings2: Array<string>;
 arrayOfStrings2 = [...arrayOfStrings, "str4"];
 
 let i = 5;
+
+let complexObject = {
+    groups: [
+        {
+            items: [{ id: 1 }, { id: 2 }]
+        },
+        {
+            items: [{ id: 3 }, { id: 4 }]
+        }
+    ]
+};
+
+let items = complexObject.groups.reduce((acc, val) => acc.concat(val.items), []);
+if (window.console && console.log)
+    console.log(items);
+
+const unique = (arr: any[]): any[] => {
+    const indexOf = (array: any[], value: any) => {
+        const isObject = typeof value === "object";
+
+        for (let i = 0, l = array.length; i < l; ++i) {
+            if (isObject) {
+                const item = array[i];
+                let isAllEqual = true;
+
+                for (const p of Object.keys(value)) {
+                    isAllEqual = isAllEqual && item.hasOwnProperty(p) && item[p] === value[p];
+                    if (!isAllEqual) {
+                        break;
+                    }
+                }
+
+                if (isAllEqual) {
+                    return i;
+                }
+            } else {
+                if (array[i] === value) {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    };
+
+    return Array.isArray(arr) ? arr.filter((val, idx, self) => indexOf(self, val) === idx) : [];
+};
+
+arrayOfAny = [1, 2, 3, 4, 3, 2, 1];
+arrayOfAny = unique(arrayOfAny);
+if (window.console && console.log) {
+    console.log("unique() = %o", arrayOfAny);
+}
+
+arrayOfAny = [
+    { id: 1, value: "1st" },
+    { id: 1, value: "1st" },
+    { id: 3, value: "3rd" },
+];
+arrayOfAny = unique(arrayOfAny);
+if (window.console && console.log) {
+    console.log("unique() = %o", arrayOfAny);
+}

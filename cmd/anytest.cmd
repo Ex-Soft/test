@@ -12,6 +12,11 @@ echo %src%
 echo.
 
 echo.
+echo cd
+echo %cd%
+echo.
+
+echo.
 echo dp0
 echo %~dp0
 echo.

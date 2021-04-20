@@ -1,9 +1,73 @@
 <ng-container>
+  <div class="content">
+    <p><span>test-any app is running!</span></p>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test simple
+    <app-test-simple></app-test-simple>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test Faker
+    <app-test-facker></app-test-facker>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test conditional attributes<br>
+    <app-test-conditional-attributes
+      [isCkecked1]=true
+      [isCkecked2]=true
+      [isCkecked3]=false
+      [isCkecked4]=false
+      [isInputText1Required]=true
+      [isInputText2Required]=false
+      [step1]="'step1'"
+      [step2]="'step2'"
+      [step3]="'step3'"
+      [step4]="'step3'"
+    ></app-test-conditional-attributes>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test inheritance<br>
+    <app-custom-derived></app-custom-derived>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div>
+    Test ng-content<br>
+    <app-custom-button>
+      <ng-container ngProjectAs="app-custom-icon">
+        <app-custom-icon></app-custom-icon>
+      </ng-container>
+      Button
+    </app-custom-button>
+    <app-custom-button (click)="toggleIcon()">
+      <div *ngIf="showIcon" ngProjectAs="app-custom-icon">
+        <app-custom-icon></app-custom-icon>
+      </div>
+      Button
+    </app-custom-button>
+  </div>
+  <hr/>
+</ng-container>
+
+<ng-container>
   <div>
     Test @Input()<br>
     <label>parentValue: <input type="text" [(ngModel)]="parentValue"></label>
   </div>
-  <app-test-input [valueWithGetterAndSetter]="'valueWithGetterAndSetterValue'" [value]="'valueValue'" [parentValue]="parentValue"></app-test-input>
+  <app-test-input [valueWithGetterAndSetter]="'valueWithGetterAndSetterValue'" [value]="'valueValue'" [parentValue]="parentValue" [booleanParentValue]="true"></app-test-input>
   <hr/>
 </ng-container>
 
@@ -11,7 +75,7 @@
   <div>
     Test @Pipe()<br>
   </div>
-  <app-test-pipe [items]="dto | dto2view"></app-test-pipe>
+  <app-test-pipe [items]="dto | dto2view" [complexObject]="complexObjectDto | complexObjectDto2view"></app-test-pipe>
   <hr/>
 </ng-container>
 
@@ -24,4 +88,8 @@
   <app-test-input-output [(allChecked)]="allChecked" (allCheckedChangeEvent)="allCheckedChange($event)"></app-test-input-output>
   <app-test-input-output [(allChecked)]="allChecked" (allCheckedChangeEvent)="allChecked=$event"></app-test-input-output>
   <hr/>
+</ng-container>
+
+<ng-container>
+  <app-test-test-input></app-test-test-input>
 </ng-container>

@@ -1,23 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyTest", "AnyTest.csproj", "{75015874-E4B8-42F2-9BA2-D70D632A626A}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyTest", "AnyTest.csproj", "{DCF8035B-2A08-4904-9E0D-7B92B7A815EA}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Typhoon Web UI.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75015874-E4B8-42F2-9BA2-D70D632A626A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF8035B-2A08-4904-9E0D-7B92B7A815EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF8035B-2A08-4904-9E0D-7B92B7A815EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF8035B-2A08-4904-9E0D-7B92B7A815EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF8035B-2A08-4904-9E0D-7B92B7A815EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AFB638FA-F950-4E60-BE07-EDA5B8ACCCCD}
 	EndGlobalSection
 EndGlobal

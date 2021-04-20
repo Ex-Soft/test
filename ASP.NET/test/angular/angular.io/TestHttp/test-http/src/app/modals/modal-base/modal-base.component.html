@@ -1,0 +1,16 @@
+<div class="modal-header-container"><h2 mat-dialog-title>{{title}}</h2><mat-icon class="modal-icon-close" (click)="onClose()">close</mat-icon></div>
+<mat-dialog-content *ngIf="!isLoading; else loading">
+  <ng-content></ng-content>
+</mat-dialog-content>
+<ng-template #loading>
+  <div class="progress-spinner-container">
+    <mat-progress-spinner
+      class="progress-spinner"
+      color="primary"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+  </div>
+</ng-template>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions> 

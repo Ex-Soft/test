@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// https://github.com/Moq/moq4/wiki/Quickstart
+// https://hamidmosalla.com/2017/08/03/moq-working-with-setupget-verifyget-setupset-verifyset-setupproperty/
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ClassLibrary2;
 
@@ -7,6 +10,21 @@ namespace UnitTestProject
     [TestClass]
     public class Library2Test
     {
+        [TestMethod]
+        public void TestIfMulWasCalled()
+        {
+            //System.Diagnostics.Debugger.Launch();
+
+            var mock = new Mock<ISmthInterface>();
+            mock.Setup(o => o.Mul(2, 3)).Returns(5);
+
+            var smthClass = new SmthClass();
+
+            var actual = smthClass.Mul(mock.Object, 3, 3);
+            Assert.AreEqual(0, actual);
+            mock.Verify(o => o.Mul(It.IsAny<int>(), It.IsAny<int>()), Times.Once);
+        }
+
         [TestMethod]
         public void TestMulWithSpecificValues()
         {
@@ -53,6 +71,24 @@ namespace UnitTestProject
 
             var actual = smthClass.Mul(mock.Object, 3, 3);
             Assert.AreEqual(6, actual);
+
+            actual = smthClass.Mul(mock.Object, 2, 3);
+            Assert.AreEqual(5, actual);
+        }
+
+        [TestMethod]
+        public void TestMulWithUsedItValues()
+        {
+            //System.Diagnostics.Debugger.Launch();
+
+            var mock = new Mock<ISmthInterface>();
+            mock.Setup(o => o.Mul(It.Is<int>(x => x == 2), It.Is<int>(x => x == 3))).Returns<int, int>((right, left) => right + left);
+
+            var smthClass = new SmthClass();
+
+            var actual = smthClass.Mul(mock.Object, 3, 3);
+            Assert.AreNotEqual(6, actual);
+            Assert.AreEqual(0, actual);
 
             actual = smthClass.Mul(mock.Object, 2, 3);
             Assert.AreEqual(5, actual);

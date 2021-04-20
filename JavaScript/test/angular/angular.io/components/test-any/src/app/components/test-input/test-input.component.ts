@@ -1,3 +1,4 @@
+import { ElementSchemaRegistry } from '@angular/compiler';
 // https://medium.com/@bharat.tiwari/intercept-input-property-change-in-angular-690567eb63ec
 // https://stackoverflow.com/questions/36653678/angular2-input-to-a-property-with-get-set
 
@@ -21,7 +22,7 @@ export class TestInputComponent implements OnInit, OnChanges {
 
   @Input() set valueWithGetterAndSetter(newValue: string) {
     if (window.console && console.log) {
-      console.log('set(\"%s\"', newValue);
+      console.log('set(\"%s\")', newValue);
     }
 
     this._valueWithGetterAndSetter = newValue;
@@ -29,16 +30,17 @@ export class TestInputComponent implements OnInit, OnChanges {
 
   @Input() value: string;
   @Input() parentValue: string;
+  @Input() booleanParentValue: boolean;
 
   constructor(private hostElement: ElementRef) {
     if (window.console && console.log) {
-      console.log('TestInputComponent.ctor(%o) %o', hostElement, this);
+      console.log('TestInputComponent.ctor(%o) %o @Input()value=\"%s\"', hostElement, this, this.value);
     }
   }
 
   ngOnInit(): void {
     if (window.console && console.log) {
-      console.log('TestInputComponent.ngOnInit(%o) %o', arguments, this);
+      console.log('TestInputComponent.ngOnInit(%o) %o @Input()value=\"%s\"', arguments, this, this.value);
     }
   }
 
@@ -63,5 +65,9 @@ export class TestInputComponent implements OnInit, OnChanges {
         console.log('ngOnChanges(): parentValue.previousValue = \"%s\" parentValue.currentValue = \"%s\" parentValue.firstChange = %o parentValue.isFirstChange() = %o', currentItemOfParentValue.previousValue, currentItemOfParentValue.currentValue, currentItemOfParentValue.firstChange, currentItemOfParentValue.isFirstChange());
       }
     }
+  }
+
+  getTypeOf(entity: any): string {
+    return typeof entity;
   }
 }

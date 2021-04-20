@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Form simple</h2>
+<mat-dialog-content>
+  <form [formGroup]="formSimple">
+    <mat-form-field appearance="outline" class="form-simple-input-full-width">
+      <input type="text" matInput formControlName="firstName" [errorStateMatcher]="matcher" />
+      <mat-error *ngIf="firstName.hasError('required')">
+        Enter the first name
+      </mat-error>
+    </mat-form-field>
+    <app-simple-component></app-simple-component>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()" color="primary">close()</button>
+</mat-dialog-actions>

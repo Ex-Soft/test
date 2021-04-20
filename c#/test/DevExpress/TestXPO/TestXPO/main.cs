@@ -5,11 +5,11 @@
 //#define TEST_SELECT_DATA
 //#define TEST_LINQ
 //#define TEST_LockingException
-//#define TEST_XP_INFO
+#define TEST_XP_INFO
 //#define TEST_DISPOSE
 //#define TEST_CRITERIA
 //#define TEST_CRITERIA_VISITOR
-#define TEST_VARBINARY
+//#define TEST_VARBINARY
 //#define TEST_CLASS_INFO
 //#define TEST_LOAD_REFERENCE
 //#define TEST_DifferentObjectsWithSameKeyException
@@ -74,8 +74,8 @@ namespace TestXPO
             {
                 //throw new LockingException();
 
-                XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
-                //XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("(localdb)\\MSSQLLocalDB", "testdb");
+                //XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString(".", "sa", "123", "testdb");
+                XpoDefault.ConnectionString = MSSqlConnectionProvider.GetConnectionString("(localdb)\\MSSQLLocalDB", "testdb");
 
                 Session
                     session = new
@@ -181,7 +181,7 @@ namespace TestXPO
 
                 #if TEST_SELECT_DATA
                     var properties = new CriteriaOperatorCollection { new OperandProperty("Id"), new OperandProperty("Salary") };
-                    var criteria = new OperandProperty("Dep") == new OperandValue(1);
+                    criteria = new OperandProperty("Dep") == new OperandValue(1);
                     var resultOfSelectData = session.SelectData(
                         session.GetClassInfo<Staff>(),
                         properties,
@@ -296,7 +296,7 @@ where N0."MainId" in (@p0,@p1)',N'@p0 int,@p1 int',@p0=1,@p1=4
 
 					if ((testMaster = session.GetObjectByKey<TestMaster>(1L)) != null)
 					{
-						testMaster.Name = "blah-blah-blah";
+						testMaster.Val = "blah-blah-blah";
 					}
 				#endif
 

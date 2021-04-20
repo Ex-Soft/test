@@ -1,0 +1,38 @@
+### https://docs.docker.com/get-started/kube-deploy/
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testserver
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+      - name: testserver
+        image: testserver
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1337
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testserver-entrypoint
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    bb: web
+  ports:
+  - port: 1337
+    targetPort: 1337
+    nodePort: 30001
+

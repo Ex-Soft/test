@@ -4,6 +4,14 @@ namespace TestReflection
 {
     public class BaseClass
     {
+        private int _pInt;
+
+        public int PInt
+        {
+            get { return _pInt; }
+            set { _pInt = value; }
+        }
+
         public string BaseProperty { get; set; }
 
         public BaseClass(string baseProperty)
