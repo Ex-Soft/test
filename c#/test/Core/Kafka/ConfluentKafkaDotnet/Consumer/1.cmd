@@ -1,1 +1,0 @@
-avrogen -s customer.avsc .
