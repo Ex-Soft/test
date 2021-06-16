@@ -1,6 +1,6 @@
 ﻿//#define TEST_AUTOPROPERTY
-#define TEST_CHANGE_VALUE_PROPERTY
-//#define TEST_SET_NEW_VALUE
+//#define TEST_CHANGE_VALUE_PROPERTY
+#define TEST_SET_NEW_VALUE
 
 namespace TestPropertySetter
 {

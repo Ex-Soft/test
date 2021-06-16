@@ -3,6 +3,19 @@ using System.Collections.Generic;
 
 namespace TestCovarianceContravarianceInvariance
 {
+    public class Food {}
+    public class Meat : Food {}
+
+    public abstract class Animal
+    {
+        public abstract Food GetFood();
+    }
+
+    public class Tiger : Animal
+    {
+        public override Meat GetFood() => default;
+    }
+
     public class Base
     {
         public string FBase { get; set; }
@@ -43,6 +56,8 @@ namespace TestCovarianceContravarianceInvariance
     {
         static void Main(string[] args)
         {
+            Worker.DoIt();
+
             Console.WriteLine("Base.IsAssignableFrom(Derived) (Base = Derived): {0}", typeof(Base).IsAssignableFrom(typeof(Derived))); // true
             Derived tmpDerived = new Derived("tmpDerived");
             Base tmpBase = tmpDerived;

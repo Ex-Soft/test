@@ -38,6 +38,7 @@ namespace TestJsonNET
         public List<TestObject> FListTestObjects { get; set; }
         public TestEnum FTestEnum { get; set; }
         public GenderEnum FGenderEnum { get; set; }
+        public Type FType { get; set; }
     }
 
     public class GenderEnumConverter : JsonConverter

@@ -247,7 +247,8 @@ namespace TestJsonNET
                             new TestObject() {FInt = 33, FTestEnum = TestEnum.Third}
                         }),
                         FTestEnum = TestEnum.Second,
-                        FGenderEnum = GenderEnum.Male
+                        FGenderEnum = GenderEnum.Male,
+                        FType = typeof(TestObject)
                     };
 
                 tmpString = JsonConvert.SerializeObject(testObject4Serialize);

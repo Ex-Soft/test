@@ -205,6 +205,16 @@ namespace TestTask
             throw new Exception("Achtung!!!");
         }
 
+        static async Task<object> GetObjectAsync(int data)
+        {
+            return await (data % 2 == 0 ? Task.FromResult((object)data) : Task.FromResult((object)null));
+        }
+
+        static Task GetAsync()
+        {
+            return Task.CompletedTask;
+        }
+
         #if TEST_CONTINUE_WITH
             static int RunWithResult(object param)
             {

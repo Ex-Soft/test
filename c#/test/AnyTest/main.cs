@@ -2,7 +2,7 @@
 //#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
-//#define TEST_BIT_CONVERTER
+#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
@@ -21,7 +21,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-#define TEST_STRING
+//#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -46,6 +46,7 @@
 //#define TEST_FORMAT
 
 using System;
+using System.Buffers.Binary;
 using System.Globalization;
 using System.Security;
 using System.Security.AccessControl;
@@ -321,6 +322,9 @@ namespace AnyTest
             byte
                 tmpByte;
 
+            uint
+                tmpUInt;
+
             ulong
                 tmpULong;
 
@@ -399,6 +403,16 @@ namespace AnyTest
                 bytes = BitConverter.GetBytes(tmpLong);
                 tmpULong = BitConverter.ToUInt64(bytesII, 0);
                 bytes = BitConverter.GetBytes(tmpULong);
+                bytesII = new byte[] { 0, 11, 22, 33, 44 };
+                tmpIntII = BitConverter.ToInt32(bytesII, 1);
+                bytes = BitConverter.GetBytes(tmpIntII);
+                bytesII = new byte[] { 0, 0, 0, 26, 93 };
+                tmpIntII = BitConverter.ToInt32(bytesII, 1);
+                bytes = BitConverter.GetBytes(tmpIntII);
+                tmpIntIII = !BitConverter.IsLittleEndian ? tmpIntII : BinaryPrimitives.ReverseEndianness(tmpIntII);
+                tmpUInt = 0xcafebabe;
+                bytes = BitConverter.GetBytes(tmpUInt);
+                bytes = BitConverter.GetBytes(BinaryPrimitives.ReverseEndianness(tmpUInt));
             #endif
 
             #if TEST_DECIMAL

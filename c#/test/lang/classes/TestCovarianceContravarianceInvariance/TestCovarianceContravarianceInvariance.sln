@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCovarianceContravarianceInvariance", "TestCovarianceContravarianceInvariance.csproj", "{F864EF10-6696-4CFD-A1BC-44EE28E2CE6E}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCovarianceContravarianceInvariance", "TestCovarianceContravarianceInvariance.csproj", "{9618A60C-A6D3-4D3E-A5D2-6A21F3ABD529}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F864EF10-6696-4CFD-A1BC-44EE28E2CE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F864EF10-6696-4CFD-A1BC-44EE28E2CE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F864EF10-6696-4CFD-A1BC-44EE28E2CE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F864EF10-6696-4CFD-A1BC-44EE28E2CE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9618A60C-A6D3-4D3E-A5D2-6A21F3ABD529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9618A60C-A6D3-4D3E-A5D2-6A21F3ABD529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9618A60C-A6D3-4D3E-A5D2-6A21F3ABD529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9618A60C-A6D3-4D3E-A5D2-6A21F3ABD529}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F111CD4-18EA-439E-9938-2C97056ED975}
 	EndGlobalSection
 EndGlobal

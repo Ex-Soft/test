@@ -10,6 +10,13 @@ using static System.Console;
 
 namespace TestIEnumerable
 {
+    class Victim
+    {
+        public string PString1 { get; set; }
+        public string PString2 { get; set; }
+        public string PString3 { get; set; }
+    }
+
     class ClassWithNullable
     {
         public int Id { get; set; }
@@ -274,6 +281,10 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfString = new List<string> { "1st", "2nd", "3rd" };
+            var dictionaryOfStringString = new Dictionary<string, string> { { "2nd", "2nd" } };
+            var listOfStringII = listOfString.Intersect(dictionaryOfStringString.Keys).ToList();
+
             var listOfA = new List<A>();
             A tmpA;
 
@@ -330,7 +341,7 @@ namespace TestIEnumerable
                     .Select(item => new { item.Key, Value = item.Value.AsEnumerable() })
                     .ToDictionary(item => item.Key, item => item.Value);
 
-            var listOfString = new List<string> { "1st", "2nd", "3rd" };
+            listOfString = new List<string> { "1st", "2nd", "3rd" };
 
             var tmpString = "/3rd";
             var tmpBool = listOfString.Any(item => tmpString.StartsWith($"/{item}"));
@@ -416,6 +427,25 @@ namespace TestIEnumerable
             listOfIntIII = listOfIntII.Intersect(listOfInt).ToList();
 
             #region GroupBy
+
+            var listOfVictim = new List<Victim>
+            {
+                new Victim { PString1 = "1st", PString2 = "1st" },
+                new Victim { PString1 = "1st", PString2 = "2nd" },
+                new Victim { PString1 = "2nd", PString2 = "1st" },
+                new Victim { PString1 = "2nd", PString2 = "2nd" }
+            };
+
+            var resultOfGrouping = listOfVictim.GroupBy(x => x.PString1, StringComparer.OrdinalIgnoreCase);
+            var resultOfGroupingDistinct = resultOfGrouping.Select(x => x.Last());
+
+            listOfA = new List<A>
+            {
+                new A { FA = 1, FB = true },
+                new A { FA = 1, FB = false },
+                new A { FA = 2, FB = false },
+                new A { FA = 2, FB = true }
+            };
 
             listOfInt = new List<int> { 1, 2, 1, 3, 4, 4, 4, 5, 5, 5 };
 

@@ -1,12 +1,14 @@
 ﻿// http://www.codeproject.com/Articles/24255/Exploring-Lambda-Expression-in-C
+// https://tyrrrz.me/blog/expression-trees
 // DevExpress.Xpo.Metadata.ReflectionMemberInfo.CreateAccessorInternal()
 // https://msdn.microsoft.com/en-us/library/bb397951.aspx
 
+#define TEST_CALL_GENERIC_METHOD
 //#define TEST_DUPLICATES
 //#define TEST_MEMBER_EXPRESSION
 //#define TEST_PARSE
 //#define TEST_CREATE_ACCESSOR
-#define TEST_CLOSURE
+//#define TEST_CLOSURE
 //#define ANY_TEST
 
 using System;
@@ -65,10 +67,46 @@ namespace TestLambda
 			}
 		#endif
 
+		#if TEST_CALL_GENERIC_METHOD
+		    public static T Get<T>(object value)
+            {
+                return (T)value;
+            }
+		#endif
+
         static void Main(string[] args)
         {
 			bool
 				tmpBool;
+
+
+            object?
+                tmpNullableObject;
+
+            string
+                tmpString1,
+                tmpString2;
+
+			#if TEST_CALL_GENERIC_METHOD
+			    var methodInfo = typeof(Program).GetMethod(nameof(Get), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+				var genericMethod = methodInfo.MakeGenericMethod(typeof(IA));
+
+				IA tmpIA = (IA)genericMethod.Invoke(null, new object[] { new A() });
+
+				Expression<Func<object, IA>> expObjLong = value => Get<IA>(value);
+				tmpString1 = expObjLong.ToString();
+
+				ParameterExpression parameterExpression = Expression.Parameter(typeof(object), "value");
+			    Expression<Func<object, IA>> expObjLongDynamic = Expression.Lambda<Func<object, IA>>(Expression.Call(null, genericMethod, parameterExpression), parameterExpression);
+                tmpString2 = expObjLongDynamic.ToString();
+
+			    System.Diagnostics.Debug.WriteLine($"{(expObjLong == expObjLongDynamic ? "=" : "!")}=");
+			    System.Diagnostics.Debug.WriteLine($"{(Expression.Equals(expObjLong, expObjLongDynamic) ? string.Empty : "!")}Expression.Equals()");
+			    System.Diagnostics.Debug.WriteLine($"{(tmpString1 == tmpString2 ? "=" : "!")}=");
+
+			    Func<object, IA> funcObjLong = expObjLongDynamic.Compile();
+				tmpIA = funcObjLong(new A());
+			#endif
 
 			#if TEST_DUPLICATES
 				var listOfA = new List<A>(new[]
@@ -153,7 +191,8 @@ namespace TestLambda
                 var fIn = Expression.Lambda<Func<DataRow, object>>(callIn, new[] { paramIn }).Compile();
                 var fOut = Expression.Lambda<Func<DataRow, bool>>(callOut, new[] { paramOut }).Compile();
 
-                    //Expression.Call(paramOut, typeof(DataRow).GetMethod("IsNull", new[] { typeof(string) }), Expression.Constant("F1")); //Expression.Call(typeof(string), "Format", new[] { typeof(string), typeof(object[]) }, Expression.Constant("{0}"), Expression.Call(Expression.New(typeof(object)), typeof(object).GetProperty("Item").GetGetMethod(), Expression.Constant("F1") ));
+                //Expression.Call(paramOut, typeof(DataRow).GetMethod("IsNull", new[] { typeof(string) }), Expression.Constant("F1"));
+                //Expression.Call(typeof(string), "Format", new[] { typeof(string), typeof(object[]) }, Expression.Constant("{0}"), Expression.Call(Expression.New(typeof(object)), typeof(object).GetProperty("Item").GetGetMethod(), Expression.Constant("F1") ));
             #endif
 
 			#if ANY_TEST
@@ -235,4 +274,15 @@ namespace TestLambda
 			}
 		#endif
     }
+
+    public interface IA
+    {
+		string IProperty { get; set; }
+    }
+
+    public class A : IA
+    {
+        public string IProperty { get; set; }
+        public string Property { get; set; }
+	}
 }

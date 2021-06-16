@@ -18,8 +18,7 @@ namespace AbstractFactoryGeneric
     {
         public T Create<T>()
         {
-            IFactoryMethod<T>
-                factoryMethod;
+            IFactoryMethod<T> factoryMethod;
 
             if ((factoryMethod = this as IFactoryMethod<T>) != null)
             {

@@ -1,8 +1,9 @@
-﻿#define TEST_STRING_LITERAL
+﻿#define TEST_DELEGATE
+//#define TEST_STRING_LITERAL
 //#define TEST_CALL_VALUE
 //#define TEST_CALL_REFERENCE
 
-//using System;
+using System;
 
 namespace ForILDasm
 {
@@ -15,6 +16,20 @@ namespace ForILDasm
 
         static void Main(string[] args)
         {
+            #if TEST_DELEGATE
+                Action<int> actionInt = inp => System.Diagnostics.Debug.WriteLine(inp);
+                
+                // IL_0022: ldc.i4.s     13 // 0x0d
+                // IL_0024: callvirt     instance void class [mscorlib]System.Action`1<int32>::Invoke(!0/*int32*/)
+                actionInt(13);
+
+                // if (action == null)
+                //   return;
+                // action(13);
+                // IL_0030: ldc.i4.s     13 // 0x0d
+                // IL_0032: callvirt     instance void class [mscorlib]System.Action`1<int32>::Invoke(!0/*int32*/)
+                actionInt?.Invoke(13);
+            #endif
             #if TEST_STRING_LITERAL
                 string str1 = "this is a string literal";
                 string str2 = "this is a string literal";

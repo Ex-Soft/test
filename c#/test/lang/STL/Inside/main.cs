@@ -15,6 +15,17 @@ namespace Inside
             SortedDictionary<string, string> sortedDictionaryStringString = new SortedDictionary<string, string>();
             ConcurrentDictionary<string, string> concurrentDictionaryStringString = new ConcurrentDictionary<string, string>();
             HashSet<string> hashSet = new HashSet<string>();
+            SortedSet<string> sortedSet = new SortedSet<string>();
+            ConcurrentBag<string> concurrentBag = new ConcurrentBag<string>();
+
+            bool result = hashSet.Add("1st");
+            result = hashSet.Add("1st");
+
+            result = sortedSet.Add("1st");
+            result = sortedSet.Add("1st");
+
+            concurrentBag.Add("1st");
+            concurrentBag.Add("1st");
 
             listOfInt.Add(1);
             
