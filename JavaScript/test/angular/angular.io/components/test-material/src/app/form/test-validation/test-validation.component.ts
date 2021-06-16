@@ -24,6 +24,10 @@ export class TestValidationComponent implements OnInit {
   line2: FormControl;
   matcher = new TestValidationInputErrorStateMatcher();
   enterAddress = false;
+  firstNameMaxLength = 16;
+  lastNameMaxLength = 16;
+  notWhitespaceErrorMessage = 'The value can\'t contain leading or trailing whitespace';
+  valueTooLongErrorMessage = 'The value is too long';
 
   constructor(
     private dialogRef: MatDialogRef<TestValidationComponent>
@@ -38,11 +42,17 @@ export class TestValidationComponent implements OnInit {
   }
 
   private createFormControls(): void {
+    const notWhiteSpaceRegex = /^([\S].*[\S]|[\S])$/;
+
     this.firstName = new FormControl('', [
       Validators.required,
+      Validators.maxLength(this.firstNameMaxLength),
+      Validators.pattern(notWhiteSpaceRegex),
     ]);
     this.lastName = new FormControl('', [
       Validators.required,
+      Validators.maxLength(this.lastNameMaxLength),
+      Validators.pattern(notWhiteSpaceRegex),
     ]);
     this.line1 = new FormControl('', [
       Validators.required,
