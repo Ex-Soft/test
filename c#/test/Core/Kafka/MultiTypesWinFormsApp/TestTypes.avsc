@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "namespace": "org.example",
+  "name": "TestTypes",
+  "fields": [
+    {
+      "name": "fBoolean",
+      "type": "boolean"
+    },
+    {
+      "name": "fInt",
+      "type": [ "int", "null" ]
+    },
+    {
+      "name": "fLong",
+      "type": [ "long", "null" ]
+    },
+    {
+      "name": "fFloat",
+      "type": [ "float", "null" ]
+    },
+    {
+      "name": "fDouble",
+      "type": [ "double", "null" ]
+    },
+    {
+      "name": "fString",
+      "type": [ "string", "null" ]
+    },
+    {
+      "name": "fEnum",
+      "type": {
+        "type": "enum",
+        "name": "TestEnum",
+        "symbols": [ "Unknown", "First", "Second", "Third", "Fourth", "Fifth" ]
+      }
+    }
+  ]
+}

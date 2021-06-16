@@ -14,10 +14,13 @@ curl --insecure --silent --request GET http://localhost:8081/schemas/ids/4/versi
 
 curl --insecure --silent --request GET http://localhost:8081/subjects
 curl --insecure --silent --request GET http://localhost:8081/subjects/TestTypes-value/versions
+curl --insecure --silent --request GET http://localhost:8081/subjects/TestTypes-value/versions/latest
 curl --insecure --silent --request GET http://localhost:8081/subjects/TestTypes-value/versions/2
 curl --insecure --silent --request GET http://localhost:8081/subjects/TestTypes-value/versions/2/schema
+curl --insecure --silent --request GET http://localhost:8081/subjects/MultiSchema-org.example.Customer/versions
 
 curl --insecure --silent --request DELETE http://localhost:8081/subjects/TestTypes-value
+curl --insecure --silent --request DELETE http://localhost:8081/subjects/MultiSchema-value?permanent=true
 
 curl --insecure --silent --request GET http://localhost:8081/config/TestTypes-value
 curl --insecure --silent --request PUT http://localhost:8081/config/TestTypes-value --header "Content-Type: application/json" --data-raw "{\"compatibility\":\"FULL_TRANSITIVE\"}"

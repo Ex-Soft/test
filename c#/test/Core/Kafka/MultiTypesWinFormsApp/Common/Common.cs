@@ -4,7 +4,7 @@ using System.Reflection;
 using Avro;
 using Avro.Generic;
 
-namespace ConfluentKafkaDotnet.Common
+namespace MultiTypesWinFormsApp.Common
 {
     public class Common
     {
@@ -20,7 +20,11 @@ namespace ConfluentKafkaDotnet.Common
         {
             var type = specificRecord.GetType();
             var propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            var schema = type.GetField("_SCHEMA", BindingFlags.Static | BindingFlags.Public)?.GetValue(null) as RecordSchema;
+            if (type.GetField("_SCHEMA", BindingFlags.Static | BindingFlags.Public)?.GetValue(null) is not RecordSchema schema)
+            {
+                return null;
+            }
+
             var result = new GenericRecord(schema);
 
             foreach (var pi in propertyInfos)
@@ -29,24 +33,27 @@ namespace ConfluentKafkaDotnet.Common
                     || !result.Schema.Fields.Exists(field => field.Name.Equals(pi.Name, StringComparison.InvariantCultureIgnoreCase)))
                     continue;
 
-                result.Add(pi.Name, pi.GetValue(specificRecord));
-            }
+                if (pi.PropertyType.IsEnum)
+                {
+                    var enumField = schema.Fields.FirstOrDefault(field => field.Name == pi.Name);
+                    if (enumField == null)
+                    {
+                        continue;
+                    }
 
-            return result;
-        }
+                    var value = pi.GetValue(specificRecord);
+                    if (value == null)
+                    {
+                        continue;
+                    }
 
-        public static T GenericRecordToSpecificRecord<T>(GenericRecord genericRecord) where T : new()
-        {
-            T result = new();
-            var propertyInfos = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-            foreach (var field in genericRecord.Schema.Fields)
-            {
-                PropertyInfo pi;
-                if ((pi = propertyInfos.FirstOrDefault(pi => pi.Name.Equals(field.Name, StringComparison.InvariantCultureIgnoreCase))) == null)
-                    continue;
-
-                pi.SetValue(result, genericRecord[field.Name]);
+                    var enumValue = new GenericEnum((EnumSchema)enumField.Schema, value.ToString());
+                    result.Add(pi.Name, enumValue);
+                }
+                else
+                {
+                    result.Add(pi.Name, pi.GetValue(specificRecord));
+                }
             }
 
             return result;

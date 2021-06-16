@@ -1,10 +1,10 @@
 ﻿// https://github.com/confluentinc/confluent-kafka-dotnet/
 
 //#define TEST_SIMPLE
-#define TEST_CUSTOMER_BY_SPECIFIC_RECORD
+//#define TEST_CUSTOMER_BY_SPECIFIC_RECORD
 //#define TEST_CUSTOMER_BY_GENERIC_RECORD
 //#define TEST_TYPES_BY_SPECIFIC_RECORD
-//#define TEST_TYPES_BY_GENERIC_RECORD
+#define TEST_TYPES_BY_GENERIC_RECORD
 //#define TEST_MULTI_SCHEMA
 
 using System;
@@ -42,7 +42,8 @@ namespace Producer
 
             #if TEST_TYPES_BY_GENERIC_RECORD
                 testTypes = new TestTypes { fBoolean = true, fInt = 13, fLong = 169L, fFloat = 13.13F, fDouble = 169.169, fString = DateTimeOffset.Now.ToString("o"), fEnum = TestEnum.Third };
-                await ProduceGenericRecord(Common.TopicTestTypes, testTypes);
+                //await ProduceGenericRecord(Common.TopicTestTypes, testTypes);
+                await ProduceGenericRecord(Common.TopicMultiSchema, testTypes);
             #endif
 
             #if TEST_CUSTOMER_BY_SPECIFIC_RECORD
