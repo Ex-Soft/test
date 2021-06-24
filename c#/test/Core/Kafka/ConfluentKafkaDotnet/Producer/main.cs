@@ -3,8 +3,8 @@
 //#define TEST_SIMPLE
 //#define TEST_CUSTOMER_BY_SPECIFIC_RECORD
 //#define TEST_CUSTOMER_BY_GENERIC_RECORD
-//#define TEST_TYPES_BY_SPECIFIC_RECORD
-#define TEST_TYPES_BY_GENERIC_RECORD
+#define TEST_TYPES_BY_SPECIFIC_RECORD
+//#define TEST_TYPES_BY_GENERIC_RECORD
 //#define TEST_MULTI_SCHEMA
 
 using System;
@@ -30,9 +30,9 @@ namespace Producer
 
             #if TEST_MULTI_SCHEMA
                 testTypes = new TestTypes { fBoolean = true, fInt = 13, fLong = 169L, fFloat = 13.13F, fDouble = 169.169, fString = DateTimeOffset.Now.ToString("o"), fEnum = TestEnum.Third };
-                await ProduceSpecificRecord(Common.MultiSchema, testTypes);
+                await ProduceSpecificRecord(Common.TopicMultiSchema, testTypes);
                 customer = new Customer { FirstName = "FirstName", LastName = "LastName", Age = 13, Payment = PaymentTypes.Mastercard, Height = 13, Weight = 13, AutomatedEmail = false };
-                await ProduceSpecificRecord(Common.MultiSchema, customer);
+                await ProduceSpecificRecord(Common.TopicMultiSchema, customer);
             #endif
 
             #if TEST_TYPES_BY_SPECIFIC_RECORD

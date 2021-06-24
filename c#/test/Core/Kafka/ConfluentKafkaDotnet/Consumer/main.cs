@@ -4,11 +4,11 @@
 //#define TEST_TYPES_BY_SPECIFIC_RECORD
 //#define TEST_TYPES_BY_GENERIC_RECORD
 //#define TEST_TYPES_BY_BYTE_ARRAY
-//#define TEST_MULTI_SCHEMA
+#define TEST_MULTI_SCHEMA
 //#define USE_AVRO_DESERIALIZER_WRAPPER
 //#define MANUAL_COMMIT
 //#define DO_COMMIT
-#define TEST_SCHEMA_REGISTRY_CLIENT
+//#define TEST_SCHEMA_REGISTRY_CLIENT
 
 using System;
 using System.Buffers.Binary;
@@ -59,8 +59,8 @@ namespace Consumer
             #endif
 
             #if TEST_MULTI_SCHEMA
-                ConsumeSpecificRecord<TestTypes>(Common.MultiSchema);
-                ConsumeSpecificRecord<Customer>(Common.MultiSchema);
+                ConsumeSpecificRecord<TestTypes>(Common.TopicMultiSchema);
+                ConsumeSpecificRecord<Customer>(Common.TopicMultiSchema);
             #endif
 
             #if TEST_TYPES_BY_GENERIC_RECORD

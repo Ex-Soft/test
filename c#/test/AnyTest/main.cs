@@ -2,7 +2,7 @@
 //#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
-#define TEST_BIT_CONVERTER
+//#define TEST_BIT_CONVERTER
 //#define TEST_DOUBLE
 //#define TEST_DECIMAL
 //#define TEST_RECTANGLE
@@ -35,7 +35,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-//#define TEST_NULLABLE_TYPES
+#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -263,7 +263,10 @@ namespace AnyTest
                 tmpBoolII,
                 tmpBoolIII;
 
-			object
+            bool?
+                tmpBoolNullable;
+
+            object
 				tmpObject,
                 tmpObjectII;
 
@@ -1486,13 +1489,12 @@ namespace AnyTest
 			#endif
 
 			#if TEST_NULLABLE_TYPES
-                DateTime?
-                    tmpDateTimeNullable = null;
+                tmpDateTimeNullable1 = null;
+                tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable1);
 
-                tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable);
-
-                bool?
-                    tmpBoolNullable = null;
+                tmpBoolNullable = null;
+                WriteLine($"null {(tmpBoolNullable == false ? "=" : "!")}= false"); // !=
+                WriteLine($"null {(tmpBoolNullable == true ? "=" : "!")}= true"); // !=
 
                 try
                 { 

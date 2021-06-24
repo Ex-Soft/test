@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAsyncAwaitConApp", "TestAsyncAwaitConApp.csproj", "{155ECDE2-F724-4E32-9EC7-53D811227EFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAsyncAwaitConApp", "TestAsyncAwaitConApp.csproj", "{98E4A1C6-410B-4E81-B48E-8EC265C464E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{155ECDE2-F724-4E32-9EC7-53D811227EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{155ECDE2-F724-4E32-9EC7-53D811227EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{155ECDE2-F724-4E32-9EC7-53D811227EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{155ECDE2-F724-4E32-9EC7-53D811227EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98E4A1C6-410B-4E81-B48E-8EC265C464E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98E4A1C6-410B-4E81-B48E-8EC265C464E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98E4A1C6-410B-4E81-B48E-8EC265C464E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98E4A1C6-410B-4E81-B48E-8EC265C464E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8527723E-BD9C-4165-B919-426880901F1B}
+		SolutionGuid = {0BC0A14A-BF1A-4C9A-94D0-988ECA0DF3F3}
 	EndGlobalSection
 EndGlobal

@@ -23,5 +23,19 @@ namespace ConsoleDI
 
             return services;
         }
+
+        // https://espressocoder.com/2018/10/08/injecting-a-factory-service-in-asp-net-core/
+        public static IServiceCollection AddFactory<TService, TImplementation>(this IServiceCollection services)
+            where TService : class
+            where TImplementation : class, TService
+        {
+            services.AddTransient<TService, TImplementation>();
+            services.AddSingleton<Func<TService>>(x => () =>
+            {
+                return x.GetService<TService>();
+            });
+
+            return services;
+        }
     }
 }
