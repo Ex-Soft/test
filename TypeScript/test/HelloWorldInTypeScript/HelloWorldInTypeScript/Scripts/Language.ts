@@ -82,3 +82,9 @@ if (window.console && console.log) {
     console.log("equals({ id: 1 }, { id: 1, value: \"\" }) = %o", equals({ id: 1 }, { id: 1, value: "" }));
     console.log("equals(new Date(2021, 1, 28), new Date(2021, 1, 28)) = %o", equals(new Date(2021, 1, 28), new Date(2021, 1, 28)));
 }
+
+let tmpString1 = undefined, tmpString2 = null, tmpString3 = "tmpString3", tmpString;
+tmpString = tmpString1 ?? tmpString2 ?? tmpString3;
+if (window.console && console.log) {
+    console.log("tmpString=\"%s\"", tmpString);
+}
