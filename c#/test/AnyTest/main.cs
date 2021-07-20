@@ -35,7 +35,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-#define TEST_NULLABLE_TYPES
+//#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -44,6 +44,7 @@
 //#define TEST_REF
 //#define TEST_PATH
 //#define TEST_FORMAT
+#define TEST_PATTERN
 
 using System;
 using System.Buffers.Binary;
@@ -69,14 +70,14 @@ using static System.Console;
 
 namespace AnyTest
 {
-    #if TEST_ELVIS_OPERATOR
+    #if TEST_ELVIS_OPERATOR || TEST_PATTERN
         class B
         {
             public List<string> ListOfString { get; set; } = null;
         }
     #endif
 
-    #if TEST_YIELD || TEST_STRING
+    #if TEST_YIELD || TEST_STRING || TEST_PATTERN
         class A
         {
             public string Level;
@@ -333,6 +334,14 @@ namespace AnyTest
 
 			if (currentDirectory.IndexOf("bin", StringComparison.Ordinal) != -1)
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
+
+            #if TEST_PATTERN
+                tmpObject = new A();
+                if (tmpObject is not B b)
+                {
+                    WriteLine();
+                }
+            #endif
 
             #if TEST_ELVIS_OPERATOR
                 B b = new B();

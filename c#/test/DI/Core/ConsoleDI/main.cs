@@ -42,6 +42,9 @@ namespace ConsoleDI
                 @params.Param3 = provider.GetService<IParam3>();
             });
 
+            _ = services.AddSingleton<SmthClass>(_ => new SmthClass { PString = "PString" });
+            _ = services.AddTransient<ICallerWithSmthClass, CallerWithSmthClass>();
+
             var serviceProvider = services.BuildServiceProvider();
 
             var caller = serviceProvider.GetService<ICaller>();
@@ -76,6 +79,9 @@ namespace ConsoleDI
 
             var producerWrapper2 = serviceProvider.GetService<ProducerWrapper<ConcreteRecord2>>();
             Debug.WriteLine(producerWrapper2?.Produce(new BusinessEvent<ConcreteRecord2>()));
+
+            var callerWithSmthClass = serviceProvider.GetService<ICallerWithSmthClass>();
+            Debug.WriteLine(callerWithSmthClass.SmthClass);
         }
     }
 }

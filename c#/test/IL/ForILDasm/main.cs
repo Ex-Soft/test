@@ -1,9 +1,11 @@
-﻿#define TEST_DELEGATE
+﻿#define TEST_USING
+//#define TEST_DELEGATE
 //#define TEST_STRING_LITERAL
 //#define TEST_CALL_VALUE
 //#define TEST_CALL_REFERENCE
 
 using System;
+using System.IO;
 
 namespace ForILDasm
 {
@@ -16,6 +18,14 @@ namespace ForILDasm
 
         static void Main(string[] args)
         {
+            #if TEST_USING
+                var file = File.OpenRead("blah-blah-blah");
+                using(file)
+                {
+                    file = null;
+                }
+            #endif
+
             #if TEST_DELEGATE
                 Action<int> actionInt = inp => System.Diagnostics.Debug.WriteLine(inp);
                 
@@ -30,6 +40,7 @@ namespace ForILDasm
                 // IL_0032: callvirt     instance void class [mscorlib]System.Action`1<int32>::Invoke(!0/*int32*/)
                 actionInt?.Invoke(13);
             #endif
+
             #if TEST_STRING_LITERAL
                 string str1 = "this is a string literal";
                 string str2 = "this is a string literal";
