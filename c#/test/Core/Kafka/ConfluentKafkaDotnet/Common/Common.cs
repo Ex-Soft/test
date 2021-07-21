@@ -14,7 +14,7 @@ namespace ConfluentKafkaDotnet.Common
             TopicTestTypes = "TestTypes",
             TopicCustomer = "Customer",
             TopicSimple = "Simple",
-            TopicMultiSchema = "TestSdk3"; //"MultiSchema";
+            TopicMultiSchema = "MultiSchema";
 
         public static GenericRecord SpecificRecordToGenericRecord(object specificRecord)
         {
