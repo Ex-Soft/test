@@ -88,3 +88,8 @@ tmpString = tmpString1 ?? tmpString2 ?? tmpString3;
 if (window.console && console.log) {
     console.log("tmpString=\"%s\"", tmpString);
 }
+
+tmpString = tmpString1 || tmpString2 || tmpString3;
+if (window.console && console.log) {
+    console.log("tmpString=\"%s\"", tmpString);
+}
