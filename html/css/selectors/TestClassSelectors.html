@@ -36,17 +36,17 @@
 
 .class_red.class_bold
 {
-	text-decoration: underline;
+	text-decoration: red wavy overline;
 }
 
 .class_red.class_italic
 {
-	background-color: blue;
+	text-decoration: green wavy underline;
 }
 
 .class_red .class_bold
 {
-	text-decoration: blink;
+	text-decoration: underline dotted;
 }
 		</style>
 	</head>
@@ -59,6 +59,6 @@
 		<p class="class_red class_bold">class_red class_bold</p>
 		<p class="class_bold class_red">class_bold class_red</p>
 		<p class="class_bold class_red class_italic">class_bold class_red class_italic</p>
-		<p class="class_red"><span class="class_bold">class_red class_bold</span></p>
+		<p class="class_red"><span class="class_bold">&lt;...class=&quot;class_red&quot;...&gt;&lt;...class=&quot;class_bold&quot;.../&gt;&lt;/&gt;</span></p>
 	</body>
 </html>

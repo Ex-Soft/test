@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<meta charset="utf-8" />
 		<title>Test Round Corners</title>
 		<style>
 b.rtop, b.rbottom {display:block;}
@@ -9,6 +9,32 @@ b.r1{margin: 0 5px}
 b.r2{margin: 0 3px}
 b.r3{margin: 0 2px}
 b.rtop b.r4, b.rbottom b.r4{margin: 0 1px; height: 2px}
+
+.victim {
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+}
+
+.allCorners {
+	border-radius: 25px;
+}
+
+.fourValues {
+	border-radius: 15px 50px 30px 5px;
+}
+
+.threeValues {
+	border-radius: 15px 50px 30px;
+}
+
+.twoValues {
+	border-radius: 15px 50px;
+}
+
+.oneValue {
+	border-radius: 15px;
+}
 		</style>
 	</head>
 	<body>
@@ -20,7 +46,7 @@ b.rtop b.r4, b.rbottom b.r4{margin: 0 1px; height: 2px}
 				<b class="r4"></b>
 			</b>
 			<div style="padding:10px; background: red;">
-				Блок с закругленными углами
+				Block with round corners
 			</div>
 			<b class="rbottom">
 				<b class="r4"></b>
@@ -29,5 +55,11 @@ b.rtop b.r4, b.rbottom b.r4{margin: 0 1px; height: 2px}
 				<b class="r1"></b>
 			</b>
 		</div>
+		<hr/>
+		<div class="victim allCorners"></div><hr/>
+		<div class="victim fourValues"></div><hr/>
+		<div class="victim threeValues"></div><hr/>
+		<div class="victim twoValues"></div><hr/>
+		<div class="victim oneValue"></div><hr/>
 	</body>
 </html>
