@@ -462,6 +462,17 @@ aa = a.map(item => item.id);
 if (window.console && console.log)
 	console.log("%o %o", a, aa);
 
+a = [
+	{ id: 1, firstName: undefined, lastName: undefined },
+	{ id: 2, firstName: undefined, lastName: "lastName" },
+	{ id: 3, firstName: "firstName", lastName: undefined },
+	{ id: 4, firstName: "firstName", lastName: "lastName" },
+	{ id: 5, firstName: "firstName", lastName: "lastName" },
+];
+a.sort((a, b) => (isValid(a) && isValid(b)) || (!isValid(a) && !isValid(b)) ? 0 : (!isValid(a) && isValid(b) ? 1 : -1));
+if (window.console && console.log)
+	console.log("%o", a);
+
 a = [1, 2, 3];
 aa = [2, 4, 5];
 aaa = [2, 6, 7];
@@ -491,6 +502,10 @@ function except(arr1, arr2) {
 
 function unique(arr) {
 	return Array.isArray(arr) ? arr.filter((item, index, array) => array.indexOf(item) === index) : [];
+}
+
+function isValid(obj) {
+	return obj && !!obj.firstName && !!obj.lastName;
 }
 		</script>
 	</head>

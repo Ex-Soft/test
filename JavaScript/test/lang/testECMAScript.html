@@ -1,0 +1,178 @@
+﻿<!doctype html>
+<!-- https://github.com/DrkSephy/es6-cheatsheet -->
+<!-- https://www.javascripttutorial.net/es6/destructuring/ -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test ECMAScript 2015</title>
+		<script>
+var a = 1;
+let b = 2;
+
+if (window.console && console.log)
+	console.log(a, b);
+
+if (window.console && console.log)
+	console.log(this.a, this.b);
+
+function onLoad()
+{
+	var
+		x = undefined,
+		y = 'default string',
+		o;
+
+	if (window.console && console.log) {
+		console.log("%o ?? %o = %o", x, y, x ?? y);
+		console.log("%o || %o = %o", x, y, x || y);
+		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y);
+		
+		x = null;
+		console.log("%o ?? %o = %o", x, y, x ?? y);
+		console.log("%o || %o = %o", x, y, x || y);
+		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y);
+
+		x = "";
+		console.log("%o ?? %o = %o", x, y, x ?? y);
+		console.log("%o || %o = %o", x, y, x || y);
+		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y);
+		
+		o = { duration: 50 };
+		o.duration ??= 10;
+		console.log("%o", o);
+		
+		o.speed ??= 25;
+		console.log("%o", o);
+		
+		o.frequency ?? (o.frequency = 100);
+		console.log("%o", o);
+	}
+
+	TestDefaultParameter(1);
+	TestRestParameter(1, 2, 3, 4, 5);
+	TestStringInterpolation();
+
+	x = 1;
+	y = 2;
+	o = {x, y};
+
+	if(window.console && console.log)
+		console.log("o = %o", o);
+
+	var
+		[ a, , c ] = [ 1, 2, 3 ];
+
+	if(window.console && console.log)
+		console.log("a = %i, c = %i", a, c);
+
+	[ a, c ] = [ c, a ]
+	if(window.console && console.log)
+		console.log("a = %i, c = %i", a, c);
+
+	var { o1, o2, o3 } = { o1: 1, o2: 2, o3: 3 };
+	if(window.console && console.log)
+		console.log("o1 = %i, o2 = %i, o3 = %i", o1, o2, o3);
+
+	let xyz = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("xyz=%o (typeof(xyz)=\"%s\" Array.isArray(xyz)=%s)", xyz, typeof(xyz), Array.isArray(xyz).toString());
+	
+	let [xx, yy, zz] = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("xx = %i, yy = %i, zz = %i", xx, yy, zz);
+
+	let [www, xxx, yyy, zzz] = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("www = %i, xxx = %i, yyy = %i, zzz = %o", www, xxx, yyy, zzz);
+
+	let [xxxx, ...args] = TestDestructuringAssignmentByArray();
+	if(window.console && console.log)
+		console.log("xxxx = %i, args = %o", xxx, args);
+
+	let fullName = TestDestructuringAssignmentByObject();
+	if(window.console && console.log)
+		console.log("fullName=%o (typeof(fullName)=\"%s\")", fullName, typeof(fullName));
+
+	let { firstName, lastName, middleName } = TestDestructuringAssignmentByObject();
+	if(window.console && console.log)
+		console.log("firstName = \"%s\", lastName = \"%s\", middleName = \"%s\"", firstName, lastName, middleName);
+
+	const { p1, p2, ...rest } = { p1: '1st', p2: '2nd', p3: '3rd', p4: '4th', p5: '5th' };
+	if(window.console && console.log)
+		console.log("p1 = \"%s\", p2 = \"%s\", rest = %o", p1, p2, rest);
+
+	o = {p: 42, q: true};
+	const {p: foo, q: bar} = o;
+	if(window.console && console.log)
+		console.log("foo=%o bar=%o", foo, bar);
+}
+
+function TestDefaultParameter(x, y = 2, z = 3)
+{
+	if(window.console && console.log)
+		console.log("x = %i, y = %i, z = %i", x, y, z);
+}
+
+function TestRestParameter(x, y, ...a)
+{
+	if(window.console && console.log)
+		console.log(a);
+
+	var p = [ "a", "b", "c" ];
+	var x = [ 1, 2, ...p ];
+
+	if(window.console && console.log)
+		console.log(x);
+
+	var s = "abcd";
+	var c = [...s];
+
+	if(window.console && console.log)
+		console.log(c);
+}
+
+function TestStringInterpolation()
+{
+	var
+		name = "Name",
+		age = 16,
+		s = `Hello ${name} ${age * 3}`;
+
+	if(window.console && console.log)
+		console.log(s);
+
+	s = String.raw`Line #1\nLine #2${2+3}`;
+	if(window.console && console.log)
+		console.log(s);
+
+	s = String.raw`Line #1\nLine #2${name}`;
+	if(window.console && console.log)
+		console.log(s);
+
+	s = String.raw({raw: "test"}, "1st", "2nd");
+	if(window.console && console.log)
+		console.log(s);
+}
+
+function TestDestructuringAssignmentByArray() {
+	return [1, 2, 3];
+}
+
+function TestDestructuringAssignmentByObject() {
+	const
+		firstName = "FirstName",
+		lastName = "LastName",
+		middleName = "MiddleName";
+
+	return {
+		firstName,
+		lastName,
+		middleName
+	};
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
