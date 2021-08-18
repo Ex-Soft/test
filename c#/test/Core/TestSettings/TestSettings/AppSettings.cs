@@ -7,6 +7,9 @@ namespace TestSettings
     {
         public string DbConnectionName { get; set; }
         public string Victim { get; set; }
+        public string Common1 { get; set; }
+        public string Common2 { get; set; }
+        public string Common3 { get; set; }
     }
 
     public class Excludes

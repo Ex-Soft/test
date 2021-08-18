@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoResetEventVsManualResetEvent", "AutoResetEventVsManualResetEvent.csproj", "{20533A61-C1BE-436B-A1C7-CEFFE1F233B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllWinApp", "AllWinApp.csproj", "{F8B4B701-FE3A-492C-B85E-3FB79D6937F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{20533A61-C1BE-436B-A1C7-CEFFE1F233B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20533A61-C1BE-436B-A1C7-CEFFE1F233B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20533A61-C1BE-436B-A1C7-CEFFE1F233B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20533A61-C1BE-436B-A1C7-CEFFE1F233B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B4B701-FE3A-492C-B85E-3FB79D6937F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B4B701-FE3A-492C-B85E-3FB79D6937F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B4B701-FE3A-492C-B85E-3FB79D6937F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B4B701-FE3A-492C-B85E-3FB79D6937F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1E46782E-6B76-43BC-B18B-0328E84BDC94}
+		SolutionGuid = {3A95873C-694E-4505-99A6-173299216970}
 	EndGlobalSection
 EndGlobal

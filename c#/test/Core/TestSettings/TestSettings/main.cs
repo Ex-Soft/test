@@ -15,6 +15,7 @@ namespace TestSettings
             
             IConfigurationRoot config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile("appsettings-additional.json", true, true)
                 .AddEnvironmentVariables()
                 .AddCommandLine(args)
                 .Build();

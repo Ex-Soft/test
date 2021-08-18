@@ -31,13 +31,13 @@ namespace TestDataflowWinFormsApp
 
             _cancellationTokenSourceMix = new CancellationTokenSource();
             _bufferBlockMix = new BufferBlock<long>(new DataflowBlockOptions { BoundedCapacity = 10 });
-            _actionBlockMix = new ActionBlock<long>(ConsumeMix, new ExecutionDataflowBlockOptions { BoundedCapacity = 3 });
+            _actionBlockMix = new ActionBlock<long>(ConsumeMix, new ExecutionDataflowBlockOptions { BoundedCapacity = 3, MaxDegreeOfParallelism = 2, SingleProducerConstrained = true, EnsureOrdered = true });
             _bufferBlockMix.LinkTo(_actionBlockMix);
 
             _cancellationTokenSourcePipeline = new CancellationTokenSource();
             _bufferBlockPipeline = new BufferBlock<OriginalMessage>(new DataflowBlockOptions { BoundedCapacity = 10 });
-            _transformBlockPreparePipeline = new TransformBlock<OriginalMessage, PreparedMessage>(PreparePipeline, new ExecutionDataflowBlockOptions { BoundedCapacity = 3 });
-            _transformBlockTransformPipeline = new TransformBlock<PreparedMessage, TransformedMessage>(TransformPipeline, new ExecutionDataflowBlockOptions { BoundedCapacity = 3 });
+            _transformBlockPreparePipeline = new TransformBlock<OriginalMessage, PreparedMessage>(PreparePipeline, new ExecutionDataflowBlockOptions { BoundedCapacity = 3, MaxDegreeOfParallelism = 10, EnsureOrdered = false });
+            _transformBlockTransformPipeline = new TransformBlock<PreparedMessage, TransformedMessage>(TransformPipeline, new ExecutionDataflowBlockOptions { BoundedCapacity = 1, MaxDegreeOfParallelism = 1 });
             _actionBlockPipelineOk = new ActionBlock<TransformedMessage>(ConsumePipelineOk, new ExecutionDataflowBlockOptions { BoundedCapacity = 3 });
             _actionBlockPipelineError = new ActionBlock<TransformedMessage>(ConsumePipelineError, new ExecutionDataflowBlockOptions { BoundedCapacity = 3 });
             _bufferBlockPipeline.LinkTo(_transformBlockPreparePipeline);
@@ -57,14 +57,14 @@ namespace TestDataflowWinFormsApp
 
                 while (!token.IsCancellationRequested && !_bufferBlockMix.Post(data))
                 {
-                    message = $"!Post({data}) ({_bufferBlockMix.Count})";
+                    message = $"!Post({data}) ({_bufferBlockMix.Count}) {Thread.CurrentThread.ManagedThreadId}";
                     System.Diagnostics.Debug.WriteLine(message);
                     _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogMix, message));
 
                     Thread.Sleep(1000);
                 }
 
-                message = $"Post({data}) ({_bufferBlockMix.Count})";
+                message = $"Post({data}) ({_bufferBlockMix.Count}) {Thread.CurrentThread.ManagedThreadId}";
                 System.Diagnostics.Debug.WriteLine(message);
                 _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogMix, message));
 
@@ -76,7 +76,7 @@ namespace TestDataflowWinFormsApp
 
         private void ConsumeMix(long data)
         {
-            var message = $"{data} ({_actionBlockMix.InputCount})";
+            var message = $"{data} ({_actionBlockMix.InputCount}) {Thread.CurrentThread.ManagedThreadId}";
             System.Diagnostics.Debug.WriteLine(message);
             _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogMix, message));
 
@@ -95,7 +95,7 @@ namespace TestDataflowWinFormsApp
             var ticks = now.Ticks;
             var isPosted = _bufferBlockMix.Post(ticks);
 
-            var message = $"{(!isPosted ? "!" : string.Empty)}Post({ticks}) ({_bufferBlockMix.Count})";
+            var message = $"{(!isPosted ? "!" : string.Empty)}Post({ticks}) ({_bufferBlockMix.Count}) {Thread.CurrentThread.ManagedThreadId}";
             System.Diagnostics.Debug.WriteLine(message);
             _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogMix, message));
         }
@@ -122,14 +122,14 @@ namespace TestDataflowWinFormsApp
 
                 while (!token.IsCancellationRequested && !_bufferBlockPipeline.Post(data))
                 {
-                    message = $"!Post({data}) ({_bufferBlockMix.Count})";
+                    message = $"#1 !Post({data}) ({_bufferBlockMix.Count})";
                     System.Diagnostics.Debug.WriteLine(message);
                     _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogPipeline, message));
 
                     Thread.Sleep(1000);
                 }
 
-                message = $"Post({data}) ({_bufferBlockMix.Count})";
+                message = $"#1 Post({data}) ({_bufferBlockMix.Count})";
                 System.Diagnostics.Debug.WriteLine(message);
                 _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogPipeline, message));
 
@@ -141,7 +141,7 @@ namespace TestDataflowWinFormsApp
 
         private PreparedMessage PreparePipeline(OriginalMessage originalMessage)
         {
-            var message = $"{originalMessage} ({_transformBlockPreparePipeline.InputCount}/{_transformBlockPreparePipeline.OutputCount})";
+            var message = $"#2 {originalMessage} ({_transformBlockPreparePipeline.InputCount}/{_transformBlockPreparePipeline.OutputCount}) {Thread.CurrentThread.ManagedThreadId}";
             System.Diagnostics.Debug.WriteLine(message);
             _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogPipeline, message));
 
@@ -163,7 +163,7 @@ namespace TestDataflowWinFormsApp
 
         private TransformedMessage TransformPipeline(PreparedMessage preparedMessage)
         {
-            var message = $"{preparedMessage} ({_transformBlockTransformPipeline.InputCount}/{_transformBlockTransformPipeline.OutputCount})";
+            var message = $"#3 {preparedMessage} ({_transformBlockTransformPipeline.InputCount}/{_transformBlockTransformPipeline.OutputCount})";
             System.Diagnostics.Debug.WriteLine(message);
             _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogPipeline, message));
 
@@ -187,7 +187,7 @@ namespace TestDataflowWinFormsApp
 
         private void ConsumePipelineOk(TransformedMessage transformedMessage)
         {
-            var message = $"Ok {transformedMessage} ({_actionBlockPipelineOk.InputCount})";
+            var message = $"#4.1 Ok {transformedMessage} ({_actionBlockPipelineOk.InputCount})";
             System.Diagnostics.Debug.WriteLine(message);
             _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogPipeline, message));
 
@@ -197,7 +197,7 @@ namespace TestDataflowWinFormsApp
 
         private void ConsumePipelineError(TransformedMessage transformedMessage)
         {
-            var message = $"Error {transformedMessage} ({_actionBlockPipelineError.InputCount})";
+            var message = $"#4.2 Error {transformedMessage} ({_actionBlockPipelineError.InputCount})";
             System.Diagnostics.Debug.WriteLine(message);
             _uiContext.Post(AddToListBoxCallback, new AddToListBoxParam(lbLogPipeline, message));
 
