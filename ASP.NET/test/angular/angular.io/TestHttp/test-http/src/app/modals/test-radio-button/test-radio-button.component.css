@@ -22,3 +22,11 @@
 .test-radio-progress-spinner {
     margin: 10px auto;
 }
+
+.test-radio-option-error {
+    display: block;
+}
+
+.test-radio-option-ok {
+    display: none;
+}

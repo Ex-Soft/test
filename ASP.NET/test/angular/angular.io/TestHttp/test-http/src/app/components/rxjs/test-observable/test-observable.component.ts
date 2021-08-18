@@ -55,6 +55,6 @@ export class TestObservableComponent implements OnInit {
       });
     });
 
-    this.query.items$.pipe(userDefined()).subscribe();
+    this.query.items$.pipe(/*userDefined()*/).subscribe();
   }
 }

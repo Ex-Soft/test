@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~12.1.4",
     "@angular/router": "~12.1.4",
     "@datorama/akita": "^6.2.1",
-    "ngx-take-until-destroy": "^5.4.0",
+    "@ngneat/until-destroy": "^8.1.1",
     "rxjs": "^6.6.6",
     "rxjs-compat": "^6.6.6",
     "tslib": "^2.0.0",

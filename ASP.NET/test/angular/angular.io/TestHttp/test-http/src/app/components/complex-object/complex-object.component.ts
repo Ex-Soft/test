@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { untilDestroyed } from 'ngx-take-until-destroy';
 import { tap } from 'rxjs/operators';
 
 import { ComplexObjectDtoToViewPipe } from '../../pipes/complex-object-dto-to-view.pipe';
@@ -20,7 +19,7 @@ export class ComplexObjectComponent implements OnInit, OnDestroy {
     this.query
       .selectAll()
       .pipe(
-        untilDestroyed(this),
+        /*untilDestroyed(this),
         tap(complexObjects => {
           if (Array.isArray(complexObjects) && complexObjects.length) {
             const pipe = new ComplexObjectDtoToViewPipe();
@@ -28,7 +27,7 @@ export class ComplexObjectComponent implements OnInit, OnDestroy {
           } else {
             this.service.getComplexObjects();
           }
-        })
+        })*/
       )
       .subscribe();
   }

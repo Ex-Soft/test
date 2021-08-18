@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { untilDestroyed } from 'ngx-take-until-destroy';
+// import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { IItemDto, ItemsQuery, ItemService } from '../../core/state/item';
 
+// @UntilDestroy()
 @Component({
   selector: 'app-test-radio-button',
   templateUrl: './test-radio-button.component.html',
@@ -22,7 +23,7 @@ export class TestRadioButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.query.items$.pipe(untilDestroyed(this)).subscribe(
+    this.query.items$.pipe(/*untilDestroyed(this)*/).subscribe(
       state => {
         this.isLoading = state.loading;
         const length: number = Array.isArray(state.ids) ? state.ids.length : 0;
@@ -50,5 +51,17 @@ export class TestRadioButtonComponent implements OnInit, OnDestroy {
 
   public onClose(): void {
     this.dialogRef.close();
+  }
+
+  public onRadioGroupChange(e): void {
+    if (window.console && console.log) {
+      console.log('onRadioGroupChange(%o)', e);
+    }
+  }
+
+  public onRadioButtonChange(e): void {
+    if (window.console && console.log) {
+      console.log('onRadioButtonChange(%o)', e);
+    }
   }
 }

@@ -1,12 +1,18 @@
 <h2 mat-dialog-title>Test RadioButton</h2>
 <mat-dialog-content>
   <div class="test-radio-group-container" *ngIf="!isLoading; else loading">
-    <mat-radio-group class="test-radio-group" [(ngModel)]="selectedOption">
+    <label id="test-radio-group-label">Pick your favorite item</label>
+    <mat-radio-group class="test-radio-group" [(ngModel)]="selectedOption" aria-labelledby="test-radio-group-label" (change)="onRadioGroupChange($event)">
       <mat-radio-button class="test-radio-button" *ngFor="let option of options"
-        [value]="option.id">
+        [value]="option.id"
+        [disabled]="option.id % 2 === 1"
+        (change)="onRadioButtonChange($event)">
         <label>{{option.name}}</label>
+        <div [ngClass]="option.id % 4 === 1 ? 'test-radio-option-error' : 'test-radio-option-ok'">Smth DIV# 1 (ngClass)</div>
+        <div *ngIf="option.id % 4 === 1">Smth DIV# 2 (*ngIf)</div>
       </mat-radio-button>
     </mat-radio-group>
+    <div>Your favorite item is: {{selectedOption}}</div>
   </div>
 </mat-dialog-content>
 <ng-template #loading>

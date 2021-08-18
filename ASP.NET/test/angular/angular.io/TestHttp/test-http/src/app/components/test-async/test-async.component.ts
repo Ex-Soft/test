@@ -29,7 +29,7 @@ export class TestAsyncComponent implements OnInit {
       if (!state.loading && !state.error && Array.isArray(state.ids) && state.ids.length && !state.active) {
         if (!this.testStoreQuery.hasActive(state.ids[0])) {
           this.testStoreQuery.__store__.setActive(state.ids[0]);
-          this.activeItem$ = this.testStoreQuery.selectActive();
+          // this.activeItem$ = this.testStoreQuery.selectActive();
           this.activeItem$.subscribe(item => {
             this.activeItem = item;
           });
