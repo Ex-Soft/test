@@ -1,0 +1,49 @@
+### https://docs.docker.com/get-started/kube-deploy/
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testconfigmap
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      volumes:
+        - name: example-configmap-volume
+          configMap:
+            name: example-configmap
+        - name: example-configmap-volume-env
+          configMap:
+            name: example-configmap-env
+      containers:
+        - name: testconfigmapserver
+          image: testconfigmapserver
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 1337
+          volumeMounts:
+            - name: example-configmap-volume
+              mountPath: /usr/src/app/config
+            - name: example-configmap-volume-env
+              mountPath: /usr/src/app/env
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testconfigmap-entrypoint
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    bb: web
+  ports:
+  - port: 1337
+    targetPort: 1337
+    nodePort: 30001
