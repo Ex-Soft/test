@@ -7,6 +7,9 @@
 		<meta charset="utf-8" />
 		<title>Test ECMAScript 2015</title>
 		<script>
+if (window.console && console.clear)
+	console.clear();
+
 var a = 1;
 let b = 2;
 
@@ -22,6 +25,32 @@ function onLoad()
 		x = undefined,
 		y = 'default string',
 		o;
+
+	const objectDestructuringAssignmentFn = ({ p1, p2, p3 }) => {
+		if (window.console && console.log)
+			console.log("objectDestructuringAssignmentFn(%o, %o, %o)", p1, p2, p3);
+	};
+
+	try {
+		objectDestructuringAssignmentFn(undefined); // TypeError: (destructured parameter) is undefined
+	}
+	catch (e) {
+		if (window.console && console.log)
+			console.log("%o", e);
+	}
+	
+	try {
+		objectDestructuringAssignmentFn(null); // TypeError: (destructured parameter) is null
+	}
+	catch (e) {
+		if (window.console && console.log)
+			console.log("%o", e);
+	}
+	
+	objectDestructuringAssignmentFn({ p1: "p1" });
+	objectDestructuringAssignmentFn({ p1: "p1", p2: "p2" });
+	objectDestructuringAssignmentFn({ p1: "p1", p2: "p2", p3: "p3" });
+	objectDestructuringAssignmentFn({ p1: "p1", p22: "p22", p3: "p3" });
 
 	if (window.console && console.log) {
 		console.log("%o ?? %o = %o", x, y, x ?? y);
