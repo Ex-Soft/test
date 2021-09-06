@@ -4,11 +4,11 @@
 //#define TEST_TYPES_BY_SPECIFIC_RECORD
 //#define TEST_TYPES_BY_GENERIC_RECORD
 //#define TEST_TYPES_BY_BYTE_ARRAY
-#define TEST_MULTI_SCHEMA
+//#define TEST_MULTI_SCHEMA
 //#define USE_AVRO_DESERIALIZER_WRAPPER
 //#define MANUAL_COMMIT
 //#define DO_COMMIT
-//#define TEST_SCHEMA_REGISTRY_CLIENT
+#define TEST_SCHEMA_REGISTRY_CLIENT
 
 using System;
 using System.Buffers.Binary;
@@ -92,7 +92,10 @@ namespace Consumer
         {
             var schemaRegistryConfig = new SchemaRegistryConfig
             {
-                Url = Common.SchemaRegistryUrl
+                Url = Common.SchemaRegistryUrl,
+                SslCaLocation = "/certs/ProtonCert.pem",
+                BasicAuthCredentialsSource = AuthCredentialsSource.UserInfo,
+                BasicAuthUserInfo = $"{Common.UserName}:{Common.Password}"
             };
 
             using var schemaRegistry = new CachedSchemaRegistryClient(schemaRegistryConfig);
@@ -111,7 +114,6 @@ namespace Consumer
             ConcurrentDictionary<Avro.Schema, byte> concurrentDictionary = new ConcurrentDictionary<Schema, byte>();
             bool result = concurrentDictionary.TryAdd(avroSchema1, 1);
             result = concurrentDictionary.TryAdd(avroSchema2, 1);
-
         }
 
         public static void ConsumeSpecificRecord<T>(string topic)

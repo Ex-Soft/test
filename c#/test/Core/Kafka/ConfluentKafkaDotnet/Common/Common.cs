@@ -9,12 +9,14 @@ namespace ConfluentKafkaDotnet.Common
     public class Common
     {
         public const string
-            BootstrapServers = "localhost:9092",
-            SchemaRegistryUrl = "localhost:8081",
+            BootstrapServers = "brook.nonprod.us-west-2.aws.proton.nordstrom.com:9093", //"localhost:9092",
+            SchemaRegistryUrl = "https://schema-registry.nonprod.us-west-2.aws.proton.nordstrom.com", //"localhost:8081",
             TopicTestTypes = "TestTypes",
             TopicCustomer = "Customer",
             TopicSimple = "Simple",
-            TopicMultiSchema = "MultiSchema";
+            TopicMultiSchema = "MultiSchema",
+            UserName = "username",
+            Password = "password";
 
         public static GenericRecord SpecificRecordToGenericRecord(object specificRecord)
         {
