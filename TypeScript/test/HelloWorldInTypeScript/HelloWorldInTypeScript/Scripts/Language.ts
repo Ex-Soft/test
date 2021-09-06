@@ -15,10 +15,25 @@ interface ISmthInterface3 {
     o?: ISmthInterface3;
 }
 
+const objectDestructuringAssignmentFn1 = ({ id }: ISmthInterface3) => {
+    if (window.console && console.log) {
+        console.log("objectDestructuringAssignmentFn1(%o)", id);
+    }
+}
+
+const objectDestructuringAssignmentFn2 = ({ id, value }: ISmthInterface3) => {
+    if (window.console && console.log) {
+        console.log("objectDestructuringAssignmentFn2(%o, %o)", id, value);
+    }
+}
+
 let tmpObject2 = {
     id: 1,
     value: "1"
 } as ISmthInterface3;
+
+objectDestructuringAssignmentFn1(tmpObject2);
+objectDestructuringAssignmentFn2(tmpObject2);
 
 let tmpObject = tmpObject2?.o?.o?.value;
 if (window.console && console.log) {

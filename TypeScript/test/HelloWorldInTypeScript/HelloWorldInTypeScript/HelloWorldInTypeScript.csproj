@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\ArrayVariables.ts" />
+    <TypeScriptCompile Include="Scripts\ClassWithGettersAndSetters.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithInterfaceWithPartImplementation.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithSmthInterface2.ts" />
     <TypeScriptCompile Include="Scripts\ClassWithClosures.ts" />

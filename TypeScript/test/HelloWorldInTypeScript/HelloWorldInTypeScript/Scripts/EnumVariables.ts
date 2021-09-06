@@ -27,14 +27,14 @@ enum Direction {
 
 let direction1: Direction;
 let direction2: Direction;
-direction1 = Direction["Down"];
-direction2 = Direction["Middle"];
+direction1 = Direction["Down"]; // "Down"
+direction2 = Direction["Middle"]; // undefined
 if (window.console && console.log) {
-    console.log("direction1=%o direction2=%o", direction1, direction2);
+    console.log("direction1=%o (typeof(%s)) direction2=%o (typeof(%s))", direction1, typeof direction1, direction2, typeof direction2);
 }
 
-let directionStr1 = Direction.Right;
-let directionStr2 = Direction[Direction.Right];
+let directionStr1 = Direction.Right; // "Right"
+let directionStr2 = Direction[Direction.Right];  // "Right"
 if (window.console && console.log) {
     console.log("directionStr1=\"%s\" directionStr2=\"%s\"", directionStr1, directionStr2);
 }
