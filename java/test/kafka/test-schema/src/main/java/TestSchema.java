@@ -86,8 +86,8 @@ public class TestSchema {
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "brook.nonprod.us-west-2.aws.proton.nordstrom.com:9093" /*"127.0.0.1:9092"*/);
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, java.util.UUID.randomUUID().toString());
 
-        String username = "resplendent-ermine.W76KGBB2UKOFM3N0W";
-        String password = "HyQaeevpJ843lTGem08LDNa51vluVHsTf6SQOvmxiOgypkNMVUH4CZFQmehXiO8oSYAy1X-eVCCmkhOdVP_9j6b-tpGE5maALRxKXQtrSMHWq97t6yPsZfzERP8AmERZ";
+        String username = "username";
+        String password = "password";
         String jaasTemplate = "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"%s\" password=\"%s\";";
         String jaasCfg = String.format(jaasTemplate, username, password);
 
