@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-// import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { IItemDto, ItemsQuery, ItemService } from '../../core/state/item';
 
-// @UntilDestroy()
+@UntilDestroy()
 @Component({
   selector: 'app-test-radio-button',
   templateUrl: './test-radio-button.component.html',
@@ -23,7 +23,7 @@ export class TestRadioButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.query.items$.pipe(/*untilDestroyed(this)*/).subscribe(
+    this.query.items$.pipe(untilDestroyed(this)).subscribe(
       state => {
         this.isLoading = state.loading;
         const length: number = Array.isArray(state.ids) ? state.ids.length : 0;

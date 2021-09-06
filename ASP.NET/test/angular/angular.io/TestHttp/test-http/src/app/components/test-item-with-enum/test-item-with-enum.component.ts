@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-// import { untilDestroyed } from 'ngx-take-until-destroy';
-// import { tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { tap } from 'rxjs/operators';
 
 import { IItemWithEnumDto, ItemsWithEnumQuery, ItemWithEnumService, TestEnum } from 'src/app/core/state/item-with-enum';
 
+@UntilDestroy()
 @Component({
   selector: 'app-test-item-with-enum',
   templateUrl: './test-item-with-enum.component.html',
@@ -21,14 +22,14 @@ export class TestItemWithEnumComponent implements OnInit, OnDestroy {
     this.query
       .selectAll()
       .pipe(
-        /*untilDestroyed(this),
+        untilDestroyed(this),
         tap(itemsWithEnum => {
           if (Array.isArray(itemsWithEnum) && itemsWithEnum.length) {
             this.itemsWithEnum = itemsWithEnum;
           } else {
             this.service.getItemsWithEnum();
           }
-        })*/
+        })
       )
       .subscribe();
   }

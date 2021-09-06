@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-// import { takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 import { TodoDtoToViewPipe } from '../../pipes/todo-dto-to-view.pipe';
 import { TodosQuery, TodoService, TodosStore, ITodoDto, ITodoGroupDto, ITodoGroupItemDto, createTodo } from '../../core/state/todo';
@@ -22,7 +22,7 @@ export class TodoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.query.state$
-      .pipe(/*takeUntil(this.destroy$)*/)
+      .pipe(takeUntil(this.destroy$))
       .subscribe(state => {
         console.log(state);
         if (state.ids.length) {

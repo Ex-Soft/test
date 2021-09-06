@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { DialogWrapperComponent } from './dialog-wrapper.component';
 
@@ -8,7 +9,8 @@ describe('DialogWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogWrapperComponent ]
+      declarations: [ DialogWrapperComponent ],
+      imports: [ MatDialogModule ]
     })
     .compileComponents();
   }));

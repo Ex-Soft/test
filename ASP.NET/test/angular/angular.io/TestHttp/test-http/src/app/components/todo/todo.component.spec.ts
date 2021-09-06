@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { TodoComponent } from './todo.component';
 
@@ -8,7 +9,8 @@ describe('TodoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoComponent ]
+      declarations: [ TodoComponent ],
+      imports: [ HttpClientTestingModule ]
     })
     .compileComponents();
   }));
