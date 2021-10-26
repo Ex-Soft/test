@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Reflection;
+using System.IO;
 
 using static System.Console;
 
@@ -9,7 +11,10 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            WriteLine("Hello World!");
+            string tmpString;
+            WriteLine(tmpString = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+            WriteLine(tmpString = Assembly.GetExecutingAssembly().Location);
+            WriteLine(tmpString = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             WriteLine(ParseLanguage());
             WriteLine(ParseLanguage(null));
