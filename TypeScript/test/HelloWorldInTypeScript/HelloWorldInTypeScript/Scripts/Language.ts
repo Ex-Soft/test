@@ -108,3 +108,55 @@ tmpString = tmpString1 || tmpString2 || tmpString3;
 if (window.console && console.log) {
     console.log("tmpString=\"%s\"", tmpString);
 }
+
+let tmpBool: boolean;
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {} as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // true
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // false
+
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {
+        value: undefined
+    } as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // true
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // false
+
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {
+        value: null
+    } as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // false
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // false
+
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {
+        id: 11,
+        value: "11"
+    } as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // true
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // true

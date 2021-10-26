@@ -1,4 +1,47 @@
-﻿enum Season {
+﻿// https://stackoverflow.com/questions/17380845/how-do-i-convert-a-string-to-enum-in-typescript
+
+const stringToEnumValue = <ET, T>(enumObj: ET, str: string): T =>
+    (enumObj as any)[Object.keys(enumObj).filter(k => (enumObj as any)[k] === str)[0]];
+
+//export const stringToEnumValue = <T, K extends keyof T>(enumObj: T, value: string): T[keyof T] | undefined =>
+//    enumObj[Object.keys(enumObj).filter((k) => enumObj[k as K].toString() === value)[0] as keyof typeof enumObj];
+
+enum SmthType {
+    SmthType1 = "SMTH_TYPE_1",
+    SmthType2 = "SMTH_TYPE_2",
+    SmthType3 = "SMTH_TYPE_3"
+}
+
+let smthTypes = [SmthType.SmthType1, SmthType.SmthType3];
+if (window && window.console) {
+    let smthType = SmthType["SMTH_TYPE_3"]; // undefined
+    console.log(smthTypes.indexOf(smthType)); // -1
+
+    smthType = stringToEnumValue<typeof SmthType, SmthType>(SmthType, "SMTH_TYPE_3"); // "SMTH_TYPE_3"
+    //smthType = stringToEnumValue(SmthType, "SMTH_TYPE_3"); // "SMTH_TYPE_3"
+    console.log(smthTypes.indexOf(smthType)); // 1
+
+    smthType = SmthType["SmthType3"]; // "SMTH_TYPE_3"
+    console.log(smthTypes.indexOf(smthType)); // 1
+}
+
+enum Reason {
+    None,
+    First,
+    Second,
+    Third
+}
+
+let reason1: Reason;
+let reason2: Reason;
+let reasonNumber: number;
+
+reason1 = Reason.First;
+reason2 = 2;
+reasonNumber = 3;
+console.log("%o %o 3%s==Reason.Third", reason1, reason2, reasonNumber === Reason.Third ? "=" : "!");
+
+enum Season {
     Winter,
     Spring = 1, // can assign integer 
     Summer,
