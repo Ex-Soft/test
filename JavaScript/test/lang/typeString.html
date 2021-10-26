@@ -50,6 +50,11 @@ if (window.console && console.log) {
   str = arr.join();
   str_out = arr.join('~');
   console.log("\"%s\" \"%s\"", str, str_out);
+  
+  arr = ['1st', undefined, '3rd', null, '5th'];
+  str = arr.join();
+  str_out = arr.join('~');
+  console.log("\"%s\" \"%s\"", str, str_out);
 
   str = `Line #1
   Line #2

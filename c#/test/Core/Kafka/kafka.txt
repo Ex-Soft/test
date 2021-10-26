@@ -1,0 +1,17 @@
+kafka-console-producer --bootstrap-server localhost:9092 --topic test
+
+kafka-topics --describe --bootstrap-server localhost:9092 --topic test
+kafka-topics --list --bootstrap-server localhost:9092
+kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning
+
+https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html
+io.confluent.kafka.serializers.subject.TopicNameStrategy
+io.confluent.kafka.serializers.subject.RecordNameStrategy
+io.confluent.kafka.serializers.subject.TopicRecordNameStrategy
+
+cd c:\confluent\cp-all-in-one\
+docker compose up -d
+docker compose stop
+docker ps
+docker system prune -a --volumes --filter "label=io.confluent.docker"
+docker volume rm $(docker volume ls -q)

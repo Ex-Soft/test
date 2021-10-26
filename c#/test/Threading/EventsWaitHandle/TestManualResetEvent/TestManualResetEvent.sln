@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestManualResetEvent", "TestManualResetEvent.csproj", "{12ED8AB7-EA96-420E-81C1-768947F84444}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestManualResetEvent", "TestManualResetEvent.csproj", "{F6B4178B-ED50-4BC8-AC02-5E895E5788A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12ED8AB7-EA96-420E-81C1-768947F84444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12ED8AB7-EA96-420E-81C1-768947F84444}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12ED8AB7-EA96-420E-81C1-768947F84444}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12ED8AB7-EA96-420E-81C1-768947F84444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B4178B-ED50-4BC8-AC02-5E895E5788A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B4178B-ED50-4BC8-AC02-5E895E5788A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B4178B-ED50-4BC8-AC02-5E895E5788A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B4178B-ED50-4BC8-AC02-5E895E5788A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10D6F454-9B6B-4081-A8D5-2C8B24C81DD8}
 	EndGlobalSection
 EndGlobal

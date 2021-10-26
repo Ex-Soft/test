@@ -15,10 +15,25 @@ interface ISmthInterface3 {
     o?: ISmthInterface3;
 }
 
+const objectDestructuringAssignmentFn1 = ({ id }: ISmthInterface3) => {
+    if (window.console && console.log) {
+        console.log("objectDestructuringAssignmentFn1(%o)", id);
+    }
+}
+
+const objectDestructuringAssignmentFn2 = ({ id, value }: ISmthInterface3) => {
+    if (window.console && console.log) {
+        console.log("objectDestructuringAssignmentFn2(%o, %o)", id, value);
+    }
+}
+
 let tmpObject2 = {
     id: 1,
     value: "1"
 } as ISmthInterface3;
+
+objectDestructuringAssignmentFn1(tmpObject2);
+objectDestructuringAssignmentFn2(tmpObject2);
 
 let tmpObject = tmpObject2?.o?.o?.value;
 if (window.console && console.log) {
@@ -82,3 +97,66 @@ if (window.console && console.log) {
     console.log("equals({ id: 1 }, { id: 1, value: \"\" }) = %o", equals({ id: 1 }, { id: 1, value: "" }));
     console.log("equals(new Date(2021, 1, 28), new Date(2021, 1, 28)) = %o", equals(new Date(2021, 1, 28), new Date(2021, 1, 28)));
 }
+
+let tmpString1 = undefined, tmpString2 = null, tmpString3 = "tmpString3", tmpString;
+tmpString = tmpString1 ?? tmpString2 ?? tmpString3;
+if (window.console && console.log) {
+    console.log("tmpString=\"%s\"", tmpString);
+}
+
+tmpString = tmpString1 || tmpString2 || tmpString3;
+if (window.console && console.log) {
+    console.log("tmpString=\"%s\"", tmpString);
+}
+
+let tmpBool: boolean;
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {} as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // true
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // false
+
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {
+        value: undefined
+    } as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // true
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // false
+
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {
+        value: null
+    } as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // false
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // false
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // false
+
+tmpObject2 = {
+    id: 1,
+    value: "1",
+    o: {
+        id: 11,
+        value: "11"
+    } as ISmthInterface3
+} as ISmthInterface3;
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != undefined; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== undefined; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value != null; // true
+tmpBool = tmpObject2 && tmpObject2.o && tmpObject2.o.value !== null; // true
+tmpBool = tmpObject2 && tmpObject2.o && !!tmpObject2.o.value; // true

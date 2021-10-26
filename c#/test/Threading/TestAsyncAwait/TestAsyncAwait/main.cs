@@ -2,7 +2,8 @@
 //#define TEST_TEPLYAKOV // http://sergeyteplyakov.blogspot.com/2010/12/c-5.html
 //#define TEST_TEPLYAKOV_ASYNC_VER
 //#define TEST_TEPLYAKOV_ASYNC_VER_2
-#define TEST_FILE_STREAM
+//#define TEST_FILE_STREAM
+#define TEST_RETURN
 
 using System;
 using System.Diagnostics;
@@ -20,6 +21,11 @@ namespace TestAsyncAwait
     {
         static void Main(string[] args)
         {
+            #if TEST_RETURN
+                Task task = Runner.Run();
+                task.GetAwaiter().GetResult();
+            #endif
+
             #if TEST_FILE_STREAM
                 string x = string.Empty;
 

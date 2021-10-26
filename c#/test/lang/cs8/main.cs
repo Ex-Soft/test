@@ -68,6 +68,10 @@ namespace cs8
     {
         static void Main(string[] args)
         {
+            int? tmpInt = null;
+            tmpInt ??= 13;
+            tmpInt ??= 169;
+
             var smthClass1 = new SmthClass1();
             smthClass1.FooPublic();
             ((IInterfaceWithAccessModifiers)smthClass1).FooProtectedCaller();

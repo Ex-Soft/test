@@ -10,4 +10,4 @@ export arr1=( "1st" "2nd" "3rd" "4th" "5th" )
 export arr2=( "5th" "4th" "3rd" "2nd" "1st" )
 export arr3=( "one" "two" "three" "four" "five" )
 ./testparamsbyarraywithsize.sh "${#arr1[@]}" "${arr1[@]}" "${#arr2[@]}" "${arr2[@]}" "${#arr3[@]}" "${arr3[@]}"
-
+./testparamsbyarraywithsize.sh "${#arr1[@]}" "${arr1[@]}" "" "${#arr3[@]}" "${arr3[@]}"

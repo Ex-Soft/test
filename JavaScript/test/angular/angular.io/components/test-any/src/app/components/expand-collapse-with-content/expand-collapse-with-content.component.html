@@ -1,0 +1,7 @@
+<div>
+    <span class="expand-collapse-legend">{{legend}}:</span>&nbsp;<span class="expand-collapse-sign" (click)="expandCollapse()">Details&nbsp;{{expandCollapseSign}}</span>
+    <div [ngClass]="isExpanded ? 'expand-collapse-template-expanded' : 'expand-collapse-template-collapsed'">
+        <ng-content></ng-content>
+    </div>
+</div>
+

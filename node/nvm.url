@@ -1,0 +1,6 @@
+https://www.nubo.eu/Install-Multiple-Node-Versions-On-Windows/
+https://github.com/coreybutler/nvm-windows
+
+nvm list
+nvm install 14.15.0
+nvm use 14.15.0

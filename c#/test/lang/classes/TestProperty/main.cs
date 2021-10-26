@@ -4,6 +4,31 @@ using System;
 namespace TestProperty
 {
     #if TEST_SETTERS
+    class Dictionary
+    {
+        public System.Collections.Generic.Dictionary<string, string> Properties { get; } = new System.Collections.Generic.Dictionary<string, string>();
+    }
+
+    class Wrapper
+    {
+        private readonly Dictionary _dictionary = new Dictionary();
+
+        public int PInt
+        {
+            get
+            {
+                int value = default;
+                if (_dictionary.Properties.TryGetValue("PInt", out var valueStr))
+                    _ = int.TryParse(valueStr, out value);
+                return value;
+            }
+            set
+            {
+                _dictionary.Properties["PInt"] = value.ToString();
+            }
+        }
+    }
+
     class X
     {
         public int FInt { get; set; }
@@ -122,6 +147,10 @@ namespace TestProperty
 		static void Main(string[] args)
 		{
             #if TEST_SETTERS
+                var wrapper = new Wrapper { PInt = 13 };
+                wrapper.PInt++;
+                --wrapper.PInt;
+
                 X
                     x1 = new X(),
                     x2 = new X(1,1,1),

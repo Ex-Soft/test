@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Moment</title>
+		<script src="../../momentjs/moment.js"></script>
+		<script src="../../momentjs/moment-timezone.js"></script>
+		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data-1970-2030.js"></script-->
+		<script>
+function onLoad()
+{
+	var
+		d,
+		str;
+
+	if (window.console && console.log) {
+		str = "2011-12-31T23:59:59.0000000Z";
+		d = new Date(str);
+		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d, moment(d).format(), moment(d).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
+		
+		str = "2011-12-31T23:59:59+02:00";
+		d = new Date(str);
+		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d, moment(d).format(), moment(d).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
+		
+		str = "2011-12-31T23:59:59-08:00";
+		d = new Date(str);
+		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d, moment(d).format(), moment(d).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
+
+		console.log("%o", moment.tz.zonesForCountry("UA"));
+		console.log("%o", moment.tz.zonesForCountry("US"));
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

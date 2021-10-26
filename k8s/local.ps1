@@ -18,6 +18,7 @@ minikube dashboard
 
 minikube ssh
 
+kubectl config use-context aws_nonprod_west_hydrogen
 kubelogin login aws-nonprod
 
 kubectl get componentstatuses

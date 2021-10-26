@@ -1,20 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPropertySetter", "TestPropertySetter.csproj", "{A8BA1487-7039-4E81-8935-BB9B0C42049F}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPropertySetter", "TestPropertySetter.csproj", "{2684BA16-010C-465B-B3BE-F07265A44A73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A8BA1487-7039-4E81-8935-BB9B0C42049F}.Debug|x86.ActiveCfg = Debug|x86
-		{A8BA1487-7039-4E81-8935-BB9B0C42049F}.Debug|x86.Build.0 = Debug|x86
-		{A8BA1487-7039-4E81-8935-BB9B0C42049F}.Release|x86.ActiveCfg = Release|x86
-		{A8BA1487-7039-4E81-8935-BB9B0C42049F}.Release|x86.Build.0 = Release|x86
+		{2684BA16-010C-465B-B3BE-F07265A44A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2684BA16-010C-465B-B3BE-F07265A44A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2684BA16-010C-465B-B3BE-F07265A44A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2684BA16-010C-465B-B3BE-F07265A44A73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9B8B45B-7775-4B1F-868D-5EE32E158089}
 	EndGlobalSection
 EndGlobal

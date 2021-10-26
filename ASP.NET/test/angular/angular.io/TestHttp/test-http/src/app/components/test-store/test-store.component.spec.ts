@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { TestStoreComponent } from './test-store.component';
 
@@ -8,7 +9,8 @@ describe('TestStoreComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestStoreComponent ]
+      declarations: [ TestStoreComponent ],
+      imports: [ HttpClientTestingModule ]
     })
     .compileComponents();
   }));

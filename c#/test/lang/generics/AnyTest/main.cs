@@ -9,6 +9,8 @@ namespace AnyTest
     {
         static void Main(string[] args)
         {
+			BusinessEventSourceRunner.Run();
+
             DateTime
                 tmpDateTime;
 
@@ -19,7 +21,7 @@ namespace AnyTest
                 tmpString;
 
             #if OPERATOR_CANNOT_BE_APPLIED_TO_OPERANDS_OF_TYPE_T_AND_T
-   				//tmpDateTime = Foo1(DateTime.Now);
+   				tmpDateTime = Foo1(DateTime.Now);
 				tmpInt = Foo1(5);
 
                 int[] values = new int[] { 12, 3, 54, 234, 654, 3 };

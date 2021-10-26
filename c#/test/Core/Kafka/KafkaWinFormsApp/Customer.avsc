@@ -1,0 +1,18 @@
+{
+    "type": "record",
+    "namespace": "org.example",
+    "name": "Customer",
+    "fields": [
+        { "name": "FirstName", "type": "string", "doc": "First Name of Customer"},
+        { "name": "LastName", "type": "string", "doc": "Last Name of Customer"},
+        { "name": "Age", "type": "int", "doc": "Age at the time of registration"},
+        { "name": "Payment", "type": {
+                "type": "enum",
+                "name": "PaymentTypes",
+                "symbols": [ "Cash", "Mastercard", "Visa" ]
+            }, "doc": "The method of payment"},
+        { "name": "Height", "type": "float", "doc": "Height at the time of registration in cm"},
+        { "name": "Weight", "type": "float", "doc": "Weight at the time of registration in kg"},
+        { "name": "AutomatedEmail", "type": "boolean", "doc": "Field indicating if the user enrolled in marketing emails"}
+    ]
+}

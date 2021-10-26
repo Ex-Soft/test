@@ -18,6 +18,10 @@ import { CustomDerivedComponent } from './components/inheritance/custom-derived/
 import { TestConditionalAttributesComponent } from './components/test-conditional-attributes/test-conditional-attributes.component';
 import { TestFackerComponent } from './components/test-facker/test-facker.component';
 import { TestSimpleComponent } from './components/test-simple/test-simple.component';
+import { ExpandCollapseWithTemplateComponent } from './components/expand-collapse-with-template/expand-collapse-with-template.component';
+import { TemplateComponentOneComponent } from './components/template-component-one/template-component-one.component';
+import { ExpandCollapseWithContentComponent } from './components/expand-collapse-with-content/expand-collapse-with-content.component';
+import { ContentComponentOneComponent } from './components/content-component-one/content-component-one.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { TestSimpleComponent } from './components/test-simple/test-simple.compon
     CustomDerivedComponent,
     TestConditionalAttributesComponent,
     TestFackerComponent,
-    TestSimpleComponent
+    TestSimpleComponent,
+    ExpandCollapseWithTemplateComponent,
+    TemplateComponentOneComponent,
+    ExpandCollapseWithContentComponent,
+    ContentComponentOneComponent
   ],
   imports: [
     BrowserModule,

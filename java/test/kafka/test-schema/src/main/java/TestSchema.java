@@ -1,7 +1,11 @@
+/* https://docs.confluent.io/clients-kafka-java/current/overview.html */
+
 import com.mycorp.mynamespace.RootType;
+import com.nordstrom.care.communications.EmailCommunicationRequested;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -79,31 +83,43 @@ public class TestSchema {
         logger.info("This is how you configure Java Logging with SLF4J");
 
         Properties properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "brook.nonprod.us-west-2.aws.proton.nordstrom.com:9093" /*"127.0.0.1:9092"*/);
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, java.util.UUID.randomUUID().toString());
+
+        String username = "username";
+        String password = "password";
+        String jaasTemplate = "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"%s\" password=\"%s\";";
+        String jaasCfg = String.format(jaasTemplate, username, password);
 
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
-        properties.setProperty("schema.registry.url", "http://localhost:8081");
-
+        properties.setProperty("schema.registry.url", "https://schema-registry.nonprod.us-west-2.aws.proton.nordstrom.com" /*"http://localhost:8081"*/);
+        properties.setProperty("security.protocol", "SASL_SSL");
+        properties.setProperty("sasl.mechanism", "SCRAM-SHA-512");
+        properties.setProperty("sasl.username", username);
+        properties.setProperty("sasl.password", password);
+        properties.setProperty("sasl.jaas.config", jaasCfg);
+        properties.setProperty("ssl.ca.location", "/certs/ProtonCert.pem");
+        properties.setProperty("basic.auth.credentials.source", "USER_INFO");
+        properties.setProperty("basic.auth.user.info", String.format("%s:%s", username, password));
         properties.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
 
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-        KafkaConsumer<String, RootType> kafkaConsumer = new KafkaConsumer<>(properties);
-        String topic = "test-topic";
+        KafkaConsumer<String, SpecificRecordBase /*EmailCommunicationRequested*/ /*RootType*/> kafkaConsumer = new KafkaConsumer<>(properties);
+        String topic = "order-events-avro"; //"test-topic";
 
         kafkaConsumer.subscribe(Arrays.asList(topic));
 
         try {
             while (true) {
-                ConsumerRecords<String, RootType> records = kafkaConsumer.poll(Duration.ofMillis(100));
+                ConsumerRecords<String, SpecificRecordBase /*EmailCommunicationRequested*/ /*RootType*/> records = kafkaConsumer.poll(Duration.ofMillis(100));
 
                 if (records.isEmpty()) {
                     continue;
                 }
 
-                for (ConsumerRecord<String, RootType> record : records) {
+                for (ConsumerRecord<String, SpecificRecordBase /*EmailCommunicationRequested*/ /*RootType*/> record : records) {
                     System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(), record.value());
                 }
             }

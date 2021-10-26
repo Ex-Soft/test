@@ -21,7 +21,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-#define TEST_STRING
+//#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -44,8 +44,10 @@
 //#define TEST_REF
 //#define TEST_PATH
 //#define TEST_FORMAT
+#define TEST_PATTERN
 
 using System;
+using System.Buffers.Binary;
 using System.Globalization;
 using System.Security;
 using System.Security.AccessControl;
@@ -68,14 +70,14 @@ using static System.Console;
 
 namespace AnyTest
 {
-    #if TEST_ELVIS_OPERATOR
+    #if TEST_ELVIS_OPERATOR || TEST_PATTERN
         class B
         {
             public List<string> ListOfString { get; set; } = null;
         }
     #endif
 
-    #if TEST_YIELD || TEST_STRING
+    #if TEST_YIELD || TEST_STRING || TEST_PATTERN
         class A
         {
             public string Level;
@@ -262,7 +264,10 @@ namespace AnyTest
                 tmpBoolII,
                 tmpBoolIII;
 
-			object
+            bool?
+                tmpBoolNullable;
+
+            object
 				tmpObject,
                 tmpObjectII;
 
@@ -321,11 +326,22 @@ namespace AnyTest
             byte
                 tmpByte;
 
+            uint
+                tmpUInt;
+
             ulong
                 tmpULong;
 
 			if (currentDirectory.IndexOf("bin", StringComparison.Ordinal) != -1)
                 currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal));
+
+            #if TEST_PATTERN
+                tmpObject = new A();
+                if (tmpObject is not B b)
+                {
+                    WriteLine();
+                }
+            #endif
 
             #if TEST_ELVIS_OPERATOR
                 B b = new B();
@@ -399,6 +415,16 @@ namespace AnyTest
                 bytes = BitConverter.GetBytes(tmpLong);
                 tmpULong = BitConverter.ToUInt64(bytesII, 0);
                 bytes = BitConverter.GetBytes(tmpULong);
+                bytesII = new byte[] { 0, 11, 22, 33, 44 };
+                tmpIntII = BitConverter.ToInt32(bytesII, 1);
+                bytes = BitConverter.GetBytes(tmpIntII);
+                bytesII = new byte[] { 0, 0, 0, 26, 93 };
+                tmpIntII = BitConverter.ToInt32(bytesII, 1);
+                bytes = BitConverter.GetBytes(tmpIntII);
+                tmpIntIII = !BitConverter.IsLittleEndian ? tmpIntII : BinaryPrimitives.ReverseEndianness(tmpIntII);
+                tmpUInt = 0xcafebabe;
+                bytes = BitConverter.GetBytes(tmpUInt);
+                bytes = BitConverter.GetBytes(BinaryPrimitives.ReverseEndianness(tmpUInt));
             #endif
 
             #if TEST_DECIMAL
@@ -1472,13 +1498,12 @@ namespace AnyTest
 			#endif
 
 			#if TEST_NULLABLE_TYPES
-                DateTime?
-                    tmpDateTimeNullable = null;
+                tmpDateTimeNullable1 = null;
+                tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable1);
 
-                tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable);
-
-                bool?
-                    tmpBoolNullable = null;
+                tmpBoolNullable = null;
+                WriteLine($"null {(tmpBoolNullable == false ? "=" : "!")}= false"); // !=
+                WriteLine($"null {(tmpBoolNullable == true ? "=" : "!")}= true"); // !=
 
                 try
                 { 

@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "TestSettings": {
+      "commandName": "Project",
+      "commandLineArgs": "arg1=\"arg1value\" arg2=\"arg2value\"",
+      "environmentVariables": {
+        "env1": "env1value",
+        "env2": "env2value",
+        "AppSettings:Victim": "Victim (environment variable)"
+      }
+    }
+  }
+}

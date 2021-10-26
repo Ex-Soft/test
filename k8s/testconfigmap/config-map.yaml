@@ -1,0 +1,16 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: example-configmap
+  namespace: default
+data:
+  # Configuration Values are stored as key-value pairs
+  system.data.name: "app-name"
+  system.data.url: "https://app-name.com"
+  system.data.type_one: "app-type-xxx"
+  system.data.value: "3"
+  # File like Keys
+  system.interface.properties: |
+    ui.type=2
+    ui.color1=red
+    ui.color2=green

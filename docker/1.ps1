@@ -2,6 +2,7 @@ docker volume create my-vol
 docker volume ls
 docker volume inspect my-vol
 docker volume rm my-vol
+docker volume rm $(docker volume ls -q)
 docker run -it --rm -v ${pwd}:/mnt --name testworkdir testworkdir
 
 docker exec -it confluent /bin/bash

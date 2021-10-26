@@ -25,6 +25,8 @@ import { TestStoreComponent } from './components/test-store/test-store.component
 import { TestAsyncComponent } from './components/test-async/test-async.component';
 import { TestItemWithEnumComponent } from './components/test-item-with-enum/test-item-with-enum.component';
 import { TestObservableComponent } from './components/rxjs/test-observable/test-observable.component';
+import { TestUnitTestComponent } from './components/test-unit-test/test-unit-test.component';
+import { TostringPipe } from './pipes/tostring.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { TestObservableComponent } from './components/rxjs/test-observable/test-
     TestStoreComponent,
     TestAsyncComponent,
     TestItemWithEnumComponent,
-    TestObservableComponent
+    TestObservableComponent,
+    TestUnitTestComponent,
+    TostringPipe
   ],
   imports: [
     BrowserModule,

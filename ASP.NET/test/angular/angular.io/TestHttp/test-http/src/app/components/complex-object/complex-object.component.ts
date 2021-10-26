@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { untilDestroyed } from 'ngx-take-until-destroy';
 import { tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { ComplexObjectDtoToViewPipe } from '../../pipes/complex-object-dto-to-view.pipe';
 import { ComplexObjectQuery, ComplexObjectService } from '../../core/state/complex-object';
 import { IComplexObjectView } from '../../models/IComplexObjectView';
 
+@UntilDestroy()
 @Component({
   selector: 'app-complex-object',
   templateUrl: './complex-object.component.html',

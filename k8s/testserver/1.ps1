@@ -16,6 +16,8 @@ kubectl config get-contexts
 kubectl config use-context minikube
 
 kubectl apply -f together.yaml
+kubectl describe deployments
+kubectl describe deployment/testserver
 kubectl get pods
 kubectl describe pod/testserver-7c5b96dbff-fwc5b
 kubectl get services
