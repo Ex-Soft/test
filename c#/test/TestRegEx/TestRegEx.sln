@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRegEx", "TestRegEx.csproj", "{594DD563-CE4F-4670-9943-DE8519BC7267}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRegEx", "TestRegEx.csproj", "{0A50942B-D44E-4220-A246-C4D972627F90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{594DD563-CE4F-4670-9943-DE8519BC7267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{594DD563-CE4F-4670-9943-DE8519BC7267}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{594DD563-CE4F-4670-9943-DE8519BC7267}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{594DD563-CE4F-4670-9943-DE8519BC7267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A50942B-D44E-4220-A246-C4D972627F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A50942B-D44E-4220-A246-C4D972627F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A50942B-D44E-4220-A246-C4D972627F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A50942B-D44E-4220-A246-C4D972627F90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB160B35-4B8D-4D2B-BE7C-33F67298ECAF}
 	EndGlobalSection
 EndGlobal

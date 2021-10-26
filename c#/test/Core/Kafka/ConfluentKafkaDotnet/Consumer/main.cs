@@ -93,13 +93,29 @@ namespace Consumer
             var schemaRegistryConfig = new SchemaRegistryConfig
             {
                 Url = Common.SchemaRegistryUrl,
-                SslCaLocation = "/certs/ProtonCert.pem",
+                /*SslCaLocation = "/certs/ProtonCert.pem",
                 BasicAuthCredentialsSource = AuthCredentialsSource.UserInfo,
-                BasicAuthUserInfo = $"{Common.UserName}:{Common.Password}"
+                BasicAuthUserInfo = $"{Common.UserName}:{Common.Password}"*/
             };
 
             using var schemaRegistry = new CachedSchemaRegistryClient(schemaRegistryConfig);
+
             Confluent.SchemaRegistry.Schema schema = schemaRegistry.GetSchemaAsync(1).Result;
+            int schemaId = schemaRegistry.GetSchemaIdAsync("TestTypes-value",
+                    @"{""type"":""record"",""name"":""sampleRecord"",""namespace"":""com.mycorp.mynamespace"",""fields"":[{""name"":""my_field1"",""type"":""int"",""doc"":""The int type is a 32-bit signed integer.""},{""name"":""my_field2"",""type"":""double"",""doc"":""The double type is a double precision (64-bit) IEEE 754 floating-point number.""},{""name"":""my_field3"",""type"":""string""}],""doc"":""Sample schema to help you get started.""}")
+                .Result;
+
+            List<string> allSubjects = schemaRegistry.GetAllSubjectsAsync().Result;
+            int idx = allSubjects.FindIndex(item => item.Contains("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested"));
+            List<int> versions = schemaRegistry.GetSubjectVersionsAsync(allSubjects[idx]).Result;
+            schema = schemaRegistry.GetSchemaAsync(5519/*9617*/).Result;
+            schema = schemaRegistry.GetSchemaAsync(9617).Result;
+            string schemaStr1 = schemaRegistry.GetSchemaAsync("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested", 1).Result;
+            schemaId = schemaRegistry.GetSchemaIdAsync("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested", schemaStr1).Result;
+            string schemaStr11 = schemaRegistry.GetSchemaAsync("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested", 11).Result;
+            schemaId = schemaRegistry.GetSchemaIdAsync("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested", schemaStr11).Result;
+            bool isCompatibleAsync = schemaRegistry.IsCompatibleAsync("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested", schemaStr1).Result;
+            isCompatibleAsync = schemaRegistry.IsCompatibleAsync("order-events-avro-com.nordstrom.care.communications.EmailCommunicationRequested", schemaStr11).Result;
             Avro.Schema avroSchema1 = Avro.Schema.Parse(schema.SchemaString);
             Avro.Schema avroSchema2 = Avro.Schema.Parse("{\"type\":\"string\"}");
             WriteLine($"{(avroSchema1 == avroSchema2 ? "=" : "!")}=");
