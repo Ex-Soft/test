@@ -1,0 +1,16 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test SignalR</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.10/signalr.js"></script>
+		<script src="TestSignalR.js"></script>
+	</head>
+	<body>
+		<input type="button" id="btnStart" value="start" onclick="start()" /><br/>
+		<label>User:&nbsp;<input type="text" id="textUser" value="js client"></label><br/>
+		<label>Message:&nbsp;<input type="text" id="textMessage" value="js client message"></label><br/>
+		<input type="button" id="btnSend" value="send" onclick="send()" disabled="disabled" /><br/>
+		<ul id="listMessages"></ul>
+	</body>
+</html>

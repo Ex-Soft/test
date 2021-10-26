@@ -9,9 +9,55 @@ function onLoad()
 	var
 		d1,
 		d2,
-		offset;
+		offset,
+		str;
 
 	if(window.console && console.log) {
+		d1 = new Date(2020, 8, 28);
+		console.log("new Date(2020, 8, 28) %o %s %s %s", d1, d1.toLocaleString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+		
+		str = "2020-09-28";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %o %s %s %s", str, d1, d1.toLocaleString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+		
+		str = "2021-10-11T22:23:42";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %o %s %s %s", str, d1, d1.toLocaleString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+		
+		str = "2020-09-28T00:00:00-07:00";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %s", str, d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+
+		str = "2020-12-28T00:00:00-08:00";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %s", str, d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+
+		str = "2020-09-28T07:00:00Z";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %s", str, d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+		
+		str = "2020-12-31T08:00:00Z";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %s", str, d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
+		
+		str = "2021-09-30T23:59:59+02:00";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %o %s %s %s %s", str, d1, d1.toString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "short" }), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "shortGeneric" }));
+
+		str = "2011-12-31T23:59:59+02:00";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %o %s %s %s %s", str, d1, d1.toString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "short" }), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "shortGeneric" }));
+
+		str = "2011-12-31T23:59:59.0000000Z";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") %o %s %s %s", str, d1, d1.toString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "longOffset" }));
+		
+		d1 = new Date(2020, 1, 29, 23, 59, 59, 0);
+		console.log("new Date(2020, 1, 29, 23, 59, 59, 0) %o %s %s", d1, d1.toString(), d1.toUTCString());
+		
+		d1 = new Date(Date.UTC(2020, 1, 29, 23, 59, 59, 0));
+		console.log("new Date(Date.UTC(2020, 1, 29, 23, 59, 59, 0)) %o %s %s", d1, d1.toString(), d1.toUTCString());
+
 		d1 = Date.now(),
 		d2 = new Date(d1);
 		console.log("Date.now() %o %s %s", d1, d2.toString(), d2.toUTCString());

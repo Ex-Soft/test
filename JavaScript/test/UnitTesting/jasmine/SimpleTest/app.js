@@ -32,3 +32,17 @@ class SmthClass {
 
 let smthClass = new SmthClass();
 smthClass.smthMethod("app");
+
+var a;
+var b = null;
+var foo = {
+	a: 1,
+	b: 2,
+	bar: "baz"
+};
+var arr = [1,2,3,4,5];
+var dt = new Date();
+var num = 42.2;
+var bool = true;
+var str = "1";
+

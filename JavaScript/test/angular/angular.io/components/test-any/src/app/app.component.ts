@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IDto } from './models/IDto';
 import { IComplexObjectDto, IComplexObjectGroupDto, IComplexObjectGroupItemDto } from './models/IComplexObjectDto';
+import { IPeopleView, IPerson } from './models/IPeopleView';
+import { IDataTwo } from './models';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +46,21 @@ export class AppComponent {
       } as IComplexObjectGroupDto,
     ] as IComplexObjectGroupDto[]
   } as IComplexObjectDto;
+
+  data1 = {
+    people: [
+      {id: 1, name: 'Ludwig'} as IPerson,
+      {id: 2, name: 'Anastasia'} as IPerson,
+      {id: 3, name: 'Lynn'} as IPerson,
+      {id: 4, name: 'Jim'} as IPerson,
+      {id: 5, name: 'Bruce'} as IPerson,
+      {id: 6, name: 'Antje'} as IPerson,
+    ] as IPerson[]
+  } as IPeopleView;
+
+  data2 = {
+
+  } as IDataTwo;
 
   allChecked = true;
 

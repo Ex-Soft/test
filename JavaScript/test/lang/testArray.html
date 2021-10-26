@@ -38,6 +38,12 @@ if(window.console && console.log)
 	console.log("unique %o",aaa);
 
 	aa = [ 0, 1, 2 ];
+	[].push.apply(aa, undefined);
+	console.log("[].push.apply(arr1, undefined) %o", aa);
+	[].push.apply(aa, null);
+	console.log("[].push.apply(arr1, null) %o", aa);
+	[].push.apply(aa, []);
+	console.log("[].push.apply(arr1, []) %o", aa);
 	aaa = [ 3, 4, 5 ];
 	[].push.apply(aa, aaa);
 	console.log("[].push.apply(arr1, arr2) %o", aa);
@@ -137,7 +143,11 @@ if(window.console && console.log)
 	console.log(aaa);
 	aaa = aa.filter(function (item) { return !item.match(/\d{4}-\d{2}-\d{2}/); });
 	console.log(aaa);
-
+	
+	aa = [ 1, 2, 3 ];
+	aaa = aa.filter(item => item === 4);
+	console.log("filter() %o", aaa);
+	
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 4 ];
 	console.log(intersect(aa, aaa));

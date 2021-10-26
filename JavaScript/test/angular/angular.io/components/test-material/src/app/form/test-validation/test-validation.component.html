@@ -27,7 +27,7 @@
         {{notWhitespaceErrorMessage}}
       </mat-error>
     </mat-form-field>
-    <div class="test-validation-enter-address" (click)="enterAddress = !enterAddress">Enter address<mat-icon class="enter-address-expand-icon" *ngIf="!enterAddress">expand_more</mat-icon><mat-icon class="enter-address-expand-icon" *ngIf="enterAddress">expand_less</mat-icon></div>
+    <div class="test-validation-enter-address" (click)="this.enterAddress = !this.enterAddress">Enter address<mat-icon class="enter-address-expand-icon" *ngIf="!enterAddress">expand_more</mat-icon><mat-icon class="enter-address-expand-icon" *ngIf="enterAddress">expand_less</mat-icon></div>
     <mat-form-field appearance="outline" class="test-validation-input-full-width" *ngIf="enterAddress">
       <mat-label>Line #1<span class="test-validation-label-required">*</span></mat-label>
       <input type="text" matInput formControlName="line1" [errorStateMatcher]="matcher" />
@@ -39,18 +39,42 @@
       <mat-label>Line #2</mat-label>
       <input type="text" matInput formControlName="line2" />
     </mat-form-field>
+    <mat-checkbox (change)="checkBoxAddRemoveValidatorsChange($event.checked)">Add/Remove validators</mat-checkbox>
+    <mat-form-field appearance="outline" class="test-validation-input-full-width">
+      <mat-label>Line #3</mat-label>
+      <input type="text" matInput formControlName="line3" [errorStateMatcher]="matcher" />
+      <mat-error *ngIf="line3.hasError('maxlength')">
+        {{lineTooLongErrorMessage}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="test-validation-input-full-width">
+      <mat-label>Line #4</mat-label>
+      <input type="text" matInput formControlName="line4" [errorStateMatcher]="matcher" [attr.maxlength]="lineMaxLength" />
+      <mat-error *ngIf="line4.hasError('maxlength')">
+        {{lineTooLongErrorMessage}}
+      </mat-error>
+    </mat-form-field>
   </form>
   <div>
     <table>
       <tbody>
         <tr>
-            <td rowspan="2">form: {{testValidationForm.valid}}</td>
-            <td>firstName: {{firstName.status}}</td>
-            <td>lastName: {{lastName.status}}</td>
+          <td rowspan="6">form: {{testValidationForm.valid}}</td>
+          <td>firstName: {{firstName.status}}</td>
+          <td>lastName: {{lastName.status}}</td>
         </tr>
         <tr>
-            <td>line1: {{line1.status}}</td>
-            <td>line2: {{line2.status}}</td>
+          <td rowspan="4">line:</td>
+          <td>#1: {{line1.status}}</td>
+        </tr>
+        <tr>
+          <td>#2: {{line2.status}}</td>
+        </tr>
+        <tr>
+          <td>#3: {{line3.status}}</td>
+        </tr>
+        <tr>
+          <td>#4: {{line4.status}}</td>
         </tr>
       </tbody>
     </table>

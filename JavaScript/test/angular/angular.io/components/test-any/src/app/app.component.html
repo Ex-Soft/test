@@ -6,6 +6,34 @@
 
 <ng-container>
   <div>
+    Test expand collapse with content
+    <app-expand-collapse-with-content [legend]="'Legend'">
+      <app-content-component-one [data]="data1"></app-content-component-one>
+    </app-expand-collapse-with-content>
+  </div>
+</ng-container>
+<hr/>
+
+<ng-container>
+  <div>
+    Test expand collapse with content
+    <app-expand-collapse-with-content [legend]="'Legend'">
+      <app-content-component-one [data]="data1"></app-content-component-one>
+    </app-expand-collapse-with-content>
+  </div>
+</ng-container>
+<hr/>
+
+<ng-container>
+  <div>
+    Test expand collapse with template
+    <app-expand-collapse-with-template [legend]="'Legend'" [data]="data1"></app-expand-collapse-with-template>
+  </div>
+</ng-container>
+<hr/>
+
+<ng-container>
+  <div>
     Test simple
     <app-test-simple></app-test-simple>
   </div>

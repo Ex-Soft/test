@@ -37,6 +37,6 @@ export class AppComponent {
   }
 
   onTestValidationClick(): void {
-    const dialogRef = this.dialog.open(TestValidationComponent, { width: '500px' });
+    const dialogRef = this.dialog.open(TestValidationComponent, { width: '600px' });
   }
 }
