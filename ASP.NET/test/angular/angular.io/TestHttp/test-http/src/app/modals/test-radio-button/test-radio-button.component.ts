@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { IItemDto, ItemsQuery, ItemService } from '../../core/state/item';
+import { IItem, ItemsQuery, ItemService } from '../../core/state/item';
 
 @UntilDestroy()
 @Component({
@@ -11,7 +11,7 @@ import { IItemDto, ItemsQuery, ItemService } from '../../core/state/item';
   styleUrls: ['./test-radio-button.component.css']
 })
 export class TestRadioButtonComponent implements OnInit, OnDestroy {
-  options: IItemDto[] = [];
+  options: IItem[] = [];
   selectedOption: number;
   isLoading: boolean;
 

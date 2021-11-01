@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IItemDto } from 'src/app/core/state/item';
+import { IItem } from 'src/app/core/state/item';
 import { TestStoreQuery, TestStoreService } from 'src/app/core/state/test-store';
 
 @Component({
@@ -10,12 +10,12 @@ import { TestStoreQuery, TestStoreService } from 'src/app/core/state/test-store'
   styleUrls: ['./test-async.component.css']
 })
 export class TestAsyncComponent implements OnInit {
-  itemsAsyncAndSubscribeTogether: Observable<IItemDto[]>;
-  itemsAsync: Observable<IItemDto[]>;
-  itemsSubscribe: IItemDto[];
-  itemsBehaviorSubject = new BehaviorSubject<IItemDto[]>([]);
-  activeItem$: Observable<IItemDto>;
-  activeItem: IItemDto;
+  itemsAsyncAndSubscribeTogether: Observable<IItem[]>;
+  itemsAsync: Observable<IItem[]>;
+  itemsSubscribe: IItem[];
+  itemsBehaviorSubject = new BehaviorSubject<IItem[]>([]);
+  activeItem$: Observable<IItem>;
+  activeItem: IItem;
   baseUrl = 'http://localhost:53683/api/item';
 
   constructor(
@@ -39,21 +39,21 @@ export class TestAsyncComponent implements OnInit {
   }
 
   onLoadAsyncAndSubscribeTogetherClick(): void {
-    this.itemsAsyncAndSubscribeTogether = this.httpClient.get<IItemDto[]>(this.baseUrl);
+    this.itemsAsyncAndSubscribeTogether = this.httpClient.get<IItem[]>(this.baseUrl);
     this.itemsAsyncAndSubscribeTogether.subscribe();
   }
 
   onLoadAsyncClick(): void {
-    this.itemsAsync = this.httpClient.get<IItemDto[]>(this.baseUrl);
+    this.itemsAsync = this.httpClient.get<IItem[]>(this.baseUrl);
   }
 
   onLoadSubscribeClick(): void {
-    this.httpClient.get<IItemDto[]>(this.baseUrl)
+    this.httpClient.get<IItem[]>(this.baseUrl)
       .subscribe(items => this.itemsSubscribe = items);
   }
 
   onLoadBehaviorSubjectClick(): void {
-    this.httpClient.get<IItemDto[]>(this.baseUrl)
+    this.httpClient.get<IItem[]>(this.baseUrl)
       .subscribe(items => this.itemsBehaviorSubject.next(items));
   }
 

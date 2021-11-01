@@ -39,6 +39,9 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseRouting();
             app.UseCors(AllowSpecificOrigins);
 
