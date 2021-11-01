@@ -17,6 +17,19 @@ if(window.console && console.clear)
 
 if(window.console && console.log)
 {
+	aa = [ 0, 1, 2, 3, 4, 5 ];
+	for (let i = aa.length - 1; i >= 0; --i) {
+		if (aa[i] % 2 === 1) {
+			aa.splice(i, 1);
+		}
+	}
+	
+	aa = [ { id:1, val: '1' }, { id:2, val: '2' }, { id:3, val: '3' } ];
+	aaa = aa.find(item => item.id === 2);
+	o1 = { id:22, val: '22' };
+	aaa = { ...o1 };
+	console.log("find() -> edit %o", aa);
+	
 	aa = [ { id:1, val: '1' }, { id:1, val: '1' }, { id:3, val: '3' } ];
 	aaa = [ ...new Set(aa) ];
 	console.log(aaa);
