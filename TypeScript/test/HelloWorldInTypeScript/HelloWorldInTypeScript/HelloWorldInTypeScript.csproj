@@ -120,6 +120,7 @@
     <TypeScriptCompile Include="Scripts\SmthClass.ts" />
     <TypeScriptCompile Include="Scripts\Generic.ts" />
     <TypeScriptCompile Include="Scripts\TestCast.ts" />
+    <TypeScriptCompile Include="Scripts\TestEvent.ts" />
     <TypeScriptCompile Include="Scripts\TestSet.ts" />
     <TypeScriptCompile Include="Scripts\TupleVariables.ts" />
     <TypeScriptCompile Include="Scripts\TypeAliases.ts" />
