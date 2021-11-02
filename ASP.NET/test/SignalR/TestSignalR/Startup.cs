@@ -28,7 +28,7 @@ namespace TestSignalR
                 {
                     builder
                         .AllowAnyHeader()
-                        .WithOrigins("http://localhost")
+                        .WithOrigins("http://localhost", "http://localhost:4200")
                         .AllowCredentials();
                 });
             });
