@@ -10,13 +10,9 @@ export class SignalRService extends EventEmitter {
   private _receivedEventName = 'received';
   private _errorEventName = 'error';
 
-  /* private _signalRHubUrl = 'http://localhost:49987';
+  private _signalRHubUrl = 'http://localhost:49987';
   private _chatEndpoint = '/chatHub';
-  private _methodName = 'ReceiveMessage'; */
-
-  private _signalRHubUrl = 'https://notificationhub-dit.nonprod.customercare.vip.nordstrom.com';
-  private _chatEndpoint = '/hubs/delta';
-  private _methodName = 'SendDelta';
+  private _methodName = 'ReceiveMessage';
 
   constructor() {
     super();

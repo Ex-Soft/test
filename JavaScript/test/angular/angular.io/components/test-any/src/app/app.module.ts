@@ -23,6 +23,7 @@ import { TemplateComponentOneComponent } from './components/template-component-o
 import { ExpandCollapseWithContentComponent } from './components/expand-collapse-with-content/expand-collapse-with-content.component';
 import { ContentComponentOneComponent } from './components/content-component-one/content-component-one.component';
 import { TestWatchingComponent } from './components/test-watching/test-watching.component';
+import { TestInjectableComponent } from './components/test-injectable/test-injectable.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TestWatchingComponent } from './components/test-watching/test-watching.
     TemplateComponentOneComponent,
     ExpandCollapseWithContentComponent,
     ContentComponentOneComponent,
-    TestWatchingComponent
+    TestWatchingComponent,
+    TestInjectableComponent
   ],
   imports: [
     BrowserModule,

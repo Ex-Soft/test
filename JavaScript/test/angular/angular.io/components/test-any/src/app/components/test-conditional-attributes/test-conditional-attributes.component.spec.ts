@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TestConditionalAttributesComponent } from './test-conditional-attributes.component';
 
@@ -8,6 +9,7 @@ describe('TestConditionalAttributesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [ TestConditionalAttributesComponent ]
     })
     .compileComponents();

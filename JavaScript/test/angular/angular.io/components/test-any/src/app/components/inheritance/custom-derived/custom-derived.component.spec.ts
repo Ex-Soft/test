@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
+import { CustomBaseComponent } from '../custom-base/custom-base.component';
 import { CustomDerivedComponent } from './custom-derived.component';
 
 describe('CustomDerivedComponent', () => {
@@ -8,7 +10,8 @@ describe('CustomDerivedComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomDerivedComponent ]
+      imports: [FormsModule],
+      declarations: [ CustomBaseComponent, CustomDerivedComponent ]
     })
     .compileComponents();
   }));

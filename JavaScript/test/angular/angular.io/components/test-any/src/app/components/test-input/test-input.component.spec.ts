@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TestInputComponent } from './test-input.component';
 
@@ -8,6 +9,7 @@ describe('TestInputComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [ TestInputComponent ]
     })
     .compileComponents();
