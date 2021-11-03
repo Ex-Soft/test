@@ -13,6 +13,12 @@ function onLoad()
 		str;
 
 	if(window.console && console.log) {
+		str = "2020-02-29T00:00:00+02:00";
+		d1 = new Date(str);
+		d2 = Date.parse(str);
+		console.log("new Date(\"%s\") %o %s %s", str, d1, d1.toLocaleString(), d1.toUTCString());
+		console.log("Date.parse(\"%s\") %o", str, d2);
+		
 		d1 = new Date(2020, 8, 28);
 		console.log("new Date(2020, 8, 28) %o %s %s %s", d1, d1.toLocaleString(), d1.toUTCString(), d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true, timeZoneName: "short" }));
 		
