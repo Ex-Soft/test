@@ -1,4 +1,18 @@
 import { Injectable } from '@angular/core';
+import { EventEmitter } from 'events';
+
+@Injectable({ providedIn: 'root' })
+export class TestInjectableClassWithEvents extends EventEmitter {
+    constructor() {
+        super();
+
+        console.log('TestInjectableClassWithEvents.ctor()');
+    }
+
+    fire(): void {
+        // this.emit('timer', new Date());
+    }
+}
 
 export class TestInjectableClassWrapperBase {
     pString: string;

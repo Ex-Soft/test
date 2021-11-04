@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestInjectableClassWrapper  } from './test-injectable';
+import { TestInjectableClassWrapper, TestInjectableClassWithEvents  } from './test-injectable';
 import { TestInjectableComponent } from './test-injectable.component';
 
 const testInjectableClassWrapper = {
@@ -12,6 +12,10 @@ const testInjectableClassWrapper = {
   PArrayOfString2: ['PArrayOfString2 #0 (from mock)', 'PArrayOfString2 #1 (from mock)', 'PArrayOfString2 #2 (from mock)']
 };
 
+const testInjectableClassWithEvents = {
+  on: () => {}
+};
+
 describe('TestInjectableComponent', () => {
   let component: TestInjectableComponent;
   let fixture: ComponentFixture<TestInjectableComponent>;
@@ -20,7 +24,8 @@ describe('TestInjectableComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ TestInjectableComponent ],
       providers: [
-        { provide: TestInjectableClassWrapper, useValue: testInjectableClassWrapper }
+        { provide: TestInjectableClassWrapper, useValue: testInjectableClassWrapper },
+        { provide: TestInjectableClassWithEvents, useValue: testInjectableClassWithEvents }
       ]
     })
     .compileComponents();

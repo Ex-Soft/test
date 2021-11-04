@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit/*, Inject*/ } from '@angular/core';
 
-import { TestInjectableClassWrapper } from './test-injectable';
+import { TestInjectableClassWrapper, TestInjectableClassWithEvents } from './test-injectable';
 
 @Component({
   selector: 'app-test-injectable',
@@ -8,14 +8,23 @@ import { TestInjectableClassWrapper } from './test-injectable';
   styleUrls: ['./test-injectable.component.css']
 })
 export class TestInjectableComponent implements OnInit {
+  // private testInjectableClassWithEvents: TestInjectableClassWithEvents;
+
   pString: string;
   pString1: string;
   pString2: string;
   pArrayOfString: string[];
   pArrayOfString1: string[];
   pArrayOfString2: string[];
+  date: number;
 
-  constructor(private testInjectableWrapper: TestInjectableClassWrapper) {}
+  constructor(
+    private testInjectableWrapper: TestInjectableClassWrapper,
+    /*@Inject(TestInjectableClassWithEvents)*/
+    private testInjectableClassWithEvents: TestInjectableClassWithEvents
+  ) {
+    // this.testInjectableClassWithEvents = testInjectableClassWithEvents;
+  }
 
   ngOnInit(): void {
     this.pString = this.testInjectableWrapper.PString;
@@ -25,6 +34,13 @@ export class TestInjectableComponent implements OnInit {
     this.pArrayOfString = this.testInjectableWrapper.PArrayOfString;
     this.pArrayOfString1 = this.testInjectableWrapper.PArrayOfString1;
     this.pArrayOfString2 = this.testInjectableWrapper.PArrayOfString2;
+
+    console.log(this.testInjectableClassWithEvents);
+    /* if (this.testInjectableClassWithEvents.on) {
+      this.testInjectableClassWithEvents.on('timer', this.onTimer);
+    } else if (this.testInjectableClassWithEvents.addListener) {
+      this.testInjectableClassWithEvents.addListener('timer', this.onTimer);
+    } */
   }
 
   get PString(): string {
@@ -49,5 +65,9 @@ export class TestInjectableComponent implements OnInit {
 
   get PArrayOfString2(): string[] {
     return this.pArrayOfString2;
+  }
+
+  onTimer = (date: Date) => {
+    this.date = date.valueOf();
   }
 }
