@@ -5,7 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 export class FormSimpleInputErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
-    return control && control.invalid;
+    return control !== null && control.invalid;
   }
 }
 
@@ -15,8 +15,8 @@ export class FormSimpleInputErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./form-simple.component.css']
 })
 export class FormSimpleComponent implements OnInit {
-  formSimple: FormGroup;
-  firstName: FormControl;
+  formSimple: FormGroup | undefined;
+  firstName: FormControl | undefined;
   matcher = new FormSimpleInputErrorStateMatcher();
 
   constructor(
@@ -40,7 +40,7 @@ export class FormSimpleComponent implements OnInit {
 
   private createForm(): void {
     this.formSimple = new FormGroup({
-      firstName: this.firstName
+      firstName: this.firstName as FormControl
     });
   }
 

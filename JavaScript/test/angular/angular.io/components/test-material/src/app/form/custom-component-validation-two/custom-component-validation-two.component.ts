@@ -21,8 +21,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Va
   ]
 })
 export class CustomComponentValidationTwoComponent implements OnInit, ControlValueAccessor {
-  @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
-  answer: number;
+  @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement> | undefined;
+  answer: number | undefined;
 
   private onChange = (_: any) => { };
   private onTouched = () => { };
@@ -33,7 +33,7 @@ export class CustomComponentValidationTwoComponent implements OnInit, ControlVal
     this.createCaptcha();
   }
 
-  writeValue(value): void {
+    writeValue(value: any): void {
     if (window.console && console.log) {
       console.log(value);
     }
@@ -48,7 +48,15 @@ export class CustomComponentValidationTwoComponent implements OnInit, ControlVal
   }
 
   createCaptcha(): void {
+    if (this.canvas === undefined) {
+      return;
+    }
+
     const ctx = this.canvas.nativeElement.getContext('2d');
+    if (ctx === null) {
+      return;
+    }
+
     const [numOne, numTwo] = [random(), random()];
     this.answer = numOne + numTwo;
 

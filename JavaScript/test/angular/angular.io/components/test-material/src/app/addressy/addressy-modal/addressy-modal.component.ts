@@ -15,7 +15,7 @@ export class AddressyModalComponent {
     this.dialogRef.close();
   }
 
-  onAddressSelected(event): void {
+  onAddressSelected(event: any): void {
     console.log(event);
   }
 
@@ -23,7 +23,7 @@ export class AddressyModalComponent {
     console.log('onEnterAddressManually');
   }
 
-  onError(event): void {
+  onError(event: any): void {
     console.log(event);
   }
 }

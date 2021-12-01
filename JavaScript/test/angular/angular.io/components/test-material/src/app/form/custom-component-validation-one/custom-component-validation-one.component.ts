@@ -28,8 +28,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Va
   ]
 })
 export class CustomComponentValidationOneComponent implements ControlValueAccessor, Validator {
-  jsonString: string;
-  private parseError: boolean;
+  jsonString: string | undefined;
+  private parseError: boolean | undefined;
   private data: any;
 
   private propagateChange = (_: any) => { };
@@ -52,7 +52,7 @@ export class CustomComponentValidationOneComponent implements ControlValueAccess
     this.propagateTouched = fn;
   }
 
-  onChange(event): void {
+  onChange(event: any): void {
     const newValue = event.target.value;
     try {
         this.data = JSON.parse(newValue);
