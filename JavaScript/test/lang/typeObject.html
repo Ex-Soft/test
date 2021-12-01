@@ -63,6 +63,29 @@ function onLoad()
 		console.log("%o", createNewObject({p1: "p1"}));
 		console.log("%o", createNewObject({p1: "p1", p2: "p2"}));
 		console.log("%o", createNewObject({p1: "p1", p2: "p2", p3: "p3"}));
+		
+		o1 = { p1: "p1", p3: "p3" };
+		o2 = {
+			...!!o1.p1 && { p1: o1.p1 },
+			...!!o1.p2 && { p2: o1.p2 },
+			...!!o1.p3 && { p3: o1.p3 },
+			...!!o1.p4 && { p4: o1.p4 }
+		};
+		
+		console.log("%o %o", o1, o2);
+		
+		let target = { p1: "p1t", p2: "p2t"};
+		let source = { p2: "p2s", p3: "p3s"};
+		let returnedTarget = Object.assign(target, source);
+		console.log("target %o returnedTarget %o source %o", target, returnedTarget, source);
+		target.p2 = "new p2t";
+		console.log("target %o returnedTarget %o source %o", target, returnedTarget, source);
+		
+		source = { p1: "p1s", p2: "p2s" };
+		target = Object.create(source);
+		console.log("target %o source %o", target, source);
+		target.p1 = "new p1t";
+		console.log("target %o source %o", target, source);
 	}
 }
 

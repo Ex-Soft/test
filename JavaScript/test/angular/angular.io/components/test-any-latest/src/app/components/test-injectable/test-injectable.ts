@@ -1,5 +1,3 @@
-// https://hackwild.com/article/event-handling-techniques/
-
 import { Injectable } from '@angular/core';
 import { EventEmitter } from 'events';
 

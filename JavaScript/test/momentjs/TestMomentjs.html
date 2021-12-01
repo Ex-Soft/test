@@ -11,24 +11,48 @@
 function onLoad()
 {
 	var
-		d,
-		str;
+		d1,
+		d2,
+		str,
+		m1,
+		m2;
 
 	if (window.console && console.log) {
 		str = "2011-12-31T23:59:59.0000000Z";
-		d = new Date(str);
-		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d, moment(d).format(), moment(d).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
+		d1 = new Date(str);
+		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d1, moment(d1).format(), moment(d1).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
 		
 		str = "2011-12-31T23:59:59+02:00";
-		d = new Date(str);
-		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d, moment(d).format(), moment(d).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
+		d1 = new Date(str);
+		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d1, moment(d1).format(), moment(d1).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
 		
 		str = "2011-12-31T23:59:59-08:00";
-		d = new Date(str);
-		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d, moment(d).format(), moment(d).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
+		d1 = new Date(str);
+		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str, d1, moment(d1).format(), moment(d1).format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));
 
 		console.log("%o", moment.tz.zonesForCountry("UA"));
 		console.log("%o", moment.tz.zonesForCountry("US"));
+		
+		m1 = moment(new Date());
+		m2 = m1.tz("America/Los_Angeles");
+		console.log("%o %o", m1, m2);
+		d1 = m2.toDate();
+		str = m2.format("YYYY-MM-DDTHH:mm:ssZ");
+		d2 = new Date(str);
+		console.log("%o %o %o", d1.valueOf(), d2.valueOf(), d1.valueOf() - d2.valueOf());
+		console.log("\"%i-%i-%iT%i:%i:%i%i\" \"%s\" \"%s\"", d1.getFullYear(), d1.getMonth() + 1, d1.getDate(), d1.getHours(), d1.getMinutes(), d1.getSeconds(), d1.getTimezoneOffset(), str, moment(d1).format("YYYY-MM-DDTHH:mm:ssZ"));
+		d1 = new Date(str);
+		console.log("\"%i-%i-%iT%i:%i:%i%i\" \"%s\" \"%s\"", d1.getFullYear(), d1.getMonth() + 1, d1.getDate(), d1.getHours(), d1.getMinutes(), d1.getSeconds(), d1.getTimezoneOffset(), str, moment(d1).format("YYYY-MM-DDTHH:mm:ssZ"));
+		
+		d1 = new Date("2021-11-16T07:00:00");
+		console.log("\"%s\" \"%s\"", moment(d1).tz("Europe/Kiev").format("YYYY-MM-DDTHH:mm:ssZ"), moment(d1).tz("America/Los_Angeles").format("YYYY-MM-DDTHH:mm:ssZ"));
+		
+		m1 = moment(new Date("2021-03-14T00:00:00-08:00"));
+		m2 = moment(new Date("2021-03-14T04:30:00-07:00"));
+		console.log(m1.diff(m2, 'hours', true));
+		m1 = moment(new Date("2021-11-07T00:00:00-07:00"));
+		m2 = moment(new Date("2021-11-07T04:30:00-08:00"));
+		console.log(m1.diff(m2, 'hours', true));
 	}
 }
 		</script>
