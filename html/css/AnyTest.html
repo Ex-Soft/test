@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+<!doctype html>
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<meta charset=utf-8" />
 		<title>Any Test</title>
-		<style type="text/css">
+		<style>
 .tabid > tbody > tr > td
 {
 	color: red;
@@ -18,9 +18,37 @@
 {
 	border: 1px solid black;
 }
+
+.all-four-sides {
+	margin: 10px;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.vertical-horizontal {
+	margin: 10px 20px;
+	border: 1px solid black;
+	padding: 10px 20px;
+}
+
+.top-horizontal-bottom {
+	margin: 10px 20px 30px;
+	border: 1px solid black;
+	padding: 10px 20px 30px;
+}
+
+.top-right-bottom-left {
+	margin: 10px 20px 30px 40px;
+	border: 1px solid black;
+	padding: 10px 20px 30px 40px;
+}
 		</style>
 	</head>
 	<body>
+		<div class="all-four-sides">all four sides (10px)</div>
+		<div class="vertical-horizontal">vertical | horizontal (10px | 20px)</div>
+		<div class="top-horizontal-bottom">top | horizontal | bottom (10px | 20px | 30px)</div>
+		<div class="top-right-bottom-left">top | right | bottom | left (10px | 20px | 30px | 40px)</div>
 		<table class="tabid">
 			<tr>
 				<td>TD</td>
