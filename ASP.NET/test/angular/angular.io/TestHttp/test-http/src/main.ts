@@ -13,9 +13,11 @@ if (environment.production) {
 
 export const localStorageKey = 'Akita';
 
-const selectTockenItems: PersistStateSelectFn = (state) => ({ items: Object.values(state.entities) });
+const selectTockenItems: PersistStateSelectFn = (state) =>
+({ items: Object.values(state.entities) });
 selectTockenItems.storeName = 'items';
-const selectTockenItemsWithEnum: PersistStateSelectFn = (state) => ({ items: Object.values(state.entities) });
+const selectTockenItemsWithEnum: PersistStateSelectFn = (state) =>
+({ items: Object.values(state.entities) });
 selectTockenItemsWithEnum.storeName = 'itemswithenum';
 
 persistState({

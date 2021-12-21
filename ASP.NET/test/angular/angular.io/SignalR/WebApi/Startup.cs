@@ -1,12 +1,15 @@
+// https://github.com/raw-coding-youtube/aspnetcore-signalr/tree/main/3.FeatureOverview/FeatureOverview
 // https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-5.0&tabs=visual-studio
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TestSignalR.Hubs;
+using Microsoft.OpenApi.Models;
+using WebApi.Hubs;
 
-namespace TestSignalR
+namespace WebApi
 {
     public class Startup
     {
@@ -20,18 +23,12 @@ namespace TestSignalR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-            services.AddSignalR();
 
-            services.AddCors(options =>
+            services.AddControllers();
+            services.AddSignalR();
+            services.AddSwaggerGen(c =>
             {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .AllowAnyHeader()
-                        .WithOrigins("http://localhost", "http://localhost:4200")
-                        .AllowCredentials();
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
         }
 
@@ -41,24 +38,21 @@ namespace TestSignalR
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseCors();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapControllers();
+                endpoints.MapHub<CustomHub>("/custom");
+                endpoints.MapHub<GroupsHub>("/groups");
             });
         }
     }
