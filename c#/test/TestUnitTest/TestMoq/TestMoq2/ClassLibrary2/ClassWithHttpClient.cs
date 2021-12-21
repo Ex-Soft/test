@@ -9,8 +9,8 @@ namespace ClassLibrary2
 {
     public class ClassWithHttpClient : IClassWithHttpClient
     {
-        protected HttpClient _client = null;
-        protected Uri _uri = null;
+        protected HttpClient? _client = null;
+        protected Uri? _uri = null;
 
         public ClassWithHttpClient(string uri)
         {

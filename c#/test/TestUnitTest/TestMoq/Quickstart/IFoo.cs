@@ -3,7 +3,7 @@
 	public interface IFoo
 	{
 		bool DoSomething(string str);
-		bool DoSomething2(string str);
+		bool DoSomething2(string? str);
 		string DoSomething3(string str);
 		string DoSomethingStringy(string str);
 		bool TryParse(string strIn, out string strOut);

@@ -1,6 +1,5 @@
 ﻿// https://github.com/Moq/moq4/wiki/Quickstart
 
-using System;
 using System.Text.RegularExpressions;
 using Moq;
 
@@ -41,10 +40,13 @@ namespace Quickstart
 			var count = 13;
 			// lazy evaluating return value
 			mock.Setup(foo => foo.GetCount()).Returns(() => count);
+			Console.WriteLine(mock.Object.GetCount());
 
 			var calls = 0;
 			mock.Setup(foo => foo.GetCountThing()).Returns(() => calls).Callback(() => calls++);
 			// returns 0 on first invocation, 1 on the next, and so on
+            Console.WriteLine(mock.Object.GetCountThing());
+            Console.WriteLine(mock.Object.GetCountThing());
 
 			Console.WriteLine(mock.Object.DoSomething("concrete string")); // true
 			Console.WriteLine(mock.Object.DoSomething("another string")); // false
@@ -81,7 +83,7 @@ namespace Quickstart
 			mock.Setup(foo => foo.Add(It.Is<int>(i => i % 2 == 0))).Returns(true);
 			
 			// matching ranges
-			mock.Setup(foo => foo.Add2(It.IsInRange<int>(0, 10, Range.Inclusive))).Returns(true);
+			mock.Setup(foo => foo.Add2(It.IsInRange<int>(0, 10, Moq.Range.Inclusive))).Returns(true);
 			
 			// matching regex
 			mock.Setup(x => x.DoSomething3(It.IsRegex("[a-d]+", RegexOptions.IgnoreCase))).Returns("foo");
@@ -102,6 +104,6 @@ namespace Quickstart
 			Console.WriteLine(mock.Object.DoSomething3("aaa")); // "foo"
 			Console.WriteLine(mock.Object.DoSomething3("zzz")); // null
 			#endregion
-		}
+        }
 	}
 }
