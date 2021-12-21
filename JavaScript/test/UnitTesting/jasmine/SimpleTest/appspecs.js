@@ -31,6 +31,21 @@ describe("jasmine", () => {
 		expect({foo: "foobarbaz"}).toEqual({foo: jasmine.stringMatching("bar")});
 	});
 
+	it("jasmine.toBe()", () => {
+		expect(str).toBe("1");
+		// equ
+		expect(str === "1").toBe(true);
+		expect(str === "1").toBeTrue();
+		expect(str === "1").toBeTruthy();
+		
+		const expected = {
+			a: 1,
+			b: 2,
+			bar: "baz"
+		};
+		expect(foo).not.toBe(expected); // Error: Expected Object({ a: 1, b: 2, bar: 'baz' }) to be Object({ a: 1, b: 2, bar: 'baz' }). Tip: To check for deep equality, use .toEqual() instead of .toBe().
+	});
+
 	it("jasmine.toBeInstanceOf()", () => {
 		expect(dt).toBeInstanceOf(Date);
 	});
@@ -46,6 +61,24 @@ describe("jasmine", () => {
 	it("jasmine.toBeTruthy()", () => {
 		expect(str).toBeTruthy();
 		expect(str).not.toBeTrue();
+	});
+	
+	it("jasmine.toEqual()", () => {
+		let expected = {
+			a: 1,
+			b: 2,
+			bar: "baz"
+		};
+		
+		expect(foo).toEqual(expected);
+		
+		 expected = {
+			bar: "baz",
+			b: 2,
+			a: 1
+		};
+		
+		expect(foo).toEqual(expected);
 	});
 });
 
@@ -151,6 +184,16 @@ describe("spyOn", () => {
 		spyOn(testSmthClass, "smthMethod");
 		testSmthClass.callerFn();
 		expect(testSmthClass.smthMethod).toHaveBeenCalled();
+	});
+});
+
+describe("createSpyObj", () => {
+	it("test property", () => {
+		let obj = jasmine.createSpyObj("ClassWithProperties", [], { data: 13 });
+		expect(obj.data).toEqual(13);
+		
+		Object.getOwnPropertyDescriptor(obj, "data").get.and.returnValue(169);
+		expect(obj.data).toEqual(169);
 	});
 });
 

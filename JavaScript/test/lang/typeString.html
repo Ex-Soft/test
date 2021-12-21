@@ -46,6 +46,9 @@ if (window.console && console.log) {
   str_out = !!str;
   console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
 
+  str = "0377";
+  console.log("parseInt(\"%s\")=%i parseInt(\"%s\", 8)=%i parseInt(\"%s\", 16)=%i +\"%s\"=%i", str, parseInt(str), str, parseInt(str, 8), str, parseInt(str, 16), str, +str);
+
   arr = ['1st', '2nd', '3rd', '4th', '5th'];
   str = arr.join();
   str_out = arr.join('~');

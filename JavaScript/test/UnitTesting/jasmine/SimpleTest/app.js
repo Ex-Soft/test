@@ -33,6 +33,12 @@ class SmthClass {
 let smthClass = new SmthClass();
 smthClass.smthMethod("app");
 
+class ClassWithPropertiesOnly {
+	constructor(data) {
+		this.data = data;
+	}
+}
+
 var a;
 var b = null;
 var foo = {
