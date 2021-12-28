@@ -1,0 +1,3 @@
+<ng-container>
+    <label for="inputTypeFile1">Choose files:&nbsp;</label><input type="file" #file1 id="inputTypeFile1" multiple />&nbsp;<input type="button" value="Upload" (click)="onBtnUploadClick(file1.files)" />&nbsp;{{progress}}%&nbsp;{{message}}
+</ng-container>

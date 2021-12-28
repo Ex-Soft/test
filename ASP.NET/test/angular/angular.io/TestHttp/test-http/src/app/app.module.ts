@@ -27,6 +27,7 @@ import { TestItemWithEnumComponent } from './components/test-item-with-enum/test
 import { TestObservableComponent } from './components/rxjs/test-observable/test-observable.component';
 import { TestUnitTestComponent } from './components/test-unit-test/test-unit-test.component';
 import { LocalStorageComponent } from './components/local-storage/local-storage.component';
+import { TestFileComponent } from './components/test-file/test-file.component';
 import { TostringPipe } from './pipes/tostring.pipe';
 
 @NgModule({
@@ -46,6 +47,7 @@ import { TostringPipe } from './pipes/tostring.pipe';
     TestObservableComponent,
     TestUnitTestComponent,
     LocalStorageComponent,
+    TestFileComponent,
     TostringPipe
   ],
   imports: [
