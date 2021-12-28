@@ -19,6 +19,17 @@ function onLoad()
 		m2;
 
 	if (window.console && console.log) {
+		d1 = new Date(Date.UTC(2021, 2, 14, 9, 59, 59)); // 2021-03-14 09:59:59 GMT - 08:00 = 2021-03-14 01:59:59 PST
+		d2 = new Date(Date.UTC(2021, 2, 14, 10, 0, 0));  // 2021-03-14 10:00:00 GMT - 08:00 = 2021-03-14 02:00:00 PT + 01:00 = 2021-03-14 03:00:00 PDT = 2021-03-14 03:00:00-07:00
+		str1 = moment(d1).tz('America/Los_Angeles').format('YYYY-MM-DDTHH:mm:ssZ');
+		str2 = moment(d2).tz('America/Los_Angeles').format('YYYY-MM-DDTHH:mm:ssZ');
+		console.log("\"%s\" \"%s\" \"%s\" \"%s\"", d1.toUTCString(), str1, d2.toUTCString(), str2);
+		d1 = new Date(Date.UTC(2021, 10, 7, 8, 59, 59)); // 2021-11-07 08:59:59 GMT - 07:00 = 2021-11-07 01:59:59 PDT
+		d2 = new Date(Date.UTC(2021, 10, 7, 9, 0, 0));   // 2021-11-07 09:00:00 GMT - 07:00 = 2021-11-07 02:00:00 PT - 01:00 = 2021-11-07 01:00:00 PST = 2021-11-07 01:00:00-08:00
+		str1 = moment(d1).tz('America/Los_Angeles').format('YYYY-MM-DDTHH:mm:ssZ');
+		str2 = moment(d2).tz('America/Los_Angeles').format('YYYY-MM-DDTHH:mm:ssZ');
+		console.log("\"%s\" \"%s\" \"%s\" \"%s\"", d1.toUTCString(), str1, d2.toUTCString(), str2);
+	
 		str1 = "2011-12-31T23:59:59.0000000Z";
 		d1 = new Date(str1);
 		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str1, d1, moment(d1).format(), moment(d1).format("MM/DD/YYYY HH:mm:ss a"), moment(str1).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str1).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));

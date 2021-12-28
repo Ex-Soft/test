@@ -14,6 +14,9 @@ function onLoad()
 		str;
 
 	if(window.console && console.log) {
+		d1 = new Date("Invalid Date");
+		console.log("date instanceof Date = %o toString.call(date) === \"[object Date]\" = %o date.toString() === \"Invalid Date\" = %o isDate(date) = %o isDateStrict(date) = %o", d1 instanceof Date, toString.call(d1) === "[object Date]", d1.toString() === "Invalid Date", isDate(d1), isDateStrict(d1));
+
 		d1 = Date.now();
 		console.log("%%o=%o %%i=%i %%d=%d %%f=%f", d1, d1, d1, d1);
 		
@@ -190,6 +193,14 @@ function createDate(date, time) {
 	}
 	
     return result;
+}
+
+function isDate(value) {
+	return value && (value instanceof Date || toString.call(value) === '[object Date]');
+}
+
+function isDateStrict(value) {
+	return value && (value instanceof Date || toString.call(value) === '[object Date]') && value.toString() !== "Invalid Date";
 }
 		</script>
 	</head>
