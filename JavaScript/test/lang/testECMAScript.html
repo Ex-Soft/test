@@ -76,6 +76,16 @@ function onLoad()
 		
 		o.frequency ?? (o.frequency = 100);
 		console.log("%o", o);
+		
+		o = {
+			pNumber: 1,
+			pString: "o.pString",
+			pDate: "2020-02-28T00:00:00+02:00"
+		};
+		x = { pDate: (!!o.pDate ? new Date(o.pDate) : new Date), ...o };
+		y = { ...o, pDate: (!!o.pDate ? new Date(o.pDate) : new Date) };
+		console.log("x = %o (typeof pDate = \"%s\")", x, typeof x.pDate);
+		console.log("y = %o (typeof pDate = \"%s\")", y, typeof y.pDate);
 	}
 
 	TestDefaultParameter(1);

@@ -4,92 +4,116 @@
 		<title>Test &lt;input type="file"&gt;</title>
 		<meta charset="utf-8"/>
 		<script>
-function Show()
+function show()
 {
 	var
-		Ctrl,
+		ctrl,
 		tmpStr,
 		f,
 		o;
 
-	if(!(Ctrl=document.getElementById("HtmlInputFile")))
+	if (!(ctrl = document.getElementById("HtmlInputFile")))
 		return;
 
-	alert(Ctrl.value);
-	tmpStr = (Ctrl.files ? "" : "!")+"Ctrl.files";
-	alert(tmpStr);
-	tmpStr="Ctrl.files.length";
-	if(Ctrl.files.length)
+	log(ctrl.value);
+	tmpStr = (ctrl.files ? "" : "!")+"ctrl.files";
+	log(tmpStr);
+	tmpStr="ctrl.files.length";
+	if(ctrl.files.length)
 	{
-		alert(tmpStr+"="+Ctrl.files.length);
-		for(var i=0; i<Ctrl.files.length; ++i)
+		log(tmpStr+"="+ctrl.files.length);
+		for(var i=0; i<ctrl.files.length; ++i)
 		{
-			f=Ctrl.files[i];
+			f=ctrl.files[i];
 			tmpStr="f.fileName";
 			if(f.fileName)
-				alert(tmpStr+"=\""+f.fileName+"\"");
+				log(tmpStr+"=\""+f.fileName+"\"");
 			else
-				alert("!"+tmpStr);
+				log("!"+tmpStr);
 
 			tmpStr="f.fileSize";
 			if(f.fileSize)
-				alert(tmpStr+"=\""+f.fileSize+"\"");
+				log(tmpStr+"=\""+f.fileSize+"\"");
 			else
-				alert("!"+tmpStr);
+				log("!"+tmpStr);
 
 			tmpStr="f.getAsText";
 			if(f.getAsText)
 			{
-				alert(tmpStr);
+				log(tmpStr);
 				o=f.getAsText("");
-				alert(o);
+				log(o);
 			}
 			else
-				alert("!"+tmpStr);
+				log("!"+tmpStr);
 
 			tmpStr="f.getAsDataURL";
 			if(f.getAsDataURL)
 			{
-				alert(tmpStr);
+				log(tmpStr);
 				//o=f.getAsDataURL();
 			}
 			else
-				alert("!"+tmpStr);
+				log("!"+tmpStr);
 
 			tmpStr="f.getAsBinary";
 			if(f.getAsBinary)
 			{
-				alert(tmpStr);
+				log(tmpStr);
 				//o=f.getAsBinary();
 			}
 			else
-				alert("!"+tmpStr);
+				log("!"+tmpStr);
+			
+			tmpStr = "f.name";
+			if (f.name)
+				log(`${tmpStr} = \"${f.name}\"`);
+			else
+				log(`!${tmpStr}`);
+			
+			tmpStr = "f.type";
+			if (f.type)
+				log(`${tmpStr} = \"${f.type}\"`);
+			else
+				log(`!${tmpStr}`);
+			
+			tmpStr = "f.size";
+			if (f.size)
+				log(`${tmpStr} = ${f.size}`);
+			else
+				log(`!${tmpStr}`);
+			
+			tmpStr = "f.lastModified";
+			if (f.lastModified)
+				log(`${tmpStr} = ${f.lastModified}`);
+			else
+				log(`!${tmpStr}`);
 		}
 	}
 	else
-		alert("!"+tmpStr);
+		log("!"+tmpStr);
 }
 
-function Add()
+function add()
 {
 	var
-		Ctrl;
+		ctrl;
 
-	if(!(Ctrl=document.createElement("input")))
+	if(!(ctrl=document.createElement("input")))
 		return;
 
-	Ctrl.type="file";
-	Ctrl.id="HtmlInputFile5";
-	Ctrl.name="HtmlInputFile5";
-	//Ctrl.value="c:\\boot.ini";
+	ctrl.type="file";
+	ctrl.id="HtmlInputFile5";
+	ctrl.name="HtmlInputFile5";
+	//ctrl.value="c:\\boot.ini";
 	
-	document.body.appendChild(Ctrl);
+	document.body.appendChild(ctrl);
 
-	if(Ctrl=document.getElementById("HtmlInputFile5"))
-		alert(Ctrl.name);
+	if(ctrl=document.getElementById("HtmlInputFile5"))
+		log(ctrl.name);
 }
 
-function Read() {
+function read() {
 	if (!window.File || !window.FileReader || !window.FileList || !window.Blob)
 		return;
 
@@ -133,15 +157,20 @@ function Read() {
 		reader.readAsText(file);
 	}
 }
+
+function log(message) {
+	if (window.console && console.log)
+		console.log(message);
+}
 		</script>
 	</head>
 	<body>
-		<input type="file" id="HtmlInputFile" onkeydown="alert('onkeydown')" onkeypress="alert('onkeypress')" onkeyup="alert('onkeyup')" onchange="alert('onchange')" onclick="alert('onclick')">
+		<input type="file" id="HtmlInputFile" onkeydown="log('onkeydown')" onkeypress="log('onkeypress')" onkeyup="log('onkeyup')" onchange="log('onchange')" onclick="log('onclick')">
 		<input type="file" id="HtmlInputFile2" accept="*.jpg,*.jpeg">
 		<input type="file" id="HtmlInputFile3" value="valuevalue">
 		<input type="file" id="HtmlInputFile4"><input type="button" value="On/Off" onclick="document.getElementById('HtmlInputFile4').style.display = document.getElementById('HtmlInputFile4').style.display=='' ? 'none' : ''">
-		<input type="button" value="Show" onclick="Show()">
-		<input type="button" value="Add" onclick="Add()">
-		<input type="button" value="Read" onclick="Read()"/>
+		<input type="button" value="Show" onclick="show()">
+		<input type="button" value="Add" onclick="add()">
+		<input type="button" value="Read" onclick="read()"/>
 	</body>
 </html>

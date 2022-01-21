@@ -33,6 +33,14 @@ function Person(first_name)
 }
 
 if (window.console && console.log) {
+	console.log("typeof Function = \"%s\"", typeof Function); // "function"
+	console.log("typeof greeting = \"%s\"", typeof greeting); // "function"
+	console.log("typeof helloWorld = \"%s\"", typeof helloWorld); // "function"
+	console.log("greeting instanceof Function = %o", greeting instanceof Function); // true
+	console.log("helloWorld instanceof Function = %o", helloWorld instanceof Function); // true
+	console.log("toString.call(greeting) = \"%s\"", toString.call(greeting)); // "[object Function]"
+	console.log("toString.call(helloWorld) = \"%s\"", toString.call(helloWorld)); // "[object Function]"
+
 	console.log("typeof a = \"%s\"", typeof a); // undefined
 	//console.log(a.first_name); // TypeError: a is undefined
 	console.log(b.first_name); // 'b'

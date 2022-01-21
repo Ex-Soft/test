@@ -1,12 +1,35 @@
-body
-{
-  background-color: #D4D0C8
+body {
+	background-color: #D4D0C8
 }
 
-TABLE
-{
-  color: white;
-  background-color: blue;
-  font-weight: bold;
-  font-size: 12px
+table {
+	color: white;
+	background-color: blue;
+	font-weight: bold;
+	font-size: 12px
+}
+
+.table1 {
+	width: 100%;
+}
+
+.caption1 {
+	padding: 20px;
+}
+
+.column11 {
+	width: 50%;
+}
+
+.column12 {
+	width: 10%;
+	background-color: red;
+}
+
+.column13 {
+	width: 40%;
+}
+
+.table1 tbody tr td {
+	text-align: center;
 }

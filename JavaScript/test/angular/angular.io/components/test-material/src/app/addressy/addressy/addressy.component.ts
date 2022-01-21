@@ -42,15 +42,15 @@ export interface AddressyRetriveAddressResponse {
   styleUrls: ['./addressy.component.css']
 })
 export class AddressyComponent implements OnInit, OnDestroy {
-  @Input() country: string;
-  @Input() key: string;
-  @Input() required: boolean;
+  @Input() country: string | undefined;
+  @Input() key: string | undefined;
+  @Input() required: boolean | undefined;
 
   @Output() addressSelectedEvent = new EventEmitter<any>();
   @Output() enterAddressManuallyEvent = new EventEmitter();
   @Output() errorEvent = new EventEmitter<AddressyError>();
 
-  @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger, static: false }) autoComplete: MatAutocompleteTrigger;
+  @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger, static: false }) autoComplete: MatAutocompleteTrigger | undefined;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -64,8 +64,8 @@ export class AddressyComponent implements OnInit, OnDestroy {
   retrieveUrl = 'https://api.addressy.com/Capture/Interactive/Retrieve/v1.00/json3.ws';
 
   controlInput = new FormControl();
-  addresses: AddressyFindAddress[];
-  isClearing: boolean;
+  addresses: AddressyFindAddress[] | undefined;
+  isClearing: boolean | undefined;
 
   constructor(
     private httpClient: HttpClient
@@ -82,7 +82,7 @@ export class AddressyComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  onControlInputValueChanged(text): void {
+  onControlInputValueChanged(text: any): void {
     if (typeof text !== 'string' || this.isClearing) {
       return;
     }
@@ -131,7 +131,7 @@ export class AddressyComponent implements OnInit, OnDestroy {
   }
 
   private findAddresses(text?: string, container?: string): void {
-    let params = `Key=${encodeURIComponent(this.key)}&Countries=${encodeURIComponent(this.country)}`;
+    let params = `Key=${encodeURIComponent(this.key as string)}&Countries=${encodeURIComponent(this.country as string)}`;
     if (!!text) {
       params += `&Text=${encodeURIComponent(text)}`;
     }
@@ -163,7 +163,7 @@ export class AddressyComponent implements OnInit, OnDestroy {
   }
 
   private retrieveAddress(id: string): void {
-    const params = `Key=${encodeURIComponent(this.key)}&Id=${encodeURIComponent(id)}&Field1Format={StreetAddress}`;
+    const params = `Key=${encodeURIComponent(this.key as string)}&Id=${encodeURIComponent(id)}&Field1Format={StreetAddress}`;
     this.httpClient.get<AddressyRetriveAddressResponse>(`${this.retrieveUrl}?${params}`)
       .subscribe(
         data => {
@@ -192,7 +192,7 @@ export class AddressyComponent implements OnInit, OnDestroy {
       );
   }
 
-  private checkAddressyError(obj): boolean {
+  private checkAddressyError(obj: any): boolean {
     const addressyError = this.getAddressyError(obj);
     if (addressyError) {
       this.errorEvent.emit(addressyError);
@@ -200,7 +200,7 @@ export class AddressyComponent implements OnInit, OnDestroy {
     return Boolean(addressyError);
   }
 
-  private getAddressyError(obj): AddressyError {
+  private getAddressyError(obj: any): AddressyError | undefined {
     return obj.hasOwnProperty('Error') ? obj as AddressyError : undefined;
   }
 

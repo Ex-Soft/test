@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TestPipeComponent } from './test-pipe.component';
 
@@ -11,6 +12,7 @@ describe('TestPipeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [ TestPipeComponent ]
     })
     .compileComponents();

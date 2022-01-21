@@ -7,7 +7,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 export class TestValidationInputErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
-    return control && control.invalid;
+    return control !== null && control.invalid;
   }
 }
 
@@ -17,13 +17,13 @@ export class TestValidationInputErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./test-validation.component.css']
 })
 export class TestValidationComponent implements OnInit {
-  testValidationForm: FormGroup;
-  firstName: FormControl;
-  lastName: FormControl;
-  line1: FormControl;
-  line2: FormControl;
-  line3: FormControl;
-  line4: FormControl;
+  testValidationForm: FormGroup | undefined;
+  firstName: FormControl | undefined;
+  lastName: FormControl | undefined;
+  line1: FormControl | undefined;
+  line2: FormControl | undefined;
+  line3: FormControl | undefined;
+  line4: FormControl | undefined;
   matcher = new TestValidationInputErrorStateMatcher();
   enterAddress = false;
   firstNameMaxLength = 16;
@@ -70,16 +70,20 @@ export class TestValidationComponent implements OnInit {
 
   private createForm(): void {
     this.testValidationForm = new FormGroup({
-      firstName: this.firstName,
-      lastName: this.lastName,
-      line1: this.line1,
-      line2: this.line2,
-      line3: this.line3,
-      line4: this.line4
+      firstName: this.firstName as FormControl,
+      lastName: this.lastName as FormControl,
+      line1: this.line1 as FormControl,
+      line2: this.line2 as FormControl,
+      line3: this.line3 as FormControl,
+      line4: this.line4 as FormControl
     });
   }
 
   public checkBoxAddRemoveValidatorsChange(checked: boolean): void {
+    if (this.line3 === undefined) {
+      return;
+    }
+
     // https://netbasal.com/three-ways-to-dynamically-alter-your-form-validation-in-angular-e5fd15f1e946
     // https://stackoverflow.com/questions/49075027/angular-dynamically-add-remove-validators
     // https://angular.io/api/forms/AbstractControl#addvalidators

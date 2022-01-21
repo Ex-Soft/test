@@ -1,3 +1,4 @@
+// https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-5.0&tabs=visual-studio
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +29,7 @@ namespace TestSignalR
                 {
                     builder
                         .AllowAnyHeader()
-                        .WithOrigins("http://localhost")
+                        .WithOrigins("http://localhost", "http://localhost:4200")
                         .AllowCredentials();
                 });
             });

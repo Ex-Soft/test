@@ -7,7 +7,7 @@
 function DoIt()
 {
 	var
-		ctrls = [ "inputDateTime", "inputDate", "inputMonth", "inputWeek", "inputTime", "inputDateTimeLocal" ];
+		ctrls = [ "inputDateTime", "inputDate", "inputMonth", "inputWeek", "inputTime", "inputTimeWithSeconds", "inputDateTimeLocal" ];
 
 	for(var i=0; i<ctrls.length; ++i)
 	{
@@ -33,7 +33,8 @@ function DoIt()
 		<label>type="date": <input id="inputDate" type="date" value="2014-03-27" /></label><br />
 		<label>type="month": <input id="inputMonth" type="month" value="2014-03" /></label><br />
 		<label>type="week": <input id="inputWeek" type="week" value="2014-W12" /></label><br />
-		<label>type="time": <input id="inputTime" type="time" value="12:12:00" /></label><br />
+		<label>type="time": <input id="inputTime" type="time" value="23:59" /></label><br />
+		<label>type="time": <input id="inputTimeWithSeconds" type="time" value="23:59:59" /></label><br />
 		<label>type="datetime-local": <input id="inputDateTimeLocal" type="datetime-local" value="2014-03-27T12:12:00" /></label><br />
 		<label>type="number": <input type="number" /></label><br />
 		<label>type="number": <input type="number" step="0.01" /></label><br />

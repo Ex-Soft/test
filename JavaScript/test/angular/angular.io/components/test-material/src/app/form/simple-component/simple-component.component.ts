@@ -4,7 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 export class SimpleControlInputErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
-    return control && control.invalid;
+    return control !== null && control.invalid;
   }
 }
 
@@ -14,7 +14,7 @@ export class SimpleControlInputErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./simple-component.component.css']
 })
 export class SimpleComponentComponent implements OnInit {
-  lastName: FormControl;
+  lastName: FormControl | undefined;
   matcher = new SimpleControlInputErrorStateMatcher();
 
   private propagateChange = (_: any) => { };

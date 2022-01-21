@@ -37,6 +37,6 @@ namespace Main.Controllers
 	{
 		public int TotalPages { get; set; }
 		public int CurrentPage { get; set; }
-		public IEnumerable<Entity> Entities { get; set; } 
+		public IEnumerable<Entity>? Entities { get; set; } 
 	}
 }

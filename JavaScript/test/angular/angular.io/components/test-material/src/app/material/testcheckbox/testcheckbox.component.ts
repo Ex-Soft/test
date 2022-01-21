@@ -6,11 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./testcheckbox.component.css']
 })
 export class TestCheckboxComponent implements OnInit {
-  checked: boolean;
+  checked: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

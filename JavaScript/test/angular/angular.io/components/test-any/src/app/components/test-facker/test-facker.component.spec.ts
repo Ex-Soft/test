@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TestFackerComponent } from './test-facker.component';
 
@@ -8,6 +9,7 @@ describe('TestFackerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [ TestFackerComponent ]
     })
     .compileComponents();

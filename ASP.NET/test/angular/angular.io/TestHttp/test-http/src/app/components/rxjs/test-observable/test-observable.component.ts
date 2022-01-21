@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IItemDto, ItemsQuery, ItemService, ItemsState } from '../../../core/state/item';
+import { IItem, ItemsQuery, ItemService, ItemsState } from '../../../core/state/item';
 
 @Component({
   selector: 'app-test-observable',
