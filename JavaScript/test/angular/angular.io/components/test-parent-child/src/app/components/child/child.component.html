@@ -1,10 +1,13 @@
-<div>
+<div class="containerChild">
+    <p>P tag in Child Component</p>
+    <h2>H2 tag in Child Component</h2>
+    <h4 class="iAmH4">H4 tag with an class in Child Component</h4>
+    <h6 id="1stH6">H6 tag with an ID in Child Component</h6>
+
     <p>
         <span #tref>I am span</span>
     </p>
-    <button #btn mat-button>Basic</button>
-    <hr/>
-    <mat-checkbox [(ngModel)]="checked">Checked</mat-checkbox>
-    <hr/>
-    <input matInput type="text" [(ngModel)]="value">
+    <button #btn (click)="onLogClick()">log()</button><br/>
+    <input type="checkbox" [(ngModel)]="checked" /><br/>
+    <input type="text" [(ngModel)]="value" /><br/>
 </div>

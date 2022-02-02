@@ -1,0 +1,23 @@
+.containerParent {
+    border: 2px solid lightblue;
+    padding: 10px;
+}
+
+:host {
+    border: 2px solid green;
+    color: chocolate;
+    display: block;
+    padding: 10px;
+}
+
+:host ::ng-deep h2 {
+    font-style: italic;
+}
+
+:host ::ng-deep .iAmH4 {
+    border: 2px dotted blue;
+}
+
+:host ::ng-deep [id='1stH6'] {
+    border: 2px dotted violet;
+}

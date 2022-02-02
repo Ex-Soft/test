@@ -1,12 +1,13 @@
-<div>
+<div class="containerParent">
+    <h2>H2 tag in Parent Component</h2>
+
     <div>
-        Parent
+        <span>Parent</span>
     </div>
     <div>
-        <button mat-button (click)="onBtnClick()">Set in Child</button>
+        <button (click)="onBtnClick()">Set in Child</button>
     </div>
-    <hr/>
-    <div>
-        <app-child></app-child>
-    </div>
+
+    <app-child></app-child>
+    <app-child class="box"></app-child>
 </div>

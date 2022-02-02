@@ -7,9 +7,9 @@ import { ChildComponent } from '../child/child.component';
   styleUrls: ['./parent.component.css']
 })
 export class ParentComponent implements OnInit, AfterViewInit {
-  @ViewChild(ChildComponent) child: ChildComponent;
+  @ViewChild(ChildComponent) child!: ChildComponent;
 
-  @ViewChild('button') button: ElementRef;
+  @ViewChild('button') button!: ElementRef;
 
   constructor(private hostElement: ElementRef) {
     console.log('ParentComponent: hostElement = %o', hostElement);
