@@ -116,6 +116,28 @@ function Key()
 	k.value=localStorage.key(i);
 }
 
+function onLoad() {
+	const eventName = "storage";
+	
+	if (window.localStorage) {
+		if (window.addEventListener)
+			window.addEventListener(eventName, onStorage, false)
+		else if (window.attachEvent)
+			window.attachEvent("on" + eventName, onStorage);
+		else
+			window.onstorage = onStorage;
+	}
+	
+	List();
+}
+
+function onStorage(e) {
+	if (window.console && console.log) {
+		console.log("onStorage(%o)", e);
+		console.log("key=%o newValue=%o oldValue=%o storageArea=%o url=%o", e.key, e.newValue, e.oldValue, e.storageArea, e.url);
+	}
+}
+
 function List()
 {
 	var
@@ -175,7 +197,7 @@ function TestQuota()
 }
 		</script>
 	</head>
-	<body onload="List()">
+	<body onload="onLoad()">
 		<label>Name: <input type="text" id="inputName" placeholder="name" required autofocus /></label>
 		<label for="inputValue">Value: </label><input type="text" id="inputValue" placeholder="value" />
 		<input type="button" value="Set" onclick="SetItem()" />

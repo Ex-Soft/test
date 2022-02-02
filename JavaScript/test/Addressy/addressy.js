@@ -43,10 +43,10 @@ function findAddress(SecondFind) {
 		 Container = SecondFind;
 	} 
 	
-var Key = "BJ23-BX33-AH88-FB69",
+var Key = "BJ23-BX33-AH88-FB69", // "TN66-EJ59-MC44-MZ26",
     IsMiddleware = false,
     Origin = "",
-    Countries = "US",
+    Countries = "US", // "UA"
     Limit = "1000",
     Language = "en",  
 	url = 'https://api.addressy.com/Capture/Interactive/Find/v1.10/json3.ws';

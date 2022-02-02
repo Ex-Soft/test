@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Arrow Function</title>
+		<script>
+function onLoad()
+{
+	const test = {
+		name: "test object",
+		createAnonFunction: function() {
+			return function() {
+				console.log(this.name);
+				console.log(arguments);
+			};
+		},
+		createArrowFunction: function() {
+			return () => {
+				console.log(this.name);
+				console.log(arguments);
+			}
+		}
+	};
+
+	const anon = test.createAnonFunction("hello", "world");
+	const arrow = test.createArrowFunction("hello", "world");
+	
+	anon();
+	arrow();
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TestS3": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "S3_RESULT_BUCKET_NAME": "s3://inozhenko-athena-test/"
+      }
+    }
+  }
+}

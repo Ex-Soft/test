@@ -1,18 +1,22 @@
+<!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8" />
 		<title>Test location</title>
-		<script type="text/javascript">
-<!--
+		<script>
 function DoIt()
 {
 	var
-		wl=window.location,
-		dl=document.location;
+		wl = window.location,
+		dl = document.location;
 
-	if(wl.href!=dl.href)
-		alert("Tampax!");
+	if (window.console && console.log) {
+		console.log(wl);
+
+		if (wl.href != dl.href)
+			console.log("Tampax!");
+	}
 }
-// -->
 		</script>
 	</head>
 	<body>
