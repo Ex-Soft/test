@@ -1,0 +1,16 @@
+<ng-container>
+    <h1>Ngx Editor</h1>
+    <form [formGroup]="formGroup">
+        <div class="editor">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="editorContent"></ngx-editor>
+        </div>
+    </form>
+    <p>
+        Form Value: {{ formGroup.value.editorContent }}
+    </p>
+    <p>
+        Form Status: {{ formGroup.status }}
+    </p>
+    <div [innerHtml]="formGroup.value.editorContent"></div>
+</ng-container>

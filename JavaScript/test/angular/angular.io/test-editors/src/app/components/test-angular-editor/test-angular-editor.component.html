@@ -1,0 +1,13 @@
+<ng-container>
+    <h1>Angular Editor</h1>
+    <form [formGroup]="formGroup">
+        <angular-editor formControlName="editorContent" [config]="config" (ngModelChange)="onChange($event)"></angular-editor>
+    </form>
+    <p>
+        Form Value: {{ formGroup.value.editorContent }}
+    </p>
+    <p>
+        Form Status: {{ formGroup.status }}
+    </p>
+    <div [innerHtml]="formGroup.value.editorContent"></div>
+</ng-container>
