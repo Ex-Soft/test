@@ -17,9 +17,9 @@ namespace TestCulture
             
             CultureInfo culture;
             if (Thread.CurrentThread.CurrentCulture.Name == "ru-RU")
-                culture = CultureInfo.CreateSpecificCulture("uk-UA");
+                culture = new CultureInfo("uk-UA", false); // CultureInfo.CreateSpecificCulture("uk-UA");
             else
-                culture = CultureInfo.CreateSpecificCulture("ru-RU");
+                culture = new CultureInfo("ru-RU", false); // CultureInfo.CreateSpecificCulture("ru-RU");
 
             #if dotNET_4_5
                 CultureInfo.DefaultThreadCurrentCulture = culture;

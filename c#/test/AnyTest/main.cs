@@ -27,7 +27,7 @@
 //#define TEST_AD
 //#define TEST_PARAMS
 //#define TEST_THERMO
-//#define TEST_DATE_TIME
+#define TEST_DATE_TIME
 //#define TEST_SPLIT
 //#define TEST_ENUM
 //#define TEST_GET_STRING
@@ -44,7 +44,7 @@
 //#define TEST_REF
 //#define TEST_PATH
 //#define TEST_FORMAT
-#define TEST_PATTERN
+//#define TEST_PATTERN
 
 using System;
 using System.Buffers.Binary;
@@ -1038,7 +1038,12 @@ namespace AnyTest
                 TestThermo();
             #endif
 
-			#if TEST_DATE_TIME
+            #if TEST_DATE_TIME
+                var cultureInfo = new CultureInfo("en-US", false);
+                tmpString = "01/13/2022 22:43:29 +00:00";
+                tmpDateTime = DateTime.Parse(tmpString, cultureInfo);
+                tmpDateTimeOffset = DateTimeOffset.Parse(tmpString, cultureInfo);
+
                 tmpString = "1583020799000"; // 2020-02-29 23:59:59 GMT || 2020-03-01 01:59:59 GMT+02
                 tmpDateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
                 tmpDateTime = tmpDateTimeOffset.DateTime;
@@ -1440,7 +1445,7 @@ namespace AnyTest
 				else
 					Console.WriteLine("Unable to parse \"{0}\"", tmpString);
 
-				if (DateTime.TryParse(tmpString, CultureInfo.CreateSpecificCulture("en-US"), DateTimeStyles.None, out tmpDateTime))
+				if (DateTime.TryParse(tmpString, new CultureInfo("en-US", false), DateTimeStyles.None, out tmpDateTime))
 					Console.WriteLine("\"{0}\" -> {1} ({2})", tmpString, tmpDateTime, tmpDateTime.Kind);
 				else
 					Console.WriteLine("Unable to parse \"{0}\"", tmpString);

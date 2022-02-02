@@ -36,7 +36,7 @@ namespace TestXtraMessageBox
 
             try
             {
-                culture = CultureInfo.CreateSpecificCulture(value);
+                culture = new CultureInfo(value, false); // CultureInfo.CreateSpecificCulture(value);
             }
             catch
             {

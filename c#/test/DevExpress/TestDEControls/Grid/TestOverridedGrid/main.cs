@@ -67,7 +67,7 @@ namespace TestOverridedGrid
 
             try
             {
-                culture = CultureInfo.CreateSpecificCulture(value);
+                culture = new CultureInfo(value, false); // CultureInfo.CreateSpecificCulture(value);
             }
             catch
             {

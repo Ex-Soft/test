@@ -8,6 +8,8 @@ namespace TestCulture
     {
         static void Main(string[] args)
         {
+            TestEnUsCulture();
+
             try
             {
                 var ri = new RegionInfo("de");
@@ -31,7 +33,8 @@ namespace TestCulture
             Console.WriteLine($"Thread.CurrentThread.CurrentUICulture.DateTimeFormat.AbbreviatedDayNames[0]: \"{Thread.CurrentThread.CurrentUICulture.DateTimeFormat.AbbreviatedDayNames[0]}\"");
 
             var cultureName = "fr-FR";
-            var culture = CultureInfo.CreateSpecificCulture(cultureName);
+            var culture = new CultureInfo(cultureName, false);
+            //var culture = CultureInfo.CreateSpecificCulture(cultureName);
             //var culture = CultureInfo.GetCultureInfo(cultureName);
 
             Console.WriteLine($"culture.NumberFormat.NumberGroupSeparator: \"{culture.NumberFormat.NumberGroupSeparator}\"");
@@ -62,6 +65,56 @@ namespace TestCulture
                 Console.Write("     {0:C2}     ", rand.NextDouble());
 
             Console.WriteLine();
+        }
+
+        private static void TestEnUsCulture()
+        {
+            var culture = new CultureInfo("en-US", false);
+
+            CultureInfo?
+                currentCulture = null,
+                currentUICulture = null;
+
+            if (CultureInfo.DefaultThreadCurrentCulture == null || CultureInfo.DefaultThreadCurrentCulture.Name != culture.Name)
+            {
+                currentCulture = CultureInfo.DefaultThreadCurrentCulture;
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+            }
+
+            if (CultureInfo.DefaultThreadCurrentUICulture == null || CultureInfo.DefaultThreadCurrentUICulture.Name != culture.Name)
+            {
+                currentUICulture = CultureInfo.DefaultThreadCurrentUICulture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+            }
+
+            DateTime tmpDateTime = DateTime.Now;
+            DateTimeOffset tmpDateTimeOffset = DateTimeOffset.Now;
+
+            var tmpString = "08/18/2018 07:22:16 -5:00";
+
+            try
+            {
+                tmpDateTime = DateTime.Parse(tmpString);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
+            }
+            
+            try
+            {
+                tmpDateTimeOffset = DateTimeOffset.Parse(tmpString);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
+            }
+
+            Console.WriteLine($"\"{tmpString}\" -> {tmpDateTime}");
+            Console.WriteLine($"\"{tmpString}\" -> {tmpDateTimeOffset}");
+
+            CultureInfo.DefaultThreadCurrentCulture = currentCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = currentUICulture;
         }
     }
 }

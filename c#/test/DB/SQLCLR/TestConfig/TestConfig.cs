@@ -23,8 +23,8 @@ namespace TestConfig
                 var currentCulture = Thread.CurrentThread.CurrentCulture;
                 var currentUICulture = Thread.CurrentThread.CurrentUICulture;
 
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US", false); // CultureInfo.CreateSpecificCulture("en-US");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US", false); // CultureInfo.CreateSpecificCulture("en-US");
             #endif
 
             try
