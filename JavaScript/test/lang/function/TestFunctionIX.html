@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Function IX</title>
+		<script>
+function f(param1)
+{
+}
+
+function OnLoad()
+{
+	var
+		o = { f: function() {} };
+
+	if(window.console && console.log)
+	{
+		console.log("typeof f = \"%s\"", typeof f);
+		console.log("f.constructor %s= Function", f.constructor==Function ? "=" : "!");
+		console.log("%sf instanceof Function", f instanceof Function ? "" : "!");
+		console.log("%so.propertyIsEnumerable(\"f\")", o.propertyIsEnumerable("f") ? "" : "!");
+		console.log("%sFunction.isPrototypeOf(f)", Function.isPrototypeOf(f) ? "" : "!");
+		console.log("%sFunction.prototype.isPrototypeOf(f)", Function.prototype.isPrototypeOf(f) ? "" : "!");
+		console.log("Object.prototype.toString.call(f) = \"%s\"", Object.prototype.toString.call(f));
+		console.log("Object.prototype.toString.call(o.f) = \"%s\"", Object.prototype.toString.call(o.f));
+	}
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>

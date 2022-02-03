@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Function VI</title>
+		<script type="text/javascript">
+function f(x)
+{
+	if(window.console && console.log)
+		console.log("%s", x);
+
+	arguments[0] = "halb-halb-halb";
+
+	if(window.console && console.log)
+		console.log("%s", x);
+}
+
+function OnLoad()
+{
+	f("blah-blah-blah");
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+	</body>
+</html>
