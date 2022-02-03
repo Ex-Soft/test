@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor 5 – Document editor</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/decoupled-document/ckeditor.js"></script>
+    <script>
+      function getContent() {
+          const content = window.editor.getData();
+          console.log(content);
+          document.getElementById("content").innerHTML = content;
+      }
+    </script>
+</head>
+<body>
+    <h1>Document editor</h1>
+    <div id="toolbar-container"></div>
+    <div id="editor">
+        <p>This is some sample content.</p>
+    </div>
+    <input type="button" value="getContent()" onclick="getContent()" />
+    <div id="content"></div>
+    <script>
+        DecoupledEditor
+            .create( document.querySelector( '#editor' ) )
+            .then(editor => {
+                const toolbarContainer = document.querySelector( '#toolbar-container' );
+                toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+                window.editor = editor;
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+</body>
+</html>

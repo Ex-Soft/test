@@ -22,6 +22,7 @@ dojo/**
 vue/**
 momentjs/**
 emsdk
+editors/**
 
 *_out.dbf
 *_out.xls

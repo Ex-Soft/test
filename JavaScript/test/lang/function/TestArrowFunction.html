@@ -6,6 +6,105 @@
 		<script>
 function onLoad()
 {
+	// 3 scenarios where arrow functions should not be used
+	
+	// 1. Defining methods on an object
+	// 1a. Object literal
+	const calculate_bad = {
+		array: [1, 2, 3],
+		sum: () => {
+			console.log("this === window = %s", this === window); // true
+			return this.array.reduce((result, item) => result + item);
+		}
+	};
+	console.log("this === window = %s", this === window); // true
+	// Throws "TypeError: Cannot read property 'reduce' of undefined"
+	try {
+		calculate_bad.sum();
+	}
+	catch(e) {
+		console.log(e);
+	}
+
+	const calculate = {
+		array: [1, 2, 3],
+		sum()  {
+			console.log("this === calculate = %s", this === calculate); // true
+			return this.array.reduce((result, item) => result + item);
+		}
+	};
+	console.log(calculate.sum());
+
+	// 1b. Object prototype
+	function MyCat_bad(name) {
+		this.catName = name;
+	}
+	MyCat_bad.prototype.sayCatName = () => {
+		console.log("this === window = %s", this === window); // true
+		return this.catName;
+	};
+	const cat_bad = new MyCat_bad('Mew');
+	console.log(cat_bad.sayCatName()); // undefined
+
+	function MyCat(name) {
+		this.catName = name;
+	}
+	MyCat.prototype.sayCatName = function() {
+  		console.log("this === cat = %s", this === cat); // true
+  		return this.catName;
+	};
+	const cat = new MyCat('Mew');
+	console.log(cat.sayCatName()); // => 'Mew'
+
+	// 2. Callback functions with dynamic context
+	const button_bad = document.getElementById('btnBad');
+	button_bad.addEventListener('click', () => {
+		console.log("this === window = %s", this === window); // true
+  		this.innerHTML = 'Clicked button';
+	});
+
+	const button = document.getElementById('btnOk');
+	button.addEventListener('click', function() {
+		console.log("this === button = %s", this === button); // true
+  		this.innerHTML = 'Clicked button';
+	});
+
+	// 3. Invoking constructors
+	const MessageBad = (text) => {
+		this.text = text;
+	};
+	// Throws "TypeError: MessageBad is not a constructor"
+	try {
+		const helloMessageBad = new MessageBad("\"Helo, word!\" - 17 errors 56 warnings");
+	}
+	catch(e) {
+		console.log(e);
+	}
+
+	const Message = function(text) {
+		this.text = text;
+	};
+	const helloMessage = new Message("Hello, world!");
+	console.log(helloMessage.text); // "Hello, world!"
+
+	// Too short syntax
+	const multiplyShort = (a, b) => b === undefined ? b => a * b : a * b;
+	const doubleShort = multiplyShort(2);
+	console.log(doubleShort(3)); // 6
+	console.log(multiplyShort(2, 3)); // 6
+
+	function multiply(a, b) {
+		if (b === undefined) {
+			return function(b) {
+				return a * b;
+			}
+		}
+		return a * b;
+	};
+	const double = multiply(2);
+	console.log(double(3)); // 6
+	console.log(multiply(2, 3)); // 6
+
 	const test = {
 		name: "test object",
 		createAnonFunction: function() {
@@ -31,5 +130,7 @@ function onLoad()
 		</script>
 	</head>
 	<body onload="onLoad()">
+		<button id="btnBad">Bad</button>
+		<button id="btnOk">Ok</button>
 	</body>
 </html>

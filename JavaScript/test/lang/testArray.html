@@ -18,6 +18,14 @@ if(window.console && console.clear)
 
 if(window.console && console.log)
 {
+	// https://medium.com/dailyjs/parseint-mystery-7c4368ef7b21
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+	aa = [ "1", "7", "11" ].map(parseInt);
+	console.log("[ \"1\", \"7\", \"11\" ].map(parseInt) = %o", aa);
+	aa = [ "1", "7", "11" ].map(numStr => parseInt(numStr));
+	console.log("[ \"1\", \"7\", \"11\" ].map(numStr => parseInt(numStr)) = %o", aa);
+
 	aa = [ new Date("2020-02-29T00:00:00+02:00"), new Date("2021-02-28T00:00:00+02:00"), new Date("2022-02-28T00:00:00+02:00") ];
 	aa.sort((left, right) => right.valueOf() - left.valueOf());
 

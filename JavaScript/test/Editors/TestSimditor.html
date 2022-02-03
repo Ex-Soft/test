@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="../../editors/simditor/styles/simditor.css" rel="stylesheet" />
+  <!--link href="https://cdnjs.cloudflare.com/ajax/libs/simditor/2.3.28/styles/simditor.css" rel="stylesheet" /-->
+
+  <script src="../../jquery/jquery.js"></script>
+  <script src="../../editors/simditor/site/assets/scripts/module.js"></script>
+  <script src="../../editors/simditor/site/assets/scripts/uploader.js"></script>
+  <script src="../../editors/simditor/site/assets/scripts/hotkeys.js"></script>
+  <script src="../../editors/simditor/site/assets/scripts/dompurify.js"></script>
+  <script src="../../editors/simditor/lib/simditor.js"></script>
+  
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/simple-module/3.0.3/simple-module.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mycolorway-simple-hotkeys/1.0.3/hotkeys.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-uploader/3.0.0/simple-uploader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-uploader/3.0.0/uploader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-uploader/3.0.0/uploader.js"></script>
+  <script src="https://unpkg.com/simple-uploader@3.0.0/dist/simple-uploader.js"></script>
+  <script src="https://cdnout.com/simple-uploader/uploader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simditor/2.3.28/lib/simditor.js"></script-->
+
+  <script>
+function getContent() {
+    const content = editor.getValue();
+    console.log(content);
+    document.getElementById("content").innerHTML = content;
+}
+  </script>
+</head>
+<body>
+  <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+  <input type="button" value="getContent()" onclick="getContent()" />
+  <div id="content"></div>
+  <script>
+    editor = new Simditor({
+      textarea: $('#editor')
+      //optional options
+    });
+  </script>
+</body>
+</html>

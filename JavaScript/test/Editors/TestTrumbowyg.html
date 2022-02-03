@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- https://cdnjs.com/libraries/Trumbowyg -->
+<html>
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.1/ui/trumbowyg.css" rel="stylesheet" />
+
+  <script src="../../jquery/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.1/trumbowyg.js"></script>
+
+  <script>
+function getContent() {
+    const content = editor.html();
+    console.log(content);
+    document.getElementById("content").innerHTML = content;
+}
+  </script>
+</head>
+<body>
+  <div id="editor"></div>
+  <input type="button" value="getContent()" onclick="getContent()" />
+  <div id="content"></div>
+  <script>
+    editor = $('#editor').trumbowyg();
+  </script>
+</body>
+</html>
