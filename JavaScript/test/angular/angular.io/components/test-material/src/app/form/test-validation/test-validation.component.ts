@@ -21,6 +21,7 @@ export class TestValidationInputErrorStateMatcher implements ErrorStateMatcher {
 export class TestValidationComponent implements OnInit, OnDestroy {
   // https://levelup.gitconnected.com/unsubscribing-in-angular-the-right-way-6ed82be43ccc
   // https://www.tektutorialshub.com/angular/unsubscribing-from-an-observable-in-angular/
+  // https://blog.bitsrc.io/6-ways-to-unsubscribe-from-observables-in-angular-ab912819a78f
   destroy$ = new Subject<void>();
 
   testValidationForm!: FormGroup;
