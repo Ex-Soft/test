@@ -1,9 +1,11 @@
 // https://angular-templates.io/tutorials/about/angular-forms-and-validations
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 export class TestValidationInputErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null): boolean {
@@ -16,7 +18,11 @@ export class TestValidationInputErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './test-validation.component.html',
   styleUrls: ['./test-validation.component.css']
 })
-export class TestValidationComponent implements OnInit {
+export class TestValidationComponent implements OnInit, OnDestroy {
+  // https://levelup.gitconnected.com/unsubscribing-in-angular-the-right-way-6ed82be43ccc
+  // https://www.tektutorialshub.com/angular/unsubscribing-from-an-observable-in-angular/
+  destroy$ = new Subject<void>();
+
   testValidationForm!: FormGroup;
   firstName!: FormControl;
   lastName!: FormControl;
@@ -40,9 +46,14 @@ export class TestValidationComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
   }
+
   private initForm(): void {
     this.createFormControls();
     this.createForm();
+    this.testValidationForm.valueChanges
+      .pipe(
+        takeUntil(this.destroy$)
+      ).subscribe(v => console.log('FormGroup.valueChanges(%o)', v));
   }
 
   private createFormControls(): void {
@@ -104,5 +115,10 @@ export class TestValidationComponent implements OnInit {
 
   public onClose(): void {
     this.dialogRef.close();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
