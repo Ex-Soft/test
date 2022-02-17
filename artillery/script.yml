@@ -1,0 +1,27 @@
+# Thank you for trying serverless-artillery!
+# This default script is intended to get you started quickly.
+# There is a lot more that Artillery can do.
+# You can find great documentation of the possibilities at:
+# https://artillery.io/docs/
+# https://itnext.io/websocket-load-testing-with-artillery-io-b8b7ecbcd7ed
+# https://www.artillery.io/docs/guides/guides/ws-reference
+config:
+  # this hostname will be used as a prefix for each URI in the flow unless a complete URI is specified
+  # target: "wss://notificationhub/hubs/delta"
+  # target: "ws://localhost:8080/hubs/delta"
+  phases:
+    - duration: 10
+      arrivalRate: 100
+      rampTo: 1000
+      # arrivalCount: 500
+  variables:
+    token:
+      ""
+scenarios:
+  - name: Test NotificationHub
+    engine: "ws" # Enable the Socket.io engine
+    flow:
+      - connect: "{{ target }}/?access_token={{ token }}"
+      # - on: "SendDelta"
+      #  log: "Received SendDelta"
+      - think: 1
