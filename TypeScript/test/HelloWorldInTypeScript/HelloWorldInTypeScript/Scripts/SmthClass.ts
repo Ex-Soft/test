@@ -17,3 +17,8 @@
 
 let smthClass = new SmthClass("p1StringValue (from constructor)");
 smthClass.output();
+
+let smthClass2 = { ...smthClass };
+if (window.console && console.log) {
+    console.log("o2 = { ...o1 } => %o %o", smthClass2, smthClass);
+}
