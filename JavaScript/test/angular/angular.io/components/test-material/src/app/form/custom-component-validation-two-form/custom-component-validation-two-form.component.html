@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <form [formGroup]="group" #form="ngForm">
       <app-custom-component-validation-two formControlName="captcha"></app-custom-component-validation-two>
-      <div *ngIf="group.get('captcha').hasError('invalid')">
+      <div *ngIf="captchaHasError">
           Wrong answer...
       </div>
   </form>

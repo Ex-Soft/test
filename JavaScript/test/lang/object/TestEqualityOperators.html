@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test Equality operators</title>
+		<script>
+function OnLoad()
+{
+	var
+		o = { id: 1, name: "name" },
+		o1, o2;
+
+	o1 = o;
+	o2 = o;
+	if(window.console && console.log)
+	{
+		console.log("o1 %s= o2", o1 == o2 ? "=" : "!");		// ==
+		console.log("o1 %s== o2", o1 == o2 ? "==" : "!");	// ===
+	}
+
+	o1 = { id: 1, name: "name" };
+	o2 = { id: 1, name: "name" };
+	if(window.console && console.log)
+	{
+		console.log("o1 %s= o2", o1 == o2 ? "=" : "!");		// !=
+		console.log("o1 %s== o2", o1 == o2 ? "==" : "!");	// !==
+	}
+}
+		</script>
+	</head>
+	<body onload="OnLoad();">
+	</body>
+</html>
+

@@ -10,4 +10,7 @@
         Form Status: {{ formGroup.status }}
     </p>
     <div [innerHtml]="formGroup.value.editorContent"></div>
+    <div>
+        <input type="button" value="setValue()" (click)="onSetValueClick()" />
+    </div>
 </ng-container>

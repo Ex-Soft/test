@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AppComponent } from './app.component';
 import { TestCheckboxComponent } from './material/testcheckbox/testcheckbox.component';
@@ -33,6 +34,7 @@ import { FormSimpleComponent } from './form/form-simple/form-simple.component';
 import { SimpleComponentComponent } from './form/simple-component/simple-component.component';
 import { TestValidationComponent } from './form/test-validation/test-validation.component';
 import { TestspinnerComponent } from './material/testspinner/testspinner.component';
+import { TestAngularEditorComponent } from './form/test-angular-editor/test-angular-editor.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { TestspinnerComponent } from './material/testspinner/testspinner.compone
     FormSimpleComponent,
     SimpleComponentComponent,
     TestValidationComponent,
-    TestspinnerComponent
+    TestspinnerComponent,
+    TestAngularEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { TestspinnerComponent } from './material/testspinner/testspinner.compone
     MatIconModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,13 +17,13 @@ export class TestValidationInputErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./test-validation.component.css']
 })
 export class TestValidationComponent implements OnInit {
-  testValidationForm: FormGroup | undefined;
-  firstName: FormControl | undefined;
-  lastName: FormControl | undefined;
-  line1: FormControl | undefined;
-  line2: FormControl | undefined;
-  line3: FormControl | undefined;
-  line4: FormControl | undefined;
+  testValidationForm!: FormGroup;
+  firstName!: FormControl;
+  lastName!: FormControl;
+  line1!: FormControl;
+  line2!: FormControl;
+  line3!: FormControl;
+  line4!: FormControl;
   matcher = new TestValidationInputErrorStateMatcher();
   enterAddress = false;
   firstNameMaxLength = 16;

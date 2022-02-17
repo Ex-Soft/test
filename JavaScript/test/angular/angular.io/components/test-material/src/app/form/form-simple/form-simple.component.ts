@@ -15,8 +15,8 @@ export class FormSimpleInputErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./form-simple.component.css']
 })
 export class FormSimpleComponent implements OnInit {
-  formSimple: FormGroup | undefined;
-  firstName: FormControl | undefined;
+  formSimple!: FormGroup;
+  firstName!: FormControl;
   matcher = new FormSimpleInputErrorStateMatcher();
 
   constructor(

@@ -20,6 +20,8 @@ function onLoad()
 
 		console.log("1. Using Spread");
 		o1 = { pString1: "o1.pString1" };
+		o2 = { ...o1 };
+		console.log("o2 = { ...o1 } => o1=%o o2=%o", o1, o2);
 		o2 = { ...o1, pString2: "o2.pString2" };
 		console.log("o1=%o o2=%o", o1, o2);
 		o2.pString1 = "o2.pString1";

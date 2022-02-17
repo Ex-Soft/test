@@ -1,0 +1,13 @@
+<div>
+    <form [formGroup]="formGroup">
+      <mat-form-field class="input-full-width">
+        <input type="text" matInput formControlName="title" [errorStateMatcher]="matcher" />
+        <mat-error *ngIf="title.hasError('required')">
+          Enter the title
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <angular-editor formControlName="text" [config]="editorConfig"></angular-editor>
+      </div>
+    </form>
+</div>

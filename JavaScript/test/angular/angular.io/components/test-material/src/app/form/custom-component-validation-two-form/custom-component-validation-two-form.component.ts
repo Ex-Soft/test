@@ -21,4 +21,9 @@ export class CustomComponentValidationTwoFormComponent {
   public onClose(): void {
     this.dialogRef.close();
   }
+
+  get captchaHasError(): boolean {
+    const captcha = this.group.get('captcha');
+    return captcha != null && captcha.hasError('invalid');
+  }
 }

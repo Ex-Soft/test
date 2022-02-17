@@ -53,6 +53,15 @@ export class TestAngularEditorComponent implements OnInit {
     console.log('\"%s\" %o', event, this.formGroup.value);
   }
 
+  onSetValueClick(): void {
+    const editor = this.formGroup.get('editorContent');
+    if (!editor) {
+      return;
+    }
+
+    editor.setValue('<img src=x onerror=alert(document.cookie)>');
+  }
+
   private createReactiveForm(): void {
     this.formGroup = new FormGroup({
       editorContent: new FormControl('', [Validators.required])

@@ -14,7 +14,7 @@ export class SimpleControlInputErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./simple-component.component.css']
 })
 export class SimpleComponentComponent implements OnInit {
-  lastName: FormControl | undefined;
+  lastName!: FormControl;
   matcher = new SimpleControlInputErrorStateMatcher();
 
   private propagateChange = (_: any) => { };
