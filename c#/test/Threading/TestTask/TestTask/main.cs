@@ -1,4 +1,5 @@
-﻿#define TEST_TUPLE
+﻿#define TEST_GATHER
+//#define TEST_TUPLE
 //#define TEST_LIST
 //#define TEST_CONTINUE_WITH
 //#define TEST_AWAITER
@@ -44,6 +45,15 @@ namespace TestTask
         static void Main(string[] args)
         {
             Task task;
+
+            #if TEST_GATHER
+                task = TestGather();
+                task.Wait();
+                if (task.IsCompleted)
+                {
+                    task.Dispose();
+                }
+            #endif
 
             #if TEST_TUPLE
 
@@ -311,6 +321,54 @@ namespace TestTask
                 return result && listOfInt.Count != 0;
             }
 
+        #endif
+
+        #if TEST_GATHER
+            static async Task TestGather()
+            {
+                const int
+                    start = 1,
+                    count = 145,
+                    chunkSize = 10;
+
+                var ids = Enumerable.Range(start, count).ToList();
+
+                var chunks = ids.Chunk(chunkSize).ToList();
+
+                //var chunks = ids
+                //    .Select((x, i) => new { Index = i, Value = x })
+                //    .GroupBy(x => x.Index / chunkSize)
+                //    .Select(x => x.Select(v => v.Value).ToList())
+                //    .ToList();
+
+                var result = new List<int>();
+                var tasks = new List<Task>();
+
+                foreach (var chunk in chunks)
+                {
+                    var task = GetChunkResult(chunk);
+                    tasks.Add(task);
+                }
+
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+
+                foreach (Task<IEnumerable<int>> task in tasks)
+                {
+                    result.AddRange(task.Result);
+                }
+
+                Console.WriteLine(result.Count);
+
+                var check = result.Except(ids).ToList();
+                Console.WriteLine(check.Count);
+        }
+
+        static async Task<IEnumerable<int>> GetChunkResult(IEnumerable<int> chunk)
+            {
+                await Task.Delay(2000);
+
+                return chunk;
+            }
         #endif
     }
 }

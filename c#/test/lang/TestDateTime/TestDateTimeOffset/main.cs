@@ -11,7 +11,8 @@ namespace TestDateTimeOffset
                 tmpString;
 
             DateTimeOffset
-                tmpDateTimeOffset;
+                tmpDateTimeOffset1,
+                tmpDateTimeOffset2;
 
             DateTime
                 tmpDateTime1,
@@ -23,20 +24,38 @@ namespace TestDateTimeOffset
             TimeSpan
                 timeSpan;
 
+            tmpString = "2022-10-29T03:59:59+03:00";
+            DateTime.TryParse(tmpString, out tmpDateTime1);
+            tmpDateTime2 = tmpDateTime1.AddDays(1);
+            tmpString = tmpDateTime2.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2022-10-30 03:59:59 +02:00"
+            tmpString = "2022-10-29T04:00:00+03:00";
+            DateTime.TryParse(tmpString, out tmpDateTime1);
+            tmpDateTime2 = tmpDateTime1.AddDays(1);
+            tmpString = tmpDateTime2.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2022-10-30 04:00:00 +02:00"
+
+            tmpString = "2022-10-29T03:59:59+03:00";
+            DateTimeOffset.TryParse(tmpString, out tmpDateTimeOffset1);
+            tmpDateTimeOffset2 = tmpDateTimeOffset1.AddDays(1);
+            tmpString = tmpDateTimeOffset2.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2022-10-30 03:59:59 +03:00"
+            tmpString = "2022-10-29T04:00:00+03:00";
+            DateTimeOffset.TryParse(tmpString, out tmpDateTimeOffset1);
+            tmpDateTimeOffset2 = tmpDateTimeOffset1.AddDays(1);
+            tmpString = tmpDateTimeOffset2.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2022-10-30 04:00:00 +03:00"
+
             // https://devblogs.microsoft.com/dotnet/cross-platform-time-zones-with-net-core/
             timeZoneInfo = TZConvert.GetTimeZoneInfo("Pacific Standard Time");
             tmpDateTime1 = new DateTime(2020, 9, 28, 0, 0, 0, DateTimeKind.Unspecified);
             timeSpan = timeZoneInfo.GetUtcOffset(tmpDateTime1);
-            tmpDateTimeOffset = new DateTimeOffset(tmpDateTime1, timeSpan);
-            tmpString = tmpDateTimeOffset.ToString("u"); // "2020-09-28 07:00:00Z"
-            tmpString = tmpDateTimeOffset.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2020-09-28 12:00:00 -07:00"
+            tmpDateTimeOffset1 = new DateTimeOffset(tmpDateTime1, timeSpan);
+            tmpString = tmpDateTimeOffset1.ToString("u"); // "2020-09-28 07:00:00Z"
+            tmpString = tmpDateTimeOffset1.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2020-09-28 12:00:00 -07:00"
 
             timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
             tmpDateTime1 = new DateTime(2020, 9, 28, 0, 0, 0, DateTimeKind.Unspecified);
             timeSpan = timeZoneInfo.GetUtcOffset(tmpDateTime1);
-            tmpDateTimeOffset = new DateTimeOffset(tmpDateTime1, timeSpan);
-            tmpString = tmpDateTimeOffset.ToString("u"); // "2020-09-28 07:00:00Z"
-            tmpString = tmpDateTimeOffset.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2020-09-28 12:00:00 -07:00"
+            tmpDateTimeOffset1 = new DateTimeOffset(tmpDateTime1, timeSpan);
+            tmpString = tmpDateTimeOffset1.ToString("u"); // "2020-09-28 07:00:00Z"
+            tmpString = tmpDateTimeOffset1.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2020-09-28 12:00:00 -07:00"
 
             tmpDateTime1 = new DateTime(2020, 9, 28, 0, 0, 0, DateTimeKind.Unspecified);
             tmpString = tmpDateTime1.ToString("u"); // "2020-09-28 00:00:00Z"
@@ -52,9 +71,9 @@ namespace TestDateTimeOffset
             tmpString = tmpDateTime2.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2020-09-28 08:00:00 +00:00"
 
             tmpString = "1583020799000"; // 2020-02-29 23:59:59 GMT || 2020-03-01 01:59:59 GMT+02
-            tmpDateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
-            tmpDateTime1 = tmpDateTimeOffset.DateTime;
-            tmpDateTime2 = tmpDateTimeOffset.UtcDateTime;
+            tmpDateTimeOffset1 = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
+            tmpDateTime1 = tmpDateTimeOffset1.DateTime;
+            tmpDateTime2 = tmpDateTimeOffset1.UtcDateTime;
             tmpString = $"tmpDateTime1 {(tmpDateTime1 == tmpDateTime2 ? "=" : "!")}= tmpDateTime2";
             tmpString = $"tmpDateTime1 {(tmpDateTime1 == tmpDateTime2.ToUniversalTime() ? "=" : "!")}= tmpDateTime2.ToUniversalTime()";
             tmpString = $"DateTime.Equals(tmpDateTime1, tmpDateTime2) = {DateTime.Equals(tmpDateTime1, tmpDateTime2)}";
@@ -64,9 +83,9 @@ namespace TestDateTimeOffset
             tmpString = $"DateTime.Equals(tmpDateTime1, tmpDateTime2) = {DateTime.Equals(tmpDateTime1, tmpDateTime2)}";
 
             tmpString = "1583013599000"; // 2020-02-29 23:59:59 GMT+02 || 2020-02-29 21:59:59 GMT
-            tmpDateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
-            tmpDateTime1 = tmpDateTimeOffset.DateTime;
-            tmpDateTime2 = tmpDateTimeOffset.UtcDateTime;
+            tmpDateTimeOffset1 = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(tmpString));
+            tmpDateTime1 = tmpDateTimeOffset1.DateTime;
+            tmpDateTime2 = tmpDateTimeOffset1.UtcDateTime;
             tmpDateTime2 = tmpDateTime1.ToUniversalTime();
 
             tmpString = "2020-02-29T23:59:59";

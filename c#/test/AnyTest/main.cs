@@ -1,4 +1,4 @@
-﻿//#define TEST_ELVIS_OPERATOR
+﻿#define TEST_ELVIS_OPERATOR
 //#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
@@ -27,7 +27,7 @@
 //#define TEST_AD
 //#define TEST_PARAMS
 //#define TEST_THERMO
-#define TEST_DATE_TIME
+//#define TEST_DATE_TIME
 //#define TEST_SPLIT
 //#define TEST_ENUM
 //#define TEST_GET_STRING
@@ -74,6 +74,12 @@ namespace AnyTest
         class B
         {
             public List<string> ListOfString { get; set; } = null;
+            public PropertyString PropertyString1 { get; set; } = null;
+        }
+
+        class PropertyString
+        {
+            public string Value { get; set; } = null;
         }
     #endif
 
@@ -345,6 +351,11 @@ namespace AnyTest
 
             #if TEST_ELVIS_OPERATOR
                 B b = new B();
+                WriteLine($"PropertyString1 {(b.PropertyString1 == null ? "=" : "!")}= null");
+                WriteLine($"PropertyString1?.Value {(b.PropertyString1?.Value == null ? "=" : "!")}= null");
+                b.PropertyString1 = new PropertyString();
+                WriteLine($"PropertyString1 {(b.PropertyString1 == null ? "=" : "!")}= null");
+                WriteLine($"PropertyString1?.Value {(b.PropertyString1?.Value == null ? "=" : "!")}= null");
                 WriteLine($"ListOfString?.Count {(b.ListOfString?.Count != 0 ? "!" : "=")}= 0 ({b.ListOfString?.Count})"); // != 0 (int? == null)
                 WriteLine($"ListOfString?.Count {(b.ListOfString?.Count > 0 ? ">" : "<=")} 0 ({b.ListOfString?.Count})"); // <=
                 b.ListOfString = new List<string>();

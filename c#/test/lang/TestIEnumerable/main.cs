@@ -281,6 +281,16 @@ namespace TestIEnumerable
     {
         static void Main()
         {
+            var listOfInt = Enumerable.Range(1, 145).ToList();
+            var chunks = listOfInt.Chunk(10).ToList();
+
+            // 3.1
+            var chunks31 = listOfInt
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / 10)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+
             var listOfString = new List<string> { "1st", "2nd", "3rd" };
             var dictionaryOfStringString = new Dictionary<string, string> { { "2nd", "2nd" } };
             var listOfStringII = listOfString.Intersect(dictionaryOfStringString.Keys).ToList();
@@ -318,7 +328,7 @@ namespace TestIEnumerable
                 new List<int> { 7, 8, 9}
             };
 
-            var listOfInt = listOfListOfInt.SelectMany(i => i).ToList();
+            listOfInt = listOfListOfInt.SelectMany(i => i).ToList();
 
             IList<string> iListOfString = new List<string> { "1st", "2nd", "3rd" };
             IEnumerable<string> iEnumerableOfString = iListOfString.AsEnumerable();
