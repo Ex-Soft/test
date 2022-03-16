@@ -10,6 +10,10 @@ function multiply(num1, num2) {
 	return num1 * num2;
 }
 
+function addDays(date, value) {
+	return new Date(date.getTime() + value * 86400000);
+}
+
 function justVoidFunction() {
 	if (window.console && console.log) {
 		console.log("justVoidFunction()");

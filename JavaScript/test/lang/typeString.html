@@ -26,6 +26,10 @@ var
 // substr deprecated!!!
 
 if (window.console && console.log) {
+  o = new Date();
+  str_out = `${ o ? "?" : ""}${ o ? `fromDate=${ o.toJSON() }` : "" }`;
+  console.log(str_out);
+
   console.log("typeof(str)=%o str=%o", typeof(str), str);
   str_out = !str;
   console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);

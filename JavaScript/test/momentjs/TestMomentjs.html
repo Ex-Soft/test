@@ -19,6 +19,52 @@ function onLoad()
 		m2;
 
 	if (window.console && console.log) {
+		console.log("moment version: %s", moment.version);
+		
+		m1 = moment(new Date());
+		console.log("moment.isMoment()=%o m.isValid()=%o moment().inspect()=\"%s\"", moment.isMoment(m1), m1.isValid(), moment().inspect());
+		console.log("%s %i-%i-%i %i:%i:%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds());
+		
+		m1 = moment([2022, 2, 13, 1, 59, 59]);
+		m2 = moment(m1);
+		m1.year(2023);
+		console.log(m1.toISOString(true), m2.toISOString(true));
+		
+		str1 = "2022-03-13T01:59:59";
+		m1 = moment.tz(str1, "America/Los_Angeles");
+		str2 = "2022-03-13T01:59:59";
+		m2 = moment.tz(str2, "America/Los_Angeles");
+		console.log("%s %o%s==%o %s", m1.toISOString(true), m1.valueOf(), m1.valueOf() === m2.valueOf() ? "=" : "!", m2.valueOf(), m2.toISOString(true));
+
+		str1 = "2022-03-26T02:59:59+02:00";
+		d1 = new Date(str1);
+		d2 = moment(d1).add(1, "d").toDate();
+		console.log("\"%s\".add(1, \"\d\") = \"%s\"", d1.toString(), d2.toString());
+		str1 = "2022-03-26T03:00:00+02:00";
+		d1 = new Date(str1);
+		d2 = moment(d1).add(1, "d").toDate();
+		console.log("\"%s\".add(1, \"\d\") = \"%s\"", d1.toString(), d2.toString());
+		str1 = "2022-10-29T03:59:59+03:00";
+		d1 = new Date(str1);
+		d2 = moment(d1).add(1, "d").toDate();
+		console.log("\"%s\".add(1, \"\d\") = \"%s\"", d1.toString(), d2.toString());
+		str1 = "2022-10-29T04:00:00+03:00";
+		d1 = new Date(str1);
+		d2 = moment(d1).add(1, "d").toDate();
+		console.log("\"%s\".add(1, \"\d\") = \"%s\"", d1.toString(), d2.toString());
+		
+		str1 = "2022-03-13";
+		m1 = moment.tz(str1, "America/Los_Angeles");
+		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());		str1 = "2022-03-13T01:59:59";
+		m1 = moment.tz(str1, "America/Los_Angeles");
+		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());
+		str1 = "2022-03-13T01:59:59";
+		m1 = moment.tz(str1, "America/Los_Angeles");
+		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());
+		str1 = "2022-03-13T02:00:00";
+		m1 = moment.tz(str1, "America/Los_Angeles");
+		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());
+		
 		d1 = new Date(Date.UTC(2021, 2, 14, 9, 59, 59)); // 2021-03-14 09:59:59 GMT - 08:00 = 2021-03-14 01:59:59 PST
 		d2 = new Date(Date.UTC(2021, 2, 14, 10, 0, 0));  // 2021-03-14 10:00:00 GMT - 08:00 = 2021-03-14 02:00:00 PT + 01:00 = 2021-03-14 03:00:00 PDT = 2021-03-14 03:00:00-07:00
 		str1 = moment(d1).tz('America/Los_Angeles').format('YYYY-MM-DDTHH:mm:ssZ');
@@ -98,5 +144,6 @@ function onLoad()
 		</script>
 	</head>
 	<body onload="onLoad()">
+		<a href="https://momentjs.com/docs/" target="_blank">momentjs.com/docs</a>
 	</body>
 </html>

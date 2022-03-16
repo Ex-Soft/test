@@ -14,6 +14,23 @@ function onLoad()
 		str;
 
 	if(window.console && console.log) {
+		str = "2022-03-26T02:59:59+02:00";
+		d1 = new Date(str);
+		d2 = addDays(d1, 1);
+		console.log("addDays(\"%s\", 1) = \"%s\"", d1.toString(), d2.toString());
+		str = "2022-03-26T03:00:00+02:00";
+		d1 = new Date(str);
+		d2 = addDays(d1, 1);
+		console.log("addDays(\"%s\", 1) = \"%s\"", d1.toString(), d2.toString());
+		str = "2022-10-29T03:59:59+03:00";
+		d1 = new Date(str);
+		d2 = addDays(d1, 1);
+		console.log("addDays(\"%s\", 1) = \"%s\"", d1.toString(), d2.toString());
+		str = "2022-10-29T04:00:00+03:00";
+		d1 = new Date(str);
+		d2 = addDays(d1, 1);
+		console.log("addDays(\"%s\", 1) = \"%s\"", d1.toString(), d2.toString());
+		
 		d1 = new Date("Invalid Date");
 		console.log("date instanceof Date = %o toString.call(date) === \"[object Date]\" = %o date.toString() === \"Invalid Date\" = %o isDate(date) = %o isDateStrict(date) = %o", d1 instanceof Date, toString.call(d1) === "[object Date]", d1.toString() === "Invalid Date", isDate(d1), isDateStrict(d1));
 
@@ -51,7 +68,7 @@ function onLoad()
 		
 		d1 = new Date();
 		str = d1.toLocaleString("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, timeZoneName: "short" });
-		console.log(str);
+		console.log(".toLocaleString(\"en-US\", { ... }) = \"%s\"", str);
 
 		str = "2020-02-29T00:00:00+02:00";
 		d1 = new Date(str);
@@ -201,6 +218,10 @@ function isDate(value) {
 
 function isDateStrict(value) {
 	return value && (value instanceof Date || toString.call(value) === '[object Date]') && value.toString() !== "Invalid Date";
+}
+
+function addDays(date, value) {
+	return new Date(date.getTime() + value * 86400000);
 }
 		</script>
 	</head>

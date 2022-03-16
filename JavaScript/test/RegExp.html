@@ -25,6 +25,13 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	Str = "Foundation: [{\"$id\":\"1\",\"ErrorCode\":\"DUPLICATE_TRANSACTION\",\"ErrorDescription\":\"Transaction already exists\"}]";
+	RegEx = /(Foundation:\s*)(\[.*?])/;
+	i = RegEx.test(Str);
+	let [ , , errors ] = RegEx.exec(Str);
+	// Str = "blah-blah-blah";
+	// [ , , errors ] = RegEx.exec(Str); // Uncaught TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
+	
 	arr = ["1 : [ NprReversalAlreadySubmitted , NprReversalLacksSettlementSucceeded ]", "3:[NprItemLacksRefundSucceededStatus,PriceAdjustmentPending]"];
 	RegEx = /^([a-z0-9]+)\s*:\s*\[\s*([a-z, ]+)\s*]$/i;
 	for (i = 0; i < arr.length; ++i) {
