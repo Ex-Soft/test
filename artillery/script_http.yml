@@ -1,0 +1,19 @@
+# https://www.amity.co/developer-portal/how-to-use-artillery-to-perform-automate-testing-for-amity-chat
+# set DEBUG=http,http:capture,http:response
+config:
+  # this hostname will be used as a prefix for each URI in the flow unless a complete URI is specified
+  target: "https://notifications-dit.nonprod.customercare.vip.nordstrom.com"
+  phases:
+    - duration: 1
+      arrivalRate: 5000
+      # rampTo: 1000
+      # arrivalCount: 500
+scenarios:
+  - name: Test Notifications
+    flow:
+      - get:
+          url: "/api/Notifications"
+          capture:
+            json: "$"
+            as: "responseBody"
+      - log: "ResponseBody: {{ responseBody }}"

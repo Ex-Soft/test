@@ -5,6 +5,8 @@
 # https://artillery.io/docs/
 # https://itnext.io/websocket-load-testing-with-artillery-io-b8b7ecbcd7ed
 # https://www.artillery.io/docs/guides/guides/ws-reference
+# https://www.amity.co/developer-portal/how-to-use-artillery-to-perform-automate-testing-for-amity-chat
+# set DEBUG=http,http:capture,http:response
 config:
   # this hostname will be used as a prefix for each URI in the flow unless a complete URI is specified
   # target: "wss://notificationhub/hubs/delta"
