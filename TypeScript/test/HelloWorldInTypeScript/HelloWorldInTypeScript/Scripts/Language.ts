@@ -90,7 +90,7 @@ const isObject = (value: any): boolean => {
 };
 
 const isDate = (value: any): boolean => {
-    return value && toString.call(value) === "[object Date]";
+    return value && (value instanceof Date || toString.call(value) === "[object Date]") && value.toString() !== "Invalid Date";
 };
 
 if (window.console && console.log) {
