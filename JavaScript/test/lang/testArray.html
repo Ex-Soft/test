@@ -26,6 +26,15 @@ if(window.console && console.log)
 	aa = [ "1", "7", "11" ].map(numStr => parseInt(numStr));
 	console.log("[ \"1\", \"7\", \"11\" ].map(numStr => parseInt(numStr)) = %o", aa);
 
+	// ... - spread operator
+	aa = [ ...a, 9, 8, 7, 6 ];
+	console.log("a=%o [ ...a, 9, 8, 7, 6 ]=%o", a, aa);
+	
+	aa = [ 1, 2, ...(true ? [ 3 ] : [] ) ];
+	console.log("[ 1, 2, ...(true ? [ 3 ] : [] ) ]=%o", aa);
+	aa = [ 1, 2, ...(false ? [ 3 ] : [] ) ];
+	console.log("[ 1, 2, ...(false ? [ 3 ] : [] ) ]=%o", aa);
+	
 	aa = [ new Date("2020-02-29T00:00:00+02:00"), new Date("2021-02-28T00:00:00+02:00"), new Date("2022-02-28T00:00:00+02:00") ];
 	aa.sort((left, right) => right.valueOf() - left.valueOf());
 

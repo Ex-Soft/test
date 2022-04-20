@@ -29,6 +29,10 @@ function onLoad()
 		tmp;
 
 	if(window.console && console.log) {
+		// Optional chaining operator
+		o1 = { p1: "property1" };
+		console.log("%o o.p1?.toUpperCase()=\"%s\" o.p2?.toUpperCase()=%o", o1, o1.p1?.toUpperCase(), o1.p2?.toUpperCase()); // "PROPERTY1" undefined
+
 		o1 = getO();
 		console.log("%o", o1);
 

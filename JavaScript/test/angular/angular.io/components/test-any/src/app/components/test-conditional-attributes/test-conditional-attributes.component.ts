@@ -1,4 +1,5 @@
 // https://stackoverflow.com/questions/36745734/how-to-add-conditional-attribute-in-angular-2
+// https://www.developer.com/java/data/applying-conditional-styles-to-components-using-angular-declarations/
 
 import { Component, Input } from '@angular/core';
 
