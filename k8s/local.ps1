@@ -52,3 +52,7 @@ minikube delete
 
 eksctl version
 eksctl create cluster --name MYSUPERCLUSTER
+
+kubectl rollout restart deployment
+kubectl scale deployment purchasehistory-staging --replicas=0
+kubectl scale deployment purchasehistory-staging --replicas=2
