@@ -18,6 +18,18 @@ namespace Inside
             SortedSet<string> sortedSet = new SortedSet<string>();
             ConcurrentBag<string> concurrentBag = new ConcurrentBag<string>();
 
+            dictionaryStringString = new Dictionary<string, string>
+            {
+                { "1st", "1st" },
+                { "2nd", "2nd" },
+                { "3rd", "3rd" },
+            };
+
+            foreach (var item in dictionaryStringString)
+            {
+                dictionaryStringString["4th"] = "blah";
+            }
+
             bool result = hashSet.Add("1st");
             result = hashSet.Add("1st");
 

@@ -1,4 +1,4 @@
-﻿#define TEST_ELVIS_OPERATOR
+﻿//#define TEST_ELVIS_OPERATOR
 //#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
@@ -21,7 +21,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-//#define TEST_STRING
+#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -70,6 +70,27 @@ using static System.Console;
 
 namespace AnyTest
 {
+        #if TEST_ELVIS_OPERATOR || TEST_PATTERN || TEST_STRING
+        class PropertyString
+        {
+            private string _value;
+
+            public PropertyString(string value = null)
+            {
+                _value = value;
+            }
+
+            public PropertyString(PropertyString obj) : this(obj.Value)
+            {}
+
+            public string Value
+            {
+                get => _value;
+                set => _value = value;
+            }
+        }
+    #endif
+
     #if TEST_ELVIS_OPERATOR || TEST_PATTERN
         class B
         {
@@ -878,6 +899,12 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+                var propertyString1 = new PropertyString("propertyString1");
+                var propertyString2 = new PropertyString(propertyString1);
+                propertyString1.Value = "propertyString1modified";
+                WriteLine(propertyString1.Value);
+                WriteLine(propertyString2.Value);
+
                 tmpString = "blah-blah-blah";
                 tmpStringII = tmpString.Substring(0, 4);
                 tmpStringIII = tmpString[..4]; // range indexer
