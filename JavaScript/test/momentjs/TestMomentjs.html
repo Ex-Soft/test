@@ -25,6 +25,13 @@ function onLoad()
 		console.log("moment.isMoment()=%o m.isValid()=%o moment().inspect()=\"%s\"", moment.isMoment(m1), m1.isValid(), moment().inspect());
 		console.log("%s %i-%i-%i %i:%i:%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds());
 		
+		str1 = "2022-04-30T23:59:59+03:00";
+		m1 = moment(str1);
+		str2 = "2022-05-01T00:00:00+03:00";
+		m2 = moment();
+		console.log("\"%s\".isAfter(\"%s\")=%o \"%s\".isAfter(\"%s\")=%o", str1, str2, m1.isAfter(m2), str2, str1, m2.isAfter(m1));
+		console.log("\"%s\".isBefore(\"%s\")=%o \"%s\".isBefore(\"%s\")=%o", str1, str2, m1.isBefore(m2), str2, str1, m2.isBefore(m1));
+
 		m1 = moment([2022, 2, 13, 1, 59, 59]);
 		m2 = moment(m1);
 		m1.year(2023);

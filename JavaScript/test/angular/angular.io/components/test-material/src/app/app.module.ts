@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { SimpleComponentComponent } from './form/simple-component/simple-compone
 import { TestValidationComponent } from './form/test-validation/test-validation.component';
 import { TestspinnerComponent } from './material/testspinner/testspinner.component';
 import { TestAngularEditorComponent } from './form/test-angular-editor/test-angular-editor.component';
+import { TestSelectComponent } from './material/testselect/testselect.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { TestAngularEditorComponent } from './form/test-angular-editor/test-angu
     SimpleComponentComponent,
     TestValidationComponent,
     TestspinnerComponent,
-    TestAngularEditorComponent
+    TestAngularEditorComponent,
+    TestSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { TestAngularEditorComponent } from './form/test-angular-editor/test-angu
     MatInputModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     AngularEditorModule
   ],
   providers: [],

@@ -1,4 +1,14 @@
 ﻿"use strict";
+class Simple {
+	constructor(p1, p2) {
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	
+	toString() {
+		return `{p1:${this.p1},p2:${this.p2}} (from toString())`;
+	}
+}
 
 class Base {
 	constructor(basePropA, basePropB) {
@@ -119,8 +129,9 @@ function onLoad()
 {
 	let
 		baseVar1 = new Base("basePropAVar1", "basePropBVar1"),
-		derivedVar1 = new Derived("derivedPropAVar1", "derivedPropBVar1", "derivedBasePropAVar1", "derivedBasePropBVar1");
-
+		derivedVar1 = new Derived("derivedPropAVar1", "derivedPropBVar1", "derivedBasePropAVar1", "derivedBasePropBVar1"),
+		simple1 = new Simple("value1", "value2");
+		
 	if(window.console && console.log)
 	{
 		console.log("%o", baseVar1);
@@ -133,6 +144,10 @@ function onLoad()
 		
 		console.log("derivedVar1 instanceof Base == %s", derivedVar1 instanceof Base);
 		console.log("derivedVar1 instanceof Derived == %s", derivedVar1 instanceof Derived);
+		
+		console.log(simple1);
+		console.log("%o %o", simple1, simple1.toString());
+		console.log("%%s = %s", simple1);
 	}
 
 	baseVar1.basePropA += baseVar1.basePropA;

@@ -51,6 +51,14 @@ function onLoad()
 			default:
 				console.log("a (%s) %o default", typeof a, a);
 		}
+		
+		a = 1;
+		b = undefined;
+		console.log("%i > undefined (%o)", a, a > b); // false
+		b = null;
+		console.log("%i > null (%o)", a, a > b); // true
+		b = NaN;
+		console.log("%i > NaN (%o)", a, a > b); // false
 	}
 }		</script>
 	</head>

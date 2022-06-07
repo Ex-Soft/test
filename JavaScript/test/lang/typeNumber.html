@@ -13,11 +13,19 @@ function roundTo(value, precision)
 
 function onLoad()
 {
-	let num1 = 1.23456789;
+	let
+		num1 = 1.23456789,
+		num2,
+		num3;
 
 	if(window.console && console.log) {
 		for (let i = 0; i < 10; ++i)
 			console.log("num=%o roundTo()=%o toFixed()=%o toPrecision()=%o", num1, roundTo(num1, -i), num1.toFixed(i), i ? num1.toPrecision(i) : "");
+
+		num1 = 0;
+		num2 = 0.0; 
+		num3 = 0.27;
+		console.log("!0=%o !0.0=%o !0.27=%o", !num1, !num2, !num3); // !0===true !0.0===true !0.27===false
 	}
 }
 		</script>

@@ -1,0 +1,10 @@
+<select matNativeControl [(ngModel)]="selectedValue1" (change)="onSelectionChange1($event)">
+    <option *ngFor="let o of options" [value]="o.value">{{o.description}}</option>
+</select>
+<mat-select matNativeControl [(value)]="selectedValue2Value" [(ngModel)]="selectedValue2Model" (selectionChange)="onSelectionChange2($event)">
+    <mat-option *ngFor="let o of options" [value]="o.value">{{o.description}}</mat-option>
+</mat-select>
+<mat-select matNativeControl [formControl]="select3Control" (selectionChange)="onSelectionChange3($event)">
+    <mat-option *ngFor="let o of options" [value]="o.value">{{o.description}}</mat-option>
+</mat-select>
+<div *ngIf="select3Control.hasError('valueError')">{{select3Control.getError("valueError")}}</div>

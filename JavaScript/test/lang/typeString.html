@@ -11,6 +11,33 @@ function w(str)
    document.write(str,"<br>");
 }
 
+function formatStringFn() {
+	var str = arguments[0];
+	if (!str) {
+		return str;
+	}
+
+	for (var i = 1, l = arguments.length; i < l; ++i) {
+		var re = new RegExp(`\\{${i-1}\\}`, "gm");
+		str = str.replace(re, arguments[i]);
+	}
+
+	return str;
+}
+
+const formatString = (format, ...args) => {
+	if (!format || !args.length) {
+		return format;
+	}
+
+	for (let i = 0, l = args.length; i < l; ++i) {
+		const re = new RegExp(`\\{${i}\\}`, "gm");
+		format = format.replace(re, args[i]);
+	}
+
+	return format;
+}
+
 var
   str,
   str_out,
@@ -26,10 +53,6 @@ var
 // substr deprecated!!!
 
 if (window.console && console.log) {
-  o = new Date();
-  str_out = `${ o ? "?" : ""}${ o ? `fromDate=${ o.toJSON() }` : "" }`;
-  console.log(str_out);
-
   console.log("typeof(str)=%o str=%o", typeof(str), str);
   str_out = !str;
   console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
@@ -50,9 +73,41 @@ if (window.console && console.log) {
   str_out = !!str;
   console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
 
+  str_out = formatStringFn();
+  str = "{0} \"{1}\" \'{2}\' \"{1}\" {0}";
+  str_out = formatStringFn(str, "1st", "2nd", "3rd");
+  str_out = formatString();
+  str = "{0} \"{1}\" \'{2}\' \"{1}\" {0}";
+  str_out = formatString(str, "1st", "2nd", "3rd");
+  
+  o = new Date();
+  str_out = `${ o ? "?" : ""}${ o ? `fromDate=${ o.toJSON() }` : "" }`;
+  console.log(str_out);
+
   str = "0377";
   console.log("parseInt(\"%s\")=%i parseInt(\"%s\", 8)=%i parseInt(\"%s\", 16)=%i +\"%s\"=%i", str, parseInt(str), str, parseInt(str, 8), str, parseInt(str, 16), str, +str);
 
+  arr = ['1st'];
+  str = arr.join(', '); // "1st"
+  console.log("Array.join(\", \") \"%s\"", str);
+  arr = ['1st', '2nd'];
+  str = arr.join(', '); // "1st, 2nd"
+  idx = str.lastIndexOf(', ');
+  console.log("Array.join(\", \") \"%s\" \"%s\"", str, `${str.substring(0, idx)} or${str.substring(idx + 1)}`);
+  arr = ['1st', '2nd','3rd'];
+  str = arr.join(', '); // "1st, 2nd, 3rd"
+  idx = str.lastIndexOf(', ');
+  console.log("Array.join(\", \") \"%s\" \"%s\"", str, `${str.substring(0, idx + 1)} or${str.substring(idx + 1)}`);
+  str = arr.join(','); // "1st,2nd,3rd"
+  idx = str.lastIndexOf(',');
+  console.log("Array.join(\", \") \"%s\" \"%s\"", str, `${str.substring(0, idx + 1)} or ${str.substring(idx + 1)}`);
+  arr = ['1st', '2nd','3rd'];
+  str = arr.join(undefined); // "1st,2nd,3rd"
+  console.log("Array.join(undefined) \"%s\"", str);
+  arr = ['1st', '2nd','3rd'];
+  str = arr.join(null); // "1stnull2ndnull3rd"
+  console.log("Array.join(null) \"%s\"", str);
+  
   arr = ['1st', '2nd', '3rd', '4th', '5th'];
   str = arr.join();
   str_out = arr.join('~');
