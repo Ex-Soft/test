@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test white-space</title>
+		<style>
+div {
+    border: 1px solid black;
+	width: 150px;
+}
+		</style>
+	</head>
+	<body>
+		<div style="white-space: normal;">
+			style=&quot;white-space: normal;&quot;&#10;This is is the 1st line&#10;This  is  the  2nd  line&#10;This   is   the   3rd   line
+		</div>
+		<div style="white-space: nowrap;">
+			style=&quot;white-space: nowrap;&quot;&#10;This is is the 1st line&#10;This  is  the  2nd  line&#10;This   is   the   3rd   line
+		</div>
+		<div style="white-space: pre;">
+			style=&quot;white-space: pre;&quot;&#10;This is is the 1st line&#10;This  is  the  2nd  line&#10;This   is   the   3rd   line
+		</div>
+		<div style="white-space: pre-wrap;">
+			style=&quot;white-space: pre-wrap;&quot;&#10;This is the 1st line&#10;This  is  the  2nd  line&#10;This   is   the   3rd   line
+		</div>
+		<div style="white-space: pre-line;">
+			style=&quot;white-space: pre-line;&quot;&#10;This is the 1st line&#10;This  is  the  2nd  line&#10;This   is   the   3rd   line
+		</div>
+	</body>
+</html>
