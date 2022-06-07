@@ -1,9 +1,12 @@
-﻿using System;
+﻿//#define TEST_DOWNLOAD
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-
+using System.Net.Http.Headers;
+using System.Text;
 using static System.Console;
 
 namespace TestHttpClient
@@ -16,6 +19,7 @@ namespace TestHttpClient
 
             try
             {
+                #if TEST_DOWNLOAD
                 string
                     currentDirectory = System.Reflection.Assembly.GetExecutingAssembly().Location,
                     url = "http://st-drive.systtech.ru/9b8568edde3f4cbb9e375101a0f396f4";
@@ -51,6 +55,7 @@ namespace TestHttpClient
 
                 WriteLine(message = $"Downloading \"{url}\" finished with statusCode \"{statusCode}\" ({(int)statusCode})");
                 Debug.WriteLine(message);
+                #endif
             }
             catch (HttpRequestException eException)
             {

@@ -21,7 +21,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-#define TEST_STRING
+//#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -35,7 +35,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-//#define TEST_NULLABLE_TYPES
+#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -292,7 +292,8 @@ namespace AnyTest
                 tmpBoolIII;
 
             bool?
-                tmpBoolNullable;
+                tmpBoolNullable1,
+                tmpBoolNullable2;
 
             object
 				tmpObject,
@@ -1544,13 +1545,13 @@ namespace AnyTest
                 tmpDateTimeNullable1 = null;
                 tmpString = string.Format("{0:dd MMM yy}", tmpDateTimeNullable1);
 
-                tmpBoolNullable = null;
-                WriteLine($"null {(tmpBoolNullable == false ? "=" : "!")}= false"); // !=
-                WriteLine($"null {(tmpBoolNullable == true ? "=" : "!")}= true"); // !=
+                tmpBoolNullable1 = null;
+                WriteLine($"null {(tmpBoolNullable1 == false ? "=" : "!")}= false"); // !=
+                WriteLine($"null {(tmpBoolNullable1 == true ? "=" : "!")}= true"); // !=
 
                 try
                 { 
-                    Console.WriteLine("tmpBoolNullable.Value = {0}", tmpBoolNullable.Value);
+                    Console.WriteLine("tmpBoolNullable.Value = {0}", tmpBoolNullable1.Value);
                 }
                 catch(InvalidOperationException eException)
                 {
@@ -1560,14 +1561,15 @@ namespace AnyTest
                 try
                 {
                     //tmpString = tmpBoolNullable.Value ? "true" : "false";
-                    tmpString = tmpBoolNullable.Value == true ? "true" : "false";
+                    tmpString = tmpBoolNullable1.Value == true ? "true" : "false";
                 }
                 catch (InvalidOperationException eException)
                 {
                     Console.WriteLine("Nullable object must have a value. ({0}: {1})", eException.GetType().FullName, eException.Message);
                 }
 
-                tmpString = tmpBoolNullable.HasValue && tmpBoolNullable.Value ? "true" : "false";
+                tmpString = tmpBoolNullable1.HasValue && tmpBoolNullable1.Value ? "true" : "false";
+                tmpBoolNullable2 = tmpBoolNullable1;
 
                 int?
                     tmpIntNullableI = null,
