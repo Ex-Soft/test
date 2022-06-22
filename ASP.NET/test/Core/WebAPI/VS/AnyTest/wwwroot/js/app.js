@@ -152,6 +152,15 @@ function testAsyncActionFilterDI(checkboxBadRequest) {
         .then(data => console.log(data));
 }
 
+function testValidation() {
+    postData("api/testvalidation",
+            {
+                email: "a.b@y.z",
+                date: new Date()
+            })
+        .then(data => console.log(data));
+}
+
 async function postData(url = "", data = {}) {
     const response = await fetch(url,
         {
