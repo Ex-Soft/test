@@ -25,6 +25,22 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	Str = "a.b.c@x-y.z";
+	RegEx = /^(?<localPart>[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*)@(?<domain>(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(?:\.(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+))$/;
+	arr = Str.match(RegEx);
+	if (arr) {
+		console.log("groups=%o localPart=\"%s\" domain=\"%s\"", arr?.groups, arr?.groups?.localPart, arr?.groups?.domain);
+		for (i = 0; i < arr.length; i++) {
+			console.log("match[%i]=\"%s\"", i, arr[i]);
+		}
+	}
+	arr = RegEx.exec(Str);
+	if (arr) {
+		console.log("groups=%o localPart=\"%s\" domain=\"%s\"", arr?.groups, arr?.groups?.localPart, arr?.groups?.domain);
+		for (i = 0; i < arr.length; i++) {
+			console.log("test[%i]=\"%s\"", i, arr[i]);
+		}
+	}
 	Str = "Foundation: [{\"$id\":\"1\",\"ErrorCode\":\"DUPLICATE_TRANSACTION\",\"ErrorDescription\":\"Transaction already exists\"}]";
 	RegEx = /(Foundation:\s*)(\[.*?])/;
 	i = RegEx.test(Str);
