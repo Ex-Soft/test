@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "TestLambda": {
+      "commandName": "Project"
+    },
+    "Lambda Debug": {
+      "commandName": "Executable",
+      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-3.1.exe",
+      "commandLineArgs": "--port 5550",
+      "workingDirectory": "$(ProjectDir)\\bin\\$(Configuration)\\netcoreapp3.1"
+    }
+  }
+}

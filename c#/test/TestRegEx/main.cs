@@ -76,6 +76,19 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "a.b@b.c";
+            r = new Regex("^(?<localPart>[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?<domain>(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(?:\\.(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+))$");
+            match = r.Match(srcString);
+            if (match.Success)
+            {
+                var groupNames = r.GetGroupNames();
+                foreach (var groupName in groupNames)
+                {
+                    var group = match.Groups[groupName];
+                    var value = group.Value;
+                }
+            }
+
             srcString = "123_456_789_2020-02-29";
             r = new Regex("^([^_]*)_([^_]*)_([^_]*)_(\\d{4})-(\\d{2})-(\\d{2})$");
             match = r.Match(srcString);

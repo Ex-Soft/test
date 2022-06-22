@@ -295,6 +295,9 @@ namespace TestIEnumerable
             var dictionaryOfStringString = new Dictionary<string, string> { { "2nd", "2nd" } };
             var listOfStringII = listOfString.Intersect(dictionaryOfStringString.Keys).ToList();
 
+            listOfString = new List<string> { "1st", "2nd", "3rd", "4th", "5th" };
+            listOfStringII = listOfString.SkipLast(2).ToList();
+
             var listOfA = new List<A>();
             A tmpA;
 
