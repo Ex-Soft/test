@@ -5,9 +5,9 @@
     },
     "Lambda Debug": {
       "commandName": "Executable",
-      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-3.1.exe",
+      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe",
       "commandLineArgs": "--port 5550",
-      "workingDirectory": "$(ProjectDir)\\bin\\$(Configuration)\\netcoreapp3.1"
+      "workingDirectory": "$(ProjectDir)\\bin\\$(Configuration)\\net6.0"
     }
   }
 }
