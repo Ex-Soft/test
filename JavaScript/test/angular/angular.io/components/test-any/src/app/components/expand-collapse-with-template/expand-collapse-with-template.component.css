@@ -1,0 +1,15 @@
+.expand-collapse-legend {
+    font-weight: bold;
+}
+
+.expand-collapse-sign {
+    cursor: pointer;
+}
+
+.expand-collapse-template-expanded {
+    display: block;
+}
+
+.expand-collapse-template-collapsed {
+    display: none;
+}

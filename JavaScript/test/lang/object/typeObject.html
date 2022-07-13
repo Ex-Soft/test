@@ -20,6 +20,9 @@ function onLoad()
 			p2: "p2",
 			p3: "p3"
 		};
+
+		var str1, str2 = null;
+		console.log("[\"p1\"]=\"%s\" [\"p4\"]=\"%s\" [%s]=\"%s\" [%s]=\"%s\"", o1["p1"], o1["p4"], str1, o1[str1], str2, o1[str2]);
 		
 		let { p1:var1, p3:var3} = o1;
 		console.log("var1=\"%s\" var3=\"%s\"", var1, var3);
