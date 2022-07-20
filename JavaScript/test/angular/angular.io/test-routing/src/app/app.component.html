@@ -1,0 +1,11 @@
+<div>
+  <span>{{title}}</span>
+</div>
+<hr/>
+<nav>
+  <ul>
+    <li><a [routerLink]="page1route" (click)="onClick(1)">page1</a></li>
+    <li><a [routerLink]="page2route" (click)="onClick(2)">page2</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
