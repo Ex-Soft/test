@@ -118,8 +118,15 @@ print "\$\& = $&\n";
 print "\$\' = $'\n";
 print $TestStr;
 print "\n";
+print "\n";
 
 $TestStr="abc";
 print "\"$TestStr\" doesn\'t match /xyz/\n" if $TestStr !~ /xyz/;
+unless ($TestStr =~ m/xyz/) {
+    print "\"$TestStr\" doesn\'t match /xyz/\n" if $TestStr !~ /xyz/;
+}
+if (not ($TestStr =~ m/xyz/)) {
+    print "\"$TestStr\" doesn\'t match /xyz/\n" if $TestStr !~ /xyz/;
+}
 print "\n";
 
