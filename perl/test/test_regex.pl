@@ -119,3 +119,7 @@ print "\$\' = $'\n";
 print $TestStr;
 print "\n";
 
+$TestStr="abc";
+print "\"$TestStr\" doesn\'t match /xyz/\n" if $TestStr !~ /xyz/;
+print "\n";
+
