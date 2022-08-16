@@ -14,30 +14,42 @@ function onLoad()
 
 	if(window.console && console.log)
 	{
-		console.log(a == b);
-		console.log(b == c);
-		console.log(a == c);
-		console.log(false == "false");
-		console.log(0.1 + 0.2 == 0.3);
-		console.log(0.2 + 0.3 == 0.5);
+		console.log(a == b); // true
+		console.log(b == c); // true
+		console.log(a == c); // false
+		console.log(false == "false"); // false
+		console.log(0.1 + 0.2 == 0.3); // false
+		console.log(0.2 + 0.3 == 0.5); // true
 	}
 	
 	var
 		v;
 
-	v = [] + [];
+	v = ({} + "1" + []); // "[object Object]1"
 	if(window.console && console.log)
 		console.log("%s %o", typeof v, v);
 
-	v = [] + {};
+	v = {} + "1" + []; // "[object Object]1"
 	if(window.console && console.log)
 		console.log("%s %o", typeof v, v);
 
-	v = {} + [];
+	v = {} + "1" + [] + NaN; // "[object Object]1NaN"
 	if(window.console && console.log)
 		console.log("%s %o", typeof v, v);
 
-	v = {} + {};
+	v = [] + []; // ""
+	if(window.console && console.log)
+		console.log("%s %o", typeof v, v);
+
+	v = [] + {}; // "[object Object]"
+	if(window.console && console.log)
+		console.log("%s %o", typeof v, v);
+
+	v = {} + []; // "[object Object]"
+	if(window.console && console.log)
+		console.log("%s %o", typeof v, v);
+
+	v = {} + {}; // "[object Object][object Object]"
 	if(window.console && console.log)
 		console.log("%s %o", typeof v, v);
 
