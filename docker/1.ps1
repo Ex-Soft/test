@@ -14,3 +14,10 @@ docker stop $(docker ps -aq)
 docker images
 docker images -q
 docker rmi $(docker images -q)
+
+docker compose up
+docker compose up -d
+docker compose ps
+docker compose stop
+docker compose down
+docker compose down --volumes
