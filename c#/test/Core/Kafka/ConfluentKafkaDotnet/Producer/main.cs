@@ -6,6 +6,7 @@
 //#define TEST_TYPES_BY_SPECIFIC_RECORD
 //#define TEST_TYPES_BY_GENERIC_RECORD
 #define TEST_MULTI_SCHEMA
+//#define WITH_CONTINUATION
 
 using System;
 using System.Diagnostics;
@@ -85,15 +86,25 @@ namespace Producer
                 .SetValueSerializer(new AvroSerializer<T>(schemaRegistry, avroSerializerConfigValue))
                 .Build();
 
-            var result = await producer.ProduceAsync(topic, new Message<string, T> { Key = Guid.NewGuid().ToString(), Value = obj })
-                .ContinueWith(task => task.IsFaulted
-                    ? $"error producing message: {task.Exception?.Message}"
-                    : $"produced to: {task.Result.TopicPartitionOffset}");
+            try
+            {
+                var result = await producer.ProduceAsync(topic, new Message<string, T> { Key = Guid.NewGuid().ToString(), Value = obj })
+                    #if WITH_CONTINUATION
+                        .ContinueWith(task => task.IsFaulted
+                            ? $"error producing message: {task.Exception?.Message}"
+                            : $"produced to: {task.Result.TopicPartitionOffset}")
+                    #endif
+                    ;
 
-            producer.Flush(TimeSpan.FromSeconds(30));
+                producer.Flush(TimeSpan.FromSeconds(30));
 
-            Debug.WriteLine(result);
-            WriteLine(result);
+                Debug.WriteLine(result);
+                WriteLine(result);
+            }
+            catch (ProduceException<string, T> e)
+            {
+                WriteLine($"error producing message: {e}");
+            }
         }
 
         public static async Task ProduceGenericRecord(string topic, object obj)
