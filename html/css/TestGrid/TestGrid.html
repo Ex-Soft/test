@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- https://css-tricks.com/equal-columns-with-flexbox-its-more-complicated-than-you-might-think/ -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Test grid</title>
+		<style>
+.item {
+	border: 1px solid black;
+}
+
+.item-flex {
+	flex-grow: 1;
+}
+		</style>
+	</head>
+	<body>
+        <div style="display: flex; ">
+            <div style="background-color: red; " class="item item-flex">1234567890</div>
+            <div style="background-color: green; " class="item item-flex">12345678901234567890</div>
+			<div style="background-color: blue; " class="item item-flex">123456789012345678901234567890</div>
+        </div>
+		<div style="display: flex; ">
+            <div style="background-color: red; flex-basis: 100%; " class="item item-flex">1234567890</div>
+            <div style="background-color: green; flex-basis: 100%; " class="item item-flex">12345678901234567890</div>
+			<div style="background-color: blue; flex-basis: 100%; " class="item item-flex">123456789012345678901234567890</div>
+        </div>
+		<div style="display: flex; ">
+            <div style="background-color: red; flex-basis: 0; " class="item item-flex">1234567890</div>
+            <div style="background-color: green; flex-basis: 0; " class="item item-flex">12345678901234567890</div>
+			<div style="background-color: blue; flex-basis: 0; " class="item item-flex">123456789012345678901234567890</div>
+        </div>
+		<div style="display: flex; ">
+            <div style="background-color: red; width: 100%; " class="item item-flex">1234567890</div>
+            <div style="background-color: green; width: 100%; " class="item item-flex">12345678901234567890</div>
+			<div style="background-color: blue; width: 100%; " class="item item-flex">123456789012345678901234567890</div>
+        </div>
+		<div style="display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; ">
+            <div style="background-color: red; " class="item">1234567890</div>
+            <div style="background-color: green; " class="item">12345678901234567890</div>
+			<div style="background-color: blue; " class="item">123456789012345678901234567890</div>
+        </div>
+	</body>
+</html>
