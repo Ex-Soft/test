@@ -10,7 +10,7 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { combineLatest, Observable, UnaryFunction, forkJoin, of, throwError, Subject } from 'rxjs';
+import { combineLatest, Observable, UnaryFunction, forkJoin, of, throwError, Subject, firstValueFrom } from 'rxjs';
 import { map, switchMap, mergeMap, flatMap, retry, catchError, takeUntil, tap } from 'rxjs/operators';
 
 import { TestHttpGet1Service } from '../../services/test-http-get-1.service';
@@ -230,5 +230,19 @@ export class TestHttpComponent implements OnInit, OnDestroy {
       console.log(resp, typeof resp.body);
     }))
     .subscribe();
+  }
+
+  async onClickAsyncXXX(e: Event) {
+    const btn = e.target as HTMLInputElement;
+    let result;
+
+    try {
+      result = await firstValueFrom(this.http.get(`${this.baseUrl}get${btn.value}`));
+    }
+    catch (e) {
+      console.log(e);
+    }
+
+    console.log(result);
   }
 }
