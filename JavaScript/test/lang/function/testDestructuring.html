@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment -->
+<!-- https://www.freecodecamp.org/news/array-and-object-destructuring-in-javascript/ -->
+<!-- https://www.javascripttutorial.net/es6/javascript-object-destructuring/ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Object Destructuring</title>
+		<script>
+function onLoad()
+{
+	if (window.console && console.log) {
+		f();
+		f(undefined);
+		// f(null); // Uncaught TypeError: Cannot read properties of null (reading 'firstName') || Uncaught TypeError: null has no properties
+		f({});
+		f({ firstName: "1stName" });
+		f({ firstName: "1stName", lastName: "^1stName" });
+	}
+}
+
+function f({ firstName: x = "FirstName", lastName: y = "LastName" } = {}) {
+	if (window.console && console.log) {
+			console.log("{ x: %o, y: %o}", x, y);
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
