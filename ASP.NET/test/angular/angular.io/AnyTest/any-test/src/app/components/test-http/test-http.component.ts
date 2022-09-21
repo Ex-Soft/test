@@ -64,9 +64,17 @@ export class TestHttpComponent implements OnInit, OnDestroy {
 
   onClickTestOneSubscribe(): void {
     const result = this.get1service.getData(this.baseUrl)
-      .subscribe(data => {
-        console.log('subscribe() data = %o', data);
-        this.data = data;
+      .subscribe({
+        next: (value: any): void => {
+          console.log('next() value = %o', value);
+          this.data = value;
+        },
+        error: (err: any): void => {
+          console.error(err);
+        },
+        complete: (): void => {
+          console.log('complete');
+        }
       });
     console.log('result=%o', result);
   }
@@ -211,17 +219,17 @@ export class TestHttpComponent implements OnInit, OnDestroy {
 
   onClickXXX(e: Event): void {
     const btn = e.target as HTMLInputElement;
-    this.http.get<StatusCodeResponse>(`${this.baseUrl}get${btn.value}`).subscribe(
-      resp => {
+    this.http.get<StatusCodeResponse>(`${this.baseUrl}get${btn.value}`).subscribe({
+      next: resp => {
         console.log('next(%o)', resp);
       },
-      error => {
+      error: error => {
         console.log('error(%o)', error.error);
       },
-      () => {
+      complete: () => {
         console.log('complete()');
       }
-    );
+    });
   }
 
   onTestTap(): void {
@@ -234,7 +242,7 @@ export class TestHttpComponent implements OnInit, OnDestroy {
 
   async onClickAsyncXXX(e: Event) {
     const btn = e.target as HTMLInputElement;
-    let result;
+    let result: object;
 
     try {
       result = await firstValueFrom(this.http.get(`${this.baseUrl}get${btn.value}`));
