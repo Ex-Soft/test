@@ -1,5 +1,5 @@
-﻿#define TEST_LIST
-//#define TEST_DICTIONARY
+﻿//#define TEST_LIST
+#define TEST_DICTIONARY
 
 using System;
 using System.Collections;
@@ -331,6 +331,19 @@ namespace STLIII
                 IList a = oDic.Cast<DictionaryEntry>().Select(de => de.Value).ToList();
                 IList aa = oDic.Keys.Cast<string>().ToList();
                 Console.WriteLine();
+
+                #endregion
+
+                #region IgnoreCaseDictionary
+
+                var icDic = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                icDic.Add("FiRsT", "1st");
+                icDic.Add("sEcOnD", "2nd");
+                icDic.Add("ThIrD", "3rd");
+
+                var key = "fIrSt";
+                if (icDic.ContainsKey(key))
+                    Console.WriteLine($"[\"{key}\"] = \"{icDic[key]}\"");
 
                 #endregion
 
