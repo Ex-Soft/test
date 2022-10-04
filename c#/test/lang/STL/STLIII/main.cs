@@ -336,15 +336,20 @@ namespace STLIII
 
                 #region IgnoreCaseDictionary
 
-                var icDic = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-                icDic.Add("FiRsT", "1st");
-                icDic.Add("sEcOnD", "2nd");
-                icDic.Add("ThIrD", "3rd");
+                var icDic1 = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                icDic1.Add("FiRsT", "1st");
+                icDic1.Add("sEcOnD", "2nd");
+                icDic1.Add("ThIrD", "3rd");
 
                 var key = "fIrSt";
-                if (icDic.ContainsKey(key))
-                    Console.WriteLine($"[\"{key}\"] = \"{icDic[key]}\"");
+                if (icDic1.ContainsKey(key))
+                    Console.WriteLine($"[\"{key}\"] = \"{icDic1[key]}\"");
 
+                var icDic2 = icDic1.ToDictionary(kvp => kvp.Key, kvp => kvp.Value, StringComparer.OrdinalIgnoreCase);
+                key = "SeCoNd";
+                if (icDic2.ContainsKey(key))
+                    Console.WriteLine($"[\"{key}\"] = \"{icDic2[key]}\"");
+                
                 #endregion
 
             #endif

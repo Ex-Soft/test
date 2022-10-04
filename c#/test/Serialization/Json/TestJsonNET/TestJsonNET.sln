@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestJsonNET", "TestJsonNET.csproj", "{8B2B7E31-27F5-40C2-A73E-2FB19EB8F237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestJsonNET", "TestJsonNET.csproj", "{ABDE3956-D544-4623-902C-7FACF2638CA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8B2B7E31-27F5-40C2-A73E-2FB19EB8F237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B2B7E31-27F5-40C2-A73E-2FB19EB8F237}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B2B7E31-27F5-40C2-A73E-2FB19EB8F237}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B2B7E31-27F5-40C2-A73E-2FB19EB8F237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDE3956-D544-4623-902C-7FACF2638CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDE3956-D544-4623-902C-7FACF2638CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDE3956-D544-4623-902C-7FACF2638CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDE3956-D544-4623-902C-7FACF2638CA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89F98C3B-0BD5-4EFD-B7B5-2A031BDE8C46}
 	EndGlobalSection
 EndGlobal

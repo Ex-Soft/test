@@ -36,6 +36,10 @@ namespace TestSwitch
             WriteLine(GetByProperty(new A { Value = "A" }));
             WriteLine(GetByProperty(new A { Value = "B" }));
             WriteLine(GetByProperty(new A { Value = "C" }));
+            
+            WriteLine(GetByMatchExpression(3));
+            WriteLine(GetByMatchExpression(13));
+            WriteLine(GetByMatchExpression(23));
         }
 
         public static string GetByStatement(object o)
@@ -72,6 +76,16 @@ namespace TestSwitch
                 { Value: "B" } => "B",
                 { Value: "C" } => "C",
                 _ => string.Empty
+            };
+        }
+
+        public static string GetByMatchExpression(int value)
+        {
+            return value switch
+            {
+                >= 0 and < 10 => "Value too low",
+                >= 20 and < 100 => "Value too high",
+                _ => "Hit the bull's-eye"
             };
         }
     }

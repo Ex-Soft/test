@@ -1,4 +1,5 @@
-﻿#define TEST_MIX
+﻿#define TEST_DICTIONARY
+//#define TEST_MIX
 //#define TEST_CLASS_WITH_OBJECT_PROPERTY
 //#define TEST_DATE
 //#define TEST_POST
@@ -63,6 +64,22 @@ namespace TestJsonNET
 
                 string
                     outputFileName;
+
+                #if TEST_DICTIONARY
+                    Dictionary<string, string> dictionary1 = new Dictionary<string, string>
+                    {
+                        { "FiRsT", "1st" },
+                        { "sEcOnD", "2nd" },
+                        { "ThIrD", "3rd"}
+                    };
+
+                    tmpString = JsonConvert.SerializeObject(dictionary1);
+
+                    Dictionary<string, string> dictionary2 = new Dictionary<string, string>(JsonConvert.DeserializeObject<Dictionary<string, string>>(tmpString), StringComparer.OrdinalIgnoreCase);
+                    tmpString2 = "fIrSt";
+                    if (dictionary2.ContainsKey(tmpString2))
+                        Console.WriteLine($"[\"{tmpString2}\"] = \"{dictionary2[tmpString2]}\"");
+                #endif
 
                 #if TEST_MIX
                     multiLanguagesText1 = new MultiLanguagesText
