@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNewRelicSimple", "TestNewRelicSimple.csproj", "{BB5F5C20-4292-4A84-9E9F-B913AD4DC6C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB5F5C20-4292-4A84-9E9F-B913AD4DC6C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5F5C20-4292-4A84-9E9F-B913AD4DC6C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5F5C20-4292-4A84-9E9F-B913AD4DC6C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5F5C20-4292-4A84-9E9F-B913AD4DC6C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB2B4F34-102F-4A5E-A7EC-48230226305B}
+	EndGlobalSection
+EndGlobal
