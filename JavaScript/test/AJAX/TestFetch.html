@@ -1,0 +1,21 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test fetch()</title>
+		<script>
+function loadByFetch() {
+    fetch("http://localhost/JavaScript/test/AJAX/data.txt")
+        .then(response => response.text())
+        .then(body => {
+            if (window.console && console.log) {
+                console.log(body);
+            }
+        });
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="fetch()" onclick="loadByFetch()" />
+	</body>
+</html>
