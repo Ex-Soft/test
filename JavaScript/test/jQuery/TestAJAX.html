@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test AJAX</title>
+		<script src="../../jQuery/jquery.js"></script>
+		<script>
+function onGet() {
+	$.ajax({
+		method: "GET",
+		url: "http://localhost/JavaScript/test/AJAX/data.txt",
+		headers: {
+			"Access-Control-Request-Methods": "GET,POST,PUT,DELETE,OPTIONS",
+			"X-custom-header-1": "X-custom-header-1-value",
+			"X-custom-header-2": "X-custom-header-2-value"
+		},
+		// or
+		// beforeSend: function(xhr) {
+		//	xhr.setRequestHeader("Access-Control-Request-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+		//	xhr.setRequestHeader("X-custom-header-1", "X-custom-header-1-value");
+		//	xhr.setRequestHeader("X-custom-header-2", "X-custom-header-2-value");
+		// }
+		complete: function(jqXHR, textStatus) {
+			if (window.console && console.log) {
+				console.log("complete(%o)", arguments);
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			if (window.console && console.log) {
+				console.log("error(%o)", arguments);
+			}
+		},
+		success: function(data, textStatus, jqXHR) {
+			if (window.console && console.log) {
+				console.log("success(%o)", arguments);
+			}
+		}
+	})
+	.done(function(data, textStatus, jqXHR) {
+		if (window.console && console.log) {
+			console.log("done(%o)", arguments);
+		}
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) {
+		if (window.console && console.log) {
+			console.log("fail(%o)", arguments);
+		}
+	})
+	.always(function(dataOrjqXHR, textStatus, jqXHROrerrorThrown) {
+		if (window.console && console.log) {
+			console.log("always(%o)", arguments);
+		}
+	});
+}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="get()" onclick="onGet()"/>
+	</body>
+</html>

@@ -1,12 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8"/>
 		<title>AJAX - Test load dat-file</title>
-		<script type="text/javascript">
-<!--
+		<script>
 var
 	req=null,
-	console=null,
 	arr=new Array();
 
 function DoIt(url, params, HttpMethod)
@@ -50,7 +49,7 @@ function initXMLHTTPRequest()
 			catch(e)
 			{
 			}
-        	}
+		}
 	}
 
 	return(xRequest);
@@ -61,6 +60,9 @@ function onReadyState()
 	// toConsole(req.readyState==4 ? req.responseText : "loading... ["+req.readyState+"]");
 	if(req.readyState==4)
 	{
+		toConsole("load ["+req.readyState+"]");
+		toConsole(req.headers);
+		toConsole(req.getAllResponseHeaders());
 		toConsole(req.responseText);
 		toConsole("xRequest.status="+req.status);
 		AppendInfo(req.responseText);
@@ -71,19 +73,8 @@ function onReadyState()
 
 function toConsole(data)
 {
-	if(!console)
-		console=document.getElementById("console");
-
-	if(console)
-	{
-		var
-			newline=document.createElement("div"),
-			txt;
-
-		console.appendChild(newline);
-		txt=document.createTextNode(data);
-		newline.appendChild(txt);
-	}
+	if(window.console && console.log)
+		console.log(data);
 }
 
 function AppendInfo(data)
@@ -92,14 +83,14 @@ function AppendInfo(data)
 		lines,
 		i;
 
-	alert(data);
+	toConsole(data);
 	data=data.replace(/\s/g,"");
-	alert(data);
+	toConsole(data);
 
 	lines=data.split(/[;\s]/);
 
 	for(i=0; i<lines.length; ++i)
-		alert("'"+lines[i]+"' (length="+lines[i].length+")");
+		toConsole("'"+lines[i]+"' (length="+lines[i].length+")");
 
 	for(i=0; i<lines.length; ++i)
 		if(lines[i].length)
@@ -110,34 +101,32 @@ function AppendInfo(data)
 	lines=0;
 	for(i=0; i<arr.length; ++i)
 	{
-		alert("arr["+i+"]="+arr[i]);
+		toConsole("arr["+i+"]="+arr[i]);
 		lines+=arr[i];
 	}
-	alert(lines);
+	toConsole(lines);
 
 	for(i=0, lines=0; i<arr.length; lines+=arr[i], ++i)
 		;
-	alert(lines);
+	toConsole(lines);
 
 	for(i=0, lines=0; i<arr.length; lines+=arr[i], i++)
 		;
-	alert(lines);
+	toConsole(lines);
 
 	for(i=0, lines=0; i<arr.length; ++i, lines+=arr[i])
 		/* NaN because sum(1..arr.length+1) */;
-	alert(lines);
+	toConsole(lines);
 
 	for(i=0, lines=0; i<arr.length; i++, lines+=arr[i])
 		/* NaN because sum(1..arr.length+1) */;
-	alert(lines);
+	toConsole(lines);
 }
-// -->
 		</script>
 	</head>
 	<body>
 		<form id="MainForm" name="MainForm">
 			<input type="button" id="Download" value="Download" onclick="DoIt('data.dat')"><br>
-			<div id="console"></div>
 		</form>
 	</body>
 </html>
