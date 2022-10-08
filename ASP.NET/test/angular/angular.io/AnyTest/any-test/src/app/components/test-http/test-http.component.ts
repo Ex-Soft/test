@@ -9,7 +9,7 @@
 // https://www.techiediaries.com/angular-http-client/
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { combineLatest, Observable, UnaryFunction, forkJoin, of, throwError, Subject, firstValueFrom } from 'rxjs';
 import { map, switchMap, mergeMap, flatMap, retry, catchError, takeUntil, tap } from 'rxjs/operators';
 
@@ -252,5 +252,18 @@ export class TestHttpComponent implements OnInit, OnDestroy {
     }
 
     console.log(result);
+  }
+
+  onPureGet(): void {
+    const headers = new HttpHeaders()
+      .set('X-another-custom-header-1', 'X-another-custom-header-1-value')
+      .set('X-another-custom-header-2', 'X-another-custom-header-2-value');
+
+    const request = this.http.get(`${this.baseUrl}get200`, { headers });
+    request.subscribe(function() {
+      if (window.console && console.log) {
+        console.log(arguments);
+      }
+    });
   }
 }

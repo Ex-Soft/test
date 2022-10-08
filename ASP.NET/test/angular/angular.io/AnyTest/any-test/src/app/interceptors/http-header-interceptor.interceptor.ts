@@ -20,8 +20,8 @@ export class HttpHeaderInterceptorInterceptor implements HttpInterceptor {
       }*/
       headers: request.headers
         .set('Access-Control-Request-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-        .set('X-custom-value1', 'X-custom-value1')
-        .set('X-custom-value2', 'X-custom-value2')
+        .set('X-custom-header1', 'X-custom-header-value1')
+        .set('X-custom-header2', 'X-custom-header-value2')
     });
 
     return next.handle(corsRequest);
