@@ -14,5 +14,10 @@ namespace ClassLibrary2
         {
             Debug.WriteLine($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name}({str})");
         }
+
+        public string Foo3(string str)
+        {
+            return $"{str} {str}";
+        }
     }
 }

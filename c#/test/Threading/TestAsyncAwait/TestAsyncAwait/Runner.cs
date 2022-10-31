@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace TestAsyncAwait
+﻿namespace TestAsyncAwait
 {
     public class Runner
     {

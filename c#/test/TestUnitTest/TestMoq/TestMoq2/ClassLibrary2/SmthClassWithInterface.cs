@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace ClassLibrary2
+﻿namespace ClassLibrary2
 {
     public class SmthClassWithInterface : ISmthInterface
     {

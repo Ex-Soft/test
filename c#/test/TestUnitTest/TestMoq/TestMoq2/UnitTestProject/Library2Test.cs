@@ -245,5 +245,27 @@ namespace UnitTestProject
             Assert.AreEqual("Robert", mock.Object.FirstName);
             Assert.AreEqual("Paulson", mock.Object.LastName);
         }
+
+        [TestMethod]
+        public void Test()
+        {
+            //System.Diagnostics.Debugger.Launch();
+
+            var mock = new Mock<IInterfaceWithMethods>();
+
+            _ = mock.SetupSequence(x => x.Foo3(It.IsAny<string>()))
+                .Returns("1st")
+                .Returns("2nd")
+                .Returns("3rd");
+
+            string
+                result1 = mock.Object.Foo3(null),
+                result2 = mock.Object.Foo3(string.Empty),
+                result3 = mock.Object.Foo3("");
+
+            Assert.AreEqual("1st", result1);
+            Assert.AreEqual("2nd", result2);
+            Assert.AreEqual("3rd", result3);
+        }
     }
 }
