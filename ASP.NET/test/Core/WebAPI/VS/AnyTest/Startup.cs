@@ -1,9 +1,5 @@
+using AnyTest.Clients;
 using AnyTest.Filters;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace AnyTest
 {
@@ -24,6 +20,18 @@ namespace AnyTest
             services.AddScoped<ActionFilterDIExample>();
             services.AddScoped<AsyncActionFilterDIExample>();
             services.AddControllers();
+
+            #if USE_HTTP_CLIENT_FACTORY
+                services.AddHttpClient("weatherapi", client =>
+                {
+                    client.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/");
+                });
+            #else
+                services.AddHttpClient<IWeatherClient, OpenWeatherClient>(client =>
+                {
+                    client.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/");
+                });
+            #endif
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
