@@ -1,39 +1,17 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using static System.Console;
 
 namespace UnderTheHood
 {
-    public class MyAwaitableClass
-    {
-        public MyAwaiter GetAwaiter()
-        {
-            return new MyAwaiter();
-        }
-    }
-
-    public class MyAwaiter : INotifyCompletion
-    {
-        public void GetResult()
-        {}
-
-        public bool IsCompleted => false;
-
-        public void OnCompleted(Action continuation)
-        {}
-    }
-
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-        }
-
-        static async Task AwaitMyAwaitable()
-        {
-            MyAwaitableClass awaitableObject = new MyAwaitableClass();
-
+            CustomAwaitableClass awaitableObject = new CustomAwaitableClass();
             await awaitableObject;
+
+            var lazy = new Lazy<int>(() => 42);
+            var result = await lazy;
+            WriteLine(result);
         }
     }
 }
