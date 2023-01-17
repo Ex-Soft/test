@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- https://levelup.gitconnected.com/old-photo-effect-with-css-54f5be9912b -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Old Photo Effect</title>
+    <style>
+img {
+  height: 500px;
+  width: 500px;
+}
+
+#old {
+  filter: grayscale(1) blur(1px) contrast(1.2) sepia(1);
+  -webkit-mask: radial-gradient(#000, #0009);
+}
+
+div {
+  height: 500px;
+  width: 400px;
+}
+
+.demo-image {
+  width: 45vw;
+  aspect-ratio: 3/4;
+  background: url("../img/tv.jpg");
+  background-size: cover;
+}
+
+.old-style-photo {
+  position: relative;
+  filter: grayscale(1) blur(1px) contrast(1.2) sepia(1) blur(0.25px);
+  -webkit-mask: radial-gradient(#000, #000a);
+}
+
+#withBlur::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-mask: radial-gradient(farthest-side, #0000 30%, #000);
+  backdrop-filter: blur(5px) sepia(90%);
+}
+
+#withBlurSVG::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='noise' x='0%' y='0%' width='100%' height='100%'><feTurbulence baseFrequency='0.5' /></filter><rect x='0' y='0' width='100%' height='100%' filter='url(%23noise)' /></svg>"), #f003;
+  filter: grayscale(100%) contrast(150%);
+  mix-blend-mode: darken;
+}
+    </style>
+  </head>
+  <body>
+    <img src="../img/tv.jpg" alt="TV" title="TV" /><img id="old" src="../img/tv.jpg" alt="TV" title="TV" />
+    <hr/>
+    <div style="display: inline-block; " class="old-style-photo demo-image"></div><div id="withBlur" style="display: inline-block; " class="old-style-photo demo-image"></div><div id="withBlurSVG" style="display: inline-block; " class="old-style-photo demo-image"></div>
+  </body>
+</html>
