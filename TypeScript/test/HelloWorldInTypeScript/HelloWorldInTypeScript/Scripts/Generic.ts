@@ -2,6 +2,10 @@
     constructor(public p1: string) {}
 }
 
+class SmthClassForTestGeneric2 {
+    constructor(public p1: string) { }
+}
+
 class BaseGenericClass<T> {
     bp1: T;
 
@@ -61,3 +65,19 @@ let derivedGenericConcreteClass = new DerivedGenericConcreteClass(new SmthClassF
 baseGenericClass.foo1();
 derivedGenericClass.foo1();
 derivedGenericConcreteClass.foo1();
+
+const genericMap = <I, O>(arr: I[], properties: string[]): O[] => {
+    if (!Array.isArray(arr) || !arr.length)
+        return [];
+
+    return arr.map(item => {
+        const result = {} as O;
+        properties.forEach(propertyName => result[propertyName] = item[propertyName]);
+        return result;
+    });
+}
+
+let arrayToMap = [new SmthClassForTestGeneric("1st"), new SmthClassForTestGeneric("2nd"), new SmthClassForTestGeneric("3rd")];
+let mappedArray = genericMap<SmthClassForTestGeneric, SmthClassForTestGeneric2>(arrayToMap, ["p1"]);
+if (window.console && console.log)
+    console.log("genericMap: %o", mappedArray);
