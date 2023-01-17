@@ -45,6 +45,15 @@ if(window.console && console.log)
 		}
 	}
 
+	aa = [ { id:1, val: "1st" }, { id:2, val: "2nd" }, { id:3, val: "3rd" } ];
+	aaa = [ "val" ];
+	i = aa.map(item => {
+		const result = {};
+		aaa.forEach(p => result[p] = item[p]);
+		return result;
+	});
+	console.log("map(fn()) %o", i);
+
 	aa = [ { id:1, val: '1' }, { id:2, val: '2' }, { id:3, val: '3' } ];
 	aaa = aa.find(item => item.id === 2);
 	o1 = { id:22, val: '22' };
