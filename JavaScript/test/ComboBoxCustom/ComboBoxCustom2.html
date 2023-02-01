@@ -1,0 +1,189 @@
+<!doctype html>
+<!-- https://jssecrets.com/how-to-build-custom-javascript-select-dropdown/ -->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>ComboBox Custom 2</title>
+        <style>
+/* basic reset */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+ul {
+  list-style: none;
+}
+body {
+  height: 100vh;
+  background: radial-gradient(circle, rgb(255, 255, 255) 70%, rgb(243, 243, 243) 100%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dropdown {
+  width: 288px;
+  height: 64px;
+  background: white;
+  border-radius: 9px;
+  box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
+  position: relative;
+  top: -80px;
+}
+/* arrow CSS icon */
+/* a good example of CSS graphics */
+/* in my view its ineffective ? */
+/* more than 10 lines of styles just to create an arrow */
+.dropdown::before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 24px;
+  z-index: 9999;
+  width: 12px;
+  height: 12px;
+  border: 2px solid grey;
+  border-top: transparent;
+  border-right: transparent;
+  transform: rotate(-45deg);
+  pointer-events: none;
+  transition: all 0.3s linear;
+}
+.dropdown input {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  padding: 32px 24px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+}
+.dropdown .options {
+  width: 100%;
+  border-radius: 9px;
+  padding: 8px;
+  cursor: pointer;
+  background: white;
+  border: none;
+  outline: none;
+  box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
+  font-size: 20px;
+  overflow: hidden;
+  position: absolute;
+  top: 80px;
+  transition: all 0.7s ease;  
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* default state of dropdown list */
+  /* it is not visible */
+  opacity: 0;
+  transform: translateY(-50px);
+  visibility: hidden;
+}
+.dropdown .options .option {
+  padding: 16px;
+  border-radius: 9px;
+  transition: all 0.2s ease;
+  color: #292d34;
+}
+.dropdown .options .option:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+.dropdown .options .option:hover {
+  color: white;
+  background: #5bc5fa;
+  box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
+}
+
+/* opened state of dropdown list */
+.dropdown.opened .options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown.opened::before {
+  transform: rotate(-225deg);
+  top: 30px;
+}
+        </style>
+        <script>
+function onLoad() {
+// Variables
+
+// dropdown container
+const dropdown = document.querySelector('.dropdown');
+
+// input
+const input = document.querySelector('input');
+
+// dropdown list elements
+const listOfOptions = document.querySelectorAll('.option');
+const body = document.body;
+
+// Functions
+
+// basic toggle (open/close) function
+// "classList.toggle(className)" toggles 'opened' class
+const toggleDropdown = (event) => {
+  event.stopPropagation();
+  dropdown.classList.toggle('opened');
+};
+// option selection from dropdown list
+// used "event.currentTarget" to specify the selected option
+// after option is chosen, its "textContent" value being copied to input's value
+const selectOption = (event) => {
+  input.value = event.currentTarget.textContent;
+};
+
+// we want the dropdown list to close when clicked outside of it
+// ex: no option was selected
+// we do a simple check below
+// if dropdown list is in opened state
+// then remove the ".opened" class
+const closeDropdownFromOutside = () => {
+  if (dropdown.classList.contains('opened')) {
+    dropdown.classList.remove('opened');
+  }
+};
+// Event Listeners
+// if we click anywhere on "body" and dropdown list opened
+// the dropdown will be closed
+body.addEventListener('click', closeDropdownFromOutside);
+// options selection
+listOfOptions.forEach((option) => {
+  option.addEventListener('click', selectOption);
+});
+// dropdown toggle
+dropdown.addEventListener('click', toggleDropdown);
+}
+        </script>
+    </head>
+    <body onload="onLoad()">
+        <!-- wrapper/container for custom dropdown select -->
+        <div class="dropdown">
+            <!-- input has "readonly" attribute to prevent typing interaction -->
+            <input type="text" placeholder="Pick a technology" readonly />
+            <!-- options list -->
+            <ul class="options">
+                <li class="option">UI Design</li>
+                <li class="option">HTML</li>
+                <li class="option">CSS</li>
+                <li class="option">JS</li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -25,6 +25,22 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	Str = undefined;
+	i = (/true/i).test(Str);
+	console.log("(/true/i).test(%o) = %o", Str, i);
+	Str = null;
+	i = (/true/i).test(Str);
+	console.log("(/true/i).test(%o) = %o", Str, i);
+	Str = "";
+	i = (/true/i).test(Str);
+	console.log("(/true/i).test(\"%s\") = %o", Str, i);
+	Str = "false";
+	i = (/true/i).test(Str);
+	console.log("(/true/i).test(\"%s\") = %o", Str, i);
+	Str = "True";
+	i = (/true/i).test(Str);
+	console.log("(/true/i).test(\"%s\") = %o", Str, i);
+	
 	Str = "a.b.c@x-y.z";
 	RegEx = /^(?<localPart>[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*)@(?<domain>(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(?:\.(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+))$/;
 	arr = Str.match(RegEx);
