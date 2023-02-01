@@ -9,6 +9,8 @@ for (const p of Object.keys(tmpObject1)) {
     }
 }
 
+Object.keys(tmpObject1).forEach(key => console.log("tmpObject1[%s]=%o", key, tmpObject1[key as keyof typeof tmpObject1]))
+
 interface ISmthInterface3 {
     id?: number;
     value?: string;
