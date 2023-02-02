@@ -1,15 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Web.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 using AnyTest.Models;
 
 namespace AnyTest.Controllers
 {
-    [RoutePrefix("api/anytest")]
-    public class AnyTestController : ApiController
+    [ApiController]
+    [Route("[controller]")]
+    public class AnyTestController : ControllerBase
     {
         [HttpGet]
         [Route("getsmthenum")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json")]
         public GetSmthEnumResponse GetSmthEnum()
         {
             return new GetSmthEnumResponse { SmthEnum = Enum.GetValues(typeof(SmthEnum)) as SmthEnum[] };
@@ -17,6 +18,8 @@ namespace AnyTest.Controllers
 
         [HttpGet]
         [Route("getsmthenumstr")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json")]
         public GetSmthEnumStrResponse GetSmthEnumStr()
         {
             return new GetSmthEnumStrResponse { SmthEnumStr = Enum.GetNames(typeof(SmthEnum)) };
@@ -24,14 +27,18 @@ namespace AnyTest.Controllers
 
         [HttpGet]
         [Route("testarraybyget")]
-        public GetSmthEnumStrResponse TestArrayByGet([FromUri]TestArrayByGetRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json")]
+        public GetSmthEnumStrResponse TestArrayByGet([FromQuery]TestArrayByGetRequest request)
         {
             return new GetSmthEnumStrResponse { SmthEnumStr = request.Values.Select(item => item.ToString()).ToArray() };
         }
 
         [HttpGet]
-        [Route("testarraybygetihttpactionresult")]
-        public IHttpActionResult TestArrayByGetIHttpActionResult([FromUri] TestArrayByGetRequest request)
+        [Route("testarraybygetiactionresult")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json")]
+        public IActionResult TestArrayByGetIActionResult([FromQuery] TestArrayByGetRequest request)
         {
             return Ok(new SmthClass[] {
                 new SmthClass { PString = "PString# 1", PArrayOfString = new string[] { "PString# 1.1", "PString# 1.2", "PString# 1.3" } },
