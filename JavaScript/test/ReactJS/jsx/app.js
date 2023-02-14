@@ -87,8 +87,9 @@ var PRODUCTS = [
 	{ category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5" },
 	{ category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7" }
 ];
- 
-ReactDOM.render(
-	<FilterableProductTable products={PRODUCTS} />,
-	document.getElementById("container")
+
+const domContainer = document.getElementById("container");
+const root = ReactDOM.createRoot(domContainer);
+root.render(
+	<FilterableProductTable products={PRODUCTS} />
 );

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- https://reactjs.org/docs/react-without-jsx.html -->
+<!-- npm install --save react react-dom -->
+<!-- https://retool.com/blog/the-react-lifecycle-methods-and-hooks-explained/ -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>React (without JSX)</title>
+		<style>
+		</style>
+		<script charset="utf-8" src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+		<script charset="utf-8" src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+		<script>
+"use strict";
+
+class Hello extends React.Component {
+	render() {
+		return React.createElement("div", null, `Hello ${this.props.toWhat}`);
+	}
+}
+
+class LikeButton extends React.Component {
+	constructor(props) {
+		console.log('LikeButton.ctor(%o)', props);
+
+		super(props);
+		this.state = { liked: false };
+	}
+
+	componentWillMount() {
+		console.log('LikeButton.componentWillMount(%o)', arguments);
+	}
+
+	componentDidMount() {
+		console.log('LikeButton.componentDidMount(%o)', arguments);
+	}
+	
+	componentWillReceiveProps() {
+		console.log('LikeButton.componentWillReceiveProps(%o)', arguments);
+	}
+
+	/* static getDerivedStateFromProps(props, state) {
+		return {
+			...
+		}
+	} */
+
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log('LikeButton.shouldComponentUpdate(%o)', arguments);
+		return nextState.liked;
+	}
+
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+	    console.log('LikeButton.getSnapshotBeforeUpdate(%o)', arguments);
+		return null;
+  	}
+
+	componentWillUpdate() {
+		console.log('LikeButton.componentWillUpdate(%o)', arguments);
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		console.log('LikeButton.componentDidUpdate(%o)', arguments);
+	}
+
+	render() {
+		if (this.state.liked) {
+			return `You liked comment number ${this.props.commentID}`;
+		}
+
+		return React.createElement(
+			"button",
+			{ onClick: () => this.setState({ liked: true}) },
+			"Like"
+		);
+		
+	}
+
+	componentWillUnmount() {
+		console.log('LikeButton.componentWillUnmount(%o)', arguments);
+	}
+
+	/*
+	!!! State Updates May Be Asynchronous !!!
+	// Wrong
+	this.setState({
+  		counter: this.state.counter + this.props.increment,
+	});
+
+	// Correct
+	this.setState((state, props) => ({
+  		counter: state.counter + props.increment
+	}));
+	*/
+}
+
+function OnLoad()
+{
+	if (window.console && console.clear)
+		console.clear();
+
+	if (window.console && console.log)
+		console.log(React.version);
+
+	const root = ReactDOM.createRoot(document.getElementById("containerHello"));
+	root.render(React.createElement(Hello, {toWhat: "World"}, null));
+
+	document.querySelectorAll(".like_button_container")
+		.forEach(container => {
+			const commentID = parseInt(container.dataset.commentid, 10);
+			const root = ReactDOM.createRoot(container);
+			root.render(React.createElement(LikeButton, { commentID: commentID }, null));
+		});
+}
+		</script>
+	</head>
+	<body onload="OnLoad()">
+		<div id="containerHello"></div>
+		<div class="like_button_container" data-commentid="1"></div>
+		<div class="like_button_container" data-commentid="2"></div>
+		<div class="like_button_container" data-commentid="3"></div>
+	</body>
+</html>
