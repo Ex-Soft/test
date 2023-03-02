@@ -28,5 +28,6 @@ const App = () => {
 export default App;
 
 // yarn create react-app any-test --template typescript
+// yarn add axios
 // yarn add react-router-dom
 // https://hygraph.com/blog/routing-in-react
