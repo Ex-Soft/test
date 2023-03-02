@@ -24,6 +24,11 @@ namespace TestDateTimeOffset
             TimeSpan
                 timeSpan;
 
+            tmpDateTime1 = new DateTime(1899, 12, 30, 0, 0, 0, DateTimeKind.Local);
+            tmpString = tmpDateTime1.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "1899-12-30 12:00:00 +02:00"
+            tmpDateTimeOffset1 = new DateTimeOffset(1899, 12, 30, 0, 0, 0, new TimeSpan(0, 2, 0, 0, 0));
+            tmpString = tmpDateTimeOffset1.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "1899-12-30 12:00:00 +02:00"
+            
             tmpString = "2022-10-29T03:59:59+03:00";
             DateTime.TryParse(tmpString, out tmpDateTime1);
             tmpDateTime2 = tmpDateTime1.AddDays(1);
