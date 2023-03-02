@@ -22,8 +22,8 @@ if (window.console && console.log)
 function onLoad()
 {
 	var
-		x = undefined,
-		y = 'default string',
+		x,
+		y,
 		o;
 
 	const objectDestructuringAssignmentFn = ({ p1, p2, p3 }) => {
@@ -53,20 +53,29 @@ function onLoad()
 	objectDestructuringAssignmentFn({ p1: "p1", p22: "p22", p3: "p3" });
 
 	if (window.console && console.log) {
-		console.log("%o ?? %o = %o", x, y, x ?? y);
-		console.log("%o || %o = %o", x, y, x || y);
-		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y);
+		y = "default string";
+		x = undefined;
+		console.log("%o ?? %o = %o", x, y, x ?? y); // "default string"
+		console.log("%o || %o = %o", x, y, x || y); // "default string"
+		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y); // "default string"
 		
 		x = null;
-		console.log("%o ?? %o = %o", x, y, x ?? y);
-		console.log("%o || %o = %o", x, y, x || y);
-		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y);
+		console.log("%o ?? %o = %o", x, y, x ?? y); // "default string"
+		console.log("%o || %o = %o", x, y, x || y); // "default string"
+		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y); // "default string"
 
 		x = "";
-		console.log("%o ?? %o = %o", x, y, x ?? y);
-		console.log("%o || %o = %o", x, y, x || y);
-		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y);
+		console.log("%o ?? %o = %o", x, y, x ?? y); // ""
+		console.log("%o || %o = %o", x, y, x || y); // "default string"
+		console.log("%o ? %o : %o = %o", x, x, y, x ? x : y); // "default string"
 		
+		x = undefined;
+		console.log("undefined?.p = %o", x?.p); // undefined
+		x = null;
+		console.log("null?.p = %o", x?.p); // undefined
+		console.log("null?.p ?? \"\" = %o", x?.p ?? ""); // ""
+		console.log("null?.p || \"\" = %o", x?.p || ""); // ""
+
 		o = { duration: 50 };
 		o.duration ??= 10;
 		console.log("%o", o);

@@ -59,6 +59,36 @@ function onLoad()
 		console.log("%i > null (%o)", a, a > b); // true
 		b = NaN;
 		console.log("%i > NaN (%o)", a, a > b); // false
+		
+		a = undefined;
+		b = null;
+		c = {};
+		console.log("typeof(undefined?.p)=%s typeof(null?.p)=%s typeof({}?.p)=%s", typeof(a?.p), typeof(b?.p), typeof(c?.p)); // 'undefined' 'undefined' 'undefined'
+		
+		a = { p: undefined };
+		b = { p: null };
+		c = { p: "" };
+		console.log("typeof({}?.undefined)=%s typeof({}?.null)=%s typeof({}?.\"\")=%s", typeof(a?.p), typeof(b?.p), typeof(c?.p)); // 'undefined' 'object' 'string'
+		
+		a = undefined;
+		b = { p: "" };
+		c = { p: "value" };
+		console.log("!undefined?.p=%o !{}?.\"\"=%o !{}?.\"value\"=%o", !a?.p, !b?.p, !c?.p); // true true false
+		console.log("!!undefined?.p=%o !!{}?.\"\"=%o !!{}?.\"value\"=%o", !!a?.p, !!b?.p, !!c?.p); // false false true
+		
+		a = undefined;
+		b = null;
+		c = a || b;
+		console.log("%o || %o = %o", a, b, c); // null
+		c = a ?? b;
+		console.log("%o ?? %o = %o", a, b, c); // null
+		
+		a = null;
+		b = undefined;
+		c = a || b;
+		console.log("%o || %o = %o", a, b, c); // undefined
+		c = a ?? b;
+		console.log("%o ?? %o = %o", a, b, c); // undefined
 	}
 }		</script>
 	</head>

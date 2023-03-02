@@ -26,9 +26,23 @@ function onLoad()
 		o1,
 		o2,
 		o3,
+		o4,
 		tmp;
 
-	if(window.console && console.log) {
+	if (window.console && console.log) {
+		// Nullish coalescing operator (??) (null or undefined)
+		o1 = undefined ?? "default value"; // "default value"
+		o2 = null ?? "default value"; // "default value"
+		o3 = "" ?? "default value"; // ""
+		o4 = 0 ?? 42; // 0
+		console.log("undefined ?? \"default value\" = \"%s\" null ?? \"default value\" = \"%s\" \"\" ?? \"default value\" = \"%s\" 0 ?? 42 = %i", o1, o2, o3, o4); // "default value" "default value" "" 0
+		
+		o1 = undefined ?? "default value"; // "default value"
+		o2 = undefined || "default value"; // "default value"
+		o3 = "" ?? "default value"; // ""
+		o4 = "" || "default value"; // "default value"
+		console.log("undefined ?? \"default value\" = \"%s\" undefined || \"default value\" = \"%s\" \"\" ?? \"default value\" = \"%s\" \"\" || \"default value\" = \"%s\"", o1, o2, o3, o4); // "default value" "default value" "" "default value"
+		
 		// Optional chaining operator
 		o1 = { p1: "property1" };
 		console.log("%o o.p1?.toUpperCase()=\"%s\" o.p2?.toUpperCase()=%o", o1, o1.p1?.toUpperCase(), o1.p2?.toUpperCase()); // "PROPERTY1" undefined

@@ -27,6 +27,36 @@ function onLoad()
 		num3 = 0.27;
 		console.log("!0=%o !0.0=%o !0.27=%o", !num1, !num2, !num3); // !0===true !0.0===true !0.27===false
 	}
+	
+	let data;
+	num1 = parseFloat(data);
+	data = null;
+	num2 = parseFloat(data);
+	console.log("parseFloat(undefined)=%o parseFloat(null)=%o", num1, num2); // NaN NaN
+
+	data = undefined;
+	num1 = parseFloat(data?.balance);
+	data = null;
+	num2 = parseFloat(data?.balance);
+	data = {};
+	num3 = parseFloat(data?.balance);
+	console.log("parseFloat(undefined?.balance)=%o parseFloat(null?.balance)=%o parseFloat({}?.balance)=%o", num1, num2, num3); // NaN NaN NaN
+	
+	data = undefined;
+	num1 = parseFloat(data?.balance ?? "1");
+	data = null;
+	num2 = parseFloat(data?.balance ?? "2");
+	data = {};
+	num3 = parseFloat(data?.balance ?? "3");
+	console.log("parseFloat(undefined?.balance ?? \"1\")=%o parseFloat(null?.balance ?? \"2\")=%o parseFloat({}?.balance ?? \"3\")=%o", num1, num2, num3); // 1 2 3
+	
+	data = { balance: undefined };
+	num1 = parseFloat(data?.balance ?? "1");
+	data = { balance: null };
+	num2 = parseFloat(data?.balance ?? "2");
+	data = { balance: "" };
+	num3 = parseFloat(data?.balance ?? "3");
+	console.log("parseFloat(data?.undefined ?? \"1\")=%o parseFloat(data?.null ?? \"2\")=%o parseFloat(data?.\"\" ?? \"3\")=%o", num1, num2, num3); // 1 2 NaN
 }
 		</script>
 	</head>

@@ -5,8 +5,8 @@
 		<title>Test Moment</title>
 		<script src="../../momentjs/moment.js"></script>
 		<script src="../../momentjs/moment-timezone.js"></script>
-		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data-1970-2030.js"></script-->
+		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.40/moment-timezone-with-data-1970-2030.js"></script-->
 		<script>
 function onLoad()
 {
@@ -38,7 +38,7 @@ function onLoad()
 		m2 = moment(m1);
 		m1.year(2023);
 		console.log(m1.toISOString(true), m2.toISOString(true));
-		
+
 		str1 = "2022-03-13T01:59:59";
 		m1 = moment.tz(str1, "America/Los_Angeles");
 		str2 = "2022-03-13T01:59:59";
@@ -64,7 +64,8 @@ function onLoad()
 		
 		str1 = "2022-03-13";
 		m1 = moment.tz(str1, "America/Los_Angeles");
-		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());		str1 = "2022-03-13T01:59:59";
+		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());
+		str1 = "2022-03-13T01:59:59";
 		m1 = moment.tz(str1, "America/Los_Angeles");
 		console.log("moment.tz(\"%s\", \"America/Los_Angeles\") \"%s\" \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m1.toDate().toUTCString());
 		str1 = "2022-03-13T01:59:59";

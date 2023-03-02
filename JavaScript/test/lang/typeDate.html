@@ -14,6 +14,35 @@ function onLoad()
 		str;
 
 	if(window.console && console.log) {
+		str = "Invalid Date";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") = %o", str, d1);
+		
+		str = "2023-02-20";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") = \"%s\" \"%s\" \"%s\"", str, d1.toString(), d1.toLocaleString(), d1.toUTCString());
+
+		var basedate = new Date(1899, 11, 31, 0, 0, 0);
+		console.log("new Date(1899, 11, 31, 0, 0, 0) = %o %o %o \"%s\"", basedate.getTime(), basedate.valueOf(), basedate.getTimezoneOffset(), basedate.toString());
+		basedate = new Date(1899, 11, 29, 0, 0, 0);
+		console.log("new Date(1899, 11, 29, 0, 0, 0) = %o %o %o \"%s\"", basedate.getTime(), basedate.valueOf(), basedate.getTimezoneOffset(), basedate.toString());
+		basedate = new Date(1899, 11, 30, 0, 0, 0);
+		console.log("new Date(1899, 11, 30, 0, 0, 0) = %o %o %o \"%s\"", basedate.getTime(), basedate.valueOf(), basedate.getTimezoneOffset(), basedate.toString());
+		var dnthresh = basedate.getTime() + (new Date().getTimezoneOffset() - basedate.getTimezoneOffset()) * 60000; // -2209168804000
+		console.log("basedate.getTime() + (new Date().getTimezoneOffset(%o) - basedate.getTimezoneOffset(%o)) * 60000 = %o", new Date().getTimezoneOffset(), basedate.getTimezoneOffset(), dnthresh);
+		d1 = new Date();
+		d1.setTime(44946 * 24 * 60 * 60 * 1000 + dnthresh);
+		console.log("new Date().setTime(44946 * 24 * 60 * 60 * 1000 + %o) = \"%s\"", dnthresh, d1.toString());
+		d1 = new Date();
+		d1.setTime(45025 * 24 * 60 * 60 * 1000 + dnthresh);
+		console.log("new Date().setTime(45025 * 24 * 60 * 60 * 1000 + %o) = \"%s\"", dnthresh, d1.toString());
+		d2 = 1674165596000 + 4 * 1000;
+		d1 = new Date(d2);
+		console.log("new Date(%o) = %o %o \"%s\" %o %o", d2, d1.getTime(), d1.valueOf(), d1.toString(), d1.getSeconds(), d1.getMilliseconds());
+		d2 = 1680991196000;
+		d1 = new Date(d2);
+		console.log("new Date(%o) = %o %o \"%s\" Number.isSafeInteger(%o) = %o", d1.getTime(), d2, d1.valueOf(), d1.toString(), d2, Number.isSafeInteger(d2));
+		
 		str = "2022-03-26T02:59:59+02:00";
 		d1 = new Date(str);
 		d2 = addDays(d1, 1);

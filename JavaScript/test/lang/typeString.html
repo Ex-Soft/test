@@ -73,6 +73,10 @@ if (window.console && console.log) {
   str_out = !!str;
   console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
 
+  str = "StringValue";
+  str_out = `${str ? `value=\"${str}\"` : ""}`;
+  console.log(str_out);
+
   str_out = formatStringFn();
   str = "{0} \"{1}\" \'{2}\' \"{1}\" {0}";
   str_out = formatStringFn(str, "1st", "2nd", "3rd");

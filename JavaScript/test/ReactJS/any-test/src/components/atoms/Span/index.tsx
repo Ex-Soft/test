@@ -36,7 +36,7 @@ const Span: React.FC<SpanProps> = ({text = undefined}) => {
         <span>
             {text}
         </span>
-    )
+    );
 };
 
 export default Span;
