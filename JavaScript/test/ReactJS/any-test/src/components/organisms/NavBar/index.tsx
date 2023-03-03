@@ -18,6 +18,15 @@ const NavBar: React.FC = () => {
                     <NavLink to="/testusecallback">useCallback</NavLink>
                 </li>
                 <li>
+                    <NavLink to="/testusememo">useMemo</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/testuseref">useRef</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/testusecontext">useContext</NavLink>
+                </li>
+                <li>
                     <NavLink to="/testfromchildtoparent">From Child To Parent</NavLink>
                 </li>
                 <li>

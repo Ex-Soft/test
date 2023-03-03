@@ -13,8 +13,8 @@ const TestFromChildToParent: React.FC = () => {
         <div>
             <h1>From Child To Parent</h1>
             <div>
-                <Table data={data} />
                 <Button data={data} stateChanger={setData} />
+                <Table data={data} />
             </div>
         </div>
     );
