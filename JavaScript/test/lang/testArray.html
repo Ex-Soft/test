@@ -11,7 +11,8 @@ var
 	i,
 	o1,
 	o2,
-	o3;
+	o3,
+	compareFn;
 
 if(window.console && console.clear)
 	console.clear();
@@ -31,6 +32,9 @@ if(window.console && console.log)
 	
 	aa = Array.from([ 1, 2, 3]);
 	console.log("Array.from([ 1, 2, 3]) = %o", aa); // [ 1, 2, 3 ]
+	
+	aa = [...[ 11, 22, 33 ]];
+	console.log("[...[ 11, 22, 33 ]] = %o", aa); // [ 11, 22, 33 ]
 
 	// ... - spread operator
 	aa = [ ...a, 9, 8, 7, 6 ];
@@ -40,7 +44,17 @@ if(window.console && console.log)
 	console.log("[ 1, 2, ...(true ? [ 3 ] : [] ) ]=%o", aa); // [ 1, 2, 3 ]
 	aa = [ 1, 2, ...(false ? [ 3 ] : [] ) ];
 	console.log("[ 1, 2, ...(false ? [ 3 ] : [] ) ]=%o", aa); // [ 1, 2 ]
-	
+
+	o1 = {};
+	aa = [ ...(Array.isArray(o1.arr) ? o1.arr : []), 1];
+	o1 = { arr: [ 0 ] };
+	aa = [ ...(Array.isArray(o1.arr) ? o1.arr : []), 1];
+
+	aa = [1, 2, 3];
+	aaa = [4, 5];
+	aa.push(...aaa);
+	console.log("[1, 2, 3].push(...[4, 5]) = %o", aa);
+
 	aa = [ new Date("2020-02-29T00:00:00+02:00"), new Date("2021-02-28T00:00:00+02:00"), new Date("2022-02-28T00:00:00+02:00") ];
 	aa.sort((left, right) => right.valueOf() - left.valueOf());
 
@@ -124,6 +138,11 @@ if(window.console && console.log)
 	console.log("[].findIndex() %i", i);
 	i = [].findIndex(item => item === 13); //-1
 	console.log("[].findIndex() %i", i);
+	compareFn = function(element, index, array) {
+		console.log("compareFn(%o, %o, %o)", element, index, array);
+		return false;
+	};
+	i = [{id: 1}, {id: 2}, {id: 3}].findIndex(compareFn);
 
 	o1 = {id:1};
 	o2 = {id:2};

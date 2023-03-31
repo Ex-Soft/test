@@ -1,7 +1,7 @@
 ﻿<html>
 	<head>
 		<title>Test RegExp</title>
-		<script src="../js/misc.js"></script>
+		<script src="./utils/misc.js"></script>
 	</head>
 	<body>
 		<script>
@@ -25,20 +25,45 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	i = [ "/smthStr" ].some(item => [ "smthStr" ].findIndex(pattern => new RegExp(`^\\/?${pattern}$`).test(item)) !== -1);
+
+	Str = "123,456.78";
+	RegEx = /\D/g;
+	arr = Str.match(RegEx);
+	if (arr) {
+		for (i = 0; i < arr.length; i++) {
+			console.log("match[%i]=\"%s\"", i, arr[i]);
+		}
+	}
+
+	RegEx = /\D/g;
+	arr = RegEx.exec(Str);
+	if (arr) {
+		for (i = 0; i < arr.length; i++) {
+			console.log("match[%i]=\"%s\"", i, arr[i]);
+		}
+	}
+	arr = RegEx.exec(Str);
+	if (arr) {
+		for (i = 0; i < arr.length; i++) {
+			console.log("match[%i]=\"%s\"", i, arr[i]);
+		}
+	}
+	
 	Str = undefined;
-	i = (/true/i).test(Str);
+	i = (/true/i).test(Str); // false
 	console.log("(/true/i).test(%o) = %o", Str, i);
 	Str = null;
-	i = (/true/i).test(Str);
+	i = (/true/i).test(Str); // false
 	console.log("(/true/i).test(%o) = %o", Str, i);
 	Str = "";
-	i = (/true/i).test(Str);
+	i = (/true/i).test(Str); // false
 	console.log("(/true/i).test(\"%s\") = %o", Str, i);
 	Str = "false";
-	i = (/true/i).test(Str);
+	i = (/true/i).test(Str); // false
 	console.log("(/true/i).test(\"%s\") = %o", Str, i);
 	Str = "True";
-	i = (/true/i).test(Str);
+	i = (/true/i).test(Str); // true
 	console.log("(/true/i).test(\"%s\") = %o", Str, i);
 	
 	Str = "a.b.c@x-y.z";

@@ -6,6 +6,15 @@
 		<script>
 function onLoad()
 {
+/*
+1. Syntax
+2. No arguments (arguments are array-like objects)
+3. No prototype object for the Arrow function
+4. Cannot be invoked with a new keyword (Not a constructor function)
+5. No own this (call, apply & bind won't work as expected)
+6. It cannot be used as a Generator function
+7. Duplicate-named parameters are not allowed
+*/
 	// 3 scenarios where arrow functions should not be used
 	
 	// 1. Defining methods on an object
@@ -126,6 +135,9 @@ function onLoad()
 	
 	anon();
 	arrow();
+
+	// const useArguments = () => { console.log(arguments); }; // Uncaught ReferenceError: arguments is not defined.
+	const useArguments = (...numbers) => Math.max(numbers);
 }
 		</script>
 	</head>

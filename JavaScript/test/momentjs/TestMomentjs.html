@@ -21,11 +21,20 @@ function onLoad()
 	if (window.console && console.log) {
 		console.log("moment version: %s", moment.version);
 		
+		str1 = "0";
+		m1 = moment(str1); // moment.js:281 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
+		m2 = moment(new Date(str1));
+		console.log("moment(\"%s\")=\"%s\"", str1, m1.toISOString(true));
+		console.log("moment(new Date(\"%s\"))=\"%s\"", str1, m2.toISOString(true));
+		
 		m1 = moment(new Date());
 		console.log("moment.isMoment()=%o m.isValid()=%o moment().inspect()=\"%s\"", moment.isMoment(m1), m1.isValid(), moment().inspect());
 		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
 		m2 = m1.hour(23).minute(59).second(59).millisecond(999);
 		console.log("%s %i-%i-%i %i:%i:%i.%i", m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
+		
+		m1 = moment(new Date()).add(-1, "days").set({ "hour": 0, "minute": 0, "second": 0, "millisecond": 0 });
+		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
 		
 		str1 = "2022-04-30T23:59:59+03:00";
 		m1 = moment(str1);

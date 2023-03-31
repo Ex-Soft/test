@@ -1,10 +1,11 @@
-<HTML>
-  <HEAD>
-    <TITLE>Test string</TITLE>
-    <meta charset="utf-8">
-    <script src="../../js/misc.js" type="text/javascript"></script>
-  </HEAD>
-  <BODY>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test string</title>
+    <script src="../utils/misc.js"></script>
+  </head>
+  <body>
 <script>
 function w(str)
 {
@@ -38,6 +39,22 @@ const formatString = (format, ...args) => {
 	return format;
 }
 
+const normalizeMoneyString = (money, decimalSeparator = '.', scale = 2) => {
+	if (!money?.length) {
+		return money;
+	}
+
+	const length = money.length;
+	const idx = money.lastIndexOf(decimalSeparator);
+	const count = scale - (idx !== -1 ? length - idx - 1 : 0);
+
+	return count >= 0 ? `${money}${idx === -1 ? decimalSeparator : ''}${'0'.repeat(count)}` : parseFloat(money).toFixed(scale).toString();
+}
+
+const insertString = (src, pos, value) => {
+	return `${src.substring(0, pos)}${value}${src.substring(pos)}`;
+}
+
 var
   str,
   str_out,
@@ -58,6 +75,8 @@ if (window.console && console.log) {
   console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
   str_out = !!str;
   console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  str_out = +str;
+  console.log("typeof(+str)=%o +str=%o", typeof(str_out), str_out); // number NaN
   
   str = null;
   console.log("typeof(str)=%o str=%o", typeof(str), str);
@@ -65,6 +84,8 @@ if (window.console && console.log) {
   console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
   str_out = !!str;
   console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  str_out = +str;
+  console.log("typeof(+str)=%o +str=%o", typeof(str_out), str_out); // number 0
   
   str = "";
   console.log("typeof(str)=%o str=\"%s\"", typeof(str), str);
@@ -72,10 +93,28 @@ if (window.console && console.log) {
   console.log("typeof(!str)=%o !str=%o", typeof(str_out), str_out);
   str_out = !!str;
   console.log("typeof(!!str)=%o !!str=%o", typeof(str_out), str_out);
+  str_out = +str;
+  console.log("typeof(+str)=%o +str=%o", typeof(str_out), str_out); // number 0
+
+  str = "";
+  console.log("\"%s\".length = %o !!\"%s\" = %o", str, str.length ? true : false, str, !!str);
+  str = "StringValue";
+  console.log("\"%s\".length = %o !!\"%s\" = %o", str, str.length ? true : false, str, !!str);
 
   str = "StringValue";
   str_out = `${str ? `value=\"${str}\"` : ""}`;
   console.log(str_out);
+
+  str_out = insertString("456789", 3, ".");
+
+  str_out = normalizeMoneyString();
+  str_out = normalizeMoneyString(null);
+  str_out = normalizeMoneyString("");
+  str_out = normalizeMoneyString("123");
+  str_out = normalizeMoneyString("456.");
+  str_out = normalizeMoneyString("456.7");
+  str_out = normalizeMoneyString("456.78");
+  str_out = normalizeMoneyString("456.789");
 
   str_out = formatStringFn();
   str = "{0} \"{1}\" \'{2}\' \"{1}\" {0}";
@@ -130,6 +169,20 @@ if (window.console && console.log) {
   str = "abc, def , ghi, jkl";
   arr = str.split(",");
   console.log(`"${arr[0]}" "${arr[1]}" "${arr[2]}" "${arr[3]}"`); // "abc" " def " " ghi" " jkl"
+  arr = str.replace(/\s/g, "").split(",");
+  console.log(`"${arr[0]}" "${arr[1]}" "${arr[2]}" "${arr[3]}"`); // "abc" "def" "ghi" "jkl"
+  
+  str = "abc";
+  arr = str.split(";");
+  console.log(`"${arr[0]}" "${arr[1]}" "${arr[2]}" "${arr[3]}"`); // "abc" "undefined" "undefined" "undefined"
+
+  str = "abc;";
+  arr = str.split(";");
+  console.log(`"${arr[0]}" "${arr[1]}" "${arr[2]}" "${arr[3]}"`); // "abc" "" "undefined" "undefined"
+  
+  str = "2023-04-29T13:13:13.123Z";
+  str_out = "2023-03-29T13:13:13.123Z";
+  console.log("\"%s\" %s \"%s\"", str, str > str_out ? ">" : "<=", str_out);
 }
 
 str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"
@@ -499,5 +552,5 @@ str="aBcD";
 str_out=str.toLowerCase();
 document.write("str=\"",str,"\"<br>str_out=\"",str_out,"\"<br>");
 </script>
-  </BODY>
-</HTML>
+  </body>
+</html>
