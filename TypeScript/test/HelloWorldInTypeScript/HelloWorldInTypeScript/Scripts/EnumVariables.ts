@@ -108,3 +108,22 @@ type abcdef = abc | def;
 let _abcdef_: abcdef;
 _abcdef_ = abc.a;
 _abcdef_ = def.d;
+
+enum Operations {
+    None = 0,
+    Op1 = 1,
+    Op2 = 2,
+    Op3 = 4,
+    Op4 = 8
+}
+
+let operations = Operations.Op2 | Operations.Op4;
+
+if (window.console && console.log) {
+    if (operations & Operations.Op2)
+        console.log("%i %i %s", operations, Operations.Op2, "Op2");
+    if (operations & Operations.Op3)
+        console.log("%i %i %s", operations, Operations.Op3, "Op3");
+    if (operations & Operations.Op4)
+        console.log("%i %i %s", operations, Operations.Op4, "Op4");
+}
