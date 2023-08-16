@@ -18,8 +18,11 @@ Task ErrorHandler(ProcessErrorEventArgs args)
     return Task.CompletedTask;
 }
 
-client = new ServiceBusClient("Endpoint=sb://.servicebus.windows.net/;SharedAccessKeyName=;SharedAccessKey=;EntityPath=importevent");
-processor = client.CreateProcessor("importevent", "importevent", new ServiceBusProcessorOptions());
+const string connectionString = "Endpoint=sb://.servicebus.windows.net/;SharedAccessKeyName=;SharedAccessKey=;EntityPath=importevent";
+const string topicName = "importevent";
+const string subscriptionName = "importevent";
+client = new ServiceBusClient(connectionString);
+processor = client.CreateProcessor(topicName, subscriptionName, new ServiceBusProcessorOptions());
 
 try
 {
