@@ -2,7 +2,7 @@
   "realm": "myrealm",
   "auth-server-url": "http://localhost:8080/",
   "ssl-required": "external",
-  "resource": "React-auth",
+  "resource": "react-auth",
   "public-client": true,
   "confidential-port": 0
 }
