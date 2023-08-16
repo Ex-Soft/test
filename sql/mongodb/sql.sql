@@ -1,5 +1,7 @@
 /* https://www.mongodb.com/docs/manual/meta/aggregation-quick-reference/#std-label-aggregation-expressions */
 
+db.version();
+
 db.getSiblingDB("testdb").getCollection("testarray").find({ _id: 1 }).pretty();
 
 $match
@@ -39,6 +41,8 @@ db.events.updateOne({ _id: ObjectId('64104f4696e234ea4a0b5e47') }, { $unset: { h
 db.events.updateOne({ _id: ObjectId('6422d984eefee624f7f669db') }, { $set: { title: 'Test event 2023032803', description: 'Test event 2023032803', sku: '2023032803' } });
 db.products.updateOne({ _id: ObjectId('64104f4696e234ea4a0b5e47') }, { $unset: { history: "" } });
 
+db.getSiblingDB("microservice").getCollection("notifications").updateOne({ _id: ObjectId('64393b79ec52ed4fc1faed94') }, { $set: { user: "pvmarketing@perfect-vision.com" } });
+
 db.events.aggregate([{ $project: { _id: 0, categories: 1 } }]).pretty();
 db.events.aggregate([{ $project: { _id: 0, categories: 1 } }, { $unwind: { path: '$categories' } }]).pretty();
 db.events.aggregate([{ $project: { _id: 0, categories: 1 } }, { $unwind: { path: '$categories' } }, { $group: { _id: '$categories' } }]).pretty();
@@ -47,6 +51,10 @@ db.events.aggregate([ { $match: { sku: { $regex: /^lsp/i }, $or: [ { channels: {
 db.events.aggregate([ { $match: { sku: { $regex: /^lsp/i }, $or: [ { channels: { $exists: false } }, { channels: null }, { channels: [] } ] } }, { $count: "count(*)" } ]).pretty();
 
 db.notifications.aggregate([ { $match: { $expr: { $and: [ { $lt: [{ $toDate: '$createdOn' }, new ISODate('2023-03-22T16:14:43.000Z')] }, { $gte: [{ $toDate: '$createdOn' }, new ISODate('2023-03-22T16:14:42.000Z')] } ] } } }, { $count: "count(*)" } ]);
+db.getSiblingDB("microservice").getCollection("notifications").aggregate([ { $match: { $expr: { $eq: [{ $type: "$user" }, "array"]} } }, { $count: "count()" } ]).pretty();
+db.notifications.aggregate([ { $match: { $expr: { $eq: [{ $type: "$user" }, "array"]} } }, { $count: "count()" } ]).pretty();
+db.getSiblingDB("microservice").getCollection("notifications").aggregate([ { $match: { $expr: { $isArray: "$user" } } }, { $count: "count()" } ]).pretty();
+db.notifications.aggregate([ { $match: { $expr: { $isArray: "$user" } } }, { $count: "count()" } ]).pretty();
 
 { agent: { $exists: 0 | false }}
 { agent: { $exists: 1 | true }}
@@ -255,4 +263,109 @@ $lookup
 			{$lte: [{$toDate: "$createdOn"}, new ISODate('2023-04-01')]}
 		]
 	}
+}
+
+use testdb;
+
+db.testupdate.insertOne({ _id: 1, pString: "123.45" });
+db.testupdate.insertOne({ _id: 2, pString: "$123.45" });
+db.testupdate.aggregate([{ $match: { pString: { $regex: /^\$\d+/ } } }]).pretty();
+db.testupdate.updateMany({ pString: { $regex: /^\$\d+/ } }, [ { $set: { pString: { $replaceAll: { input: "$pString", find: { $literal: "$" }, replacement: "" } } } } ], { multi: true });
+db.getSiblingDB("testdb").getCollection("testupdate").insertMany([ { _id: 3, pString: "123.45" }, { _id: 4, pString: "$123.45" } ]);
+
+db.events.aggregate([{$match:{price:{$regex:/,/}}},{$addFields:{literal:{$subtruct:[{$strLenBytes:"$price"},1]}}]).pretty();
+
+db.getSiblingDB("thedirectvmarketingzone").getCollection("orders").aggregate([{$addFields:{"date":{$toDate:{$arrayElemAt:[{$split:['$createdOn','+']},0]}}}},{$unwind:{path:"$items"}},{$match:{"date":{$gte:ISODate('2023-01-01T00:00:00.000+00:00'),$gte:ISODate('2023-03-31T00:00:00.000+00:00')},"items.product.type":2,"payments.0.amount":{$exists:true},"items.product.selectedVariant":{$exists:false}}}]).pretty();
+
+db.getSiblingDB("thedirectvmarketingzone").getCollection("notifications").getIndexes();
+{ $expr: { $ne: [{ $type: "$user" }, "string"] } }
+
+db.getSiblingDB("thedirectvmarketingzone").getCollection("notifications").insertMany([{subject:"Test 2023060501",message:"Test 2023060501",type:3,status:1,relation:"",createdBy:"pvmarketing@perfect-vision.com",createdOn:"2023-06-05T07:46:47.309Z",user:"6.1@test.com"},{subject:"Test 2023060502",message:"Test 2023060502",type:3,status:1,relation:"",createdBy:"pvmarketing@perfect-vision.com",createdOn:"2023-06-05T07:46:47.309Z",user:"6.1@test.com"}]);
+db.getSiblingDB("thedirectvmarketingzone").getCollection("notifications").deleteMany({createdOn: /2023-06-05/i});
+
+{$expr: {$gte: [{$toDate: "$createdOn"}, new ISODate('2023-06-15')]}}
+
+db.getSiblingDB("testdb").getCollection("items").updateOne({ _id: 1 }, { $set: { sku: "111" } });
+db.getSiblingDB("testdb").getCollection("items").updateOne({ _id: 2 }, { $set: { sku: "222" } });
+db.getSiblingDB("testdb").getCollection("items").updateOne({ _id: 3 }, { $set: { sku: "333" } });
+db.getSiblingDB("testdb").getCollection("items").aggregate([{$match:{sku:/^(?!222$)/}}]).pretty();
+
+db.getSiblingDB("testdb").getCollection("items").aggregate([{$match:{orderId:1,$or:[{number:1},{number:3}]}}]).pretty();
+
+db.getSiblingDB("testdb").getCollection("masterdealers").insertMany([{_id: 1, masterDealerId: "1", name: "Master dealer #1"}, {_id: 2, masterDealerId: "2", name: "Master dealer #2"}, {_id: 3, masterDealerId: "3", name: "Master dealer #3"}]);
+db.getSiblingDB("testdb").getCollection("users").insertMany([{_id: 1, name: "User #1"}, {_id: 2, name: "User #2"}, {_id: 3, name: "User #3"}]);
+db.getSiblingDB("testdb").getCollection("users").insertOne({_id: 4, name: "User #4"});
+db.getSiblingDB("testdb").getCollection("dealers").insertMany([{_id: 1, associatedMasterDealers: [ { masterDealerId: "1" } ], userId: [ 1 ]}, {_id: 2, associatedMasterDealers: [ { masterDealerId: "2" } ], userId: [ 2 ]}, {_id: 3, associatedMasterDealers: [ { masterDealerId: "3" } ], userId: [ 3 ]}]);
+db.getSiblingDB("testdb").getCollection("dealers").updateOne({_id: 1}, {$push: {userId: 4}});
+
+users -> masterdealers
+$lookup
+{
+  from: "dealers",
+  localField: "_id",
+  foreignField: "userId",
+  as: "dealers"
+}
+$lookup
+{
+  from: "masterdealers",
+  localField: "dealers.associatedMasterDealers.masterDealerId",
+  foreignField: "masterDealerId",
+  as: "dealers.associatedMasterDealers.masterDealer"
+}
+
+$lookup
+{
+  from: "dealers",
+  localField: "_id",
+  foreignField: "userId",
+  as: "dealers"
+}
+$unwind
+{
+  path: "$dealers",
+  preserveNullAndEmptyArrays: true
+}
+$lookup
+{
+  from: "masterdealers",
+  localField: "dealers.associatedMasterDealers.masterDealerId",
+  foreignField: "masterDealerId",
+  as: "dealers.associatedMasterDealers.masterDealer"
+}
+
+masterdealers -> users
+$lookup
+{
+  from: "dealers",
+  localField: "masterDealerId",
+  foreignField: "associatedMasterDealers.masterDealerId",
+  as: "dealers"
+}
+$lookup
+{
+  from: "users",
+  localField: "dealers.userId",
+  foreignField: "_id",
+  as: "dealers.users"
+}
+
+$lookup
+{
+  from: "dealers",
+  localField: "masterDealerId",
+  foreignField: "associatedMasterDealers.masterDealerId",
+  as: "dealers"
+}
+$unwind
+{
+  path: "$dealers",
+  preserveNullAndEmptyArrays: true
+}
+$lookup
+{
+  from: "users",
+  localField: "dealers.userId",
+  foreignField: "_id",
+  as: "dealers.users"
 }

@@ -33,6 +33,10 @@ db.testarray.insertOne({ _id: 7, items: [ "3rd" ] });
 db.testarray.insertOne({ _id: 8, items: [ "3rd", "1st" ] });
 db.testarray.insertOne({ _id: 9, items: [ "3rd", "2nd" ] });
 db.testarray.insertOne({ _id: 10, items: [ "3rd", "2nd", "1st" ] });
+db.testarray.insertOne({ _id: 11, objects: null });
+db.testarray.insertOne({ _id: 12, objects: [] });
+db.testarray.insertOne({ _id: 13, objects: [{ price: "123.45" }] });
+db.testarray.insertOne({ _id: 14, objects: [{ price: "$678.90" }] });
 
 db.testarray.updateMany({ $and: [ { items: { $exists: true } }, { items: { $ne: null } }, { $expr: { $eq: [{ $type: "$items" }, "array"]} }, { items: { $ne: [] } }, { $expr: { $ne: [{ $size: "$items" }, 0] } } ] }, { $push: { values: { $each: [ 13, 42 ] } } });
 db.testarray.updateMany({ $and: [ { $expr: { $isArray: "$items" } }, { items: { $ne: [] } } ], $expr: { $eq: [ { $mod: [ "$_id", 2 ] }, 0 ] } }, { $push: { values: { $each: [ 1, 9, 25, 99 ] } } });
@@ -43,10 +47,23 @@ db.testarray.find({ $and: [ { items: { $exists: true } }, { items: { $ne: null }
 db.testarray.find({ values: { $gt: 25 } }).pretty(); // 4, 5, 6, 7, 8, 9, 10
 db.testarray.find({ values: { $gte: 99 } }).pretty(); // 4, 6, 8, 10
 
-{ $expr: { $eq: [{ $type: "$items" }, "array"]} }
+{ $expr: { $isArray: "$items" } }
+{ $expr: { $eq: [{ $type: "$items" }, "array"] } }
 
 { items: "1st" } // 4, 6, 8, 10
 { items: [ "1st", "2nd" ] } // No result
 { items: [ "2nd", "1st" ] } // 6
 { items: { $all: [ "1st", "2nd" ] } } // 6, 10
 { items: { $in: [ "1st", "2nd" ] } } // 4, 5, 6, 8, 9, 10
+{ items: { $in: [ /1sT/i, /2Nd/i ] } } // 4, 5, 6, 8, 9, 10
+
+db.testarray.updateOne({ _id: 9 }, { $set: { tags: [ "1st", "2nd", "3rd" ] } });
+db.testarray.updateOne({ _id: 10 }, { $set: { tags: [ "4th", "5th", "6th" ] } });
+
+{ tags: { $regex: "Nd", $options: "i" } } // 9
+{ tags: { $regex: "tH", $options: "i" } } // 10
+
+db.testarray.updateMany({ "objects.price": { $regex: /[^\d.]/ } }, { $set: { "objects.$.price": "678.90" } });
+db.testarray.updateMany({ "objects.price": { $regex: /[^\d.]/ } }, { $unset: { "options": "" } });
+db.testarray.updateOne({ _id: 14 }, { $set: { objects: [{ price: "$678.90" }] } });
+db.testarray.updateMany({ "objects.price": { $regex: /[^\d.]/ } }, { $set: { "objects.$.price": { $replaceAll: { input: "objects.$.price", find: { $literal: "$" }, replacement: "" } } } });
