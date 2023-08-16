@@ -1,0 +1,12 @@
+// prettier-ignore
+const a = 'a'; const b = 'b';
+
+// prettier-ignore-start
+const a = 'a'; const b = 'b';
+// prettier-ignore-end
+
+// prettier-ignore
+{
+abcRouter('/api/abc', server);
+xRouter  ('/api/x', server);
+}
