@@ -35,6 +35,10 @@ if(window.console && console.log)
 	
 	aa = [...[ 11, 22, 33 ]];
 	console.log("[...[ 11, 22, 33 ]] = %o", aa); // [ 11, 22, 33 ]
+	aa = [...[ "1st", "2nd", "3rd" ]];
+	console.log("[...[ \"1st\", \"2nd\", \"3rd\" ]] = %o", aa); // [ "1st", "2nd", "3rd" ]
+	aa = [...[ "1st", "2nd", "3rd" ], ...[ "4th", "5th", "6th" ]];
+	console.log("[...[ \"1st\", \"2nd\", \"3rd\" ], ...[ \"4th\", \"5th\", \"6th\" ]] = %o", aa); // [ "1st", "2nd", "3rd", "4th", "5th", "6th" ]
 
 	// ... - spread operator
 	aa = [ ...a, 9, 8, 7, 6 ];
@@ -53,7 +57,43 @@ if(window.console && console.log)
 	aa = [1, 2, 3];
 	aaa = [4, 5];
 	aa.push(...aaa);
-	console.log("[1, 2, 3].push(...[4, 5]) = %o", aa);
+	console.log("[1, 2, 3].push(...[4, 5]) = %o", aa); // [1, 2, 3, 4, 5]
+
+	aa = [[1, 2], [3, 4], [5, 6]];
+	console.log("[[1, 2], [3, 4], [5, 6]][0]=%o [[1, 2], [3, 4], [5, 6]][1][1]=%o", aa[0], aa[1][1] ); // [1, 2] 4
+
+	aa = [ "string1" ];
+	aaa = [...new Set(...aa)];
+	console.log("[...new Set(...[ \"string1\" ])] = %o", aaa); // [ "s", "t", "r", "i", "n", "g", "1" ]
+	o = [ "string2" ];
+	aaa = [...new Set(...aa, ...o)];
+	console.log("[...new Set(...[ \"string1\" ], ...[ \"string2\" ])] = %o", aaa); // [ "s", "t", "r", "i", "n", "g", "1" ]
+	
+	aa = [ "string1", "string1" ];
+	aaa = [...new Set(aa)];
+	console.log("[...new Set([ \"string1\", \"string1\" ])] = %o", aaa); // [ "string1" ]
+	o = [ "string2", "string2" ];
+	aaa = [...new Set(aa, o)];
+	console.log("[...new Set([ \"string1\", \"string1\" ], [ \"string2\", \"string2\" ])] = %o", aaa); // [ "string1" ]
+	
+	aa = undefined;
+	o1 = aa?.[0]?.p;
+	console.log("undefined?.[0]?.p = %o", o1); // undefined
+	aa = [];
+	o1 = aa[0];
+	console.log("[][0] = %o", o1); // undefined
+	o1 = aa[0]?.p;
+	console.log("[][0]?.p = %o", o1); // undefined
+	
+	aa = [];
+	o1 = undefined;
+	o2 = null;
+	console.log("[].indexOf(%o)=%i [].indexOf(%o)=%i", o1, aa.indexOf(o1), o2, aa.indexOf(o2)); // -1 -1
+	
+	aa = [ "/dealerAdmin" ];
+	aaa = aa.some(item => item.includes("dealerAdmin")); // true
+	aa = [ "dealerAdmin" ];
+	aaa = aa.some(item => item.includes("/dealerAdmin")); // false
 
 	aa = [ new Date("2020-02-29T00:00:00+02:00"), new Date("2021-02-28T00:00:00+02:00"), new Date("2022-02-28T00:00:00+02:00") ];
 	aa.sort((left, right) => right.valueOf() - left.valueOf());
@@ -209,13 +249,13 @@ if(window.console && console.log)
 
 	i = 5;
 	aa = new Array(i);
-	console.log(aa);
+	console.log("new Array(5) = %o", aa);
 	aaa = aa.concat(["2"]);
-	console.log(aaa);
+	console.log("new Array(5).concat([\"2\"]) = %o", aaa);
 	aaa = aaa.join("0");
-	console.log(aaa);
-	aaa = aaa.slice(-i);
-	console.log(aaa);
+	console.log("new Array(5).concat([\"2\"]).join(\"0\") = \"%s\" typeof = \"%s\"", aaa, typeof aaa); // "000002"  "string"
+	aaa = aaa.slice(-i); // "00002"
+	console.log("\"000002\".slice(-5) = \"%s\"", aaa);
 
 	aaa = [ 0, 1, 2, 3, 4, 5 ];
 	i = aaa.indexOf(3);
@@ -243,8 +283,8 @@ if(window.console && console.log)
 
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 4 ];
-	console.log(except(aa, aaa));
-	console.log(except(aaa, aa));
+	console.log("except(%o, %o) = %o", aa, aaa, except(aa, aaa));
+	console.log("except(%o, %o) = %o", aaa, aa, except(aaa, aa));
 
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 1 ];
@@ -363,25 +403,25 @@ document.write("a = [", a.toString(), "]", "<br />");
 document.write("<hr />");
 
 document.write("a.slice(1)", "<br />");
-aa=a.slice(1);
+aa=a.slice(1); // [1 ,2, 3, 4, 5]
 for(i=0; i<aa.length; ++i)
 	document.write("aa["+i+"]=",aa[i], "<br />");
 document.write("<hr />");
 
 document.write("a.slice(1,4)", "<br />");
-aa=a.slice(1,4);
+aa=a.slice(1,4); // [1 ,2, 3]
 for(i=0; i<aa.length; ++i)
 	document.write("aa["+i+"]=",aa[i], "<br />");
 document.write("<hr />");
 
 document.write("a.slice(-3)", "<br />");
-aa=a.slice(-3);
+aa=a.slice(-3); // [3, 4, 5]
 for(i=0; i<aa.length; ++i)
 	document.write("aa["+i+"]=",aa[i], "<br />");
 document.write("<hr />");
 
 document.write("a.slice(-3,5)", "<br />");
-aa=a.slice(-3,5);
+aa=a.slice(-3,5); // [3, 4]
 for(i=0; i<aa.length; ++i)
 	document.write("aa["+i+"]=",aa[i], "<br />");
 document.write("<hr />");
@@ -576,6 +616,12 @@ i = intersect(i, aaa);
 if (window.console && console.log)
 	console.log("%o", i);
 
+a = [0, 1, 2, 3, 4, 5];
+aa = 6;
+aaa = Math.ceil(a.length / aa);
+for (let i = 0; i < aaa; ++i)
+	console.log("getRow(%o, %i, %i) = %o (Math.ceil(%i / %i)=%i)", a, i, aa, getRow(a, i, aa), a.length, aa, aaa);
+
 function isBigEnough(element, index, array)
 {  
    return (element >= 10);  
@@ -599,6 +645,10 @@ function unique(arr) {
 
 function isValid(obj) {
 	return obj && !!obj.firstName && !!obj.lastName;
+}
+
+function getRow(data, rowNo, rowSize) {
+	return data.slice(rowNo * rowSize, rowNo * rowSize + rowSize)
 }
 		</script>
 	</head>

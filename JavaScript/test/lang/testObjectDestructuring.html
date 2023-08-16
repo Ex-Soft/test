@@ -22,6 +22,9 @@ function onLoad()
 
 	const fruits = ["Banana", "Orange", "Apple", "Mango"];
 
+	if (window.console && console.clear)
+		console.clear();
+
 	if (window.console && console.log) {
 		const { name: customerName, email, address: { streetNo, city }, married = 'N/A' } = customer;
 		console.log("customerName=\"%s\" email=\"%s\" streetNo=\"%s\" city=\"%s\" married=\"%s\"", customerName, email, streetNo, city, married);
@@ -36,7 +39,7 @@ function onLoad()
 		try {
 			({ age } = getCustomer());
 		}
-		catch(e) {
+		catch(e) { // TypeError: getCustomer() is null || TypeError: Cannot destructure property 'age' of 'getCustomer(...)' as it is null.
 			console.log(e);
 		}
 		
@@ -46,13 +49,25 @@ function onLoad()
 		let display = ({ name, address: { city } }) => console.log(`name=\"${name}\" city=\"${city}\"`);
 		display(customer);
 		
-		let [firstFruit, secondFruit] = fruits;
+		let first, second, third;
+		let arr = undefined;
+		try {
+			([, first = 1, second = 2, third = 3] = arr);
+		}
+		catch(e) { // TypeError: arr is undefined/TypeError: arr is null || TypeError: undefined is not iterable (cannot read property Symbol(Symbol.iterator))/TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
+			console.log(e);
+		}
+		
+		let [firstFruit, secondFruit] = fruits; // "Banana" "Orange"
 		console.log("firstFruit=\"%s\" secondFruit=\"%s\"", firstFruit, secondFruit);
-		[firstFruit, secondFruit] = [secondFruit, firstFruit];
+		[firstFruit, secondFruit] = [secondFruit, firstFruit]; // "Orange" "Banana"
 		console.log("firstFruit=\"%s\" secondFruit=\"%s\"", firstFruit, secondFruit);
 		
-		let [yourFav, , ...friendsFav] = fruits;
+		let [yourFav, , ...friendsFav] = fruits; // "Banana", ["Apple", "Mango"]
 		console.log("yourFav=\"%s\" friendsFav=%o", yourFav, friendsFav);
+		
+		([, first = 1, second = 2, third = 3] = [ 0, 10, 20 ]);  // 10 20 3
+		console.log("first=%i second=%i third=%i", first, second, third);
 		
 		let re = /^(\d{4})-(\d{2})-(\d{2})$/;
 		let str = "2021-12-10";

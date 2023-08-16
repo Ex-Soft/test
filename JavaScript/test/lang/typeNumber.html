@@ -11,22 +11,50 @@ function roundTo(value, precision)
     return Math.floor(value < 0 ? value - 0.5 : value + 0.5) / factor;
 }
 
+function roundCurrency(value) {
+	return !isNaN(value) ? Math.round((value + Number.EPSILON) * 100) / 100 : 0.0;
+}
+
 function onLoad()
 {
+	console.clear();
+
 	let
 		num1 = 1.23456789,
 		num2,
-		num3;
+		num3,
+		str1,
+		str2,
+		str3;
 
-	if(window.console && console.log) {
-		for (let i = 0; i < 10; ++i)
-			console.log("num=%o roundTo()=%o toFixed()=%o toPrecision()=%o", num1, roundTo(num1, -i), num1.toFixed(i), i ? num1.toPrecision(i) : "");
+	str1 = "107.71";
+	str2 = "305.14";
+	console.log("parseFloat(\"%s\") = %o + parseFloat(\"%s\") = %o = %o roundCurrency(parseFloat(\"%s\") + parseFloat(\"%s\")) = %o", str1, parseFloat(str1), str2, parseFloat(str2), parseFloat(str1) + parseFloat(str2), str1, str2, roundCurrency(parseFloat(str1) + parseFloat(str2))); // 412.84999999999997 412.85
+	console.log("(parseFloat(\"%s\") + parseFloat(\"%s\")) - roundCurrency(parseFloat(\"%s\") + parseFloat(\"%s\")) = %o", str1, str2, str1, str2, (parseFloat(str1) + parseFloat(str2)) - roundCurrency(parseFloat(str1) + parseFloat(str2))); // -5.684341886080802e-14
+	console.log("Math.abs((parseFloat(\"%s\") + parseFloat(\"%s\")) - roundCurrency(parseFloat(\"%s\") + parseFloat(\"%s\"))) < Number.EPSILON  = %o", str1, str2, str1, str2, Math.abs((parseFloat(str1) + parseFloat(str2)) - roundCurrency(parseFloat(str1) + parseFloat(str2))) < Number.EPSILON); // false
 
-		num1 = 0;
-		num2 = 0.0; 
-		num3 = 0.27;
-		console.log("!0=%o !0.0=%o !0.27=%o", !num1, !num2, !num3); // !0===true !0.0===true !0.27===false
-	}
+	for (let i = 0; i < 10; ++i)
+		console.log("num=%o roundTo()=%o toFixed()=%o toPrecision()=%o", num1, roundTo(num1, -i), num1.toFixed(i), i ? num1.toPrecision(i) : "");
+
+	str1 = undefined;
+	str2 = null;
+	str3 = "";
+	num1 = +str1; // NaN
+	num2 = +str2; // 0
+	num3 = +str3; // 0
+	console.log("+%o = %o +%o = %o +\"%s\" = %o", str1, num1, str2, num2, str3, num3); // NaN 0 0
+	str1 = "12345";
+	str2 = "12345.6789";
+	str3 = "blah-blah-blah";
+	num1 = parseInt(str1); // 12345
+	num2 = parseInt(str2); // 12345
+	num3 = parseInt(str3); // NaN
+	console.log("parseInt(\"%s\") = %o parseInt(\"%s\") = %o parseInt(\"%s\") = %o", str1, num1, str2, num2, str3, num3); // 12345 12345 NaN
+
+	num1 = 0;
+	num2 = 0.0; 
+	num3 = 0.27;
+	console.log("!0=%o !0.0=%o !0.27=%o", !num1, !num2, !num3); // !0===true !0.0===true !0.27===false
 	
 	let data;
 	num1 = parseFloat(data);
@@ -57,6 +85,62 @@ function onLoad()
 	data = { balance: "" };
 	num3 = parseFloat(data?.balance ?? "3");
 	console.log("parseFloat(data?.undefined ?? \"1\")=%o parseFloat(data?.null ?? \"2\")=%o parseFloat(data?.\"\" ?? \"3\")=%o", num1, num2, num3); // 1 2 NaN
+	
+	num1 = 123.456;
+	// language code + country code https://www.w3schools.com/tags/ref_language_codes.asp + https://www.w3schools.com/tags/ref_country_codes.asp
+	let locale = "uk-UA";
+	str1 = new Intl.NumberFormat(locale).format(num1); // 123,456
+	str2 = new Intl.NumberFormat(locale, { style: "decimal" }).format(num1); // 123,456
+	str3 = new Intl.NumberFormat(locale, { style: "currency", currency: "UAH" }).format(num1); // 123,46 ₴ (₴ - \u20b4) || 123,46 грн
+	console.log("%s %s %s", str1, str2, str3); // 123,456 123,456 123,46 ₴ || 123,46 грн
+	
+	str1 = "$123";
+	num1 = parseInt(str1, 10); // NaN
+	str2 = "123$456";
+	num2 = parseInt(str2, 10); // 123
+	console.log("parseInt(\"%s\")=%o parseInt(\"%s\")=%i", str1, num1, str2, num2); // NaN 123
+	
+	str1 = "$123";
+	num1 = parseFloat(str1); // NaN
+	str2 = "123-456";
+	num2 = parseFloat(str2); // 123
+	console.log("parseFloat(\"%s\")=%o parseFloat(\"%s\")=%o", str1, num1, str2, num2); // NaN 123
+	
+	str1 = "123,456.78";
+	num1 = parseFloat(str1); // 123
+	str2 = "123 456,78";
+	num2 = parseFloat(str2); // 123
+	str3 = "123456,78";
+	num3 = parseFloat(str3); // 123456
+	console.log("parseFloat(\"%s\")=%o parseFloat(\"%s\")=%o parseFloat(\"%s\")=%o", str1, num1, str2, num2, str3, num3); // NaN 123 123456
+	
+	str1 = "19812.76"
+	num1 = str1 * 100; // 1981275.9999999998
+	num2 = Math.round(str1 * 100); // 1981276
+	console.log("\"%s\" * 100 = %o Math.round(\"%s\" * 100) = %o", str1, num1, str1, num2); // 1981275.9999999998 1981276
+	
+	num1 = Math.round(52.27 * 0.75 * 100) / 100;
+	str1 = (num1 * 100).toString(); // "3920.0000000000005"
+	console.log("Math.round(52.27 * 0.75 * 100) / 100 = %o  \"%s\"", num1, str1); // 39.2 "3920.0000000000005"
+	
+	str1 = "19812.76"
+	num1 = str1 * 100; // 1981275.9999999998
+	num2 = Math.round(num1 * 100) / 100
+	num3 = Math.round((num1 + Number.EPSILON) * 100) / 100
+	console.log("num1 = %o num2 = %o num3 = %o", num1, num2, num3);
+	
+	num1 = 0;
+	console.log("%o > 0 = %o %o > 0.0 = %o %o == 0 = %o %o == 0.0 = %o", num1, num1 > 0, num1, num1 > 0.0, num1, num1 == 0, num1, num1 == 0.0); // false false true true
+	num1 = 0.0;
+	console.log("%o > 0 = %o %o > 0.0 = %o %o == 0 = %o %o == 0.0 = %o", num1, num1 > 0, num1, num1 > 0.0, num1, num1 == 0, num1, num1 == 0.0); // false false true true
+	
+	data = undefined;
+	num1 = data?.balance;
+	data = null;
+	num2 = data?.balance;
+	data = {};
+	num3 = data?.balance;
+	console.log("undefined?.balance=%o null?.balance=%o {}?.balance=%o", num1, num2, num3); // undefined undefined undefined
 }
 		</script>
 	</head>

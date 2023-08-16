@@ -15,11 +15,33 @@ function onLoad()
 		d2,
 		str1,
 		str2,
+		str3,
 		m1,
-		m2;
+		m2,
+		m3;
 
 	if (window.console && console.log) {
 		console.log("moment version: %s", moment.version);
+		
+		str1 = undefined;
+		m1 = moment(str1);
+		m2 = moment(new Date(str1));
+		console.log("moment(%o).isValid()=%o moment(new Date(%o)).isValid()", str1, m1.isValid(), str1, m2.isValid());
+		str1 = null;
+		m1 = moment(str1);
+		m2 = moment(new Date(str1));
+		console.log("moment(%o).isValid()=%o moment(new Date(%o)).isValid()", str1, m1.isValid(), str1, m2.isValid());
+		str1 = "";
+		m1 = moment(str1);
+		m2 = moment(new Date(str1));
+		console.log("moment(\"%s\").isValid()=%o moment(new Date(\"%s\")).isValid()", str1, m1.isValid(), str1, m2.isValid());
+		str1 = {}
+		m1 = moment(str1);
+		m2 = moment(new Date(str1));
+		console.log("moment(%o).isValid()=%o moment(new Date(%o)).isValid()", str1, m1.isValid(), str1, m2.isValid());
+		str1 = "Invalid Date";
+		m1 = moment(new Date(str1));
+		console.log("moment(new Date(\"%s\")).isValid()=%o", str1, m1.isValid());
 		
 		str1 = "0";
 		m1 = moment(str1); // moment.js:281 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
@@ -32,17 +54,52 @@ function onLoad()
 		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
 		m2 = m1.hour(23).minute(59).second(59).millisecond(999);
 		console.log("%s %i-%i-%i %i:%i:%i.%i", m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
+
+		str1 = "2023-07-14T13:13:13.123+02:00";
+		m1 = moment(str1).utc().startOf("day");
+		m2 = moment(str1).utc().endOf("day");
+		console.log("moment(\"%s\").utc().startOf(\"day\") %s %i-%i-%i %i:%i:%i.%i", str1, m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		console.log("moment(\"%s\").utc().endOf(\"day\") %s %i-%i-%i %i:%i:%i.%i", str1, m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
+		
+		str1 = "4/30/2023 12:00:00 AM";
+		m1 = moment(str1);
+		m2 = moment.utc(str1);
+		console.log("moment(\"%s\") = \"%s\" moment.utc(\"%s\") = \"%s\"", str1, m1.toISOString(), str1, m2.toISOString());
+		
+		m1 = moment.utc([2023, 4, 24, 13, 13, 13, 13]);
+		console.log("moment.utc([2023, 4, 24, 13, 13, 13, 13]) = \"%s\" %o", m1.toISOString(), m1.toDate());
+		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		
+		d1 = new Date(2024, 1, 29, 23, 59, 59, 999);
+		m1 = moment.utc([d1.getFullYear(), d1.getMonth(), d1.getDate(), d1.getHours(), d1.getMinutes(), d1.getSeconds(), d1.getMilliseconds()]);
+		d2 = m1.toDate();
+		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		console.log("\"%i-%i-%iT%i:%i:%i%i\"", d2.getFullYear(), d2.getMonth() + 1, d2.getDate(), d2.getHours(), d2.getMinutes(), d2.getSeconds(), d2.getTimezoneOffset());
+		m1 = moment.utc([d1.getFullYear(), d1.getMonth(), d1.getDate()]);
+		d2 = m1.toDate();
+		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		console.log("\"%i-%i-%iT%i:%i:%i%i\"", d2.getFullYear(), d2.getMonth() + 1, d2.getDate(), d2.getHours(), d2.getMinutes(), d2.getSeconds(), d2.getTimezoneOffset());
 		
 		m1 = moment(new Date()).add(-1, "days").set({ "hour": 0, "minute": 0, "second": 0, "millisecond": 0 });
 		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
-		
+		m1 = moment(new Date()).add(-1, "days").hour(0).minute(0).second(0).millisecond(0);
+		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+
 		str1 = "2022-04-30T23:59:59+03:00";
 		m1 = moment(str1);
 		str2 = "2022-05-01T00:00:00+03:00";
 		m2 = moment();
 		console.log("\"%s\".isAfter(\"%s\")=%o \"%s\".isAfter(\"%s\")=%o", str1, str2, m1.isAfter(m2), str2, str1, m2.isAfter(m1));
 		console.log("\"%s\".isBefore(\"%s\")=%o \"%s\".isBefore(\"%s\")=%o", str1, str2, m1.isBefore(m2), str2, str1, m2.isBefore(m1));
-
+		
+		str1 = "2023-07-01T00:00:00.000Z";
+		m1 = moment(str1);
+		str2 = "2023-07-31T00:00:00.000Z";
+		m2 = moment(str2);
+		str3 = "2023-07-15T00:00:00.000Z";
+		m3 = moment(str3);
+		console.log("\"%s\".isBetween(\"%s\", \"%s\")=%o", str3, str1, str2, m3.isBetween(m1, m2));
+		
 		m1 = moment([2022, 2, 13, 1, 59, 59]);
 		m2 = moment(m1);
 		m1.year(2023);
@@ -70,6 +127,14 @@ function onLoad()
 		d1 = new Date(str1);
 		d2 = moment(d1).add(1, "d").toDate();
 		console.log("\"%s\".add(1, \"\d\") = \"%s\"", d1.toString(), d2.toString());
+
+		str1 = "2023-04-26";
+		m1 = moment.utc(str1);
+		console.log("moment.utc(\"%s\") \"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"));
+		m2 = m1.startOf("month");
+		console.log("moment.utc(\"%s\").startOf(\"month\") m1=\"%s\" m2=\"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m2.format("YYYY-MM-DDTHH:mm:ssZ"));
+		m2 = m1.endOf("month");
+		console.log("moment.utc(\"%s\").endOf(\"month\") m1=\"%s\" m2=\"%s\"", str1, m1.format("YYYY-MM-DDTHH:mm:ssZ"), m2.format("YYYY-MM-DDTHH:mm:ssZ"));
 		
 		str1 = "2022-03-13";
 		m1 = moment.tz(str1, "America/Los_Angeles");
@@ -95,6 +160,12 @@ function onLoad()
 		str2 = moment(d2).tz('America/Los_Angeles').format('YYYY-MM-DDTHH:mm:ssZ');
 		console.log("\"%s\" \"%s\" \"%s\" \"%s\"", d1.toUTCString(), str1, d2.toUTCString(), str2);
 	
+		str1 = "2024-02-29T23:59:59.0000000Z";
+		str2 = moment(str1).utc().format("MM/DD/YYYY hh:mm a z");
+		console.log("moment(\"%s\").utc().format(\"MM/DD/YYYY hh:mm a z\")=\"%s\"", str1, str2);
+		str2 = moment(str1).tz("America/Los_Angeles").format('MM/DD/YYYY hh:mm a z')
+		console.log("moment(\"%s\").tz(\"America/Los_Angeles\").format(\"MM/DD/YYYY hh:mm a z\")=\"%s\"", str1, str2);
+
 		str1 = "2011-12-31T23:59:59.0000000Z";
 		d1 = new Date(str1);
 		console.log("\"%s\" %o \"%s\" \"%s\" \"%s\" \"%s\"", str1, d1, moment(d1).format(), moment(d1).format("MM/DD/YYYY HH:mm:ss a"), moment(str1).tz("Europe/Kiev").format("MM/DD/YYYY HH:mm:ss a"), moment(str1).tz("America/Los_Angeles").format("MM/DD/YYYY HH:mm:ss a"));

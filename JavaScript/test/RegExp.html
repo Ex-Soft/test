@@ -20,11 +20,39 @@ var
 	arr,
 	arrarr,
 	i,
-	ii;
+	ii,
+	matches;
 
 	if(window.console && console.clear)
 		console.clear();
 
+	RegEx = /(@)(.+)/;
+	Str = "721045a0-e2bc-4c66-8bc6-575f8605ae60@Pop-Up_BgrdOption2.png"
+	matches = Str.match(RegEx);
+	console.log(matches);
+	Str = "Pop-Up_BgrdOption2.png"
+	matches = Str.match(RegEx);
+	console.log(matches);
+	
+	RegEx = /^(?!9999999999$)/;
+	Str = "8888888888";
+	i = RegEx.test(Str); // true
+	console.log("/^(?!9999999999$)/.test(\"%s\")=%o", Str, i); // true
+	Str = "9999999999";
+	i = RegEx.test(Str); // false
+	console.log("/^(?!9999999999$)/.test(\"%s\")=%o", Str, i); // false
+	
+	i = ".";
+	RegEx = new RegExp(`[^\\d${i}]`, 'g');
+	Str = "$123,456,789.10"
+	ii = Str.replace(RegEx, "");
+	RegEx = `^\\$?(\\d+)([${i}]?)(\\d*)$`;
+	Str = "$1";
+	matches = Str.match(RegEx);
+	([, arr = "0", arrarr = i, ii = "00"] = matches)
+	console.log("%s%s%s",arr, arrarr, ii);
+
+	
 	i = [ "/smthStr" ].some(item => [ "smthStr" ].findIndex(pattern => new RegExp(`^\\/?${pattern}$`).test(item)) !== -1);
 
 	Str = "123,456.78";

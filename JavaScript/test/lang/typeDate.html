@@ -12,13 +12,27 @@ function onLoad()
 		d3,
 		offset,
 		str,
-		str2;
+		str2,
+		basedata;
 
 	if(window.console && console.log) {
 		str = "Invalid Date";
 		d1 = new Date(str);
 		console.log("new Date(\"%s\") = %o", str, d1);
-		
+
+		basedate = new Date(2209161600000);
+		console.log("%s %o", basedate.toString(), basedate.getTimezoneOffset());
+		basedate = new Date(-2209161600000);
+		console.log("%s %o", basedate.toString(), basedate.getTimezoneOffset());
+		basedate = new Date(1899, 11, 30, 0, 0, 0); // 2209161600000
+		console.log("%s %o %o %o", basedate.toString(), basedate.getTime(), basedate.valueOf(), basedate.getTimezoneOffset());
+		console.log(new Date(1899, 11, 30, 0, 0, 0).getTimezoneOffset());
+		console.log ((2209168924000 - 2209161600000)/60000);
+		console.log ((2209168924000 - 124000 - 2209161600000)/60000);
+
+		d1 = new Date(Date.UTC(2023, 4, 24, 13, 13, 13, 13));
+		console.log("new Date(Date.UTC(2023, 4, 24, 13, 13, 13, 13)) = \"%s\" \"%s\" \"%s\"", d1.toString(), d1.toLocaleString(), d1.toUTCString());
+
 		str = "2023-03-29T13:13:13.123Z";
 		d1 = new Date(str);
 		str2 = "2023-03-29T16:13:13.123+03:00";

@@ -100,10 +100,42 @@ if (window.console && console.log) {
   console.log("\"%s\".length = %o !!\"%s\" = %o", str, str.length ? true : false, str, !!str);
   str = "StringValue";
   console.log("\"%s\".length = %o !!\"%s\" = %o", str, str.length ? true : false, str, !!str);
+  
+  str = undefined;
+  str_out = str ?? "default value";
+  i = str || "default value";
+  console.log("%o ?? \"default value\" = \"%s\" %o || \"default value\" = \"%s\"", str, str_out, str, i);
+  
+  str = null;
+  str_out = str ?? "default value";
+  i = str || "default value";
+  console.log("%o ?? \"default value\" = \"%s\" %o || \"default value\" = \"%s\"", str, str_out, str, i);
+  
+  str = "";
+  str_out = str ?? "default value";
+  i = str || "default value";
+  console.log("\"%s\" ?? \"default value\" = \"%s\" \"%s\" || \"default value\" = \"%s\"", str, str_out, str, i);
+  
+  str = undefined;
+  str_out = str?.toUpperCase();
+  i = str?.toUpperCase() || null;
+  console.log("%o?.toUpperCase() = %o %o?.toUpperCase() || null = %o", str, str_out, str, i); // undefined null
+  str = null;
+  str_out = str?.toUpperCase();
+  i = str?.toUpperCase() || null;
+  console.log("%o?.toUpperCase() = %o %o?.toUpperCase() || null = %o", str, str_out, str, i);  // undefined null
+
+  str = "";
+  str_out = str.charAt(0);
+  console.log("\"%s\".charAt(0) = \"%s\"", str, str_out); // "" ""
 
   str = "StringValue";
   str_out = `${str ? `value=\"${str}\"` : ""}`;
   console.log(str_out);
+
+  str = "1";
+  str_out = !!str;
+  console.log("!!\"%s\" = %o", str, str_out);
 
   str_out = insertString("456789", 3, ".");
 

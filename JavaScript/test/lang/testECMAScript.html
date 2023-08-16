@@ -75,6 +75,12 @@ function onLoad()
 		console.log("null?.p = %o", x?.p); // undefined
 		console.log("null?.p ?? \"\" = %o", x?.p ?? ""); // ""
 		console.log("null?.p || \"\" = %o", x?.p || ""); // ""
+		
+		o = undefined;
+		x = o?.items;
+		x = o?.items?.[10];
+		x = o?.items?.[10]?.obj;
+		x = o?.items?.[10]?.obj?.prop;
 
 		o = { duration: 50 };
 		o.duration ??= 10;

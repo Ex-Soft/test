@@ -1,0 +1,82 @@
+﻿<HTML>
+  <HEAD>
+    <TITLE>Test Param by Reference</TITLE>
+  </HEAD>
+  <BODY>
+    <FORM id=MainForm>
+      <SCRIPT type=text/javascript>
+      <!--
+function a(b)
+{
+   b.ex=1;
+}
+
+var
+  c=new String();
+
+alert(c.ex);
+a(c);
+alert(c.ex);
+
+function makeObjectTable(name, object)
+{
+   document.writeln("<H2>" + name + "</H2>");
+   document.writeln("<TABLE BORDER=1>\n" +
+                    "  <TR><TH>Field<TH>Value");
+   for(field in object)
+   {
+      document.writeln("  <TR><TD>" + field + "<TD>" + object[field]);
+   }
+   
+   document.writeln("</TABLE");
+}
+
+      function add_to_total(total, x)
+      {
+         total[0]=total[0]+x;
+         total[1]=total[1]+x;
+         total[2]=total[2]+x;
+      }
+
+      var
+        xmas=new Date(2001,1,25),
+        solstice=xmas;
+
+      document.writeln(xmas);
+      document.writeln("<br>");
+      document.writeln(solstice);
+      document.writeln("<br>");
+
+      solstice.setDate(21);
+
+      document.writeln(xmas);
+      document.writeln("<br>");
+      document.writeln(solstice);
+      document.writeln("<br>");
+      document.writeln("(xmas==solstice) = ",(xmas==solstice),"<br/>");
+      document.writeln("(xmas===solstice) = ",(xmas===solstice),"<br/>");
+
+      var
+        xmasII=new Date(2001,1,25);
+
+      document.writeln("(xmas==xmasII) = ",(xmas==xmasII),"<br/>");
+      document.writeln("(xmas===xmasII) = ",(xmas===xmasII),"<br/>");
+
+      var
+        arr=new Array();
+
+      arr[0]=1;
+      arr[1]=2;
+      arr[2]=3;
+
+      document.writeln("<br>");      
+      document.writeln("B4");
+      makeObjectTable("arr",arr);
+      add_to_total(arr,5);
+      document.writeln("after");
+      makeObjectTable("arr",arr);
+      // -->
+      </SCRIPT>
+    </FORM>
+  </BODY>
+</HTML>
