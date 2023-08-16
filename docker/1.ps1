@@ -6,6 +6,8 @@ docker volume rm $(docker volume ls -q)
 docker run -it --rm -v ${pwd}:/mnt --name testworkdir testworkdir
 
 docker exec -it confluent /bin/bash
+docker exec -it -u root 0cd735684901 /bin/bash
+docker exec -it -u 0 0cd735684901 /bin/bash
 
 docker ps -a
 docker ps -aq
