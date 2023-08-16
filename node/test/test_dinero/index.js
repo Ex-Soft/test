@@ -4,7 +4,7 @@
 const { dinero, add, multiply, toDecimal } = require('dinero.js');
 const { USD } = require('@dinero.js/currencies');
 
-const price = dinero({ amount: 50.00, currency: USD });
+const price = dinero({ amount: 50.09 * 100, currency: USD });
 console.log(toDecimal(price));
 
 const items = [

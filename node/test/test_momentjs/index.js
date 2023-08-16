@@ -35,7 +35,11 @@ function getOADate(value, roundToDate) {
     return result;
 }
 
-let m1, m2, precision, key, str;
+let m1, m2, precision, key, str, d1;
+
+m1 = moment(new Date('2024-02-29T20:59:59.123Z')).round(1, 'minutes');
+d1 = m1.hour(0).minute(0).toDate();
+console.log(m1.toString(), d1.toString());
 
 precision = 15;
 key = "seconds";
@@ -44,14 +48,34 @@ m2 = m1.round(precision, key);
 console.log(m2.toDate(), precision, key);
 
 precision = 1;
+key = "minutes";
+m1 = moment("2023-02-22T00:00:13+02:00");
+m2 = m1.round(precision, key);
+console.log(m2.toDate(), precision, key);
+
+precision = 1;
+key = "minutes";
+//str = "2023-01-19T23:59:56+02:00";
+str = "2023-01-19T23:59:56.000Z";
+//str = "2024-02-29T23:59:59.123Z";
+//str = "2023-04-09T23:59:59.123Z";
+m1 = moment(str);
+console.log(m1.toDate().toUTCString());
+m2 = m1.round(precision, key);
+console.log(m2.toDate().toUTCString(), precision, key, m2.isDST());
+console.log(getOADate(str, true).toUTCString());
+
+precision = 1;
 key = "hours";
 //str = "2023-01-19T23:59:56+02:00";
 str = "2023-01-19T23:59:56.000Z";
+//str = "2024-02-29T23:59:59.123Z";
+//str = "2023-04-09T23:59:59.123Z";
 m1 = moment(str);
-console.log(m1.toDate());
+console.log(m1.toDate().toUTCString());
 m2 = m1.round(precision, key);
-console.log(m2.toDate(), precision, key, m2.isDST());
-console.log(getOADate(str, true));
+console.log(m2.toDate().toUTCString(), precision, key, m2.isDST());
+console.log(getOADate(str, true).toUTCString());
 
 //str = "2023-04-09T00:59:56+03:00";
 str = "2023-04-09T00:59:56.000Z";
@@ -71,7 +95,7 @@ console.log(getOADate(str, true));
 //str = "2023-04-09T00:59:56.123Z";
 str = "2023-04-09T23:59:59.123Z";
 m1 = moment(str);
-console.log(m1.toDate());
+console.log(m1.toDate().toUTCString());
 m2 = m1.round(precision, key);
-console.log(m2.toDate(), precision, key, m2.isDST());
-console.log(getOADate(str, true));
+console.log(m2.toDate().toUTCString(), precision, key, m2.isDST());
+console.log(getOADate(str, true).toUTCString());
