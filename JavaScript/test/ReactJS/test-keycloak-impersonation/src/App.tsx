@@ -28,7 +28,7 @@ function handleKeycloakOnTokens(tokens: any) {
 function App() {
   const [initOptions, setInitOptions] = useState<AuthClientInitOptions | undefined>();
 
-  async function impersonate() {
+  async function impersonateByTokenExchange() {
     const impersonatorTokens = await getImpersonatorTokens();
     const impersonatedTokens = await getImpersonatedTokens(impersonatorTokens?.access_token);
 
@@ -77,6 +77,37 @@ function App() {
     return response?.data;
   }
 
+  async function impersonateByImpersonation() {
+    const impersonatorTokens = await getImpersonatorTokens();
+    const impersonateData = await impersonate({
+      realm: "myrealm",
+      user: "802f1369-c7b0-4098-bcc8-ae3b2e83298f"
+    }, `Bearer ${impersonatorTokens.access_token}`);
+  }
+
+  async function impersonate(data?: any, authorization?: string) {
+    const url = "http://localhost:8080/auth/admin/realms/myrealm/users/802f1369-c7b0-4098-bcc8-ae3b2e83298f/impersonation";
+  
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        ...!!authorization && { Authorization: authorization }
+      }
+    };
+  
+    let response;
+  
+    try {
+      response = await axios.post(url, data, config);
+      console.log(response?.headers["set-cookie"]);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  
+    return response?.data;
+  }
+
   return (
     <div>
       <ReactKeycloakProvider
@@ -85,7 +116,8 @@ function App() {
         onEvent={handleKeycloakOnEvent}
         onTokens={handleKeycloakOnTokens}
       >
-        <input type="button" value="Impersonate" onClick={impersonate} />
+        <input type="button" value="Impersonate (token-exchange)" onClick={impersonateByTokenExchange} />
+        <input type="button" value="Impersonate (impersonation)" onClick={impersonateByImpersonation} />
         <input type="button" value="keycloak" onClick={() => console.log(keycloak)} />
         <input type="button" value="login" onClick={() => keycloak.login()} />
         <input type="button" value="logout" onClick={() => keycloak.logout()} />
@@ -99,3 +131,21 @@ export default App;
 // yarn create react-app test-keycloak-impersonation --template typescript
 // yarn add keycloak-js@16.1.1 @react-keycloak/web@3.4.0 react-router-dom
 // yarn add axios
+
+// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e JAVA_OPTS_APPEND="-Dkeycloak.profile=preview -Dkeycloak.profile.feature.token_exchange=enabled" quay.io/keycloak/keycloak:15.1.0
+
+// myrealm
+
+// Client
+// react-auth
+// Access Type: public
+// Valid Redirect URIs: * | http://localhost:3000/*
+// Web Origins: * | http://localhost:3000
+// Permissions -> Permissions Enabled: ON
+// Permissions -> token-exchange -> create client policy
+
+// Users
+// myuser
+// testuser
+// Permissions -> Permissions Enabled: ON
+// Permissions -> impersonate -> create client policy
