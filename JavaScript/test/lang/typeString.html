@@ -136,6 +136,9 @@ if (window.console && console.log) {
   str = "1";
   str_out = !!str;
   console.log("!!\"%s\" = %o", str, str_out);
+  
+  str = "2252L";
+  console.log("\"%s\".substring(0, str.length - 1)=\"%s\"", str, str.substring(0, str.length - 1)); // "2252"
 
   str_out = insertString("456789", 3, ".");
 
