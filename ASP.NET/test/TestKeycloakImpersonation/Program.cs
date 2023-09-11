@@ -75,10 +75,22 @@ async Task<IResult> ImpersonateByImpersonation()
     (string, IEnumerable<string>)? impersonateData = await Impersonate($"{{\"realm\":\"myrealm\",\"user\":\"{userId}\"}}", userId, impersonatorTokens.AccessToken);
 
     Regex re = new Regex("expires=.+?1970.+?;", RegexOptions.IgnoreCase);
-    string cookies = String.Join("; ", impersonateData.Value.Item2.Where(item => !re.IsMatch(item)));
-    Uri? redirectUri = await Auth(cookies);
+    string[] cookies = impersonateData.Value.Item2.Where(item => !re.IsMatch(item)).ToArray();
+    string? redirectUri = (await Auth(String.Join("; ", cookies)))?.ToString();
+
+    re = new Regex("(?<=session_state=).+?(?=&)");
+    Match match = re.Match(redirectUri);
+    string? sessionState = match.Value;
     
-    return Results.Ok(redirectUri?.ToString());
+    re = new Regex("(?<=access_token=).+?(?=&)");
+    match = re.Match(redirectUri);
+    string? accessToken = match.Value;
+    
+    re = new Regex("(?<=token_type=).+?(?=&)");
+    match = re.Match(redirectUri);
+    string? tokenType = match.Value;
+    
+    return Results.Json(new { sessionState = sessionState, tokenType = tokenType, accessToken = accessToken, redirectUri = redirectUri, cookies = cookies });
 }
 
 async Task<(string, IEnumerable<string>)?> Impersonate(string data, string userId, string token)
