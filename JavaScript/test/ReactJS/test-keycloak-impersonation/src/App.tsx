@@ -81,12 +81,12 @@ function App() {
     const impersonatorTokens = await getImpersonatorTokens();
     const impersonateData = await impersonate({
       realm: "myrealm",
-      user: "802f1369-c7b0-4098-bcc8-ae3b2e83298f"
+      user: "995aa695-6320-44ee-8f6f-4321ff51c3e4"
     }, `Bearer ${impersonatorTokens.access_token}`);
   }
 
   async function impersonate(data?: any, authorization?: string) {
-    const url = "http://localhost:8080/auth/admin/realms/myrealm/users/802f1369-c7b0-4098-bcc8-ae3b2e83298f/impersonation";
+    const url = `http://localhost:8080/auth/admin/realms/myrealm/users/${data?.user}/impersonation`;
   
     const config = {
       headers: {
@@ -143,6 +143,8 @@ export default App;
 // Web Origins: * | http://localhost:3000
 // Permissions -> Permissions Enabled: ON
 // Permissions -> token-exchange -> create client policy
+//
+// Implicit Flow Enabled: ON
 
 // Users
 // myuser
