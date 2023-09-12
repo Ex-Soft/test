@@ -2,13 +2,30 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+
 using TestKeycloakImpersonation;
 
+// https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0#cors
+const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000",
+                "http://localhost:4200");
+        });
+});
+
 var app = builder.Build();
 
+app.UseCors(MyAllowSpecificOrigins);
+
 app.MapGet("/impersonateByTokenExchange", async () => await ImpersonateByTokenExchange());
-app.MapGet("/impersonateByImpersonation", async () => await ImpersonateByImpersonation());
+app.MapGet("/impersonateByImpersonation", /*[EnableCors(MyAllowSpecificOrigins)]*/ async () => await ImpersonateByImpersonation())/*.RequireCors(MyAllowSpecificOrigins)*/;
 
 async Task<IResult> ImpersonateByTokenExchange()
 {
@@ -71,7 +88,7 @@ async Task<IResult> ImpersonateByImpersonation()
         {"password", "myuser"}
     }));
 
-    const string userId = "995aa695-6320-44ee-8f6f-4321ff51c3e4";
+    const string userId = "b04fbc86-a44c-4293-8b5e-62635d0468d7";
     (string, IEnumerable<string>)? impersonateData = await Impersonate($"{{\"realm\":\"myrealm\",\"user\":\"{userId}\"}}", userId, impersonatorTokens.AccessToken);
 
     Regex re = new Regex("expires=.+?1970.+?;", RegexOptions.IgnoreCase);
