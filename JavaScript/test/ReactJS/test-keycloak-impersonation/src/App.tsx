@@ -77,11 +77,11 @@ function App() {
     return response?.data;
   }
 
-  async function impersonateByImpersonation() {
+  async function impersonateByImpersonationFE() {
     const impersonatorTokens = await getImpersonatorTokens();
     const impersonateData = await impersonate({
       realm: "myrealm",
-      user: "995aa695-6320-44ee-8f6f-4321ff51c3e4"
+      user: "b04fbc86-a44c-4293-8b5e-62635d0468d7"
     }, `Bearer ${impersonatorTokens.access_token}`);
   }
 
@@ -108,6 +108,17 @@ function App() {
     return response?.data;
   }
 
+  async function impersonateByImpersonationBE() {
+    try {
+      const response = await axios.get("http://localhost:5014/impersonateByImpersonation");
+      window.location.href = response?.data?.redirectUri;
+      window.location.reload();
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <ReactKeycloakProvider
@@ -117,7 +128,8 @@ function App() {
         onTokens={handleKeycloakOnTokens}
       >
         <input type="button" value="Impersonate (token-exchange)" onClick={impersonateByTokenExchange} />
-        <input type="button" value="Impersonate (impersonation)" onClick={impersonateByImpersonation} />
+        <input type="button" value="Impersonate (impersonation) (FE)" onClick={impersonateByImpersonationFE} />
+        <input type="button" value="Impersonate (impersonation) (BE)" onClick={impersonateByImpersonationBE} />
         <input type="button" value="keycloak" onClick={() => console.log(keycloak)} />
         <input type="button" value="login" onClick={() => keycloak.login()} />
         <input type="button" value="logout" onClick={() => keycloak.logout()} />
