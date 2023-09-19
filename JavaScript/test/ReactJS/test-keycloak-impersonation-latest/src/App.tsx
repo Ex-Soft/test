@@ -6,7 +6,7 @@ import axios from 'axios';
 
 /*const config = {
   "realm": "myrealm",
-  "auth-server-url": "http://localhost:8080/auth/",
+  "auth-server-url": "http://localhost:8080/",
   "ssl-required": "external",
   "resource": "react-auth",
   "public-client": true,
@@ -159,8 +159,8 @@ function App() {
 
 export default App;
 
-// yarn create react-app test-keycloak-impersonation --template typescript
-// yarn add keycloak-js@16.1.1 @react-keycloak/web@3.4.0 react-router-dom axios
+// yarn create react-app test-keycloak-impersonation-latest --template typescript
+// yarn add keycloak-js@22.0.3 @react-keycloak/web react-router-dom axios
 // yarn upgrade
 
 // docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e JAVA_OPTS_APPEND="-Dkeycloak.profile=preview -Dkeycloak.profile.feature.token_exchange=enabled" quay.io/keycloak/keycloak:15.1.0
