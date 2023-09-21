@@ -7,7 +7,10 @@ using TestKeycloakImpersonation;
 
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0#cors
 const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
-const string authServerUrl = "http://localhost:8080"; // "http://localhost:8080/auth"
+
+const string realm = "the-marketing-zone-dev"; // "myrealm"
+const string authServerUrl = "https://auth-dev.thedirectvmarketingzone.com/auth/"; // "http://localhost:8080/auth/" "http://localhost:8080/"
+const string clientId = "admin-dev"; // "react-auth"
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +35,7 @@ async Task<IResult> ImpersonateByTokenExchange()
 {
     TokenResponse? impersonatorTokens = JsonSerializer.Deserialize<TokenResponse>(await Token(new Dictionary<string, string>
     {
-        {"client_id", "react-auth"},
+        {"client_id", clientId},
         {"grant_type", "password"},
         {"username", "myuser"},
         {"password", "myuser"}
@@ -40,12 +43,12 @@ async Task<IResult> ImpersonateByTokenExchange()
 
     TokenResponse? impersonatedTokens = JsonSerializer.Deserialize<TokenResponse>(await Token(new Dictionary<string, string>
     {
-        { "client_id", "react-auth" },
+        { "client_id", clientId },
         { "grant_type", "urn:ietf:params:oauth:grant-type:token-exchange" },
         { "requested_subject", "testuser" },
         { "subject_token", impersonatorTokens.AccessToken },
         { "requested_token_type", "urn:ietf:params:oauth:token-type:refresh_token" },
-        { "audience", "react-auth" }
+        { "audience", clientId }
     }, impersonatorTokens.AccessToken));
     
     return Results.Json(impersonatedTokens);
@@ -58,7 +61,7 @@ async Task<string> Token(Dictionary<string, string> data, string? token = null)
     try
     {
         using HttpClient httpClient = new HttpClient();
-        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{authServerUrl}/realms/myrealm/protocol/openid-connect/token"));
+        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{authServerUrl}realms/{realm}/protocol/openid-connect/token"));
         using FormUrlEncodedContent content = new FormUrlEncodedContent(data);
         request.Content = content;
 
@@ -83,14 +86,14 @@ async Task<IResult> ImpersonateByImpersonation()
 {
     TokenResponse? impersonatorTokens = JsonSerializer.Deserialize<TokenResponse>(await Token(new Dictionary<string, string>
     {
-        {"client_id", "react-auth"},
+        {"client_id", clientId},
         {"grant_type", "password"},
         {"username", "myuser"},
         {"password", "myuser"}
     }));
 
     const string testUserId = "37c5e70d-d9e9-4a8b-9066-3f4357c84411";
-    (string, IEnumerable<string>)? impersonateData = await Impersonate($"{{\"realm\":\"myrealm\",\"user\":\"{testUserId}\"}}", testUserId, impersonatorTokens.AccessToken);
+    (string, IEnumerable<string>)? impersonateData = await Impersonate($"{{\"realm\":\"{realm}\",\"user\":\"{testUserId}\"}}", testUserId, impersonatorTokens.AccessToken);
 
     Regex re = new Regex("expires=.+?1970.+?;", RegexOptions.IgnoreCase);
     string[] cookies = impersonateData.Value.Item2.Where(item => !re.IsMatch(item)).ToArray();
@@ -128,7 +131,7 @@ async Task<(string, IEnumerable<string>)?> Impersonate(string data, string userI
     try
     {
         using HttpClient httpClient = new HttpClient();
-        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{authServerUrl}/admin/realms/myrealm/users/{userId}/impersonation"));
+        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri($"{authServerUrl}admin/realms/{realm}/users/{userId}/impersonation"));
         using StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
         request.Content = content;
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -159,7 +162,7 @@ async Task<Uri?> Auth(string? cookies = null, string? responseType = "token")
         };
         
         using HttpClient httpClient = new HttpClient(httpClientHandler);
-        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri($"{authServerUrl}/realms/myrealm/protocol/openid-connect/auth?response_mode=fragment&response_type={responseType}&client_id=react-auth&redirect_uri=http%3A%2F%2Flocalhost%3A3000"));
+        using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri($"{authServerUrl}realms/{realm}/protocol/openid-connect/auth?response_mode=fragment&response_type={responseType}&client_id={clientId}&redirect_uri=http%3A%2F%2Flocalhost%3A3000"));
         if (cookies != null)
             request.Headers.Add("Cookie", cookies);
         using HttpResponseMessage response = await httpClient.SendAsync(request);
