@@ -4,18 +4,15 @@ import { AuthClientInitOptions } from "@react-keycloak/core";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import axios from 'axios';
 
-/*const config = {
-  "realm": "myrealm",
-  "auth-server-url": "http://localhost:8080/",
-  "ssl-required": "external",
-  "resource": "react-auth",
-  "public-client": true,
-  "confidential-port": 0
-};*/
-
-const config = "./keycloak.json";
+const config = {
+  realm: "myrealm",
+  url: "http://localhost:8080/",
+  clientId: "react-auth"
+};
 
 const keycloak = new (Keycloak as any)(config);
+
+const testUserId = "37c5e70d-d9e9-4a8b-9066-3f4357c84411";
 
 function handleKeycloakOnEvent(eventType: any, error: any) {
   console.log("eventType = \"%s\" error = %o", eventType, error);
@@ -26,9 +23,6 @@ function handleKeycloakOnTokens(tokens: any) {
 }
 
 function App() {
-  const authServerUrl = "http://localhost:8080"; // "http://localhost:8080/auth"
-  const testUserId = "37c5e70d-d9e9-4a8b-9066-3f4357c84411";
-
   const [initOptions, setInitOptions] = useState<AuthClientInitOptions | undefined>();
 
   async function impersonateByTokenExchange() {
@@ -46,7 +40,7 @@ function App() {
   
   function getImpersonatorTokens() {
     return token({
-      client_id: "react-auth",
+      client_id: config.clientId,
       grant_type: "password",
       username: "myuser",
       password: "myuser"
@@ -55,19 +49,19 @@ function App() {
   
   function getImpersonatedTokens(accessToken?: string) {
     return token({
-      client_id: "react-auth",
+      client_id: config.clientId,
       grant_type: "urn:ietf:params:oauth:grant-type:token-exchange",
       requested_subject: "testuser",
       subject_token: accessToken,
       requested_token_type: "urn:ietf:params:oauth:token-type:refresh_token",
-      audience: "react-auth"
+      audience: config.clientId
     }, `Bearer ${accessToken}`);
   }
 
   async function token(data?: any, authorization?: string) {
-    const url = `${authServerUrl}/realms/myrealm/protocol/openid-connect/token`;
+    const url = `${config.url}realms/${config.realm}/protocol/openid-connect/token`;
   
-    const config = {
+    const axiosRequestConfig = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         ...!!authorization && { Authorization: authorization }
@@ -77,7 +71,7 @@ function App() {
     let response;
   
     try {
-      response = await axios.post(url, data, config);
+      response = await axios.post(url, data, axiosRequestConfig);
     }
     catch (error) {
       console.log(error);
@@ -89,15 +83,15 @@ function App() {
   async function impersonateByImpersonationFE() {
     const impersonatorTokens = await getImpersonatorTokens();
     const impersonateData = await impersonate({
-      realm: "myrealm",
+      realm: config.realm,
       user: testUserId
     }, `Bearer ${impersonatorTokens.access_token}`);
   }
 
   async function impersonate(data?: any, authorization?: string) {
-    const url = `${authServerUrl}/admin/realms/myrealm/users/${data?.user}/impersonation`;
+    const url = `${config.url}admin/realms/${config.realm}/users/${data?.user}/impersonation`;
   
-    const config = {
+    const axiosRequestConfig = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         ...!!authorization && { Authorization: authorization }
@@ -107,7 +101,7 @@ function App() {
     let response;
   
     try {
-      response = await axios.post(url, data, config);
+      response = await axios.post(url, data, axiosRequestConfig);
       console.log(response?.headers["set-cookie"]);
     }
     catch (error) {
