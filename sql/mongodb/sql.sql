@@ -292,6 +292,12 @@ db.getSiblingDB("testdb").getCollection("items").aggregate([{$match:{sku:/^(?!22
 
 db.getSiblingDB("testdb").getCollection("items").aggregate([{$match:{orderId:1,$or:[{number:1},{number:3}]}}]).pretty();
 
+// toArray()
+db.getSiblingDB("testdb").getCollection("items").aggregate([ { $project: { _id: 0, sku: "$sku" } }, { $group: { _id: "", skus: { $push: "$sku" } } } ]).pretty();
+
+// select distinct
+db.getSiblingDB("testdb").getCollection("items").aggregate([ { $project: { _id: 0, orderId: "$orderId" } }, { $group: { _id: "$orderId" } } ]).pretty();
+
 db.getSiblingDB("testdb").getCollection("masterdealers").insertMany([{_id: 1, masterDealerId: "1", name: "Master dealer #1"}, {_id: 2, masterDealerId: "2", name: "Master dealer #2"}, {_id: 3, masterDealerId: "3", name: "Master dealer #3"}]);
 db.getSiblingDB("testdb").getCollection("users").insertMany([{_id: 1, name: "User #1"}, {_id: 2, name: "User #2"}, {_id: 3, name: "User #3"}]);
 db.getSiblingDB("testdb").getCollection("users").insertOne({_id: 4, name: "User #4"});
