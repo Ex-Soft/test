@@ -12,7 +12,7 @@ const config = {
 
 const keycloak = new (Keycloak as any)(config);
 
-const testUserId = "37c5e70d-d9e9-4a8b-9066-3f4357c84411";
+const testUserId = "5b07e1f1-18ac-4752-b07c-578f2c7f44c5";
 
 function handleKeycloakOnEvent(eventType: any, error: any) {
   console.log("eventType = \"%s\" error = %o", eventType, error);
@@ -154,11 +154,11 @@ function App() {
 export default App;
 
 // yarn create react-app test-keycloak-impersonation-latest --template typescript
-// yarn add keycloak-js@22.0.3 @react-keycloak/web react-router-dom axios
+// yarn add keycloak-js@22.0.4 @react-keycloak/web react-router-dom axios
 // yarn upgrade
+// yarn upgrade keycloak-js@22.0.4
 
-// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e JAVA_OPTS_APPEND="-Dkeycloak.profile=preview -Dkeycloak.profile.feature.token_exchange=enabled" quay.io/keycloak/keycloak:15.1.0
-// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.3 start-dev --features="preview"
+// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.4 start-dev --features="preview"
 
 // myrealm
 

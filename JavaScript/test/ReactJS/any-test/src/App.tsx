@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { NavBar, Home, TestAxios, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik } from './components';
+import { NavBar, Home, TestAxios, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik, CustomControls } from './components';
 import './App.css';
 
 const NoMatch = lazy(() => import('./components/pages/NoMatch'));
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/testmui" element={<TestMUI />} />
           <Route path="/customdropdown" element={<CustomDropdown />} />
           <Route path="/testformik" element={<TestFormik />} />
+          <Route path="/customcontrols" element={<CustomControls />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </Suspense>
@@ -44,5 +45,6 @@ export default App;
 // yarn add formik
 // yarn add @mui/lab @react-spring/web
 // yarn add react-modal
+// yarn add lodash @types/lodash
 // yarm start
 // https://hygraph.com/blog/routing-in-react

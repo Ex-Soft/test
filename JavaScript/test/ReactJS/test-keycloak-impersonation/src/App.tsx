@@ -4,21 +4,21 @@ import { AuthClientInitOptions } from "@react-keycloak/core";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import axios from 'axios';
 
-/* const config = {
+const config = {
   realm: "myrealm",
   url: "http://localhost:8080/auth/",
   clientId: "react-auth"
-}; */
+};
 
-const config = {
+/* const config = {
   realm: "the-marketing-zone-dev",
   url: "https://auth-dev.thedirectvmarketingzone.com/auth/",
   clientId: "admin-dev"
-};
+}; */
 
 const keycloak = new (Keycloak as any)(config);
 
-const testUserId = "37c5e70d-d9e9-4a8b-9066-3f4357c84411";
+const testUserId = "c0c165b2-fbd6-4c4c-bcd6-17a8dd2b1543";
 
 function handleKeycloakOnEvent(eventType: any, error: any) {
   console.log("eventType = \"%s\" error = %o", eventType, error);
@@ -163,7 +163,7 @@ export default App;
 // yarn add keycloak-js@16.1.1 @react-keycloak/web@3.4.0 react-router-dom axios
 // yarn upgrade
 
-// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e JAVA_OPTS_APPEND="-Dkeycloak.profile=preview -Dkeycloak.profile.feature.token_exchange=enabled" quay.io/keycloak/keycloak:15.1.0
+// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e JAVA_OPTS_APPEND="-Dkeycloak.profile=preview -Dkeycloak.profile.feature.token_exchange=enabled" -e DEBUG=true quay.io/keycloak/keycloak:15.1.0
 // docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.3 start-dev --features="preview"
 
 // myrealm

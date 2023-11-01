@@ -6,20 +6,47 @@
 		<script>
 function onLoad()
 {
+	window.addEventListener("message", observer.onMessage, false);
+
 	var
-		frms=document.getElementsByTagName("iframe"),
+		frms = document.getElementsByTagName("iframe"),
 		ctrl;
 
-	for(var i=0, len=frms.length; i<len; ++i)
-		if(ctrl=frms[i].contentWindow.document.getElementById("btnVictim"))
-		{
-			if(ctrl.addEventListener)
-				ctrl.addEventListener("click", btnOnClick, false);
-			else if(ctrl.attachEvent)
-				ctrl.attachEvent("onclick", btnOnClick);
-			else
-				ctrl.onclick = btnOnClick;
+	for (var i = 0, len = frms.length; i < len; ++i) {
+		frms[i].smthMethod = function(param) {
+			if(window.console && console.log) {
+				try {
+					// console.log("frms.smthMethod(\"%s\") %o", param, this.contentWindow.location);
+					console.log("frms.smthMethod(\"%s\") %o", param, this.contentWindow.location.href); // Uncaught DOMException: Blocked a frame with origin "http://localhost" from accessing a cross-origin frame.
+				}  catch (e) {
+					if(window.console && console.log)
+						console.log(e); // DOMException: Blocked a frame with origin "http://localhost" from accessing a cross-origin frame.
+				}
+			}
 		}
+
+		if (frms[i].smthMethod)
+			frms[i].smthMethod(`Hello from Main (frms[${i}])`);
+		else {
+			if(window.console && console.log)
+				console.log("frms[%i].smthMethod() doesn\'t exist", i);
+		}
+
+		try {
+			if (ctrl = frms[i].contentWindow.document.getElementById("btnVictim"))
+			{
+				if (ctrl.addEventListener)
+					ctrl.addEventListener("click", btnOnClick, false);
+				else if (ctrl.attachEvent)
+					ctrl.attachEvent("onclick", btnOnClick);
+				else
+					ctrl.onclick = btnOnClick;
+			}
+		} catch (e) {
+			if(window.console && console.log)
+				console.log(e); // DOMException: Blocked a frame with origin "http://localhost" from accessing a cross-origin frame.
+		}
+	}
 }
 
 function btnOnClick()
@@ -27,10 +54,24 @@ function btnOnClick()
 	if(window.console && console.log)
 		console.log("main.btnOnClick(%o)", arguments);
 }
+
+var smthObj = {
+	smthMethod: function(param) {
+		if (window.console && console.log)
+			console.log(`main.smthObj.smthMethod("${param}")`);
+	}
+};
+
+var observer = {
+	onMessage: function(messageEvent) {
+		if (window.console && console.log)
+			console.log("main.observer.onMessage(%o)", messageEvent);
+	}
+};
 		</script>
 	</head>
 	<body> <!-- onload="onLoad()" -->
-		<iframe src="iframe.html" onload="onLoad()"></iframe>
-		<iframe src="http://localhost:22763/iframe.aspx"></iframe>
+		<iframe src="iframe.html?frameNo=1" onload="onLoad()"></iframe>
+		<iframe src="http://localhost:5295/iframe?frameNo=2"></iframe>
 	</body>
 </html>

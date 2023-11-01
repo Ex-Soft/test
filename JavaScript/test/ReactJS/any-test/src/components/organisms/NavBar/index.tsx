@@ -41,6 +41,9 @@ const NavBar: React.FC = () => {
                 <li>
                     <NavLink to="/testformik">Formik</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/customcontrols">CustomControls</NavLink>
+                </li>
             </ul>
         </nav>
     );

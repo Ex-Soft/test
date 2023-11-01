@@ -125,6 +125,19 @@ if (window.console && console.log) {
   i = str?.toUpperCase() || null;
   console.log("%o?.toUpperCase() = %o %o?.toUpperCase() || null = %o", str, str_out, str, i);  // undefined null
 
+  o = undefined;
+  console.log("%o?.strValue = %o !%o?.strValue = %o !!%o?.strValue = %o", o, o?.strValue, o, !o?.strValue, o, !!o?.strValue); // undefined true false
+  o = null;
+  console.log("%o?.strValue = %o !%o?.strValue = %o !!%o?.strValue = %o", o, o?.strValue, o, !o?.strValue, o, !!o?.strValue); // undefined true false
+  o = {};
+  console.log("{}?.strValue = %o !{}?.strValue = %o !!{}?.strValue = %o", o?.strValue, !o?.strValue, !!o?.strValue); // undefined true false
+  o = { strValue: undefined };
+  console.log("{ strValue: %o }?.strValue = %o !{ strValue: %o }?.strValue = %o !!{ strValue: %o }?.strValue = %o", o?.strValue, o?.strValue, o?.strValue, !o?.strValue, o?.strValue, !!o?.strValue); // undefined true false
+  o = { strValue: null };
+  console.log("{ strValue: %o }?.strValue = %o !{ strValue: %o }?.strValue = %o !!{ strValue: %o }?.strValue = %o", o?.strValue, o?.strValue, o?.strValue, !o?.strValue, o?.strValue, !!o?.strValue); // null true false
+  o = { strValue: "" };
+  console.log("{ strValue: \"%s\" }?.strValue = \"%s\" !{ strValue: \"%s\" }?.strValue = %o !!{ strValue: \"%s\" }?.strValue = %o", o?.strValue, o?.strValue, o?.strValue, !o?.strValue, o?.strValue, !!o?.strValue); // "" true false
+  
   str = "";
   str_out = str.charAt(0);
   console.log("\"%s\".charAt(0) = \"%s\"", str, str_out); // "" ""
@@ -289,9 +302,15 @@ document.write(String.prototype.isPrototypeOf(str) ? "" : "!", "String.prototype
 document.write("<br>");
 
 str = "parentsUntil";
-str_out = str.slice(-5);
+str_out = str.slice(i = 0); // "parentsUntil"
 if (window.console && console.log)
-	console.log("%s", str_out);
+	console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
+str_out = str.slice(i = -1); // "l"
+if (window.console && console.log)
+	console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
+str_out = str.slice(i = -5); // "Until"
+if (window.console && console.log)
+	console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
 
 str="admin:blah-blah-blah";
 start=new Date();
