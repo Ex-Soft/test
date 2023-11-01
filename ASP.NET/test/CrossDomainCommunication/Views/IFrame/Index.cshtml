@@ -20,6 +20,7 @@
             if (window.parent && window.parent.postMessage)
                 window.parent.postMessage(`Hello from IFRAME #${getUrlSearchParam("frameNo")} (window.parent.postMessage())`, "*");
 
+            // Uncaught DOMException: Blocked a frame with origin "http://localhost:5295" from accessing a cross-origin frame.
             // doesn't work (Access-Control-Allow-Origin is used only for XHR)
             // if (window.top && window.top.smthObj && window.top.smthObj.smthMetod)
             //    window.top.smthObj.smthMetod(`Hello from IFRAME #${getUrlSearchParam("frameNo")}`);

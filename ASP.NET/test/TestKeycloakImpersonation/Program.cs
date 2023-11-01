@@ -1,3 +1,5 @@
+#define LOCAL
+
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -8,9 +10,17 @@ using TestKeycloakImpersonation;
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0#cors
 const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-const string realm = "the-marketing-zone-dev"; // "myrealm"
-const string authServerUrl = "https://auth-dev.thedirectvmarketingzone.com/auth/"; // "http://localhost:8080/auth/" "http://localhost:8080/"
-const string clientId = "admin-dev"; // "react-auth"
+#if LOCAL
+    const string realm = "myrealm";
+    const string authServerUrl = "http://localhost:8080/"; // "http://localhost:8080/auth/"
+const string clientId = "react-auth";
+#else
+    const string realm = the-marketing-zone-dev"
+    const string authServerUrl = "https://auth-dev.thedirectvmarketingzone.com/auth/";
+    const string clientId = "admin-dev";
+#endif
+
+const string testUserId = "5b07e1f1-18ac-4752-b07c-578f2c7f44c5";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +29,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: myAllowSpecificOrigins,
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000",
-                "http://localhost:4200");
+            builder.WithOrigins("http://localhost:3000", "http://localhost:4200");
         });
 });
 
@@ -69,7 +78,7 @@ async Task<string> Token(Dictionary<string, string> data, string? token = null)
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         
         using HttpResponseMessage response = await httpClient.SendAsync(request);
-        response.EnsureSuccessStatusCode();
+        //response.EnsureSuccessStatusCode();
         result = await response.Content.ReadAsStringAsync();
     }
     catch (HttpRequestException e)
@@ -92,7 +101,6 @@ async Task<IResult> ImpersonateByImpersonation()
         {"password", "myuser"}
     }));
 
-    const string testUserId = "37c5e70d-d9e9-4a8b-9066-3f4357c84411";
     (string, IEnumerable<string>)? impersonateData = await Impersonate($"{{\"realm\":\"{realm}\",\"user\":\"{testUserId}\"}}", testUserId, impersonatorTokens.AccessToken);
 
     Regex re = new Regex("expires=.+?1970.+?;", RegexOptions.IgnoreCase);
@@ -120,6 +128,14 @@ async Task<IResult> ImpersonateByImpersonation()
     re = new Regex("(?<=code=).+?(?=$)");
     match = re.Match(redirectUriCode);
     string code = match.Value;
+    
+    /*TokenResponse? tokens = JsonSerializer.Deserialize<TokenResponse>(await Token(new Dictionary<string, string>
+    {
+        {"client_id", clientId},
+        {"grant_type", "authorization_code"},
+        {"code", code},
+        {"redirect_uri", "http://localhost:3000/" /* "http%3A%2F%2Flocalhost%3A3000%2F" #1#}
+    }, accessToken));*/
     
     return Results.Json(new { sessionState, tokenType, accessToken, redirectUri, sessionStateCode, code, redirectUriCode, cookies });
 }
