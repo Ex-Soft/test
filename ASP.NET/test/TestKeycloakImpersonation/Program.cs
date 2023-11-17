@@ -13,16 +13,16 @@ const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 #if LOCAL
     const string realm = "myrealm";
     const string authServerUrl = "http://localhost:8080/auth/"; // "http://localhost:8080/auth/"
-    const string clientId = "react-auth";
     const string testUserId = "56c18e13-bff8-41dd-97b6-185fb4650b76";
+    const string requestedSubject = "testuser";
 #else
     const string realm = "the-marketing-zone-dev";
     const string authServerUrl = "https://auth-dev.thedirectvmarketingzone.com/auth/";
-    const string clientId = "react-auth";
     const string testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
+    const string requestedSubject = "testuser@mailinator.com";
 #endif
 
-
+const string clientId = "react-auth";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,7 +56,7 @@ async Task<IResult> ImpersonateByTokenExchange()
     {
         { "client_id", clientId },
         { "grant_type", "urn:ietf:params:oauth:grant-type:token-exchange" },
-        { "requested_subject", "testuser@mailinator.com" },
+        { "requested_subject", requestedSubject },
         { "subject_token", impersonatorTokens.AccessToken },
         { "requested_token_type", "urn:ietf:params:oauth:token-type:refresh_token" },
         { "audience", clientId }

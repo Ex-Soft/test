@@ -10,6 +10,7 @@ import axios from 'axios';
 //   clientId: "react-auth"
 // };
 // const testUserId = "56c18e13-bff8-41dd-97b6-185fb4650b76";
+// const requestedSubject = "testuser";
 
 const config = {
   realm: "the-marketing-zone-dev",
@@ -17,6 +18,7 @@ const config = {
   clientId: "react-auth"
 };
 const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
+const requestedSubject = "testuser@mailinator.com";
 
 const keycloak = new (Keycloak as any)(config);
 
@@ -57,7 +59,7 @@ function App() {
     return token({
       client_id: config.clientId,
       grant_type: "urn:ietf:params:oauth:grant-type:token-exchange",
-      requested_subject: "testuser@mailinator.com",
+      requested_subject: requestedSubject,
       subject_token: accessToken,
       requested_token_type: "urn:ietf:params:oauth:token-type:refresh_token",
       audience: config.clientId
