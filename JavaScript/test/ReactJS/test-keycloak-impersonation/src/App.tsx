@@ -4,21 +4,21 @@ import { AuthClientInitOptions } from "@react-keycloak/core";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import axios from 'axios';
 
-const config = {
-  realm: "myrealm",
-  url: "http://localhost:8080/auth/",
-  clientId: "react-auth"
-};
+// const config = {
+//   realm: "myrealm",
+//   url: "http://localhost:8080/auth/",
+//   clientId: "react-auth"
+// };
+// const testUserId = "56c18e13-bff8-41dd-97b6-185fb4650b76";
 
-/* const config = {
+const config = {
   realm: "the-marketing-zone-dev",
   url: "https://auth-dev.thedirectvmarketingzone.com/auth/",
-  clientId: "admin-dev"
-}; */
+  clientId: "react-auth"
+};
+const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
 
 const keycloak = new (Keycloak as any)(config);
-
-const testUserId = "c0c165b2-fbd6-4c4c-bcd6-17a8dd2b1543";
 
 function handleKeycloakOnEvent(eventType: any, error: any) {
   console.log("eventType = \"%s\" error = %o", eventType, error);
@@ -48,7 +48,7 @@ function App() {
     return token({
       client_id: config.clientId,
       grant_type: "password",
-      username: "myuser",
+      username: "myuser@mailinator.com",
       password: "myuser"
     });
   }
@@ -57,7 +57,7 @@ function App() {
     return token({
       client_id: config.clientId,
       grant_type: "urn:ietf:params:oauth:grant-type:token-exchange",
-      requested_subject: "testuser",
+      requested_subject: "testuser@mailinator.com",
       subject_token: accessToken,
       requested_token_type: "urn:ietf:params:oauth:token-type:refresh_token",
       audience: config.clientId
