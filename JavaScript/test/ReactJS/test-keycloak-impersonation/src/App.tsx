@@ -15,10 +15,10 @@ import axios from 'axios';
 const config = {
   realm: "the-marketing-zone-dev",
   url: "https://auth-dev.thedirectvmarketingzone.com/auth/",
-  clientId: "react-auth"
+  clientId: "admin-dev" // react-auth"
 };
-const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
-const requestedSubject = "testuser@mailinator.com";
+const testUserId = "3be72f22-4f3b-42e1-b129-7fce0702ca29"; // "c97fb064-b0e7-4913-9889-88df6304bdec";
+const requestedSubject = "pvmarketing@perfect-vision.com"; // "testuser@mailinator.com";"testuser@mailinator.com";
 
 const keycloak = new (Keycloak as any)(config);
 
