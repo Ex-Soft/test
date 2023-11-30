@@ -8,3 +8,4 @@ docker network create pg
 ### Clean up (--rm)
 docker run -d -e POSTGRES_PASSWORD=pessword --network=pg -p 5432:5432 --name postgres postgres:latest
 docker run --rm -d -p 5050:5050 --name pgadmin --network=pg thajeztah/pgadmin4
+docker run --name pgdemo -p 5432:5432 -e POSTGRES_USER=pguser -e POSTGRES_PASSWORD=pgpasswd -e TZ=America/Buenos_Aires -d postgres
