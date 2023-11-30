@@ -13,16 +13,18 @@ const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 #if LOCAL
     const string realm = "myrealm";
     const string authServerUrl = "http://localhost:8080/auth/"; // "http://localhost:8080/auth/"
-    const string testUserId = "56c18e13-bff8-41dd-97b6-185fb4650b76";
+    const string testUserId = "f37b3465-fe29-446d-8f5c-b6cf31d1bb43";
     const string requestedSubject = "testuser";
+    const string clientId = "admin-dev"; // ""react-auth";
+    const string impersonatorUserName = "myuser";
 #else
     const string realm = "the-marketing-zone-dev";
     const string authServerUrl = "https://auth-dev.thedirectvmarketingzone.com/auth/";
     const string testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
     const string requestedSubject = "testuser@mailinator.com";
+    const string clientId = "admin-dev";
+    const string impersonatorUserName = "myuser@mailinator.com";
 #endif
-
-const string clientId = "react-auth";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +50,7 @@ async Task<IResult> ImpersonateByTokenExchange()
     {
         {"client_id", clientId},
         {"grant_type", "password"},
-        {"username", "myuser@mailinator.com"},
+        {"username", impersonatorUserName},
         {"password", "myuser"}
     }));
 
@@ -61,7 +63,7 @@ async Task<IResult> ImpersonateByTokenExchange()
         { "requested_token_type", "urn:ietf:params:oauth:token-type:refresh_token" },
         { "audience", clientId }
     }, impersonatorTokens.AccessToken));
-    
+
     return Results.Json(impersonatedTokens);
 }
 
@@ -78,7 +80,7 @@ async Task<string> Token(Dictionary<string, string> data, string? token = null)
 
         if (token != null)
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        
+
         using HttpResponseMessage response = await httpClient.SendAsync(request);
         //response.EnsureSuccessStatusCode();
         result = await response.Content.ReadAsStringAsync();
@@ -99,7 +101,7 @@ async Task<IResult> ImpersonateByImpersonation()
     {
         {"client_id", clientId},
         {"grant_type", "password"},
-        {"username", "myuser@mailinator.com"},
+        {"username", impersonatorUserName},
         {"password", "myuser"}
     }));
 
@@ -112,25 +114,25 @@ async Task<IResult> ImpersonateByImpersonation()
     re = new Regex("(?<=session_state=).+?(?=&)");
     Match match = re.Match(redirectUri);
     string sessionState = match.Value;
-    
+
     re = new Regex("(?<=access_token=).+?(?=&)");
     match = re.Match(redirectUri);
     string accessToken = match.Value;
-    
+
     re = new Regex("(?<=token_type=).+?(?=&)");
     match = re.Match(redirectUri);
     string tokenType = match.Value;
-    
+
     string? redirectUriCode = (await Auth(String.Join("; ", cookies), "code"))?.ToString();
-    
+
     re = new Regex("(?<=session_state=).+?(?=&)");
     match = re.Match(redirectUriCode);
     string sessionStateCode = match.Value;
-    
+
     re = new Regex("(?<=code=).+?(?=$)");
     match = re.Match(redirectUriCode);
     string code = match.Value;
-    
+
     /*TokenResponse? tokens = JsonSerializer.Deserialize<TokenResponse>(await Token(new Dictionary<string, string>
     {
         {"client_id", clientId},
@@ -138,7 +140,7 @@ async Task<IResult> ImpersonateByImpersonation()
         {"code", code},
         {"redirect_uri", "http://localhost:3000/" /* "http%3A%2F%2Flocalhost%3A3000%2F" #1#}
     }, accessToken));*/
-    
+
     return Results.Json(new { sessionState, tokenType, accessToken, redirectUri, sessionStateCode, code, redirectUriCode, cookies });
 }
 
@@ -178,13 +180,13 @@ async Task<Uri?> Auth(string? cookies = null, string? responseType = "token")
             AllowAutoRedirect = false
             //MaxAutomaticRedirections = 1
         };
-        
+
         using HttpClient httpClient = new HttpClient(httpClientHandler);
         using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri($"{authServerUrl}realms/{realm}/protocol/openid-connect/auth?response_mode=fragment&response_type={responseType}&client_id={clientId}&redirect_uri=http%3A%2F%2Flocalhost%3A3000"));
         if (cookies != null)
             request.Headers.Add("Cookie", cookies);
         using HttpResponseMessage response = await httpClient.SendAsync(request);
-        
+
         result = response.Headers.Location;
         //result = request.RequestUri;
     }
