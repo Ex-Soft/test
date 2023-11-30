@@ -3,7 +3,7 @@ import { Span } from "../../atoms";
 import "./index.css";
 
 const TestUseEffect: React.FC = () => {
-  const [victim, setVictim] = useState<unknown>({ p1: 0, p2: 0 });
+  const [victim, setVictim] = useState<{ p1: number, p2: number }>({ p1: 0, p2: 0 });
   const [victimByVictim, setVictimByVictim] = useState<string>();
   const [victimByP1, setVictimByP1] = useState<string>();
   const [victimByP2, setVictimByP2] = useState<string>();
@@ -22,6 +22,9 @@ const TestUseEffect: React.FC = () => {
         ? `useEffect([(victim as { [key: string]: any })["p1"]]): {p1: ${(victim as { [key: string]: any })["p1"]}, p2: ${(victim as { [key: string]: any })["p2"]}}`
         : undefined
     );
+  // Line 28:6:  React Hook useEffect has a missing dependency: 'victim'. Either include it or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setVictimByP1' needs the current value of 'victim'
+  // Line 28:7:  React Hook useEffect has a complex expression in the dependency array. Extract it to a separate variable so it can be statically checked
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [(victim as { [key: string]: any })["p1"]]);
 
   useEffect(() => {
@@ -30,7 +33,9 @@ const TestUseEffect: React.FC = () => {
         ? `useEffect([(victim as { [key: string]: any })["p2"]]): {p1: ${(victim as { [key: string]: any })["p1"]}, p2: ${(victim as { [key: string]: any })["p2"]}}`
         : undefined
     );
-  }, [(victim as { [key: string]: any })["p2"]]);
+  // Line 38:6:  React Hook useEffect has a missing dependency: 'victim'. Either include it or remove the dependency array. You can also replace multiple useState variables with useReducer if 'setVictimByP2' needs the current value of 'victim'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [victim.p2]);
 
   return (
     <div>
