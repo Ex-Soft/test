@@ -5,3 +5,6 @@ nvm install 14.15.0
 nvm use 14.15.0
 nvm ls-remote
 
+npm list -g
+
+npm install --global npm@10.2.3
