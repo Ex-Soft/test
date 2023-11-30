@@ -42,6 +42,13 @@ const objectDestructuringAssignmentFn2 = ({ id, value }: ISmthInterface3) => {
 objectDestructuringAssignmentFn1(tmpObject2);
 objectDestructuringAssignmentFn2(tmpObject2);
 
+const testDestructuringAssignment = () => {
+    return [{ p1: "p1Value", p2: "p2Value", p3: "p3Value" }, "2nd"];
+}
+
+const [{ p1: _p1, p2: _p2, p3: _p3 }, _second] = testDestructuringAssignment() as [ { p1:any, p2,any, p3:any }, any ];
+console.log("_p1=\"%s\" _p2=\"%s\" _p3=\"%s\" _second=\"%s\"", _p1, _p2, _p3, _second);
+
 let tmpObject = tmpObject2?.o?.o?.value;
 if (window.console && console.log) {
     console.log("(elvis) %o", tmpObject);
