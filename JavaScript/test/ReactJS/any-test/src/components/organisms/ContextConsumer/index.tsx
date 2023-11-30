@@ -1,17 +1,33 @@
-import { useContext } from "react";
-import './index.css';
+import { useContext, useEffect, useState } from "react";
+import "./index.css";
 
-import { UserContext } from '../ContextProvider';
+import { UserContext } from "../ContextProvider";
+import { useImpersonatedUser } from "../../../contexts";
 
 const ContextConsumer: React.FC = () => {
-    const user = useContext(UserContext);
+  const { name: impersonatedUserName } = useImpersonatedUser();
+  const [impersonatedUser, setImpersonatedUser] = useState<
+    string | undefined
+  >();
 
-    return (
-        <div>
-            <h1>Context Consumer</h1>
-            <p>{user}</p>
-        </div>
-    );
+  console.log("impersonatedUserName: %o", impersonatedUserName);
+
+  const user = useContext(UserContext);
+
+  useEffect(() => {
+    console.log("useEffect() impersonatedUserName: %o", impersonatedUserName);
+    setImpersonatedUser(impersonatedUserName);
+  }, [impersonatedUserName]);
+
+  return (
+    <div>
+      <div>
+        <p>useImpersonatedUser() {impersonatedUser}</p>
+      </div>
+      <h1>Context Consumer</h1>
+      <p>Context Consumer: {user}</p>
+    </div>
+  );
 };
 
 export default ContextConsumer;

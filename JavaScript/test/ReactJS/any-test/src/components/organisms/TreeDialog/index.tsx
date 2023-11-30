@@ -5,8 +5,8 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import { alpha, styled } from '@mui/material/styles';
-import TreeView from '@mui/lab/TreeView';
-import TreeItem, { TreeItemProps, treeItemClasses } from '@mui/lab/TreeItem';
+import { TreeView } from '@mui/x-tree-view/TreeView';
+import { TreeItem, TreeItemProps, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import Collapse from '@mui/material/Collapse';
 import { useSpring, animated } from '@react-spring/web';
 import { TransitionProps } from '@mui/material/transitions';
@@ -93,10 +93,10 @@ const TreeDialog: React.FC<TreeDialogProps> = ({open = false, title = undefined,
 
     function getStyledTreeItem(node: any) {
         return Array.isArray(node?.children)
-            ? (<StyledTreeItem nodeId={node?.id} label={node?.name}>
+            ? (<StyledTreeItem nodeId={node?.id} label={node?.name} key={node?.id}>
                 {node.children.map((item: any) => getStyledTreeItem(item))}
             </StyledTreeItem>)
-            : (node ? (<StyledTreeItem nodeId={node?.id} label={node?.name}></StyledTreeItem>) : null)
+            : (node ? (<StyledTreeItem nodeId={node?.id} label={node?.name} key={node?.id}></StyledTreeItem>) : null)
     }
 
     return (

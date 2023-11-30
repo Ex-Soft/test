@@ -75,6 +75,26 @@ if(window.console && console.log)
 	o = [ "string2", "string2" ];
 	aaa = [...new Set(aa, o)];
 	console.log("[...new Set([ \"string1\", \"string1\" ], [ \"string2\", \"string2\" ])] = %o", aaa); // [ "string1" ]
+
+	aa = [ { id: 1, val: "1" }, { id: 1, val: "1" }, { id: 3, val: "3" } ];
+	aaa = [ ...new Set(aa) ]; // [{id: 1, val: '1'}, {id: 1, val: '1'}, {id: 3, val: '3'}]
+	console.log(aaa); // [{id: 1, val: '1'}, {id: 1, val: '1'}, {id: 3, val: '3'}]
+
+	o1 = { id: 1, val: "1" };
+	o2 = { id: 1, val: "1" };
+	o3 = { id: 3, val: "3" };
+	
+	aa = [ o1, o2, o3 ];
+	aaa = [ ...new Set(aa) ]; // [{id: 1, val: '1'}, {id: 1, val: '1'}, {id: 3, val: '3'}]
+	console.log(aaa); // [{id: 1, val: '1'}, {id: 1, val: '1'}, {id: 3, val: '3'}]
+	
+	aa = [ o1, o1, o3 ];
+	aaa = [ ...new Set(aa) ]; // [{id: 1, val: '1'}, {id: 3, val: '3'}]
+	console.log(aaa); // [{id: 1, val: '1'}, {id: 3, val: '3'}]
+
+	aa = [ "1st", "3rd", "2nd", "4th", "2nd", "1st" ];
+	aaa = new Set(aa);
+	console.log("new Set(arr) %o", aaa); // {'1st', '3rd', '2nd', '4th'}
 	
 	aa = undefined;
 	o1 = aa?.[0]?.p;
@@ -123,28 +143,12 @@ if(window.console && console.log)
 	});
 	console.log("map(fn()) %o", i);
 
-	aa = [ { id:1, val: '1' }, { id:2, val: '2' }, { id:3, val: '3' } ];
-	aaa = aa.find(item => item.id === 2);
-	o1 = { id:22, val: '22' };
-	aaa = { ...o1 };
-	console.log("find() -> edit %o", aa);
+	aa = [ { id: 1, val: "1" }, { id: 2, val: "2" }, { id: 3, val: "3" } ];
+	aaa = aa.find(item => item.id === 2); // {id: 2, val: '2'}
+	o1 = { id: 22, val: "22" };
+	aaa = { ...o1 }; // {id: 22, val: '22'}
+	console.log("find() -> edit %o", aa); // [{id: 1, val: '1'}, {id: 2, val: '2'}, {id: 3, val: '3'}]
 	
-	aa = [ { id:1, val: '1' }, { id:1, val: '1' }, { id:3, val: '3' } ];
-	aaa = [ ...new Set(aa) ];
-	console.log(aaa);
-
-	o1 = { id:1, val: '1' };
-	o2 = { id:1, val: '1' };
-	o3 = { id:3, val: '3' };
-	
-	aa = [ o1, o2, o3 ];
-	aaa = [ ...new Set(aa) ];
-	console.log(aaa);
-	
-	aa = [ o1, o1, o3 ];
-	aaa = [ ...new Set(aa) ];
-	console.log(aaa);
-
 	aa = [ 1, 2, 3, 4, 3, 2, 1 ];
 	aaa = aa.filter((currentValue, index, array) => array.indexOf(currentValue) === index);
 	console.log("unique %o",aaa);
@@ -169,10 +173,6 @@ if(window.console && console.log)
 	aaa = [ 3, 4, 5 ];
 	aa = aa.concat(aaa);
 	console.log("arr1.concat(arr2) %o %o", aa, aaa);
-
-	aa = [ "1st", "3rd", "2nd", "4th", "2nd", "1st" ];
-	aaa = new Set(aa);
-	console.log("new Set(arr) %o", aaa);
 
 	i = [].find(item => item === 13); // undefined
 	console.log("[].findIndex() %i", i);

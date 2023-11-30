@@ -7,18 +7,22 @@ import axios from 'axios';
 // const config = {
 //   realm: "myrealm",
 //   url: "http://localhost:8080/auth/",
-//   clientId: "react-auth"
+//   clientId: "admin-dev" // "react-auth"
 // };
-// const testUserId = "56c18e13-bff8-41dd-97b6-185fb4650b76";
+// const impersonatorUserName = "myuser";
+// const impersonatorPassword = "myuser";
+// const testUserId = "f37b3465-fe29-446d-8f5c-b6cf31d1bb43";
 // const requestedSubject = "testuser";
 
 const config = {
   realm: "the-marketing-zone-dev",
   url: "https://auth-dev.thedirectvmarketingzone.com/auth/",
-  clientId: "admin-dev" // react-auth"
+  clientId: "admin-dev"
 };
-const testUserId = "3be72f22-4f3b-42e1-b129-7fce0702ca29"; // "c97fb064-b0e7-4913-9889-88df6304bdec";
-const requestedSubject = "pvmarketing@perfect-vision.com"; // "testuser@mailinator.com";"testuser@mailinator.com";
+const impersonatorUserName = "myuser@mailinator.com";
+const impersonatorPassword = "myuser";
+const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
+const requestedSubject = "testuser@mailinator.com";
 
 const keycloak = new (Keycloak as any)(config);
 
@@ -50,8 +54,8 @@ function App() {
     return token({
       client_id: config.clientId,
       grant_type: "password",
-      username: "myuser@mailinator.com",
-      password: "myuser"
+      username: impersonatorUserName,
+      password: impersonatorPassword
     });
   }
   

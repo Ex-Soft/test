@@ -12,7 +12,7 @@ const config = {
 
 const keycloak = new (Keycloak as any)(config);
 
-const testUserId = "5b07e1f1-18ac-4752-b07c-578f2c7f44c5";
+const testUserId = "33b9ab86-d584-4241-b55a-c657b1621eca";
 
 function handleKeycloakOnEvent(eventType: any, error: any) {
   console.log("eventType = \"%s\" error = %o", eventType, error);
@@ -132,6 +132,14 @@ function App() {
     }
   }
 
+  function keycloakLogin() {
+    keycloak.login();
+  }
+  
+  function keycloakLogout() {
+    keycloak.logout();
+  }
+
   return (
     <div>
       <ReactKeycloakProvider
@@ -144,8 +152,8 @@ function App() {
         <input type="button" value="Impersonate (impersonation) (FE)" onClick={impersonateByImpersonationFE} />
         <input type="button" value="Impersonate (impersonation) (BE)" onClick={impersonateByImpersonationBE} />
         <input type="button" value="keycloak" onClick={() => console.log(keycloak)} />
-        <input type="button" value="login" onClick={() => keycloak.login()} />
-        <input type="button" value="logout" onClick={() => keycloak.logout()} />
+        <input type="button" value="login" onClick={keycloakLogin} />
+        <input type="button" value="logout" onClick={keycloakLogout} />
       </ReactKeycloakProvider>
     </div>
   );
@@ -154,11 +162,11 @@ function App() {
 export default App;
 
 // yarn create react-app test-keycloak-impersonation-latest --template typescript
-// yarn add keycloak-js@22.0.4 @react-keycloak/web react-router-dom axios
+// yarn add keycloak-js@22.0.5 @react-keycloak/web react-router-dom axios
 // yarn upgrade
-// yarn upgrade keycloak-js@22.0.4
+// yarn upgrade keycloak-js@22.0.5
 
-// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.4 start-dev --features="preview"
+// docker run -it --rm --name keycloak -v /d/temp:/mnt -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.5 start-dev --features="preview"
 
 // myrealm
 

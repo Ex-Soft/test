@@ -231,6 +231,16 @@ if (window.console && console.log) {
   str = "2023-04-29T13:13:13.123Z";
   str_out = "2023-03-29T13:13:13.123Z";
   console.log("\"%s\" %s \"%s\"", str, str > str_out ? ">" : "<=", str_out);
+  
+  str = "parentsUntil";
+  str_out = str.slice(i = 0); // "parentsUntil"
+  console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
+  str_out = str.slice(i = -1); // "l"
+  console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
+  str_out = str.slice(i = -5); // "Until"
+  console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
+  str_out = str.slice(i = -100); // "parentsUntil"
+  console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
 }
 
 str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"
@@ -300,17 +310,6 @@ document.write(str instanceof String ? "" : "!", "str instanceof String","<br>")
 document.write("str.constructor ", str.constructor==String ? "=" : "!", "= String","<br>");
 document.write(String.prototype.isPrototypeOf(str) ? "" : "!", "String.prototype.isPrototypeOf(str)","<br>");
 document.write("<br>");
-
-str = "parentsUntil";
-str_out = str.slice(i = 0); // "parentsUntil"
-if (window.console && console.log)
-	console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
-str_out = str.slice(i = -1); // "l"
-if (window.console && console.log)
-	console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
-str_out = str.slice(i = -5); // "Until"
-if (window.console && console.log)
-	console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
 
 str="admin:blah-blah-blah";
 start=new Date();

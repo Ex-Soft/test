@@ -6,6 +6,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { TreeDialog } from '../../organisms';
 import './index.css';
+import { DropzoneArea } from 'react-mui-dropzone';
 
 const TestMUI: React.FC = () => {
     const [age, setAge] = useState('');
@@ -61,6 +62,8 @@ const TestMUI: React.FC = () => {
                         </Select>
                     </FormControl>
                 </Box>
+            <hr/>
+                <DropzoneArea onChange={(files) => console.log("Files: %o", files)} />
             <hr/>
         </div>
     )

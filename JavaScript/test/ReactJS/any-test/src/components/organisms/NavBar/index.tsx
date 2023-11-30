@@ -12,6 +12,9 @@ const NavBar: React.FC = () => {
                     <NavLink to="/testaxios">Axios</NavLink>
                 </li>
                 <li>
+                    <NavLink to="/testusestate">useState</NavLink>
+                </li>
+                <li>
                     <NavLink to="/testuseeffect">useEffect</NavLink>
                 </li>
                 <li>
@@ -43,6 +46,12 @@ const NavBar: React.FC = () => {
                 </li>
                 <li>
                     <NavLink to="/customcontrols">CustomControls</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/testcustomdatafetchinghook">TestCustomDataFetchingHook</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/testdebonce">TestDebonce</NavLink>
                 </li>
             </ul>
         </nav>
