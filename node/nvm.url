@@ -3,6 +3,7 @@ https://github.com/coreybutler/nvm-windows
 nvm list
 nvm install 14.15.0
 nvm use 14.15.0
+nvm uninstall 14.15.0
 nvm ls-remote
 
 npm list -g
