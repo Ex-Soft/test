@@ -61,7 +61,7 @@ const TestAxios: React.FC = () => {
     return (
         <div>
             <h1>Axios</h1>
-            <div className='table'>
+            <div className="table">
                 <input type="button" value="200" onClick={handle200} /><input type="button" value="500" onClick={handle500} /><input type="button" value="async 500" onClick={handle500Async} />
             </div>
         </div>
