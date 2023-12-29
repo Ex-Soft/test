@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Text.Json;
 using System.Threading;
 
 using static System.Console;
@@ -17,6 +18,19 @@ namespace TestDateTime
 
         static void Main(string[] args)
         {
+            var appointment = new
+            {
+                Id = Guid.NewGuid(),
+                Description = "Take dog to veterinarian.",
+                Date = new DateOnly(2002, 1, 13),
+                StartTime = new TimeOnly(5, 15),
+                EndTime = new TimeOnly(5, 45)
+            };
+
+            var serialized = JsonSerializer.Serialize(appointment);
+
+            WriteLine($"Resulting JSON: {serialized}");
+
             WriteLine($"GetSystemDefaultUILanguage(): 0x{GetSystemDefaultUILanguage():x4}");
             WriteLine($"GetUserDefaultUILanguage(): 0x{GetUserDefaultUILanguage():x4}");
 
