@@ -32,7 +32,14 @@ function onLoad()
 		catch (e) {
 			console.log(e); // TypeError: can't convert null to object
 		}
-		
+
+		p1 = undefined;
+		o1 = { ...!!p1 && { ...createProperties() } };
+		console.log(o1);
+		p1 = "p1";
+		o2 = { ...!!p1 && { ...createProperties() } };
+		console.log(o2);
+
 		o1 = {};
 		p1 = "p1";
 		p2 = 1;
@@ -56,7 +63,7 @@ function onLoad()
 			...p2 && { p2: p2 },
 			p3: "p3"
 		};
-		console.log(o1);
+		console.log(o1); // { p2: "p2", p3: "p3" }
 
 		o1 = undefined;
 		console.log("toString.call(%o?.p1)=\"%s\" typeof %o.p1=\"%s\"", o1, toString.call(o1?.p1), o1, typeof o1?.p1);
@@ -307,6 +314,15 @@ function testObject()
 
 	if (window.console && console.log)
 		console.log("o.pa=%o o.oa.pb=%o", a.pa, a.oa.pb);
+}
+
+function createProperties() {
+	return {
+		sx: {
+			bgcolor: "bgcolor"
+		},
+		children: "children"
+	};
 }
 		</script>
 	</head>

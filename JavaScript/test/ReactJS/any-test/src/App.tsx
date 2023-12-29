@@ -8,7 +8,7 @@ const NoMatch = lazy(() => import('./components/pages/NoMatch'));
 
 const App = () => {
   const { setState:setImpersonatedUser } = useImpersonatedUser();
-console.log("blah %o", ImpersonatedUserContext);
+
   setImpersonatedUser("setImpersonatedUser()");
 
   return (
