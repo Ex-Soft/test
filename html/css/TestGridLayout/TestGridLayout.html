@@ -12,17 +12,60 @@
 	grid-template-columns: 0.25fr 15px 0.75fr;
 	grid-template-rows: auto 25px auto 25px auto 25px auto;
 }
+
+.container-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2,100px);
+	background-color: beige;
+	gap: 10px; 
+	grid-template-areas: 'header header header'
+						'nav nav nav'
+						'aside content content'
+						'aside section section'
+						'footer footer footer';
+}
+
+.container-grid > div { 
+	background-color: green;
+	font-size: 40px;
+}
+
+.container-grid .header {
+	grid-area: header;
+}
+
+.container-grid .nav {
+	grid-area: nav;
+}
+
+.container-grid .aside {
+	grid-area: aside;
+}
+
+.container-grid .content {
+	grid-area: content;
+}
+
+.container-grid .section {
+	grid-area: section;
+}
+
+.container-grid .footer {
+	grid-area: footer;
+}
 		</style>
 	</head>
 	<body>
 		<a href="https://css-tricks.com/snippets/css/complete-guide-grid/">css-tricks.com/snippets/css/complete-guide-grid</a>
 		<hr/>
-		<div class="container">
-			<div class="grid header">Header</div>
-			<div class="grid sidebar">Sidebar</div>
-			<div class="grid content">Main Content</div>
-			<div class="grid extra">Extra Content</div>
-			<div class="grid footer">Footer</div>
+		<div class="container-grid">
+			<div class="header">Header</div>
+			<div class="nav">Nav</div>
+			<div class="aside">Aside</div>
+			<div class="content">Content</div>
+			<div class="section">Section</div>
+			<div class="footer">Footer</div>
 		</div>
 
 		<div style="display: flex">
@@ -61,8 +104,35 @@
 				<div>Eight</div>
 				<div>Nine</div>
 			</div>
+
 			<div style="display: grid; grid-template-columns: auto auto auto; grid-gap: 10px; width: 500px; border: 3px solid black">
 				<div style="grid-row: 1/span 3; border: 3px solid maroon; background-color: blue">One grid-row: 1/span 3</div>
+				<div style="border: 3px solid navy; background-color: yellow">Two</div>
+				<div style="border: 3px solid green; background-color: red">Three</div>
+				<div>Four</div>
+				<div>Five</div>
+				<div>Six</div>
+				<div>Seven</div>
+				<div>Eight</div>
+				<div>Nine</div>
+			</div>
+		</div>
+
+		<div style="display: flex">
+			<div style="display: grid; grid-template-columns: auto auto auto; grid-gap: 10px; width: 500px; border: 3px solid black">
+				<div style="grid-column: 1/3; border: 3px solid maroon; background-color: blue">One grid-column: 1/3</div>
+				<div style="border: 3px solid navy; background-color: yellow">Two</div>
+				<div style="border: 3px solid green; background-color: red">Three</div>
+				<div>Four</div>
+				<div>Five</div>
+				<div>Six</div>
+				<div>Seven</div>
+				<div>Eight</div>
+				<div>Nine</div>
+			</div>
+			
+			<div style="display: grid; grid-template-columns: auto auto auto; grid-gap: 10px; width: 500px; border: 3px solid black">
+				<div style="grid-column: 1/span 2; border: 3px solid maroon; background-color: blue">One grid-column: 1/span 2</div>
 				<div style="border: 3px solid navy; background-color: yellow">Two</div>
 				<div style="border: 3px solid green; background-color: red">Three</div>
 				<div>Four</div>
