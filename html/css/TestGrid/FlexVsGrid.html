@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Flex vs Grid</title>
+		<style>
+div {
+	border: 1px solid black;
+}
+
+.row-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: space-around;
+	gap: 16px;
+	width: 500px;
+}
+
+.item-container {
+	display: flex;
+	 width: 216px;
+	flex-direction: column;
+}
+
+.item-container:hover {
+  cursor: pointer;
+}
+
+.item-image-container {
+	display: flex;
+	height: 216px;
+	padding: 4px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	align-self: stretch;
+	border-radius: 12px;
+	background: #dadada;
+	margin-bottom: 16px;
+}
+
+.item-image-container img {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.item-title-and-price,
+.item-sku-and-coop {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.item-title,
+.item-price {
+  color: black;
+  font-family:  PF DIN Text Pro;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.item-sku-label,
+.item-sku-value {
+	color: black;
+	font-family:  PF DIN Text Pro;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.item-coop-label {
+	color: #7c7c7c;
+	font-family:  PF DIN Text Pro;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 16px;
+	text-transform: uppercase;
+}
+
+.item-coop-value {
+	color: black;
+	font-family:  PF DIN Text Pro;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 16px;
+	text-transform: uppercase;
+}
+		</style>
+	</head>
+	<body>
+		<div class="row-container">
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/vertriver800.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/vertriver800.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div style="display: grid; grid-template-columns: auto auto auto; column-gap: 16px; row-gap: 16px; place-items: center; width: 500px;">
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/vertriver800.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/vertriver800.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+			
+			<div class="item-container">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+				<div class="item-title-and-price">
+					<div class="item-title">Title# 1</div>
+					<div class="item-price">$1,234.56</div>
+				</div>
+				<div class="item-sku-and-coop">
+					<div class="item-sku"><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+					<div class="item-coop"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div style="display: grid; grid-template-columns: auto auto; width: 216px;">
+			<div style="grid-column: 1 / span 2;">
+				<div class="item-image-container">
+					<img src="http://localhost/JavaScript/test/pix/helicopter.jpg" alt="Product# 1" title="Product# 1" />
+				</div>
+			</div>
+			<div class="item-title">Title# 1</div>
+			<div style="place-self: end;" class="item-price">$1,234.56</div>
+			<div><span class="item-sku-label">SKU#<span> <span class="item-sku-value">123456789</span></div>
+			<div style="place-self: end;"><span class="item-coop-label">co-op</span> <span class="item-coop-value">$1,234.56</span></div>
+		</div>
+	</body>
+</html>
