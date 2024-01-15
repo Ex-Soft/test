@@ -9,3 +9,7 @@ nvm ls-remote
 npm list -g
 
 npm install --global npm@10.2.3
+
+npm view lerna time --json
+npm view lerna time[7.4.2]
+npm view lerna time[$(npm view lerna version)] (for the latestversion)
