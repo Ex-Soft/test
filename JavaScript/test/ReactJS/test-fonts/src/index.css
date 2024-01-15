@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'Jubilat';
+  src: url('../public/fonts/Jubilat-Regular.otf') format("opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Jubilat';
+  src: url('../public/fonts/Jubilat-BoldItalic.otf') format("opentype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Jubilat';
+  src: url('../public/fonts/Jubilat-Bold.otf') format("opentype");
+  font-style: bold;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Jubilat';
+  src: url('../public/fonts/Jubilat-BoldItalic.otf') format("opentype");
+  font-style: italic;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'PF DIN Text Pro';
+  src: url('../public/fonts/PFDINTextPro-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'PF DIN Text Pro';
+  src: url('../public/fonts/PFDINTextPro-Medium.otf') format('opentype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'PF DIN Text Pro';
+  src: url('../public/fonts/PFDINTextPro-Bold.otf') format('opentype');
+  font-style: bold;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'PF DIN Text Pro';
+  src: url('../public/fonts/PFDINTextPro-Black.otf') format('opentype');
+  font-weight: 800;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif, 'Jubilat', 'PF DIN Text Pro';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

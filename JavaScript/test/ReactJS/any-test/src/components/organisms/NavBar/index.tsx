@@ -53,6 +53,9 @@ const NavBar: React.FC = () => {
                 <li>
                     <NavLink to="/testdebonce">TestDebonce</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/testconditionalrendering">TestConditionalRendering</NavLink>
+                </li>
             </ul>
         </nav>
     );

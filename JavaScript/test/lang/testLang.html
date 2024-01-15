@@ -87,6 +87,11 @@ function onLoad()
 	console.log(getWaterState(-10));
 	console.log(getWaterState(99));
 	console.log(getWaterState(150));
+
+	console.log(getId()); // undefined
+	console.log(getId(undefined, { id: "id", privateId: "privateId" })); // "id"
+	console.log(getId(obj => obj.privateId || obj.id, { id: "id", privateId: "privateId" })); // "privateId"
+	console.log(getId(obj => obj.privateId || obj.id, { id: "id" })); // "id"
 }
 
 function doSomething1({ foo = 'Hi', bar = 'Yo!', baz = 13 }) {
@@ -115,6 +120,10 @@ function getWaterState(tempInCelsius) {
       state = 'Gas';
   }
   return state;
+}
+
+function getId (fn, obj) {
+	return fn?.(obj) || obj?.id;
 }
 		</script>
 	</head>

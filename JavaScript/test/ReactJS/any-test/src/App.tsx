@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce } from './components';
-import { ImpersonatedUserContextProvider, useImpersonatedUser, ImpersonatedUserContext } from './contexts';
+import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce, TestConditionalRendering } from './components';
+import { ImpersonatedUserContextProvider, useImpersonatedUser } from './contexts';
 import './App.css';
 
 const NoMatch = lazy(() => import('./components/pages/NoMatch'));
@@ -34,6 +34,7 @@ const App = () => {
             <Route path="/customcontrols" element={<CustomControls />} />
             <Route path="/testcustomdatafetchinghook" element={<TestCustomDataFetchingHook />} />
             <Route path="/testdebonce" element={<TestDebounce />} />
+            <Route path="/testconditionalrendering" element={<TestConditionalRendering booleanValue={true} />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Suspense>
@@ -61,3 +62,8 @@ export default App;
 // yarn add material-ui-dropzone
 // yarm start
 // https://hygraph.com/blog/routing-in-react
+//
+// yarn build
+// yarn global add serve
+// path %localappdata%\Yarn\bin
+// serve -s build

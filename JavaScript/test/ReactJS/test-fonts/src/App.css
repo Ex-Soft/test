@@ -1,0 +1,38 @@
+.Jubilat-Regular {
+  font-family: "Jubilat";
+}
+
+.Jubilat-Bold {
+  font-family: "Jubilat";
+  font-weight: bold;
+}
+
+.Jubilat-Italic {
+  font-family: "Jubilat";
+  font-style: italic;
+}
+
+.Jubilat-BoldItalic {
+  font-family: "Jubilat";
+  font-weight: bold;
+  font-style: italic;
+}
+
+.PFDINTextPro-Regular {
+  font-family: "PF DIN Text Pro";
+}
+
+.PFDINTextPro-Medium {
+  font-family: "PF DIN Text Pro";
+  font-weight: 500;
+}
+
+.PFDINTextPro-Bold {
+  font-family: "PF DIN Text Pro";
+  font-weight: 700;
+}
+
+.PFDINTextPro-Black {
+  font-family: "PF DIN Text Pro";
+  font-weight: 800;
+}
