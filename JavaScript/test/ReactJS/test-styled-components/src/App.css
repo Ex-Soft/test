@@ -5,3 +5,8 @@
   column-gap: 10px;
   align-items: center;
 }
+
+.testButton {
+  color: var(--white);
+  background-color: var(--blue);
+}

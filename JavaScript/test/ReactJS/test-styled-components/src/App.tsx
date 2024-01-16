@@ -16,12 +16,7 @@ function App() {
       <div className="container">
         <CustomDiv />
         <CustomDiv enabled={false} borderRadius="10px" />
-        <CustomDiv
-          enabled
-          height="70px"
-          width="150px"
-          borderRadius="20px"
-        />
+        <CustomDiv enabled height="70px" width="150px" borderRadius="20px" />
       </div>
       <div className="container">
         <CustomButton>CustomButton</CustomButton>
@@ -33,9 +28,13 @@ function App() {
         </CustomButtonAsCustomReversedButton>
       </div>
       <div className="container">
-        <button style={{
-          cursor: "pointer"
-        }}>button</button>
+        <button className="testButton"
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          Button
+        </button>
       </div>
     </>
   );
