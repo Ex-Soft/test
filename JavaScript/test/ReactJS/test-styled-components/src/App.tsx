@@ -8,6 +8,7 @@ import {
   CustomTomatoButton,
   CustomTomatoButtonAsA,
   CustomButtonAsCustomReversedButton,
+  ComponentWithChildren,
 } from "./components";
 
 function App() {
@@ -28,13 +29,17 @@ function App() {
         </CustomButtonAsCustomReversedButton>
       </div>
       <div className="container">
-        <button className="testButton"
+        <button
+          className="testButton"
           style={{
             cursor: "pointer",
           }}
         >
           Button
         </button>
+      </div>
+      <div className="container">
+        <ComponentWithChildren />
       </div>
     </>
   );
