@@ -127,3 +127,22 @@ if (window.console && console.log) {
     if (operations & Operations.Op4)
         console.log("%i %i %s", operations, Operations.Op4, "Op4");
 }
+
+function GetEnumKeyByValue<T extends { [index: string]: string }>(
+    myEnum: T,
+    enumValue: string
+): keyof T | null {
+    const keys = Object.keys(myEnum).filter((x) => myEnum[x] == enumValue)
+    return keys.length > 0 ? keys[0] : null
+}
+
+enum DealerType {
+    PREFERRED_DEALER = 'preferred_dealer',
+    TOP_EVENT_DEALER = 'top_event_dealer',
+    HEB_DEALER = 'heb_dealer',
+}
+
+if (window.console && console.log) {
+    const found = GetEnumKeyByValue(DealerType, 'top_event_dealer')
+    if (found) console.log(DealerType[found])
+}
