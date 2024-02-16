@@ -6,6 +6,18 @@ nvm use 14.15.0
 nvm uninstall 14.15.0
 nvm ls-remote
 
+https://bobbyhadz.com/blog/set-default-node-version-with-nvm
+nvm alias default 20.11.1
+nvm use default
+
+nvm install --lts
+nvm use --lts
+nvm alias default 'lts/*'
+
+nvm install node
+nvm alias default node
+nvm use node
+
 npm list -g
 
 npm install --global npm@10.2.3
