@@ -30,6 +30,12 @@ if(window.console && console.log)
 	aa = new Array(3).fill(42);
 	console.log("new Array(3).fill(42) = %o", aa); // [ 42, 42, 42 ]
 	
+	// https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
+	const sheeps = ['🐑', '🐑', '🐑'];
+	const fakeSheeps = sheeps;
+	const cloneSheeps = sheeps.slice();
+	const cloneSheepsES6 = [...sheeps];
+	const cloneSheepsViaArrayFrom = Array.from([ 1, 2, 3]);
 	aa = Array.from([ 1, 2, 3]);
 	console.log("Array.from([ 1, 2, 3]) = %o", aa); // [ 1, 2, 3 ]
 	
@@ -43,6 +49,11 @@ if(window.console && console.log)
 	// ... - spread operator
 	aa = [ ...a, 9, 8, 7, 6 ];
 	console.log("a=%o [ ...a, 9, 8, 7, 6 ]=%o", a, aa); // [ 0, 1, 3, 4, 5, 9, 8, 7, 6 ]
+	aa = [ ...a ];
+	console.log("a=%o [ ...a ]=%o", a, aa); // [ 0, 1, 3, 4, 5, 9, 8, 7, 6 ]
+	a[2] = -3;
+	aa = [ ...a ];
+	console.log("a=%o [ ...a ]=%o", a, aa); // [ 0, 1, 3, 4, 5, 9, 8, 7, 6 ]
 	
 	aa = [ 1, 2, ...(true ? [ 3 ] : [] ) ];
 	console.log("[ 1, 2, ...(true ? [ 3 ] : [] ) ]=%o", aa); // [ 1, 2, 3 ]
@@ -129,7 +140,22 @@ if(window.console && console.log)
 	aaa = aa.some(item => item.includes("dealerAdmin")); // true
 	aa = [ "dealerAdmin" ];
 	aaa = aa.some(item => item.includes("/dealerAdmin")); // false
-
+	
+    o1 = undefined;
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // undefined
+	o1 = null;
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // undefined
+	o1 = {};
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // undefined
+	o1 = { items: undefined };
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // undefined
+	o1 = { items: null };
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // undefined
+	o1 = { items: [] };
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // false
+	o1 = { items: [ { id: 0 } ] };
+	console.log("%o?.items?.some() = ", o1, o1?.items?.some(item => item.id === 0)); // true
+	
 	aa = [ new Date("2020-02-29T00:00:00+02:00"), new Date("2021-02-28T00:00:00+02:00"), new Date("2022-02-28T00:00:00+02:00") ];
 	aa.sort((left, right) => right.valueOf() - left.valueOf());
 

@@ -26,6 +26,23 @@ var
 	if(window.console && console.clear)
 		console.clear();
 
+	RegEx = /\d{16}/;
+	i = undefined;
+	ii = RegEx.test(i?.value);
+	console.log("/\\d{16}/.test(%o?.value) = %o", i, ii); // false
+	i = null;
+	ii = RegEx.test(i?.value);
+	console.log("/\\d{16}/.test(%o?.value) = %o", i, ii); // false
+	i = {};
+	ii = RegEx.test(i?.value);
+	console.log("/\\d{16}/.test(%o?.value) = %o", i, ii); // false
+	i = { value: "123" };
+	ii = RegEx.test(i?.value);
+	console.log("/\\d{16}/.test(%o?.value) = %o", i, ii); // false
+	i = { value: "1234567890123456" };
+	ii = RegEx.test(i?.value);
+	console.log("/\\d{16}/.test(%o?.value) = %o", i, ii); // false
+	
 	RegEx = /(@)(.+)/;
 	Str = "721045a0-e2bc-4c66-8bc6-575f8605ae60@Pop-Up_BgrdOption2.png"
 	matches = Str.match(RegEx);
@@ -51,7 +68,6 @@ var
 	matches = Str.match(RegEx);
 	([, arr = "0", arrarr = i, ii = "00"] = matches)
 	console.log("%s%s%s",arr, arrarr, ii);
-
 	
 	i = [ "/smthStr" ].some(item => [ "smthStr" ].findIndex(pattern => new RegExp(`^\\/?${pattern}$`).test(item)) !== -1);
 

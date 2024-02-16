@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders isDate result', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const pElement = screen.getByText(/isDate\(".+?"\)=(true|false)/i);
+  expect(pElement).toBeInTheDocument();
 });

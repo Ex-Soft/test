@@ -9,6 +9,8 @@ import {
   CustomTomatoButtonAsA,
   CustomButtonAsCustomReversedButton,
   ComponentWithChildren,
+  TestPassStyles1,
+  TestPassStyles2,
 } from "./components";
 
 function App() {
@@ -40,6 +42,22 @@ function App() {
       </div>
       <div className="container">
         <ComponentWithChildren />
+      </div>
+      <div className="container">
+        <TestPassStyles1
+          childrenContainerStyles={{
+            placeSelf: "center",
+            color: "white",
+            backgroundColor: "red",
+          }}
+        >
+          <div>Children</div>
+        </TestPassStyles1>
+      </div>
+      <div className="container">
+        <TestPassStyles2 alignSelf="end" justifySelf="end">
+          <div>Children</div>
+        </TestPassStyles2>
       </div>
     </>
   );

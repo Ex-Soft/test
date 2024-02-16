@@ -33,6 +33,22 @@ function onLoad()
 			console.log(e); // TypeError: can't convert null to object
 		}
 
+		p1 = "p1";
+		o1 = undefined;
+		console.log("!%o?.[\"%s\"] = %o", o1, p1, !o1?.[p1]);
+		o1 = null;
+		console.log("!%o?.[\"%s\"] = %o", o1, p1, !o1?.[p1]);
+		o1 = {};
+		console.log("!{}?.[\"%s\"] = %o", p1, !o1?.[p1]);
+		o1 = { p1: undefined };
+		console.log("!{%s: %o}?.[\"%s\"] = %o", p1, o1.p1, p1, !o1?.[p1]);
+		o1 = { p1: null };
+		console.log("!{%s: %o}?.[\"%s\"] = %o", p1, o1.p1, p1, !o1?.[p1]);
+		o1 = { p1: "" };
+		console.log("!{%s: \"%s\"}?.[\"%s\"] = %o", p1, o1.p1, p1, !o1?.[p1]);
+		o1 = { p1: "p1" };
+		console.log("!{%s: \"%s\"}?.[\"%s\"] = %o", p1, o1.p1, p1, !o1?.[p1]);
+		
 		p1 = undefined;
 		o1 = { ...!!p1 && { ...createProperties() } };
 		console.log(o1);

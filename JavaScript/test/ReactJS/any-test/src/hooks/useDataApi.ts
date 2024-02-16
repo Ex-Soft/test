@@ -4,7 +4,7 @@ import axios, { CanceledError } from "axios";
 export const useDataApi = (
   initialUrl?: string,
   initialData?: any
-): [{ data: any; isLoading: boolean; isError: boolean }, Function] => {
+): { data: any; isLoading: boolean; isError: boolean; setUrl: Function } => {
   const [data, setData] = useState(initialData);
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,5 +76,5 @@ export const useDataApi = (
     };
   }, [url]);
 
-  return [{ data, isLoading, isError }, setUrl];
+  return { data, isLoading, isError, setUrl };
 };

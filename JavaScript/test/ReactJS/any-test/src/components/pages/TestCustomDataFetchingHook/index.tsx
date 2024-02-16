@@ -8,14 +8,12 @@ import "./index.css";
 const TestCustomDataFetchingHook: React.FC = () => {
   const baseUrlProducts = `${process.env.REACT_APP_REST_BASE_URL}/products`;
   const [urlProducts, setUrlProducts] = useState(baseUrlProducts);
-  const [
-    {
-      data: dataProductsByUseDataApi,
-      isLoading: isLoadingProductsByUseDataApi,
-      isError: isErrorProductsByUseDataApi,
-    },
-    getDataProductsByUseDataApi,
-  ] = useDataApi(urlProducts);
+  const {
+    data: dataProductsByUseDataApi,
+    isLoading: isLoadingProductsByUseDataApi,
+    isError: isErrorProductsByUseDataApi,
+    setUrl: getDataProductsByUseDataApi,
+  } = useDataApi(urlProducts);
   const [dataProductsByUseCrud, setDataProductsByUseCrud] = useState();
   const [isLoadingProductsByUseCrud, setIsLoadingProductsByUseCrud] =
     useState();

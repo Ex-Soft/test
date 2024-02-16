@@ -18,3 +18,4 @@ export default App;
 
 // yarn create react-app test-craco --template typescript
 // yarn add @craco/craco
+// yarn add --dev ts-jest
