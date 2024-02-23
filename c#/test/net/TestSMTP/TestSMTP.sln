@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSMTP", "TestSMTP.csproj", "{3B9C5FAD-02AC-4E25-8774-3BE44D00939C}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSMTP", "TestSMTP.csproj", "{85DA3FFB-4471-4743-AA5B-503FFC7E4EC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3B9C5FAD-02AC-4E25-8774-3BE44D00939C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B9C5FAD-02AC-4E25-8774-3BE44D00939C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B9C5FAD-02AC-4E25-8774-3BE44D00939C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B9C5FAD-02AC-4E25-8774-3BE44D00939C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DA3FFB-4471-4743-AA5B-503FFC7E4EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DA3FFB-4471-4743-AA5B-503FFC7E4EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DA3FFB-4471-4743-AA5B-503FFC7E4EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DA3FFB-4471-4743-AA5B-503FFC7E4EC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {652FABA7-40E4-4F70-9F98-CDAF83F15538}
 	EndGlobalSection
 EndGlobal
