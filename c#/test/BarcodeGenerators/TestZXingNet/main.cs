@@ -1,6 +1,7 @@
 ﻿// https://github.com/micjahn/ZXing.Net
 // https://www.luisllamas.es/en/csharp-zxing/
 // https://www.codeproject.com/Articles/5357944/Create-Your-Own-QR-Codes-with-ZXing-NET
+// PlatformNotSupportedException
 
 using System.Drawing;
 using System.Drawing.Imaging;

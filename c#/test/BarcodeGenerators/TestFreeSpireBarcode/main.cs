@@ -1,5 +1,6 @@
 ﻿// https://www.e-iceblue.com/Tutorials/Spire.Barcode/Spire.Barcode-Program-Guide/How-to-create-Code39-barcodes-in-C.html
 // https://www.nuget.org/packages/FreeSpire.Barcode
+// PlatformNotSupportedException
 
 using Spire.Barcode;
 
