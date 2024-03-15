@@ -1,4 +1,24 @@
-with Entries as
+declare
+  @pageNumber int = 1,
+  @pageSize int = 5,
+  @sortingCol sysname = null,
+  @sortType varchar(4) = 'desc';
+
+select
+  count(*) over() as TotalCount,
+  Id,
+  Val
+from
+  TableForPaging
+order by
+  case when coalesce(@sortingCol, 'Id') = 'Id' collate SQL_Latin1_General_CP1_CI_AS and @sortType = 'asc' collate SQL_Latin1_General_CP1_CI_AS then Id end,
+  case when coalesce(@sortingCol, 'Id') = 'Id' collate SQL_Latin1_General_CP1_CI_AS and @sortType = 'desc' collate SQL_Latin1_General_CP1_CI_AS then Id end desc,
+  case when @sortingCol = 'Val' collate SQL_Latin1_General_CP1_CI_AS and @sortType = 'asc' collate SQL_Latin1_General_CP1_CI_AS then Val end,
+  case when @sortingCol = 'Val' collate SQL_Latin1_General_CP1_CI_AS and @sortType = 'desc' collate SQL_Latin1_General_CP1_CI_AS then Val end desc
+ offset (@pageNumber - 1) * @pageSize rows
+ fetch next @pageSize rows only;
+
+;with Entries as
 (
 select
   row_number() over(order by Val) as RowNum,

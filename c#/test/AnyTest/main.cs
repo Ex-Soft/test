@@ -1,4 +1,4 @@
-﻿//#define TEST_ELVIS_OPERATOR
+﻿#define TEST_ELVIS_OPERATOR
 //#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
@@ -35,7 +35,7 @@
 //#define TEST_BIT_OPERATIONS
 //#define TEST_TRY_PARSE
 //#define TEST_ASSERT
-#define TEST_NULLABLE_TYPES
+//#define TEST_NULLABLE_TYPES
 //#define TEST_CONVERT
 //#define TEST_YIELD
 //#define TEST_COMPARE
@@ -88,6 +88,8 @@ namespace AnyTest
                 get => _value;
                 set => _value = value;
             }
+
+            public bool IsEmpty() => string.IsNullOrWhiteSpace(Value);
         }
     #endif
 
@@ -96,11 +98,13 @@ namespace AnyTest
         {
             public List<string> ListOfString { get; set; } = null;
             public PropertyString PropertyString1 { get; set; } = null;
+            public PropertyStringWithDefaultNullValue PropertyStringWithDefaultNullValue1 { get; set; } = null;
         }
 
-        class PropertyString
+        class PropertyStringWithDefaultNullValue
         {
             public string Value { get; set; } = null;
+            public bool IsEmpty() => string.IsNullOrWhiteSpace(Value);
         }
     #endif
 
@@ -372,7 +376,16 @@ namespace AnyTest
             #endif
 
             #if TEST_ELVIS_OPERATOR
-                B b = new B();
+                B b = null;
+                tmpBoolNullable1 = b?.PropertyString1?.IsEmpty(); // null
+                WriteLine($"b?.PropertyString1?.IsEmpty() = {b?.PropertyString1?.IsEmpty()} b?.PropertyString1?.IsEmpty() == false = {b?.PropertyString1?.IsEmpty() == false} b?.PropertyString1?.IsEmpty() == true = {b?.PropertyString1?.IsEmpty() == true}"); // null false false
+                b = new B();
+                tmpBoolNullable1 = b?.PropertyString1?.IsEmpty(); // null
+                WriteLine($"b?.PropertyString1?.IsEmpty() = {b?.PropertyString1?.IsEmpty()} b?.PropertyString1?.IsEmpty() == false = {b?.PropertyString1?.IsEmpty() == false} b?.PropertyString1?.IsEmpty() == true = {b?.PropertyString1?.IsEmpty() == true}"); // null false false
+                b.PropertyString1 = new PropertyString();
+                tmpBoolNullable1 = b?.PropertyString1?.IsEmpty(); // true
+                WriteLine($"b?.PropertyString1?.IsEmpty() = {b?.PropertyString1?.IsEmpty()} b?.PropertyString1?.IsEmpty() == false = {b?.PropertyString1?.IsEmpty() == false} b?.PropertyString1?.IsEmpty() == true = {b?.PropertyString1?.IsEmpty() == true}"); // true false true
+                b = new B();
                 WriteLine($"PropertyString1 {(b.PropertyString1 == null ? "=" : "!")}= null");
                 WriteLine($"PropertyString1?.Value {(b.PropertyString1?.Value == null ? "=" : "!")}= null");
                 b.PropertyString1 = new PropertyString();

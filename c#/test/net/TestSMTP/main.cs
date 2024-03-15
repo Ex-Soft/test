@@ -1,9 +1,9 @@
 ﻿//#define TEST_LINK_TO_IMG
 //#define TEST_DISPOSE
 //#define TEST_DISPOSE_WITH_USING
-#define TEST_SMTP_SERVER
+//#define TEST_SMTP_SERVER
 //#define TEST_HEADER
-//#define TEST_IMG_IN_BODY
+#define TEST_IMG_IN_BODY
 
 using System;
 using System.Collections.Generic;
@@ -43,20 +43,26 @@ namespace TestSMTP
                 MailMessage
                     mailMessage = null;
 
-				#if TEST_LINK_TO_IMG
+                const string host = "sandbox.smtp.mailtrap.io";
+                const int port = 25;
+                const string user = "";
+                const string password = "";
+                const string from = "from@ex_soft.com";
+                const string to = "to@ex_soft.com";
+
+                //const string host = "smtp.freesmtpservers.com";
+                //const int port = 25;
+
+                //const string host = "smtp-relay.brevo.com";
+                //const int port = 587;
+                //const string user = "";
+                //const string password = "";
+
+                #if TEST_LINK_TO_IMG
 					using (mailMessage = new MailMessage())
 					{
-						mailMessage.From = new MailAddress("nozhenko@kr.zt.ukrtel.net");
-
-						mailMessage.To.Add("4others@mail.ru");
-						//mailMessage.To.Add("4others2@gmail.com");
-						//mailMessage.To.Add("4others@ua.fm");
-						//mailMessage.To.Add("4others@ukr.net");
-						mailMessage.To.Add("i.nozhenko@systtech.ru");
-						//mailMessage.To.Add("a.perkovsky@systtech.ru");
-						//mailMessage.To.Add("i.loputneva@systtech.ru");
-						//mailMessage.To.Add("inga-loputneva@yandex.ru");
-
+						mailMessage.From = new MailAddress(from);
+						mailMessage.To.Add(to);
 						mailMessage.Subject = "Test";
 
 						var htmlBody = "<html><body>";
@@ -85,9 +91,9 @@ namespace TestSMTP
 
 						try
 						{
-							smtpClient = new SmtpClient("mail.ukrpost.ua", 25);
-							smtpClient.EnableSsl = false;
-							smtpClient.Credentials = new NetworkCredential("nozhenko@kr.zt.ukrtel.net", "experimentator");
+							smtpClient = new SmtpClient(host, port);
+							smtpClient.EnableSsl = true;
+							smtpClient.Credentials = new NetworkCredential(user, password);
 							smtpClient.Send(mailMessage);
 						}
 						catch (Exception eException)
@@ -95,19 +101,17 @@ namespace TestSMTP
 							Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
 						}
 						finally
-						{
-							if (smtpClient != null)
-								smtpClient.Dispose();
-						}
+                        {
+                            smtpClient?.Dispose();
+                        }
 					}
-				#endif
+                #endif
 
                 #if TEST_DISPOSE
                     using (mailMessage = new MailMessage())
                     {
-                        mailMessage.From = new MailAddress("nozhenko@kr.zt.ukrtel.net");
-                        mailMessage.To.Add("4others@ua.fm");
-                        mailMessage.To.Add("i.nozhenko@systtech.ru");
+                        mailMessage.From = new MailAddress(from);
+                        mailMessage.To.Add(to);
                         mailMessage.Subject = "Test";
 
                         var htmlBody = "<html><body>";
@@ -147,17 +151,17 @@ namespace TestSMTP
                         mailMessage.AlternateViews.Add(htmlView);
 
                         #if TEST_DISPOSE_WITH_USING
-                            using (smtpClient = new SmtpClient("mail.ukrpost.ua", 25))
+                            using (smtpClient = new SmtpClient(host, port))
                         #else
                             try
                         #endif
                             {
                                 #if !TEST_DISPOSE_WITH_USING
-                                    smtpClient = new SmtpClient("mail.ukrpost.ua", 25);
+                                    smtpClient = new SmtpClient(host, port);
                                 #endif
 
                                 smtpClient.EnableSsl = false;
-                                smtpClient.Credentials = new NetworkCredential("nozhenko@kr.zt.ukrtel.net", "");
+                                smtpClient.Credentials = new NetworkCredential(user, password);
                                 smtpClient.Send(mailMessage);
                             }
                         #if !TEST_DISPOSE_WITH_USING
@@ -174,20 +178,21 @@ namespace TestSMTP
                 #endif
 
                 #if TEST_SMTP_SERVER
-				    var credential = new NetworkCredential("4others@ukr.net", "password");
+				    var credential = new NetworkCredential(user, password);
 
-                    smtpClient = new SmtpClient("smtp.ukr.net", 465);
+                    smtpClient = new SmtpClient(host, port);
 				    smtpClient.Credentials = credential;
-                    mailMessage = new MailMessage("4others@ukr.net", "4others@ua.fm", "Test Smtp Server", "Test Smtp Server");
+                    mailMessage = new MailMessage(from, to, "Test Smtp Server", "Test Smtp Server");
                     smtpClient.Send(mailMessage);
                 #endif
-                
+
                 #if TEST_HEADER
-                    smtp = new SmtpClient("10.3.7.33");
-                    mailMessage = new MailMessage("nozhenko@inbase.com.ua", "nozhenko@inbase.com.ua", "Test Custom Tag", "C in header MySuperPuperTag ;)");
+                    smtpClient = new SmtpClient(host, port);
+                    smtpClient.Credentials = new NetworkCredential(user, password);
+                    mailMessage = new MailMessage(from, to, "Test Custom Tag", "C in header MySuperPuperTag ;)");
                     mailMessage.Headers.Add("MySuperPuperTag", "blah-blah-blah");
-                    smtp.Send(mailMessage);
-                    //smtp.Send("nozhenko@inbase.com.ua", "nozhenko@inbase.com.ua", "Subject", "Body");
+                    smtpClient.Send(mailMessage);
+                    //smtpClient.Send(from, to, "Subject", "Body");
                 #endif
 
                 #if TEST_IMG_IN_BODY
@@ -195,20 +200,19 @@ namespace TestSMTP
                         currentDirectory = Directory.GetCurrentDirectory(),
                         inputFileName = "clear_icon.png";
 
-                    currentDirectory = currentDirectory.Substring(0, currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1));
+                    currentDirectory = currentDirectory[..currentDirectory.LastIndexOf("bin", currentDirectory.Length - 1, StringComparison.Ordinal)];
 
                     if (File.Exists(inputFileName = Path.Combine(currentDirectory, inputFileName)))
                     {
                         var encbuff = File.ReadAllBytes(inputFileName);
                         var strBase64 = Convert.ToBase64String(encbuff);
-						var body = string.Format("<html><body><b>Hi!!!</b><br/><img src=\"data:image/{0};base64,{1}\" /><br/></body></html>", Path.GetExtension(inputFileName).Substring(1), strBase64);
-						var credential = new NetworkCredential("nozhenko@kr.zt.ukrtel.net", "password");
+						var body = $"<html><body><b>Hi!!!</b><br/><img src=\"data:image/{Path.GetExtension(inputFileName)[1..]};base64,{strBase64}\" /><br/></body></html>";
+                        
+                        smtpClient = new SmtpClient(host, port);
+                        smtpClient.Credentials = new NetworkCredential(user, password);
 
-						smtpClient = new SmtpClient("mail.ukrpost.ua", 25);
-                        smtpClient.Credentials = credential;
-
-						//mailMessage = new MailMessage("nozhenko@kr.zt.ukrtel.net", "4others2@gmail.com", "Test html (with Content-Type + Content-Disposition)", body);
-						mailMessage = new MailMessage("nozhenko@kr.zt.ukrtel.net", "4others2@gmail.com, 4others@ua.fm, 4others@ukr.net");
+						mailMessage = new MailMessage(from, to, "Test html (with Content-Type + Content-Disposition)", body);
+						//mailMessage = new MailMessage(from, to);
 
                         mailMessage.Headers.Add("Content-Type", "text/html; charset=\"UTF-8\"");
                         mailMessage.Headers.Add("Content-Disposition", "inline");

@@ -1,3 +1,4 @@
+--create database testdb;
 --alter database testdb set offline;
 
 --select * from sys.databases

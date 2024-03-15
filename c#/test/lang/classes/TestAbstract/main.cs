@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestAbstract
+﻿namespace TestAbstract
 {
     public abstract class A
     {
@@ -9,8 +7,7 @@ namespace TestAbstract
             Console.WriteLine("A.ctor()");
         }
 
-        protected string
-            _Field3 = string.Empty;
+        protected string _Field3 = string.Empty;
 
         public abstract string Field1 { get; }
         public abstract string Field2 { get; }
@@ -31,11 +28,8 @@ namespace TestAbstract
         {
             get
             {
-                string
-                    field1 = "Field1 (get)";
-
+                string field1 = "Field1 (get)";
                 Console.WriteLine(field1);
-
                 return field1;
             }
         }
@@ -44,21 +38,19 @@ namespace TestAbstract
         {
             get
             {
-                Console.WriteLine(string.Format("Field3 get: \"{0}\"", _Field3));
+                Console.WriteLine($"Field3 get: \"{_Field3}\"");
                 return _Field3;
             }
             set
             {
-                string
-                    msg = "Field3 set ({0}): \"{1}\"";
-
-                Console.WriteLine(string.Format(msg,"b4",_Field3));
+                string msg = "Field3 set ({0}): \"{1}\"";
+                Console.WriteLine(msg, "b4", _Field3);
                 if (_Field3 != value)
                 {
-                    Console.WriteLine(string.Format("\t\"{0}\" -> \"{1}\"", _Field3, value));
+                    Console.WriteLine($"\t\"{_Field3}\" -> \"{value}\"");
                     _Field3 = value;
                 }
-                Console.WriteLine(string.Format(msg, "after", _Field3));
+                Console.WriteLine(msg, "after", _Field3);
             }
         }
 
@@ -79,11 +71,8 @@ namespace TestAbstract
         {
             get
             {
-                string
-                    field2 = "Field2 (get)";
-
+                string field2 = "Field2 (get)";
                 Console.WriteLine(field2);
-
                 return field2;
             }
         }
@@ -99,14 +88,12 @@ namespace TestAbstract
     {
         static void Main(string[] args)
         {
-            C
-                c=new C();
+            C c = new C();
 
             c.SmthMethod1();
             c.SmthMethod2();
 
-            string
-                tmpString;
+            string tmpString;
 
             Console.WriteLine();
             tmpString = c.Field1;

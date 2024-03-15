@@ -37,59 +37,59 @@ using System.Text;
 
 namespace ADONET
 {
-	class Program
+    class Program
     {
-        #if TEST_TWO_DATASET
+#if TEST_TWO_DATASET
 			static DataTable
 				TableToCascade=null;
-        #endif
+#endif
 
         static void Main(string[] args)
-		{
-		    DataSet
-		        tmpDataSet = null;
+        {
+            DataSet
+                tmpDataSet = null;
 
-			DataTable
-				tmpDataTable = null,
-				tmpDataTableII = null,
-				tmpDataTableIII = null,
-				tmpDataTableIV = null;
+            DataTable
+                tmpDataTable = null,
+                tmpDataTableII = null,
+                tmpDataTableIII = null,
+                tmpDataTableIV = null;
 
-			DataColumn
-				tmpDataColumn;
+            DataColumn
+                tmpDataColumn;
 
-			DataRow
-				tmpDataRow;
+            DataRow
+                tmpDataRow;
 
-			DataRow[]
-				tmpDataRows;
+            DataRow[]
+                tmpDataRows;
 
-			int
-				i,
-				tmpInt;
+            int
+                i,
+                tmpInt;
 
-			long
-				tmpLong;
+            long
+                tmpLong;
 
-			string
-				tmpString,
-				FieldName;
+            string
+                tmpString,
+                FieldName;
 
-			object
-				tmpObject;
+            object
+                tmpObject;
 
-		    bool
-		        tmpBoolean;
+            bool
+                tmpBoolean;
 
-		    Type
-		        tmpType;
+            Type
+                tmpType;
 
-		    TypeCode
-		        tmpTypeCode;
+            TypeCode
+                tmpTypeCode;
 
-			try
-			{
-                #if TEST_DUPLICATES
+            try
+            {
+#if TEST_DUPLICATES
                     if (tmpDataTable == null)
                         tmpDataTable = new DataTable();
                     else
@@ -241,9 +241,9 @@ namespace ADONET
 
                         Console.WriteLine("HasDuplicates({0})", duplicatesKeys);
                     }
-                #endif
+#endif
 
-				#if TEST_SERIALIZATION
+#if TEST_SERIALIZATION
 					if(ds==null)
 						ds=new DataSet();
 					else
@@ -331,65 +331,67 @@ namespace ADONET
 						foreach(DataRow r in t.Rows)
 							fstr_out.WriteLine(Convert.ToInt64(r["Id"])+": "+Convert.ToString(r["Name"]));
 					}
-				#endif
+#endif
 
-                #if TEST_NULL
-					if(tmpDataTable==null)
-						tmpDataTable=new DataTable();
-					else
-						tmpDataTable.Reset();
+#if TEST_NULL
+                if (tmpDataTable == null)
+                    tmpDataTable = new DataTable();
+                else
+                    tmpDataTable.Reset();
 
-					tmpDataColumn=tmpDataTable.Columns.Add("Id",typeof(int));
-					tmpDataColumn.AllowDBNull=false;
-					tmpDataColumn.Unique=true;
-					tmpDataColumn.AutoIncrement=true;
-					tmpDataColumn.AutoIncrementSeed=-1;
-					tmpDataColumn.AutoIncrementStep=-1;
-					tmpDataTable.Columns.Add("Name",typeof(string));
-					tmpDataTable.Columns.Add("BirthDate",typeof(DateTime));
-					tmpDataTable.PrimaryKey=new[]{tmpDataTable.Columns["Id"]};
+                tmpDataColumn = tmpDataTable.Columns.Add("Id", typeof(int));
+                tmpDataColumn.AllowDBNull = false;
+                tmpDataColumn.Unique = true;
+                tmpDataColumn.AutoIncrement = true;
+                tmpDataColumn.AutoIncrementSeed = -1;
+                tmpDataColumn.AutoIncrementStep = -1;
+                tmpDataTable.Columns.Add("Name", typeof(string));
+                tmpDataTable.Columns.Add("BirthDate", typeof(DateTime));
+                tmpDataTable.PrimaryKey = new[] { tmpDataTable.Columns["Id"] };
 
-					tmpDataRow=tmpDataTable.NewRow();
-					tmpDataRow["Name"]="Ленин Владимир Илльич";
-					tmpDataRow["BirthDate"]=new DateTime(1870,04,22);
-					tmpDataTable.Rows.Add(tmpDataRow);
+                tmpDataRow = tmpDataTable.NewRow();
+                tmpDataRow["Name"] = "Ленин Владимир Илльич";
+                tmpDataRow["BirthDate"] = new DateTime(1870, 04, 22);
+                tmpDataTable.Rows.Add(tmpDataRow);
 
-					tmpDataRow=tmpDataTable.NewRow();
-					tmpDataRow["Name"]="Сталин Иосиф Виссарионович";
-					tmpDataTable.Rows.Add(tmpDataRow);
+                tmpDataRow = tmpDataTable.NewRow();
+                tmpDataRow["Name"] = "Сталин Иосиф Виссарионович";
+                tmpDataTable.Rows.Add(tmpDataRow);
 
-                    tmpString = string.Format("\"{0}\"", tmpDataRow["BirthDate"]);
+                tmpString = string.Format("\"{0}\"", tmpDataRow["BirthDate"]);
 
-                    try
-                    {
-                        tmpDataRow = tmpDataTable.NewRow();
-                        tmpDataRow["Name"] = "Хрущев Никита Сергеевич";
-			            tmpDataRow["BirthDate"] = null; // ArgumentException "Невозможно присвоить столбцу \"BirthDate\" пустое значение. Используйте DBNull."
-                        tmpDataTable.Rows.Add(tmpDataRow);
-
-                        tmpString = string.Format("\"{0}\"", tmpDataRow["BirthDate"]);
-                    }
-                    catch(ArgumentException eException)
-                    {
-                        tmpString = eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace;
-                    }
-
+                try
+                {
                     tmpDataRow = tmpDataTable.NewRow();
-                    tmpDataRow["Name"] = "Брежнев Леонид Ильич";
-                    tmpDataRow["BirthDate"] = DBNull.Value;
+                    tmpDataRow["Name"] = "Хрущев Никита Сергеевич";
+                    tmpDataRow["BirthDate"] = null; // ArgumentException "Невозможно присвоить столбцу \"BirthDate\" пустое значение. Используйте DBNull."
                     tmpDataTable.Rows.Add(tmpDataRow);
 
                     tmpString = string.Format("\"{0}\"", tmpDataRow["BirthDate"]);
+                }
+                catch (ArgumentException eException)
+                {
+                    tmpString = eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace;
+                }
 
-					tmpDataRows=tmpDataTable.Select("BirthDate is null");
-					tmpString=tmpDataRows.Length.ToString();
+                tmpDataRow = tmpDataTable.NewRow();
+                tmpDataRow["Name"] = "Брежнев Леонид Ильич";
+                tmpDataRow["BirthDate"] = DBNull.Value;
+                tmpDataTable.Rows.Add(tmpDataRow);
 
-                    tmpDataRow = tmpDataTable.NewRow();
-                    tmpDataTable.Rows.Add(tmpDataRow);
-                    tmpString = Convert.ToString(tmpDataRow["Name"]);
-				#endif
+                tmpString = string.Format("\"{0}\"", tmpDataRow["BirthDate"]);
 
-                #if TEST_DATA_SET
+                tmpDataRows = tmpDataTable.Select("BirthDate is null");
+                tmpString = tmpDataRows.Length.ToString();
+
+                tmpDataRow = tmpDataTable.NewRow();
+                tmpDataTable.Rows.Add(tmpDataRow);
+                tmpString = tmpDataRow.IsNull("Name").ToString(); // true
+                tmpString = Convert.IsDBNull(tmpDataRow["Name"]).ToString(); // true
+                tmpString = Convert.ToString(tmpDataRow["Name"]); // ""
+#endif
+
+#if TEST_DATA_SET
                     tmpDataSet = new DataSet("TestDataSet");
 
                     tmpDataSet.Tables.Add(new DataTable("TestDataTableI"));
@@ -418,13 +420,13 @@ namespace ADONET
                     tmpInt = tmpDataSet.Tables.IndexOf("Test_Data_Table");
 			        tmpString = null;
                     tmpDataTable = tmpDataSet.Tables[tmpString];
-                #endif
+#endif
 
-                #if TEST_COLUMN_NAME
+#if TEST_COLUMN_NAME
                     tmpDataColumn = new DataColumn("Тест!Тест", typeof(string));
-                #endif
+#endif
 
-                #if TEST_SORT
+#if TEST_SORT
                     tmpDataTable = getTable();
                     tmpDataTable.DefaultView.Sort = "Salary desc, Name asc";
                     foreach (DataRowView rowView in tmpDataTable.DefaultView)
@@ -433,14 +435,14 @@ namespace ADONET
 
                         Console.WriteLine("{0}\t{1}", row["Name"], row["Salary"]);
                     }
-                #endif
+#endif
 
-                #if TEST_TO_XML
+#if TEST_TO_XML
                     tmpDataTable = getTable();
                     tmpDataTable.WriteXml("test.xml");
-                #endif
+#endif
 
-                #if TEST_EXIST
+#if TEST_EXIST
                     if (tmpDataTable == null)
                         tmpDataTable = new DataTable();
                     else
@@ -467,9 +469,9 @@ namespace ADONET
                     tmpBoolean = tmpDataTable.Select(string.Format("val={0}", 99)).Length > 0;
                     tmpBoolean = tmpDataTable.AsEnumerable().Where(d => new long[] { 99 }.Contains(d.Field<long>("val"))).Any();
                     tmpBoolean = tmpDataTable.AsEnumerable().Where(d => d.Field<long>("val") == 99).Any();
-                #endif
+#endif
 
-				#if TEST_PK
+#if TEST_PK
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -490,9 +492,9 @@ namespace ADONET
 					tmpDataRow["val"] = 10;
 					tmpDataTable.Rows.Add(tmpDataRow);
 
-				#endif
+#endif
 
-				#if TEST_COPY_BY_LINQ
+#if TEST_COPY_BY_LINQ
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -566,9 +568,9 @@ namespace ADONET
 					Vals.ForEach((val) => {
 						Console.WriteLine(val);
 					});
-				#endif
+#endif
 
-				#if TEST_COMPUTE
+#if TEST_COMPUTE
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -618,9 +620,9 @@ namespace ADONET
 					tmpDataTable.DefaultView.RowFilter = "(sign=1)";
 					tmpObject = tmpDataTable.Compute("sum(val)", "(sign=-1)");
 					tmpObject = tmpDataTable.Compute("sum(val)", "(sign=1)");
-				#endif
+#endif
 
-				#if TEST_DELETE
+#if TEST_DELETE
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -736,9 +738,9 @@ namespace ADONET
 						Console.WriteLine();
 						Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
 					}
-				#endif
+#endif
 
-				#if TEST_DBNULL
+#if TEST_DBNULL
 			        tmpObject = DBNull.Value;
 
 			        tmpString = tmpObject.ToString();
@@ -800,9 +802,9 @@ namespace ADONET
                         }
                     }
 					tmpDataTable.Rows.Add(tmpDataRow);
-				#endif
+#endif
 
-				#if TEST_FILTER
+#if TEST_FILTER
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -838,9 +840,9 @@ namespace ADONET
 						Console.WriteLine(r.Row["Id"].ToString());
 
                     tmpDataTableII = tmpDataTable.DefaultView.ToTable(false, "Id");
-				#endif
+#endif
 
-				#if TEST_DELETE_BY_LINQ
+#if TEST_DELETE_BY_LINQ
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -877,9 +879,9 @@ namespace ADONET
 									   select q1).CopyToDataTable();
 
 					tmpDataTableIV = tmpDataTable.AsEnumerable().Join(tmpDataTableII.AsEnumerable(), p => p["Id"], c => c["Id"], (x, y) => x).CopyToDataTable();
-				#endif
+#endif
 
-				#if TEST_SELECT
+#if TEST_SELECT
                     if(tmpDataTable==null)
 						tmpDataTable=new DataTable();
 					else
@@ -974,9 +976,9 @@ namespace ADONET
 
                     tmpDataRows = tmpDataTable.AsEnumerable().Where(row => Convert.ToDecimal(row["Val1"]) == 1).ToArray();
                     tmpDataRows = tmpDataTable.AsEnumerable().Where(row => Convert.ToDecimal(row["Val1"]) == 10).ToArray();
-				#endif
+#endif
 
-				#if TEST_SELECT_DATE
+#if TEST_SELECT_DATE
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -1012,9 +1014,9 @@ namespace ADONET
 
 					tmpString = string.Format(CultureInfo.InvariantCulture.DateTimeFormat, "(FDate>=#{0}#) and (FDate<=#{1}#)", new DateTime(2005, 1, 1), new DateTime(2005, 1, 1, 23, 59, 59));
 					tmpDataRows = tmpDataTable.Select(tmpString);
-				#endif
+#endif
 
-   				#if TEST_LIKE
+#if TEST_LIKE
 					if (tmpDataTable == null)
 						tmpDataTable = new DataTable();
 					else
@@ -1038,9 +1040,9 @@ namespace ADONET
 
                     tmpString = string.Format(CultureInfo.InvariantCulture.DateTimeFormat, "FString like '{0}%'", "Новая");
 					tmpDataRows = tmpDataTable.Select(tmpString);
-				#endif
+#endif
 
-                #if TEST_CALCULATED_FIELD
+#if TEST_CALCULATED_FIELD
 					if(tmpDataTable==null)
 						tmpDataTable=new DataTable();
 					else
@@ -1074,9 +1076,9 @@ namespace ADONET
 					tmpString=Convert.ToString(tmpDataTable.Rows[0]["FieldSum1"]);
 					tmpString=Convert.ToString(tmpDataTable.Rows[0]["FieldSum2"]);
 					//tmpString=Convert.ToString(tmpDataTable.Rows[0]["Age"]);
-				#endif
+#endif
 
-				#if TEST_SET_FIELD
+#if TEST_SET_FIELD
 					if(ds==null)
 						ds=new DataSet();
 					else
@@ -1119,13 +1121,13 @@ namespace ADONET
 					EqualsDataField(tmpDataTable.Rows[0],"FByte",tmpDataRow,"FByte");
 
 					ds.Reset();
-				#endif
+#endif
 
-				#if TEST_INSERT_AND_MODIFY_WITH_RELATIONS
+#if TEST_INSERT_AND_MODIFY_WITH_RELATIONS
 					if(ds==null)
 						ds=new DataSet();
 
-					#region Create MasterTable
+                    #region Create MasterTable
 						tmpString="MasterTable";
 						ds.Tables.Add(tmpString);
 						tmpDataColumn=ds.Tables[tmpString].Columns.Add("Id",typeof(long));
@@ -1136,9 +1138,9 @@ namespace ADONET
 						tmpDataColumn.AutoIncrementStep=-1;
 						ds.Tables[tmpString].Columns.Add("Department",typeof(string));
 						ds.Tables[tmpString].PrimaryKey=new DataColumn[]{ds.Tables[tmpString].Columns["Id"]};
-					#endregion
+                    #endregion
 
-					#region Create DetailsTable
+                    #region Create DetailsTable
 						tmpString="DetailsTable";
 						ds.Tables.Add(tmpString);
 						tmpDataColumn=ds.Tables[tmpString].Columns.Add("DepartmentId",typeof(long));
@@ -1152,9 +1154,9 @@ namespace ADONET
 						ds.Tables[tmpString].Columns.Add("Name",typeof(string));
 						ds.Tables[tmpString].Columns.Add("Sum",typeof(decimal));
 						ds.Tables[tmpString].PrimaryKey=new DataColumn[]{ds.Tables[tmpString].Columns["DepartmentId"],ds.Tables[tmpString].Columns["Id"]};
-					#endregion
+                    #endregion
 
-					#region Fill MasterTable
+                    #region Fill MasterTable
 						tmpString="MasterTable";
 
 						tmpDataRow=ds.Tables[tmpString].NewRow();
@@ -1168,9 +1170,9 @@ namespace ADONET
 						ds.Tables[tmpString].Rows.Add(tmpDataRow);
 
 						ds.Tables[tmpString].AcceptChanges();
-					#endregion
+                    #endregion
 
-					#region Fill DetailsTable
+                    #region Fill DetailsTable
 						tmpString="DetailsTable";
 
 						tmpDataRow=ds.Tables[tmpString].NewRow();
@@ -1210,7 +1212,7 @@ namespace ADONET
 						ds.Tables[tmpString].Rows.Add(tmpDataRow);
 
 						ds.Tables[tmpString].AcceptChanges();
-					#endregion
+                    #endregion
 
 					RelationName="Master_Details";
 
@@ -1233,10 +1235,10 @@ namespace ADONET
 					}
 					fstr_out.WriteLine();
 
-					#region Insert/Edit DetailsTable
+                    #region Insert/Edit DetailsTable
 						tmpString="DetailsTable";
 
-						#region Not necessarily
+                        #region Not necessarily
 							fstr_out.Write("Edit exists row in details table (Find (1, -2))... ");
 							if((tmpDataRow=ds.Tables[tmpString].Rows.Find(new object[]{1,-2}))!=null)
 							{
@@ -1244,7 +1246,7 @@ namespace ADONET
 								tmpDataRow["Sum"]=111111;
 							}
 							fstr_out.WriteLine("oB!");
-						#endregion
+                        #endregion
 
 						// Insert
 						fstr_out.Write("Insert new row in details table (Find (1, -7))... ");
@@ -1309,12 +1311,12 @@ namespace ADONET
 								fstr_out.WriteLine("\t{0} {1} {2} {3}",!rr.IsNull("DepartmentId") ? rr["DepartmentId"] : "NULL",!rr.IsNull("Id") ? rr["Id"] : "NULL",!rr.IsNull("Name") ? rr["Name"] : "NULL",!rr.IsNull("Sum") ? rr["Sum"] : "NULL");
 						}
 						fstr_out.WriteLine();
-					#endregion
+                    #endregion
 
 					ds.Reset();
-				#endif
+#endif
 
-                #if TEST_RELATIONS
+#if TEST_RELATIONS
 					if(ds==null)
 						ds=new DataSet();
 
@@ -1616,9 +1618,9 @@ namespace ADONET
 					ds.Tables["MasterTable"].Clear();
 
 					ds.Reset();
-				#endif
+#endif
 
-                #if TEST_CHANGE_ROW_VALUE
+#if TEST_CHANGE_ROW_VALUE
 					DataTable
 						Src=new DataTable();
 
@@ -1872,9 +1874,9 @@ namespace ADONET
 
 					if(!IsEqual)
 						Dest.Rows[0][FieldNo]=Src.Rows[0][FieldNo];
-				#endif
+#endif
 
-                #if TEST_COPY_OBJECT
+#if TEST_COPY_OBJECT
 					DataTable
 						DataTableSrc=new DataTable(),
 						DataTableDest;
@@ -1931,9 +1933,9 @@ namespace ADONET
 						fstr_out.WriteLine();
 					}
 					fstr_out.WriteLine();
-				#endif
+#endif
 
-                #if TEST_AUTOINCREMENT
+#if TEST_AUTOINCREMENT
 					if(ds==null)
 						ds=new DataSet();
 
@@ -2015,9 +2017,9 @@ namespace ADONET
 
 					tmpDataTable.Reset();
 					tmpDataTable=null;
-				#endif
+#endif
 
-                #if TEST_TWO_DATASET
+#if TEST_TWO_DATASET
 					ds=new DataSet();
 					ds.Tables.Add("Staff");
 					ds.Tables["Staff"].Columns.Add("ID",typeof(short));
@@ -2076,9 +2078,9 @@ namespace ADONET
 
 					tmpString="";
 					ds.Reset();
-				#endif
+#endif
 
-                #if TEST_INSERT
+#if TEST_INSERT
 					if(ds==null)
 						ds=new DataSet();
 					ds.Tables.Add("TestTable");
@@ -2216,13 +2218,13 @@ namespace ADONET
 					fstr_out.WriteLine();
 
 					ds.Reset();
-				#endif 
-			}
-			catch (Exception eException)
-			{
-				Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
-			}
-		}
+#endif
+            }
+            catch (Exception eException)
+            {
+                Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + "StackTrace:" + Environment.NewLine + eException.StackTrace);
+            }
+        }
 
         static DataTable getTable()
         {
@@ -2274,7 +2276,7 @@ namespace ADONET
             return tmpDataTable;
         }
 
-		#if TEST_TWO_DATASET
+#if TEST_TWO_DATASET
 			static void MyCascade(object sender, DataColumnChangeEventArgs e)
 			{
 				Console.WriteLine("ColumnChanged event occurred (sender: "+sender.ToString()+")");
@@ -2298,9 +2300,9 @@ namespace ADONET
 						&& Convert.ToInt16(row["ID"])!=(Id=Convert.ToInt16(e.Row[e.Column.ColumnName])))
 						row["ID"]=Id;
 			}
-		#endif
+#endif
 
-		#if TEST_SET_FIELD
+#if TEST_SET_FIELD
 			static void SetField(DataRow Row, string FieldName, object Value)
 			{
 				SetField(Row,FieldName,Value,false);
@@ -2441,9 +2443,9 @@ namespace ADONET
 				return(EqualsDataField(DataRowLeft,FieldNameLeft,DataRowRight[FieldNameRight]));
 			}
 			//---------------------------------------------------------------------------
-		#endif
+#endif
 
-        #if TEST_DUPLICATES
+#if TEST_DUPLICATES
 	        static Func<DataRow, string> CreateKeySelector(DataTable table, List<string> fields)
 	        {
 	            var sbFormat = new StringBuilder();
@@ -2480,6 +2482,6 @@ namespace ADONET
 
 	            return duplicates.Count != 0;
 	        }
-        #endif
+#endif
     }
 }

@@ -48,119 +48,113 @@ using Microsoft.SqlServer.Server;
 
 using static System.Console;
 
-namespace MSSQLSQL
+StreamWriter
+                fstr_out = null;
+
+SqlConnection
+    conn = null;
+
+SqlTransaction
+    transaction = null;
+
+SqlCommand
+    cmd = null,
+    cmdII = null;
+
+SqlDataAdapter
+    da = null;
+
+SqlDataReader
+    rdr = null;
+
+DataSet
+    tmpDataSet = null;
+
+DataTable
+    tmpDataTable = null,
+    tmpDataTableII = null;
+
+DataColumn
+    tmpDataColumn = null;
+
+DataRow
+    tmpDataRow = null;
+
+object
+    tmpObject;
+
+int
+    tmpInt;
+
+long
+    tmpLong;
+
+DateTime
+    tmpDateTime;
+
+string
+    tmpString = "log.log",
+    tmpString2,
+    tmpString3,
+    tmpString4,
+    fieldName;
+
+StringBuilder
+    sb = null;
+
+SqlParameter
+    sqlParameter = null;
+
+string
+    tmpFieldName = null;
+
+
+char[]
+    tmpChars = null;
+
+byte[]
+    tmpBytes = null;
+
+decimal
+    tmpDecimal;
+
+DateTimeOffset
+    dateTimeOffset,
+    dateTimeOffset2;
+
+try
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
-			StreamWriter
-				fstr_out = null;
+    try
+    {
+        fstr_out = new StreamWriter(tmpString, false, Encoding.UTF8);
+        fstr_out.AutoFlush = true;
 
-			SqlConnection
-				conn = null;
+        string
+            //ConnectionString = string.Empty;
+            //ConnectionString = "Server=ore-report-test.cloudapp.net,56550;Database=ReportServer;User ID=oredba;Password=ORE2015!";
+            //ConnectionString = "Server=air\\inst5;Database=SunEdge_Default;User ID=sa;Password=password";
+            //ConnectionString = "Server=test-robot-6.systtech.ru;Database=region_16_weekly_AUTOTEST-VM3_192.168.2.43;User ID=sa;Password=123456";
+            //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123";
+            //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;Timeout=300";
+            //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;ConnectTimeout=300";
+            //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;Connection Timeout=300";
+            //ConnectionString = "Server=.;Database=ch;User ID=test_login;Password=12==3";
+            //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
+            //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
+            //ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
+            ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
+        //ConnectionString = "server=alpha_web;Initial Catalog=pretensions;User Id=sa;Pwd=developer";
+        //ConnectionString = "server=alpha_web;Initial Catalog=pretensionsav;User Id=sa;Pwd=developer";
+        //ConnectionString = "server=fobos_web;Initial Catalog=CMS_Connect;User Id=sa;Pwd=developer";
+        //ConnectionString = "server=10.135.197.86,2057;Database=CMS_Connect;User ID=sa;Password=developer";
+        //ConnectionString = "Server=(localdb)\\v11.0;Integrated Security=true;AttachDbFileName=C:\\Users\\i.nozhenko.STU\\ABC.BloggingContext.mdf;";
+        //ConnectionString = "Server=np:\\\\.\\pipe\\LOCALDB#6ADD4424\\tsql\\query;Integrated Security=true;AttachDbFileName=C:\\Users\\i.nozhenko.STU\\ABC.BloggingContext.mdf;";
 
-		    SqlTransaction
-		        transaction = null;
-
-			SqlCommand
-				cmd = null,
-                cmdII = null;
-
-			SqlDataAdapter
-				da = null;
-
-			SqlDataReader
-				rdr = null;
-
-		    DataSet
-		        tmpDataSet = null;
-
-			DataTable
-				tmpDataTable = null,
-				tmpDataTableII = null;
-
-			DataColumn
-				tmpDataColumn = null;
-
-			DataRow
-				tmpDataRow = null;
-
-			object
-				tmpObject;
-
-			int
-				tmpInt;
-
-		    long
-		        tmpLong;
-
-            DateTime
-                tmpDateTime;
-
-			string
-				tmpString="log.log",
-                tmpString2,
-                tmpString3,
-                tmpString4,
-				fieldName;
-
-		    StringBuilder
-		        sb = null;
-
-            SqlParameter
-                sqlParameter = null;
-
-		    string
-		        tmpFieldName = null;
-
-
-            char[]
-                tmpChars = null;
-
-		    byte[]
-		        tmpBytes = null;
-
-		    decimal
-		        tmpDecimal;
-
-		    DateTimeOffset
-		        dateTimeOffset,
-		        dateTimeOffset2;
-
-			try
-			{
-				try
-				{
-					fstr_out = new StreamWriter(tmpString, false, Encoding.UTF8);
-					fstr_out.AutoFlush = true;
-
-				    string
-				        //ConnectionString = string.Empty;
-                        //ConnectionString = "Server=ore-report-test.cloudapp.net,56550;Database=ReportServer;User ID=oredba;Password=ORE2015!";
-				        //ConnectionString = "Server=air\\inst5;Database=SunEdge_Default;User ID=sa;Password=password";
-                        //ConnectionString = "Server=test-robot-6.systtech.ru;Database=region_16_weekly_AUTOTEST-VM3_192.168.2.43;User ID=sa;Password=123456";
-                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123";
-                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;Timeout=300";
-                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;ConnectTimeout=300";
-                        //ConnectionString = "Server=.;Database=ch;User ID=sa;Password=123;Connection Timeout=300";
-                        //ConnectionString = "Server=.;Database=ch;User ID=test_login;Password=12==3";
-                        //ConnectionString = "Server=.;Database=testdb;User ID=test_login;Password=123";
-                        //ConnectionString = "Server=.;Database=testdbtestdb;User ID=test_login;Password=123";
-                        //ConnectionString = "Server=.;Database=testdb;User ID=sa;Password=123";
-						ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True";
-						//ConnectionString = "server=alpha_web;Initial Catalog=pretensions;User Id=sa;Pwd=developer";
-						//ConnectionString = "server=alpha_web;Initial Catalog=pretensionsav;User Id=sa;Pwd=developer";
-						//ConnectionString = "server=fobos_web;Initial Catalog=CMS_Connect;User Id=sa;Pwd=developer";
-						//ConnectionString = "server=10.135.197.86,2057;Database=CMS_Connect;User ID=sa;Password=developer";
-                        //ConnectionString = "Server=(localdb)\\v11.0;Integrated Security=true;AttachDbFileName=C:\\Users\\i.nozhenko.STU\\ABC.BloggingContext.mdf;";
-                        //ConnectionString = "Server=np:\\\\.\\pipe\\LOCALDB#6ADD4424\\tsql\\query;Integrated Security=true;AttachDbFileName=C:\\Users\\i.nozhenko.STU\\ABC.BloggingContext.mdf;";
-
-                    #if TEST_MARS
+#if TEST_MARS
 				        ConnectionString += ";MultipleActiveResultSets=True";
-                    #endif
+#endif
 
-                    #if TEST_USING
+#if TEST_USING
                         using (SqlConnection c = new SqlConnection(ConnectionString))
                         {
                             c.Open();
@@ -170,9 +164,9 @@ namespace MSSQLSQL
                             if((tmpObject = cmd.ExecuteScalar()) != null && !Convert.IsDBNull(tmpObject))
                                 Console.WriteLine("select @@servername = \"{0}\"", Convert.ToString(tmpObject));
                         }
-                    #endif
+#endif
 
-                    #if TEST_SQL_PARAMETER
+#if TEST_SQL_PARAMETER
                         sqlParameter = new SqlParameter("ParamName", 1);
                         Console.WriteLine("DbType: {0}, Value: {1}, typeof(Value): {2}, SqlValue: {3}", sqlParameter.DbType, sqlParameter.Value, sqlParameter.Value.GetType(), sqlParameter.SqlValue);
                         sqlParameter = new SqlParameter("ParamName", "1");
@@ -192,9 +186,9 @@ namespace MSSQLSQL
                                                Value = "False"
                                            };
                         Console.WriteLine("DbType: {0}, Value: {1}, typeof(Value): {2}, SqlValue: {3}", sqlParameter.DbType, sqlParameter.Value, sqlParameter.Value.GetType(), sqlParameter.SqlValue);
-                    #endif
+#endif
 
-                    #if TEST_QUERY
+#if TEST_QUERY
                         sb = new StringBuilder();
 
                         using (SqlConnection _conn_ = new SqlConnection(ConnectionString))
@@ -215,24 +209,24 @@ namespace MSSQLSQL
                         }
 
 				        tmpString = sb.ToString().Substring(1);
-                    #endif
+#endif
 
-                    #if TEST_CONNECTION_STRING
+#if TEST_CONNECTION_STRING
 				        const string connectionStringKey = "connectionString";
 
                         if (ConfigurationManager.ConnectionStrings.OfType<ConnectionStringSettings>().Any(cs => cs.Name == connectionStringKey))
                             ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringKey].ConnectionString;
-                    #endif
+#endif
 
-					conn = new SqlConnection(ConnectionString);
+        conn = new SqlConnection(ConnectionString);
 
-                    #if TEST_CONNECTION_STATE
+#if TEST_CONNECTION_STATE
                         conn.StateChange += ConnStateChange;
-                    #endif
+#endif
 
-					conn.Open();
+        conn.Open();
 
-                    #if TEST_DATA_ADAPTER
+#if TEST_DATA_ADAPTER
                         if (tmpDataTable == null)
 							tmpDataTable = new DataTable("Victim");
 						else
@@ -292,9 +286,9 @@ namespace MSSQLSQL
                         
 
                         da.Update(tmpDataTable);
-                    #endif
+#endif
 
-                    #if TEST_BATCH
+#if TEST_BATCH
                         if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -310,9 +304,9 @@ commit transaction;
                         cmd.Parameters.Add("@ValY", SqlDbType.NVarChar).Value = "201";
 
                         tmpInt = cmd.ExecuteNonQuery();
-                    #endif
+#endif
 
-                    #if TEST_DATE_TYPES
+#if TEST_DATE_TYPES
                         if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -357,45 +351,45 @@ commit transaction;
                         Console.WriteLine($"dateTimeOffset {(dateTimeOffset == dateTimeOffset2 ? "=" : "!")}= dateTimeOffset2"); // ==
 				        Console.WriteLine($"dateTimeOffset.Equals(dateTimeOffset2) = {dateTimeOffset.Equals(dateTimeOffset2)}"); // True
                         Console.WriteLine($"dateTimeOffset.EqualsExact(dateTimeOffset2) = {dateTimeOffset.EqualsExact(dateTimeOffset2)}"); // False
-                    #endif
+#endif
 
-                    #if ANY_TEST
-   				        const long UpdateInterval = 10000L;
+#if ANY_TEST
+        const long UpdateInterval = 10000L;
 
-                        if (cmd == null)
-                            cmd = conn.CreateCommand();
-                        else
-                            cmd.Parameters.Clear();
+        if (cmd == null)
+            cmd = conn.CreateCommand();
+        else
+            cmd.Parameters.Clear();
 
-                        cmd.CommandType = CommandType.Text;
-                        //cmd.CommandText = string.Format("select idDistr, LastID + {0} as LastID, cast({1} as bigint) as Cnt from chgetid where idRoute = 0", UpdateInterval, UpdateInterval);
-                        cmd.CommandText = "select Id, FNVarCharMax from TestTable4Types";
+        cmd.CommandType = CommandType.Text;
+        //cmd.CommandText = string.Format("select idDistr, LastID + {0} as LastID, cast({1} as bigint) as Cnt from chgetid where idRoute = 0", UpdateInterval, UpdateInterval);
+        cmd.CommandText = "select Id, FNVarCharMax from TestTable4Types";
 
-                        if (da == null)
-                            da = new SqlDataAdapter();
-                        da.SelectCommand = cmd;
+        if (da == null)
+            da = new SqlDataAdapter();
+        da.SelectCommand = cmd;
 
-                        if (tmpDataTable == null)
-                            tmpDataTable = new DataTable();
-                        else
-                            tmpDataTable.Reset();
+        if (tmpDataTable == null)
+            tmpDataTable = new DataTable();
+        else
+            tmpDataTable.Reset();
 
-                        da.Fill(tmpDataTable);
+        da.Fill(tmpDataTable);
 
-                        foreach (DataRow row in tmpDataTable.Rows)
-                        {
-                            if (row.IsNull("Id") || row.IsNull("FNVarCharMax"))
-                                continue;
+        foreach (DataRow row in tmpDataTable.Rows)
+        {
+            if (row.IsNull("Id") || row.IsNull("FNVarCharMax"))
+                continue;
 
-                            tmpInt = Convert.ToInt32(row["Id"]);
-                            tmpString = Convert.ToString(row["FNVarCharMax"]);
-                            tmpString2 = string.Format(tmpString, "800 4969");
-                            tmpString3 = string.Format(tmpString, "800\u00a04969");
-                            WriteLine($"\"{tmpString2}\" \"{tmpString3}\"");
-                        }
-                    #endif
+            tmpInt = Convert.ToInt32(row["Id"]);
+            tmpString = Convert.ToString(row["FNVarCharMax"]);
+            tmpString2 = string.Format(tmpString, "800 4969");
+            tmpString3 = string.Format(tmpString, "800\u00a04969");
+            WriteLine($"\"{tmpString2}\" \"{tmpString3}\"");
+        }
+#endif
 
-                    #if Determining_SET_Options_for_Current_Session
+#if Determining_SET_Options_for_Current_Session
                         if (cmd == null)
                             cmd = conn.CreateCommand();
                         else
@@ -449,9 +443,9 @@ commit transaction;
 				            foreach (var option in optionsList)
                                 if (tmpDataTable.Columns.Contains(option))
                                     Console.WriteLine("{0} {1}", option, !row.IsNull(option) ? row[option] : "null");
-                    #endif
+#endif
 
-                    #if TEST_COLUMN_TYPES_BY_SP
+#if TEST_COLUMN_TYPES_BY_SP
                         if (cmd == null)
                             cmd = conn.CreateCommand();
                         else
@@ -474,9 +468,9 @@ commit transaction;
                             }
                         } while (rdr.NextResult());
                         rdr.Close();
-                    #endif
+#endif
 
-                    #if TEST_COLUMN_TYPES
+#if TEST_COLUMN_TYPES
                         if (cmd == null)
                             cmd = conn.CreateCommand();
                         else
@@ -500,9 +494,9 @@ commit transaction;
                             }
                         } while (rdr.NextResult());
                         rdr.Close();
-                    #endif
+#endif
 
-                    #if TEST_TRANSACTION
+#if TEST_TRANSACTION
                         if (cmd == null)
                             cmd = conn.CreateCommand();
                         else
@@ -552,9 +546,9 @@ commit transaction;
                             tmpInt = Convert.ToInt32(cmdII.Parameters[tmpString].Value);
                         if (cmdII.Parameters[tmpString = "@trancount"].Value != null && !Convert.IsDBNull(cmdII.Parameters[tmpString].Value))
                             tmpInt = Convert.ToInt32(cmdII.Parameters[tmpString].Value);
-                    #endif
+#endif
 
-                    #if TEST_NUMERIC
+#if TEST_NUMERIC
 				        tmpString = "FNumeric_30_15";
 
                         if (cmd == null)
@@ -593,9 +587,9 @@ commit transaction;
                         da.Fill(tmpDataTable);
                         if (tmpDataTable.Rows.Count > 0 && !tmpDataTable.Rows[0].IsNull(tmpString))
                             tmpDecimal = Convert.ToDecimal(tmpDataTable.Rows[0][tmpString]);
-                    #endif
+#endif
 
-                    #if TEST_SP_EXECUTESQL
+#if TEST_SP_EXECUTESQL
                         if (cmd == null)
                             cmd = conn.CreateCommand();
                         else
@@ -645,9 +639,9 @@ where (N0.idItem in (@p0) and (N0.TableName = @p1))";
 
                         da.Fill(tmpDataTable);
                         tmpInt = tmpDataTable.Rows.Count;
-                    #endif
+#endif
 
-                    #if TEST_PARAMETERIZED_STATEMENTS
+#if TEST_PARAMETERIZED_STATEMENTS
                         if (cmd == null)
                             cmd = conn.CreateCommand();
                         else
@@ -672,9 +666,9 @@ where (N0.idItem in (@p0) and (N0.TableName = @p1))";
 
                         da.Fill(tmpDataTable);
                         tmpInt = tmpDataTable.Rows.Count;
-                    #endif
+#endif
 
-                    #if TEST_TIMEOUT
+#if TEST_TIMEOUT
                         try
                         { 
                             if (cmd == null)
@@ -692,9 +686,9 @@ where (N0.idItem in (@p0) and (N0.TableName = @p1))";
                         {
                             Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
                         }
-                    #endif
+#endif
 
-                    #if TEST_MARS
+#if TEST_MARS
                         if (cmd == null)
                             cmd = conn.CreateCommand();
 
@@ -724,9 +718,9 @@ where (N0.idItem in (@p0) and (N0.TableName = @p1))";
                             }
                         } while (rdr.NextResult());
                         rdr.Close();
-                    #endif
+#endif
 
-                    #if TEST_CONNECTION_STRING
+#if TEST_CONNECTION_STRING
                         if (cmd == null)
                             cmd = conn.CreateCommand();
 
@@ -737,9 +731,9 @@ where (N0.idItem in (@p0) and (N0.TableName = @p1))";
 
                         if(tmpObject != null && !Convert.IsDBNull(tmpObject))
                             tmpString = Convert.ToString(tmpObject);
-                    #endif
+#endif
 
-                    #if TEST_SCALAR
+#if TEST_SCALAR
                         if (cmd == null)
                             cmd = conn.CreateCommand();
 
@@ -763,9 +757,9 @@ where
 
                         if(tmpObject != null && !Convert.IsDBNull(tmpObject))
                             tmpLong = Convert.ToInt64(tmpObject);
-                    #endif
+#endif
 
-                    #if TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT
+#if TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT
 /*
 create type dbo.IdsTableType as table (id bigint not null primary key)
 */
@@ -820,9 +814,9 @@ from
 
                         da.Fill(tmpDataTable);
                         tmpInt = tmpDataTable.Rows.Count;
-                    #endif
+#endif
 
-                    #if TEST_STORED_PROCEDURE
+#if TEST_STORED_PROCEDURE
                         if (cmd == null)
                             cmd = conn.CreateCommand();
 
@@ -836,9 +830,9 @@ from
                         if(tmpDataSet==null)
                             tmpDataSet=new DataSet();
                         da.Fill(tmpDataSet);
-                    #endif
+#endif
 
-					#if TEST_PARAMETERS
+#if TEST_PARAMETERS
 						if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -847,9 +841,9 @@ from
 						cmd.Parameters.Add("@Id", SqlDbType.BigInt).Value = 3;
 						cmd.CommandText = "select Id from TestTable4Types where Id=@Id";
 						tmpObject = cmd.ExecuteScalar();
-					#endif
+#endif
 
-					#if TEST_RAISERROR
+#if TEST_RAISERROR
 						using (SqlConnection _conn_ = new SqlConnection(ConnectionString))
 						{
 							_conn_.Open();
@@ -866,9 +860,9 @@ from
 
 							_cmd_.ExecuteNonQuery();
 						}
-					#endif
+#endif
 
-					#if TEST_XML_PARAMETERS
+#if TEST_XML_PARAMETERS
 						XmlDocument
 							doc = new XmlDocument();
 
@@ -909,9 +903,9 @@ from
 
 						da.Fill(tmpDataTable);
 						tmpInt = tmpDataTable.Rows.Count;
-					#endif
+#endif
 
-                    #if TEST_XML
+#if TEST_XML
                         if (cmd == null)
                             cmd = conn.CreateCommand();
 
@@ -987,9 +981,9 @@ from
                             foreach (XmlNode node in doc.SelectNodes("//item"))
                                 Console.WriteLine("<{0} id=\"{2}\">{1}</{0}>", node.Name, node.InnerText, node.Attributes["id"].Value);
                         }
-                    #endif
+#endif
 
-					#if TEST_TABLE_VALUED_PARAMETERS
+#if TEST_TABLE_VALUED_PARAMETERS
 						if (tmpDataTableII == null)
 							tmpDataTableII = new DataTable();
 						else
@@ -1040,9 +1034,9 @@ from
 
 						da.Fill(tmpDataTable);
 						tmpInt = tmpDataTable.Rows.Count;
-					#endif
+#endif
 
-					#if GET_STORED_PROCEDURE_PARAMETERS
+#if GET_STORED_PROCEDURE_PARAMETERS
 						if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -1052,9 +1046,9 @@ from
 						Console.WriteLine(cmd.CommandText);
 						for (int ii = 0; ii < cmd.Parameters.Count; ++ii)
 							Console.WriteLine("ParameterName: " + cmd.Parameters[ii].ParameterName + " SqlDbType: " + cmd.Parameters[ii].SqlDbType.ToString() + " Direction: " + cmd.Parameters[ii].Direction.ToString());
-					#endif
+#endif
 
-					#if TEST_BLOB
+#if TEST_BLOB
 						if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -1066,7 +1060,7 @@ from
 						byte[]
 							Blob;
 
-						#if TEST_BLOB_SAVE
+#if TEST_BLOB_SAVE
 							cmd.CommandText="insert into TableWithImgSrc (Img) values (@Img)";
 							cmd.Parameters.Clear();
 							cmd.Parameters.Add("@Img",SqlDbType.Image);
@@ -1075,9 +1069,9 @@ from
 							fs.Read(Blob,0,Blob.Length);
 							cmd.Parameters["@Img"].Value=Blob;
 							tmpInt=cmd.ExecuteNonQuery();
-						#endif
+#endif
 
-						#if TEST_BLOB_SAVE_BY_SP
+#if TEST_BLOB_SAVE_BY_SP
 							cmd.CommandType = CommandType.StoredProcedure;
 							cmd.CommandText = "TableWithImgDestSave";
 							SqlCommandBuilder.DeriveParameters(cmd);
@@ -1088,19 +1082,19 @@ from
 							cmd.Parameters["@Img"].Value=Blob;
 							tmpInt=cmd.ExecuteNonQuery();
 							cmd.CommandType = CommandType.Text;
-						#endif
+#endif
 
-                        #if !TEST_BLOB_LOAD_BY_SP
+#if !TEST_BLOB_LOAD_BY_SP
 						    cmd.CommandType = CommandType.Text;
 						    cmd.CommandText = "select * from TableWithImgDest";
                             //cmd.CommandText = "select ImageBody as Img from [current_weekly_AUTOTEST-VM2_192.168.2.42].dbo.refGoods where FullName = N'Goods_Copying_MixCO'";
 						    cmd.Parameters.Clear();
-                        #else
+#else
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.CommandText = "TableWithImgDestLoad";
                             SqlCommandBuilder.DeriveParameters(cmd);
                             cmd.Parameters["@Id"].Value = 1;
-                        #endif
+#endif
 						rdr = cmd.ExecuteReader();
 
 						do
@@ -1136,9 +1130,9 @@ from
 							}
 						} while (rdr.NextResult());
 						rdr.Close();
-					#endif
+#endif
 
-					#if TEST_STORED_PROCEDURE_PARAMETERS
+#if TEST_STORED_PROCEDURE_PARAMETERS
 						if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -1152,9 +1146,9 @@ from
 						//	cmd.Parameters[tmpString].Direction = ParameterDirection.Output;
 						cmd.Parameters["@output_param"].Value = DBNull.Value;
 						cmd.ExecuteNonQuery();
-					#endif
+#endif
 
-					#if TEST_FUNCTION
+#if TEST_FUNCTION
 						if (cmd == null)
 							cmd = conn.CreateCommand();
 
@@ -1177,9 +1171,9 @@ from
 						tmpObject = cmd.ExecuteScalar();
 						Console.WriteLine("cmd.ExecuteScalar()" + (tmpObject != null ? "!" : "=") + "=null");
 						Console.WriteLine("cmd.Parameters[\"@RETURN_VALUE\"].Value="+cmd.Parameters["@RETURN_VALUE"].Value);
-					#endif
-				}
-                #if INCLUDE_SQL_EXCEPTION
+#endif
+    }
+#if INCLUDE_SQL_EXCEPTION
                     catch (SqlException eException)
                     {
                         Console.WriteLine(eException.GetType().FullName + Environment.NewLine + "Message: " + eException.Message + Environment.NewLine + (eException.InnerException != null && !string.IsNullOrEmpty(eException.InnerException.Message) ? "InnerException.Message" + eException.InnerException.Message + Environment.NewLine : string.Empty) + "StackTrace:" + Environment.NewLine + eException.StackTrace);
@@ -1190,28 +1184,27 @@ from
                         // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"chicago_2_11_\" requested by the login. The login failed.\r\nLogin failed for user 'sa'."
                         // ErrorCode=-2146232060 Class=11 Number=4060   State=1 Server="server_name" Message "Cannot open database \"testdbtestdb\" requested by the login. The login failed.\r\nLogin failed for user 'test_login'." (Orphaned Users)
                     }
-                #endif
-				catch (Exception eException)
-				{
-                    Console.WriteLine($"{eException.GetType().FullName}{Environment.NewLine}Message: {eException.Message}{Environment.NewLine}{(!string.IsNullOrEmpty(eException.InnerException?.Message) ? $"InnerException.Message: {eException.InnerException.Message}{Environment.NewLine}" : string.Empty)}StackTrace:{Environment.NewLine}{eException.StackTrace}");
-				}
-			}
-			finally
-			{
-				if (rdr != null && !rdr.IsClosed)
-					rdr.Close();
+#endif
+    catch (Exception eException)
+    {
+        Console.WriteLine($"{eException.GetType().FullName}{Environment.NewLine}Message: {eException.Message}{Environment.NewLine}{(!string.IsNullOrEmpty(eException.InnerException?.Message) ? $"InnerException.Message: {eException.InnerException.Message}{Environment.NewLine}" : string.Empty)}StackTrace:{Environment.NewLine}{eException.StackTrace}");
+    }
+}
+finally
+{
+    if (rdr != null && !rdr.IsClosed)
+        rdr.Close();
 
-				if (conn != null && conn.State == ConnectionState. Open)
-					conn.Close();
+    if (conn != null && conn.State == ConnectionState.Open)
+        conn.Close();
 
-                //conn.Open();
+    //conn.Open();
 
-				if (fstr_out != null)
-					fstr_out.Close();
-			}
-		}
+    if (fstr_out != null)
+        fstr_out.Close();
+}
 
-        #if TEST_CONNECTION_STATE
+#if TEST_CONNECTION_STATE
             static void ConnStateChange(object sender, StateChangeEventArgs e)
             {
                 SqlConnection conn;
@@ -1221,9 +1214,9 @@ from
 
                 System.Diagnostics.Debug.WriteLine(string.Format("{0} -> {1}", e.OriginalState, e.CurrentState));
             }
-        #endif
+#endif
 
-        #if TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT
+#if TEST_TABLE_VALUED_PARAMETERS_IN_SELECT_STATEMENT
             static IEnumerable<SqlDataRecord> CreateSqlDataRecords(IEnumerable<long> ids)
             {
                 SqlMetaData[] metaData = new SqlMetaData[1];
@@ -1235,6 +1228,14 @@ from
                     yield return record;
                 }
             }
-        #endif
-	}
-}
+#endif
+
+/*
+  <connectionStrings>
+     <clear/>
+     <!--add name="connectionString" connectionString="Data Source=sunopps2-stg.database.windows.net;Initial Catalog=SunEdge;User Id=SunOppsServicesUser;Password='SOSSTG789&amp;*('" providerName="System.Data.SqlClient" /-->
+     <!--add name="connectionString" connectionString="Data Source=sunopps2-qa.database.windows.net;Initial Catalog=SunEdge;User Id=SunOppsServicesUser;Password='SOSQA789&amp;*('" providerName="System.Data.SqlClient"/-->
+     <!--add name="connectionString" connectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient"/-->
+     <add name="connectionString" connectionString="Data Source=.;Initial Catalog=testdb;User Id=sa;Password=123;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient"/>
+   </connectionStrings>
+*/

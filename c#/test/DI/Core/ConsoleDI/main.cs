@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ConsoleDI
 {
@@ -11,6 +12,7 @@ namespace ConsoleDI
             var services = new ServiceCollection();
 
             services.AddTransient<IParam1, Param1>();
+            services.TryAddTransient<IParam1, Param1>();
             services.AddTransient<IParam2, Param2>();
             services.AddTransient<IParam3, Param3>();
 

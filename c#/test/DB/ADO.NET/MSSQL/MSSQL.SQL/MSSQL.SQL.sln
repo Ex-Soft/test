@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSSQL.SQL", "MSSQL.SQL.csproj", "{F2226C5E-DA0C-4389-AC07-BC3EFB7714E0}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSSQL.SQL", "MSSQL.SQL.csproj", "{7C52A162-83ED-414A-A09E-1617ABCE7B21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F2226C5E-DA0C-4389-AC07-BC3EFB7714E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2226C5E-DA0C-4389-AC07-BC3EFB7714E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2226C5E-DA0C-4389-AC07-BC3EFB7714E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2226C5E-DA0C-4389-AC07-BC3EFB7714E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C52A162-83ED-414A-A09E-1617ABCE7B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C52A162-83ED-414A-A09E-1617ABCE7B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C52A162-83ED-414A-A09E-1617ABCE7B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C52A162-83ED-414A-A09E-1617ABCE7B21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BF04E60-CC03-468E-B48C-D97D0E878FC6}
 	EndGlobalSection
 EndGlobal
