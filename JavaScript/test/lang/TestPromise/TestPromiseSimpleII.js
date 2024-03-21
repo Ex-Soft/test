@@ -10,7 +10,7 @@
 		return;
 	}
 
-	Outer()
+	Outer(document.getElementById("checkboxReject").checked)
 		.then((param) => { console.log("DoIt() resolve(%s)", param) }, (param) => { console.log("DoIt() reject(%s)", param) })
 		.catch(error => { console.log("DoIt() catch(%s)", error)});
 }

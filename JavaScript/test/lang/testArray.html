@@ -17,6 +17,9 @@ var
 if(window.console && console.clear)
 	console.clear();
 
+const identity = entity => entity;
+const distinct = (arr, getKey = identity) => Array.isArray(arr) ? arr.filter((item, index, array) => array.findIndex((t) => getKey(t) === getKey(item)) === index) : [];
+
 if(window.console && console.log)
 {
 	// https://medium.com/dailyjs/parseint-mystery-7c4368ef7b21
@@ -189,10 +192,6 @@ if(window.console && console.log)
 	o1 = { id: 22, val: "22" };
 	aaa = { ...o1 }; // {id: 22, val: '22'}
 	console.log("find() -> edit %o", aa); // [{id: 1, val: '1'}, {id: 2, val: '2'}, {id: 3, val: '3'}]
-	
-	aa = [ 1, 2, 3, 4, 3, 2, 1 ];
-	aaa = aa.filter((currentValue, index, array) => array.indexOf(currentValue) === index);
-	console.log("unique %o",aaa);
 
 	aa = [ 0, 1, 2 ];
 	[].push.apply(aa, undefined);
@@ -332,12 +331,17 @@ if(window.console && console.log)
 	console.log(arrayIsEqual(aa, aa));
 	console.log(arrayIsEqual(aa, aaa));
 
-	aa = [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 4 ];
-	aaa = aa.filter((item, index, array) => array.indexOf(item) == index);
-	console.log(aaa);
-
+    aa = [ 1, 2, 3, 4, 3, 2, 1 ];
 	aaa = unique(aa);
 	console.log("unique = %o", aaa);
+	o1 = distinct(aa);
+	console.log("distinct = %o", o1);
+	
+	aa = [{ id: 1, val: "1st" }, { id: 2, val: "2nd" }, { id: 3, val: "3rd" }, { id: 4, val: "4th" }, { id: 3, val: "3rd" }, { id: 2, val: "2nd" }, { id: 1, val: "1st" } ];
+	aaa = unique(aa);
+	console.log("unique = %o", aaa);
+	o1 = distinct(aa, obj => obj.id);
+	console.log("distinct = %o", o1);
 }
 
 aa = [1, 4];
@@ -436,7 +440,7 @@ if(a.some)
 
 a=[];
 if(window.console && console.log)
-	console.log("typeof a.length=\"%s\", a.length=%i", typeof a.length, a.length);
+	console.log("typeof [].length=\"%s\", [].length=%i", typeof a.length, a.length);
 
 a=[0,1,2,3,4,5];
 
