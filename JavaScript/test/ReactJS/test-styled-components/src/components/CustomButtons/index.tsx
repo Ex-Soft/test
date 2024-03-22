@@ -7,7 +7,15 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   children,
   disabled,
 }) => {
-  return <S.Button disabled={disabled}>{children}</S.Button>;
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("CustomButton.onClick(%o)", e);
+  };
+
+  return (
+    <S.Button disabled={disabled} onClick={handleOnClick}>
+      {children}
+    </S.Button>
+  );
 };
 
 export const CustomButtonAsA: React.FC<{ children: any }> = ({ children }) => {

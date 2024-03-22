@@ -23,6 +23,7 @@ function App() {
       </div>
       <div className="container">
         <CustomButton>CustomButton</CustomButton>
+        <CustomButton disabled>CustomButton (disabled)</CustomButton>
         <CustomButtonAsA>CustomButtonAsA</CustomButtonAsA>
         <CustomTomatoButton disabled>CustomTomatoButton</CustomTomatoButton>
         <CustomTomatoButtonAsA>CustomTomatoButtonAsA</CustomTomatoButtonAsA>
