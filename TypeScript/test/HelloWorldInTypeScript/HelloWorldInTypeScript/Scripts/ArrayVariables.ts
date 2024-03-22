@@ -86,3 +86,16 @@ arrayOfAny = unique(arrayOfAny);
 if (window.console && console.log) {
     console.log("unique() = %o", arrayOfAny);
 }
+
+const identity = <T>(entity: T) => entity;
+const distinct = <T>(arr: T[], getKey: (obj: T) => unknown = identity): T[] => Array.isArray(arr) ? arr.filter((item, index, array) => array.findIndex((t) => getKey(t) === getKey(item)) === index) : [];
+
+arrayOfAny = [
+    { id: 1, value: "1st" },
+    { id: 1, value: "1st" },
+    { id: 3, value: "3rd" },
+];
+arrayOfAny = distinct(arrayOfAny, obj => obj.id);
+if (window.console && console.log) {
+    console.log("distinct() = %o", arrayOfAny);
+}
