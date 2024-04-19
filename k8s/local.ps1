@@ -57,6 +57,8 @@ kubectl rollout restart deployment
 kubectl scale deployment purchasehistory-staging --replicas=0
 kubectl scale deployment purchasehistory-staging --replicas=2
 
+kubectl delete pod xxx --now
+
 az login
 az account set --subscription [subscription-id]
 az aks get-credentials --resource-group [resource-group-name] --name [aks-cluster-name] --admin
