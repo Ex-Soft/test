@@ -23,8 +23,42 @@ var
 	ii,
 	matches;
 
+const isDigit = (str) => !/\D/.test(str);
+const isAlphanumeric = (str) => !/[^0-9a-z]/i.test(str);
+
 	if(window.console && console.clear)
 		console.clear();
+
+	// match vs exec vs matchAll
+	Str = "this hat is better than that hat.";
+	RegEx = /th(..) hat/g; // !!! WITH GLOBAL
+	matches = Str.match(RegEx);
+	console.log(matches); // [ "this hat", "that hat" ] => [ 0: "this hat", 1: "that hat", length: 2 ]
+	RegEx = /th(..) hat/; // !!! WITHOUT GLOBAL
+	matches = Str.match(RegEx);
+	console.log(matches); // [ "this hat", "is" ] => [ 0: "this hat", 1: "is", groups: undefined, index: 0, input: "this hat is better than that hat.", length: 2 ]
+	RegEx = /th(..) hat/g; // !!! WITH GLOBAL
+	matches = RegEx.exec(Str);
+	while (matches != null) {
+		console.log(matches);
+		matches = RegEx.exec(Str);
+		// [ "this hat", "is" ] => [ 0: "this hat", 1: "is", groups: undefined, index: 0, input: "this hat is better than that hat.", length: 2 ]
+		// [ "that hat", "at" ] => [ 0: "that hat", 1: "at", groups: undefined, index: 24, input: "this hat is better than that hat.", length: 2 ]
+	}
+	RegEx = /th(..) hat/g; // !!! WITH GLOBAL
+	matches = Str.matchAll(RegEx);
+	console.log([...matches]); // [ [ "this hat", "is" ], [ "that hat", "at" ] ] => [ 0: Array [ "this hat", "is" ], 1: Array: [ "that hat", "at" ], length: 2 ]
+
+	Str = "%B9999720058948888^MOORE/LAUREN DOYLE^1308101000000000048600486000000?;9999720058942497=13081010000000000486?";
+	RegEx = /%b(\d+?)\^(.+?)\/(.+?)\^(\d{2})(\d{2})(?=\d)/i;
+	matches = Str.match(RegEx);
+	let [, cardNumber = undefined, lastName = undefined, firstMiddleName = undefined,  expirationYear = undefined, expirationMonth = undefined] = matches;
+	console.log("Card number: \"%s\", Last name: \"%s\", First Middle name: \"%s\",  Expiration: \"%s/%s\"", cardNumber, lastName, firstMiddleName,  expirationMonth, expirationYear);
+
+	i = "123"; ii = "1b3";
+	console.log("!/\\D/.test(str) isDigit(\"%s\")=%o isDigit(\"%s\")=%o", i, isDigit(i), ii, isDigit(ii)); // true false
+	i = "1b3"; ii = "1+3";
+	console.log("!/[^0-9a-z]/i.test(str) isAlphanumeric(\"%s\")=%o isAlphanumeric(\"%s\")=%o", i, isAlphanumeric(i), ii, isAlphanumeric(ii)); // true false
 
 	RegEx = /\d{16}/;
 	i = undefined;
@@ -66,7 +100,7 @@ var
 	RegEx = `^\\$?(\\d+)([${i}]?)(\\d*)$`;
 	Str = "$1";
 	matches = Str.match(RegEx);
-	([, arr = "0", arrarr = i, ii = "00"] = matches)
+	([, arr = "0", arrarr = i, ii = "00"] = matches);
 	console.log("%s%s%s",arr, arrarr, ii);
 	
 	i = [ "/smthStr" ].some(item => [ "smthStr" ].findIndex(pattern => new RegExp(`^\\/?${pattern}$`).test(item)) !== -1);

@@ -12,6 +12,33 @@ function w(str)
    document.write(str,"<br>");
 }
 
+function stringToIntArray(str, separator = ",") {
+	if (!str)
+		return undefined;
+
+	const strInts = str.split(separator);
+	
+	if (!Array.isArray(strInts))
+		return undefined;
+
+	const result = [];
+
+	for (let i = 0, l = strInts.length; i < l; ++i) {
+		let valueStr = strInts[i];
+
+		try {
+			const value = parseInt(valueStr, 10);
+			
+			if (!isNaN(value))
+				result.push(value);
+		} catch {
+			continue;
+		}
+	}
+
+	return result.length ? result : undefined;
+}
+
 function formatStringFn() {
 	var str = arguments[0];
 	if (!str) {
@@ -241,6 +268,19 @@ if (window.console && console.log) {
   console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
   str_out = str.slice(i = -100); // "parentsUntil"
   console.log("\"%s\".slice(%i) = \"%s\"", str, i, str_out);
+  
+  str = undefined;
+  console.log(stringToIntArray(str));
+  str = null;
+  console.log(stringToIntArray(str));
+  str = "";
+  console.log(stringToIntArray(str));
+  str = "   ";
+  console.log(stringToIntArray(str));
+  str = "   1   ,   2   ,   a   ";
+  console.log(stringToIntArray(str));
+  str = "   1   ,       ,   a   ";
+  console.log(stringToIntArray(str));
 }
 
 str = "blah \"blah blah\" blah";      // "blah "blah blah" blah"

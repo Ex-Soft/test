@@ -6,7 +6,7 @@ const CustomControls: React.FC = () => {
     <div>
       <h1>ScannerInput</h1>
       <ScannerInput
-        codeLength={13}
+        codeLength={[6,8,13]}
         wait={500}
         onChange={(o) => console.log(o)}
       />
