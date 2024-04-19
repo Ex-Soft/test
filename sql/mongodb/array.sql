@@ -11,6 +11,7 @@ db.events.find({ sku: { $regex: /^lsp/i }, $or: [ { channels: { $exists: false }
 db.events.updateMany({ _id: ObjectId("627cc36cc362dde1a71e076a") }, { $push: { channels: "lsp" } });
 db.events.updateMany({ sku: { $regex: /^lsp/i }, $or: [ { channels: { $exists: false } }, { channels: null }, { channels: [] } ] }, { $push: { channels: "lsp" } });
 db.events.updateOne({ _id: ObjectId('6422d984eefee624f7f669db') }, { $pull: { dealerTypes: { $in: [ 'preferred_dealer' ] } } });
+db.dealers.updateOne({ _id: ObjectId("621be54f3f25ac2358b92e95") }, { $push: { associatedMasterDealers: { masterDealerId: "9999999999" } } });
 
 {
   $or: [

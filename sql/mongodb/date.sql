@@ -18,3 +18,8 @@ db.testdate.find({ dateStr: { $gte: '2023-03-28T13:13:13.123Z', $lt: '2023-03-30
 db.testdate.find({ $expr: { $and: [ { $gte: [{ $toDate: '$dateISOStr' }, new ISODate('2023-03-28T13:13:13.123Z')] }, { $lt: [{ $toDate: '$dateISOStr' }, new ISODate('2023-03-30T13:13:13.123Z')] } ] } }).pretty();
 
 db.testdate.find({ dateISODate: { $gte: new ISODate('2023-03-28T13:13:13.123Z'), $lt: new ISODate('2023-03-30T13:13:13.123Z') } }).pretty();
+
+$match
+{
+  createdOn: { $gt: ISODate("2023-01-01")}
+}

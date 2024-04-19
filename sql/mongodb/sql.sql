@@ -1,4 +1,5 @@
 /* https://www.mongodb.com/docs/manual/meta/aggregation-quick-reference/#std-label-aggregation-expressions */
+/* https://www.mongodb.com/community/forums/t/equivalent-of-select-distinct-on-in-mongodb/103810/7 */
 
 db.version();
 
@@ -30,6 +31,12 @@ $project
 	_id: 1,
 	email: 1,
 	dealerTypes: 1
+}
+
+$group
+{
+  _id: "$emailLower",
+  count: { $count: {} }
 }
 
 db.users.find({'dealerTypes': {'$ne': null}}).pretty();
@@ -375,3 +382,6 @@ $lookup
   foreignField: "_id",
   as: "dealers.users"
 }
+
+db.getSiblingDB("thedirectvmarketingzone").getCollection("products").aggregate([{$match: {createdOn: {$gt: new ISODate("2023-01-01")}}}, {$unwind: {path: "$variants", preserveNullAndEmptyArrays: true}}, {$match: {$and: [{"variants.inDesignFile": {$exists: true}}, {"variants.inDesignFile": {$ne: null}}, {"variants.inDesignFile": {$ne: ""}}]}}, {$sort: {createdOn: 1}}, {$project: {_id: 0, createdOn: 1, inDesignFile: "$variants.inDesignFile"}}]).pretty();
+db.getSiblingDB("thedirectvmarketingzone").getCollection("products").aggregate([{$match: { $expr: { $and: [ { type: 1 }, { vendor: 1 }, { status: 1 }, { $isArray: "$variants" }, { $gt: [ { $size: "$variants" }, 0 ] } ] } } }, {$unwind: { path: "$variants", preserveNullAndEmptyArrays: true }}, {$match: {$expr: {$and: [{ $isArray: "$variants.media" }, { $gt: [ { $size: "$variants.media" }, 0 ] }]}}}, {$project: {_id: 0, sku: 1, title: 1, url: {$arrayElemAt: ["$variants.media", 0]}}}, {$project: {title: 1, sku: 1, url: { $substrBytes: [ "$url", 0, { $indexOfBytes: [ "$url", "?" ] } ] } }}]);
