@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Settings, useSettings } from "./index";
+import { CartContainer } from "./components/organisms";
 import "./App.css";
 
 type ChildProps = {
@@ -79,7 +80,13 @@ const Parent: React.FC = () => {
 };
 
 function App() {
-  return <Parent />;
+  return (
+    <>
+      <Parent />
+      <hr />
+      <CartContainer />
+    </>
+  );
 }
 
 export default App;

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { CartContextProvider } from "./contexts/cart";
 
 export interface Settings {
   p1?: string;
@@ -60,7 +61,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <SettingsContextProvider>
-      <App />
+      <CartContextProvider>
+        <App />
+      </CartContextProvider>
     </SettingsContextProvider>
   </React.StrictMode>
 );

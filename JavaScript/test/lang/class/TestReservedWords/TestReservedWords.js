@@ -1,9 +1,3 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>Test Reserved Words</title>
-		<script>
 class TestClassWithReservedWords {
 	constructor() {
 		if (window.console && console.log)
@@ -49,8 +43,3 @@ function onLoad() {
 		testClassWithReservedWords.delete();
 	}
 }
-		</script>
-	</head>
-	<body onload="onLoad()">
-	</body>
-</html>
