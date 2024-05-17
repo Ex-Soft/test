@@ -41,7 +41,11 @@ Your order, {{ model.order_id}}, is now ready to be collected.
 Your order shall be delivered to {{ model.address }}.  If you need it delivered to another location, please contact as ASAP.
 
 Order: {{ model.order_id}}
-Total: {{ model.total | math.format ""c"" ""en-US"" }}
+{{ if model.total }}Total: {{ model.total | math.format ""c"" ""en-US"" }}{{ end }}
+{{- if model.subtotal }}Subtotal: {{ model.subtotal | math.format ""c"" ""en-US"" }}{{ end }}
+{{- if model.discount > 0 }}Discount: {{ model.discount | math.format ""c"" ""en-US"" }}{{ end }}
+Created: {{ model.date_time_created | date.to_string ""%B %d, %Y %T %p %Z"" }}
+CreatedWithOffset: {{ model.date_time_created_with_offset.date_time | date.to_string ""%B %d, %Y %T %p %Z"" }}
 
 Items:
 ------
@@ -51,12 +55,14 @@ Items:
 
 Thanks,
 BuyFromUs
+
+{{ date.now.year }}
 ");
 result = template.Render(new
 {
     Model = new
     {
-        Name = "Bob Smith", Address = "1 Smith St, Smithville", OrderId = "123455", Total = 23435.34,
+        Name = "Bob Smith", Address = "1 Smith St, Smithville", OrderId = "123455", Total = 23435.34, Discount = 0, DateTimeCreated = DateTime.Parse("2024-05-01T09:09:09.123+03:00"), DateTimeCreatedWithOffset = DateTimeOffset.Parse("2024-05-01T09:09:09.123+03:00"),
         Items = new[]
         {
             new { Name = "1kg carrots", Quantity = 1, Total = 4.99 },

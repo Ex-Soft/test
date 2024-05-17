@@ -42,6 +42,7 @@ namespace TestDateTimeOffset
             DateTimeOffset.TryParse(tmpString, out tmpDateTimeOffset1);
             tmpDateTimeOffset2 = tmpDateTimeOffset1.AddDays(1);
             tmpString = tmpDateTimeOffset2.ToString("yyyy-MM-dd hh:mm:ss zzz"); // "2022-10-30 03:59:59 +03:00"
+            tmpDateTime1 = tmpDateTimeOffset1.DateTime;
             tmpString = "2022-10-29T04:00:00+03:00";
             DateTimeOffset.TryParse(tmpString, out tmpDateTimeOffset1);
             tmpDateTimeOffset2 = tmpDateTimeOffset1.AddDays(1);
