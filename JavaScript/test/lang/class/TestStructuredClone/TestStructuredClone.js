@@ -40,5 +40,14 @@ function onLoad() {
 		console.log("typeof structuredClone.fullName = \"%s\"", typeof personByClassCloneByStructuredClone.fullName); // undefined
 		const personByClassCloneByClone = {...personByClass};
 		console.log("typeof clone.fullName = \"%s\"", typeof personByClassCloneByClone.fullName); // undefined
+
+		for (let p in personByClass) {
+			console.log(p);
+		}
+		
+		let d = Object.getOwnPropertyDescriptor(personByClass, "firstName");
+		console.log(d);
+		d = Object.getOwnPropertyDescriptor(personByClass, "fullName");
+		console.log(d);
 	}
 }

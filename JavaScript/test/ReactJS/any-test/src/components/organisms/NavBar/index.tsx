@@ -56,6 +56,9 @@ const NavBar: React.FC = () => {
                 <li>
                     <NavLink to="/testconditionalrendering">TestConditionalRendering</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/testlocalstorage">TestLocalStorage</NavLink>
+                </li>
             </ul>
         </nav>
     );

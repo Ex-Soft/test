@@ -20,12 +20,21 @@ function onLoad()
 	console.clear();
 
 	let
-		num1 = 1.23456789,
+		num1,
 		num2,
 		num3,
 		str1,
 		str2,
 		str3;
+
+	str1 = undefined;
+	str2 = null;
+	console.log("isNaN(%o)=%o isNaN(%o)=%o", str1, isNaN(str1), str2, isNaN(str2));
+
+	num1 = 13;
+	num2 = 100000;
+	num3 = num1 * num2 + num1;
+	console.log("%o * %o + %o = %o Math.floor(%o * %o + %o) = %o", num1, num2, num1, num3, num1, num2, num1, Math.floor(num3 / num2));
 
 	str1 = "107.71";
 	str2 = "305.14";
@@ -33,6 +42,7 @@ function onLoad()
 	console.log("(parseFloat(\"%s\") + parseFloat(\"%s\")) - roundCurrency(parseFloat(\"%s\") + parseFloat(\"%s\")) = %o", str1, str2, str1, str2, (parseFloat(str1) + parseFloat(str2)) - roundCurrency(parseFloat(str1) + parseFloat(str2))); // -5.684341886080802e-14
 	console.log("Math.abs((parseFloat(\"%s\") + parseFloat(\"%s\")) - roundCurrency(parseFloat(\"%s\") + parseFloat(\"%s\"))) < Number.EPSILON  = %o", str1, str2, str1, str2, Math.abs((parseFloat(str1) + parseFloat(str2)) - roundCurrency(parseFloat(str1) + parseFloat(str2))) < Number.EPSILON); // false
 
+	num1 = 1.23456789;
 	for (let i = 0; i < 10; ++i)
 		console.log("num=%o roundTo()=%o toFixed()=%o toPrecision()=%o", num1, roundTo(num1, -i), num1.toFixed(i), i ? num1.toPrecision(i) : "");
 

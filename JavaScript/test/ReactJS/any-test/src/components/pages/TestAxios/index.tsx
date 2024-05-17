@@ -3,6 +3,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
+import { Cart, CartProduct } from '../../../classes/cart';
 import './index.css';
 
 const TestAxios: React.FC = () => {
@@ -32,7 +33,7 @@ const TestAxios: React.FC = () => {
             console.log(error);
         }
     }
-    
+
     const handle500 = async () => {
         axios.get(`${baseCoOpUrl}/get500`)
             .then(response => {
@@ -58,11 +59,29 @@ const TestAxios: React.FC = () => {
         }
     }
 
+    const handleTestClone = async () => {
+        const data = new Cart([]);
+        console.log(data);
+        data.products?.push(new CartProduct(1, 10, 100));
+        data.products?.push(new CartProduct(2, 20, 100));
+        console.log(data.total);
+
+        try {
+            const response = await axios.post(`${baseCoOpUrl}/testclone`, data);
+            console.log("status: %i, statusText: \"%s\", data: %o", response.status, response.statusText, response.data);
+        } catch (error: any) {
+            console.log("code: \"%s\", response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.response.status, error.response.statusText, error.response.data);
+        }
+    }
+
     return (
         <div>
             <h1>Axios</h1>
             <div className="table">
-                <input type="button" value="200" onClick={handle200} /><input type="button" value="500" onClick={handle500} /><input type="button" value="async 500" onClick={handle500Async} />
+                <input type="button" value="200" onClick={handle200} />
+                <input type="button" value="500" onClick={handle500} />
+                <input type="button" value="async 500" onClick={handle500Async} />
+                <input type="button" value="Test Clone" onClick={handleTestClone} />
             </div>
         </div>
     );

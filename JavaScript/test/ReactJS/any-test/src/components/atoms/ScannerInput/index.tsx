@@ -23,7 +23,7 @@ export type ScannerInputProps = {
   codeLength?: number | number[];
   wait?: number;
   onChange?: (value?: ScannerInputValue) => void;
-  allowAlphanumeric?: boolean;
+  testFn?: (str: string) => boolean;
 };
 
 interface ScannerInputState {
@@ -35,7 +35,7 @@ const checkCode = (
   value?: string,
   lastValue?: string,
   codeLength?: number | number[],
-  allowAlphanumeric?: boolean
+  testFn?: (str: string) => boolean
 ) => {
   const isNotCodeResult = { isCode: false, code: undefined };
 
@@ -47,8 +47,6 @@ const checkCode = (
     codeLength = [codeLength];
   }
 
-  const testFn = allowAlphanumeric === true ? isAlphanumeric : isDigit;
-
   for (let i = 0, l = codeLength.length; i < l; ++i) {
     let code,
       _codeLength = codeLength[i];
@@ -56,7 +54,7 @@ const checkCode = (
     const isCode =
       !!value &&
       value.length - (lastValue?.length || 0) === _codeLength &&
-      testFn((code = value.slice(-_codeLength)));
+      testFn?.((code = value.slice(-_codeLength)));
 
     if (isCode) {
       return { isCode, ...(isCode && { code }) };
@@ -70,7 +68,7 @@ const ScannerInput: React.FC<ScannerInputProps> = ({
   codeLength = undefined,
   wait = undefined,
   onChange = undefined,
-  allowAlphanumeric = undefined,
+  testFn = isDigit,
 }) => {
   console.log("ScannerInput() started");
 
@@ -94,7 +92,7 @@ const ScannerInput: React.FC<ScannerInputProps> = ({
           value,
           state?.lastValue,
           codeLength,
-          allowAlphanumeric
+          testFn
         );
 
         if (isFunction(setState)) {

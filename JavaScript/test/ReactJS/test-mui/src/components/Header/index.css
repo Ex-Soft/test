@@ -1,0 +1,7 @@
+.header-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  column-gap: 10px;
+}

@@ -19,7 +19,9 @@ import {
   GridRowModel,
   GridRowEditStopReasons,
   GridSlots,
+  GridToolbarExport,
 } from "@mui/x-data-grid";
+import { SaveAlt } from "@mui/icons-material";
 
 const roles = ["Market", "Finance", "Development"];
 
@@ -43,7 +45,7 @@ interface EditToolbarProps {
 function EditToolbar(props: EditToolbarProps) {
   const { setRows, setRowModesModel } = props;
 
-  const handleClick = () => {
+  const handleAddRecordClick = () => {
     const id = -1;
     setRows((oldRows) => [...oldRows, { id, name: "", age: "", isNew: true }]);
     setRowModesModel((oldModel) => ({
@@ -52,10 +54,25 @@ function EditToolbar(props: EditToolbarProps) {
     }));
   };
 
+  const handleExportClick = () => {
+    console.log("export");
+  };
+
   return (
     <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+      <Button
+        color="primary"
+        startIcon={<AddIcon />}
+        onClick={handleAddRecordClick}
+      >
         Add record
+      </Button>
+      <Button
+        color="primary"
+        startIcon={<SaveAlt />}
+        onClick={handleExportClick}
+      >
+        Export
       </Button>
     </GridToolbarContainer>
   );

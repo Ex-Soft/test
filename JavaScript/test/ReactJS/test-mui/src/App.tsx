@@ -1,12 +1,22 @@
-import React from 'react';
-import { FullFeaturedCrudGrid } from "./components";
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import {
+  Home,
+  FullFeaturedCrudGrid,
+  GridWithGridToolbar,
+  NoMatch,
+} from "./components";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <FullFeaturedCrudGrid />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}>
+        <Route path="fullfeaturedcrudgrid" element={<FullFeaturedCrudGrid />} />
+        <Route path="gridwithgridtoolbar" element={<GridWithGridToolbar />} />
+        <Route path="*" element={<NoMatch />} />
+      </Route>
+      <Route path="*" element={<NoMatch />} />
+    </Routes>
   );
 }
 

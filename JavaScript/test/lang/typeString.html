@@ -164,6 +164,8 @@ if (window.console && console.log) {
   console.log("{ strValue: %o }?.strValue = %o !{ strValue: %o }?.strValue = %o !!{ strValue: %o }?.strValue = %o", o?.strValue, o?.strValue, o?.strValue, !o?.strValue, o?.strValue, !!o?.strValue); // null true false
   o = { strValue: "" };
   console.log("{ strValue: \"%s\" }?.strValue = \"%s\" !{ strValue: \"%s\" }?.strValue = %o !!{ strValue: \"%s\" }?.strValue = %o", o?.strValue, o?.strValue, o?.strValue, !o?.strValue, o?.strValue, !!o?.strValue); // "" true false
+  o = { strValue: "strValue" };
+  console.log("{ strValue: \"%s\" }?.strValue = \"%s\" !{ strValue: \"%s\" }?.strValue = %o !!{ strValue: \"%s\" }?.strValue = %o", o?.strValue, o?.strValue, o?.strValue, !o?.strValue, o?.strValue, !!o?.strValue); // "strValue" false true
   
   str = "";
   str_out = str.charAt(0);

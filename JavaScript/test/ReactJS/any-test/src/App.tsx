@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce, TestConditionalRendering } from './components';
+import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce, TestConditionalRendering, TestLocalStorage } from './components';
 import { ImpersonatedUserContextProvider, useImpersonatedUser } from './contexts';
 import './App.css';
 
@@ -35,6 +35,7 @@ const App = () => {
             <Route path="/testcustomdatafetchinghook" element={<TestCustomDataFetchingHook />} />
             <Route path="/testdebonce" element={<TestDebounce />} />
             <Route path="/testconditionalrendering" element={<TestConditionalRendering booleanValue={true} />} />
+            <Route path="/testlocalstorage" element={<TestLocalStorage />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Suspense>
