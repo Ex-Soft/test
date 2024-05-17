@@ -50,5 +50,13 @@ namespace AnyTest.Controllers
             await Task.Delay(3000);
             return StatusCode(StatusCodes.Status500InternalServerError, "{ \"errorCode\": 500, \"errorMessage\": \"Server error\" }");
         }
+
+        [HttpPost]
+        [Route("testclone")]
+        public async Task<IActionResult> TestClone([FromBody] CartDto cartDto)
+        {
+            await Task.Delay(3000);
+            return Ok();
+        }
     }
 }
