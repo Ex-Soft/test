@@ -1,3 +1,5 @@
+SELECT * FROM sys.time_zone_info WHERE name = 'Pacific Standard Time';
+
 declare
   @t_date date,
   @t_datetime datetime,

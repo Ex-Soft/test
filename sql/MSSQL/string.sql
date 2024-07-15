@@ -7,6 +7,11 @@ declare
   @s1 nvarchar(256),
   @s2 nvarchar(256)
 
+set @s1 = N'   123 567   ';
+print N'''' + ltrim(@s1) + N'''';
+print N'''' + rtrim(@s1) + N'''';
+print N'''' + trim(@s1) + N'''';
+
 set @s1 = N'123 567'
 set @s2 = stuff(@s1, 4, 1, '') -- '123567'
 print N'''' + @s2 + N''''
