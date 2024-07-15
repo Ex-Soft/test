@@ -5,6 +5,8 @@ import {
   GridWithGridToolbar,
   TestTextField,
   NoMatch,
+  TestForwardRef,
+  TestComponentWithMethods,
 } from "./components";
 import "./App.css";
 
@@ -16,6 +18,11 @@ function App() {
         <Route path="gridwithgridtoolbar" element={<GridWithGridToolbar />} />
         <Route path="gridwithgridtoolbar" element={<GridWithGridToolbar />} />
         <Route path="testtextfield" element={<TestTextField />} />
+        <Route path="testforwardref" element={<TestForwardRef />} />
+        <Route
+          path="testcomponentwithmethods"
+          element={<TestComponentWithMethods />}
+        />
         <Route path="*" element={<NoMatch />} />
       </Route>
       <Route path="*" element={<NoMatch />} />

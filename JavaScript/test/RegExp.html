@@ -53,7 +53,7 @@ const isAlphanumeric = (str) => !/[^0-9a-z]/i.test(str);
 	RegEx = /%b(\d+?)\^(.+?)\/(.+?)\^(\d{2})(\d{2})(?=\d)/i;
 	matches = Str.match(RegEx);
 	let [, cardNumber = undefined, lastName = undefined, firstMiddleName = undefined,  expirationYear = undefined, expirationMonth = undefined] = matches;
-	console.log("Card number: \"%s\", Last name: \"%s\", First Middle name: \"%s\",  Expiration: \"%s/%s\"", cardNumber, lastName, firstMiddleName,  expirationMonth, expirationYear);
+	console.log("Card number: \"%s\", Last name: \"%s\", First Middle name: \"%s\",  Expiration: \"%s%s\" (\"%s/%s\")", cardNumber, lastName, firstMiddleName,  expirationYear, expirationMonth, expirationMonth, expirationYear);
 
 	i = "123"; ii = "1b3";
 	console.log("!/\\D/.test(str) isDigit(\"%s\")=%o isDigit(\"%s\")=%o", i, isDigit(i), ii, isDigit(ii)); // true false

@@ -13,6 +13,14 @@ const Header: React.FC = () => {
       <div>
         <NavLink to="testtextfield">TestTextField</NavLink>
       </div>
+      <div>
+        <NavLink to="testforwardref">TestForwardRef</NavLink>
+      </div>
+      <div>
+        <NavLink to="testcomponentwithmethods">
+          TestComponentWithMethods
+        </NavLink>
+      </div>
     </div>
   );
 };
