@@ -46,6 +46,7 @@ Order: {{ model.order_id}}
 {{- if model.discount > 0 }}Discount: {{ model.discount | math.format ""c"" ""en-US"" }}{{ end }}
 Created: {{ model.date_time_created | date.to_string ""%B %d, %Y %T %p %Z"" }}
 CreatedWithOffset: {{ model.date_time_created_with_offset.date_time | date.to_string ""%B %d, %Y %T %p %Z"" }}
+{{ if model.date_time_offset_optional }}DateTimeOffsetOptional: {{ model.date_time_offset_optional.date_time | date.to_string ""%B %d, %Y %T %p %Z"" }}{{ end }}
 
 Items:
 ------
@@ -62,7 +63,7 @@ result = template.Render(new
 {
     Model = new
     {
-        Name = "Bob Smith", Address = "1 Smith St, Smithville", OrderId = "123455", Total = 23435.34, Discount = 0, DateTimeCreated = DateTime.Parse("2024-05-01T09:09:09.123+03:00"), DateTimeCreatedWithOffset = DateTimeOffset.Parse("2024-05-01T09:09:09.123+03:00"),
+        Name = "Bob Smith", Address = "1 Smith St, Smithville", OrderId = "123455", Total = 23435.34, Discount = 0, DateTimeCreated = DateTime.Parse("2024-05-01T09:09:09.123+03:00"), DateTimeCreatedWithOffset = DateTimeOffset.Parse("2024-05-01T09:09:09.123+03:00"), DateTimeOffsetOptional = (DateTimeOffset?)null,
         Items = new[]
         {
             new { Name = "1kg carrots", Quantity = 1, Total = 4.99 },
