@@ -1,28 +1,36 @@
+// https://blog.softwaremill.com/who-am-i-keycloak-impersonation-api-bfe7acaf051a
+// https://keycloak.discourse.group/t/impersonate-user-via-keycloak-api/6748/3
+// https://okraskat.github.io/impersonation-in-keycloak/
+// https://stackoverflow.com/questions/57496638/keycloak-impersonation-api-not-implemented
+// https://stackoverflow.com/questions/76737735/keycloak-impersonation-in-react
+// https://github.com/keycloak/keycloak/discussions/21881
+
+
 import { useState } from "react";
 import Keycloak from "keycloak-js";
 import { AuthClientInitOptions } from "@react-keycloak/core";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import axios from 'axios';
 
-// const config = {
-//   realm: "myrealm",
-//   url: "http://localhost:8080/auth/",
-//   clientId: "admin-dev" // "react-auth"
-// };
-// const impersonatorUserName = "myuser";
-// const impersonatorPassword = "myuser";
-// const testUserId = "f37b3465-fe29-446d-8f5c-b6cf31d1bb43";
-// const requestedSubject = "testuser";
-
 const config = {
-  realm: "the-marketing-zone-dev",
-  url: "https://auth-dev.thedirectvmarketingzone.com/auth/",
-  clientId: "admin-dev"
+  realm: "myrealm",
+  url: "http://localhost:8080/auth/",
+  clientId: "react-auth" // "admin-dev"
 };
-const impersonatorUserName = "myuser@mailinator.com";
+const impersonatorUserName = "myuser";
 const impersonatorPassword = "myuser";
-const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
-const requestedSubject = "testuser@mailinator.com";
+const testUserId = "09af0adc-bc5f-4b1e-9cf7-1d8e9b976217";
+const requestedSubject = "testuser";
+
+// const config = {
+//   realm: "the-marketing-zone-dev",
+//   url: "https://auth-dev.thedirectvmarketingzone.com/auth/",
+//   clientId: "admin-dev"
+// };
+// const impersonatorUserName = "myuser@mailinator.com";
+// const impersonatorPassword = "myuser";
+// const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
+// const requestedSubject = "testuser@mailinator.com";
 
 const keycloak = new (Keycloak as any)(config);
 
