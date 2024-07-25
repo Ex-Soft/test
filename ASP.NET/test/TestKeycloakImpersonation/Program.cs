@@ -1,4 +1,4 @@
-// #define LOCAL
+#define LOCAL
 
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,16 +13,16 @@ const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 #if LOCAL
     const string realm = "myrealm";
     const string authServerUrl = "http://localhost:8080/auth/"; // "http://localhost:8080/auth/"
-    const string testUserId = "f37b3465-fe29-446d-8f5c-b6cf31d1bb43";
+    const string testUserId = "09af0adc-bc5f-4b1e-9cf7-1d8e9b976217";
     const string requestedSubject = "testuser";
-    const string clientId = "admin-dev"; // ""react-auth";
+    const string clientId = "react-auth"; // "admin-dev";
     const string impersonatorUserName = "myuser";
 #else
     const string realm = "the-marketing-zone-dev";
     const string authServerUrl = "https://auth-dev.thedirectvmarketingzone.com/auth/";
     const string testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
     const string requestedSubject = "testuser@mailinator.com";
-    const string clientId = "admin-dev";
+    const string clientId = "react-auth"; // "admin-dev";
     const string impersonatorUserName = "myuser@mailinator.com";
 #endif
 
