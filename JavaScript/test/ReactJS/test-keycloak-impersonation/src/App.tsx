@@ -12,15 +12,15 @@ import { AuthClientInitOptions } from "@react-keycloak/core";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import axios from 'axios';
 
-const config = {
-  realm: "myrealm",
-  url: "http://localhost:8080/auth/",
-  clientId: "react-auth" // "admin-dev"
-};
-const impersonatorUserName = "myuser";
-const impersonatorPassword = "myuser";
-const testUserId = "09af0adc-bc5f-4b1e-9cf7-1d8e9b976217";
-const requestedSubject = "testuser";
+// const config = {
+//   realm: "myrealm",
+//   url: "http://localhost:8080/auth/",
+//   clientId: "react-auth" // "admin-dev"
+// };
+// const impersonatorUserName = "myuser";
+// const impersonatorPassword = "myuser";
+// const testUserId = "09af0adc-bc5f-4b1e-9cf7-1d8e9b976217";
+// const requestedSubject = "testuser";
 
 // const config = {
 //   realm: "the-marketing-zone-dev",
@@ -31,6 +31,16 @@ const requestedSubject = "testuser";
 // const impersonatorPassword = "myuser";
 // const testUserId = "c97fb064-b0e7-4913-9889-88df6304bdec";
 // const requestedSubject = "testuser@mailinator.com";
+
+const config = {
+  realm: "the-marketing-zone-stg",
+  url: "https://auth-staging.thedirectvmarketingzone.com/auth/",
+  clientId: "admin-stg"
+};
+const impersonatorUserName = "myuser@mailinator.com";
+const impersonatorPassword = "myuser";
+const testUserId = "92e9bb3e-a613-4984-a367-15843d1c32b8";
+const requestedSubject = "testuser@mailinator.com";
 
 const keycloak = new (Keycloak as any)(config);
 
