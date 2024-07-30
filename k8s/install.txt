@@ -1,6 +1,9 @@
 https://kubernetes.io/docs/tasks/tools/install-kubectl/ -> https://storage.googleapis.com/kubernetes-release/release/stable.txt
-wget -bc --no-check-certificate "https://dl.k8s.io/release/v1.28.3/bin/windows/amd64/kubectl.exe"
+curl -LO "https://dl.k8s.io/release/v1.30.3/bin/windows/amd64/kubectl.exe" 
+wget -bc --no-check-certificate "https://dl.k8s.io/release/v1.30.3/bin/windows/amd64/kubectl.exe"
 
 https://kubernetes.io/docs/tasks/tools/install-minikube/
+curl -LO "https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe"
+
 https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
 https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html
