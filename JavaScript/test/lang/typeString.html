@@ -182,6 +182,10 @@ if (window.console && console.log) {
   str = "2252L";
   console.log("\"%s\".substring(0, str.length - 1)=\"%s\"", str, str.substring(0, str.length - 1)); // "2252"
 
+  str = "directv\xa0DiReCtV\xa0dIrEcTv";
+  str_out = str.replace(/directv/ig, "DIRECTV").replace(/\xa0/g, "\x20");
+  console.log("\"%s\" -> \"%s\"", str, str_out);
+
   str_out = insertString("456789", 3, ".");
 
   str_out = normalizeMoneyString();
