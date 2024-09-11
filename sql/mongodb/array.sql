@@ -38,6 +38,12 @@ db.testarray.insertOne({ _id: 11, objects: null });
 db.testarray.insertOne({ _id: 12, objects: [] });
 db.testarray.insertOne({ _id: 13, objects: [{ price: "123.45" }] });
 db.testarray.insertOne({ _id: 14, objects: [{ price: "$678.90" }] });
+db.testarray.insertOne({ _id: 15, outerArray: null });
+db.testarray.insertOne({ _id: 16, outerArray: [] });
+db.testarray.insertOne({ _id: 17, outerArray: [{ innerArray: null }] });
+db.testarray.insertOne({ _id: 18, outerArray: [{ innerArray: [] }] });
+db.testarray.insertOne({ _id: 19, outerArray: [{ innerArray: [ 1, 2, 3, 4, 5 ] }] });
+db.testarray.insertOne({ _id: 20, outerArray: [{ innerArray: [ 1, 2, 3, 4, 5 ] }, { innerArray: [ 10, 20, 30, 40, 50 ] }] });
 
 db.testarray.updateMany({ $and: [ { items: { $exists: true } }, { items: { $ne: null } }, { $expr: { $eq: [{ $type: "$items" }, "array"]} }, { items: { $ne: [] } }, { $expr: { $ne: [{ $size: "$items" }, 0] } } ] }, { $push: { values: { $each: [ 13, 42 ] } } });
 db.testarray.updateMany({ $and: [ { $expr: { $isArray: "$items" } }, { items: { $ne: [] } } ], $expr: { $eq: [ { $mod: [ "$_id", 2 ] }, 0 ] } }, { $push: { values: { $each: [ 1, 9, 25, 99 ] } } });
@@ -68,3 +74,33 @@ db.testarray.updateMany({ "objects.price": { $regex: /[^\d.]/ } }, { $set: { "ob
 db.testarray.updateMany({ "objects.price": { $regex: /[^\d.]/ } }, { $unset: { "options": "" } });
 db.testarray.updateOne({ _id: 14 }, { $set: { objects: [{ price: "$678.90" }] } });
 db.testarray.updateMany({ "objects.price": { $regex: /[^\d.]/ } }, { $set: { "objects.$.price": { $replaceAll: { input: "objects.$.price", find: { $literal: "$" }, replacement: "" } } } });
+
+{
+  $and: [
+    { outerArray: { $exists: true } },
+    { outerArray: { $ne: null } },
+    { $expr: { $eq: [{ $type: "$outerArray" }, "array"]} },
+    { $expr: { $isArray: "$outerArray"} },
+    { outerArray: { $ne: [] } },
+    { $expr: { $ne: [{ $size: "$outerArray" }, 0] } },
+    { outerArray: { $elemMatch: { innerArray: { $exists: true } } } },
+    { outerArray: { $elemMatch: { innerArray: { $ne: null } } } },
+	//{ outerArray: { $elemMatch: { $eq: [{ $type: "$innerArray" }, "array"]} } },
+	//{ outerArray: { $elemMatch: { $isArray: "$innerArray"} } },
+    { outerArray: { $elemMatch: { innerArray: { $ne: [] } } } },
+    { outerArray: { $elemMatch: { innerArray: 3 } } },
+    { "outerArray.innerArray": { $elemMatch: { $eq: 3 } } }
+  ]
+}
+
+db.testarray.findOneAndUpdate({ _id: 21 }, { $push: { items: "1st" } }, { upsert: true });
+db.testarray.findOneAndUpdate({ _id: 21 }, { $push: { items: "2nd" } }, { upsert: true });
+db.testarray.findOneAndUpdate({ _id: 21 }, { $push: { items: "3rd" } }, { upsert: true });
+
+db.testarray.findOneAndUpdate({ _id: 21 }, { $pull: { items: "2nd" } }); [ "1st", "3rd" ]
+db.testarray.findOneAndUpdate({ _id: 21 }, { $pull: { items: { $ne: "2nd" } } });
+
+db.testarray.findOneAndUpdate({ _id: 21 }, { $unset: { "items.1": 1 } }); [ "1st", null, "3rd" ]
+
+db.testarray.find({ _id: 21 }).pretty();
+db.getSiblingDB("testdb").getCollection("testarray").find({ _id: 21 }).pretty();
