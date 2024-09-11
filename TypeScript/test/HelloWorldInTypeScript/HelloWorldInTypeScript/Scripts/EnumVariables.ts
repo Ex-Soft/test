@@ -146,3 +146,57 @@ if (window.console && console.log) {
     const found = GetEnumKeyByValue(DealerType, 'top_event_dealer')
     if (found) console.log(DealerType[found])
 }
+
+for (let key in Object.keys(Reason)) {
+    if (window.console && console.log) {
+        console.log("key=%s Reason[%s]=\"%s\"", key, key, Reason[key]);
+    }
+}
+/*
+key=0 Reason[0]="None"
+key=1 Reason[1]="First"
+key=2 Reason[2]="Second"
+key=3 Reason[3]="Third"
+key=4 Reason[4]="undefined"
+key=5 Reason[5]="undefined"
+key=6 Reason[6]="undefined"
+key=7 Reason[7]="undefined"
+*/
+
+for (let p in Reason) {
+    if (window.console && console.log) {
+        console.log("p=%s Reason[%s]=\"%s\"", p, p, Reason[p]);
+    }
+}
+/*
+p=0 Reason[0]="None"
+p=1 Reason[1]="First"
+p=2 Reason[2]="Second"
+p=3 Reason[3]="Third"
+p=None Reason[None]="0"
+p=First Reason[First]="1"
+p=Second Reason[Second]="2"
+p=Third Reason[Third]="3"
+*/
+
+for (let key in Object.keys(DealerType)) {
+    if (window.console && console.log) {
+        console.log("key=%s DealerType[%s]=\"%s\"", key, key, DealerType[key]);
+    }
+}
+/*
+key=0 DealerType[0]="undefined"
+key=1 DealerType[1]="undefined"
+key=2 DealerType[2]="undefined"
+*/
+
+for (let p in DealerType) {
+    if (window.console && console.log) {
+        console.log("p=%s DealerType[%s]=\"%s\"", p, p, DealerType[p]);
+    }
+}
+/*
+p=PREFERRED_DEALER DealerType[PREFERRED_DEALER]="preferred_dealer"
+p=TOP_EVENT_DEALER DealerType[TOP_EVENT_DEALER]="top_event_dealer"
+p=HEB_DEALER DealerType[HEB_DEALER]="heb_dealer"
+*/
