@@ -41,8 +41,8 @@ const MultiSelectCustomStyles: React.FC = () => {
         ...styles,
         backgroundColor: color.alpha(0.1).css(),
         ":first-child": {
-          backgroundColor: "red"
-        }
+          backgroundColor: "red",
+        },
       };
     },
     multiValueLabel: (styles, { data }) => ({
@@ -61,13 +61,16 @@ const MultiSelectCustomStyles: React.FC = () => {
 
   return (
     <div>
-      <Select
-        closeMenuOnSelect={false}
-        defaultValue={[colourOptions[0], colourOptions[1]]}
-        isMulti
-        options={colourOptions}
-        styles={colourStyles}
-      />
+      <div>MultiSelectCustomStyles</div>
+      <div>
+        <Select
+          closeMenuOnSelect={false}
+          defaultValue={[colourOptions[0], colourOptions[1]]}
+          isMulti
+          options={colourOptions}
+          styles={colourStyles}
+        />
+      </div>
     </div>
   );
 };

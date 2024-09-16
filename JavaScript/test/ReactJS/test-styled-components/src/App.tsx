@@ -11,6 +11,7 @@ import {
   ComponentWithChildren,
   TestPassStyles1,
   TestPassStyles2,
+  PureCSS
 } from "./components";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <CustomButtonAsCustomReversedButton>
           Custom Button with Normal Button styles
         </CustomButtonAsCustomReversedButton>
+        <PureCSS />
       </div>
       <div className="container">
         <button

@@ -6,6 +6,7 @@ import Select, {
   OnChangeValue,
   Props,
 } from "react-select";
+import AsyncSelect, { AsyncProps } from "react-select/async";
 import {
   SortableContainer,
   SortableContainerProps,
@@ -13,7 +14,7 @@ import {
   SortEndHandler,
   SortableHandle,
 } from "react-sortable-hoc";
-import { IOption, options } from "../../data";
+import { IColourOption, colourOptions } from "../../data";
 import * as S from "./styles";
 
 function arrayMove<T>(array: readonly T[], from: number, to: number) {
@@ -27,7 +28,7 @@ function arrayMove<T>(array: readonly T[], from: number, to: number) {
 }
 
 const SortableMultiValue = SortableElement(
-  (props: MultiValueProps<IOption>) => {
+  (props: MultiValueProps<IColourOption>) => {
     // this prevents the menu from being opened/closed when the user clicks
     // on a value to begin dragging it. ideally, detecting a click (instead of
     // a drag) would still focus the control and toggle the menu, but that
@@ -45,17 +46,34 @@ const SortableMultiValueLabel = SortableHandle(
   (props: MultiValueGenericProps) => <components.MultiValueLabel {...props} />
 );
 
-const SortableSelect = SortableContainer(Select) as React.ComponentClass<
-  Props<IOption, true> & SortableContainerProps
+const SortableSelect = SortableContainer(AsyncSelect) as React.ComponentClass<
+  Props<IColourOption, true> & SortableContainerProps
 >;
 
-const MultiSelectSortable: React.FC = () => {
-  const [selected, setSelected] = useState<readonly IOption[]>([
-    options[4],
-    options[5],
+const filterColors = (inputValue: string) => {
+  return colourOptions.filter((i) =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase())
+  );
+};
+
+const loadOptions = (
+  inputValue: string,
+  callback: (options: IColourOption[]) => void
+) => {
+  console.log("loadOptions(%o)", inputValue);
+
+  setTimeout(() => {
+    callback(filterColors(inputValue));
+  }, 1000);
+};
+
+const MultiSelectAsyncCallbackSortable: React.FC = () => {
+  const [selected, setSelected] = useState<readonly IColourOption[]>([
+    colourOptions[4],
+    colourOptions[5],
   ]);
 
-  const onChange = (selectedOptions: OnChangeValue<IOption, true>) =>
+  const onChange = (selectedOptions: OnChangeValue<IColourOption, true>) =>
     setSelected(selectedOptions);
 
   const onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
@@ -69,7 +87,7 @@ const MultiSelectSortable: React.FC = () => {
 
   return (
     <div>
-      <div>MultiSelectSortable</div>
+      <div>MultiSelectAsyncCallbackSortable</div>
       <div>
         <SortableSelect
           useDragHandle
@@ -78,16 +96,20 @@ const MultiSelectSortable: React.FC = () => {
           distance={4}
           getHelperDimensions={({ node }) => node.getBoundingClientRect()}
           isMulti
-          options={options}
+          options={[]}
           value={selected}
           onChange={onChange}
           components={{
+            IndicatorSeparator: () => null,
+            DropdownIndicator: () => null,
             // @ts-ignore We're failing to provide a required index prop to SortableElement
             MultiValue: SortableMultiValue,
             // @ts-ignore We're failing to provide a required index prop to SortableElement
             MultiValueLabel: SortableMultiValueLabel,
           }}
-          closeMenuOnSelect={false}
+          isClearable={true}
+          isSearchable={true}
+          loadOptions={loadOptions}
           styles={S.MultiSelectStyle}
         />
       </div>
@@ -95,4 +117,4 @@ const MultiSelectSortable: React.FC = () => {
   );
 };
 
-export default MultiSelectSortable;
+export default MultiSelectAsyncCallbackSortable;

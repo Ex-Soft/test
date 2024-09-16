@@ -14,7 +14,6 @@ import {
   SortableHandle,
 } from "react-sortable-hoc";
 import { IOption, options } from "../../data";
-import * as S from "./styles";
 
 function arrayMove<T>(array: readonly T[], from: number, to: number) {
   const slicedArray = array.slice();
@@ -69,7 +68,7 @@ const MultiSelectSortable: React.FC = () => {
 
   return (
     <div>
-      <div>MultiSelectSortable</div>
+      <div>MultiSelectSortablePure</div>
       <div>
         <SortableSelect
           useDragHandle
@@ -88,7 +87,6 @@ const MultiSelectSortable: React.FC = () => {
             MultiValueLabel: SortableMultiValueLabel,
           }}
           closeMenuOnSelect={false}
-          styles={S.MultiSelectStyle}
         />
       </div>
     </div>

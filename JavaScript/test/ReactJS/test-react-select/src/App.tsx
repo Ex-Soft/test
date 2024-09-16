@@ -1,12 +1,27 @@
 import "./App.css";
-import { MultiSelectCustomStyles, MultiSelectSortable } from "./components";
+import {
+  MultiSelectSortablePure,
+  MultiSelectSortable,
+  MultiSelectCustomStyles,
+  SelectAsyncCallback,
+  MultiSelectAsyncCallback,
+  MultiSelectAsyncCallbackSortable,
+  SelectAsyncPromise,
+  MultiSelectAsyncPromise,
+} from "./components";
 
 function App() {
   return (
-    <div className="App">
-      <MultiSelectSortable />
+    // <div className="App">
+      <MultiSelectSortablePure />
+      /*<MultiSelectSortable />
       <MultiSelectCustomStyles />
-    </div>
+      <SelectAsyncCallback />
+      <MultiSelectAsyncCallback />
+      <MultiSelectAsyncCallbackSortable />
+      <SelectAsyncPromise />
+      <MultiSelectAsyncPromise />*/
+    // </div>
   );
 }
 

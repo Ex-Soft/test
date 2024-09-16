@@ -6,3 +6,5 @@ export * from "./TestPassStyles1";
 export { default as TestPassStyles1 } from "./TestPassStyles1";
 export * from "./TestPassStyles2";
 export { default as TestPassStyles2 } from "./TestPassStyles2";
+export * from "./PureCSS";
+export { default as PureCSS } from "./PureCSS";
