@@ -306,10 +306,11 @@ db.getSiblingDB("testdb").getCollection("items").aggregate([ { $project: { _id: 
 db.getSiblingDB("testdb").getCollection("items").aggregate([ { $project: { _id: 0, orderId: "$orderId" } }, { $group: { _id: "$orderId" } } ]).pretty();
 
 db.getSiblingDB("testdb").getCollection("masterdealers").insertMany([{_id: 1, masterDealerId: "1", name: "Master dealer #1"}, {_id: 2, masterDealerId: "2", name: "Master dealer #2"}, {_id: 3, masterDealerId: "3", name: "Master dealer #3"}]);
-db.getSiblingDB("testdb").getCollection("users").insertMany([{_id: 1, name: "User #1"}, {_id: 2, name: "User #2"}, {_id: 3, name: "User #3"}]);
-db.getSiblingDB("testdb").getCollection("users").insertOne({_id: 4, name: "User #4"});
+db.getSiblingDB("testdb").getCollection("users").insertMany([{_id: 1, name: "User #1", email: "user1@mailinator.com"}, {_id: 2, name: "User #2", email: "user2@mailinator.com"}, {_id: 3, name: "User #3", email: "user3@mailinator.com"}]);
+db.getSiblingDB("testdb").getCollection("users").insertOne({_id: 4, name: "User #4", email: "user4@mailinator.com"});
 db.getSiblingDB("testdb").getCollection("dealers").insertMany([{_id: 1, associatedMasterDealers: [ { masterDealerId: "1" } ], userId: [ 1 ]}, {_id: 2, associatedMasterDealers: [ { masterDealerId: "2" } ], userId: [ 2 ]}, {_id: 3, associatedMasterDealers: [ { masterDealerId: "3" } ], userId: [ 3 ]}]);
 db.getSiblingDB("testdb").getCollection("dealers").updateOne({_id: 1}, {$push: {userId: 4}});
+db.getSiblingDB("testdb").getCollection("imports").insertOne({_id: 1, users: [ "user1@mailinator.com", "UsEr4@MaIlInAtOr.CoM" ] });
 
 users -> masterdealers
 $lookup
@@ -385,3 +386,26 @@ $lookup
 
 db.getSiblingDB("thedirectvmarketingzone").getCollection("products").aggregate([{$match: {createdOn: {$gt: new ISODate("2023-01-01")}}}, {$unwind: {path: "$variants", preserveNullAndEmptyArrays: true}}, {$match: {$and: [{"variants.inDesignFile": {$exists: true}}, {"variants.inDesignFile": {$ne: null}}, {"variants.inDesignFile": {$ne: ""}}]}}, {$sort: {createdOn: 1}}, {$project: {_id: 0, createdOn: 1, inDesignFile: "$variants.inDesignFile"}}]).pretty();
 db.getSiblingDB("thedirectvmarketingzone").getCollection("products").aggregate([{$match: { $expr: { $and: [ { type: 1 }, { vendor: 1 }, { status: 1 }, { $isArray: "$variants" }, { $gt: [ { $size: "$variants" }, 0 ] } ] } } }, {$unwind: { path: "$variants", preserveNullAndEmptyArrays: true }}, {$match: {$expr: {$and: [{ $isArray: "$variants.media" }, { $gt: [ { $size: "$variants.media" }, 0 ] }]}}}, {$project: {_id: 0, sku: 1, title: 1, url: {$arrayElemAt: ["$variants.media", 0]}}}, {$project: {title: 1, sku: 1, url: { $substrBytes: [ "$url", 0, { $indexOfBytes: [ "$url", "?" ] } ] } }}]);
+
+
+$match
+{
+  $expr: {
+    $and: [
+      { $eq: [{ $type: "$items" }, "array"] },
+      { $not: { $in: ["3rd", "$items"] } }
+    ]
+  }
+}
+
+$lookup
+{
+  from: "imports",
+  localField: "email",
+  foreignField: "users",
+  as: "imports"
+}
+$match
+{
+  imports: []
+}

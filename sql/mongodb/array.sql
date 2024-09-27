@@ -104,3 +104,42 @@ db.testarray.findOneAndUpdate({ _id: 21 }, { $unset: { "items.1": 1 } }); [ "1st
 
 db.testarray.find({ _id: 21 }).pretty();
 db.getSiblingDB("testdb").getCollection("testarray").find({ _id: 21 }).pretty();
+
+db.getSiblingDB("testdb").getCollection("testarray").find({ items: { $elemMatch: { $regex: /1St/i } } }).pretty();
+db.getSiblingDB("testdb").getCollection("testarray").find({
+  $and: [
+    { items: { $exists: true } },
+    { items: { $ne: null } },
+    { $expr: { $isArray: "$items" } },
+    { $expr: { $eq: [{ $type: "$items" }, "array"] } },
+    { items: { $ne: [] } },
+    { $expr: { $gt: [{ $size: "$items" }, 1] } },
+    { items: { $elemMatch: { $regex: /1St/i } } }
+  ]
+}).pretty();
+
+$match
+{
+  $and: [
+    { items: { $exists: true } },
+    { items: { $ne: null } },
+    { $expr: { $isArray: "$items" } },
+    { $expr: { $eq: [{ $type: "$items" }, "array"] } },
+    { items: { $ne: [] } },
+    { $expr: { $gt: [{ $size: "$items" }, 2] } },
+    { items: { $elemMatch: { $regex: /1St/i } } }
+  ]
+}
+
+{ payments: { $elemMatch: { $gt: [ { $toDecimal: "$amount" }, 0 ] } } }
+
+{
+  $and: [
+    { payments: { $exists: true } },
+    { payments: { $ne: null } },
+    { $expr: { $isArray: "$payments" } },
+    { $expr: { $eq: [{ $type: "$payments" }, "array"] } },
+    { payments: { $ne: [] } },
+    { $expr: { $gt: [{ $size: "$payments" }, 2] } }
+  ]
+}
