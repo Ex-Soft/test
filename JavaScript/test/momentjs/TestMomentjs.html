@@ -51,11 +51,17 @@ function onLoad()
 		
 		m1 = moment(new Date());
 		console.log("moment.isMoment()=%o m.isValid()=%o moment().inspect()=\"%s\"", moment.isMoment(m1), m1.isValid(), moment().inspect());
-		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		console.log("moment.toISOString(true)=\"%s\" %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
 		m2 = m1.hour(23).minute(59).second(59).millisecond(999);
-		console.log("%s %i-%i-%i %i:%i:%i.%i", m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
+		console.log("moment.toISOString(true)=\"%s\" %i-%i-%i %i:%i:%i.%i", m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
 
-		str1 = "2023-07-14T13:13:13.123+02:00";
+		str1 = "2023-07-14T13:13:13.123+03:00";
+		m1 = moment.utc(str1);				// "2023-07-14T10:13:13.123+00:00"
+		m2 = moment.utc(new Date(str1));	// "2023-07-14T10:13:13.123+00:00"
+		console.log("moment.utc(\"%s\")=\"%s\" %i-%i-%i %i:%i:%i.%i", str1, m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		console.log("moment.utc(new Date(\"%s\"))=\"%s\" %i-%i-%i %i:%i:%i.%i", str1, m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
+
+		str1 = "2023-07-14T13:13:13.123+03:00";
 		m1 = moment(str1).utc().startOf("day");
 		m2 = moment(str1).utc().endOf("day");
 		console.log("moment(\"%s\").utc().startOf(\"day\") %s %i-%i-%i %i:%i:%i.%i", str1, m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
@@ -67,7 +73,7 @@ function onLoad()
 		console.log("moment(\"%s\") = \"%s\" moment.utc(\"%s\") = \"%s\"", str1, m1.toISOString(), str1, m2.toISOString());
 		
 		m1 = moment.utc([2023, 4, 24, 13, 13, 13, 13]);
-		console.log("moment.utc([2023, 4, 24, 13, 13, 13, 13]) = \"%s\" %o", m1.toISOString(), m1.toDate());
+		console.log("moment.utc([2023, 4, 24, 13, 13, 13, 13]) = \"%s\" %o isDST()=%o", m1.toISOString(), m1.toDate(), m1.isDST());
 		console.log("%s %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
 		
 		d1 = new Date(2024, 1, 29, 23, 59, 59, 999);
