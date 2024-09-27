@@ -29,7 +29,17 @@ db.dealers.insertOne({ _id: 2, associatedMasterDealers: [ { masterDealerId: 1 },
 db.masterdealers.insertOne({ _id: 1, masterDealerId: 1, name: "1" });
 db.masterdealers.insertOne({ _id: 2, masterDealerId: 2, name: "2" });
 db.masterdealers.insertOne({ _id: 3, masterDealerId: 3, name: "3" });
-db.dealers.aggregate([ { $lookup: { from: "masterdealers", localField: "associatedMasterDealers.masterDealerId", foreignField: "masterDealerId", as: "associatedMasterDealers.masterDealer" } } ]).pretty();
+db.dealers.aggregate([
+	{
+		$lookup:
+		{
+			from: "masterdealers",
+			localField: "associatedMasterDealers.masterDealerId",
+			foreignField: "masterDealerId",
+			as: "associatedMasterDealers.masterDealer"
+		}
+	}
+]).pretty();
 [
   { _id: 1, associatedMasterDealers: [
                                        { masterDealerId: 1, masterDealer: [ { _id: 1, masterDealerId: 1, name: '1' } ] }
@@ -42,11 +52,35 @@ db.dealers.aggregate([ { $lookup: { from: "masterdealers", localField: "associat
   }
 ]
 
-db.dealers.aggregate([ { $lookup: { from: "masterdealers", localField: "associatedMasterDealers.masterDealerId", foreignField: "masterDealerId", as: "masterDealer" } } ]).pretty();
+db.dealers.aggregate([
+	{
+		$lookup:
+		{
+			from: "masterdealers",
+			localField: "associatedMasterDealers.masterDealerId",
+			foreignField: "masterDealerId",
+			as: "masterDealer"
+		}
+	}
+]).pretty();
 [
   { _id: 1, associatedMasterDealers: [ { masterDealerId: 1 } ], masterDealer: [ { _id: 1, masterDealerId: 1, name: '1' } ] },
   { _id: 2, associatedMasterDealers: [ { masterDealerId: 1 }, { masterDealerId: 2 } ], masterDealer: [ { _id: 1, masterDealerId: 1, name: '1' }, { _id: 2, masterDealerId: 2, name: '2' } ] }
 ]
+
+db.dealers_ex.insertOne({ _id: 1, associatedMasterDealers: [ { masterDealerId: 1, channels: [ "1", "2", "3" ] } ] });
+db.dealers_ex.insertOne({ _id: 2, associatedMasterDealers: [ { masterDealerId: 1, channels: [ "1", "2", "3" ] }, { masterDealerId: 2, channels: [ "4", "5" ] } ] });
+db.dealers_ex.aggregate([
+	{
+		$lookup:
+		{
+			from: "masterdealers",
+			localField: "associatedMasterDealers.masterDealerId",
+			foreignField: "masterDealerId",
+			as: "associatedMasterDealers.masterDealer"
+		}
+	}
+]).pretty();
 
 db.master.insertOne({ _id: 1, details: [ 1, 3 ] });
 db.master.insertOne({ _id: 2, details: [ 2, 4 ] });
@@ -55,7 +89,17 @@ db.details.insertOne({ _id: 2, name: "2" });
 db.details.insertOne({ _id: 3, name: "3" });
 db.details.insertOne({ _id: 4, name: "4" });
 db.details.insertOne({ _id: 5, name: "5" });
-db.master.aggregate([ { $lookup: { from: "details", localField: "details", foreignField: "_id", as: "details" } } ]).pretty();
+db.master.aggregate([
+	{
+		$lookup:
+		{
+			from: "details",
+			localField: "details",
+			foreignField: "_id",
+			as: "details"
+		}
+	}
+]).pretty();
 [
   { _id: 1, details: [ { _id: 1, name: '1' }, { _id: 3, name: '3' } ] },
   { _id: 2, details: [ { _id: 2, name: '2' }, { _id: 4, name: '4' } ] }
