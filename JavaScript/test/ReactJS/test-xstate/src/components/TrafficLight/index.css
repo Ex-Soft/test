@@ -1,0 +1,36 @@
+.traffic-light-section {
+  font-size: xxx-large;
+}
+
+.traffic-light-section-red {
+  color: red;
+}
+
+.traffic-light-section-yellow {
+  color: yellow;
+}
+
+.traffic-light-section-green {
+  color: green;
+}
+
+.traffic-light-section-black {
+  color: black;
+}
+
+.traffic-light-section-blinking {
+  animation: blink 1s infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
