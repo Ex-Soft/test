@@ -28,7 +28,7 @@ export const simpleMachine = setup({
       on: {
         TOGGLE: {
           target: "active",
-          guard: ({ context }) => context.count < 10,
+          guard: ({ context }) => context.count < context.maxCount,
         },
       },
     },
