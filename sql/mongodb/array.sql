@@ -106,6 +106,7 @@ db.testarray.find({ _id: 21 }).pretty();
 db.getSiblingDB("testdb").getCollection("testarray").find({ _id: 21 }).pretty();
 
 db.getSiblingDB("testdb").getCollection("testarray").find({ items: { $elemMatch: { $regex: /1St/i } } }).pretty();
+db.getSiblingDB("testdb").getCollection("testarray").find({ items: { $not: { $elemMatch: { $regex: /1St/i } } } }).pretty();
 db.getSiblingDB("testdb").getCollection("testarray").find({
   $and: [
     { items: { $exists: true } },
@@ -143,3 +144,14 @@ $match
     { $expr: { $gt: [{ $size: "$payments" }, 2] } }
   ]
 }
+
+db.testarray.aggregate({ $match: { "objects.price": /678/i } }).pretty();
+db.testarray.aggregate({ $match: { objects: { $elemMatch: { price: /678/i } } } }).pretty();
+db.testarray.aggregate({ $match: { objects: { $not: { $elemMatch: { price: /678/i } } } } }).pretty();
+
+db.testarray.insertOne({ _id: 99 });
+db.testarray.find({ _id: 99 }).pretty();
+db.testarray.updateMany({ _id: 99 }, { $push: { items: "1st" } }, { $upsert: true });
+db.testarray.updateMany({ _id: 99 }, { $push: { items: "2nd" } }, { $upsert: true });
+db.testarray.updateMany({ _id: 99 }, { $push: { items: "3rd" } }, { $upsert: true });
+db.testarray.deleteMany({ _id: 99 });

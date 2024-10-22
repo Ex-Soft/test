@@ -409,3 +409,12 @@ $match
 {
   imports: []
 }
+
+db.getSiblingDB("testdb").getCollection("src").insertMany([ { _id: 1, value: "src #1" }, { _id: 2, value: "src #2" }, { _id: 3, value: "src #3" }, { _id: 4, value: "src #4" } ]);
+db.getSiblingDB("testdb").getCollection("dest").insertMany([ { _id: 1, value: "dest #1" } ]);
+
+db.getSiblingDB("testdb").getCollection("src").aggregate([ { $match: { _id: { $in: [ 2, 4 ] } } }, { $out: { db: "testdb", coll: "dest" } } ]);
+db.getSiblingDB("testdb").getCollection("dest").find(); /* 2, 4 */
+
+db.getSiblingDB("testdb").getCollection("src").aggregate([ { $match: { _id: { $in: [ 1, 2, 3 ] } } }, { $merge: { into: { db: "testdb", coll: "dest" }, on: "_id", whenMatched: "merge", whenNotMatched: "insert" } } ]);
+db.getSiblingDB("testdb").getCollection("dest").find(); /* 1, 2, 3 */
