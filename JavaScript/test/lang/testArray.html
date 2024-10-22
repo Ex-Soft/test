@@ -161,6 +161,10 @@ if(window.console && console.log)
 	
 	aa = [ new Date("2020-02-29T00:00:00+02:00"), new Date("2021-02-28T00:00:00+02:00"), new Date("2022-02-28T00:00:00+02:00") ];
 	aa.sort((left, right) => right.valueOf() - left.valueOf());
+	
+	aa = [ 3, 2, 1];
+	aaa = aa.sort();
+	console.log("%o = %o.sort()", aaa, aa); // [ 1, 2, 3 ] [ 1, 2, 3 ]
 
 	aa = [ 0, 1, 2, 3, 4, 5 ];
 	for (let i = aa.length - 1; i >= 0; --i) {
@@ -321,16 +325,42 @@ if(window.console && console.log)
 	console.log(intersect(aa, aaa));
 	console.log(intersect(aaa, aa));
 
+	compareFn = (left, right) => left && right && ((left === right) || (left.id === right.id && left.value === right.value));
+
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
+	aaa = [ { id: 3, value: "3" }, { id: 2, value: "2" }, { id: 4, value: "4" } ];
+	console.log("intersect(%o, %o) = %o", aa, aaa, intersect(aa, aaa, compareFn));
+	console.log("intersect(%o, %o) = %o", aaa, aa, intersect(aaa, aa, compareFn));
+	
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
+	aa = [];
+	console.log("intersect(%o, %o) = %o", aa, aaa, intersect(aa, aaa, compareFn));
+	console.log("intersect(%o, %o) = %o", aaa, aa, intersect(aaa, aa, compareFn));
+	
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 4 ];
 	console.log("except(%o, %o) = %o", aa, aaa, except(aa, aaa));
 	console.log("except(%o, %o) = %o", aaa, aa, except(aaa, aa));
 
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
+	aaa = [ { id: 3, value: "3" }, { id: 2, value: "2" }, { id: 4, value: "4" } ];
+	console.log("except(%o, %o) = %o", aa, aaa, except(aa, aaa, compareFn));
+	console.log("except(%o, %o) = %o", aaa, aa, except(aaa, aa, compareFn));
+
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 1 ];
-	console.log(arrayIsEqual(aa, aa));
-	console.log(arrayIsEqual(aa, aaa));
+	console.log("arrayIsEqual(%o, %o) = %o", aa, aa, arrayIsEqual(aa, aa));
+	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa));
+	aaa = [ 3, 2, 4 ];
+	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa));
 
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
+	aaa = [ { id: 3, value: "3" }, { id: 2, value: "2" }, { id: 1, value: "1" } ];
+	console.log("arrayIsEqual(%o, %o) = %o", aa, aa, arrayIsEqual(aa, aa, compareFn));
+	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa, compareFn));
+	aaa = [ { id: 3, value: "3" }, { id: 2, value: "2" }, { id: 4, value: "4" } ];
+	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa, compareFn));
+	
     aa = [ 1, 2, 3, 4, 3, 2, 1 ];
 	aaa = unique(aa);
 	console.log("unique = %o", aaa);
@@ -342,6 +372,13 @@ if(window.console && console.log)
 	console.log("unique = %o", aaa);
 	o1 = distinct(aa, obj => obj.id);
 	console.log("distinct = %o", o1);
+	
+	o1 = {};
+	aa = [ { mediaId: "1", value: "11" }, { mediaId: "2", value: "12" }, { mediaId: "3", value: "13" } ];
+	aaa = [ { mediaId: "1", value: "21" }, { mediaId: "2", value: "22" }, { mediaId: "3", value: "33" } ];
+	o1 = aa.reduce((accumulator, currentValue) => { if (!(accumulator[currentValue.mediaId])) accumulator[currentValue.mediaId] = []; accumulator[currentValue.mediaId].push(currentValue); return accumulator; }, o1);
+	o1 = aaa.reduce((accumulator, currentValue) => { if (!(accumulator[currentValue.mediaId])) accumulator[currentValue.mediaId] = []; accumulator[currentValue.mediaId].push(currentValue); return accumulator; }, o1);
+	console.log(o1);
 }
 
 aa = [1, 4];
@@ -672,16 +709,34 @@ function isBigEnough(element, index, array)
    return (element >= 10);  
 }
 
-function arrayIsEqual(arr1, arr2) {
-	return Array.isArray(arr1) && Array.isArray(arr2) && ((arr1 === arr2) || (arr1.length == arr2.length && !except(arr1, arr2).length));
+/*
+function arrayIsEqual(left, right) {
+	return Array.isArray(left) && Array.isArray(right) && ((left === right) || (left.length == right.length && !except(left, right).length));
+}
+*/
+
+function arrayIsEqual(left, right, compareFn) {
+	return Array.isArray(left) && Array.isArray(right) && ((left === right) || (left.length == right.length && !except(left, right, compareFn).length));
 }
 
-function intersect(arr1, arr2) {
-	return Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter(function (item) { return arr2.indexOf(item) !== -1; }) : [];
+/*
+function intersect(left, right) {
+	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return right.indexOf(leftItem) !== -1; }) : [];
+}
+*/
+
+function intersect(left, right, compareFn) {
+	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return (compareFn ? right.findIndex(function (rightItem) { return compareFn(leftItem, rightItem); }) : right.indexOf(leftItem)) !== -1; }) : [];
 }
 
-function except(arr1, arr2) {
-	return Array.isArray(arr1) && Array.isArray(arr2) ? arr1.filter(function (item) { return arr2.indexOf(item) === -1; }) : [];
+/*
+function except(left, right) {
+	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return right.indexOf(leftItem) === -1; }) : [];
+}
+*/
+
+function except(left, right, compareFn) {
+	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return (compareFn ? right.findIndex(function (rightItem) { return compareFn(leftItem, rightItem); }) : right.indexOf(leftItem)) === -1; }) : [];
 }
 
 function unique(arr) {
