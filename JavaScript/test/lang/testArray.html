@@ -349,17 +349,17 @@ if(window.console && console.log)
 
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 2, 1 ];
-	console.log("arrayIsEqual(%o, %o) = %o", aa, aa, arrayIsEqual(aa, aa));
-	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa));
+	console.log("isArrayEqual(%o, %o) = %o", aa, aa, isArrayEqual(aa, aa));
+	console.log("isArrayEqual(%o, %o) = %o", aa, aaa, isArrayEqual(aa, aaa));
 	aaa = [ 3, 2, 4 ];
-	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa));
+	console.log("isArrayEqual(%o, %o) = %o", aa, aaa, isArrayEqual(aa, aaa));
 
 	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
 	aaa = [ { id: 3, value: "3" }, { id: 2, value: "2" }, { id: 1, value: "1" } ];
-	console.log("arrayIsEqual(%o, %o) = %o", aa, aa, arrayIsEqual(aa, aa, compareFn));
-	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa, compareFn));
+	console.log("isArrayEqual(%o, %o) = %o", aa, aa, isArrayEqual(aa, aa, compareFn));
+	console.log("isArrayEqual(%o, %o) = %o", aa, aaa, isArrayEqual(aa, aaa, compareFn));
 	aaa = [ { id: 3, value: "3" }, { id: 2, value: "2" }, { id: 4, value: "4" } ];
-	console.log("arrayIsEqual(%o, %o) = %o", aa, aaa, arrayIsEqual(aa, aaa, compareFn));
+	console.log("isArrayEqual(%o, %o) = %o", aa, aaa, isArrayEqual(aa, aaa, compareFn));
 	
     aa = [ 1, 2, 3, 4, 3, 2, 1 ];
 	aaa = unique(aa);
@@ -710,12 +710,12 @@ function isBigEnough(element, index, array)
 }
 
 /*
-function arrayIsEqual(left, right) {
+function isArrayEqual(left, right) {
 	return Array.isArray(left) && Array.isArray(right) && ((left === right) || (left.length == right.length && !except(left, right).length));
 }
 */
 
-function arrayIsEqual(left, right, compareFn) {
+function isArrayEqual(left, right, compareFn) {
 	return Array.isArray(left) && Array.isArray(right) && ((left === right) || (left.length == right.length && !except(left, right, compareFn).length));
 }
 
