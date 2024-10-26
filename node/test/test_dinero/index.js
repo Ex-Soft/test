@@ -4,6 +4,22 @@
 const { dinero, add, multiply, toDecimal } = require('dinero.js');
 const { USD } = require('@dinero.js/currencies');
 
+const roundCurrency = value => !isNaN(value) ? Math.round((value + Number.EPSILON) * 100) / 100 : 0.0;
+
+console.log(parseFloat("258.5300"), parseFloat("258.5300") * 100); // 258.53 25852.999999999996
+
+let balance
+
+try {
+    balance = dinero({ amount: parseFloat("258.5300") * 100, currency: USD });
+    console.log(balance.toDecimal());
+} catch (e) {
+    console.log(e);
+}
+
+balance = dinero({ amount: roundCurrency(parseFloat("258.5300") * 100), currency: USD });
+console.log(toDecimal(balance));
+
 const price = dinero({ amount: 50.09 * 100, currency: USD });
 console.log(toDecimal(price));
 
