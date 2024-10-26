@@ -418,3 +418,14 @@ db.getSiblingDB("testdb").getCollection("dest").find(); /* 2, 4 */
 
 db.getSiblingDB("testdb").getCollection("src").aggregate([ { $match: { _id: { $in: [ 1, 2, 3 ] } } }, { $merge: { into: { db: "testdb", coll: "dest" }, on: "_id", whenMatched: "merge", whenNotMatched: "insert" } } ]);
 db.getSiblingDB("testdb").getCollection("dest").find(); /* 1, 2, 3 */
+
+$addFields
+{
+  _idStr: { $toString: "$_id" }
+}
+
+{
+  "_id": {
+    "$oid": "671b4440ccb3ae6a987b5554"
+  }
+}

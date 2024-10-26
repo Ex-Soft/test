@@ -23,3 +23,51 @@ $match
 {
   createdOn: { $gt: ISODate("2023-01-01")}
 }
+
+db.testdate.find({ dateStr: { $exists: true, $ne: null }}).pretty();
+
+db.testdate.aggregate([
+	{
+		$match: {
+			dateStr: { $exists: true, $ne: null }
+		}
+	},
+	{
+		$addFields: {
+			date: {
+				$cond: {
+					if: {
+						$eq: [ { $type: "dateStr" }, "string" ]
+					},
+					then: {
+						$toDate: "$dateStr"
+					},
+					else: "$dateStr"
+				}
+			}
+		}
+	}
+]).pretty();
+
+db.testdate.aggregate([
+	{
+		$addFields: {
+			date: {
+				$cond: {
+					if: {
+						$eq: [ { $type: "dateStr" }, "string" ]
+					},
+					then: {
+						$toDate: "$dateStr"
+					},
+					else: "$dateStr"
+				}
+			}
+		}
+	},
+	{
+		$addFields: {
+			dateType: { $type: "$date" }
+		}
+	}
+]).pretty();

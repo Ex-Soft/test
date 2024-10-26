@@ -24,6 +24,33 @@ db.orders.aggregate([ { $lookup: { from: "items", localField: "_id", foreignFiel
   { _id: 2, number: 2 }
 ]
 
+db.orders.aggregate([
+{
+	$lookup: {
+		from: "items",
+		localField: "_id",
+		foreignField: "orderId",
+		as: "items"
+	}
+},
+{
+	$unwind: {
+		path: "$items",
+		preserveNullAndEmptyArrays: false
+	}
+},
+{
+	$match: {
+		$expr: {
+			$eq: [ "$items.number", "$number" ]
+		}
+	}
+}
+]).pretty();
+[
+  { _id: 1, number: 1, items: { _id: 1, orderId: 1, number: 1 } },
+]
+
 db.dealers.insertOne({ _id: 1, associatedMasterDealers: [ { masterDealerId: 1 } ] });
 db.dealers.insertOne({ _id: 2, associatedMasterDealers: [ { masterDealerId: 1 }, { masterDealerId: 2 } ] });
 db.masterdealers.insertOne({ _id: 1, masterDealerId: 1, name: "1" });

@@ -155,3 +155,44 @@ db.testarray.updateMany({ _id: 99 }, { $push: { items: "1st" } }, { $upsert: tru
 db.testarray.updateMany({ _id: 99 }, { $push: { items: "2nd" } }, { $upsert: true });
 db.testarray.updateMany({ _id: 99 }, { $push: { items: "3rd" } }, { $upsert: true });
 db.testarray.deleteMany({ _id: 99 });
+
+db.testarray.aggregate([
+{
+	$project: {
+		_id: 1,
+		second: {
+			$arrayElemAt: [ "$outerArray", 1 ]
+		}
+	}
+}]).pretty();
+
+db.testarray.aggregate([
+{
+	$project: {
+		_id: 1,
+		second: {
+			$arrayElemAt: [ "$outerArray", 1 ]
+		}
+	}
+}]).pretty();
+
+db.testarray.aggregate([
+{
+	$match: {
+		_id: 20
+	}
+},
+{
+	$project: {
+		_id: 1,
+		second: {
+			$arrayElemAt: [ "$outerArray", 1 ]
+		},
+		secondFourth: {
+			$arrayElemAt: [
+				{ $arrayElemAt: [ "$outerArray.innerArray", 1 ] },
+				3
+			]
+		}
+	}
+}]).pretty();
