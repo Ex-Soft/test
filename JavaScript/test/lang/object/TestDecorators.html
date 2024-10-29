@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<!-- https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841 -->
+<!-- https://raganwald.com/2015/06/26/decorators-in-es7.html -->
+<!-- https://raganwald.com/2015/06/17/functional-mixins.html -->
+<!-- https://github.com/jayphelps/core-decorators.js -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test Decorators</title>
+		<script>
+"use strict";
+function readonly(target, key, descriptor) {
+	descriptor.writable = false;
+	return descriptor;
+}
+
+class Cat {
+	@readonly
+	meow() { return `${this.name} says Meow!`; }
+}
+
+function onLoad()
+{
+	if(window.console && console.log) {
+		let garfield = new Cat();
+		
+		try {
+			garfield.meow = function() { return "I want lasagne!"; };
+		}
+		catch (e) {
+			console.log(e); // TypeError: can't convert undefined to object
+		}
+	}
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+	</body>
+</html>
