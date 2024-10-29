@@ -29,6 +29,13 @@ const isAlphanumeric = (str) => !/[^0-9a-z]/i.test(str);
 	if(window.console && console.clear)
 		console.clear();
 
+	Str = "Endpoint=sb://.servicebus.windows.net/;SharedAccessKeyName=;SharedAccessKey=;Entity_Path=processorder-stg";
+	arr = Str.match(/(?:EntityPath=)(.+?)(?=$|;)/i);
+	console.log(arr?.[1]); // undefined
+	if (arr?.length > 0) {
+		console.log(arr[1]);
+	}
+
 	// match vs exec vs matchAll
 	Str = "this hat is better than that hat.";
 	RegEx = /th(..) hat/g; // !!! WITH GLOBAL
