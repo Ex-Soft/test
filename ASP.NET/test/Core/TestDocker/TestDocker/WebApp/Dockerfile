@@ -2,6 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
+RUN apt-get update && apt-get -y install curl/stable-security
 EXPOSE 54816
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
