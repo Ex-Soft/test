@@ -55,6 +55,9 @@ function onLoad()
 		m2 = m1.hour(23).minute(59).second(59).millisecond(999);
 		console.log("moment.toISOString(true)=\"%s\" %i-%i-%i %i:%i:%i.%i", m2.toISOString(true), m2.year(), m2.month(), m2.date(), m2.hours(), m2.minutes(), m2.seconds(), m2.millisecond());
 
+		m1 = moment.utc().startOf("day").add({ days: 1, months: 10 });
+		console.log("moment.utc().startOf(\"day\").add({ days: 1, months: 10 })=\"%s\" %i-%i-%i %i:%i:%i.%i", m1.toISOString(true), m1.year(), m1.month(), m1.date(), m1.hours(), m1.minutes(), m1.seconds(), m1.millisecond());
+		
 		str1 = "2023-07-14T13:13:13.123+03:00";
 		m1 = moment.utc(str1);				// "2023-07-14T10:13:13.123+00:00"
 		m2 = moment.utc(new Date(str1));	// "2023-07-14T10:13:13.123+00:00"

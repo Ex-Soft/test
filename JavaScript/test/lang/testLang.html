@@ -51,6 +51,20 @@ function onLoad()
 		o1 = {};
 		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0)); // false true false true
 		
+		tmp = 13;
+		o1 = undefined;
+		o2 = null;
+		o3 = 0;
+		console.log("%i > %o = %o (Attention!!! Achtung!!! %i > %o = %o Attention!!! Achtung!!!) %i > %i = %o", tmp, o1, tmp > o1, tmp, o2, tmp > o2, tmp, o3, tmp > o3);
+		o1 = undefined;
+		o2 = null;
+		o3 = {};
+		console.log("%i > %o?.pNumber = %o %i > %o?.pNumber = %o %i > %o?.pNumber = %o", tmp, o1, tmp > o1?.pNumber, tmp, o2, tmp > o2?.pNumber, tmp, o3, tmp > o3?.pNumber);
+		o1 = { pNumber: undefined };
+		o2 = { pNumber: null };
+		o3 = { pNumber: 0 };
+		console.log("%i > %o = %o (Attention!!! Achtung!!! %i > %o = %o Attention!!! Achtung!!!) %i > %o = %o", tmp, o1, tmp > o1?.pNumber, tmp, o2, tmp > o2?.pNumber, tmp, o3, tmp > o3?.pNumber);
+		
 		o1 = { p1: "property1" };
 		console.log("%o o.p1?.toUpperCase()=\"%s\" o.p2?.toUpperCase()=%o", o1, o1.p1?.toUpperCase(), o1.p2?.toUpperCase()); // "PROPERTY1" undefined
 
