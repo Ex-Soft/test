@@ -64,6 +64,8 @@ az account set --subscription [subscription-id]
 az aks get-credentials --resource-group [resource-group-name] --name [aks-cluster-name] --admin
 az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl get pods --all-namespaces"
 az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl get pods --namespace=production"
+az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl get pod user-svc-85b67c6c77-shlpk --namespace development --output=yaml"
+az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl logs user-svc-85b67c6c77-shlpk --namespace development"
 az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl rollout restart deployment keycloak --namespace=production"
 az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl exec --stdin --tty keycloak-b64f778d7-m78hs --namespace=production -- /bin/bash"
 az aks command invoke --resource-group [resource-group-name] --name [aks-cluster-name] --command "kubectl exec keycloak-7cfcfc6494-28zlc --namespace=production -- env"
