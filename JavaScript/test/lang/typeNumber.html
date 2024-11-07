@@ -31,6 +31,8 @@ function onLoad()
 	str2 = null;
 	console.log("isNaN(%o)=%o isNaN(%o)=%o", str1, isNaN(str1), str2, isNaN(str2));
 
+	console.log("typeof 4000000000=\"%s\" isNaN(4000000000)=%o isFinite(4000000000)=%o", typeof 4000000000, isNaN(4000000000), isFinite(4000000000));
+	
 	num1 = 13;
 	num2 = 100000;
 	num3 = num1 * num2 + num1;
