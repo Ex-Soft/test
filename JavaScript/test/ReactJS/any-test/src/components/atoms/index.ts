@@ -8,3 +8,5 @@ export * from "./DebounceInputSimple";
 export { default as DebounceInputSimple } from "./DebounceInputSimple";
 export * from "./CardNumberInput";
 export { default as CardNumberInput } from "./CardNumberInput";
+export * from "./FieldsetWithMUI";
+export { default as FieldsetWithMUI } from "./FieldsetWithMUI";
