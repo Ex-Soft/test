@@ -153,6 +153,16 @@ function onLoad()
 	data = {};
 	num3 = data?.balance;
 	console.log("undefined?.balance=%o null?.balance=%o {}?.balance=%o", num1, num2, num3); // undefined undefined undefined
+	data = undefined;
+	console.log("%o?.balance=%o !%o?.balance=%o !!%o?.balance=%o %o?.balance > 0 = %o", data, data?.balance, data, !data?.balance, data, !!data?.balance, data, data?.balance > 0); // undefined true false false
+	data = null;
+	console.log("%o?.balance=%o !%o?.balance=%o !!%o?.balance=%o %o?.balance > 0 = %o", data, data?.balance, data, !data?.balance, data, !!data?.balance, data, data?.balance > 0); // undefined true false false
+	data = {};
+	console.log("%o?.balance=%o !%o?.balance=%o !!%o?.balance=%o %o?.balance > 0 = %o", data, data?.balance, data, !data?.balance, data, !!data?.balance, data, data?.balance > 0); // undefined true false false
+	data = { balance: null };
+	console.log("%o?.balance=%o !%o?.balance=%o !!%o?.balance=%o %o?.balance > 0 = %o", data, data?.balance, data, !data?.balance, data, !!data?.balance, data, data?.balance > 0); // null true false false
+	data = { balance: 1 };
+	console.log("%o?.balance=%o !%o?.balance=%o !!%o?.balance=%o %o?.balance > 0 = %o", data, data?.balance, data, !data?.balance, data, !!data?.balance, data, data?.balance > 0); // 1 false true true
 }
 		</script>
 	</head>
