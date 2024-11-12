@@ -14,3 +14,10 @@ $project
   cpu: { $indexOfCP: [ "іїє", "ї" ] }, // 1
   substrcpu: { $substrCP: [ "іїє", 0, { $indexOfCP: [ "іїє", "ї" ] } ] }, // "і"
 }
+
+$match
+{
+  $expr: {
+    $eq: [{ $strLenBytes: "$masterDealerId" }, 10]
+  }
+}

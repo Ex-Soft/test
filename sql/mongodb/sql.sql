@@ -429,3 +429,5 @@ $addFields
     "$oid": "671b4440ccb3ae6a987b5554"
   }
 }
+
+{_id: {$oid: "609d0993906429612483cfb1"}, name: "Jane Doe"}
