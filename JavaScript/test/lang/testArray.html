@@ -111,6 +111,15 @@ if(window.console && console.log)
 	console.log("new Set(arr) %o", aaa); // {'1st', '3rd', '2nd', '4th'}
 	
 	aa = undefined;
+	console.log("%o?.length=%o !%o?.length=%o !!%o?.length=%o", aa, aa?.length, aa, !aa?.length, aa, !!aa?.length); // undefined true false
+	aa = null;
+	console.log("%o?.length=%o !%o?.length=%o !!%o?.length=%o", aa, aa?.length, aa, !aa?.length, aa, !!aa?.length); // undefined true false
+	aa = [];
+	console.log("%o?.length=%o !%o?.length=%o !!%o?.length=%o", aa, aa?.length, aa, !aa?.length, aa, !!aa?.length); // 0 true false
+	aa = [ 1 ];
+	console.log("%o?.length=%o !%o?.length=%o !!%o?.length=%o", aa, aa?.length, aa, !aa?.length, aa, !!aa?.length); // 1 false true
+	
+	aa = undefined;
 	o1 = aa?.[0]?.p;
 	console.log("undefined?.[0]?.p = %o", o1); // undefined
 	aa = [];
