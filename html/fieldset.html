@@ -1,5 +1,22 @@
+<!doctype html>
 <html>
-  <head><title>Test Fieldset</title></head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test Fieldset</title>
+    <style>
+.fieldset-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+
+.fieldset-inline-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+	</style>
+  </head>
   <body>
     <fieldset>
       <legend>&nbsp;Legend&nbsp;</legend>
@@ -32,6 +49,18 @@
     <fieldset style="padding-top: 0; ">
       <legend style="background-color: Aqua; ">&nbsp;Legend&nbsp;</legend>
       <div style="background-color: Red; ">style="padding-top: 0; "</div>
+    </fieldset>
+	<fieldset class="fieldset-grid">
+      <legend style="background-color: Aqua; ">&nbsp;grid&nbsp;</legend>
+      <div style="background-color: Red; ">grid-template-columns: 1fr 1fr;</div>
+	  <div style="background-color: Red; ">01234</div>
+	  <div style="background-color: Red; ">0123456789</div>
+	  <div style="background-color: Red; ">01234</div>
+    </fieldset>
+	<fieldset class="fieldset-inline-grid">
+      <legend style="background-color: Aqua; ">&nbsp;inline-grid&nbsp;</legend>
+      <div style="background-color: Red; ">grid-template-columns: 1fr 1fr;</div>
+	  <div style="background-color: Red; ">01234</div>
     </fieldset>
   </body>
 </html>
