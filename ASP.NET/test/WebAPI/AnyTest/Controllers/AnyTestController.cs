@@ -13,7 +13,7 @@ namespace AnyTest.Controllers
         [Produces("application/json")]
         public GetSmthEnumResponse GetSmthEnum()
         {
-            return new GetSmthEnumResponse { SmthEnum = Enum.GetValues(typeof(SmthEnum)) as SmthEnum[] };
+            return new GetSmthEnumResponse { SmthEnum = Enum.GetValues<SmthEnum>() };
         }
 
         [HttpGet]
@@ -22,7 +22,7 @@ namespace AnyTest.Controllers
         [Produces("application/json")]
         public GetSmthEnumStrResponse GetSmthEnumStr()
         {
-            return new GetSmthEnumStrResponse { SmthEnumStr = Enum.GetNames(typeof(SmthEnum)) };
+            return new GetSmthEnumStrResponse { SmthEnumStr = Enum.GetNames<SmthEnum>() };
         }
 
         [HttpGet]
@@ -40,10 +40,10 @@ namespace AnyTest.Controllers
         [Produces("application/json")]
         public IActionResult TestArrayByGetIActionResult([FromQuery] TestArrayByGetRequest request)
         {
-            return Ok(new SmthClass[] {
-                new SmthClass { PString = "PString# 1", PArrayOfString = new string[] { "PString# 1.1", "PString# 1.2", "PString# 1.3" } },
-                new SmthClass { PString = "PString# 2", PArrayOfString = new string[] { "PString# 2.1", "PString# 2.2", "PString# 2.3" } },
-                new SmthClass { PString = "PString# 3", PArrayOfString = new string[] { "PString# 3.1", "PString# 3.2", "PString# 3.3" } }
+            return Ok(new[] {
+                new SmthClass { PString = "PString# 1", PArrayOfString = [ "PString# 1.1", "PString# 1.2", "PString# 1.3" ] },
+                new SmthClass { PString = "PString# 2", PArrayOfString = [ "PString# 2.1", "PString# 2.2", "PString# 2.3" ] },
+                new SmthClass { PString = "PString# 3", PArrayOfString = [ "PString# 3.1", "PString# 3.2", "PString# 3.3" ] }
             });
         }
     }
