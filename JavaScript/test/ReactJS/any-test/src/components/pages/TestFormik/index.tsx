@@ -42,6 +42,11 @@ const TestFormik: React.FC = () => {
 
     console.log("values=%o errors=%o", formik.values, formik.errors);
 
+    const handleChangeField1 = (e: ChangeEvent<HTMLInputElement>) => {
+        formik.setFieldValue("field1", e.target.value);
+        formik.handleChange(e);
+    }
+
     return (
         <div>
             <h1>Test Formik</h1>
@@ -60,7 +65,7 @@ const TestFormik: React.FC = () => {
                 id="field1"
                 name="field1"
                 type="text"
-                onChange={formik.handleChange}
+                onChange={handleChangeField1}
                 value={formik.values.field1}
                 placeholder="Enter Field #1"
                 onBlur={formik.handleBlur}

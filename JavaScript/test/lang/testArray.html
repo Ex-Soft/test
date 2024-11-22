@@ -388,6 +388,14 @@ if(window.console && console.log)
 	o1 = aa.reduce((accumulator, currentValue) => { if (!(accumulator[currentValue.mediaId])) accumulator[currentValue.mediaId] = []; accumulator[currentValue.mediaId].push(currentValue); return accumulator; }, o1);
 	o1 = aaa.reduce((accumulator, currentValue) => { if (!(accumulator[currentValue.mediaId])) accumulator[currentValue.mediaId] = []; accumulator[currentValue.mediaId].push(currentValue); return accumulator; }, o1);
 	console.log(o1);
+
+	compareFn = (left, right) => left && right && ((left === right) || (left.id === right.userId));
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
+	aaa = [ { userId: 3, value: "3" }, { userId: 2, value: "2" }, { userId: 4, value: "4" } ];
+	console.log("except(%o, %o) = %o", aa, aaa, except(aa, aaa, compareFn));
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 3, value: "3" } ];
+	aaa = undefined;
+	console.log("except(%o, %o) = %o", aa, aaa, except(aa, aaa, compareFn));
 }
 
 aa = [1, 4];
@@ -740,12 +748,12 @@ function intersect(left, right, compareFn) {
 
 /*
 function except(left, right) {
-	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return right.indexOf(leftItem) === -1; }) : [];
+	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return right.indexOf(leftItem) === -1; }) : (Array.isArray(left) ? left : []);
 }
 */
 
 function except(left, right, compareFn) {
-	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return (compareFn ? right.findIndex(function (rightItem) { return compareFn(leftItem, rightItem); }) : right.indexOf(leftItem)) === -1; }) : [];
+	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return (compareFn ? right.findIndex(function (rightItem) { return compareFn(leftItem, rightItem); }) : right.indexOf(leftItem)) === -1; }) : (Array.isArray(left) ? left : []);
 }
 
 function unique(arr) {

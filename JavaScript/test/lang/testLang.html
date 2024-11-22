@@ -45,11 +45,11 @@ function onLoad()
 		
 		// Optional chaining operator
 		o1 = undefined;
-		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0)); // false true false true
+		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o %o?.toString() = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0), o1, o1?.toString()); // false true false true undefined
 		o1 = null;
-		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0)); // false true false true
+		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o %o?.toString() = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0), o1, o1?.toString()); // false true false true undefined
 		o1 = {};
-		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0)); // false true false true
+		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o %o?.toString() = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0), o1, o1?.toString()); // false true false true "[object Object]"
 		
 		tmp = 13;
 		o1 = undefined;
@@ -92,6 +92,34 @@ function onLoad()
 		o2 = o3 = {};
 		({p1: o2.p1, ...o3} = o1);
 		console.log("%o %o", o2, o3);
+		
+		try {
+			o1 = undefined;
+			({ tmp } = o1);
+			console.log("%o", tmp);
+		} catch (error) {
+			console.log(error); // TypeError: Cannot destructure property 'tmp' of 'o1' as it is undefined.
+		}
+		
+		try {
+			o1 = null;
+			({ tmp } = o1);
+			console.log("%o", tmp);
+		} catch (error) {
+			console.log(error); // TypeError: Cannot destructure property 'tmp' of 'o1' as it is null.
+		}
+		
+		o1 = {};
+		({ tmp } = o1);
+		console.log("({ tmp } = %o) => tmp = %o", o1, tmp);
+		
+		o1 = { tmp: "tmpValue" };
+		({ tmp } = o1);
+		console.log("({ tmp } = %o) => tmp = %o", o1, tmp);
+		
+		o1 = { foo: "fooValue" };
+		({ foo:tmp } = o1);
+		console.log("({ foo:tmp } = %o) => tmp = %o", o1, tmp);
 	}
 	
 	doSomething1({});
