@@ -26,9 +26,9 @@ if(window.console && console.log)
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
 	aa = [ "1", "7", "11" ].map(parseInt);
-	console.log("[ \"1\", \"7\", \"11\" ].map(parseInt) = %o", aa);
+	console.log("[ \"1\", \"7\", \"11\" ].map(parseInt) = %o", aa);						// [ 1, NaN, 3]
 	aa = [ "1", "7", "11" ].map(numStr => parseInt(numStr));
-	console.log("[ \"1\", \"7\", \"11\" ].map(numStr => parseInt(numStr)) = %o", aa);
+	console.log("[ \"1\", \"7\", \"11\" ].map(numStr => parseInt(numStr)) = %o", aa);	// [ 1, 7, 11 ]
 
 	aa = new Array(3).fill(42);
 	console.log("new Array(3).fill(42) = %o", aa); // [ 42, 42, 42 ]
@@ -131,7 +131,8 @@ if(window.console && console.log)
 	aa = [];
 	o1 = undefined;
 	o2 = null;
-	console.log("[].indexOf(%o)=%i [].indexOf(%o)=%i", o1, aa.indexOf(o1), o2, aa.indexOf(o2)); // -1 -1
+	o3 = "";
+	console.log("[].indexOf(%o)=%i [].indexOf(%o)=%i [].indexOf(\"%s\")=%i", o1, aa.indexOf(o1), o2, aa.indexOf(o2), o3, aa.indexOf(o3)); // -1 -1 -1
 	
 	o1 = undefined;
 	console.log("%o?.items?.findIndex() = ", o1, o1?.items?.findIndex(item => item.id === 0)); // undefined
