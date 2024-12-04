@@ -51,6 +51,15 @@ db.testarray.insertOne({ _id: 24, dealer: { associatedMasterDealers: [] } });
 db.testarray.insertOne({ _id: 25, dealer: { associatedMasterDealers: [ { masterDealerId: "2252" } ] } });
 db.testarray.insertOne({ _id: 26, dealer: { associatedMasterDealers: [ { masterDealerId: "2252" }, { masterDealerId: "1234" } ] } });
 db.testarray.insertOne({ _id: 27, dealer: { associatedMasterDealers: [ { masterDealerId: "1234" }, { masterDealerId: "5678" } ] } });
+db.testarray.insertOne({ _id: 28, objects: [ { product: { sku: "1st" } }, { product: { sku: "2nd" } }, { product: { sku: "3rd" } } ] });
+
+db.testarray.find({ _id: 10 });
+db.testarray.updateMany({ _id: 10 }, { $pull: { items: "2nd" } });
+db.testarray.updateMany({ _id: 10 }, { $pull: { items: { $in: [ "1st", "3rd" ] } } });
+db.testarray.updateMany({ _id: 10 }, { $push: { items: { $each: [ "3rd", "2nd", "1st" ] } } });
+
+db.testarray.updateMany({ _id: 28 }, { $pull: { objects: { "product.sku": { $regex: "2Nd", $options: "i" } } } });
+db.testarray.updateMany({ _id: 28 }, { $push: { objects: { product: { sku: "2nd" } } } });
 
 db.testarray.updateMany({ $and: [ { items: { $exists: true } }, { items: { $ne: null } }, { $expr: { $eq: [{ $type: "$items" }, "array"]} }, { items: { $ne: [] } }, { $expr: { $ne: [{ $size: "$items" }, 0] } } ] }, { $push: { values: { $each: [ 13, 42 ] } } });
 db.testarray.updateMany({ $and: [ { $expr: { $isArray: "$items" } }, { items: { $ne: [] } } ], $expr: { $eq: [ { $mod: [ "$_id", 2 ] }, 0 ] } }, { $push: { values: { $each: [ 1, 9, 25, 99 ] } } });
