@@ -1,5 +1,24 @@
 const _ = require("lodash");
 
+let arr1 = [ { pNumber: 1 }, { pNumber: 1 } ]
+let arr2 = _.uniq(arr1);
+console.log(arr2);
+arr2 = _.uniqWith(arr1, _.isEqual);
+console.log(arr2);
+
+let o1 = { pNumber: 1, pArrayOfString: [ "1st", "2nd", "3rd" ] };
+let o2 = { pNumber: 1, pArrayOfString: [ "1st", "2nd", "3rd" ] };
+console.log(_.isEqual(o1, o2));
+o2 = { pNumber: 2, pArrayOfString: [ "1st", "2nd", "3rd" ] };
+console.log(_.isEqual(o1, o2));
+o2 = { pNumber: 1, pArrayOfString: [ "3rd", "2nd", "1st" ] };
+console.log(_.isEqualWith(o1, o2, (value, other, indexOrKey, parent, otherParent, stack) => {
+	return value.pNumber === other.pNumber
+		&& !_.xor(value.pArrayOfString, other.pArrayOfString).length;
+}));
+let arr = _.xor(o1.pArrayOfString, o2.pArrayOfString);
+console.log(arr);
+
 let obj = { cpp: [{ java: { python: 2012 } }] };
 
 console.log(obj.cpp[0].java.python);
