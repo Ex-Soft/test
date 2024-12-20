@@ -3,6 +3,8 @@
 <!-- https://css-tricks.com/snippets/css/a-guide-to-flexbox/ -->
 <!-- https://mastery.games/post/the-difference-between-width-and-flex-basis/ -->
 <!-- https://css-tricks.com/equal-columns-with-flexbox-its-more-complicated-than-you-might-think/ -->
+<!-- https://habr.com/ru/companies/ruvds/articles/523808/ -->
+<!-- https://www.freecodecamp.org/news/css-flexbox-tutorial-with-cheatsheet/ -->
 <html>
 	<head>
 		<meta charset="utf-8"/>
@@ -75,6 +77,20 @@
 
 .flex-container.with-last-child .item:last-child {
 	flex-grow: 0;
+}
+
+.flex-wrapper {
+	display: flex;
+	background-color: beige;
+}
+
+.flex-wrapper > div {
+	flex-grow: 1;
+
+	background-color: green;
+	height: 100px;
+	width: 100px;
+	margin: 10px;
 }
     	</style>
 	</head>
@@ -327,5 +343,12 @@
             <div class="right overflowEllipsis">Right very long string Right very long string Right very long string Right very long string Right very long string Right very long string Right very long string</div>
 		</div>
         <hr/>
+		<div class="flex-wrapper">
+			<div id="one">Header</div>
+			<div id="two">Nav</div>
+			<div id="three">Content</div>  
+			<div id="four">Footer</div>
+		</div>
+		<hr/>
 	</body>
 </html>
