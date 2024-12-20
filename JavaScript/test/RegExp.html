@@ -29,6 +29,14 @@ const isAlphanumeric = (str) => !/[^0-9a-z]/i.test(str);
 	if(window.console && console.clear)
 		console.clear();
 
+	i = "dealerAdmin";
+	ii = `^\\/?${i}$`;
+	RegEx = new RegExp(ii, "i");
+	Str = "dealerAdmin";
+	console.log("RegExp(\"%s\", \"i\").test(\"%s\") = ", ii, Str, RegEx.test(Str));
+	Str = "/dealerAdmin";
+	console.log("RegExp(\"%s\", \"i\").test(\"%s\") = ", ii, Str, RegEx.test(Str));
+	
 	Str = "Print Campaign";
 	//Str = "Print Campaign - Promo";
 	i = (/Print Campaign/i).test(Str);

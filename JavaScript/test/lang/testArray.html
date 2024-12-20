@@ -373,9 +373,14 @@ if(window.console && console.log)
 	
     aa = [ 1, 2, 3, 4, 3, 2, 1 ];
 	aaa = unique(aa);
-	console.log("unique = %o", aaa);
-	o1 = distinct(aa);
-	console.log("distinct = %o", o1);
+	console.log("unique(%o) = %o", aa, aaa);
+	aa = [ { id: 1, value: "1" }, { id: 2, value: "2" }, { id: 1, value: "1" } ];
+	aaa = unique(aa, compareFn);
+	console.log("unique(%o) = %o", aa, aaa);
+
+	aa = [ 1, 2, 3, 4, 3, 2, 1 ];
+	aaa = distinct(aa);
+	console.log("distinct(%o) = %o", aa, aaa);
 	
 	aa = [{ id: 1, val: "1st" }, { id: 2, val: "2nd" }, { id: 3, val: "3rd" }, { id: 4, val: "4th" }, { id: 3, val: "3rd" }, { id: 2, val: "2nd" }, { id: 1, val: "1st" } ];
 	aaa = unique(aa);
@@ -757,8 +762,14 @@ function except(left, right, compareFn) {
 	return Array.isArray(left) && Array.isArray(right) ? left.filter(function (leftItem) { return (compareFn ? right.findIndex(function (rightItem) { return compareFn(leftItem, rightItem); }) : right.indexOf(leftItem)) === -1; }) : (Array.isArray(left) ? left : []);
 }
 
+/*
 function unique(arr) {
 	return Array.isArray(arr) ? arr.filter((item, index, array) => array.indexOf(item) === index) : [];
+}
+*/
+
+function unique(arr, compareFn) {
+	return Array.isArray(arr) ? arr.filter((item, index, array) => compareFn ? array.findIndex(_item_ => compareFn(item, _item_)) === index : array.indexOf(item) === index) : [];
 }
 
 function isValid(obj) {

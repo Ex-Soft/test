@@ -12,6 +12,7 @@ function onLoad()
 	let
 		o1,
 		o2,
+		o3,
 		foo,
 		bar,
 		p1,
@@ -33,6 +34,11 @@ function onLoad()
 			console.log(e); // TypeError: can't convert null to object
 		}
 
+		o1 = { p1: "o1.p1", p2: "o1.p2", p3: "o1.p3" };
+		o2 = { p2: "o2.p2" };
+		o3 = {...o1, ...o2};
+		console.log("{...%o, ...%o} = % o", o1, o2, o3);
+		
 		p1 = "p1";
 		o1 = undefined;
 		console.log("!%o?.[\"%s\"] = %o !%o?.%s = %o", o1, p1, !o1?.[p1], o1, p1, !o1?.p1);
