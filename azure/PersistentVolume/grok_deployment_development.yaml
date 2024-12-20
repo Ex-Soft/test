@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-app
+  template:
+    metadata:
+      labels:
+        app: dev-app
+    spec:
+      containers:
+      - name: dev-app-container
+        image: your-image
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /data
+      volumes:
+      - name: shared-volume
+        persistentVolumeClaim:
+          claimName: shared-pvc

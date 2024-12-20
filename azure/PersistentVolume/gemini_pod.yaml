@@ -1,0 +1,18 @@
+# Pod in dev namespace
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-dev-pod
+  namespace: dev
+spec:
+  containers:
+  - name: my-dev-container
+    image: my-image
+    volumeMounts:
+    - name: my-shared-volume
+      mountPath: /mnt/data
+  volumes:
+  - name: my-shared-volume
+    persistentVolumeClaim:
+      claimName: my-shared-pvc
+      claimNamespace: shared-storage

@@ -1,0 +1,13 @@
+# PVC in shared-storage namespace
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-shared-pvc
+  namespace: shared-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: managed-disk

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staging-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staging-app
+  template:
+    metadata:
+      labels:
+        app: staging-app
+    spec:
+      containers:
+      - name: staging-app-container
+        image: your-image
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /data
+      volumes:
+      - name: shared-volume
+        persistentVolumeClaim:
+          claimName: shared-pvc
