@@ -1,3 +1,22 @@
+enum SmthEnumWithNumberValues {
+    UNKNOWN,
+    FIRST,
+    SECOND,
+    THIRD,
+    FOURTH,
+    FIFTH
+}
+
+const smthEnumWithNumberValuesKeyLabel = Object.entries(SmthEnumWithNumberValues)
+    .filter(([key]) => {
+        return parseInt(key);
+    }) as [string, string][];
+
+const smthEnumWithNumberValuesOptions = smthEnumWithNumberValuesKeyLabel.map(([value, label]) => ({
+    value,
+    label: `${label.charAt(0)}${label.slice(1).toLowerCase()}`,
+}))
+
 enum SmthEnumWithStringValues {
     SMTH_VALUE_1 = "SmthValue1",
     SMTH_VALUE_2 = "SmthValue2",
@@ -19,6 +38,21 @@ function GetEnumKeyByValue<T extends { [index: string]: string }>(
 };
 
 export function TestEnumVariables() {
+    Object.entries(SmthEnumWithNumberValues)
+        .forEach(item => {
+            console.log(item);
+        });
+    Object.entries(SmthEnumWithNumberValues)
+        .forEach(([key]) => {
+            console.log(key);
+        });
+    Object.entries(SmthEnumWithNumberValues)
+        .forEach(([key, value]) => {
+            console.log(key, value);
+        });
+    console.log(smthEnumWithNumberValuesKeyLabel);
+    console.log(smthEnumWithNumberValuesOptions);
+
     let smthEnumValue = stringToEnumValue1(SmthEnumWithStringValues, "SmthValue2");
     console.log(smthEnumValue);
     smthEnumValue = stringToEnumValue2(SmthEnumWithStringValues, "SmthValue3");
