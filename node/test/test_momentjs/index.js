@@ -2,50 +2,59 @@ const moment = require("moment");
 require("moment-round");
 
 function isDate(value) {
-    return value && (value instanceof Date || toString.call(value) === "[object Date]") && value.toString() !== "Invalid Date";
+  return (
+    value &&
+    (value instanceof Date || toString.call(value) === "[object Date]") &&
+    value.toString() !== "Invalid Date"
+  );
 }
-  
+
 function isString(value) {
-    return typeof value === 'string';
+  return typeof value === "string";
 }
-  
+
 function getOADate(value, roundToDate) {
-    let result;
+  let result;
 
-    if (isString(value) && !!value) {
-        result = new Date(value);
-    } else if (isDate(value)) {
-        result = value;
+  if (isString(value) && !!value) {
+    result = new Date(value);
+  } else if (isDate(value)) {
+    result = value;
+  }
+
+  if (!isDate(result)) {
+    return undefined;
+  }
+
+  if (roundToDate) {
+    const roundedDate = moment(result).round(1, "hours");
+
+    if (roundedDate.hour()) {
+      console.log(roundedDate.hour());
     }
 
-    if (!isDate(result)) {
-        return undefined;
-    }
+    result = (roundedDate.hour() ? roundedDate.hour(0) : roundedDate).toDate();
+  }
 
-    if (roundToDate) {
-       const roundedDate = moment(result).round(1, 'hours');
-
-        if (roundedDate.hour()) {
-            console.log(roundedDate.hour());
-        }
-
-       result = (roundedDate.hour() ? roundedDate.hour(0) : roundedDate).toDate();
-    }
-
-    return result;
+  return result;
 }
 
 let m1, m2, precision, key, str, d1;
 
+m1 = moment.utc(new Date()).startOf("day").add({ years: 1 });
+d1 = m1.toDate();
+m2 = m1.add({ days: -3 });
+d1 = m2.toDate();
+
 str = "2024-10-01T00:00:00.000-08:00";
-m1 = moment.utc(new Date(str));  // Tue Oct 01 2024 08:00:00 GMT+0000
-d1 = m1.toDate();                // Tue Oct 01 2024 11:00:00 GMT+0300 (Eastern European Summer Time)
+m1 = moment.utc(new Date(str)); // Tue Oct 01 2024 08:00:00 GMT+0000
+d1 = m1.toDate(); // Tue Oct 01 2024 11:00:00 GMT+0300 (Eastern European Summer Time)
 console.log(m1.toString(), d1.toString());
-m1 = moment.parseZone(str).utc();       // Tue Oct 01 2024 08:00:00 GMT+0000
-m2 = moment.parseZone(str).utc(true);   // Tue Oct 01 2024 00:00:00 GMT+0000
+m1 = moment.parseZone(str).utc(); // Tue Oct 01 2024 08:00:00 GMT+0000
+m2 = moment.parseZone(str).utc(true); // Tue Oct 01 2024 00:00:00 GMT+0000
 console.log(m1.toString(), m2.toString());
 
-m1 = moment(new Date('2024-02-29T20:59:59.123Z')).round(1, 'minutes');
+m1 = moment(new Date("2024-02-29T20:59:59.123Z")).round(1, "minutes");
 d1 = m1.hour(0).minute(0).toDate();
 console.log(m1.toString(), d1.toString());
 

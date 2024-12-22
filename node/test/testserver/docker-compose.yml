@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./app.dockerfile
+    ports:
+      - "3000:3000"
+#    networks:
+#      - app-network
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./nginx.dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+#    networks:
+#      - app-network
+
+#networks:
+#  app-network:
+#    driver: bridge

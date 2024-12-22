@@ -1,15 +1,18 @@
 {
-  "name": "test_momentjs",
+  "name": "test_handlebars",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
   "dependencies": {
-    "moment": "^2.30.1",
-    "moment-round": "^1.0.1"
+    "handlebars": "^4.7.8"
   }
 }
