@@ -52,6 +52,12 @@ db.testarray.insertOne({ _id: 25, dealer: { associatedMasterDealers: [ { masterD
 db.testarray.insertOne({ _id: 26, dealer: { associatedMasterDealers: [ { masterDealerId: "2252" }, { masterDealerId: "1234" } ] } });
 db.testarray.insertOne({ _id: 27, dealer: { associatedMasterDealers: [ { masterDealerId: "1234" }, { masterDealerId: "5678" } ] } });
 db.testarray.insertOne({ _id: 28, objects: [ { product: { sku: "1st" } }, { product: { sku: "2nd" } }, { product: { sku: "3rd" } } ] });
+db.testarray.insertOne({ _id: 29, objects: [{ price: "123.45" }, { price: "678.90" }] });
+
+db.testarray.find({ "objects.price": /123.45/i }).pretty();
+db.testarray.find({ "objects.price": { $in: [ /123.45/i ] } }).pretty();
+db.testarray.find({ "objects": { $elemMatch: { price: /123.45/i } } }).pretty();
+db.testarray.find({ "objects": { $elemMatch: { price: { $in: [ /123.45/i ] } } } }).pretty();
 
 db.testarray.find({ _id: 10 });
 db.testarray.updateMany({ _id: 10 }, { $pull: { items: "2nd" } });

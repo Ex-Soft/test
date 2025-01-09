@@ -5,6 +5,11 @@ db.version();
 
 db.getSiblingDB("testdb").getCollection("testarray").find({ _id: 1 }).pretty();
 
+db.products.aggregate([
+	{ $group: { _id: "$sku", count: { $count: {} } } },
+	{ $match: { count: { $gt: 1 } } }
+]).pretty();
+
 $match
 {$and: [{ dealerTypes: { $ne: null } }, { dealerTypes: { $ne: [] } } ] }
 {$and: [{ dealerTypes: { $exists: true } }, { dealerTypes: { $ne: [] } } ] }
