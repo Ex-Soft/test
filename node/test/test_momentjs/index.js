@@ -41,6 +41,14 @@ function getOADate(value, roundToDate) {
 
 let m1, m2, precision, key, str, d1;
 
+m1 = moment.utc("2024-12-23T02:00:00.000+02:00");
+m2 = moment.utc("2024-12-24T02:00:00.000+02:00");
+key = m1.diff(m2, "days", true); // -1
+key = m2.diff(m1, "days", true); // 1
+m2 = moment.utc("2024-12-23T14:00:00.000+02:00");
+key = m1.diff(m2, "days", true); // -1
+key = m2.diff(m1, "days", true); // 1
+
 m1 = moment.utc(new Date()).startOf("day").add({ years: 1 });
 d1 = m1.toDate();
 m2 = m1.add({ days: -3 });
