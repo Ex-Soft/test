@@ -51,6 +51,13 @@ function onLoad()
 		o1 = {};
 		console.log("%o?.pNumber <= 0 = %o !(%o?.pNumber <= 0) = %o %o?.pNumber > 0 = %o !(%o?.pNumber > 0) = %o %o?.toString() = %o", o1, o1?.pNumber <= 0, o1, !(o1?.pNumber <= 0), o1, o1?.pNumber > 0, o1, !(o1?.pNumber > 0), o1, o1?.toString()); // false true false true "[object Object]"
 		
+		o1 = undefined;
+		console.log("%o?.pBoolean === true = %o %o?.pBoolean == true = %o %o?.pBoolean === false = %o %o?.pBoolean == false = %o", o1, o1?.pBoolean === true, o1, o1?.pBoolean == true, o1, o1?.pBoolean === false, o1, o1?.pBoolean == false); // false false false false
+		o1 = null;
+		console.log("%o?.pBoolean === true = %o %o?.pBoolean == true = %o %o?.pBoolean === false = %o %o?.pBoolean == false = %o", o1, o1?.pBoolean === true, o1, o1?.pBoolean == true, o1, o1?.pBoolean === false, o1, o1?.pBoolean == false); // false false false false
+		o1 = {};
+		console.log("%o?.pBoolean === true = %o %o?.pBoolean == true = %o %o?.pBoolean === false = %o %o?.pBoolean == false = %o", o1, o1?.pBoolean === true, o1, o1?.pBoolean == true, o1, o1?.pBoolean === false, o1, o1?.pBoolean == false); // false false false false
+		
 		tmp = 13;
 		o1 = undefined;
 		o2 = null;
