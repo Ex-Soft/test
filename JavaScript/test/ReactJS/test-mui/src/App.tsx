@@ -31,3 +31,6 @@ function App() {
 }
 
 export default App;
+
+// yarn upgrade
+// yarn install --check-files
