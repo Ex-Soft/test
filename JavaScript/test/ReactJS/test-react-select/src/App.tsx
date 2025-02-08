@@ -12,17 +12,19 @@ import {
 
 function App() {
   return (
-    // <div className="App">
+    <div className="App">
       <MultiSelectSortablePure />
-      /*<MultiSelectSortable />
+      <MultiSelectSortable />
       <MultiSelectCustomStyles />
       <SelectAsyncCallback />
       <MultiSelectAsyncCallback />
       <MultiSelectAsyncCallbackSortable />
       <SelectAsyncPromise />
-      <MultiSelectAsyncPromise />*/
-    // </div>
+      <MultiSelectAsyncPromise />
+    </div>
   );
 }
 
 export default App;
+
+// yarn upgrade

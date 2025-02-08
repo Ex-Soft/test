@@ -25,7 +25,7 @@ export const TestForwardRefChild = forwardRef<
 });
 
 export const TestForwardRefParent: React.FC = () => {
-  const childRef = useRef<HTMLInputElement>();
+  const childRef = useRef<HTMLInputElement>(null);
 
   const handleFocusButtonClick = () => {
     (childRef?.current as any)?.focus();

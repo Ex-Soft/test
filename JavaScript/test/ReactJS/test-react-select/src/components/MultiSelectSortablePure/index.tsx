@@ -87,6 +87,7 @@ const MultiSelectSortable: React.FC = () => {
             MultiValueLabel: SortableMultiValueLabel,
           }}
           closeMenuOnSelect={false}
+          helperClass="sortableHelper"
         />
       </div>
     </div>

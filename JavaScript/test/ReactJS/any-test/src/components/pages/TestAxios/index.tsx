@@ -40,7 +40,7 @@ const TestAxios: React.FC = () => {
                 console.log("status: %i, statusText: \"%s\", data: %o", response.status, response.statusText, response.data);
             })
             .catch(error => {
-                console.log("code: \"%s\", response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.response.status, error.response.statusText, error.response.data);
+                console.log("code: \"%s\", message: \"%s\", response: %o, response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.message, error.response, error.response?.status, error.response?.statusText, error.response?.data);
             })
             .then(() => {
                 console.log("axios.then() aka Promise.finally");
@@ -55,7 +55,7 @@ const TestAxios: React.FC = () => {
             const response = await axios.get(`${baseCoOpUrl}/get500`);
             console.log("status: %i, statusText: \"%s\", data: %o", response.status, response.statusText, response.data);
         } catch (error: any) {
-            console.log("code: \"%s\", response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.response.status, error.response.statusText, error.response.data);
+            console.log("code: \"%s\", message: \"%s\", response: %o, response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.message, error.response, error.response?.status, error.response?.statusText, error.response?.data);
         }
     }
 
@@ -70,7 +70,7 @@ const TestAxios: React.FC = () => {
             const response = await axios.post(`${baseCoOpUrl}/testclone`, data);
             console.log("status: %i, statusText: \"%s\", data: %o", response.status, response.statusText, response.data);
         } catch (error: any) {
-            console.log("code: \"%s\", response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.response.status, error.response.statusText, error.response.data);
+            console.log("code: \"%s\", message: \"%s\", response: %o, response.status: %i, response.statusText: \"%s\", response.data: \"%s\"", error.code, error.message, error.response, error.response?.status, error.response?.statusText, error.response?.data);
         }
     }
 

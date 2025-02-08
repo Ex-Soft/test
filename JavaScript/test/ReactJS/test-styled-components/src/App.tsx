@@ -1,6 +1,7 @@
 // https://styled-components.com/docs/
 
 import "./App.css";
+import { GlobalStyle } from "./styles";
 import {
   CustomDiv,
   CustomButton,
@@ -17,6 +18,7 @@ import {
 function App() {
   return (
     <>
+      <GlobalStyle />
       <div className="container">
         <CustomDiv />
         <CustomDiv enabled={false} borderRadius="10px" />
@@ -67,3 +69,6 @@ function App() {
 }
 
 export default App;
+
+// yarn install --check-files
+// yarn upgrade
