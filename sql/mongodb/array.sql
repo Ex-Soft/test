@@ -1,4 +1,5 @@
 /* https://www.mongodb.com/docs/manual/tutorial/query-arrays/ */
+/* https://www.singlestore.com/blog/ultimate-guide-to-mongodb-arrays/ */
 
 $and: [{ categories: { $exists: true } }, { categories: { $ne: null } }, { categories: { $ne: [] } }, { categories: { $regex: /fiber/i } }]
 { $and: [{ groups: { $exists: true } }, { groups: { $ne: null } }, { groups: { $ne: [] } }, { $expr: { $gt: [{ $size: "$groups" }, 1] } } ] }
@@ -80,6 +81,7 @@ db.testarray.find({ values: { $gte: 99 } }).pretty(); // 4, 6, 8, 10
 { $expr: { $eq: [{ $type: "$items" }, "array"] } }
 
 { items: "1st" } // 4, 6, 8, 10
+{ items: /1sT/i } // 4, 6, 8, 10
 { items: [ "1st", "2nd" ] } // No result
 { items: [ "2nd", "1st" ] } // 6
 { items: { $all: [ "1st", "2nd" ] } } // 6, 10

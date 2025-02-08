@@ -7,5 +7,4 @@ docker compose down --volumes
 docker logs mongo
 
 # cd "%ProgramFiles%\mongosh"
-cd "$env:ProgramFiles\mongosh"
-mongosh "mongodb://root:password@localhost:27017/"
+cd "$env:ProgramFiles\mongosh"; mongosh "mongodb://root:password@localhost:27017/"
