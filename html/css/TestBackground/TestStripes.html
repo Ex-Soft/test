@@ -37,10 +37,37 @@
 .inner {
 	background-color: #080;
 }
+
+.horizontal-stripes {
+	height: 100px;
+	background: linear-gradient(
+		to bottom,
+		#5d9634,
+		#5d9634 50%,
+		#538c2b 50%,
+		#538c2b
+	);
+	background-size: 100% 20px;
+}
+
+.vertical-stripes {
+	height: 100px;
+	background: repeating-linear-gradient(
+		to right,
+		#f6ba52,
+		#f6ba52 10px,
+		#ffd180 10px,
+		#ffd180 20px
+	);
+}
 		</style>
 	</head>
 	<body>
 		<div class="test1"></div>
+		<hr/>
+		<div class="horizontal-stripes"></div>
+		<hr/>
+		<div class="vertical-stripes"></div>
 		<hr/>
 		<div class="container" style="height: 50px; width: 100%; border: 5px dashed red; background-color: yellow; color: black; text-align: center;">
 			<div class="outer" style="height: 60px; width: 75%; margin-top: -5px;">
