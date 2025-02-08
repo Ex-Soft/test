@@ -33,6 +33,19 @@ if(window.console && console.log)
 	aa = new Array(3).fill(42);
 	console.log("new Array(3).fill(42) = %o", aa); // [ 42, 42, 42 ]
 	
+	aa = [ 1, 2, 3 ];
+	aaa = [ 3, 4, 5 ];
+	console.log("[...intersect(%o, %o), ...except(%o, %o)] = %o", aa, aaa, aaa, aa, [...intersect(aa, aaa), ...except(aaa, aa)]);
+
+	aa = [ '1', '2', '3' ];
+	aaa = `[${aa.map(item => item.toString()).join()}]`;
+	console.log("%s \"%s\"", typeof aaa, aaa);
+
+	aa = [ 2 ];
+	aa["unshift"](1);
+	aa["push"](3);
+	console.log(aa); // [ 1, 2, 3 ]
+	
 	// https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
 	const sheeps = ['🐑', '🐑', '🐑'];
 	const fakeSheeps = sheeps;

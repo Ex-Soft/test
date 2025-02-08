@@ -13,7 +13,8 @@ function onLoad()
 		offset,
 		str,
 		str2,
-		basedata;
+		basedata,
+		dateTimeFormatter;
 
 	if(window.console && console.log) {
 		str = "Invalid Date";
@@ -46,6 +47,16 @@ function onLoad()
 		console.log("\"%s\".toUTCString() = \"%s\" \"%s\".toUTCString() = \"%s\"", str, d1.toUTCString(), str2, d2.toUTCString()); // "Wed, 29 Mar 2023 13:13:13 GMT"
 		console.log("\"%s\".toLocaleString() = \"%s\" \"%s\".toLocaleString() = \"%s\"", str, d1.toLocaleString(), str2, d2.toLocaleString()); // "3/29/2023, 4:13:13 PM"
 		console.log("\"%s\".toJSON() = \"%s\" \"%s\".toJSON() = \"%s\"", str, d1.toJSON(), str2, d2.toJSON()); // "2023-03-29T13:13:13.123Z"
+
+		str = "2024-02-29T13:13:13.999+02:00"
+		d1 = new Date(str)
+		dateTimeFormatter = new Intl.DateTimeFormat("en-US", {
+			dateStyle: "full",
+			timeStyle: "long",
+			timeZone: "America/Los_Angeles"
+		});
+		str = dateTimeFormatter.format(d1);
+		console.log("Intl.DateTimeFormat \"%s\"", str);
 
 		d1 = new Date("2023-01-01");
 		d2 = new Date("2023-12-01");

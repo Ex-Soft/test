@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Test Custom Events</title>
+		<script>
+function onLoad() {
+  document.addEventListener("customevent", onCustomEvent);
+}
+
+function onCustomEvent(e) {
+  console.log("onCustomEvent(%o)", e);
+}
+
+function trigger(element) {
+  if (!CustomEvent) {
+    console.log("!CustomEvent");
+    return;
+  }
+
+	element.dispatchEvent(new CustomEvent("customevent", {
+	  bubbles: true,
+    detail: { source: element }
+  }));
+}
+		</script>
+	</head>
+	<body onload="onLoad()">
+		<input type="button" id="btnTrigger" value="Trigger" onclick="trigger(this)">
+	</body>
+</html>

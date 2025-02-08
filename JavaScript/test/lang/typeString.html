@@ -182,6 +182,12 @@ if (window.console && console.log) {
   str = "2252L";
   console.log("\"%s\".substring(0, str.length - 1)=\"%s\"", str, str.substring(0, str.length - 1)); // "2252"
 
+  str = "https://account.blob.core.windows.net/container/blob.png?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2025-02-02T15:30:33Z&st=2022-02-02T07:30:33Z&spr=https&sig=a3b%2BJkitsaUUGzm1fONLJJRw6GDntKcERFz0l5E7IyA%3D";
+  re = /\?.*?=2025-02-02T15:30:33Z.*/i;
+  i = str.search(re);
+  str_out = str.substring(0, i);
+  console.log("\"%s\"", str_out); // "https://account.blob.core.windows.net/container/blob.png"
+  
   str = "directv\xa0DiReCtV\xa0dIrEcTv";
   str_out = str.replace(/directv/ig, "DIRECTV").replace(/\xa0/g, "\x20");
   console.log("\"%s\" -> \"%s\"", str, str_out);

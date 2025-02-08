@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>Test Events III</title>
+		<script type="text/javascript">
+<!--
+function f()
+{
+	alert("f()");
+}
+// -->
+		</script>
+	</head>
+	<body>
+		<form id="MainForm" method="post">
+			<select id="victim" onchange="f()">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select>
+			<input type="button" id="runer" value="document.getElementById(&quot;victim&#x0022;).change()" onclick="document.getElementById('victim').change()">
+		</form>
+	</body>
+</html>
