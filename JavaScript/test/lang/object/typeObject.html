@@ -45,6 +45,13 @@ function onLoad()
 		for (let i = 0, l = keys.length; i < l; ++i) // "p1" "p2" "p3"
 			console.log("o[keys[%i]=\"%s\"]=\"%s\"", i, keys[i], o1[keys[i]]);
 			
+		o1 = undefined;
+		o2 = {...o1};
+		console.log("{...%o}=%o", o1, o2); // {...undefined}={}
+		o1 = null;
+		o2 = {...o1};
+		console.log("{...%o}=%o", o1, o2); // {...null}={}
+		
 		o1 = { p1: "o1.p1", p2: "o1.p2", p3: "o1.p3" };
 		o2 = { p2: "o2.p2" };
 		o3 = {...o1, ...o2};

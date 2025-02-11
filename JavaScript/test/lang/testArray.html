@@ -33,6 +33,20 @@ if(window.console && console.log)
 	aa = new Array(3).fill(42);
 	console.log("new Array(3).fill(42) = %o", aa); // [ 42, 42, 42 ]
 	
+	try {
+		aa = undefined;
+		aaa = [...aa];
+	} catch (error) {
+		console.log(error); // TypeError: aa is not iterable
+	}
+	
+	try {
+		aa = null;
+		aaa = [...aa];
+	} catch (error) {
+		console.log(error); // TypeError: aa is not iterable
+	}
+	
 	aa = [ 1, 2, 3 ];
 	aaa = [ 3, 4, 5 ];
 	console.log("[...intersect(%o, %o), ...except(%o, %o)] = %o", aa, aaa, aaa, aa, [...intersect(aa, aaa), ...except(aaa, aa)]);
