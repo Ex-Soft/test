@@ -10,6 +10,7 @@ import {
   TestComponentWithMethods,
   BasicLineChart,
 } from "./components";
+import { TestDropzoneArea, TestTree } from "./pages";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
         <Route path="fullfeaturedcrudgrid" element={<FullFeaturedCrudGrid />} />
         <Route path="gridwithgridtoolbar" element={<GridWithGridToolbar />} />
         <Route path="basiclinechart" element={<BasicLineChart />} />
+        <Route path="testtree" element={<TestTree />} />
+        <Route path="testdropzonearea" element={<TestDropzoneArea />} />
         <Route path="testtextfield" element={<TestTextField />} />
         <Route path="testselect" element={<TestSelect />} />
         <Route path="testforwardref" element={<TestForwardRef />} />

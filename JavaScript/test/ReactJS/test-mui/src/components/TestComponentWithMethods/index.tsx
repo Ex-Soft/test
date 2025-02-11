@@ -1,25 +1,58 @@
-import { TextField } from "@mui/material";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { TextField, Button } from "@mui/material";
 import "./index.css";
 
-export const TestComponentWithMethodsChild: React.FC = () => {
-  const test = () => {
-    console.log("TestComponentWithMethodsChild.test()");
-  };
+export interface ChildComponentProps {}
 
-  return <TextField />;
-};
+export interface ChildComponentRef {
+  resetInput: () => void;
+  focusInput: () => void;
+  getValue: () => string;
+}
 
-const getChild = () => {
-  return <TestComponentWithMethodsChild />;
-};
+export const TestComponentWithMethodsChild = forwardRef<
+  ChildComponentRef,
+  ChildComponentProps
+>((_, ref) => {
+  const [value, setValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
-export const TestComponentWithMethodsParent: React.FC = () => {
-  const child = getChild();
-
-  console.log(child);
+  useImperativeHandle(ref, () => ({
+    resetInput: () => setValue(""),
+    focusInput: () => inputRef.current?.focus?.(),
+    getValue: () => value,
+  }));
 
   return (
-    <div className="test-componentwithmethodsparent-container">{child}</div>
+    <TextField
+      value={value}
+      onChange={({ target: { value } }) => setValue(value)}
+      slotProps={{
+        input: {
+          inputRef: inputRef,
+        },
+      }}
+    />
+  );
+});
+
+export const TestComponentWithMethodsParent: React.FC = () => {
+  const childRef = useRef<ChildComponentRef>(null);
+
+  return (
+    <div className="test-componentwithmethodsparent-container">
+      <TestComponentWithMethodsChild ref={childRef} />
+      <TextField />
+      <Button onClick={() => childRef.current?.resetInput()}>Reset</Button>
+      <Button onClick={() => childRef.current?.focusInput()}>Focus</Button>
+      <Button
+        onClick={() => {
+          console.log(childRef.current?.getValue());
+        }}
+      >
+        Value
+      </Button>
+    </div>
   );
 };
 

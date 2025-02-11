@@ -14,6 +14,12 @@ const Header: React.FC = () => {
         <NavLink to="basiclinechart">BasicLineChart</NavLink>
       </div>
       <div>
+        <NavLink to="testtree">Tree</NavLink>
+      </div>
+      <div>
+        <NavLink to="testdropzonearea">DropzoneArea</NavLink>
+      </div>
+      <div>
         <NavLink to="testtextfield">TestTextField</NavLink>
       </div>
       <div>

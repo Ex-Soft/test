@@ -9,7 +9,7 @@ const TestUseRef: React.FC = () => {
         count.current = count.current + 1;
     });
 
-    const inputElement = useRef<HTMLInputElement>();
+    const inputElement = useRef<HTMLInputElement>(null);
     const focusInput = () => {
         inputElement?.current?.focus();
     };

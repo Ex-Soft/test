@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, TestMUI, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce, TestConditionalRendering, TestLocalStorage } from './components';
+import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce, TestConditionalRendering, TestLocalStorage } from './components';
 import { ImpersonatedUserContextProvider, useImpersonatedUser } from './contexts';
 import './App.css';
 
@@ -28,7 +28,6 @@ const App = () => {
             <Route path="/testfromchildtoparent" element={<TestFromChildToParent />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/testmui" element={<TestMUI />} />
             <Route path="/customdropdown" element={<CustomDropdown />} />
             <Route path="/testformik" element={<TestFormik />} />
             <Route path="/customcontrols" element={<CustomControls />} />
@@ -53,14 +52,9 @@ export default App;
 // yarn install
 // yarn install --check-files
 // yarn upgrade
-// yarn add @mui/material @emotion/react @emotion/styled
 // yarn add formik
-// yarn add @mui/lab @react-spring/web
-// yarn remove @mui/lab
-// yarn add @mui/x-tree-view
 // yarn add react-modal
 // yarn add lodash @types/lodash
-// yarn add material-ui-dropzone
 // yarm start
 // https://hygraph.com/blog/routing-in-react
 //

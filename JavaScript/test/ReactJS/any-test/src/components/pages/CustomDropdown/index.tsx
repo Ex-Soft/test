@@ -3,8 +3,8 @@ import './index.css';
 import { CustomDropdownPicker } from '../../organisms';
 
 const CustomDropdown: React.FC = () => {
-    const selfRef = useRef<HTMLDivElement>()
-    const buttonRef = useRef<HTMLButtonElement>()
+    const selfRef = useRef<HTMLDivElement>(null)
+    const buttonRef = useRef<HTMLButtonElement>(null)
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 

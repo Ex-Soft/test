@@ -9,7 +9,6 @@ export { default as TestUseContext } from "./TestUseContext";
 export { default as TestFromChildToParent } from "./TestFromChildToParent";
 export { default as Products } from "./Products";
 export { default as ProductDetails } from "./ProductDetails";
-export { default as TestMUI } from "./TestMUI";
 export { default as CustomDropdown } from "./CustomDropdown";
 export { default as TestFormik } from "./TestFormik";
 export { default as CustomControls } from "./CustomControls";

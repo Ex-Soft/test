@@ -34,3 +34,5 @@ bootstrap.js
 bootstrap.css
 
 *.wasm
+
+yarn.lock
