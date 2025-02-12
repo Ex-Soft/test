@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Stack } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
-import { FieldsetWithMUI, TreeDialog } from "../../components";
+import { TreeDialog } from "../../components";
 import "./index.css";
 
 const TestTree: React.FC = () => {
@@ -10,38 +8,6 @@ const TestTree: React.FC = () => {
   return (
     <div>
       <h1>Test Tree</h1>
-      <hr />
-      <FieldsetWithMUI
-        title={
-          <Stack direction="row" alignItems="center" gap={1}>
-            <InfoIcon />
-            User Information
-          </Stack>
-        }
-        color="grey.400"
-        titleSize="1.2rem"
-        borderWidth={2}
-        borderRadius={3}
-        sx={{
-          borderStyle: "dashed",
-          padding: 3,
-          "& legend": {
-            backgroundColor: "secondary.main",
-            color: "grey.200",
-            padding: "0 8px",
-            borderRadius: "4px",
-          },
-          backgroundColor: "grey.100",
-        }}
-      >
-        <label>
-          Username: <input type="text" name="username" />
-        </label>
-        <label>
-          Password: <input type="password" name="password" />
-        </label>
-      </FieldsetWithMUI>
-      <hr />
       <input
         type="button"
         value="Tree"

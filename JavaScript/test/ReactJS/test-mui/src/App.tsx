@@ -1,39 +1,8 @@
-import { Routes, Route } from "react-router-dom";
-import {
-  Home,
-  FullFeaturedCrudGrid,
-  GridWithGridToolbar,
-  TestTextField,
-  TestSelect,
-  NoMatch,
-  TestForwardRef,
-  TestComponentWithMethods,
-  BasicLineChart,
-} from "./components";
-import { TestDropzoneArea, TestTree } from "./pages";
+import { Home } from "./pages";
 import "./App.css";
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />}>
-        <Route path="fullfeaturedcrudgrid" element={<FullFeaturedCrudGrid />} />
-        <Route path="gridwithgridtoolbar" element={<GridWithGridToolbar />} />
-        <Route path="basiclinechart" element={<BasicLineChart />} />
-        <Route path="testtree" element={<TestTree />} />
-        <Route path="testdropzonearea" element={<TestDropzoneArea />} />
-        <Route path="testtextfield" element={<TestTextField />} />
-        <Route path="testselect" element={<TestSelect />} />
-        <Route path="testforwardref" element={<TestForwardRef />} />
-        <Route
-          path="testcomponentwithmethods"
-          element={<TestComponentWithMethods />}
-        />
-        <Route path="*" element={<NoMatch />} />
-      </Route>
-      <Route path="*" element={<NoMatch />} />
-    </Routes>
-  );
+  return <Home />;
 }
 
 export default App;
