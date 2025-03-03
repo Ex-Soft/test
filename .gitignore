@@ -113,3 +113,7 @@ CMakeCache.txt
 
 # nodejs
 package-lock.json
+
+# input/output
+*.pdf
+*.jpg
