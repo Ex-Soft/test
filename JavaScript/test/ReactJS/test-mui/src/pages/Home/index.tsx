@@ -11,9 +11,19 @@ import {
   Toolbar,
   Typography,
   Collapse,
+  ListItemIcon,
 } from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+import {
+  ExpandLess,
+  ExpandMore,
+  TableView,
+  SsidChart,
+  AccountTree,
+  CloudUpload,
+  Keyboard,
+  ViewQuilt,
+  Construction,
+} from "@mui/icons-material";
 import TestTree from "../TestTree";
 import TestDropzoneArea from "../TestDropzoneArea";
 import TestFieldsetWithMUI from "../TestFieldsetWithMUI";
@@ -70,6 +80,9 @@ const Home: React.FC = () => {
         <Box sx={{ overflow: "auto" }}>
           <List>
             <ListItemButton onClick={() => setIsOpenGrid(!isOpenGrid)}>
+              <ListItemIcon>
+                <TableView />
+              </ListItemIcon>
               <ListItemText primary="Grid" />
               {isOpenGrid ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -92,6 +105,9 @@ const Home: React.FC = () => {
               </List>
             </Collapse>
             <ListItemButton onClick={() => setIsOpenChart(!isOpenChart)}>
+              <ListItemIcon>
+                <SsidChart />
+              </ListItemIcon>
               <ListItemText primary="Chart" />
               {isOpenChart ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -107,12 +123,21 @@ const Home: React.FC = () => {
               </List>
             </Collapse>
             <ListItemButton component={Link} to="/testtree">
+              <ListItemIcon>
+                <AccountTree />
+              </ListItemIcon>
               <ListItemText primary="Tree" />
             </ListItemButton>
             <ListItemButton component={Link} to="/testdropzonearea">
+              <ListItemIcon>
+                <CloudUpload />
+              </ListItemIcon>
               <ListItemText primary="DropzoneArea" />
             </ListItemButton>
             <ListItemButton onClick={() => setIsOpenInput(!isOpenInput)}>
+              <ListItemIcon>
+                <Keyboard />
+              </ListItemIcon>
               <ListItemText primary="Input" />
               {isOpenInput ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -135,6 +160,9 @@ const Home: React.FC = () => {
               </List>
             </Collapse>
             <ListItemButton onClick={() => setIsOpenMisc(!isOpenMisc)}>
+              <ListItemIcon>
+                <Construction />
+              </ListItemIcon>
               <ListItemText primary="Misc" />
               {isOpenMisc ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -164,6 +192,9 @@ const Home: React.FC = () => {
               </List>
             </Collapse>
             <ListItemButton onClick={() => setIsOpenLayout(!isOpenLayout)}>
+              <ListItemIcon>
+                <ViewQuilt />
+              </ListItemIcon>
               <ListItemText primary="Layout" />
               {isOpenLayout ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>

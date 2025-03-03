@@ -17,3 +17,4 @@ export { default as TestDebounce } from "./TestDebounce";
 export { default as TestUseState } from "./TestUseState";
 export { default as TestConditionalRendering } from "./TestConditionalRendering";
 export { default as TestLocalStorage } from "./TestLocalStorage";
+export { default as TestProps } from "./TestProps";

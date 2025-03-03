@@ -1,13 +1,37 @@
-import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import { NavBar, Home, TestAxios, TestUseState, TestUseEffect, TestUseCallback, TestUseMemo, TestUseRef, TestUseContext, TestFromChildToParent, Products, ProductDetails, CustomDropdown, TestFormik, CustomControls, TestCustomDataFetchingHook, TestDebounce, TestConditionalRendering, TestLocalStorage } from './components';
-import { ImpersonatedUserContextProvider, useImpersonatedUser } from './contexts';
-import './App.css';
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import {
+  NavBar,
+  Home,
+  TestAxios,
+  TestUseState,
+  TestUseEffect,
+  TestUseCallback,
+  TestUseMemo,
+  TestUseRef,
+  TestUseContext,
+  TestFromChildToParent,
+  Products,
+  ProductDetails,
+  CustomDropdown,
+  TestFormik,
+  CustomControls,
+  TestCustomDataFetchingHook,
+  TestDebounce,
+  TestConditionalRendering,
+  TestLocalStorage,
+  TestProps,
+} from "./components";
+import {
+  ImpersonatedUserContextProvider,
+  useImpersonatedUser,
+} from "./contexts";
+import "./App.css";
 
-const NoMatch = lazy(() => import('./components/pages/NoMatch'));
+const NoMatch = lazy(() => import("./components/pages/NoMatch"));
 
 const App = () => {
-  const { setState:setImpersonatedUser } = useImpersonatedUser();
+  const { setState: setImpersonatedUser } = useImpersonatedUser();
 
   setImpersonatedUser("setImpersonatedUser()");
 
@@ -25,16 +49,26 @@ const App = () => {
             <Route path="/testusememo" element={<TestUseMemo />} />
             <Route path="/testuseref" element={<TestUseRef />} />
             <Route path="/testusecontext" element={<TestUseContext />} />
-            <Route path="/testfromchildtoparent" element={<TestFromChildToParent />} />
+            <Route
+              path="/testfromchildtoparent"
+              element={<TestFromChildToParent />}
+            />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/customdropdown" element={<CustomDropdown />} />
             <Route path="/testformik" element={<TestFormik />} />
             <Route path="/customcontrols" element={<CustomControls />} />
-            <Route path="/testcustomdatafetchinghook" element={<TestCustomDataFetchingHook />} />
+            <Route
+              path="/testcustomdatafetchinghook"
+              element={<TestCustomDataFetchingHook />}
+            />
             <Route path="/testdebonce" element={<TestDebounce />} />
-            <Route path="/testconditionalrendering" element={<TestConditionalRendering booleanValue={true} />} />
+            <Route
+              path="/testconditionalrendering"
+              element={<TestConditionalRendering booleanValue={true} />}
+            />
             <Route path="/testlocalstorage" element={<TestLocalStorage />} />
+            <Route path="/testprops" element={<TestProps />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Suspense>

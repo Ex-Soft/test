@@ -129,18 +129,18 @@ if (window.console && console.log) {
   console.log("\"%s\".length = %o !!\"%s\" = %o", str, str.length ? true : false, str, !!str);
   
   str = undefined;
-  str_out = str ?? "default value";
-  i = str || "default value";
+  str_out = str ?? "default value";	// "default value"
+  i = str || "default value";		// "default value"
   console.log("%o ?? \"default value\" = \"%s\" %o || \"default value\" = \"%s\"", str, str_out, str, i);
   
   str = null;
-  str_out = str ?? "default value";
-  i = str || "default value";
+  str_out = str ?? "default value";	// "default value"
+  i = str || "default value";		// "default value"
   console.log("%o ?? \"default value\" = \"%s\" %o || \"default value\" = \"%s\"", str, str_out, str, i);
   
   str = "";
-  str_out = str ?? "default value";
-  i = str || "default value";
+  str_out = str ?? "default value";	// ""
+  i = str || "default value";		// "default value"
   console.log("\"%s\" ?? \"default value\" = \"%s\" \"%s\" || \"default value\" = \"%s\"", str, str_out, str, i);
   
   str = undefined;
