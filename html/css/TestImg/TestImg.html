@@ -1,10 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="ru">
+<!doctype html>
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<meta charset="utf-8" />
 		<title>&laquo;Test IMG&raquo;</title>
 	</head>
 	<body>
-		abc<img src="../../img/0322.jpg" style="display: block; border: none; width: auto; ">zxc
+		&lt;img ... style=&quot;... display: block; ...&quot; ... &gt;<img src="../../img/0322.jpg" style="display: block; border: none; width: auto; ">&lt;img ... style=&quot;... display: block; ...&quot; ... &gt;
+		<hr/>
+		<div>
+			<img src="../../img/0322.jpg" style="vertical-align: middle;">&lt;img ... style=&quot;... vertical-align: middle; ...&quot; ... &gt;
+		</div>
+		<hr/>
+		<div>
+			<img src="../../img/0322.jpg" style="vertical-align: middle;"><p style="display: inline-block;">&lt;img ... style=&quot;... vertical-align: middle; ...&quot; ... &gt; &amp;&amp; &lt;p ... style=&quot;... display: inline; ...&quot; ... &gt;</p>
+		</div>
 	</body>
 </html>
