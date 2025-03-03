@@ -1,8 +1,8 @@
-use testdb
+use testdb;
 go
 
 if object_id(N'TestMaster', N'u') is not null
-	drop table TestMaster
+	drop table TestMaster;
 go
 
 create table TestMaster
@@ -11,13 +11,13 @@ create table TestMaster
 	Val nvarchar(255),
 	FBit bit null,
 	IdForView as (Id)
-)
+);
 go
 
 if col_length(N'dbo.TestMaster', N'FBit') is null
-	alter table TestMaster add FBit bit null
+	alter table TestMaster add FBit bit null;
 go
 
 if col_length(N'TestMaster', N'IdForView') is null
-	alter table TestMaster add IdForView as (Id)
+	alter table TestMaster add IdForView as (Id);
 go
