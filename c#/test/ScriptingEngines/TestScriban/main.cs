@@ -72,3 +72,12 @@ result = template.Render(new
     }
 });
 WriteLine(result);
+
+template = Template.Parse(@"
+©{{ date.now.year }} ©
+©{{-date.now.year }} ©
+©{{ date.now.year-}} ©
+©{{-date.now.year-}} ©
+");
+result = template.Render();
+WriteLine(result);

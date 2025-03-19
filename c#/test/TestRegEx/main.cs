@@ -76,6 +76,12 @@ namespace TestRegEx
                 }
             #endif
 
+            srcString = "test@mailinator.com";
+            r = new Regex("^.*?(?=@)");
+            match = r.Match(srcString);
+            if (match.Success)
+                tmpString = match.Value;
+            
             srcString = "a.b@b.c";
             r = new Regex("^(?<localPart>[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?<domain>(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(?:\\.(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+))$");
             match = r.Match(srcString);

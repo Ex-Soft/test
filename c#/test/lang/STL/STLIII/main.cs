@@ -1,5 +1,5 @@
-﻿//#define TEST_LIST
-#define TEST_DICTIONARY
+﻿#define TEST_LIST
+//#define TEST_DICTIONARY
 
 using System;
 using System.Collections;
@@ -402,6 +402,15 @@ namespace STLIII
 
                 listOfIntI.RemoveAll(listOfIntII.Contains);
 
+                listOfIntI = new List<int>(new int[] { 1, 2, 3, 4, 5 });
+                for (int i = listOfIntI.Count - 1; i >= 0; --i)
+                {
+                    if (listOfIntI[i] % 2 == 0)
+                    {
+                        listOfIntI.RemoveAt(i);
+                    }
+                }
+                
                 A
                     a = new A(13);
 
