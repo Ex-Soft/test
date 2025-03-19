@@ -1,8 +1,8 @@
-use testdb
+use testdb;
 go
 
 if object_id(N'TestFunction4Apply', N'tf') is not null
-  drop function TestFunction4Apply
+  drop function TestFunction4Apply;
 go
 
 create function TestFunction4Apply(@val int)
@@ -27,8 +27,8 @@ begin
   from
     TestTable4ApplyII
   where
-    Field1=@val
+    Field1=@val;
 
-  return
-end
+  return;
+end;
 go

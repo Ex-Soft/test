@@ -1,11 +1,14 @@
 /* http://www.mssqltips.com/sqlservertip/1958/sql-server-cross-apply-and-outer-apply/ */
 /* https://explainextended.com/2009/07/16/inner-join-vs-cross-apply/ */
 
+select * from TestTable4ApplyI;
+select * from TestTable4ApplyII;
+
 select
   *
 from
   TestTable4ApplyI t
-  cross apply TestFunction4Apply(t.Field1)
+  cross apply TestFunction4Apply(t.Field1);
 
 1	1	5	1	1	11
 1	1	5	2	1	12
@@ -20,7 +23,7 @@ select
   *
 from
   TestTable4ApplyI t
-  outer apply TestFunction4Apply(t.Field1)
+  outer apply TestFunction4Apply(t.Field1);
 
 1	1	5	1	1	11
 1	1	5	2	1	12
@@ -40,7 +43,7 @@ select
   *
 from
   TestTable4ApplyI t1
-  join TestTable4ApplyII t2 on (t2.Field1=t1.Field1)
+  join TestTable4ApplyII t2 on (t2.Field1=t1.Field1);
 
 select
   *
@@ -54,7 +57,7 @@ cross apply
     TestTable4ApplyII t2
   where
     (t2.Field1=t1.Field1)
-) t
+) t;
 
 ------------------------------------------------------------
 
@@ -62,7 +65,7 @@ select
   *
 from
   TestTable4ApplyI t1
-  left join TestTable4ApplyII t2 on (t2.Field1=t1.Field1)
+  left join TestTable4ApplyII t2 on (t2.Field1=t1.Field1);
 
 select
   *
@@ -76,7 +79,7 @@ outer apply
     TestTable4ApplyII t2
   where
     (t2.Field1=t1.Field1)
-) t
+) t;
 
 ------------------------------------------------------------
 
