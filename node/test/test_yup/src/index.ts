@@ -47,6 +47,26 @@ const optionalRequiredSchema2 = Yup.object().shape({
   }),
 });
 
+const commaSeparatedIntegers = Yup.string()
+  .test(
+    "is-comma-separated-integers",
+    "Must be integers separated by commas (e.g., '1, 2, 3')",
+    (value) => {
+      // If value is empty or undefined, let required() handle it
+      if (!value) return true;
+
+      // Split by comma and trim whitespace
+      const items = value.split(",").map((item) => item.trim());
+
+      // Check if every item is a valid integer
+      return items.every((item) => {
+        // Check if it's a valid integer (no decimals, no letters)
+        return /^\d+$/.test(item);
+      });
+    }
+  )
+  .required("This field is required");
+
 try {
   console.log(optionalRequiredSchema1.isValidSync({}));
   console.log(optionalRequiredSchema1.isValidSync({ optionalObject: {} }));
@@ -76,6 +96,12 @@ try {
 
 try {
   const parsedO: TestType = testSchema.cast({});
+} catch (error) {
+  console.log(error);
+}
+
+try {
+  commaSeparatedIntegers.isValid("1, 2, 3");
 } catch (error) {
   console.log(error);
 }
