@@ -23,6 +23,16 @@ enum SmthEnumWithStringValues {
     SMTH_VALUE_3 = "SmthValue3"
 }
 
+const smthEnumWithStringValuesKeyLabel = Object.entries(SmthEnumWithStringValues)
+    .filter(([key]) => {
+        return key;
+    }) as [string, string][];
+
+const smthEnumWithStringValuesOptions = smthEnumWithStringValuesKeyLabel.map(([value, label]) => ({
+    value,
+    label: `${label.charAt(0)}${label.slice(1).toLowerCase()}`,
+}))
+
 const stringToEnumValue1 = <ET, T>(enumObj: ET, str: string): T =>
     (enumObj as any)[Object.keys(enumObj as {}).filter(k => (enumObj as any)[k] === str)[0]];
 
@@ -52,6 +62,21 @@ export function TestEnumVariables() {
         });
     console.log(smthEnumWithNumberValuesKeyLabel);
     console.log(smthEnumWithNumberValuesOptions);
+
+    Object.entries(SmthEnumWithStringValues)
+        .forEach(item => {
+            console.log(item);
+        });
+    Object.entries(SmthEnumWithStringValues)
+        .forEach(([key]) => {
+            console.log(key);
+        });
+    Object.entries(SmthEnumWithStringValues)
+        .forEach(([key, value]) => {
+            console.log(key, value);
+        });
+    console.log(smthEnumWithStringValuesKeyLabel);
+    console.log(smthEnumWithStringValuesOptions);
 
     let smthEnumValue = stringToEnumValue1(SmthEnumWithStringValues, "SmthValue2");
     console.log(smthEnumValue);
