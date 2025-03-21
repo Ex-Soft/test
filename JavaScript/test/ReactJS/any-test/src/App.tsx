@@ -96,3 +96,14 @@ export default App;
 // yarn global add serve
 // path %localappdata%\Yarn\bin
 // serve -s build
+
+// package.json:
+// {
+//   ...
+//   "packageManager": "yarn@MAJOR.MINOR.PATCH"
+// }
+//
+// corepack enable
+// corepack prepare yarn@1.22.22 --activate
+//
+// yarn outdated

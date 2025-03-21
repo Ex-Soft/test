@@ -9,9 +9,9 @@ const TestTextField: React.FC = () => {
   const [values, setValues] = useState<object>({});
   const [errors, setErrors] = useState<object>({});
 
-  const inputRef1 = useRef(null);
-  const inputRef2 = useRef(null);
-  const inputRef3 = useRef(null);
+  const inputRef1 = useRef<HTMLInputElement>(null);
+  const inputRef2 = useRef<HTMLInputElement>(null);
+  const inputRef3 = useRef<HTMLInputElement>(null);
 
   const handleFocusButtonClick = (n: number) => {
     let inputRef;
@@ -28,8 +28,9 @@ const TestTextField: React.FC = () => {
       default:
         inputRef = inputRef1;
     }
+
     console.log(inputRef?.current);
-    (inputRef?.current as any)?.focus?.();
+    inputRef?.current?.focus?.();
   };
 
   const onTextFieldChange = (propertyName?: string, value?: string) => {

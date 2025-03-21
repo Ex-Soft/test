@@ -7,19 +7,19 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
-    "@types/lodash": "^4.17.15",
-    "@types/node": "^22.13.4",
-    "@types/react": "^19.0.10",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
-    "axios": "^1.7.9",
+    "axios": "^1.8.4",
     "formik": "^2.4.2",
     "lodash": "^4.17.21",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.2.0",
+    "react-router-dom": "^7.4.0",
     "react-scripts": "5.0.1",
-    "styled-components": "^6.1.15",
-    "typescript": "^5.7.3",
+    "styled-components": "^6.1.16",
+    "typescript": "^5.8.2",
     "web-vitals": "^2.1.0",
     "yup": "^1.2.0"
   },
@@ -46,5 +46,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }

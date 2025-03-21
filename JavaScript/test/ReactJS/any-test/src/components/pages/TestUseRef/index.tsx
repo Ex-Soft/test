@@ -35,7 +35,7 @@ const TestUseRef: React.FC = () => {
       <div>
         <input
           type="text"
-          ref={inputElement as React.LegacyRef<HTMLInputElement>}
+          ref={inputElement}
         />
         <button onClick={focusInput}>Focus Input</button>
       </div>

@@ -10,16 +10,16 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
+import { Clear } from "@mui/icons-material";
 import "./index.css";
 
 const TestSelect: React.FC = () => {
   const [age1, setAge1] = useState("");
   const [age2, setAge2] = useState("");
 
-  const inputRef1 = useRef(null);
-  const inputRef2 = useRef(null);
-  const inputRef3 = useRef(null);
+  const inputRef1 = useRef<HTMLInputElement>(null);
+  const inputRef2 = useRef<HTMLInputElement>(null);
+  const inputRef3 = useRef<HTMLInputElement>(null);
 
   const handleFocusButtonClick = (n: number) => {
     let inputRef;
@@ -37,7 +37,8 @@ const TestSelect: React.FC = () => {
         inputRef = inputRef1;
     }
 
-    (inputRef?.current as any)?.focus?.();
+    console.log(inputRef?.current);
+    inputRef?.current?.focus?.();
   };
 
   const handleAge1Change = (event: SelectChangeEvent) => {
@@ -66,7 +67,7 @@ const TestSelect: React.FC = () => {
         endAdornment={
           <InputAdornment sx={{ marginRight: "10px" }} position="end">
             <IconButton>
-              <ClearIcon />
+              <Clear />
             </IconButton>
           </InputAdornment>
         }
@@ -83,7 +84,7 @@ const TestSelect: React.FC = () => {
         inputRef={inputRef2}
         endAdornment={
           <InputAdornment sx={{ marginRight: "10px" }} position="end">
-            <ClearIcon />
+            <Clear />
           </InputAdornment>
         }
       >

@@ -29,9 +29,9 @@ const CustomDropdown: React.FC = () => {
     };
 
     return (
-        <div ref={selfRef as React.LegacyRef<HTMLDivElement>}>
+        <div ref={selfRef}>
             <button
-                ref={buttonRef as React.LegacyRef<HTMLButtonElement>}
+                ref={buttonRef}
                 onClick={handleClick}
             >CustomDropdown</button>
             <CustomDropdownPicker isOpen={isOpen}></CustomDropdownPicker>
