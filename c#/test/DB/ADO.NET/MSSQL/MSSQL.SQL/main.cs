@@ -1,7 +1,7 @@
 ﻿//#define TEST_DATA_ADAPTER
 //#define TEST_BATCH
 //#define TEST_DATE_TYPES
-#define ANY_TEST
+//#define ANY_TEST
 //#define Determining_SET_Options_for_Current_Session // https://www.mssqltips.com/sqlservertip/1415/determining-set-options-for-a-current-session-in-sql-server/
 //#define TEST_COLUMN_TYPES_BY_SP
 //#define TEST_COLUMN_TYPES
@@ -31,7 +31,7 @@
 //#define TEST_BLOB_SAVE_BY_SP
 //#define TEST_BLOB_LOAD_BY_SP
 //#define TEST_STORED_PROCEDURE_PARAMETERS
-//#define TEST_FUNCTION
+#define TEST_FUNCTION
 
 using System;
 using System.Collections;
@@ -40,7 +40,7 @@ using System.Configuration;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Xml;

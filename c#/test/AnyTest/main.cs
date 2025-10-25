@@ -1,4 +1,4 @@
-﻿#define TEST_ELVIS_OPERATOR
+﻿//#define TEST_ELVIS_OPERATOR
 //#define TEST_HTML_ENCODE_DECODE
 //#define TEST_URI
 //#define TEST_EQUALS
@@ -21,7 +21,7 @@
 //#define TEST_TYPES
 //#define TEST_OPERATOR_PRECEDENCE
 //#define TEST_INITIALIZATION
-//#define TEST_STRING
+#define TEST_STRING
 //#define TEST_STRUCT
 //#define TEST_ARRAY
 //#define TEST_AD
@@ -913,6 +913,14 @@ namespace AnyTest
             #endif
 
             #if TEST_STRING
+				tmpStrings = [ "a", "b", "c", "d", "e", "f" ];
+				tmpString = string.Join(',', tmpStrings);
+				Debug.WriteLine(tmpString);
+				
+				tmpString = null;
+				tmpStringII = $"{tmpString}blah-blah-blah";
+				Debug.WriteLine(tmpStringII);
+				
                 var propertyString1 = new PropertyString("propertyString1");
                 var propertyString2 = new PropertyString(propertyString1);
                 propertyString1.Value = "propertyString1modified";
