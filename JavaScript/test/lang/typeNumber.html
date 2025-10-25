@@ -27,6 +27,26 @@ function onLoad()
 		str2,
 		str3;
 
+	num1 = undefined;
+	console.log("%o >= 0 = %o %o !== -1 = %o", num1, num1 >= 0, num1, num1 !== -1);	// undefined >= 0 = false undefined !== -1 = true
+	num1 = null;
+	console.log("%o >= 0 = %o %o !== -1 = %o", num1, num1 >= 0, num1, num1 !== -1);	// null >= 0 = true null !== -1 = true
+	
+	num1 = undefined;
+	num2 = undefined;
+	num3 = num1 & num2;
+	console.log("%o & %o = %o", num1, num2, num3); // undefined & undefined = 0
+	
+	num1 = undefined;
+	num2 = null;
+	num3 = num1 & num2;
+	console.log("%o & %o = %o", num1, num2, num3); // undefined & null = 0
+
+	num1 = null;
+	num2 = undefined;
+	num3 = num1 & num2;
+	console.log("%o & %o = %o", num1, num2, num3); // null & undefined = 0
+	
 	str1 = undefined;
 	str2 = null;
 	console.log("isNaN(%o)=%o isNaN(%o)=%o", str1, isNaN(str1), str2, isNaN(str2));

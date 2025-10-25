@@ -32,6 +32,15 @@ function onLoad()
 		console.log("b %s== undefined", b === undefined ? "=" : "!"); // !==
 		console.log("b %s= null", b == null ? "=" : "!"); // ==
 		console.log("b %s== null", b === null ? "=" : "!"); // ===
+
+		console.log("%o != %o = %o", undefined, undefined, undefined != undefined);		// undefined != undefined = false
+		console.log("%o !== %o = %o", undefined, undefined, undefined !== undefined);	// undefined !== undefined = false
+		
+		console.log("%o != %o = %o", undefined, null, undefined != null);				// undefined != null = false
+		console.log("%o !== %o = %o", undefined, null, undefined !== null);				// undefined !== null = true
+		
+		console.log("%o != %o = %o", null, undefined, null != undefined);				// null != undefined = false
+		console.log("%o !== %o = %o", null, undefined, null !== undefined);				// null !== undefined = true
 	}
 }		</script>
 	</head>

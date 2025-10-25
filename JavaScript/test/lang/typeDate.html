@@ -31,6 +31,10 @@ function onLoad()
 		console.log ((2209168924000 - 2209161600000)/60000);
 		console.log ((2209168924000 - 124000 - 2209161600000)/60000);
 
+		str = "2025-09-30T21:59:59.000Z";
+		d1 = new Date(str);
+		console.log("new Date(\"%s\") = \"%s\" \"%s\" \"%s\"", str, d1.toString(), d1.toLocaleString(), d1.toUTCString());
+
 		str = "Tue, 29 Oct 2024 01:58:50 GMT";
 		d1 = new Date(str);
 		console.log("new Date(\"%s\") = \"%s\" \"%s\" \"%s\"", str, d1.toString(), d1.toLocaleString(), d1.toUTCString());
