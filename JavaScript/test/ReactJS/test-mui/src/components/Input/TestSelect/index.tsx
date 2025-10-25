@@ -10,7 +10,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import { Clear } from "@mui/icons-material";
+import { Clear } from "@mui/icons-material/index";
 import "./index.css";
 
 const TestSelect: React.FC = () => {

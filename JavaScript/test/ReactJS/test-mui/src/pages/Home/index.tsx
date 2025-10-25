@@ -23,7 +23,7 @@ import {
   Keyboard,
   ViewQuilt,
   Construction,
-} from "@mui/icons-material";
+} from "@mui/icons-material/index";
 import TestTree from "../TestTree";
 import TestDropzoneArea from "../TestDropzoneArea";
 import TestFieldsetWithMUI from "../TestFieldsetWithMUI";
@@ -37,6 +37,7 @@ import {
   TestSelect,
   TestTextField,
   TestAccordion,
+  TestAutocomplete,
 } from "../../components";
 import "./index.css";
 
@@ -157,6 +158,13 @@ const Home: React.FC = () => {
                 >
                   <ListItemText primary="Select" />
                 </ListItemButton>
+                <ListItemButton
+                  component={Link}
+                  to="/testautocomplete"
+                  sx={{ pl: 4 }}
+                >
+                  <ListItemText primary="Autocomplete" />
+                </ListItemButton>
               </List>
             </Collapse>
             <ListItemButton onClick={() => setIsOpenMisc(!isOpenMisc)}>
@@ -240,6 +248,7 @@ const Home: React.FC = () => {
           <Route path="/testdropzonearea" element={<TestDropzoneArea />} />
           <Route path="/testtextfield" element={<TestTextField />} />
           <Route path="/testselect" element={<TestSelect />} />
+          <Route path="/testautocomplete" element={<TestAutocomplete />} />
           <Route path="/testforwardref" element={<TestForwardRef />} />
           <Route
             path="/testfieldsetwithmui"

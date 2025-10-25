@@ -19,8 +19,9 @@ import {
   GridRowModel,
   GridRowEditStopReasons,
   GridSlotProps,
+  useGridApiRef,
 } from "@mui/x-data-grid";
-import { SaveAlt } from "@mui/icons-material";
+import { SaveAlt } from "@mui/icons-material/index";
 
 const roles = ["Market", "Finance", "Development"];
 
@@ -80,6 +81,7 @@ function EditToolbar(props: GridSlotProps["toolbar"]) {
 }
 
 export default function FullFeaturedCrudGrid() {
+  const apiRef = useGridApiRef();
   const [rows, setRows] = React.useState(initialRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>(
     {}
@@ -103,6 +105,8 @@ export default function FullFeaturedCrudGrid() {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
+    var selectedRows = apiRef.current.getSelectedRows();
+    console.log(selectedRows);
     setRows(rows.filter((row) => row.id !== id));
   };
 
@@ -216,6 +220,7 @@ export default function FullFeaturedCrudGrid() {
       }}
     >
       <DataGrid
+        apiRef={apiRef}
         rows={rows}
         columns={columns}
         editMode="row"
@@ -223,6 +228,7 @@ export default function FullFeaturedCrudGrid() {
         onRowModesModelChange={handleRowModesModelChange}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={processRowUpdate}
+        checkboxSelection
         slots={{
           toolbar: EditToolbar,
         }}
