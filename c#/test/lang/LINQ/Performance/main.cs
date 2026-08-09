@@ -280,6 +280,20 @@ namespace Performance
     {
         static void Main(string[] args)
         {
+            var result = ((int[])[1, 2, 3, 4, 5, 6, 7, 8, 9]).Where(x =>
+            {
+                WriteLine($"predicate#1{MethodBase.GetCurrentMethod()?.Name}() {x}");
+                return x % 3 == 0;
+            }).Where(x =>
+            {
+                WriteLine($"predicate#2{MethodBase.GetCurrentMethod()?.Name}() {x}");
+                return x % 2 == 0;
+            }).Select(x =>
+            {
+                WriteLine($"selector{MethodBase.GetCurrentMethod()?.Name}() {x}");
+                return x;
+            }).ToList();
+
             var listOfVictim = new List<Victim>
             {
                 new Victim(1),
