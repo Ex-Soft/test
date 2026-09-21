@@ -1,0 +1,1672 @@
+# est Module II
+
+| Status    | Finished                          |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+|-----------|-----------------------------------|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|           |
+| Started   | Monday, 7 September 2026, 7:01 AM |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Completed | Monday, 7 September 2026, 7:31 AM |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Duration  | 30 mins                           |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Grade     | **18.00** out of 25.00 (**72**%)  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
+### Question 1
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What does “thin provisioning” mean for virtual storage?
+
+Select one answer.
+
+Question 1 Select one:
+
+A.
+
+All configured storage space is physically reserved immediately.
+
+B.
+
+Virtual disks can only be used in read-only mode.
+
+C.
+
+Each virtual disk is automatically copied to a second host.
+
+D.
+
+Physical storage space is allocated as needed when data is written.
+
+#### Feedback
+
+The correct answer is: Physical storage space is allocated as needed when data is written.
+
+### Question 2
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A regular file has permissions 640. Which access rights does this give?
+
+Select one answer.
+
+Question 2 Select one:
+
+A.
+
+Owner: read and write; group: read; others: no permissions
+
+B.
+
+Owner: read, write and execute; group: read; others: no permissions
+
+C.
+
+Owner: read and write; group: read and write; others: read
+
+D.
+
+Owner: read; group: read and write; others: no permissions
+
+#### Feedback
+
+The correct answer is: Owner: read and write; group: read; others: no permissions
+
+### Question 3
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An  installed service should start automatically at the next system boot.  The command you run now must not start it immediately. Which command is  appropriate?
+
+Select one answer.
+
+Question 3 Select one:
+
+A.
+
+systemctl start lab-hello
+
+B.
+
+systemctl restart lab-hello
+
+C.
+
+systemctl status lab-hello
+
+D.
+
+systemctl enable lab-hello
+
+#### Feedback
+
+The correct answer is: systemctl enable lab-hello
+
+### Question 4
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which statement about Proxmox VE is correct?
+
+Select one answer.
+
+Question 4 Select one:
+
+A.
+
+Proxmox VE is a separate hypervisor that replaces KVM.
+
+B.
+
+Proxmox VE is used exclusively to manage Docker containers.
+
+C.
+
+Proxmox VE is a guest operating system for Windows applications.
+
+D.
+
+Proxmox VE is a management platform that uses KVM and LXC, among other technologies.
+
+#### Feedback
+
+The correct answer is: Proxmox VE is a management platform that uses KVM and LXC, among other technologies.
+
+### Question 5
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which description of the Linux features used for containers is correct?
+
+Select one answer.
+
+Question 5 Select one:
+
+A.
+
+Namespaces limit CPU and RAM; cgroups manage image versions.
+
+B.
+
+Namespaces isolate the view of system resources; cgroups control resource usage.
+
+C.
+
+Namespaces encrypt files; cgroups provide a separate kernel.
+
+D.
+
+Namespaces store images; cgroups resolve container names.
+
+#### Feedback
+
+The correct answer is: Namespaces isolate the view of system resources; cgroups control resource usage.
+
+### Question 6
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+User Ben has rwx permissions on a shared directory. It contains a file owned by Anna with permissions 600.  The directory has no sticky bit. The path is accessible and no  additional protection mechanisms apply. Can Ben delete the file?
+
+Select one answer.
+
+Question 6 Select one:
+
+A.
+
+No, because only Anna is allowed to modify the file.
+
+B.
+
+No, because Ben cannot read the file's contents.
+
+C.
+
+Yes, because write and search permissions on the directory allow deletion.
+
+D.
+
+Yes, but only after Anna transfers ownership of the file to him.
+
+#### Feedback
+
+The correct answer is: Yes, because write and search permissions on the directory allow deletion.
+
+### Question 7
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which command displays the current user's user ID and group memberships?
+
+Select one answer.
+
+Question 7 Select one:
+
+A.
+
+id
+
+B.
+
+pwd
+
+C.
+
+uname
+
+D.
+
+ls
+
+#### Feedback
+
+The correct answer is: id
+
+### Question 8
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An API requires a ready-to-use database at startup. So far, the Compose file only specifies depends_on: \[db\]. The API sometimes starts too early. Which adjustment most directly addresses this startup problem?
+
+Select one answer.
+
+Question 8 Select one:
+
+A.
+
+Define a suitable healthcheck for db and use condition: service_healthy for the API's dependency
+
+B.
+
+Use the same image tag for both services
+
+C.
+
+Additionally publish the database port on the host
+
+D.
+
+Place the database service above the API in the file
+
+#### Feedback
+
+The correct answer is: Define a suitable healthcheck for db and use condition: service_healthy for the API's dependency
+
+### Question 9
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A  Windows VM uses emulated disk and network adapter models. Disk and  network access are slow, while CPU usage is low. Which action is most  appropriate?
+
+Select one answer.
+
+Question 9 Select one:
+
+A.
+
+Assign as many additional vCPUs as possible to the VM
+
+B.
+
+Create a snapshot to speed up write operations
+
+C.
+
+Install suitable VirtIO drivers and use paravirtualised devices
+
+D.
+
+Reduce the VM's RAM allocation to relieve the hypervisor
+
+#### Feedback
+
+The correct answer is: Install suitable VirtIO drivers and use paravirtualised devices
+
+### Question 10
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+The directories /srv/team and /srv/team/notes have the following properties:
+
+```
+drwxr-x--- root webops /srv/team
+drwx------ anna anna  /srv/team/notes
+```
+
+The file /srv/team/notes/plan.txt has permissions 666. User linux_admin belongs to group webops but is neither anna nor root. No ACLs or additional privileges are configured. Why can this user not read the file?
+
+Select one answer.
+
+Question 10 Select one:
+
+A.
+
+Because the file must belong to group webops
+
+B.
+
+Because reading a file also requires write permission on /srv/team
+
+C.
+
+Because files with permissions 666 can only be read by their owner
+
+D.
+
+Because the user lacks search (traverse) permission x on /srv/team/notes
+
+#### Feedback
+
+The correct answer is: Because the user lacks search (traverse) permission x on /srv/team/notes
+
+### Question 11
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What is a Docker image?
+
+Select one answer.
+
+Question 11 Select one:
+
+A.
+
+A template containing an application, its dependencies and filesystem layers for creating containers
+
+B.
+
+A list of all currently running containers
+
+C.
+
+A storage area exclusively for mutable application data
+
+D.
+
+A virtual machine with its own kernel
+
+#### Feedback
+
+The correct answer is: A template containing an application, its dependencies and filesystem layers for creating containers
+
+### Question 12
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+In a Compose project, the api and db services run on the same network created by Compose. The API uses DB_HOST=localhost and cannot reach the database. Which change is correct?
+
+Select one answer.
+
+Question 12 Select one:
+
+A.
+
+Use DB_HOST=127.0.0.1
+
+B.
+
+Give both containers the same name
+
+C.
+
+Use DB_HOST=db
+
+D.
+
+Mount the database's data directory into the API container
+
+#### Feedback
+
+The correct answer is: Use DB_HOST=db
+
+### Question 13
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+You want to display the last 50 journal entries for the lab-hello service. Which command do you use?
+
+Select one answer.
+
+Question 13 Select one:
+
+A.
+
+systemctl status lab-hello -n 50
+
+B.
+
+journalctl -u lab-hello -n 50
+
+C.
+
+journalctl -u lab-hello -f
+
+D.
+
+journalctl -b -n 50
+
+#### Feedback
+
+The correct answer is: journalctl -u lab-hello -n 50
+
+### Question 14
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What does the -p 8080:80 option do when starting a container?
+
+Select one answer.
+
+Question 14 Select one:
+
+A.
+
+It forwards connections to host port 8080 to container port 80.
+
+B.
+
+It forwards connections to host port 80 to container port 8080.
+
+C.
+
+It allows the container to make outgoing connections only on port 8080.
+
+D.
+
+It changes the application's configuration inside the container to port 8080.
+
+#### Feedback
+
+The correct answer is: It forwards connections to host port 8080 to container port 80.
+
+### Question 15
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A container mounts the named volume site at /data. It writes /data/f1 and also writes /tmp/f2 into its writable container layer. The container is then removed, while the volume is retained. A new container mounts site at /data again. Which statement is correct?
+
+Select one answer.
+
+Question 15 Select one:
+
+A.
+
+Both files automatically appear in the new container at their original paths.
+
+B.
+
+Both files were deleted together with the old container.
+
+C.
+
+/data/f1 remains available; /tmp/f2 from the old container is lost.
+
+D.
+
+/tmp/f2 remains available; /data/f1 was deleted when the container was removed.
+
+#### Feedback
+
+The correct answer is: /data/f1 remains available; /tmp/f2 from the old container is lost.
+
+### Question 16
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A Dockerfile contains the following sequence:
+
+```
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+```
+
+Only the application code has changed. requirements.txt,  the base image and the preceding build steps are unchanged; the Docker  build cache is available. Why is this order advantageous?
+
+Select one answer.
+
+Question 16 Select one:
+
+A.
+
+Changes to the application code are ignored during the build.
+
+B.
+
+The dependency installation step can be reused from the build cache.
+
+C.
+
+COPY . . automatically installs all newly required Python packages.
+
+D.
+
+--no-cache-dir disables the Docker build cache for the entire image.
+
+#### Feedback
+
+The correct answer is: The dependency installation step can be reused from the build cache.
+
+### Question 17
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A  host runs several VMs with overcommitted CPU and RAM resources. All VMs  now need substantially more processing power and RAM at the same time.  What consequences should be expected?
+
+Select one answer.
+
+Question 17 Select one:
+
+A.
+
+CPU overcommit immediately terminates VMs; RAM overcommit only increases network latency.
+
+B.
+
+CPU shortages cause waiting; RAM shortages can lead to swapping and processes being terminated by the OOM killer.
+
+C.
+
+The hypervisor automatically converts free disk space into equally fast RAM.
+
+D.
+
+The VMs receive all configured resources in full, regardless of the physical hardware available.
+
+#### Feedback
+
+The correct answer is: CPU shortages cause waiting; RAM shortages can lead to swapping and processes being terminated by the OOM killer.
+
+### Question 18
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What is a central task of a hypervisor?
+
+Select one answer.
+
+Question 18 Select one:
+
+A.
+
+Regularly backing up application data
+
+B.
+
+Updating software packages inside a guest operating system
+
+C.
+
+Running virtual machines and providing them with hardware resources
+
+D.
+
+Exclusively managing network connections between physical computers
+
+#### Feedback
+
+The correct answer is: Running virtual machines and providing them with hardware resources
+
+### Question 19
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+The directory /srv/team belongs to root:webops and has permissions 2770. Anna is a member of webops, but her primary group is anna. She creates a new file using touch. Her umask is 0022; no default ACLs are set. Which group and permissions does the file receive?
+
+Select one answer.
+
+Question 19 Select one:
+
+A.
+
+Group webops, permissions 644
+
+B.
+
+Group anna, permissions 644
+
+C.
+
+Group webops, permissions 664
+
+D.
+
+Group anna, permissions 770
+
+#### Feedback
+
+The correct answer is: Group webops, permissions 644
+
+### Question 20
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What is the purpose of a container registry?
+
+Select one answer.
+
+Question 20 Select one:
+
+A.
+
+It distributes CPU time among running containers.
+
+B.
+
+It exclusively collects the logs of running containers.
+
+C.
+
+It stores images and makes them available for download.
+
+D.
+
+It replaces network connections between containers.
+
+#### Feedback
+
+The correct answer is: It stores images and makes them available for download.
+
+### Question 21
+
+Not answered
+
+Marked out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A deployment must use exactly the same image content even if the publisher later reassigns tags. Which reference is suitable?
+
+Select one answer.
+
+Question 21 Select one:
+
+A.
+
+The latest tag
+
+B.
+
+An image reference with a digest, for example @sha256:…
+
+C.
+
+Only the repository name, without a tag
+
+D.
+
+An arbitrarily chosen container name
+
+#### Feedback
+
+The correct answer is: An image reference with a digest, for example @sha256:…
+
+### Question 22
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which directory typically contains system-wide configuration files on Linux?
+
+Select one answer.
+
+Question 22 Select one:
+
+A.
+
+/home
+
+B.
+
+/dev
+
+C.
+
+/proc
+
+D.
+
+/etc
+
+#### Feedback
+
+The correct answer is: /etc
+
+### Question 23
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A  snapshot of a VM is created before an update. The snapshot and virtual  disk reside on the same storage system. That storage system then fails  completely. Which statement is correct?
+
+Select one answer.
+
+Question 23 Select one:
+
+A.
+
+The snapshot is sufficient for recovery because it is automatically stored on another host.
+
+B.
+
+The snapshot protects against this failure if the VM was powered off when it was created.
+
+C.
+
+The snapshot enables recovery as soon as a new empty virtual disk is created.
+
+D.
+
+The snapshot provides no independent recovery option here; a backup on a separate storage system would be required.
+
+#### Feedback
+
+The correct answer is: The snapshot provides no independent recovery option here; a backup on a separate storage system would be required.
+
+### Question 24
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What does “Linux” refer to in the strict technical sense?
+
+Select one answer.
+
+Question 24 Select one:
+
+A.
+
+A graphical user interface
+
+B.
+
+The operating system kernel
+
+C.
+
+A package manager
+
+D.
+
+A programming language
+
+#### Feedback
+
+The correct answer is: The operating system kernel
+
+### Question 25
+
+Not answered
+
+Marked out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which statement describes a fundamental difference between virtual machines and Linux containers?
+
+Select one answer.
+
+Question 25 Select one:
+
+A.
+
+Each container boots its own kernel, while virtual machines share a kernel.
+
+B.
+
+Virtual machines have their own guest kernel, while containers share the host's kernel.
+
+C.
+
+Containers always require more RAM than virtual machines.
+
+D.
+
+Virtual machines cannot run different operating systems.
+
+#### Feedback
+
+The correct answer is: Virtual machines have their own guest kernel, while containers share the host's kernel.
+
+Finish review
+
+# Test Module III
+
+| Status    | Finished                            |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+|-----------|-------------------------------------|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|           |
+| Started   | Monday, 14 September 2026, 7:01 AM  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Completed | Monday, 14 September 2026, 7:31 AM  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Duration  | 29 mins 41 secs                     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Grade     | **18.33** out of 25.00 (**73.33**%) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
+### Question 1
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Two users edit the same file on different DFSR replicas during a network partition. Which statements are correct? Select all correct answers. Between one and three answers are correct.
+
+Question 1 Answer
+
+A.
+
+DFSR automatically turns the two replicas into a continuously available SMB cluster.
+
+B.
+
+DFSR guarantees that the contents of both edits will be merged.
+
+C.
+
+Conflicts may occur because DFSR has no distributed file locking between replicas.
+
+D.
+
+DFSR automatically blocks every write on both replicas until connectivity returns.
+
+#### Feedback
+
+The correct answer is: Conflicts may occur because DFSR has no distributed file locking between replicas.
+
+### Question 2
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A Group Policy Preference with the Update action added a group to local Administrators; automatic removal was not configured. After maintenance, only the GPO link is removed. An old privileged session remains open. Which procedure reliably ends the privilege? Choose exactly one answer.
+
+Question 2 Answer
+
+A.
+
+Disconnect only the RDP connection; the session may remain active.
+
+B.
+
+Run only gpupdate /force; it automatically resets the group change and all old tokens.
+
+C.
+
+Change only the group’s display name; this invalidates existing tokens.
+
+D.
+
+Prevent reassignment, explicitly remove the added membership, end old privileged sessions and processes, and verify with a fresh sign-in.
+
+#### Feedback
+
+The correct answer is: Prevent reassignment, explicitly remove the added membership, end old privileged sessions and processes, and verify with a fresh sign-in.
+
+### Question 3
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which statements about organizational units (OUs) in Active Directory are correct? Select all correct answers. Between one and three answers are correct.
+
+Question 3 Answer
+
+A.
+
+OUs can organize user and computer objects.
+
+B.
+
+GPOs can be linked to OUs.
+
+C.
+
+Every OU is a separate AD forest.
+
+D.
+
+Placing a security group in an OU automatically applies that OU’s GPOs to all group members.
+
+#### Feedback
+
+The correct answers are: OUs can organize user and computer objects., GPOs can be linked to OUs.
+
+### Question 4
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An AD CS template specifies six months of certificate validity. The issuing CA allows at most three months, but its own certificate expires in 40 days. All other requirements are met. What upper limit applies to an end-entity certificate issued now using the described procedure? Choose exactly one answer.
+
+Question 4 Answer
+
+A.
+
+It remains valid for exactly six months because the template takes precedence.
+
+B.
+
+It may remain valid for up to 40 days after the CA expires.
+
+C.
+
+It remains valid for exactly three months, regardless of the CA expiry.
+
+D.
+
+It must expire no later than the CA certificate in 40 days.
+
+#### Feedback
+
+The correct answer is: It must expire no later than the CA certificate in 40 days.
+
+### Question 5
+
+Partially correct
+
+Mark 0.67 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A Windows 11 pilot update succeeded, and a separate Windows Server update is next. Which actions support a sound staged rollout? Select all correct answers. Between one and three answers are correct.
+
+Question 5 Answer
+
+A.
+
+Treat the Windows 11 pilot as sufficient proof for every server role.
+
+B.
+
+Validate the separate server update on suitable server systems.
+
+C.
+
+Verify actual installation and fresh status reports instead of treating approval as installation evidence.
+
+D.
+
+Update redundant servers one at a time and check their roles and replication before proceeding.
+
+#### Feedback
+
+The correct answers are: Validate the separate server update on suitable server systems., Update redundant servers one at a time and check their roles and replication before proceeding., Verify actual installation and fresh status reports instead of treating approval as installation evidence.
+
+### Question 6
+
+Partially correct
+
+Mark 0.67 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A computer uses AD-based certificate auto-enrollment. AD and the CA are reachable, and the template is compatible. Which conditions are required for the intended automatic enrollment? Select all correct answers. Between one and three answers are correct.
+
+Question 6 Answer
+
+A.
+
+The computer must be a member of Domain Admins.
+
+B.
+
+The computer must be allowed Read, Enroll and Autoenroll on the template.
+
+C.
+
+The template must be published on the issuing CA.
+
+D.
+
+Computer auto-enrollment must be enabled in the effective policy.
+
+#### Feedback
+
+The correct answers are: The template must be published on the issuing CA., The computer must be allowed Read, Enroll and Autoenroll on the template., Computer auto-enrollment must be enabled in the effective policy.
+
+### Question 7
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Two computer GPOs are linked to the same client OU. The standard GPO sets WSUS client-side targeting to Clients and applies to all computers there. The higher-precedence pilot GPO sets it to Pilot and grants Read/Apply only to one pilot computer; other required Read permissions are present. Both WSUS groups exist and client-side targeting is enabled. There are no other relevant policies. What is expected after successful policy processing and reporting? Choose exactly one answer.
+
+Question 7 Answer
+
+A.
+
+No computer is assigned because two GPOs configure the same setting.
+
+B.
+
+All computers enter Pilot because the pilot GPO has higher precedence.
+
+C.
+
+The pilot computer reports Pilot; the other computers report Clients.
+
+D.
+
+The pilot computer must receive both target groups because both GPOs apply.
+
+#### Feedback
+
+The correct answer is: The pilot computer reports Pilot; the other computers report Clients.
+
+### Question 8
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which files may be provided on a PKI publication server that allows public read access? Choose exactly one answer.
+
+Question 8 Answer
+
+A.
+
+CA certificates and signed certificate revocation lists (CRLs).
+
+B.
+
+The complete CA database including private keys.
+
+C.
+
+Domain passwords and certificate requests.
+
+D.
+
+Private CA keys and their backup passwords.
+
+#### Feedback
+
+The correct answer is: CA certificates and signed certificate revocation lists (CRLs).
+
+### Question 9
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A downstream WSUS server should obtain updates from an upstream WSUS server while managing approvals and computer groups independently. Which mode fits? Choose exactly one answer.
+
+Question 9 Answer
+
+A.
+
+An additional AD domain controller without the WSUS role.
+
+B.
+
+Exclusive direct retrieval from Microsoft Update.
+
+C.
+
+A replica server with inherited management.
+
+D.
+
+An autonomous downstream server.
+
+#### Feedback
+
+The correct answer is: An autonomous downstream server.
+
+### Question 10
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A user has only Read at the share level but Modify in NTFS. There are no other permissions or denials. What may the user do through this SMB share? Choose exactly one answer.
+
+Question 10 Answer
+
+A.
+
+Edit files, but not list directories.
+
+B.
+
+Read files, but neither edit nor delete them.
+
+C.
+
+Read, edit and delete files.
+
+D.
+
+Change other users’ NTFS permissions.
+
+#### Feedback
+
+The correct answer is: Read files, but neither edit nor delete them.
+
+### Question 11
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which statements about DFS Namespaces and DFS Replication are correct? Select all correct answers. Between one and three answers are correct.
+
+Question 11 Answer
+
+A.
+
+Replication of folder contents must be configured separately from the namespace.
+
+B.
+
+Adding a second namespace server automatically replicates all file content.
+
+C.
+
+DFS Namespaces provide logical paths that refer clients to folder targets.
+
+D.
+
+DFS Replication provides a complete backup that preserves every deleted file indefinitely.
+
+#### Feedback
+
+The correct answers are: DFS Namespaces provide logical paths that refer clients to folder targets., Replication of folder contents must be configured separately from the namespace.
+
+### Question 12
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An administrator has successfully requested a certificate for the local computer account using the Certificates MMC snap-in. In which certificate store should the administrator look for the issued computer certificate? Choose exactly one answer.
+
+Question 12 Answer
+
+A.
+
+Local Computer → Personal.
+
+B.
+
+Current User → Trusted Root Certification Authorities.
+
+C.
+
+Only in the issuing CA’s database.
+
+D.
+
+Current User → Untrusted Certificates.
+
+#### Feedback
+
+The correct answer is: Local Computer → Personal.
+
+### Question 13
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An organization explicitly creates training.firma.example as a new forest. firma.example already exists in another forest. What follows from this? Choose exactly one answer.
+
+Question 13 Answer
+A. The DNS name alone creates neither an AD child domain nor a trust relationship.
+B. Its name automatically makes the new domain an AD child domain.
+C. A two-way trust automatically exists between the forests.
+D. Both domains automatically use the same AD database.
+
+#### Feedback
+
+The correct answer is: The DNS name alone creates neither an AD child domain nor a trust relationship.
+
+### Question 14
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A domain computer is located in a child OU inside a parent OU. Arrange the Group Policy levels in their normal processing order, from first to last. Assume one applicable GPO at each level, normal inheritance, no Enforced links and no blocked inheritance. Drag each label into one field; use each label exactly once.
+
+1.
+2.
+3.
+4.
+5.
+
+#### Feedback
+
+The correct answer is: A domain computer is located in a child OU inside a parent OU. Arrange the Group Policy levels in their normal processing order, from first to last. Assume one applicable GPO at each level, normal inheritance, no Enforced links and no blocked inheritance. Drag each label into one field; use each label exactly once.
+
+1. \[Local Group Policy | Локальная групповая политика\]
+2. \[Site | Сайт AD\]
+3. \[Domain | Домен\]
+4. \[Parent OU | Родительский OU\]
+5. \[Child OU | Дочерний OU\]
+
+### Question 15
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A client can download all required CA certificates through AIA. However, the root CA is not trusted on the client. Which statement is correct? Choose exactly one answer.
+
+Question 15 Answer
+A. The chain can be built, but it still requires a separately established trust anchor.
+B. Importing the end-entity certificate into Intermediate Certification Authorities is sufficient.
+C. A successful AIA download automatically makes the root CA trusted.
+D. An accessible CRL replaces trust in the root CA.
+
+#### Feedback
+
+The correct answer is: The chain can be built, but it still requires a separately established trust anchor.
+
+### Question 16
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Two servers are in the same IPv4 subnet and on the same local network. How do they normally communicate? Choose exactly one answer.
+
+Question 16 Answer
+
+A. Directly over the local network, without a router as the next hop.
+B. Only through a configured default gateway.
+C. Through the DNS server as an intermediary.
+D. Only after joining the same AD domain.
+
+#### Feedback
+
+The correct answer is: Directly over the local network, without a router as the next hop.
+
+### Question 17
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A user GPO should apply only to a particular security group. Authenticated Users was therefore removed completely from the GPO permissions. The target group has Read and Apply group policy, but computer accounts have no Read permission. Which correction fits? Choose exactly one answer.
+
+Question 17 Answer
+A. Move the GPO link to the OU containing security groups.
+B. Add an explicit Deny for Domain Computers.
+C. Give computer accounts the required Read access, for example through Authenticated Users with Read only, while limiting Apply group policy to the target group.
+D. Give all domain users Apply group policy again.
+
+#### Feedback
+
+The correct answer is: Give computer accounts the required Read access, for example through Authenticated Users with Read only, while limiting Apply group policy to the target group.
+
+### Question 18
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An update management server controls update installation on domain controllers and an issuing CA. What classification follows from this control in the tiering model covered by the workbook? Choose exactly one answer.
+
+Question 18 Answer
+A. Tier 0, because its control affects security-critical Tier 0 systems.
+B. Tier 1, regardless of which systems it controls.
+C. Tier 2, because no user accounts are stored on the update management server.
+D. No classification, as long as the updates come from Microsoft.
+
+#### Feedback
+
+The correct answer is: Tier 0, because its control affects security-critical Tier 0 systems.
+
+### Question 19
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+What is the purpose of DNS SRV records in Active Directory? Choose exactly one answer.
+
+Question 19 Answer
+A. They allow clients to locate services such as LDAP on domain controllers.
+B. They define NTFS permissions.
+C. They store domain user passwords.
+D. They distribute Group Policy to security groups.
+
+#### Feedback
+
+The correct answer is: They allow clients to locate services such as LDAP on domain controllers.
+
+### Question 20
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+An end-entity certificate has this chain: root CA → intermediate CA → issuing CA → end-entity certificate. Root trust and all CA certificates are present and valid. Revocation checking is required. The issuing CA’s CRL is current, but the intermediate CA’s CRL needed to check the issuing CA certificate has expired. There is no other valid revocation information source. Which statement is correct? Choose exactly one answer.
+
+Question 20 Answer
+A. The issuing CA’s current CRL is sufficient for the entire chain.
+B. The issuing CA’s current CRL is insufficient; the required intermediate CA CRL must be renewed and published.
+C. Copying the same expired CRL again extends its validity.
+D. The expired CRL proves that the end-entity certificate was revoked.
+
+#### Feedback
+
+The correct answer is: The issuing CA’s current CRL is insufficient; the required intermediate CA CRL must be renewed and published.
+
+### Question 21
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A user belongs to three global groups. Their AGDLP nesting grants NTFS Read and NTFS Modify on the same folder; the third group has no permission entry there. The SMB share allows Read. There are no Deny entries or other permissions. Which analysis is correct? Choose exactly one answer.
+
+Question 21 Answer
+A. The third group’s missing entry denies all access.
+B. Combined NTFS permissions allow Modify, but access through SMB remains limited to Read.
+C. The order of the three groups in AD determines whether Read or Modify applies.
+D. NTFS Modify overrides the SMB share restriction.
+
+#### Feedback
+
+The correct answer is: Combined NTFS permissions allow Modify, but access through SMB remains limited to Read.
+
+### Question 22
+
+Incorrect
+
+Mark 0.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A group membership change has replicated, but a user still has the old file access rights in an existing session. What is the most useful next step? Choose exactly one answer.
+
+Question 22 Answer
+
+A. Temporarily grant the user Full Control directly on the folder.
+B. Fully sign the user out, then test again with a new sign-in and fresh SMB connections.
+C. Disable NTFS inheritance on the entire data drive.
+D. Also add the new group to Domain Admins.
+
+#### Feedback
+
+The correct answer is: Fully sign the user out, then test again with a new sign-in and fresh SMB connections.
+
+### Question 23
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+Which sequence correctly describes AGDLP? Choose exactly one answer.
+
+Question 23 Answer
+A. Accounts → domain local groups → global groups → permissions.
+B.
+
+Global groups → OUs → accounts → permissions.
+
+C.
+
+Permissions → accounts → global groups → domain local groups.
+
+D.
+
+Accounts → global groups → domain local groups → permissions.
+
+#### Feedback
+
+The correct answer is: Accounts → global groups → domain local groups → permissions.
+
+### Question 24
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+A test certificate has been revoked on the CA. Which evidence demonstrates that the validating client actually recognizes the revocation? Choose exactly one answer.
+
+Question 24 Answer
+
+A.
+
+The HTTP server responds to a ping.
+
+B.
+
+The CA console lists the certificate under Revoked Certificates; no client validation is required.
+
+C.
+
+The client reports that the CRL is unreachable.
+
+D.
+
+The current signed CRL contains the serial number, and a repeated client validation explicitly reports that the certificate is revoked.
+
+#### Feedback
+
+The correct answer is: The current signed CRL contains the serial number, and a repeated client validation explicitly reports that the certificate is revoked.
+
+### Question 25
+
+Correct
+
+Mark 1.00 out of 1.00
+
+![](https://eumamua.bwlearn.de/theme/image.php/boost_union/core/1788028827/i/unflagged)Flag question
+
+#### Question text
+
+AppLocker is set to Audit only for Windows Installer rules. An MSI execution matches a Deny rule. How does AppLocker behave? Choose exactly one answer.
+
+Question 25 Answer
+
+A.
+
+It deletes the MSI file after a successful installation.
+
+B.
+
+It automatically converts the Deny rule to an Allow rule.
+
+C.
+
+It logs the intended block without enforcing it.
+
+D.
+
+It blocks execution without logging anything.
+
+#### Feedback
+
+The correct answer is: It logs the intended block without enforcing it.
+
+Finish review
